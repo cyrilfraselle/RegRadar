@@ -70,7 +70,21 @@ except ImportError:
 # ═══════════════════════════════════════════════════════════════
 #  CONFIGURATION
 # ═══════════════════════════════════════════════════════════════
-
+#
+#  ⚠️  LES SECRETS NE SONT PAS DANS CE FICHIER.
+#
+#  Ce fichier est public (sur GitHub). Tous les secrets (mot de passe
+#  Gmail, clé API Groq, ID Google Sheet, emails) vivent dans un fichier
+#  séparé "config.py" qui reste sur ton PC et n'est JAMAIS poussé sur
+#  GitHub (il est dans .gitignore).
+#
+#  POUR CONFIGURER :
+#  1. Copie le fichier "config.example.py" en "config.py"
+#  2. Remplis tes vraies valeurs dans "config.py"
+#  3. C'est tout — ce fichier-ci lit automatiquement config.py
+#
+#  Si config.py n'existe pas, le script tourne avec des valeurs neutres
+#  (email/Sheets désactivés) pour que rien ne plante.
 # ═══════════════════════════════════════════════════════════════
 
 # ═══════════════════════════════════════════════════════════════
@@ -144,8 +158,8 @@ CONFIG = {
     "groq": {
         "actif": bool(_get("GROQ_API_KEY", "")),
         "api_key": _get("GROQ_API_KEY", ""),
-        "min_impact": 2,
-        "max_calls": 40,
+        "min_impact": 3,         # ne résumer QUE les articles critiques (économise le quota)
+        "max_calls": 12,         # plafond bas pour rester sous le rate-limit Groq gratuit
         "exec_summary": True,
     },
 
@@ -1308,17 +1322,31 @@ def executer_veille():
         log.info("─── Enrichissement IA ───")
         nouveaux = enrichir_avec_claude(nouveaux)
 
-    # 4b. Groq AI summaries
-    if CONFIG.get("groq", {}).get("actif"):
-        log.info("─── Groq AI summaries ───")
-        nouveaux = enrich_with_groq(
-            nouveaux,
-            api_key=CONFIG["groq"]["api_key"],
-            min_impact=CONFIG["groq"]["min_impact"],
-            max_calls=CONFIG["groq"]["max_calls"],
-        )
+    # ── Préparer la clé Groq ──
+    groq_on = CONFIG.get("groq", {}).get("actif")
+    groq_key = CONFIG["groq"]["api_key"] if groq_on else ""
 
-    # 4c. Trends + exec summary
+    # 4b. PRIORITÉ aux synthèses de haut niveau (ce qu'on lit en premier).
+    #     On les génère AVANT les résumés d'articles pour qu'elles passent
+    #     même si le quota Groq se réduit ensuite.
+    exec_summary = ""
+    thematic_html = ""
+    if groq_on:
+        log.info("─── Exec summary ───")
+        exec_summary = build_exec_summary(nouveaux, groq_key)
+        time.sleep(2)  # respirer entre les appels (quota par minute)
+
+        log.info("─── Thematic briefing ───")
+        thematic_html = build_thematic_briefing(nouveaux, groq_key)
+        time.sleep(2)
+
+    # 4c. Key-dates timeline (marche sans Groq ; Groq enrichit seulement)
+    log.info("─── Key-dates timeline ───")
+    timeline_html = build_key_dates_timeline(nouveaux, groq_key)
+    if groq_on:
+        time.sleep(2)
+
+    # 4d. Trends (pas de Groq — local)
     trend_html = ""
     trend_results = []
     if CONFIG.get("trends", {}).get("actif"):
@@ -1327,20 +1355,16 @@ def executer_veille():
         trend_results = analyze_trends(trends)
         trend_html = render_trends_html(trend_results)
 
-    exec_summary = ""
-    if CONFIG.get("groq", {}).get("actif") and CONFIG["groq"].get("exec_summary"):
-        log.info("─── Exec summary ───")
-        exec_summary = build_exec_summary(nouveaux, CONFIG["groq"]["api_key"])
-
-    # 4d. Thematic briefing (Groq) + key-dates timeline (base + Groq)
-    groq_key = CONFIG.get("groq", {}).get("api_key", "") if CONFIG.get("groq", {}).get("actif") else ""
-    thematic_html = ""
-    timeline_html = ""
-    if CONFIG.get("groq", {}).get("actif"):
-        log.info("─── Thematic briefing ───")
-        thematic_html = build_thematic_briefing(nouveaux, groq_key)
-    log.info("─── Key-dates timeline ───")
-    timeline_html = build_key_dates_timeline(nouveaux, groq_key)
+    # 4e. Résumés par article EN DERNIER (gros consommateur de quota).
+    #     Si le quota est épuisé ici, on garde quand même briefing + exec + timeline.
+    if groq_on:
+        log.info("─── Groq AI summaries ───")
+        nouveaux = enrich_with_groq(
+            nouveaux,
+            api_key=groq_key,
+            min_impact=CONFIG["groq"]["min_impact"],
+            max_calls=CONFIG["groq"]["max_calls"],
+        )
  
     # 5. Google Sheets
     log.info("─── Mise à jour Google Sheets ───")
