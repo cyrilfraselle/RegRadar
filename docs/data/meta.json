@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-06-30T09:34:59.848909",
+  "last_updated": "2026-06-30T20:19:12.999068",
   "last_run_counts": {
-    "total": 8,
-    "critical": 3,
-    "important": 4,
-    "info": 1
+    "total": 61,
+    "critical": 6,
+    "important": 38,
+    "info": 17
   },
-  "archive_size": 8,
-  "exec_summary": "AMLA issued its first advisory note ahead of the MiCAR transition ending 1 July, putting crypto AML controls in focus. EBA finalised CRR3 liquidity reporting RTS, requiring COREP updates at banks. Wise is under regulatory investigation over AML weaknesses — a signal of intensifying scrutiny on payment institutions. No Belgian-specific deadlines fall this week, though FSMA's MiFID suitability consultation is open.",
+  "archive_size": 69,
+  "exec_summary": "",
   "timeline": [
     {
       "date": "2026-07-01",
@@ -24,25 +24,25 @@
       "days_away": 10
     },
     {
-      "date": "2026-09-15",
-      "event": "FSMA MiFID II suitability consultation closes",
-      "theme": "MiFID/MiFIR",
-      "type": "consultation",
-      "days_away": 77
-    },
-    {
       "date": "2026-09-17",
-      "event": "DORA — first ICT major-incident reporting review",
+      "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
       "days_away": 79
     },
     {
-      "date": "2026-10-31",
-      "event": "EIOPA Solvency II reporting consultation closes",
-      "theme": "Solvency/Insurance",
-      "type": "consultation",
-      "days_away": 123
+      "date": "2026-12-31",
+      "event": "CSRD first-wave reporting (FY2025) due",
+      "theme": "SFDR/ESG",
+      "type": "report",
+      "days_away": 184
+    },
+    {
+      "date": "2027-01-01",
+      "event": "CRR3 phased own-funds provisions continue",
+      "theme": "Capital/CRR",
+      "type": "application",
+      "days_away": 185
     },
     {
       "date": "2027-01-10",
@@ -50,62 +50,127 @@
       "theme": "AML/CFT",
       "type": "application",
       "days_away": 194
+    },
+    {
+      "date": "2027-06-29",
+      "event": "MiCA — Commission full review",
+      "theme": "MiCA/Crypto",
+      "type": "report",
+      "days_away": 364
     }
   ],
   "trends": [
     {
-      "theme": "AML/CFT",
-      "this_week": 7,
-      "avg": 1.7,
-      "pct": 308,
-      "arrow": "▲",
-      "label": "RISING",
-      "spark": "▁▂▁▂▁▂▃█"
+      "theme": "Capital/CRR",
+      "this_week": 4,
+      "avg": 4.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        4
+      ],
+      "weeks": 1
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 5,
-      "avg": 2.0,
-      "pct": 150,
-      "arrow": "▲",
-      "label": "RISING",
-      "spark": "▂▁▂▃▂▃▄█"
-    },
-    {
-      "theme": "Capital/CRR",
-      "this_week": 3,
-      "avg": 2.6,
-      "pct": 15,
+      "this_week": 37,
+      "avg": 37.0,
+      "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
-      "spark": "█▁█▁█▁██"
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        37
+      ],
+      "weeks": 1
     },
     {
-      "theme": "DORA",
+      "theme": "Enforcement/Fines",
+      "this_week": 8,
+      "avg": 8.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        8
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "Stress Test",
       "this_week": 2,
-      "avg": 2.4,
-      "pct": -17,
+      "avg": 2.0,
+      "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
-      "spark": "▄▅▄▅▄▅▄▃"
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        2
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "AML/CFT",
+      "this_week": 3,
+      "avg": 3.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        3
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "Retail Investment",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
     },
     {
       "theme": "Solvency/Insurance",
       "this_week": 2,
-      "avg": 1.0,
-      "pct": 100,
-      "arrow": "▲",
-      "label": "RISING",
-      "spark": "▁▁▂▁▂▁▂▄"
+      "avg": 2.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        2
+      ],
+      "weeks": 1
     },
     {
-      "theme": "MiFID/MiFIR",
+      "theme": "DORA",
       "this_week": 1,
-      "avg": 1.5,
-      "pct": -33,
-      "arrow": "▼",
-      "label": "COOLING",
-      "spark": "█▆▆▄▃▂▂▁"
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
     }
   ]
 }
