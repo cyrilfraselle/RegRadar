@@ -164,7 +164,7 @@ def _groq_ready(api_key: str) -> bool:
 
 def enrich_with_groq(articles: list[dict], api_key: str,
                      min_impact: int = 2, max_calls: int = 40,
-                     sleep_between: float = 0.5) -> list[dict]:
+                     sleep_between: float = 1.5) -> list[dict]:
     """
     Add AI summaries to articles at or above `min_impact`.
 
