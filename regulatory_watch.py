@@ -70,21 +70,7 @@ except ImportError:
 # ═══════════════════════════════════════════════════════════════
 #  CONFIGURATION
 # ═══════════════════════════════════════════════════════════════
-#
-#  ⚠️  LES SECRETS NE SONT PAS DANS CE FICHIER.
-#
-#  Ce fichier est public (sur GitHub). Tous les secrets (mot de passe
-#  Gmail, clé API Groq, ID Google Sheet, emails) vivent dans un fichier
-#  séparé "config.py" qui reste sur ton PC et n'est JAMAIS poussé sur
-#  GitHub (il est dans .gitignore).
-#
-#  POUR CONFIGURER :
-#  1. Copie le fichier "config.example.py" en "config.py"
-#  2. Remplis tes vraies valeurs dans "config.py"
-#  3. C'est tout — ce fichier-ci lit automatiquement config.py
-#
-#  Si config.py n'existe pas, le script tourne avec des valeurs neutres
-#  (email/Sheets désactivés) pour que rien ne plante.
+
 # ═══════════════════════════════════════════════════════════════
 
 # ═══════════════════════════════════════════════════════════════
