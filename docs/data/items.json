@@ -1,0 +1,193 @@
+[
+  {
+    "id": "a1",
+    "title": "AMLA advisory note on money-laundering risks as MiCAR transitional period ends",
+    "url": "https://www.amla.europa.eu/advisory-note",
+    "date": "2026-06-30T06:34:59.848909",
+    "source": "AMLA",
+    "source_id": "amla_rss",
+    "country": "EU",
+    "color": "#6B2D8B",
+    "impact": 3,
+    "themes": [
+      "AML/CFT",
+      "MiCA/Crypto"
+    ],
+    "summary": "AMLA published its first advisory note on ML/TF risks tied to the end of the MiCAR transitional period on 1 July 2026.",
+    "so_what": "CASPs must demonstrate robust AML controls before the transition deadline.",
+    "action": "Review crypto onboarding and transaction monitoring before 1 July 2026.",
+    "deadline": "2026-07-01",
+    "jurisdiction": "EU",
+    "entities": [
+      "CASPs",
+      "Payment Institutions"
+    ],
+    "relevance": "high"
+  },
+  {
+    "id": "e2",
+    "title": "EBA publishes final draft RTS on liquidity reporting under CRR3",
+    "url": "https://www.eba.europa.eu/rts",
+    "date": "2026-06-29T13:34:59.848909",
+    "source": "EBA",
+    "source_id": "eba_rss",
+    "country": "EU",
+    "color": "#0F6E56",
+    "impact": 3,
+    "themes": [
+      "Capital/CRR"
+    ],
+    "summary": "EBA finalised the RTS on liquidity reporting templates under CRR3.",
+    "so_what": "Banks must update COREP reporting pipelines to the new templates.",
+    "action": "Map new templates to internal reporting systems by Q4 2026.",
+    "deadline": "",
+    "jurisdiction": "EU",
+    "entities": [
+      "Banks"
+    ],
+    "relevance": "high"
+  },
+  {
+    "id": "w3",
+    "title": "Wise under investigation by regulators over AML control weaknesses",
+    "url": "https://example.com/wise",
+    "date": "2026-06-29T03:34:59.848909",
+    "source": "GNews — Major FI Watch",
+    "source_id": "gnews_enforcement_majorFI",
+    "country": "EU",
+    "color": "#A32D2D",
+    "impact": 3,
+    "themes": [
+      "AML/CFT",
+      "Enforcement/Fines"
+    ],
+    "summary": "Wise faces a regulatory probe over alleged weaknesses in its anti-money-laundering controls.",
+    "so_what": "Signals heightened supervisory scrutiny of payment institutions' AML frameworks.",
+    "action": "Benchmark PI client AML programmes against emerging supervisory expectations.",
+    "deadline": "",
+    "jurisdiction": "EU",
+    "entities": [
+      "Payment Institutions"
+    ],
+    "relevance": "high"
+  },
+  {
+    "id": "s4",
+    "title": "ESMA issues guidelines on MiCA stablecoin reserve requirements",
+    "url": "https://www.esma.europa.eu/g",
+    "date": "2026-06-29T07:34:59.848909",
+    "source": "ESMA",
+    "source_id": "esma_rss",
+    "country": "EU",
+    "color": "#0F6E56",
+    "impact": 2,
+    "themes": [
+      "MiCA/Crypto"
+    ],
+    "summary": "ESMA clarified reserve composition and segregation rules for stablecoin issuers under MiCA.",
+    "so_what": "Stablecoin issuers must align reserve management with the clarified expectations.",
+    "action": "Review reserve attestation processes against the new guidance.",
+    "deadline": "",
+    "jurisdiction": "EU",
+    "entities": [
+      "CASPs"
+    ],
+    "relevance": "high"
+  },
+  {
+    "id": "f5",
+    "title": "FSMA consults on updated MiFID II suitability circular",
+    "url": "https://www.fsma.be/c",
+    "date": "2026-06-29T03:34:59.848909",
+    "source": "FSMA",
+    "source_id": "fsma_rss",
+    "country": "BE",
+    "color": "#185FA5",
+    "impact": 2,
+    "themes": [
+      "MiFID/MiFIR"
+    ],
+    "summary": "FSMA opened a consultation on its updated suitability assessment circular for Belgian investment firms.",
+    "so_what": "Belgian investment firms should prepare to respond and adapt suitability processes.",
+    "action": "Submit consultation feedback before the closing date.",
+    "deadline": "2026-09-15",
+    "jurisdiction": "Belgium",
+    "entities": [
+      "Investment Firms",
+      "Asset & Wealth Managers"
+    ],
+    "relevance": "high"
+  },
+  {
+    "id": "d6",
+    "title": "ECB Banking Supervision sets 2026 SREP priorities on ICT and operational resilience",
+    "url": "https://www.bankingsupervision.europa.eu",
+    "date": "2026-06-28T09:34:59.848909",
+    "source": "ECB — Banking Supervision",
+    "source_id": "ecb_supervision_rss",
+    "country": "EU",
+    "color": "#0F6E56",
+    "impact": 2,
+    "themes": [
+      "DORA",
+      "Capital/CRR"
+    ],
+    "summary": "The ECB flagged ICT risk and operational resilience as 2026 SREP focus areas.",
+    "so_what": "Banks should expect deeper DORA-related supervisory questions in 2026.",
+    "action": "Pre-empt SREP by reviewing DORA implementation gaps.",
+    "deadline": "",
+    "jurisdiction": "EU",
+    "entities": [
+      "Banks",
+      "Critical ICT Providers"
+    ],
+    "relevance": "medium"
+  },
+  {
+    "id": "c7",
+    "title": "EIOPA consults on Solvency II review reporting templates",
+    "url": "https://www.eiopa.europa.eu",
+    "date": "2026-06-28T04:34:59.848909",
+    "source": "EIOPA",
+    "source_id": "eiopa_rss",
+    "country": "EU",
+    "color": "#0F6E56",
+    "impact": 2,
+    "themes": [
+      "Solvency/Insurance"
+    ],
+    "summary": "EIOPA opened a consultation on revised reporting templates under the Solvency II review.",
+    "so_what": "Insurers must prepare for revised quantitative reporting.",
+    "action": "Assess template changes against current reporting capability.",
+    "deadline": "2026-10-31",
+    "jurisdiction": "EU",
+    "entities": [
+      "Insurance Undertakings"
+    ],
+    "relevance": "medium"
+  },
+  {
+    "id": "m8",
+    "title": "ESMA updates EMIR Refit Q&A on reporting fields",
+    "url": "https://www.esma.europa.eu/emir",
+    "date": "2026-06-27T09:34:59.848909",
+    "source": "ESMA",
+    "source_id": "esma_rss",
+    "country": "EU",
+    "color": "#0F6E56",
+    "impact": 1,
+    "themes": [
+      "Market Infrastructure"
+    ],
+    "summary": "ESMA clarified several EMIR Refit reporting fields in an updated Q&A.",
+    "so_what": "Informational — minor reporting clarifications.",
+    "action": "No action required.",
+    "deadline": "",
+    "jurisdiction": "EU",
+    "entities": [
+      "Market Infrastructure",
+      "Investment Firms"
+    ],
+    "relevance": "medium"
+  }
+]

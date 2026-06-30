@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar — EU &amp; Belgian Regulatory Intelligence</title>
+<style>
+  :root {
+    --bg: #0E1117; --surface: #151A21; --surface-2: #1A2029; --border: #232B36;
+    --border-strong: #2E3845; --text: #E6EDF3; --text-2: #9AA7B4; --text-3: #5E6B79;
+    --accent: #6D8EE6; --accent-bg: #182236;
+    --crit: #F0616D; --crit-bg: #2A1518; --imp: #E3A008; --imp-bg: #2A2008;
+    --info: #5DA9E9; --info-bg: #14202E; --ok: #2EBD85; --ok-bg: #0F2018;
+    --purple: #9D7BD8; --teal: #4FB38A;
+    --radius: 10px; --radius-sm: 6px;
+    --font: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono: 'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  html[data-theme="light"] {
+    --bg: #F7F8FA; --surface: #FFFFFF; --surface-2: #F8FAFC; --border: #E6E9EF;
+    --border-strong: #D5DAE2; --text: #16202C; --text-2: #5A6675; --text-3: #94A0AE;
+    --accent: #2D5FCC; --accent-bg: #EDF2FD;
+    --crit: #C13515; --crit-bg: #FCEEE9; --imp: #B25E09; --imp-bg: #FBF1E2;
+    --info: #1E6FB8; --info-bg: #EAF2FB; --ok: #0F8A5F; --ok-bg: #E7F5EE;
+    --purple: #6B2D8B; --teal: #0F6E56;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  /* Top bar */
+  .topbar { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .topbar-inner { display: flex; align-items: center; gap: 16px; height: 56px; }
+  .logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
+  .logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
+  .logo-sub { font-size: 11px; color: var(--text-3); font-weight: 400; letter-spacing: 0.04em; }
+  .nav { display: flex; gap: 2px; margin-left: 8px; }
+  .nav a { padding: 6px 13px; border-radius: var(--radius-sm); font-size: 13px; color: var(--text-2); font-weight: 500; }
+  .nav a.active { background: var(--accent-bg); color: var(--accent); }
+  .nav a:hover:not(.active) { background: var(--surface-2); }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .cmdk { display: flex; align-items: center; gap: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 11px; color: var(--text-3); font-size: 13px; cursor: pointer; min-width: 200px; }
+  .cmdk kbd { margin-left: auto; font-family: var(--mono); font-size: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; color: var(--text-3); }
+  .icon-btn { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2); cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+  .icon-btn:hover { color: var(--text); border-color: var(--border-strong); }
+  .updated { font-size: 11px; color: var(--text-3); font-family: var(--mono); }
+
+  /* Layout */
+  .grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; padding: 20px 0 60px; }
+  @media (max-width: 920px) { .grid { grid-template-columns: 1fr; } .side { order: -1; } }
+
+  /* Section heading */
+  .sec-h { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px; }
+  .sec-h .count { background: var(--surface-2); color: var(--text-2); border-radius: 10px; padding: 1px 8px; font-size: 10px; }
+
+  /* Briefing */
+  .briefing { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 18px; }
+  .briefing-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .briefing-head .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .briefing-head h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
+  .briefing p { font-size: 14px; color: var(--text); line-height: 1.65; }
+
+  /* Stat strip */
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 18px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
+  .stat .n { font-size: 26px; font-weight: 700; font-family: var(--mono); line-height: 1; }
+  .stat .l { font-size: 11px; color: var(--text-3); margin-top: 5px; }
+
+  /* Filter bar */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; align-items: center; }
+  .chip { font-size: 12px; padding: 5px 11px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; font-weight: 500; user-select: none; }
+  .chip:hover { border-color: var(--border-strong); color: var(--text); }
+  .chip.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+  .filter-label { font-size: 11px; color: var(--text-3); margin-right: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .filter-sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+
+  /* Feed cards */
+  .feed { display: flex; flex-direction: column; gap: 10px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; transition: border-color .12s; position: relative; }
+  .card:hover { border-color: var(--border-strong); }
+  .card.c3 { border-left: 3px solid var(--crit); }
+  .card.c2 { border-left: 3px solid var(--imp); }
+  .card.c1 { border-left: 3px solid var(--info); }
+  .card-top { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; flex-wrap: wrap; }
+  .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .tag-crit { background: var(--crit-bg); color: var(--crit); }
+  .tag-imp { background: var(--imp-bg); color: var(--imp); }
+  .tag-info { background: var(--info-bg); color: var(--info); }
+  .tag-src { background: var(--surface-2); color: var(--text-2); }
+  .tag-theme { background: var(--surface-2); color: var(--purple); }
+  .tag-jur { background: var(--surface-2); color: var(--text-2); font-family: var(--mono); }
+  .impact-score { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 4px; }
+  .impact-dots { display: inline-flex; gap: 2px; }
+  .impact-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--border-strong); display: inline-block; }
+  .impact-dots i.fill3 { background: var(--crit); } .impact-dots i.fill2 { background: var(--imp); } .impact-dots i.fill1 { background: var(--info); }
+  .card h3 { font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 5px; }
+  .card .sum { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .card .meta-row { display: flex; align-items: center; gap: 12px; margin-top: 9px; font-size: 11px; color: var(--text-3); flex-wrap: wrap; }
+  .card .ent { display: flex; gap: 4px; flex-wrap: wrap; }
+  .ent-pill { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
+  .deadline-flag { color: var(--crit); font-weight: 600; }
+  .action-row { margin-top: 8px; background: var(--imp-bg); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px; color: var(--imp); display: none; }
+  .action-row.show { display: block; }
+  .action-row b { font-weight: 700; }
+
+  /* Sidebar */
+  .side { display: flex; flex-direction: column; gap: 18px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 16px; }
+  .panel h3 { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
+  /* Timeline */
+  .tl-item { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-date { font-family: var(--mono); font-size: 11px; color: var(--text-2); white-space: nowrap; min-width: 52px; }
+  .tl-body { flex: 1; }
+  .tl-ev { font-size: 12px; color: var(--text); line-height: 1.4; }
+  .tl-away { font-size: 10px; font-family: var(--mono); margin-top: 2px; }
+  .away-soon { color: var(--crit); } .away-mid { color: var(--imp); } .away-far { color: var(--text-3); }
+  /* Trends */
+  .tr-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+  .tr-theme { font-size: 12px; flex: 1; }
+  .tr-spark { font-family: var(--mono); font-size: 13px; letter-spacing: 1px; color: var(--text-2); }
+  .tr-badge { font-size: 10px; font-weight: 700; font-family: var(--mono); min-width: 26px; text-align: right; }
+  .tr-rising { color: var(--crit); } .tr-cooling { color: var(--info); } .tr-stable { color: var(--text-3); }
+  /* Heatmap */
+  .heat-wrap { overflow-x: auto; }
+  .heat { border-collapse: collapse; font-size: 11px; width: 100%; }
+  .heat th { font-weight: 500; color: var(--text-3); padding: 4px 6px; text-align: center; font-size: 10px; }
+  .heat td.lbl { color: var(--text-2); text-align: left; padding: 4px 8px 4px 0; white-space: nowrap; font-size: 11px; }
+  .heat td.cell { width: 26px; height: 24px; text-align: center; border-radius: 4px; font-family: var(--mono); font-size: 10px; color: var(--text); }
+
+  /* Command palette */
+  .cmd-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 100; align-items: flex-start; justify-content: center; padding-top: 12vh; }
+  .cmd-overlay.open { display: flex; }
+  .cmd-box { width: 90%; max-width: 560px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .cmd-input { width: 100%; border: none; background: transparent; padding: 16px 18px; font-size: 16px; color: var(--text); outline: none; border-bottom: 1px solid var(--border); font-family: var(--font); }
+  .cmd-results { max-height: 50vh; overflow-y: auto; }
+  .cmd-res { padding: 11px 18px; cursor: pointer; border-bottom: 1px solid var(--border); }
+  .cmd-res:hover, .cmd-res.sel { background: var(--surface-2); }
+  .cmd-res .t { font-size: 13px; font-weight: 500; }
+  .cmd-res .m { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+  .cmd-empty { padding: 20px 18px; color: var(--text-3); font-size: 13px; text-align: center; }
+
+  /* Drawer */
+  .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 90; }
+  .drawer-overlay.open { display: block; }
+  .drawer { position: fixed; top: 0; right: 0; height: 100%; width: 460px; max-width: 92vw; background: var(--surface); border-left: 1px solid var(--border-strong); z-index: 91; transform: translateX(100%); transition: transform .22s ease; overflow-y: auto; }
+  .drawer.open { transform: translateX(0); }
+  .drawer-pad { padding: 22px 24px; }
+  .drawer h2 { font-size: 17px; line-height: 1.35; margin: 10px 0 12px; }
+  .drawer .block { margin-top: 16px; }
+  .drawer .block-h { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+  .drawer .block p { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .drawer-close { position: absolute; top: 16px; right: 18px; font-size: 20px; color: var(--text-3); cursor: pointer; background: none; border: none; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text); cursor: pointer; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .empty { text-align: center; padding: 40px 20px; color: var(--text-3); font-size: 14px; }
+  .loading { text-align: center; padding: 60px 20px; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Belgium &amp; EU</span></div>
+    <nav class="nav">
+      <a class="active" href="#">Dashboard</a>
+      <a href="#" onclick="alert('Radar view — coming next');return false">Radar</a>
+      <a href="#" onclick="alert('Enforcement tracker — planned');return false">Enforcement</a>
+      <a href="#" onclick="alert('Archive — coming next');return false">Archive</a>
+    </nav>
+    <div class="topbar-right">
+      <div class="cmdk" onclick="openCmd()"><span>Search…</span><kbd>⌘K</kbd></div>
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">◐</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="grid">
+    <main>
+      <div id="briefing"></div>
+      <div class="stats" id="stats"></div>
+
+      <div class="sec-h">AI-ranked feed <span class="count" id="feedCount">0</span>
+        <label style="margin-left:auto;font-size:11px;color:var(--text-3);text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer">
+          <input type="checkbox" id="showActions" onchange="render()" style="vertical-align:-1px"> show actions
+        </label>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="feed" id="feed"><div class="loading">Loading data…</div></div>
+    </main>
+
+    <aside class="side">
+      <div class="panel">
+        <h3>Regulatory calendar</h3>
+        <div id="timeline"></div>
+      </div>
+      <div class="panel">
+        <h3>Activity trends · 8 wks</h3>
+        <div id="trends"></div>
+      </div>
+      <div class="panel">
+        <h3>Heat map · topic × jurisdiction</h3>
+        <div class="heat-wrap"><table class="heat" id="heat"></table></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="cmd-overlay" id="cmdOverlay" onclick="if(event.target===this)closeCmd()">
+  <div class="cmd-box">
+    <input class="cmd-input" id="cmdInput" placeholder="Search regulations, sources, topics, entities…" oninput="cmdSearch()" onkeydown="cmdKey(event)">
+    <div class="cmd-results" id="cmdResults"></div>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer"><button class="drawer-close" onclick="closeDrawer()">✕</button><div class="drawer-pad" id="drawerBody"></div></aside>
+
+<script>
+const IMPACT = { 3:{label:'Critical',cls:'crit',tag:'tag-crit'}, 2:{label:'Important',cls:'imp',tag:'tag-imp'}, 1:{label:'Info',cls:'info',tag:'tag-info'} };
+let DATA = { items: [], meta: {} };
+let activeFilters = { impact: null, theme: null, jurisdiction: null, entity: null };
+let cmdSel = 0, cmdHits = [];
+
+async function load() {
+  try {
+    const [items, meta] = await Promise.all([
+      fetch('data/items.json').then(r=>r.json()),
+      fetch('data/meta.json').then(r=>r.json()).catch(()=>({}))
+    ]);
+    DATA.items = items; DATA.meta = meta;
+    renderBriefing(); renderStats(); renderTimeline(); renderTrends(); renderHeat(); buildFilters(); render();
+  } catch(e) {
+    document.getElementById('feed').innerHTML = '<div class="empty">Could not load data. Run the watch engine to generate <code>data/items.json</code>.</div>';
+  }
+}
+
+function fmtDate(iso, withTime) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const opt = withTime ? {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'} : {day:'2-digit',month:'short',year:'numeric'};
+  return d.toLocaleDateString('en-GB', opt);
+}
+function hoursAgo(iso){ if(!iso)return ''; const h=Math.round((Date.now()-new Date(iso))/36e5); if(h<1)return 'just now'; if(h<24)return h+'h ago'; return Math.round(h/24)+'d ago'; }
+
+function renderBriefing() {
+  const m = DATA.meta; const s = m.exec_summary || 'No briefing available yet. Run the engine with Groq enabled to generate the daily briefing.';
+  document.getElementById('briefing').innerHTML =
+    `<div class="briefing"><div class="briefing-head"><span class="dot"></span><h2>Daily briefing — what changed</h2>
+     <span style="margin-left:auto;font-size:11px;color:var(--text-3)" class="updated">Updated ${m.last_updated?fmtDate(m.last_updated,true):'—'}</span></div>
+     <p>${esc(s)}</p></div>`;
+}
+
+function renderStats() {
+  const c = (DATA.meta.last_run_counts)||{};
+  const crit = DATA.items.filter(i=>i.impact===3).length;
+  const imp = DATA.items.filter(i=>i.impact===2).length;
+  const dl = DATA.items.filter(i=>i.deadline).length;
+  const enf = DATA.items.filter(i=>(i.themes||[]).includes('Enforcement/Fines')).length;
+  const cards = [
+    ['Critical', crit, 'var(--crit)'], ['Important', imp, 'var(--imp)'],
+    ['Open deadlines', dl, 'var(--accent)'], ['Enforcement', enf, 'var(--purple)']
+  ];
+  document.getElementById('stats').innerHTML = cards.map(([l,n,col])=>
+    `<div class="stat"><div class="n" style="color:${col}">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+
+function renderTimeline() {
+  const tl = (DATA.meta.timeline)||[];
+  if(!tl.length){ document.getElementById('timeline').innerHTML='<div style="font-size:12px;color:var(--text-3)">No upcoming dates.</div>'; return; }
+  document.getElementById('timeline').innerHTML = tl.map(t=>{
+    const d=t.days_away; const cls=d<=14?'away-soon':(d<90?'away-mid':'away-far');
+    const away=d<=90?`in ${d}d`:`in ~${Math.round(d/30)}mo`;
+    const dt=new Date(t.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+    return `<div class="tl-item"><div class="tl-date">${dt}</div><div class="tl-body"><div class="tl-ev">${esc(t.event)}</div><div class="tl-away ${cls}">${away}</div></div></div>`;
+  }).join('');
+}
+
+function renderTrends() {
+  const tr=(DATA.meta.trends)||[];
+  if(!tr.length){ document.getElementById('trends').innerHTML='<div style="font-size:12px;color:var(--text-3)">Trends build over a few weeks.</div>'; return; }
+  document.getElementById('trends').innerHTML = tr.slice(0,6).map(t=>{
+    const cls=t.label==='RISING'?'tr-rising':(t.label==='COOLING'?'tr-cooling':'tr-stable');
+    return `<div class="tr-item"><span class="tr-theme">${esc(t.theme)}</span><span class="tr-spark">${esc(t.spark||'')}</span><span class="tr-badge ${cls}">${esc(t.arrow||'')}</span></div>`;
+  }).join('');
+}
+
+function renderHeat() {
+  const items=DATA.items;
+  const topics=[...new Set(items.flatMap(i=>i.themes||[]))].slice(0,7);
+  const jurs=['Belgium','EU','Global'];
+  if(!topics.length){ document.getElementById('heat').innerHTML=''; return; }
+  let max=1; const grid={};
+  topics.forEach(tp=>{ grid[tp]={}; jurs.forEach(j=>{ const n=items.filter(i=>(i.themes||[]).includes(tp)&&i.jurisdiction===j).length; grid[tp][j]=n; if(n>max)max=n; }); });
+  const cellBg=(n)=>{ if(!n)return 'var(--surface-2)'; const a=0.18+0.62*(n/max); return `rgba(109,142,230,${a.toFixed(2)})`; };
+  let html='<tr><th></th>'+jurs.map(j=>`<th>${j==='Belgium'?'BE':j==='EU'?'EU':'GL'}</th>`).join('')+'</tr>';
+  topics.forEach(tp=>{ html+=`<tr><td class="lbl">${esc(tp)}</td>`+jurs.map(j=>{const n=grid[tp][j];return `<td class="cell" style="background:${cellBg(n)}">${n||''}</td>`;}).join('')+'</tr>'; });
+  document.getElementById('heat').innerHTML=html;
+}
+
+function buildFilters() {
+  const themes=[...new Set(DATA.items.flatMap(i=>i.themes||[]))];
+  const jurs=[...new Set(DATA.items.map(i=>i.jurisdiction).filter(Boolean))];
+  const ents=[...new Set(DATA.items.flatMap(i=>i.entities||[]))];
+  let h='<span class="filter-label">Impact</span>';
+  [[3,'Critical'],[2,'Important'],[1,'Info']].forEach(([v,l])=>h+=chip('impact',v,l));
+  h+='<span class="filter-sep"></span><span class="filter-label">Topic</span>';
+  themes.forEach(t=>h+=chip('theme',t,t));
+  h+='<span class="filter-sep"></span><span class="filter-label">Juris.</span>';
+  jurs.forEach(j=>h+=chip('jurisdiction',j,j));
+  if(ents.length){ h+='<span class="filter-sep"></span><span class="filter-label">Impacted</span>'; ents.forEach(e=>h+=chip('entity',e,e)); }
+  document.getElementById('filters').innerHTML=h;
+}
+function chip(type,val,label){ const on=activeFilters[type]==val?'on':''; return `<span class="chip ${on}" onclick="toggleFilter('${type}','${String(val).replace(/'/g,"\\'")}')">${esc(label)}</span>`; }
+function toggleFilter(type,val){ const cur=activeFilters[type]; activeFilters[type]=(String(cur)===String(val))?null:(type==='impact'?+val:val); buildFilters(); render(); }
+
+function render() {
+  let items=[...DATA.items];
+  if(activeFilters.impact) items=items.filter(i=>i.impact===activeFilters.impact);
+  if(activeFilters.theme) items=items.filter(i=>(i.themes||[]).includes(activeFilters.theme));
+  if(activeFilters.jurisdiction) items=items.filter(i=>i.jurisdiction===activeFilters.jurisdiction);
+  if(activeFilters.entity) items=items.filter(i=>(i.entities||[]).includes(activeFilters.entity));
+  // Rank: impact desc, then date desc
+  items.sort((a,b)=> b.impact-a.impact || new Date(b.date)-new Date(a.date));
+  document.getElementById('feedCount').textContent=items.length;
+  const showAct=document.getElementById('showActions').checked;
+  if(!items.length){ document.getElementById('feed').innerHTML='<div class="empty">No items match these filters.</div>'; return; }
+  document.getElementById('feed').innerHTML=items.map((it,idx)=>card(it,idx,showAct)).join('');
+}
+
+function card(it,idx,showAct) {
+  const im=IMPACT[it.impact]||IMPACT[1];
+  const dots=`<span class="impact-dots">${[1,2,3].map(n=>`<i class="${it.impact>=n?'fill'+it.impact:''}"></i>`).join('')}</span>`;
+  const themes=(it.themes||[]).slice(0,2).map(t=>`<span class="tag tag-theme">${esc(t)}</span>`).join('');
+  const ents=(it.entities||[]).slice(0,4).map(e=>`<span class="ent-pill">${esc(e)}</span>`).join('');
+  const dl=it.deadline?`<span class="deadline-flag">⏰ ${fmtDate(it.deadline)}</span>`:'';
+  const jur=it.jurisdiction?`<span class="tag tag-jur">${it.jurisdiction==='Belgium'?'BE':it.jurisdiction==='EU'?'EU':'GLOBAL'}</span>`:'';
+  const act=(showAct&&it.action&&!/no action/i.test(it.action))?`<div class="action-row show"><b>Action:</b> ${esc(it.action)}</div>`:'';
+  return `<div class="card c${it.impact}" onclick="openDrawer(${idx})" data-idx="${idx}">
+    <div class="card-top">
+      <span class="tag ${im.tag}">${im.label}</span>${jur}
+      <span class="tag tag-src">${esc(it.source)}</span>${themes}
+      <span class="impact-score">${dots} ${it.impact}/3</span>
+    </div>
+    <h3>${esc(it.title)}</h3>
+    <div class="sum">${esc(it.summary||'')}</div>
+    ${act}
+    <div class="meta-row"><span>${hoursAgo(it.date)}</span>${dl}<span class="ent">${ents}</span></div>
+  </div>`;
+}
+
+// Drawer
+function openDrawer(idx){
+  const visible=getVisible(); const it=visible[idx]; if(!it)return;
+  const im=IMPACT[it.impact]||IMPACT[1];
+  const ents=(it.entities||[]).map(e=>`<span class="ent-pill">${esc(e)}</span>`).join(' ')||'<span style="color:var(--text-3)">Not specified</span>';
+  const themes=(it.themes||[]).map(t=>`<span class="tag tag-theme">${esc(t)}</span>`).join(' ');
+  const brief=`${it.title}\nStatus: ${im.label} (${it.jurisdiction||'EU'})\n${it.deadline?'Deadline: '+fmtDate(it.deadline)+'\n':''}Summary: ${it.summary||''}\nImplication: ${it.so_what||''}\nAction: ${it.action||'—'}\nAffected: ${(it.entities||[]).join(', ')||'—'}\nSource: ${it.url}`;
+  document.getElementById('drawerBody').innerHTML=`
+    <div class="card-top"><span class="tag ${im.tag}">${im.label}</span>
+      ${it.jurisdiction?`<span class="tag tag-jur">${it.jurisdiction}</span>`:''}
+      <span class="tag tag-src">${esc(it.source)}</span></div>
+    <h2>${esc(it.title)}</h2>
+    <div style="font-size:11px;color:var(--text-3);font-family:var(--mono)">${fmtDate(it.date,true)} · impact ${it.impact}/3</div>
+    ${themes?`<div class="block"><div class="block-h">Topics</div>${themes}</div>`:''}
+    <div class="block"><div class="block-h">What it is</div><p>${esc(it.summary||'—')}</p></div>
+    ${it.so_what?`<div class="block"><div class="block-h">Why it matters</div><p>${esc(it.so_what)}</p></div>`:''}
+    ${(it.action&&!/no action/i.test(it.action))?`<div class="block"><div class="block-h">Recommended action</div><p style="color:var(--imp)">${esc(it.action)}</p></div>`:''}
+    ${it.deadline?`<div class="block"><div class="block-h">Deadline</div><p style="color:var(--crit);font-weight:600">${fmtDate(it.deadline)}</p></div>`:''}
+    <div class="block"><div class="block-h">Who is impacted</div><div>${ents}</div></div>
+    <div class="block" style="display:flex;gap:8px;margin-top:22px">
+      <a class="btn btn-primary" href="${it.url}" target="_blank" rel="noopener">Read source ↗</a>
+      <button class="btn" onclick='copyBrief(${JSON.stringify(brief)})'>Copy briefing</button>
+    </div>`;
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+}
+function getVisible(){
+  let items=[...DATA.items];
+  if(activeFilters.impact) items=items.filter(i=>i.impact===activeFilters.impact);
+  if(activeFilters.theme) items=items.filter(i=>(i.themes||[]).includes(activeFilters.theme));
+  if(activeFilters.jurisdiction) items=items.filter(i=>i.jurisdiction===activeFilters.jurisdiction);
+  if(activeFilters.entity) items=items.filter(i=>(i.entities||[]).includes(activeFilters.entity));
+  items.sort((a,b)=> b.impact-a.impact || new Date(b.date)-new Date(a.date));
+  return items;
+}
+function closeDrawer(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('open'); }
+function copyBrief(t){ navigator.clipboard.writeText(t).then(()=>{ const b=event.target; const o=b.textContent; b.textContent='Copied ✓'; setTimeout(()=>b.textContent=o,1400); }); }
+
+// Command palette
+function openCmd(){ document.getElementById('cmdOverlay').classList.add('open'); document.getElementById('cmdInput').focus(); cmdSearch(); }
+function closeCmd(){ document.getElementById('cmdOverlay').classList.remove('open'); document.getElementById('cmdInput').value=''; }
+function cmdSearch(){
+  const q=document.getElementById('cmdInput').value.toLowerCase().trim(); cmdSel=0;
+  cmdHits = !q ? DATA.items.slice(0,8) : DATA.items.filter(i=>
+    (i.title||'').toLowerCase().includes(q)||(i.summary||'').toLowerCase().includes(q)||
+    (i.source||'').toLowerCase().includes(q)||(i.themes||[]).join(' ').toLowerCase().includes(q)||
+    (i.entities||[]).join(' ').toLowerCase().includes(q)).slice(0,10);
+  const el=document.getElementById('cmdResults');
+  if(!cmdHits.length){ el.innerHTML='<div class="cmd-empty">No matches</div>'; return; }
+  el.innerHTML=cmdHits.map((i,x)=>`<div class="cmd-res ${x===cmdSel?'sel':''}" onclick="cmdGo(${x})">
+    <div class="t">${esc(i.title)}</div><div class="m">${esc(i.source)} · ${(i.themes||[]).join(', ')} · impact ${i.impact}/3</div></div>`).join('');
+}
+function cmdKey(e){
+  if(e.key==='Escape')return closeCmd();
+  if(e.key==='ArrowDown'){e.preventDefault();cmdSel=Math.min(cmdSel+1,cmdHits.length-1);cmdSearch2();}
+  if(e.key==='ArrowUp'){e.preventDefault();cmdSel=Math.max(cmdSel-1,0);cmdSearch2();}
+  if(e.key==='Enter'&&cmdHits[cmdSel])cmdGo(cmdSel);
+}
+function cmdSearch2(){ const r=document.querySelectorAll('.cmd-res'); r.forEach((el,i)=>el.classList.toggle('sel',i===cmdSel)); if(r[cmdSel])r[cmdSel].scrollIntoView({block:'nearest'}); }
+function cmdGo(x){ const it=cmdHits[x]; closeCmd(); const vis=getVisible(); const idx=vis.findIndex(v=>v.id===it.id); if(idx>=0)openDrawer(idx); else window.open(it.url,'_blank'); }
+
+function toggleTheme(){ const h=document.documentElement; h.dataset.theme = h.dataset.theme==='dark'?'light':'dark'; }
+document.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCmd();} });
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+load();
+</script>
+</body>
+</html>
