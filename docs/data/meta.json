@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-06-30T20:19:12.999068",
+  "last_updated": "2026-06-30T21:03:19.280935",
   "last_run_counts": {
-    "total": 61,
-    "critical": 6,
-    "important": 38,
-    "info": 17
+    "total": 2,
+    "critical": 0,
+    "important": 1,
+    "info": 1
   },
-  "archive_size": 69,
-  "exec_summary": "",
+  "archive_size": 71,
+  "exec_summary": "The European Banking Authority has issued revised Supervisory Review and Evaluation Process Guidelines, a significant EU regulatory development aimed at enhancing supervisory efficiency. This revision is expected to impact the risk management and capital adequacy of financial institutions across the EU, including those in Belgium. The revised SREP Guidelines will be crucial for Belgian financial institutions to ensure compliance with EU prudential requirements. The EBA's move underscores its commitment to strengthening banking supervision and regulatory frameworks within the EU.",
   "timeline": [
     {
       "date": "2026-07-01",
@@ -62,15 +62,15 @@
   "trends": [
     {
       "theme": "Capital/CRR",
-      "this_week": 4,
-      "avg": 4.0,
+      "this_week": 1,
+      "avg": 1.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        4
+        1
       ],
       "weeks": 1
     },
@@ -104,29 +104,29 @@
     },
     {
       "theme": "Stress Test",
-      "this_week": 2,
-      "avg": 2.0,
+      "this_week": 1,
+      "avg": 1.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        2
+        1
       ],
       "weeks": 1
     },
     {
       "theme": "AML/CFT",
-      "this_week": 3,
-      "avg": 3.0,
+      "this_week": 1,
+      "avg": 1.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        3
+        1
       ],
       "weeks": 1
     },
