@@ -1,62 +1,62 @@
 {
-  "last_updated": "2026-06-30T21:03:19.280935",
+  "last_updated": "2026-07-01T09:23:36.797798",
   "last_run_counts": {
-    "total": 2,
-    "critical": 0,
-    "important": 1,
-    "info": 1
+    "total": 18,
+    "critical": 1,
+    "important": 12,
+    "info": 5
   },
-  "archive_size": 71,
-  "exec_summary": "The European Banking Authority has issued revised Supervisory Review and Evaluation Process Guidelines, a significant EU regulatory development aimed at enhancing supervisory efficiency. This revision is expected to impact the risk management and capital adequacy of financial institutions across the EU, including those in Belgium. The revised SREP Guidelines will be crucial for Belgian financial institutions to ensure compliance with EU prudential requirements. The EBA's move underscores its commitment to strengthening banking supervision and regulatory frameworks within the EU.",
+  "archive_size": 89,
+  "exec_summary": "The European Securities and Markets Authority's MiCA regulation has taken full effect, resulting in a significant impact on the EU's crypto industry, with many firms facing shutdown due to inability to meet the new requirements. As of the July 1 deadline, 244 MiCA licenses have been issued by EU countries, with Germany accounting for nearly a quarter of all approvals. The European Banking Authority has also announced efforts to simplify supervision for a stronger EU banking framework, aiming to streamline regulatory processes. Meanwhile, the National Bank of Belgium and the Financial Services and Markets Authority are expected to closely monitor the implementation of MiCA and its effects on the Belgian financial sector.",
   "timeline": [
     {
       "date": "2026-07-01",
       "event": "MiCAR transitional period ends — CASPs must be authorised",
       "theme": "MiCA/Crypto",
       "type": "application",
-      "days_away": 1
+      "days_away": 0
     },
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 10
+      "days_away": 9
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 79
+      "days_away": 78
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 184
+      "days_away": 183
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 185
+      "days_away": 184
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 194
+      "days_away": 193
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 364
+      "days_away": 363
     }
   ],
   "trends": [
@@ -76,29 +76,29 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 37,
-      "avg": 37.0,
+      "this_week": 12,
+      "avg": 12.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        37
+        12
       ],
       "weeks": 1
     },
     {
       "theme": "Enforcement/Fines",
-      "this_week": 8,
-      "avg": 8.0,
+      "this_week": 2,
+      "avg": 2.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        8
+        2
       ],
       "weeks": 1
     },
@@ -118,15 +118,15 @@
     },
     {
       "theme": "AML/CFT",
-      "this_week": 1,
-      "avg": 1.0,
+      "this_week": 2,
+      "avg": 2.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        1
+        2
       ],
       "weeks": 1
     },
@@ -160,6 +160,34 @@
     },
     {
       "theme": "DORA",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "Market Infrastructure",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "SFDR/ESG",
       "this_week": 1,
       "avg": 1.0,
       "pct": 0,
