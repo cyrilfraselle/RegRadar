@@ -1,62 +1,55 @@
 {
-  "last_updated": "2026-07-01T09:23:36.797798",
+  "last_updated": "2026-07-02T08:37:26.218598",
   "last_run_counts": {
-    "total": 18,
+    "total": 21,
     "critical": 1,
-    "important": 12,
-    "info": 5
+    "important": 9,
+    "info": 11
   },
-  "archive_size": 89,
-  "exec_summary": "The European Securities and Markets Authority's MiCA regulation has taken full effect, resulting in a significant impact on the EU's crypto industry, with many firms facing shutdown due to inability to meet the new requirements. As of the July 1 deadline, 244 MiCA licenses have been issued by EU countries, with Germany accounting for nearly a quarter of all approvals. The European Banking Authority has also announced efforts to simplify supervision for a stronger EU banking framework, aiming to streamline regulatory processes. Meanwhile, the National Bank of Belgium and the Financial Services and Markets Authority are expected to closely monitor the implementation of MiCA and its effects on the Belgian financial sector.",
+  "archive_size": 110,
+  "exec_summary": "The European Banking Authority has issued an email alert as of July 1, 2026, however the most significant EU regulatory development this week is the implementation of the Markets in Crypto-Assets regulation, known as MiCA, which has taken effect and is being closely monitored by regulators such as the Bank of Latvia, which has granted a MiCA license to Backpack. Meanwhile, EagleBank is paying over $9.7 million in relation to a money laundering probe, highlighting the importance of anti-money laundering compliance. The MiCA regulation is having a significant impact on the crypto industry in Europe, with only 244 licenses granted ahead of the deadline.",
   "timeline": [
-    {
-      "date": "2026-07-01",
-      "event": "MiCAR transitional period ends — CASPs must be authorised",
-      "theme": "MiCA/Crypto",
-      "type": "application",
-      "days_away": 0
-    },
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 9
+      "days_away": 8
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 78
+      "days_away": 77
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 183
+      "days_away": 182
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 184
+      "days_away": 183
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 193
+      "days_away": 192
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 363
+      "days_away": 362
     }
   ],
   "trends": [
@@ -76,29 +69,29 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 12,
-      "avg": 12.0,
+      "this_week": 13,
+      "avg": 13.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        12
+        13
       ],
       "weeks": 1
     },
     {
       "theme": "Enforcement/Fines",
-      "this_week": 2,
-      "avg": 2.0,
+      "this_week": 1,
+      "avg": 1.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        2
+        1
       ],
       "weeks": 1
     },
@@ -188,15 +181,15 @@
     },
     {
       "theme": "SFDR/ESG",
-      "this_week": 1,
-      "avg": 1.0,
+      "this_week": 2,
+      "avg": 2.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        1
+        2
       ],
       "weeks": 1
     }
