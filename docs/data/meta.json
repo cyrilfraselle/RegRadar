@@ -1,55 +1,55 @@
 {
-  "last_updated": "2026-07-02T08:37:26.218598",
+  "last_updated": "2026-07-03T08:42:02.844125",
   "last_run_counts": {
-    "total": 21,
-    "critical": 1,
-    "important": 9,
-    "info": 11
+    "total": 22,
+    "critical": 2,
+    "important": 11,
+    "info": 9
   },
-  "archive_size": 110,
-  "exec_summary": "The European Banking Authority has issued an email alert as of July 1, 2026, however the most significant EU regulatory development this week is the implementation of the Markets in Crypto-Assets regulation, known as MiCA, which has taken effect and is being closely monitored by regulators such as the Bank of Latvia, which has granted a MiCA license to Backpack. Meanwhile, EagleBank is paying over $9.7 million in relation to a money laundering probe, highlighting the importance of anti-money laundering compliance. The MiCA regulation is having a significant impact on the crypto industry in Europe, with only 244 licenses granted ahead of the deadline.",
+  "archive_size": 132,
+  "exec_summary": "The European Banking Authority has issued an email alert on July 2, 2026, which may be relevant to our compliance and regulatory obligations. In Belgium and the EU, the rollout of the Markets in Crypto-Assets regulation, or MiCA, continues, with firms such as OKX and Standard Chartered securing licenses under the new framework. The European Central Bank's Frank Elderson and Christine Lagarde have also made recent public statements, with Elderson discussing the green transition and Lagarde speaking with Les Échos. Meanwhile, Poland's deadlock over MiCA implementation has left around 2,000 crypto firms without a domestic licensing route, highlighting ongoing regulatory challenges in the EU.",
   "timeline": [
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 8
+      "days_away": 7
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 77
+      "days_away": 76
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 182
+      "days_away": 181
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 183
+      "days_away": 182
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 192
+      "days_away": 191
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 362
+      "days_away": 361
     }
   ],
   "trends": [
@@ -69,15 +69,15 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 13,
-      "avg": 13.0,
+      "this_week": 8,
+      "avg": 8.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        13
+        8
       ],
       "weeks": 1
     },
@@ -111,15 +111,15 @@
     },
     {
       "theme": "AML/CFT",
-      "this_week": 2,
-      "avg": 2.0,
+      "this_week": 3,
+      "avg": 3.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        2
+        3
       ],
       "weeks": 1
     },
