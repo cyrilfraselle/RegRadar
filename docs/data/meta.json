@@ -1,71 +1,87 @@
 {
-  "last_updated": "2026-07-05T08:34:54.835626",
+  "last_updated": "2026-07-06T09:47:55.709431",
   "last_run_counts": {
-    "total": 10,
-    "critical": 0,
+    "total": 14,
+    "critical": 1,
     "important": 9,
-    "info": 1
+    "info": 4
   },
-  "archive_size": 169,
-  "exec_summary": "The European Securities and Markets Authority has declared that prediction markets will be subject to the binary options ban, with ESMA applying this regulation to firms such as Kalshi, a significant development in the EU's regulatory oversight of emerging financial products. In related news, Revolut is delisting USDT in Europe ahead of the Markets in Crypto-Assets regulation, highlighting the impact of MiCA on the crypto industry. Meanwhile, the European Insurance and Occupational Pensions Authority has launched a consultation on the review of insurance disclosures under the Taxonomy Disclosures Delegated Act, demonstrating ongoing regulatory activity in the EU. In Belgium, there are no notable developments this week, but firms such as Paytm have secured payment institution licenses in Luxembourg, indicating the ongoing expansion of fintech firms in the EU.",
+  "archive_size": 183,
+  "exec_summary": "The European Banking Authority has introduced guidelines for ESG banking products, while the European Securities and Markets Authority has been actively enforcing regulations, warning Polymarket that its prediction markets may violate EU rules and registering Standard Chartered under the MiCA license, which has become a key requirement for crypto firms in Europe as of the July 1 MiCA deadline. In a related development, Revolut will delist USDT in Europe due to Tether's lack of a MiCA license. Meanwhile, in a Belgium-related development, although not directly mentioned, the broader EU regulatory environment will likely impact Belgian financial institutions, particularly with regards to ESG and crypto regulations.",
   "timeline": [
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 5
+      "days_away": 4
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 74
+      "days_away": 73
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 179
+      "days_away": 178
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 180
+      "days_away": 179
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 189
+      "days_away": 188
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 359
+      "days_away": 358
     }
   ],
   "trends": [
     {
-      "theme": "Capital/CRR",
-      "this_week": 1,
+      "theme": "AML/CFT",
+      "this_week": 2,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁",
+      "pct": 100,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
       "values": [
-        1
+        1,
+        2
       ],
-      "weeks": 1
+      "weeks": 2
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 2,
+      "avg": 1.0,
+      "pct": 100,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
+      "values": [
+        1,
+        2
+      ],
+      "weeks": 2
     },
     {
       "theme": "MiCA/Crypto",
@@ -75,11 +91,12 @@
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
-      "spark": "▁",
+      "spark": "▁▁",
       "values": [
+        6,
         6
       ],
-      "weeks": 1
+      "weeks": 2
     },
     {
       "theme": "Enforcement/Fines",
@@ -89,39 +106,12 @@
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
-      "spark": "▁",
+      "spark": "▁▁",
       "values": [
+        1,
         1
       ],
-      "weeks": 1
-    },
-    {
-      "theme": "Stress Test",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁",
-      "values": [
-        1
-      ],
-      "weeks": 1
-    },
-    {
-      "theme": "AML/CFT",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁",
-      "values": [
-        1
-      ],
-      "weeks": 1
+      "weeks": 2
     },
     {
       "theme": "Retail Investment",
@@ -131,6 +121,35 @@
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
+      "spark": "▁▁",
+      "values": [
+        1,
+        1
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "Capital/CRR",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "Stress Test",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁",
       "values": [
         1
@@ -139,12 +158,12 @@
     },
     {
       "theme": "Solvency/Insurance",
-      "this_week": 1,
+      "this_week": 0,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁",
       "values": [
         1
@@ -153,12 +172,12 @@
     },
     {
       "theme": "DORA",
-      "this_week": 1,
+      "this_week": 0,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁",
       "values": [
         1
@@ -167,26 +186,12 @@
     },
     {
       "theme": "Market Infrastructure",
-      "this_week": 1,
+      "this_week": 0,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁",
-      "values": [
-        1
-      ],
-      "weeks": 1
-    },
-    {
-      "theme": "SFDR/ESG",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁",
       "values": [
         1
