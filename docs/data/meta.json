@@ -1,58 +1,88 @@
 {
-  "last_updated": "2026-07-06T09:47:55.709431",
+  "last_updated": "2026-07-07T08:59:25.681162",
   "last_run_counts": {
-    "total": 14,
-    "critical": 1,
-    "important": 9,
-    "info": 4
+    "total": 33,
+    "critical": 2,
+    "important": 21,
+    "info": 10
   },
-  "archive_size": 183,
-  "exec_summary": "The European Banking Authority has introduced guidelines for ESG banking products, while the European Securities and Markets Authority has been actively enforcing regulations, warning Polymarket that its prediction markets may violate EU rules and registering Standard Chartered under the MiCA license, which has become a key requirement for crypto firms in Europe as of the July 1 MiCA deadline. In a related development, Revolut will delist USDT in Europe due to Tether's lack of a MiCA license. Meanwhile, in a Belgium-related development, although not directly mentioned, the broader EU regulatory environment will likely impact Belgian financial institutions, particularly with regards to ESG and crypto regulations.",
+  "archive_size": 216,
+  "exec_summary": "The European Banking Authority has issued an email alert, however the most significant development is the full entry into force of the MiCA rules, with the Czech National Bank granting crypto licenses to eleven providers, and Ripple securing a full MiCA license for crypto services across Europe. In Belgium, the regulator has identified six unlicensed crypto operators following MiCA enforcement, warning unauthorized crypto firms to comply with the new rules. The Belgian regulator's actions demonstrate the country's commitment to enforcing the MiCA framework, which aims to regulate the crypto industry in the EU. The Financial Services and Markets Authority is expected to play a key role in overseeing compliance with MiCA in Belgium.",
   "timeline": [
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 4
+      "days_away": 3
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 73
+      "days_away": 72
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 178
+      "days_away": 177
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 179
+      "days_away": 178
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 188
+      "days_away": 187
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 358
+      "days_away": 357
     }
   ],
   "trends": [
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 29,
+      "avg": 6.0,
+      "pct": 383,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
+      "values": [
+        6,
+        29
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 2,
+      "avg": 1.0,
+      "pct": 100,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
+      "values": [
+        1,
+        2
+      ],
+      "weeks": 2
+    },
     {
       "theme": "AML/CFT",
       "this_week": 2,
@@ -69,37 +99,7 @@
       "weeks": 2
     },
     {
-      "theme": "SFDR/ESG",
-      "this_week": 2,
-      "avg": 1.0,
-      "pct": 100,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁█",
-      "values": [
-        1,
-        2
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 6,
-      "avg": 6.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁",
-      "values": [
-        6,
-        6
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "Enforcement/Fines",
+      "theme": "Capital/CRR",
       "this_week": 1,
       "avg": 1.0,
       "pct": 0,
@@ -129,49 +129,52 @@
       "weeks": 2
     },
     {
-      "theme": "Capital/CRR",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁",
-      "values": [
-        1
-      ],
-      "weeks": 1
-    },
-    {
-      "theme": "Stress Test",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁",
-      "values": [
-        1
-      ],
-      "weeks": 1
-    },
-    {
       "theme": "Solvency/Insurance",
-      "this_week": 0,
+      "this_week": 1,
       "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁",
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁",
       "values": [
+        1,
         1
       ],
-      "weeks": 1
+      "weeks": 2
     },
     {
       "theme": "DORA",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁",
+      "values": [
+        1,
+        1
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁",
+      "values": [
+        1,
+        1
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "Stress Test",
       "this_week": 0,
       "avg": 1.0,
       "pct": -100,
