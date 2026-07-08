@@ -1,70 +1,70 @@
 {
-  "last_updated": "2026-07-07T08:59:25.681162",
+  "last_updated": "2026-07-08T08:02:35.306546",
   "last_run_counts": {
-    "total": 33,
-    "critical": 2,
-    "important": 21,
-    "info": 10
+    "total": 16,
+    "critical": 1,
+    "important": 9,
+    "info": 6
   },
-  "archive_size": 216,
-  "exec_summary": "The European Banking Authority has issued an email alert, however the most significant development is the full entry into force of the MiCA rules, with the Czech National Bank granting crypto licenses to eleven providers, and Ripple securing a full MiCA license for crypto services across Europe. In Belgium, the regulator has identified six unlicensed crypto operators following MiCA enforcement, warning unauthorized crypto firms to comply with the new rules. The Belgian regulator's actions demonstrate the country's commitment to enforcing the MiCA framework, which aims to regulate the crypto industry in the EU. The Financial Services and Markets Authority is expected to play a key role in overseeing compliance with MiCA in Belgium.",
+  "archive_size": 232,
+  "exec_summary": "The European Banking Authority has published its final report on guidelines for the authorisation of third-country branches under the Capital Requirements Directive, providing clarity for banks operating in the EU. In Belgium, the financial regulator has begun enforcing the Markets in Crypto-Assets regulation by warning six unauthorized crypto firms, marking a significant step in the country's implementation of the EU's crypto regulatory framework. The Anti-Money Laundering Authority is also consulting on draft implementing technical standards for reporting suspicions and providing transaction records, aiming to enhance anti-money laundering efforts. The European Securities and Markets Authority has launched a consultation on technical advice for selected Key Performance Indicators under the Taxonomy Disclosures Delegated Act, seeking to simplify sustainability reporting.",
   "timeline": [
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 3
+      "days_away": 2
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 72
+      "days_away": 71
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 177
+      "days_away": 176
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 178
+      "days_away": 177
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 187
+      "days_away": 186
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 357
+      "days_away": 356
     }
   ],
   "trends": [
     {
-      "theme": "MiCA/Crypto",
-      "this_week": 29,
-      "avg": 6.0,
-      "pct": 383,
+      "theme": "Capital/CRR",
+      "this_week": 2,
+      "avg": 1.0,
+      "pct": 100,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
       "spark": "▁█",
       "values": [
-        6,
-        29
+        1,
+        2
       ],
       "weeks": 2
     },
@@ -84,7 +84,7 @@
       "weeks": 2
     },
     {
-      "theme": "AML/CFT",
+      "theme": "SFDR/ESG",
       "this_week": 2,
       "avg": 1.0,
       "pct": 100,
@@ -99,7 +99,22 @@
       "weeks": 2
     },
     {
-      "theme": "Capital/CRR",
+      "theme": "MiCA/Crypto",
+      "this_week": 9,
+      "avg": 6.0,
+      "pct": 50,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
+      "values": [
+        6,
+        9
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "AML/CFT",
       "this_week": 1,
       "avg": 1.0,
       "pct": 0,
@@ -145,21 +160,6 @@
     },
     {
       "theme": "DORA",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁",
-      "values": [
-        1,
-        1
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "SFDR/ESG",
       "this_week": 1,
       "avg": 1.0,
       "pct": 0,
