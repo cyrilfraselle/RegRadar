@@ -1,85 +1,100 @@
 {
-  "last_updated": "2026-07-08T08:02:35.306546",
+  "last_updated": "2026-07-09T09:08:47.585030",
   "last_run_counts": {
-    "total": 16,
-    "critical": 1,
-    "important": 9,
-    "info": 6
+    "total": 40,
+    "critical": 6,
+    "important": 24,
+    "info": 10
   },
-  "archive_size": 232,
-  "exec_summary": "The European Banking Authority has published its final report on guidelines for the authorisation of third-country branches under the Capital Requirements Directive, providing clarity for banks operating in the EU. In Belgium, the financial regulator has begun enforcing the Markets in Crypto-Assets regulation by warning six unauthorized crypto firms, marking a significant step in the country's implementation of the EU's crypto regulatory framework. The Anti-Money Laundering Authority is also consulting on draft implementing technical standards for reporting suspicions and providing transaction records, aiming to enhance anti-money laundering efforts. The European Securities and Markets Authority has launched a consultation on technical advice for selected Key Performance Indicators under the Taxonomy Disclosures Delegated Act, seeking to simplify sustainability reporting.",
+  "archive_size": 272,
+  "exec_summary": "The European Banking Authority has outlined a common EU approach to enforcing anti-money laundering rules, as reported by AMLA, which will have significant implications for financial institutions across the continent. In a notable enforcement action, ABN Amro was fined €8.5 million by Dutch regulators for inadequate money laundering checks, highlighting the importance of robust AML controls. The ESMA has also launched custody audits for EU crypto platforms following the implementation of MiCA, demonstrating increased regulatory scrutiny of the crypto sector. Meanwhile, the Polish watchdog has searched banks in a mortgage-scoring probe, underscoring the need for financial institutions to ensure compliance with regulatory requirements.",
   "timeline": [
     {
       "date": "2026-07-10",
       "event": "AMLA direct-supervision powers phase in",
       "theme": "AML/CFT",
       "type": "supervision",
-      "days_away": 2
+      "days_away": 1
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 71
+      "days_away": 70
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 176
+      "days_away": 175
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 177
+      "days_away": 176
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 186
+      "days_away": 185
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 356
+      "days_away": 355
     }
   ],
   "trends": [
     {
-      "theme": "Capital/CRR",
-      "this_week": 2,
+      "theme": "AML/CFT",
+      "this_week": 13,
       "avg": 1.0,
-      "pct": 100,
+      "pct": 1200,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
       "spark": "▁█",
       "values": [
         1,
-        2
+        13
       ],
       "weeks": 2
     },
     {
       "theme": "Enforcement/Fines",
-      "this_week": 2,
+      "this_week": 9,
       "avg": 1.0,
-      "pct": 100,
+      "pct": 800,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
       "spark": "▁█",
       "values": [
         1,
-        2
+        9
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 15,
+      "avg": 6.0,
+      "pct": 150,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
+      "values": [
+        6,
+        15
       ],
       "weeks": 2
     },
@@ -99,22 +114,7 @@
       "weeks": 2
     },
     {
-      "theme": "MiCA/Crypto",
-      "this_week": 9,
-      "avg": 6.0,
-      "pct": 50,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁█",
-      "values": [
-        6,
-        9
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "AML/CFT",
+      "theme": "Capital/CRR",
       "this_week": 1,
       "avg": 1.0,
       "pct": 0,
@@ -174,21 +174,22 @@
       "weeks": 2
     },
     {
-      "theme": "Stress Test",
-      "this_week": 0,
+      "theme": "Market Infrastructure",
+      "this_week": 1,
       "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁",
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁",
       "values": [
+        1,
         1
       ],
-      "weeks": 1
+      "weeks": 2
     },
     {
-      "theme": "Market Infrastructure",
+      "theme": "Stress Test",
       "this_week": 0,
       "avg": 1.0,
       "pct": -100,
