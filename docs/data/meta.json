@@ -1,70 +1,63 @@
 {
-  "last_updated": "2026-07-10T08:54:42.288829",
+  "last_updated": "2026-07-11T07:28:23.007083",
   "last_run_counts": {
-    "total": 15,
-    "critical": 2,
+    "total": 12,
+    "critical": 0,
     "important": 9,
-    "info": 4
+    "info": 3
   },
-  "archive_size": 287,
-  "exec_summary": "The European Banking Authority has issued an email alert, however the most significant development is the Belgian regulator FSMA flagging 6 unauthorized crypto providers after the MiCA deadline, highlighting the importance of compliance with the new EU regulation. The Dutch central bank has also imposed a $12.5 million fine on ABN Amro for inadequate anti-money laundering safeguards, demonstrating the ongoing focus on financial crime prevention. Meanwhile, ESMA has published technical standards on CCP admission criteria and guidelines on MiCA stablecoin, further clarifying the regulatory framework for the EU financial sector. The FSMA's action against unauthorized crypto providers is particularly notable as it is a direct enforcement of the MiCA regulation in Belgium.",
+  "archive_size": 299,
+  "exec_summary": "The European Securities and Markets Authority has launched a consultation to reduce the business burden of regulatory requirements, aiming to simplify and streamline processes for firms. In Belgium and the broader EU, the Markets in Crypto-Assets regulation remains a key focus, with the European Commission considering amendments to MiCA to extend its scope to non-EU stablecoin issuers. The National Bank of Belgium and the Financial Services and Markets Authority are likely to play a crucial role in implementing and enforcing MiCA in the Belgian market. Meanwhile, the European Union's Anti-Money Laundering framework continues to be enforced, with authorities such as the European Banking Authority monitoring and supervising firms to prevent financial crime.",
   "timeline": [
-    {
-      "date": "2026-07-10",
-      "event": "AMLA direct-supervision powers phase in",
-      "theme": "AML/CFT",
-      "type": "supervision",
-      "days_away": 0
-    },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 69
+      "days_away": 68
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 174
+      "days_away": 173
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 175
+      "days_away": 174
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 184
+      "days_away": 183
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 354
+      "days_away": 353
     }
   ],
   "trends": [
     {
       "theme": "AML/CFT",
-      "this_week": 4,
+      "this_week": 2,
       "avg": 1.0,
-      "pct": 300,
+      "pct": 100,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
       "spark": "▁█",
       "values": [
         1,
-        4
+        2
       ],
       "weeks": 2
     },
@@ -85,16 +78,16 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 8,
+      "this_week": 9,
       "avg": 6.0,
-      "pct": 33,
+      "pct": 50,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
       "spark": "▁█",
       "values": [
         6,
-        8
+        9
       ],
       "weeks": 2
     },
