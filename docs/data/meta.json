@@ -1,138 +1,111 @@
 {
-  "last_updated": "2026-07-11T07:28:23.007083",
+  "last_updated": "2026-07-13T08:39:01.164402",
   "last_run_counts": {
-    "total": 12,
-    "critical": 0,
-    "important": 9,
-    "info": 3
+    "total": 23,
+    "critical": 1,
+    "important": 21,
+    "info": 1
   },
-  "archive_size": 299,
-  "exec_summary": "The European Securities and Markets Authority has launched a consultation to reduce the business burden of regulatory requirements, aiming to simplify and streamline processes for firms. In Belgium and the broader EU, the Markets in Crypto-Assets regulation remains a key focus, with the European Commission considering amendments to MiCA to extend its scope to non-EU stablecoin issuers. The National Bank of Belgium and the Financial Services and Markets Authority are likely to play a crucial role in implementing and enforcing MiCA in the Belgian market. Meanwhile, the European Union's Anti-Money Laundering framework continues to be enforced, with authorities such as the European Banking Authority monitoring and supervising firms to prevent financial crime.",
+  "archive_size": 322,
+  "exec_summary": "The European Securities and Markets Authority has granted Webull EU authorisation under the Markets in Crypto-Assets regulation, a significant development in the EU's regulatory framework for crypto assets. In a major enforcement action, Deutsche Bank has been fined $2 million by the US regulator for misreporting over 260,000 OTC derivative transactions, highlighting the importance of accurate reporting under EU and global regulations. Additionally, Deutsche Bank has paid a $1.3 million penalty to the Australian Securities and Investments Commission for trade reporting failures, demonstrating the need for financial institutions to ensure compliance with regulatory requirements across jurisdictions. The Belgian financial services sector should take note of these developments and ensure compliance with relevant EU regulations, including MiCA and EMIR.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 68
+      "days_away": 66
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 173
+      "days_away": 171
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 174
+      "days_away": 172
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 183
+      "days_away": 181
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 353
+      "days_away": 351
     }
   ],
   "trends": [
     {
+      "theme": "Enforcement/Fines",
+      "this_week": 13,
+      "avg": 1.0,
+      "pct": 1200,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁█",
+      "values": [
+        1,
+        1,
+        13
+      ],
+      "weeks": 3
+    },
+    {
       "theme": "AML/CFT",
-      "this_week": 2,
-      "avg": 1.0,
-      "pct": 100,
+      "this_week": 6,
+      "avg": 1.5,
+      "pct": 300,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁█",
+      "spark": "▁▂█",
       "values": [
         1,
-        2
+        2,
+        6
       ],
-      "weeks": 2
-    },
-    {
-      "theme": "SFDR/ESG",
-      "this_week": 2,
-      "avg": 1.0,
-      "pct": 100,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁█",
-      "values": [
-        1,
-        2
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 9,
-      "avg": 6.0,
-      "pct": 50,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁█",
-      "values": [
-        6,
-        9
-      ],
-      "weeks": 2
+      "weeks": 3
     },
     {
       "theme": "Capital/CRR",
-      "this_week": 1,
+      "this_week": 3,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁",
+      "pct": 200,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁█",
       "values": [
         1,
-        1
+        1,
+        3
       ],
-      "weeks": 2
+      "weeks": 3
     },
     {
-      "theme": "Enforcement/Fines",
-      "this_week": 1,
+      "theme": "Stress Test",
+      "this_week": 3,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁",
+      "pct": 200,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█",
       "values": [
         1,
-        1
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "Retail Investment",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁",
-      "values": [
-        1,
-        1
+        3
       ],
       "weeks": 2
     },
@@ -144,6 +117,38 @@
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
+      "spark": "▁▁▁",
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "weeks": 3
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 3,
+      "avg": 7.5,
+      "pct": -60,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▄█▁",
+      "values": [
+        6,
+        9,
+        3
+      ],
+      "weeks": 3
+    },
+    {
+      "theme": "Retail Investment",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁▁",
       "values": [
         1,
@@ -153,12 +158,12 @@
     },
     {
       "theme": "DORA",
-      "this_week": 1,
+      "this_week": 0,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁▁",
       "values": [
         1,
@@ -168,12 +173,12 @@
     },
     {
       "theme": "Market Infrastructure",
-      "this_week": 1,
+      "this_week": 0,
       "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▁▁",
       "values": [
         1,
@@ -182,18 +187,19 @@
       "weeks": 2
     },
     {
-      "theme": "Stress Test",
+      "theme": "SFDR/ESG",
       "this_week": 0,
       "avg": 1.0,
       "pct": -100,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "▁",
+      "spark": "▁█",
       "values": [
-        1
+        1,
+        2
       ],
-      "weeks": 1
+      "weeks": 2
     }
   ]
 }
