@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar — Country Risk</title>
+<style>
+  :root{--bg:#0E1117;--surface:#151A21;--surface-2:#1A2029;--border:#232B36;--border-strong:#2E3845;
+    --text:#E6EDF3;--text-2:#9AA7B4;--text-3:#5E6B79;--accent:#6D8EE6;--accent-bg:#182236;
+    --crit:#F0616D;--crit-bg:#2A1518;--imp:#E3A008;--imp-bg:#2A2008;--ok:#2EBD85;--ok-bg:#0F2018;
+    --prohib:#B4243A;--prohib-bg:#2E0F16;--purple:#9D7BD8;
+    --radius:10px;--radius-sm:6px;
+    --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--mono:'SF Mono',ui-monospace,Menlo,monospace;}
+  html[data-theme="light"]{--bg:#F7F8FA;--surface:#FFF;--surface-2:#F8FAFC;--border:#E6E9EF;--border-strong:#D5DAE2;
+    --text:#16202C;--text-2:#5A6675;--text-3:#94A0AE;--accent:#2D5FCC;--accent-bg:#EDF2FD;
+    --crit:#C13515;--crit-bg:#FCEEE9;--imp:#B25E09;--imp-bg:#FBF1E2;--ok:#0F8A5F;--ok-bg:#E7F5EE;
+    --prohib:#8C1027;--prohib-bg:#FBE9EC;--purple:#6B2D8B;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 20px}
+  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:1px solid var(--border)}
+  .topbar-inner{display:flex;align-items:center;gap:16px;height:56px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}
+  .logo-mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .logo-sub{font-size:11px;color:var(--text-3);font-weight:400}
+  .nav{display:flex;gap:2px;margin-left:8px}
+  .nav a{padding:6px 13px;border-radius:var(--radius-sm);font-size:13px;color:var(--text-2);font-weight:500}
+  .nav a.active{background:var(--accent-bg);color:var(--accent)}
+  .nav a:hover:not(.active){background:var(--surface-2)}
+  .topbar-right{margin-left:auto}
+  .icon-btn{width:32px;height:32px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer;font-size:15px}
+
+  .head{padding:22px 0 4px}
+  .head h1{font-size:22px;font-weight:700}
+  .head .sub{color:var(--text-2);font-size:14px;margin-top:4px}
+  .vintage{margin-top:12px;background:var(--imp-bg);border:1px solid var(--imp);border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--imp)}
+
+  .layout{display:grid;grid-template-columns:290px 1fr;gap:18px;padding:18px 0 60px}
+  @media(max-width:980px){.layout{grid-template-columns:1fr}}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:13px}
+  .panel h3{font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center}
+  .lnk{font-size:10px;color:var(--text-3);cursor:pointer;background:none;border:none;text-transform:none;letter-spacing:0}
+  .lnk:hover{color:var(--accent)}
+
+  .preset{display:block;width:100%;text-align:left;font-size:12px;padding:8px 10px;margin-bottom:5px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer}
+  .preset:hover{border-color:var(--border-strong);color:var(--text)}
+  .preset.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+  .preset small{display:block;color:var(--text-3);font-size:10px;margin-top:2px}
+  .preset.on small{color:var(--accent);opacity:.8}
+
+  .wrow{margin-bottom:12px}
+  .wtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .wname{font-size:12px}
+  .wval{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+  input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--surface-2);outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--surface)}
+  .wsum{font-size:11px;color:var(--text-3);text-align:right;font-family:var(--mono);padding-top:6px;border-top:1px solid var(--border)}
+  .thr{display:flex;gap:8px;align-items:center;margin-bottom:7px}
+  .thr label{font-size:12px;color:var(--text-2);flex:1}
+  .thr input{width:58px;padding:5px 7px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:var(--mono);font-size:12px}
+  .rule{display:flex;align-items:center;gap:7px;font-size:12px;padding:6px 0;border-bottom:1px solid var(--border);color:var(--text-2);cursor:pointer}
+  .rule:last-child{border-bottom:none}
+  .rule input[type=checkbox]{accent-color:var(--accent);cursor:pointer}
+  .dist{display:flex;height:26px;border-radius:5px;overflow:hidden;margin-top:8px;font-size:10px;font-weight:700}
+  .dist div{display:flex;align-items:center;justify-content:center;color:#fff}
+  .btn{width:100%;font-size:13px;padding:9px 14px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);cursor:pointer;font-weight:500;margin-bottom:6px}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  #map{width:100%;height:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+  .maptop{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+  .sel{padding:8px 11px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;cursor:pointer}
+  .legend{display:flex;gap:10px;align-items:center;margin:8px 0 16px;font-size:11px;color:var(--text-3);flex-wrap:wrap}
+  .lg{display:flex;align-items:center;gap:5px}
+  .lgsq{width:14px;height:12px;border-radius:2px;display:inline-block}
+
+  .toolbar{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .search{flex:1;min-width:170px;padding:9px 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;outline:none}
+  .chip{font-size:12px;padding:5px 11px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer}
+  .chip.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+
+  .table-wrap{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow-x:auto}
+  table{border-collapse:collapse;width:100%;min-width:840px}
+  thead th{position:sticky;top:56px;background:var(--surface-2);text-align:left;font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.04em;padding:9px 10px;border-bottom:1px solid var(--border-strong);white-space:nowrap;cursor:pointer}
+  thead th:hover{color:var(--text)}
+  tbody td{padding:9px 10px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:var(--surface-2)}
+  .c-rank{font-family:var(--mono);font-size:11px;color:var(--text-3);width:32px}
+  .c-name{font-weight:600;white-space:nowrap}
+  .c-region{font-size:11px;color:var(--text-3)}
+  .c-score{font-family:var(--mono);font-weight:700;font-size:14px}
+  .tier{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;white-space:nowrap}
+  .t-low{background:var(--ok-bg);color:var(--ok)}.t-med{background:var(--imp-bg);color:var(--imp)}
+  .t-high{background:var(--crit-bg);color:var(--crit)}.t-prohib{background:var(--prohib-bg);color:var(--prohib);border:1px solid var(--prohib)}
+  .flag{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:600;white-space:nowrap;margin-right:3px;display:inline-block}
+  .f-black{background:var(--crit);color:#fff}.f-grey{background:var(--imp-bg);color:var(--imp);border:1px solid var(--imp)}
+  .f-eu{background:var(--accent-bg);color:var(--accent)}.f-sanc{background:var(--crit-bg);color:var(--crit)}
+  .diverge{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--purple);color:#fff;font-weight:600}
+
+  .drawer{position:fixed;top:0;right:0;width:460px;max-width:94vw;height:100vh;background:var(--surface);border-left:1px solid var(--border-strong);z-index:100;transform:translateX(100%);transition:transform .22s;overflow-y:auto;padding:20px}
+  .drawer.open{transform:translateX(0)}
+  .drawer-x{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-3);font-size:22px;cursor:pointer}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .22s}
+  .overlay.on{opacity:1;pointer-events:auto}
+  .dsec{margin-bottom:18px}
+  .dsec h4{font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+  .kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--border)}
+  .kv:last-child{border-bottom:none}
+  .kv span:first-child{color:var(--text-2)}
+  .kv span:last-child{font-weight:600;text-align:right}
+  .contrib{margin-bottom:7px}
+  .ctop{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-bottom:3px}
+  .cbar{height:7px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+  .cbar i{display:block;height:100%;background:var(--accent)}
+  .verdict{padding:11px 13px;border-radius:var(--radius-sm);font-size:13px;line-height:1.6;margin-bottom:14px}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border-strong);border-radius:8px;padding:10px 16px;font-size:13px;display:none;z-index:200}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-inner">
+  <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Country Risk</span></div>
+  <nav class="nav">
+    <a href="index.html">Dashboard</a><a href="law.html">Read the Law</a>
+    <a href="extractor.html">Extractor</a><a class="active" href="country-risk.html">Country Risk</a>
+  </nav>
+  <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+</div></div>
+
+<div class="wrap">
+  <div class="head">
+    <h1>Country risk model</h1>
+    <p class="sub">Your weights, your risk appetite, your thresholds — with the reasoning behind every rating.</p>
+    <div class="vintage" id="vintage"></div>
+  </div>
+
+  <div class="layout">
+    <aside>
+      <div class="panel"><h3>Risk appetite preset</h3><div id="presets"></div></div>
+      <div class="panel"><h3>Weights <button class="lnk" onclick="applyPreset(activePreset)">reset</button></h3>
+        <div id="weights"></div><div class="wsum" id="wsum"></div></div>
+      <div class="panel"><h3>Tier thresholds</h3>
+        <div class="thr"><label>Low / Medium at</label><input type="number" id="thrLow" value="3.5" step="0.1" oninput="render()"></div>
+        <div class="thr"><label>Medium / High at</label><input type="number" id="thrHigh" value="6.5" step="0.1" oninput="render()"></div>
+        <div class="dist" id="dist"></div></div>
+      <div class="panel"><h3>Prohibition rules</h3><div id="rules"></div></div>
+      <div class="panel"><h3>Export</h3>
+        <button class="btn btn-primary" onclick="exportExcel()">⬇ Scores + methodology (Excel)</button>
+        <button class="btn" onclick="exportMethodology()">📄 Country risk assessment doc</button></div>
+    </aside>
+
+    <main>
+      <div class="maptop">
+        <select class="sel" id="layer" onchange="paintMap()">
+          <option value="rating">Final rating (your model)</option>
+          <option value="listing">FATF / EU listing status</option>
+          <option value="human_trafficking">Human trafficking (OC Index)</option>
+          <option value="criminality">Overall criminality (OC Index)</option>
+          <option value="resilience">Weak AML resilience</option>
+          <option value="cpi">Corruption (CPI)</option>
+        </select>
+        <span class="chip" id="chipDiv" onclick="toggleDiv()">Divergence only</span>
+        <span class="chip" id="chipProhib" onclick="toggleProhib()">Prohibited only</span>
+      </div>
+      <svg id="map" viewBox="0 0 900 420"></svg>
+      <div class="legend" id="legend"></div>
+      <div class="toolbar"><input class="search" id="search" placeholder="Search country or region…" oninput="render()"></div>
+      <div class="table-wrap"><table>
+        <thead><tr>
+          <th>#</th><th onclick="sortBy('name')">Country</th><th onclick="sortBy('score')">Score</th>
+          <th>Rating</th><th>Listings</th><th onclick="sortBy('criminality')">Criminality</th>
+          <th onclick="sortBy('human_trafficking')">Trafficking</th><th>Supervisor</th>
+        </tr></thead><tbody id="tbody"></tbody>
+      </table></div>
+    </main>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer"><button class="drawer-x" onclick="closeDrawer()">×</button><div id="drawerBody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script src="vendor/xlsx.full.min.js"></script>
+<script>
+const IND=[
+ {k:"fatf",label:"FATF listing",rule:"Blacklist = 10, Greylist = 6.5, else 0"},
+ {k:"eu_hrtc",label:"EU high-risk list",rule:"Listed = 10, else 0"},
+ {k:"sanctions",label:"Sanctions exposure",rule:"Analyst-assigned 0-10 exposure"},
+ {k:"criminality",label:"Organised crime",rule:"OC Index criminality 0-10"},
+ {k:"cpi",label:"Corruption (CPI)",rule:"(100 - CPI) / 10"},
+ {k:"secrecy",label:"Financial secrecy",rule:"Opacity proxy 0-10"},
+ {k:"resilience",label:"Weak AML resilience",rule:"10 - OC Index resilience"},
+ {k:"human_trafficking",label:"Human trafficking",rule:"OC Index human trafficking 0-10"},
+];
+const PRESETS={
+ balanced:{name:"Balanced",desc:"Even view across listings and activity",
+  w:{fatf:20,eu_hrtc:10,sanctions:15,criminality:20,cpi:10,secrecy:10,resilience:10,human_trafficking:5},
+  rules:{fatfBlack:true,sanc9:true,euList:false,crim8:false}},
+ conservative:{name:"Conservative bank",desc:"Listing-led, low tolerance",
+  w:{fatf:30,eu_hrtc:20,sanctions:20,criminality:10,cpi:10,secrecy:5,resilience:5,human_trafficking:0},
+  rules:{fatfBlack:true,sanc9:true,euList:true,crim8:false}},
+ fintech:{name:"Fintech / PSP",desc:"Greylist tolerated, sanctions strict",
+  w:{fatf:15,eu_hrtc:10,sanctions:30,criminality:15,cpi:10,secrecy:5,resilience:10,human_trafficking:5},
+  rules:{fatfBlack:true,sanc9:true,euList:false,crim8:false}},
+ correspondent:{name:"Correspondent banking",desc:"Secrecy and crime activity weighted up",
+  w:{fatf:15,eu_hrtc:10,sanctions:20,criminality:20,cpi:5,secrecy:15,resilience:10,human_trafficking:5},
+  rules:{fatfBlack:true,sanc9:true,euList:false,crim8:true}},
+};
+const RULEDEFS=[
+ {k:"fatfBlack",label:"FATF blacklist \u2192 Prohibited"},
+ {k:"sanc9",label:"Sanctions exposure \u2265 9 \u2192 Prohibited"},
+ {k:"euList",label:"EU high-risk list \u2192 Prohibited"},
+ {k:"crim8",label:"Criminality \u2265 8 \u2192 Prohibited"},
+];
+let DATA=null,W={},RULES={},activePreset="balanced",sortKey="score",sortDir=-1,
+    onlyDiv=false,onlyProhib=false,mapReady=false;
+const RAMP=["#2EBD85","#8FBF52","#E3A008","#E3701A","#F0616D"];
+const PROHIB="#B4243A",NODATA="#4A5560";
+const ALIAS={"Dem. Rep. Korea":"North Korea","Korea":"South Korea","Lao PDR":"Laos","Turkey":"T\u00fcrkiye",
+ "United States of America":"United States","Dem. Rep. Congo":"DR Congo","Czechia":"Czech Republic",
+ "United Arab Emirates":"UAE","Trinidad and Tobago":"Trinidad & Tobago"};
+
+function risk(c,k){
+  const i=c.indicators;
+  if(k==="fatf") return i.fatf==="black"?10:i.fatf==="grey"?6.5:0;
+  if(k==="eu_hrtc") return i.eu_hrtc?10:0;
+  if(k==="cpi") return i.cpi==null?null:(100-i.cpi)/10;
+  if(k==="resilience") return i.resilience==null?null:10-i.resilience;
+  if(k==="sanctions") return i.sanctions==null?null:i.sanctions;
+  if(k==="secrecy") return i.secrecy==null?null:i.secrecy;
+  if(k==="criminality") return i.criminality==null?null:i.criminality;
+  if(k==="human_trafficking") return i.human_trafficking==null?null:i.human_trafficking;
+  return null;
+}
+function score(c){let n=0,d=0;IND.forEach(x=>{const v=risk(c,x.k),w=W[x.k]||0;if(v!=null&&w>0){n+=v*w;d+=w;}});return d?n/d:0;}
+function contributions(c){
+  const tot=IND.reduce((a,x)=>a+((risk(c,x.k)!=null&&(W[x.k]||0)>0)?W[x.k]:0),0);
+  return IND.filter(x=>(W[x.k]||0)>0&&risk(c,x.k)!=null).map(x=>{
+    const v=risk(c,x.k),w=W[x.k];
+    return {label:x.label,value:v,weight:w,points:tot?v*w/tot:0};
+  }).sort((a,b)=>b.points-a.points);
+}
+function prohibited(c){
+  const i=c.indicators,h=[];
+  if(RULES.fatfBlack&&i.fatf==="black")h.push("FATF blacklist");
+  if(RULES.sanc9&&(i.sanctions||0)>=9)h.push("Sanctions exposure \u2265 9");
+  if(RULES.euList&&i.eu_hrtc)h.push("EU high-risk list");
+  if(RULES.crim8&&(i.criminality||0)>=8)h.push("Criminality \u2265 8");
+  return h;
+}
+function tierOf(c){
+  const p=prohibited(c);
+  if(p.length)return{tier:"prohib",label:"Prohibited",reasons:p};
+  const s=score(c),lo=+document.getElementById('thrLow').value,hi=+document.getElementById('thrHigh').value;
+  return{tier:s<lo?"low":s<hi?"med":"high",label:s<lo?"Low":s<hi?"Medium":"High",reasons:[]};
+}
+function divergence(c){
+  const i=c.indicators,listed=i.fatf||i.eu_hrtc,cr=i.criminality;
+  if(cr==null)return null;
+  if(listed&&cr<4.5)return "Listed, but low criminal activity";
+  if(!listed&&cr>=6.5)return "High criminal activity, but unlisted";
+  return null;
+}
+
+async function boot(){
+  DATA=window.__EMBEDDED_COUNTRY_RISK__||await fetch('data/country-risk.json').then(r=>r.json());
+  document.getElementById('vintage').innerHTML=
+    `\u26a0\ufe0f Data as of <b style="font-family:var(--mono)">${DATA.as_of}</b> \u2014 FATF and EU lists change several times a year. Verify against primary sources before operational use.`;
+  document.getElementById('presets').innerHTML=Object.entries(PRESETS).map(([k,p])=>
+    `<button class="preset" id="p-${k}" onclick="applyPreset('${k}')"><b>${p.name}</b><small>${p.desc}</small></button>`).join('');
+  document.getElementById('rules').innerHTML=RULEDEFS.map(r=>
+    `<label class="rule"><input type="checkbox" id="r-${r.k}" onchange="RULES['${r.k}']=this.checked;render()"> ${r.label}</label>`).join('');
+  applyPreset("balanced");
+  loadMap();
+}
+function applyPreset(k){
+  activePreset=k;const p=PRESETS[k];
+  W={...p.w};RULES={...p.rules};
+  document.querySelectorAll('.preset').forEach(b=>b.classList.remove('on'));
+  const el=document.getElementById('p-'+k); if(el) el.classList.add('on');
+  RULEDEFS.forEach(r=>{const e=document.getElementById('r-'+r.k);if(e)e.checked=!!RULES[r.k];});
+  buildWeights();render();
+}
+function buildWeights(){
+  document.getElementById('weights').innerHTML=IND.map(i=>`<div class="wrow">
+    <div class="wtop"><span class="wname">${i.label}</span><span class="wval" id="wv-${i.k}">${W[i.k]||0}%</span></div>
+    <input type="range" min="0" max="50" step="1" value="${W[i.k]||0}" oninput="setW('${i.k}',this.value)"></div>`).join('');
+  sumW();
+}
+function setW(k,v){W[k]=+v;document.getElementById('wv-'+k).textContent=v+'%';render();}
+function sumW(){const t=IND.reduce((a,i)=>a+(W[i.k]||0),0);
+  document.getElementById('wsum').innerHTML=`total ${t}% ${t!==100?'<span style="color:var(--imp)">(normalised)</span>':'\u2713'}`;}
+
+function rows(){
+  let r=DATA.countries.map(c=>({c,s:score(c),t:tierOf(c),d:divergence(c)}));
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  if(q)r=r.filter(x=>(x.c.name+x.c.region).toLowerCase().includes(q));
+  if(onlyDiv)r=r.filter(x=>x.d);
+  if(onlyProhib)r=r.filter(x=>x.t.tier==="prohib");
+  const get=x=>sortKey==="name"?x.c.name:sortKey==="score"?x.s:(risk(x.c,sortKey)==null?-1:risk(x.c,sortKey));
+  r.sort((a,b)=>{const p=get(a),q2=get(b);return(p<q2?-1:p>q2?1:0)*sortDir;});
+  return r;
+}
+function sortBy(k){if(sortKey===k){sortDir*=-1;}else{sortKey=k;sortDir=k==="name"?1:-1;}render();}
+function toggleDiv(){onlyDiv=!onlyDiv;document.getElementById('chipDiv').classList.toggle('on',onlyDiv);render();}
+function toggleProhib(){onlyProhib=!onlyProhib;document.getElementById('chipProhib').classList.toggle('on',onlyProhib);render();}
+
+const TIER={low:['t-low','Low'],med:['t-med','Medium'],high:['t-high','High'],prohib:['t-prohib','Prohibited']};
+function render(){
+  sumW();
+  const cnt={low:0,med:0,high:0,prohib:0};
+  DATA.countries.forEach(c=>cnt[tierOf(c).tier]++);
+  const T=DATA.countries.length;
+  document.getElementById('dist').innerHTML=[['low','var(--ok)'],['med','var(--imp)'],['high','var(--crit)'],['prohib','var(--prohib)']]
+    .map(([k,col])=>cnt[k]?`<div style="width:${cnt[k]/T*100}%;background:${col}">${cnt[k]}</div>`:'').join('');
+
+  const r=rows();
+  document.getElementById('tbody').innerHTML=r.length?r.map((x,i)=>{
+    const ind=x.c.indicators,f=[];
+    if(ind.fatf==="black")f.push('<span class="flag f-black">FATF BLACK</span>');
+    else if(ind.fatf==="grey")f.push('<span class="flag f-grey">FATF GREY</span>');
+    if(ind.eu_hrtc)f.push('<span class="flag f-eu">EU</span>');
+    if((ind.sanctions||0)>=6)f.push('<span class="flag f-sanc">SANCTIONS</span>');
+    const tc=TIER[x.t.tier][0],tl=TIER[x.t.tier][1];
+    const col=x.t.tier==="prohib"?"var(--prohib)":x.t.tier==="high"?"var(--crit)":x.t.tier==="med"?"var(--imp)":"var(--ok)";
+    return `<tr onclick="openCountry('${x.c.code}')">
+      <td class="c-rank">${i+1}</td>
+      <td><div class="c-name">${esc(x.c.name)}</div><div class="c-region">${esc(x.c.region)}</div></td>
+      <td class="c-score" style="color:${col}">${x.s.toFixed(2)}</td>
+      <td><span class="tier ${tc}">${tl}</span></td>
+      <td>${f.join('')||'<span style="color:var(--text-3);font-size:11px">\u2014</span>'}${x.d?'<span class="diverge">\u26a0 divergence</span>':''}</td>
+      <td style="font-family:var(--mono);font-size:12px">${ind.criminality!=null?ind.criminality.toFixed(1):'\u2014'}</td>
+      <td style="font-family:var(--mono);font-size:12px">${ind.human_trafficking!=null?ind.human_trafficking.toFixed(1):'\u2014'}</td>
+      <td style="font-size:11px;color:var(--text-2)">${esc(c_sup(x.c))}</td>
+    </tr>`;
+  }).join(''):'<tr><td colspan="8" style="padding:40px;text-align:center;color:var(--text-3)">No countries match.</td></tr>';
+  paintMap();
+}
+function c_sup(c){return (c.regulator&&c.regulator.supervisor)||'\u2014';}
+
+async function loadMap(){
+  const svg=d3.select("#map");
+  const proj=d3.geoNaturalEarth1().scale(165).translate([450,226]);
+  const path=d3.geoPath(proj);
+  try{
+    const topo=window.__EMBEDDED_TOPO__||await d3.json("vendor/countries-110m.json");
+    const feats=topojson.feature(topo,topo.objects.countries).features.filter(f=>f.properties.name!=="Antarctica");
+    svg.append("g").selectAll("path").data(feats).join("path")
+      .attr("d",path).attr("stroke","var(--surface)").attr("stroke-width",.4)
+      .style("cursor","pointer")
+      .on("click",(e,d)=>{const c=byName(d.properties.name);if(c)openCountry(c.code);})
+      .append("title");
+    mapReady=true;paintMap();
+  }catch(e){ document.getElementById('map').style.display='none'; }
+}
+function byName(n){const k=ALIAS[n]||n;return DATA.countries.find(c=>c.name===k);}
+function paintMap(){
+  if(!mapReady||!DATA)return;
+  const layer=document.getElementById("layer").value;
+  const sc=d3.scaleLinear().domain([0,2.5,5,7.5,10]).range(RAMP).clamp(true);
+  d3.select("#map").selectAll("path").attr("fill",d=>{
+    const c=byName(d.properties.name);if(!c)return NODATA;
+    if(layer==="rating"){const t=tierOf(c);
+      return t.tier==="prohib"?PROHIB:t.tier==="low"?"#2EBD85":t.tier==="med"?"#E3A008":"#F0616D";}
+    if(layer==="listing"){const i=c.indicators;
+      return i.fatf==="black"?PROHIB:i.fatf==="grey"?"#E3A008":i.eu_hrtc?"#E3701A":"#2EBD85";}
+    const v=risk(c,layer);return v==null?NODATA:sc(v);
+  }).select("title").text(d=>{
+    const c=byName(d.properties.name);
+    return c?`${c.name} \u2014 ${tierOf(c).label} (${score(c).toFixed(2)})`:d.properties.name;
+  });
+  const L=document.getElementById("legend");
+  if(layer==="rating")
+    L.innerHTML=[["Low","#2EBD85"],["Medium","#E3A008"],["High","#F0616D"],["Prohibited",PROHIB],["No data",NODATA]]
+      .map(x=>`<span class="lg"><span class="lgsq" style="background:${x[1]}"></span>${x[0]}</span>`).join('');
+  else if(layer==="listing")
+    L.innerHTML=[["FATF blacklist",PROHIB],["FATF greylist","#E3A008"],["EU high-risk only","#E3701A"],["Not listed","#2EBD85"],["No data",NODATA]]
+      .map(x=>`<span class="lg"><span class="lgsq" style="background:${x[1]}"></span>${x[0]}</span>`).join('');
+  else
+    L.innerHTML='<span>Lower</span>'+RAMP.map(c=>`<span class="lgsq" style="background:${c}"></span>`).join('')+
+      `<span>Higher</span><span class="lg" style="margin-left:8px"><span class="lgsq" style="background:${NODATA}"></span>No data</span>`;
+}
+
+function openCountry(code){
+  const c=DATA.countries.find(x=>x.code===code);if(!c)return;
+  const t=tierOf(c),s=score(c),cb=contributions(c),i=c.indicators,dv=divergence(c);
+  const col=t.tier==="prohib"?"var(--prohib)":t.tier==="high"?"var(--crit)":t.tier==="med"?"var(--imp)":"var(--ok)";
+  const bg=t.tier==="prohib"?"var(--prohib-bg)":t.tier==="high"?"var(--crit-bg)":t.tier==="med"?"var(--imp-bg)":"var(--ok-bg)";
+  let verdict;
+  if(t.reasons.length){
+    verdict=`<b style="color:${col}">Prohibited</b> \u2014 triggered by your appetite rules:<br>${t.reasons.map(r=>'\u00b7 '+r).join('<br>')}`;
+  }else{
+    const top=cb.slice(0,3).map(x=>`${x.label} (${x.value.toFixed(1)} \u00d7 ${x.weight}% = ${x.points.toFixed(2)})`).join('<br>\u00b7 ');
+    verdict=`<b style="color:${col}">${t.label}</b> \u2014 score <b>${s.toFixed(2)}</b>. Largest drivers:<br>\u00b7 ${top}`;
+  }
+  const reg=c.regulator||{};
+  document.getElementById('drawerBody').innerHTML=`
+    <div style="font-size:20px;font-weight:700;margin-bottom:2px">${esc(c.name)}</div>
+    <div style="color:var(--text-3);font-size:12px;margin-bottom:14px">${esc(c.region)}</div>
+    <div class="verdict" style="background:${bg};border:1px solid ${col}">${verdict}</div>
+    ${dv?`<div style="background:var(--surface-2);border-left:3px solid var(--purple);padding:9px 12px;font-size:12px;margin-bottom:16px;color:var(--text-2)"><b style="color:var(--purple)">Divergence:</b> ${dv}. Listing status and observed criminal activity disagree \u2014 worth a manual look.</div>`:''}
+    <div class="dsec"><h4>Score breakdown</h4>
+      ${cb.map(x=>`<div class="contrib">
+        <div class="ctop"><span>${x.label}</span><span style="font-family:var(--mono);color:var(--text-2)">${x.value.toFixed(1)} \u00d7 ${x.weight}% = <b style="color:var(--accent)">${x.points.toFixed(2)}</b></span></div>
+        <div class="cbar"><i style="width:${s?Math.min(100,x.points/s*100):0}%"></i></div></div>`).join('')}
+      <div class="kv" style="margin-top:8px;border-top:1px solid var(--border-strong);padding-top:8px"><span>Total score</span><span style="color:${col};font-family:var(--mono)">${s.toFixed(2)}</span></div>
+    </div>
+    <div class="dsec"><h4>Regulatory &amp; AML</h4>
+      <div class="kv"><span>FATF status</span><span>${i.fatf==='black'?'High-risk (blacklist)':i.fatf==='grey'?'Increased monitoring':'Not listed'}</span></div>
+      <div class="kv"><span>EU high-risk third country</span><span>${i.eu_hrtc?'Yes':'No'}</span></div>
+      <div class="kv"><span>EU tax list</span><span>${i.eu_tax==='annex1'?'Annex I':i.eu_tax==='annex2'?'Annex II':'Not listed'}</span></div>
+      <div class="kv"><span>AML supervisor</span><span>${esc(reg.supervisor||'\u2014')}</span></div>
+      <div class="kv"><span>FIU</span><span>${esc(reg.fiu||'\u2014')}</span></div>
+      <div class="kv"><span>Egmont Group</span><span>${reg.supervisor?(reg.egmont?'Member':'Not a member'):'\u2014'}</span></div>
+    </div>
+    <div class="dsec"><h4>Financial crime indicators</h4>
+      <div class="kv"><span>Criminality (OC Index)</span><span>${i.criminality!=null?i.criminality.toFixed(2):'\u2014'} / 10</span></div>
+      <div class="kv"><span>Human trafficking</span><span>${i.human_trafficking!=null?i.human_trafficking.toFixed(2):'\u2014'} / 10</span></div>
+      <div class="kv"><span>Resilience</span><span>${i.resilience!=null?i.resilience.toFixed(2):'\u2014'} / 10</span></div>
+      <div class="kv"><span>Corruption (CPI)</span><span>${i.cpi!=null?i.cpi:'\u2014'} / 100</span></div>
+      <div class="kv"><span>Sanctions exposure</span><span>${i.sanctions!=null?i.sanctions:'\u2014'} / 10</span></div>
+      <div class="kv"><span>Financial secrecy</span><span>${i.secrecy!=null?i.secrecy:'\u2014'} / 10</span></div>
+    </div>`;
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('on');
+}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('on');}
+
+function expRows(){
+  return rows().map(x=>({
+    Country:x.c.name,Region:x.c.region,Score:+x.s.toFixed(2),Rating:x.t.label,
+    "Prohibition trigger":x.t.reasons.join('; '),
+    FATF:x.c.indicators.fatf==='black'?'Blacklist':x.c.indicators.fatf==='grey'?'Greylist':'Not listed',
+    "EU high-risk":x.c.indicators.eu_hrtc?'Yes':'No',
+    CPI:x.c.indicators.cpi,Criminality:x.c.indicators.criminality,
+    "Human trafficking":x.c.indicators.human_trafficking,
+    Sanctions:x.c.indicators.sanctions,Secrecy:x.c.indicators.secrecy,
+    "AML supervisor":c_sup(x.c),FIU:(x.c.regulator&&x.c.regulator.fiu)||'',
+    Divergence:x.d||'',
+  }));
+}
+function exportExcel(){
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(expRows()),"Scores");
+  const tot=IND.reduce((a,i)=>a+(W[i.k]||0),0);
+  const m=[["Country risk model \u2014 methodology"],["Generated",new Date().toISOString().slice(0,10)],
+    ["Data vintage",DATA.as_of],["Risk appetite preset",PRESETS[activePreset].name],[],
+    ["Indicator","Weight (%)","Normalised (%)","Scoring rule"]];
+  IND.forEach(i=>m.push([i.label,W[i.k]||0,tot?+((W[i.k]||0)/tot*100).toFixed(1):0,i.rule]));
+  m.push([],["Tier thresholds"],["Low","< "+document.getElementById('thrLow').value],
+    ["Medium",document.getElementById('thrLow').value+" - "+document.getElementById('thrHigh').value],
+    ["High","\u2265 "+document.getElementById('thrHigh').value],
+    ["Prohibited","Rule-triggered, overrides score"]);
+  m.push([],["Prohibition rules in force"]);
+  RULEDEFS.forEach(r=>{if(RULES[r.k])m.push([r.label]);});
+  m.push([],["Sources","As of","URL"]);
+  Object.values(DATA.sources).forEach(s=>m.push([s.name,s.as_of,s.url]));
+  const ws2=XLSX.utils.aoa_to_sheet(m);ws2['!cols']=[{wch:34},{wch:14},{wch:18},{wch:46}];
+  XLSX.utils.book_append_sheet(wb,ws2,"Methodology");
+  XLSX.writeFile(wb,"country_risk_model.xlsx");toastMsg("Excel exported");
+}
+function exportMethodology(){
+  const tot=IND.reduce((a,i)=>a+(W[i.k]||0),0);
+  const cnt={low:0,med:0,high:0,prohib:0};
+  DATA.countries.forEach(c=>cnt[tierOf(c).tier]++);
+  const lo=document.getElementById('thrLow').value,hi=document.getElementById('thrHigh').value;
+  const md=`# Country Risk Assessment \u2014 Methodology
+
+**Generated:** ${new Date().toISOString().slice(0,10)}
+**Data vintage:** ${DATA.as_of}
+**Risk appetite model:** ${PRESETS[activePreset].name} \u2014 ${PRESETS[activePreset].desc}
+
+## 1. Purpose
+Inherent ML/TF country risk rating for ${DATA.countries.length} jurisdictions (0-10, 10 = highest risk), supporting a risk-based approach to customer, counterparty and correspondent-banking risk assessment.
+
+## 2. Indicators and weights
+| Indicator | Weight | Normalised | Scoring rule |
+|---|---|---|---|
+${IND.map(i=>`| ${i.label} | ${W[i.k]||0}% | ${tot?((W[i.k]||0)/tot*100).toFixed(1):0}% | ${i.rule} |`).join('\n')}
+
+Weighting reflects institutional risk appetite and is a management judgement. It should be reviewed at least annually and upon material change to the risk environment.
+
+## 3. Rating tiers
+| Tier | Basis |
+|---|---|
+| Low | Score < ${lo} |
+| Medium | ${lo} - ${hi} |
+| High | >= ${hi} |
+| Prohibited | Rule-triggered; overrides the score |
+
+**Prohibition rules in force:**
+${RULEDEFS.filter(r=>RULES[r.k]).map(r=>'- '+r.label).join('\n')||'- none'}
+
+**Resulting distribution:** ${cnt.low} Low / ${cnt.med} Medium / ${cnt.high} High / ${cnt.prohib} Prohibited
+
+## 4. Explainability
+Every rating decomposes into indicator contributions (indicator value x normalised weight). Prohibited ratings state the rule that triggered them. Per-country breakdowns are available in the tool and in the Excel export.
+
+## 5. Data sources
+${Object.values(DATA.sources).map(s=>`- **${s.name}** \u2014 as of ${s.as_of}. ${s.note||''}\n  ${s.url}`).join('\n')}
+
+## 6. Limitations
+- FATF and EU lists change several times per year. Scores are only as current as the data vintage above.
+- Sanctions-exposure and financial-secrecy inputs are analyst-assigned proxies and carry subjectivity.
+- The CPI is perception-based and is not a measure of actual corruption levels.
+- OC Index scores are expert assessments of criminal-market activity, not incidence statistics.
+- **Binary listing indicators (FATF, EU) score zero when a country is not listed.** A jurisdiction can therefore score low on listings while carrying substantial criminal-activity risk. This is why continuous indicators (organised crime, AML resilience, corruption) carry meaningful weight in every preset, and why the divergence flag exists.
+- This model measures **inherent country risk only**. It is one input to a risk assessment and does not replace customer-level due diligence.
+- The tool is decision support. It does not constitute legal or regulatory advice.
+
+## 7. Governance
+- Model owner: _[to complete]_
+- Reviewed by: _[to complete]_
+- Approved by: _[to complete]_
+- Date approved: _[to complete]_
+- Next review date: _[to complete]_
+`;
+  const b=new Blob([md],{type:'text/markdown'}),u=URL.createObjectURL(b);
+  const a=document.createElement('a');a.href=u;a.download='country_risk_assessment.md';a.click();
+  toastMsg("Assessment document exported");
+}
+let tT;function toastMsg(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(tT);tT=setTimeout(()=>t.style.display='none',1700);}
+function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+boot();
+</script>
+</body>
+</html>
