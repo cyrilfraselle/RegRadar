@@ -1,23 +1,30 @@
 {
-  "as_of": "2026-01-31",
+  "as_of": "2026-07-14",
+  "stale_indicators": [
+    "cpi",
+    "ocindex"
+  ],
   "sources": {
     "fatf": {
-      "name": "FATF public statements (High-Risk & Increased Monitoring)",
+      "name": "FATF public statements (black & grey lists)",
       "url": "https://www.fatf-gafi.org/en/publications/High-risk-and-other-monitored-jurisdictions.html",
-      "as_of": "2026-01-31",
-      "note": "Updated at each FATF plenary (~Feb / Jun / Oct). Verify before use."
+      "as_of": "2026-07-14",
+      "note": "Updated at each FATF plenary (~Feb / Jun / Oct). Verify before use.",
+      "status": "fetched"
     },
     "eu_hrtc": {
-      "name": "EU list of high-risk third countries (Delegated Regulation)",
-      "url": "https://finance.ec.europa.eu/financial-crime/high-risk-third-countries_en",
-      "as_of": "2026-01-31",
-      "note": "Largely mirrors FATF but diverges; check the Official Journal."
+      "name": "EU list of high-risk third countries",
+      "url": "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-international-level_en",
+      "as_of": "2026-07-14",
+      "note": "Largely mirrors FATF but diverges; check the Official Journal.",
+      "status": "fetched"
     },
     "cpi": {
-      "name": "Transparency International — Corruption Perceptions Index",
+      "name": "Transparency International CPI",
       "url": "https://www.transparency.org/en/cpi",
       "as_of": "2025",
-      "note": "CPI 0-100 (100 = clean). Licensed CC BY-ND 4.0 — attribution required."
+      "note": "CPI 0-100 (100 = clean). Licensed CC BY-ND 4.0 — attribution required.",
+      "status": "STALE — fetch failed, previous values retained"
     },
     "eu_tax": {
       "name": "EU list of non-cooperative tax jurisdictions (Annex I / II)",
@@ -38,10 +45,11 @@
       "note": "Proxy score 0-10. Tax Justice Network FSI is the reference source."
     },
     "ocindex": {
-      "name": "GI-TOC Global Organized Crime Index 2025",
+      "name": "GI-TOC Global Organized Crime Index",
       "url": "https://ocindex.net/downloads",
       "as_of": "2025",
-      "note": "Criminality, resilience and 15 criminal markets. Attribution required; check download terms."
+      "note": "Criminality, resilience and 15 criminal markets. Attribution required; check download terms.",
+      "status": "STALE — fetch failed, previous values retained"
     },
     "regulator": {
       "name": "AML supervisor / FIU (compiled reference)",
@@ -50,7 +58,7 @@
       "note": "Supervisor and FIU per jurisdiction. Reference only — verify for operational use."
     }
   },
-  "disclaimer": "Seed dataset. FATF and EU lists change several times a year. Verify against primary sources before any operational use.",
+  "disclaimer": "Verify against primary sources before operational use. Indicators in stale_indicators failed to refresh and retain their previous values.",
   "countries": [
     {
       "code": "KP",
@@ -65,13 +73,15 @@
         "secrecy": 9.0,
         "human_trafficking": 9.0,
         "criminality": 4.68,
-        "resilience": 1.63
+        "resilience": 1.63,
+        "eu_hrtc_since": "23 September 2016"
       },
       "regulator": {
         "supervisor": "—",
         "fiu": "—",
         "egmont": false
-      }
+      },
+      "iso3": "PRK"
     },
     {
       "code": "IR",
@@ -86,13 +96,15 @@
         "secrecy": 8.5,
         "human_trafficking": 8.0,
         "criminality": 6.88,
-        "resilience": 3.08
+        "resilience": 3.08,
+        "eu_hrtc_since": "23 September 2016"
       },
       "regulator": {
         "supervisor": "CBI",
         "fiu": "FIU Iran",
         "egmont": false
-      }
+      },
+      "iso3": "IRN"
     },
     {
       "code": "MM",
@@ -107,13 +119,15 @@
         "secrecy": 8.0,
         "human_trafficking": 9.0,
         "criminality": 8.08,
-        "resilience": 1.46
+        "resilience": 1.46,
+        "eu_hrtc_since": "1 October 2020"
       },
       "regulator": {
         "supervisor": "CBM",
         "fiu": "MFIU",
         "egmont": false
-      }
+      },
+      "iso3": "MMR"
     },
     {
       "code": "DZ",
@@ -128,8 +142,10 @@
         "secrecy": 6.0,
         "human_trafficking": 4.0,
         "criminality": 4.97,
-        "resilience": 4.25
-      }
+        "resilience": 4.25,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "DZA"
     },
     {
       "code": "AO",
@@ -144,8 +160,10 @@
         "secrecy": 6.5,
         "human_trafficking": 6.0,
         "criminality": 5.62,
-        "resilience": 4.21
-      }
+        "resilience": 4.21,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "AGO"
     },
     {
       "code": "BO",
@@ -153,15 +171,17 @@
       "region": "LatAm",
       "indicators": {
         "fatf": "grey",
-        "eu_hrtc": false,
+        "eu_hrtc": true,
         "cpi": 28,
         "eu_tax": null,
         "sanctions": 1,
         "secrecy": 6.0,
         "human_trafficking": 5.5,
         "criminality": 5.12,
-        "resilience": 4.63
-      }
+        "resilience": 4.63,
+        "eu_hrtc_since": "29 January 2026"
+      },
+      "iso3": "BOL"
     },
     {
       "code": "BG",
@@ -177,15 +197,16 @@
         "human_trafficking": 5.0,
         "criminality": 5.58,
         "resilience": 5.33
-      }
+      },
+      "iso3": "BGR"
     },
     {
       "code": "BF",
       "name": "Burkina Faso",
       "region": "Africa",
       "indicators": {
-        "fatf": "grey",
-        "eu_hrtc": true,
+        "fatf": null,
+        "eu_hrtc": false,
         "cpi": 41,
         "eu_tax": null,
         "sanctions": 2,
@@ -193,7 +214,8 @@
         "human_trafficking": 7.0,
         "criminality": 6.03,
         "resilience": 2.88
-      }
+      },
+      "iso3": "BFA"
     },
     {
       "code": "CM",
@@ -208,8 +230,10 @@
         "secrecy": 6.5,
         "human_trafficking": 6.5,
         "criminality": 6.18,
-        "resilience": 3.13
-      }
+        "resilience": 3.13,
+        "eu_hrtc_since": "18 October 2023"
+      },
+      "iso3": "CMR"
     },
     {
       "code": "CI",
@@ -224,8 +248,10 @@
         "secrecy": 5.5,
         "human_trafficking": 6.5,
         "criminality": 5.78,
-        "resilience": 5.13
-      }
+        "resilience": 5.13,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "CIV"
     },
     {
       "code": "CD",
@@ -240,8 +266,10 @@
         "secrecy": 7.0,
         "human_trafficking": 7.5,
         "criminality": 7.47,
-        "resilience": 2.21
-      }
+        "resilience": 2.21,
+        "eu_hrtc_since": "16 March 2023"
+      },
+      "iso3": "COD"
     },
     {
       "code": "HT",
@@ -256,8 +284,10 @@
         "secrecy": 6.5,
         "human_trafficking": 8.0,
         "criminality": 6.53,
-        "resilience": 2.21
-      }
+        "resilience": 2.21,
+        "eu_hrtc_since": "13 March 2022"
+      },
+      "iso3": "HTI"
     },
     {
       "code": "KE",
@@ -272,13 +302,15 @@
         "secrecy": 6.0,
         "human_trafficking": 8.0,
         "criminality": 7.18,
-        "resilience": 5.17
+        "resilience": 5.17,
+        "eu_hrtc_since": "5 August 2025"
       },
       "regulator": {
         "supervisor": "CBK",
         "fiu": "FRC Kenya",
         "egmont": true
-      }
+      },
+      "iso3": "KEN"
     },
     {
       "code": "LA",
@@ -293,8 +325,10 @@
         "secrecy": 7.0,
         "human_trafficking": 8.0,
         "criminality": 6.37,
-        "resilience": 3.38
-      }
+        "resilience": 3.38,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "LAO"
     },
     {
       "code": "LB",
@@ -309,8 +343,10 @@
         "secrecy": 7.5,
         "human_trafficking": 8.0,
         "criminality": 7.3,
-        "resilience": 3.08
-      }
+        "resilience": 3.08,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "LBN"
     },
     {
       "code": "MC",
@@ -325,21 +361,23 @@
         "secrecy": 7.0,
         "human_trafficking": 1.5,
         "criminality": 2.58,
-        "resilience": 5.83
+        "resilience": 5.83,
+        "eu_hrtc_since": "5 August 2025"
       },
       "regulator": {
         "supervisor": "CCAF",
         "fiu": "AMSF",
         "egmont": true
-      }
+      },
+      "iso3": "MCO"
     },
     {
       "code": "MZ",
       "name": "Mozambique",
       "region": "Africa",
       "indicators": {
-        "fatf": "grey",
-        "eu_hrtc": true,
+        "fatf": null,
+        "eu_hrtc": false,
         "cpi": 25,
         "eu_tax": null,
         "sanctions": 1,
@@ -347,7 +385,8 @@
         "human_trafficking": 5.0,
         "criminality": 6.63,
         "resilience": 3.25
-      }
+      },
+      "iso3": "MOZ"
     },
     {
       "code": "NA",
@@ -362,8 +401,10 @@
         "secrecy": 5.5,
         "human_trafficking": 3.5,
         "criminality": 4.43,
-        "resilience": 4.58
-      }
+        "resilience": 4.58,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "NAM"
     },
     {
       "code": "NP",
@@ -378,16 +419,18 @@
         "secrecy": 6.0,
         "human_trafficking": 8.0,
         "criminality": 6.63,
-        "resilience": 3.88
-      }
+        "resilience": 3.88,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "NPL"
     },
     {
       "code": "NG",
       "name": "Nigeria",
       "region": "Africa",
       "indicators": {
-        "fatf": "grey",
-        "eu_hrtc": true,
+        "fatf": null,
+        "eu_hrtc": false,
         "cpi": 26,
         "eu_tax": null,
         "sanctions": 1,
@@ -400,15 +443,16 @@
         "supervisor": "CBN",
         "fiu": "NFIU",
         "egmont": true
-      }
+      },
+      "iso3": "NGA"
     },
     {
       "code": "ZA",
       "name": "South Africa",
       "region": "Africa",
       "indicators": {
-        "fatf": "grey",
-        "eu_hrtc": true,
+        "fatf": null,
+        "eu_hrtc": false,
         "cpi": 41,
         "eu_tax": null,
         "sanctions": 0,
@@ -421,7 +465,8 @@
         "supervisor": "SARB / FSCA",
         "fiu": "FIC",
         "egmont": true
-      }
+      },
+      "iso3": "ZAF"
     },
     {
       "code": "SS",
@@ -436,8 +481,10 @@
         "secrecy": 7.5,
         "human_trafficking": 8.5,
         "criminality": 6.42,
-        "resilience": 2.04
-      }
+        "resilience": 2.04,
+        "eu_hrtc_since": "13 March 2022"
+      },
+      "iso3": "SSD"
     },
     {
       "code": "SY",
@@ -452,8 +499,10 @@
         "secrecy": 8.5,
         "human_trafficking": 8.5,
         "criminality": 6.98,
-        "resilience": 2.0
-      }
+        "resilience": 2.0,
+        "eu_hrtc_since": "23 September 2016"
+      },
+      "iso3": "SYR"
     },
     {
       "code": "VE",
@@ -468,8 +517,10 @@
         "secrecy": 8.0,
         "human_trafficking": 8.0,
         "criminality": 6.97,
-        "resilience": 1.88
-      }
+        "resilience": 1.88,
+        "eu_hrtc_since": "5 August 2025"
+      },
+      "iso3": "VEN"
     },
     {
       "code": "VN",
@@ -484,8 +535,10 @@
         "secrecy": 6.5,
         "human_trafficking": 7.0,
         "criminality": 6.58,
-        "resilience": 4.79
-      }
+        "resilience": 4.79,
+        "eu_hrtc_since": "18 October 2023"
+      },
+      "iso3": "VNM"
     },
     {
       "code": "YE",
@@ -500,8 +553,10 @@
         "secrecy": 8.0,
         "human_trafficking": 9.0,
         "criminality": 6.63,
-        "resilience": 1.92
-      }
+        "resilience": 1.92,
+        "eu_hrtc_since": "23 September 2016"
+      },
+      "iso3": "YEM"
     },
     {
       "code": "VG",
@@ -509,12 +564,14 @@
       "region": "Offshore",
       "indicators": {
         "fatf": "grey",
-        "eu_hrtc": false,
+        "eu_hrtc": true,
         "cpi": 60,
         "eu_tax": null,
         "sanctions": 0,
-        "secrecy": 8.5
-      }
+        "secrecy": 8.5,
+        "eu_hrtc_since": "29 January 2026"
+      },
+      "iso3": "VGB"
     },
     {
       "code": "RU",
@@ -522,20 +579,22 @@
       "region": "Europe",
       "indicators": {
         "fatf": null,
-        "eu_hrtc": false,
+        "eu_hrtc": true,
         "cpi": 22,
         "eu_tax": "annex1",
         "sanctions": 9,
         "secrecy": 7.5,
         "human_trafficking": 8.0,
         "criminality": 6.92,
-        "resilience": 3.42
+        "resilience": 3.42,
+        "eu_hrtc_since": "29 January 2026"
       },
       "regulator": {
         "supervisor": "Bank of Russia",
         "fiu": "Rosfinmonitoring",
         "egmont": false
-      }
+      },
+      "iso3": "RUS"
     },
     {
       "code": "BY",
@@ -551,7 +610,8 @@
         "human_trafficking": 7.0,
         "criminality": 5.83,
         "resilience": 3.08
-      }
+      },
+      "iso3": "BLR"
     },
     {
       "code": "CU",
@@ -567,7 +627,8 @@
         "human_trafficking": 6.0,
         "criminality": 3.35,
         "resilience": 4.96
-      }
+      },
+      "iso3": "CUB"
     },
     {
       "code": "AF",
@@ -582,8 +643,10 @@
         "secrecy": 8.0,
         "human_trafficking": 9.0,
         "criminality": 7.02,
-        "resilience": 1.5
-      }
+        "resilience": 1.5,
+        "eu_hrtc_since": "23 September 2016"
+      },
+      "iso3": "AFG"
     },
     {
       "code": "NI",
@@ -591,7 +654,7 @@
       "region": "LatAm",
       "indicators": {
         "fatf": null,
-        "eu_hrtc": true,
+        "eu_hrtc": false,
         "cpi": 14,
         "eu_tax": null,
         "sanctions": 5,
@@ -599,7 +662,8 @@
         "human_trafficking": 7.5,
         "criminality": 5.73,
         "resilience": 2.0
-      }
+      },
+      "iso3": "NIC"
     },
     {
       "code": "SD",
@@ -615,7 +679,8 @@
         "human_trafficking": 8.5,
         "criminality": 6.63,
         "resilience": 2.25
-      }
+      },
+      "iso3": "SDN"
     },
     {
       "code": "LY",
@@ -631,7 +696,8 @@
         "human_trafficking": 8.5,
         "criminality": 7.05,
         "resilience": 1.88
-      }
+      },
+      "iso3": "LBY"
     },
     {
       "code": "ZW",
@@ -647,7 +713,8 @@
         "human_trafficking": 5.5,
         "criminality": 5.55,
         "resilience": 3.04
-      }
+      },
+      "iso3": "ZWE"
     },
     {
       "code": "IQ",
@@ -663,7 +730,8 @@
         "human_trafficking": 7.5,
         "criminality": 7.17,
         "resilience": 3.33
-      }
+      },
+      "iso3": "IRQ"
     },
     {
       "code": "SO",
@@ -679,7 +747,8 @@
         "human_trafficking": 8.5,
         "criminality": 6.55,
         "resilience": 1.88
-      }
+      },
+      "iso3": "SOM"
     },
     {
       "code": "PA",
@@ -700,7 +769,8 @@
         "supervisor": "SBP",
         "fiu": "UAF Panama",
         "egmont": true
-      }
+      },
+      "iso3": "PAN"
     },
     {
       "code": "TT",
@@ -715,8 +785,10 @@
         "secrecy": 6.5,
         "human_trafficking": 6.5,
         "criminality": 5.22,
-        "resilience": 5.08
-      }
+        "resilience": 5.08,
+        "eu_hrtc_since": "6 March 2018"
+      },
+      "iso3": "TTO"
     },
     {
       "code": "VU",
@@ -731,8 +803,10 @@
         "secrecy": 7.5,
         "human_trafficking": 4.5,
         "criminality": 2.33,
-        "resilience": 4.88
-      }
+        "resilience": 4.88,
+        "eu_hrtc_since": "23 September 2016"
+      },
+      "iso3": "VUT"
     },
     {
       "code": "WS",
@@ -745,7 +819,8 @@
         "eu_tax": "annex1",
         "sanctions": 0,
         "secrecy": 7.5
-      }
+      },
+      "iso3": "WSM"
     },
     {
       "code": "FJ",
@@ -761,7 +836,8 @@
         "human_trafficking": 5.5,
         "criminality": 4.02,
         "resilience": 5.38
-      }
+      },
+      "iso3": "FJI"
     },
     {
       "code": "AI",
@@ -774,7 +850,8 @@
         "eu_tax": "annex1",
         "sanctions": 0,
         "secrecy": 8.0
-      }
+      },
+      "iso3": "AIA"
     },
     {
       "code": "KY",
@@ -787,7 +864,8 @@
         "eu_tax": null,
         "sanctions": 0,
         "secrecy": 8.5
-      }
+      },
+      "iso3": "CYM"
     },
     {
       "code": "BM",
@@ -800,7 +878,8 @@
         "eu_tax": null,
         "sanctions": 0,
         "secrecy": 7.5
-      }
+      },
+      "iso3": "BMU"
     },
     {
       "code": "BS",
@@ -813,7 +892,8 @@
         "eu_tax": null,
         "sanctions": 0,
         "secrecy": 7.5
-      }
+      },
+      "iso3": "BHS"
     },
     {
       "code": "AE",
@@ -834,7 +914,8 @@
         "supervisor": "CBUAE / SCA",
         "fiu": "UAE FIU",
         "egmont": true
-      }
+      },
+      "iso3": "ARE"
     },
     {
       "code": "HK",
@@ -855,7 +936,8 @@
         "supervisor": "HKMA / SFC",
         "fiu": "JFIU",
         "egmont": true
-      }
+      },
+      "iso3": "HKG"
     },
     {
       "code": "SG",
@@ -876,7 +958,8 @@
         "supervisor": "MAS",
         "fiu": "STRO",
         "egmont": true
-      }
+      },
+      "iso3": "SGP"
     },
     {
       "code": "CH",
@@ -897,7 +980,8 @@
         "supervisor": "FINMA",
         "fiu": "MROS",
         "egmont": true
-      }
+      },
+      "iso3": "CHE"
     },
     {
       "code": "LU",
@@ -918,7 +1002,8 @@
         "supervisor": "CSSF",
         "fiu": "CRF",
         "egmont": true
-      }
+      },
+      "iso3": "LUX"
     },
     {
       "code": "MT",
@@ -939,7 +1024,8 @@
         "supervisor": "MFSA / FIAU",
         "fiu": "FIAU",
         "egmont": true
-      }
+      },
+      "iso3": "MLT"
     },
     {
       "code": "CY",
@@ -960,7 +1046,8 @@
         "supervisor": "CBC / CySEC",
         "fiu": "MOKAS",
         "egmont": true
-      }
+      },
+      "iso3": "CYP"
     },
     {
       "code": "LI",
@@ -981,7 +1068,8 @@
         "supervisor": "FMA",
         "fiu": "EFFI",
         "egmont": true
-      }
+      },
+      "iso3": "LIE"
     },
     {
       "code": "BE",
@@ -1002,7 +1090,8 @@
         "supervisor": "NBB / FSMA",
         "fiu": "CTIF-CFI",
         "egmont": true
-      }
+      },
+      "iso3": "BEL"
     },
     {
       "code": "NL",
@@ -1023,7 +1112,8 @@
         "supervisor": "DNB / AFM",
         "fiu": "FIU-Nederland",
         "egmont": true
-      }
+      },
+      "iso3": "NLD"
     },
     {
       "code": "DE",
@@ -1044,7 +1134,8 @@
         "supervisor": "BaFin",
         "fiu": "FIU Germany",
         "egmont": true
-      }
+      },
+      "iso3": "DEU"
     },
     {
       "code": "FR",
@@ -1065,7 +1156,8 @@
         "supervisor": "ACPR / AMF",
         "fiu": "TRACFIN",
         "egmont": true
-      }
+      },
+      "iso3": "FRA"
     },
     {
       "code": "GB",
@@ -1086,7 +1178,8 @@
         "supervisor": "FCA / PRA",
         "fiu": "UKFIU (NCA)",
         "egmont": true
-      }
+      },
+      "iso3": "GBR"
     },
     {
       "code": "IE",
@@ -1107,7 +1200,8 @@
         "supervisor": "Central Bank of Ireland",
         "fiu": "FIU Ireland",
         "egmont": true
-      }
+      },
+      "iso3": "IRL"
     },
     {
       "code": "US",
@@ -1128,7 +1222,8 @@
         "supervisor": "FinCEN / OCC / Fed",
         "fiu": "FinCEN",
         "egmont": true
-      }
+      },
+      "iso3": "USA"
     },
     {
       "code": "CA",
@@ -1149,7 +1244,8 @@
         "supervisor": "OSFI / FINTRAC",
         "fiu": "FINTRAC",
         "egmont": true
-      }
+      },
+      "iso3": "CAN"
     },
     {
       "code": "DK",
@@ -1170,7 +1266,8 @@
         "supervisor": "Finanstilsynet",
         "fiu": "Hvidvasksekretariatet",
         "egmont": true
-      }
+      },
+      "iso3": "DNK"
     },
     {
       "code": "SE",
@@ -1191,7 +1288,8 @@
         "supervisor": "Finansinspektionen",
         "fiu": "Finanspolisen",
         "egmont": true
-      }
+      },
+      "iso3": "SWE"
     },
     {
       "code": "NO",
@@ -1212,7 +1310,8 @@
         "supervisor": "Finanstilsynet",
         "fiu": "Økokrim",
         "egmont": true
-      }
+      },
+      "iso3": "NOR"
     },
     {
       "code": "IT",
@@ -1233,7 +1332,8 @@
         "supervisor": "Banca d'Italia / CONSOB",
         "fiu": "UIF",
         "egmont": true
-      }
+      },
+      "iso3": "ITA"
     },
     {
       "code": "ES",
@@ -1254,7 +1354,8 @@
         "supervisor": "Banco de España / CNMV",
         "fiu": "SEPBLAC",
         "egmont": true
-      }
+      },
+      "iso3": "ESP"
     },
     {
       "code": "PT",
@@ -1275,7 +1376,8 @@
         "supervisor": "Banco de Portugal",
         "fiu": "UIF Portugal",
         "egmont": true
-      }
+      },
+      "iso3": "PRT"
     },
     {
       "code": "PL",
@@ -1296,7 +1398,8 @@
         "supervisor": "KNF",
         "fiu": "GIIF",
         "egmont": true
-      }
+      },
+      "iso3": "POL"
     },
     {
       "code": "JP",
@@ -1317,7 +1420,8 @@
         "supervisor": "FSA",
         "fiu": "JAFIC",
         "egmont": true
-      }
+      },
+      "iso3": "JPN"
     },
     {
       "code": "AU",
@@ -1338,7 +1442,8 @@
         "supervisor": "APRA / ASIC / AUSTRAC",
         "fiu": "AUSTRAC",
         "egmont": true
-      }
+      },
+      "iso3": "AUS"
     },
     {
       "code": "CN",
@@ -1359,7 +1464,8 @@
         "supervisor": "NFRA / PBoC",
         "fiu": "CAMLMAC",
         "egmont": true
-      }
+      },
+      "iso3": "CHN"
     },
     {
       "code": "IN",
@@ -1380,7 +1486,8 @@
         "supervisor": "RBI / SEBI",
         "fiu": "FIU-IND",
         "egmont": true
-      }
+      },
+      "iso3": "IND"
     },
     {
       "code": "BR",
@@ -1401,7 +1508,8 @@
         "supervisor": "BCB / CVM",
         "fiu": "COAF",
         "egmont": true
-      }
+      },
+      "iso3": "BRA"
     },
     {
       "code": "MX",
@@ -1422,7 +1530,8 @@
         "supervisor": "CNBV",
         "fiu": "UIF Mexico",
         "egmont": true
-      }
+      },
+      "iso3": "MEX"
     },
     {
       "code": "TR",
@@ -1443,7 +1552,8 @@
         "supervisor": "BDDK / SPK",
         "fiu": "MASAK",
         "egmont": true
-      }
+      },
+      "iso3": "TUR"
     },
     {
       "code": "EG",
@@ -1459,7 +1569,8 @@
         "human_trafficking": 6.0,
         "criminality": 5.3,
         "resilience": 3.75
-      }
+      },
+      "iso3": "EGY"
     },
     {
       "code": "SA",
@@ -1480,7 +1591,8 @@
         "supervisor": "SAMA",
         "fiu": "SAFIU",
         "egmont": true
-      }
+      },
+      "iso3": "SAU"
     },
     {
       "code": "PK",
@@ -1496,7 +1608,8 @@
         "human_trafficking": 8.5,
         "criminality": 6.32,
         "resilience": 3.96
-      }
+      },
+      "iso3": "PAK"
     },
     {
       "code": "BD",
@@ -1512,7 +1625,8 @@
         "human_trafficking": 8.0,
         "criminality": 5.3,
         "resilience": 4.08
-      }
+      },
+      "iso3": "BGD"
     },
     {
       "code": "PH",
@@ -1528,7 +1642,8 @@
         "human_trafficking": 7.5,
         "criminality": 6.57,
         "resilience": 4.46
-      }
+      },
+      "iso3": "PHL"
     },
     {
       "code": "ID",
@@ -1544,7 +1659,8 @@
         "human_trafficking": 7.5,
         "criminality": 6.85,
         "resilience": 4.29
-      }
+      },
+      "iso3": "IDN"
     },
     {
       "code": "TH",
@@ -1560,7 +1676,8 @@
         "human_trafficking": 7.5,
         "criminality": 6.37,
         "resilience": 4.96
-      }
+      },
+      "iso3": "THA"
     },
     {
       "code": "MY",
@@ -1576,7 +1693,8 @@
         "human_trafficking": 7.5,
         "criminality": 6.53,
         "resilience": 5.71
-      }
+      },
+      "iso3": "MYS"
     },
     {
       "code": "UA",
@@ -1592,7 +1710,8 @@
         "human_trafficking": 7.5,
         "criminality": 6.45,
         "resilience": 4.54
-      }
+      },
+      "iso3": "UKR"
     },
     {
       "code": "MA",
@@ -1608,7 +1727,8 @@
         "human_trafficking": 5.5,
         "criminality": 5.37,
         "resilience": 4.67
-      }
+      },
+      "iso3": "MAR"
     },
     {
       "code": "GH",
@@ -1624,7 +1744,8 @@
         "human_trafficking": 6.5,
         "criminality": 5.77,
         "resilience": 5.33
-      }
+      },
+      "iso3": "GHA"
     },
     {
       "code": "TZ",
@@ -1640,7 +1761,30 @@
         "human_trafficking": 6.5,
         "criminality": 5.93,
         "resilience": 4.17
-      }
+      },
+      "iso3": "TZA"
+    },
+    {
+      "code": "KW",
+      "iso3": "KWT",
+      "name": "Kuwait",
+      "region": "—",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "PN",
+      "iso3": "PNG",
+      "name": "Papua New Guinea",
+      "region": "—",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false
+      },
+      "auto_added": "2026-07-14"
     }
   ]
 }
