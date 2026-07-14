@@ -1,0 +1,4156 @@
+{
+  "as_of": "2026-07-14",
+  "stale_indicators": [],
+  "sources": {
+    "fatf": {
+      "name": "FATF public statements (black & grey lists)",
+      "url": "https://www.fatf-gafi.org/en/publications/High-risk-and-other-monitored-jurisdictions.html",
+      "as_of": "2026-07-14",
+      "note": "Updated at each FATF plenary (~Feb / Jun / Oct). Verify before use.",
+      "status": "fetched"
+    },
+    "eu_hrtc": {
+      "name": "EU list of high-risk third countries",
+      "url": "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-international-level_en",
+      "as_of": "2026-07-14",
+      "note": "Largely mirrors FATF but diverges; check the Official Journal.",
+      "status": "fetched"
+    },
+    "cpi": {
+      "name": "Transparency International CPI",
+      "url": "https://www.transparency.org/en/cpi",
+      "as_of": "2026-07-14",
+      "note": "CPI 0-100 (100 = clean). Licensed CC BY-ND 4.0 — attribution required.",
+      "status": "fetched"
+    },
+    "eu_tax": {
+      "name": "EU list of non-cooperative tax jurisdictions (Annex I / II)",
+      "url": "https://www.consilium.europa.eu/en/policies/eu-list-of-non-cooperative-jurisdictions/",
+      "as_of": "2026-01-31",
+      "note": "Revised twice a year by ECOFIN."
+    },
+    "sanctions": {
+      "name": "Country-level sanctions exposure (EU / UN / OFAC programmes)",
+      "url": "https://www.sanctionsmap.eu/",
+      "as_of": "2026-01-31",
+      "note": "Analyst-assigned 0-10 intensity based on breadth/severity of country programmes. SUBJECTIVE — tune to your appetite."
+    },
+    "secrecy": {
+      "name": "Financial secrecy / opacity proxy",
+      "url": "https://fsi.taxjustice.net/",
+      "as_of": "2025",
+      "note": "Proxy score 0-10. Tax Justice Network FSI is the reference source."
+    },
+    "ocindex": {
+      "name": "GI-TOC Global Organized Crime Index",
+      "url": "https://ocindex.net/downloads",
+      "as_of": "2026-07-14",
+      "note": "Criminality, resilience and 15 criminal markets. Attribution required; check download terms.",
+      "status": "fetched"
+    },
+    "regulator": {
+      "name": "AML supervisor / FIU (compiled reference)",
+      "url": "https://egmontgroup.org/membership/",
+      "as_of": "2026-01",
+      "note": "Supervisor and FIU per jurisdiction. Reference only — verify for operational use."
+    }
+  },
+  "disclaimer": "Verify against primary sources before operational use. Indicators in stale_indicators failed to refresh and retain their previous values.",
+  "countries": [
+    {
+      "code": "KP",
+      "name": "North Korea",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "black",
+        "eu_hrtc": true,
+        "cpi": 15,
+        "eu_tax": null,
+        "sanctions": 10,
+        "secrecy": 9.0,
+        "human_trafficking": 9.0,
+        "criminality": 4.68,
+        "resilience": 1.0,
+        "eu_hrtc_since": "23 September 2016",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 9.0,
+        "arms_trafficking": 9.5,
+        "aml": 1.0
+      },
+      "regulator": {
+        "supervisor": "—",
+        "fiu": "—",
+        "egmont": false
+      },
+      "iso3": "PRK"
+    },
+    {
+      "code": "IR",
+      "name": "Iran",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "black",
+        "eu_hrtc": true,
+        "cpi": 23,
+        "eu_tax": null,
+        "sanctions": 10,
+        "secrecy": 8.5,
+        "human_trafficking": 8.0,
+        "criminality": 6.88,
+        "resilience": 2.5,
+        "eu_hrtc_since": "23 September 2016",
+        "financial_crimes": 9.0,
+        "cyber_crimes": 8.5,
+        "arms_trafficking": 9.0,
+        "aml": 2.5
+      },
+      "regulator": {
+        "supervisor": "CBI",
+        "fiu": "FIU Iran",
+        "egmont": false
+      },
+      "iso3": "IRN"
+    },
+    {
+      "code": "MM",
+      "name": "Myanmar",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "black",
+        "eu_hrtc": true,
+        "cpi": 16,
+        "eu_tax": null,
+        "sanctions": 7,
+        "secrecy": 8.0,
+        "human_trafficking": 9.0,
+        "criminality": 8.08,
+        "resilience": 1.5,
+        "eu_hrtc_since": "1 October 2020",
+        "financial_crimes": 8.5,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 9.0,
+        "aml": 1.5
+      },
+      "regulator": {
+        "supervisor": "CBM",
+        "fiu": "MFIU",
+        "egmont": false
+      },
+      "iso3": "MMR"
+    },
+    {
+      "code": "DZ",
+      "name": "Algeria",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.0,
+        "human_trafficking": 4.0,
+        "criminality": 4.97,
+        "resilience": 4.0,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 4.5,
+        "aml": 4.0
+      },
+      "iso3": "DZA"
+    },
+    {
+      "code": "AO",
+      "name": "Angola",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 32,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 6.0,
+        "criminality": 5.62,
+        "resilience": 4.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 6.0,
+        "aml": 4.5
+      },
+      "iso3": "AGO"
+    },
+    {
+      "code": "BO",
+      "name": "Bolivia",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 28,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.0,
+        "human_trafficking": 5.5,
+        "criminality": 5.12,
+        "resilience": 4.5,
+        "eu_hrtc_since": "29 January 2026",
+        "financial_crimes": 5.0,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 5.0,
+        "aml": 4.5
+      },
+      "iso3": "BOL"
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "region": "Europe",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false,
+        "cpi": 40,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 5.0,
+        "criminality": 5.58,
+        "resilience": 5.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 4.5,
+        "aml": 5.0
+      },
+      "iso3": "BGR"
+    },
+    {
+      "code": "BF",
+      "name": "Burkina Faso",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 40,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 6.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.03,
+        "resilience": 3.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 8.0,
+        "aml": 3.5
+      },
+      "iso3": "BFA"
+    },
+    {
+      "code": "CM",
+      "name": "Cameroon",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 26,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 6.5,
+        "criminality": 6.18,
+        "resilience": 3.5,
+        "eu_hrtc_since": "18 October 2023",
+        "financial_crimes": 6.5,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 7.5,
+        "aml": 3.5
+      },
+      "iso3": "CMR"
+    },
+    {
+      "code": "CI",
+      "name": "Côte d'Ivoire",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 43,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.78,
+        "resilience": 4.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 6.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 6.5,
+        "aml": 4.5
+      },
+      "iso3": "CIV"
+    },
+    {
+      "code": "CD",
+      "name": "DR Congo",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 20,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 7.0,
+        "human_trafficking": 7.5,
+        "criminality": 7.47,
+        "resilience": 2.21,
+        "eu_hrtc_since": "16 March 2023"
+      },
+      "iso3": "COD"
+    },
+    {
+      "code": "HT",
+      "name": "Haiti",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 16,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 6.5,
+        "human_trafficking": 8.0,
+        "criminality": 6.53,
+        "resilience": 2.0,
+        "eu_hrtc_since": "13 March 2022",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 8.5,
+        "aml": 2.0
+      },
+      "iso3": "HTI"
+    },
+    {
+      "code": "KE",
+      "name": "Kenya",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 30,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 8.0,
+        "criminality": 7.18,
+        "resilience": 5.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 7.5,
+        "aml": 5.5
+      },
+      "regulator": {
+        "supervisor": "CBK",
+        "fiu": "FRC Kenya",
+        "egmont": true
+      },
+      "iso3": "KEN"
+    },
+    {
+      "code": "LA",
+      "name": "Laos",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 7.0,
+        "human_trafficking": 8.0,
+        "criminality": 6.37,
+        "resilience": 3.0,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 5.5,
+        "aml": 3.0
+      },
+      "iso3": "LAO"
+    },
+    {
+      "code": "LB",
+      "name": "Lebanon",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 23,
+        "eu_tax": null,
+        "sanctions": 4,
+        "secrecy": 7.5,
+        "human_trafficking": 8.0,
+        "criminality": 7.3,
+        "resilience": 2.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 9.0,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 9.0,
+        "aml": 2.5
+      },
+      "iso3": "LBN"
+    },
+    {
+      "code": "MC",
+      "name": "Monaco",
+      "region": "Europe",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 70,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.0,
+        "human_trafficking": 1.5,
+        "criminality": 2.58,
+        "resilience": 5.0,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 3.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 1.5,
+        "aml": 5.0
+      },
+      "regulator": {
+        "supervisor": "CCAF",
+        "fiu": "AMSF",
+        "egmont": true
+      },
+      "iso3": "MCO"
+    },
+    {
+      "code": "MZ",
+      "name": "Mozambique",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 21,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 5.0,
+        "criminality": 6.63,
+        "resilience": 3.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 6.5,
+        "aml": 3.0
+      },
+      "iso3": "MOZ"
+    },
+    {
+      "code": "NA",
+      "name": "Namibia",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 46,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 3.5,
+        "criminality": 4.43,
+        "resilience": 3.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 5.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 3.5,
+        "aml": 3.5
+      },
+      "iso3": "NAM"
+    },
+    {
+      "code": "NP",
+      "name": "Nepal",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 8.0,
+        "criminality": 6.63,
+        "resilience": 3.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 7.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 5.5,
+        "aml": 3.5
+      },
+      "iso3": "NPL"
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 26,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 7.0,
+        "human_trafficking": 8.0,
+        "criminality": 7.32,
+        "resilience": 4.5,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 8.0,
+        "aml": 4.5
+      },
+      "regulator": {
+        "supervisor": "CBN",
+        "fiu": "NFIU",
+        "egmont": true
+      },
+      "iso3": "NGA"
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 41,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 4.5,
+        "criminality": 7.43,
+        "resilience": 5.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 8.0,
+        "aml": 5.0
+      },
+      "regulator": {
+        "supervisor": "SARB / FSCA",
+        "fiu": "FIC",
+        "egmont": true
+      },
+      "iso3": "ZAF"
+    },
+    {
+      "code": "SS",
+      "name": "South Sudan",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 9,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 7.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.42,
+        "resilience": 1.5,
+        "eu_hrtc_since": "13 March 2022",
+        "financial_crimes": 7.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 8.0,
+        "aml": 1.5
+      },
+      "iso3": "SSD"
+    },
+    {
+      "code": "SY",
+      "name": "Syria",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 15,
+        "eu_tax": null,
+        "sanctions": 9,
+        "secrecy": 8.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.98,
+        "resilience": 2.0,
+        "eu_hrtc_since": "23 September 2016",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 9.0,
+        "aml": 2.0
+      },
+      "iso3": "SYR"
+    },
+    {
+      "code": "VE",
+      "name": "Venezuela",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 10,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 8.0,
+        "human_trafficking": 8.0,
+        "criminality": 6.97,
+        "resilience": 1.5,
+        "eu_hrtc_since": "5 August 2025",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 8.0,
+        "aml": 1.5
+      },
+      "iso3": "VEN"
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 41,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.58,
+        "resilience": 5.0,
+        "eu_hrtc_since": "18 October 2023",
+        "financial_crimes": 7.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 4.5,
+        "aml": 5.0
+      },
+      "iso3": "VNM"
+    },
+    {
+      "code": "YE",
+      "name": "Yemen",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 13,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 8.0,
+        "human_trafficking": 9.0,
+        "criminality": 6.63,
+        "resilience": 2.0,
+        "eu_hrtc_since": "23 September 2016",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 9.5,
+        "aml": 2.0
+      },
+      "iso3": "YEM"
+    },
+    {
+      "code": "VG",
+      "name": "British Virgin Is.",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 60,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 8.5,
+        "eu_hrtc_since": "29 January 2026"
+      },
+      "iso3": "VGB"
+    },
+    {
+      "code": "RU",
+      "name": "Russia",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 22,
+        "eu_tax": "annex1",
+        "sanctions": 9,
+        "secrecy": 7.5,
+        "human_trafficking": 8.0,
+        "criminality": 6.92,
+        "resilience": 3.5,
+        "eu_hrtc_since": "29 January 2026",
+        "financial_crimes": 8.5,
+        "cyber_crimes": 9.0,
+        "arms_trafficking": 8.5,
+        "aml": 3.5
+      },
+      "regulator": {
+        "supervisor": "Bank of Russia",
+        "fiu": "Rosfinmonitoring",
+        "egmont": false
+      },
+      "iso3": "RUS"
+    },
+    {
+      "code": "BY",
+      "name": "Belarus",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 31,
+        "eu_tax": null,
+        "sanctions": 8,
+        "secrecy": 7.0,
+        "human_trafficking": 7.0,
+        "criminality": 5.83,
+        "resilience": 4.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 7.5,
+        "aml": 4.0
+      },
+      "iso3": "BLR"
+    },
+    {
+      "code": "CU",
+      "name": "Cuba",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 40,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 7.0,
+        "human_trafficking": 6.0,
+        "criminality": 3.35,
+        "resilience": 5.5,
+        "financial_crimes": 3.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 1.5,
+        "aml": 5.5
+      },
+      "iso3": "CUB"
+    },
+    {
+      "code": "AF",
+      "name": "Afghanistan",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 16,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 8.0,
+        "human_trafficking": 9.0,
+        "criminality": 7.02,
+        "resilience": 1.0,
+        "eu_hrtc_since": "23 September 2016",
+        "financial_crimes": 8.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 9.0,
+        "aml": 1.0
+      },
+      "iso3": "AFG"
+    },
+    {
+      "code": "NI",
+      "name": "Nicaragua",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 14,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 7.0,
+        "human_trafficking": 7.5,
+        "criminality": 5.73,
+        "resilience": 2.5,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 6.0,
+        "aml": 2.5
+      },
+      "iso3": "NIC"
+    },
+    {
+      "code": "SD",
+      "name": "Sudan",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 14,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 7.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.63,
+        "resilience": 3.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 9.5,
+        "aml": 3.0
+      },
+      "iso3": "SDN"
+    },
+    {
+      "code": "LY",
+      "name": "Libya",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 13,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 7.5,
+        "human_trafficking": 8.5,
+        "criminality": 7.05,
+        "resilience": 2.0,
+        "financial_crimes": 9.0,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 9.5,
+        "aml": 2.0
+      },
+      "iso3": "LBY"
+    },
+    {
+      "code": "ZW",
+      "name": "Zimbabwe",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 22,
+        "eu_tax": null,
+        "sanctions": 4,
+        "secrecy": 7.0,
+        "human_trafficking": 5.5,
+        "criminality": 5.55,
+        "resilience": 4.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 4.5,
+        "aml": 4.0
+      },
+      "iso3": "ZWE"
+    },
+    {
+      "code": "IQ",
+      "name": "Iraq",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 28,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 7.5,
+        "human_trafficking": 7.5,
+        "criminality": 7.17,
+        "resilience": 4.0,
+        "financial_crimes": 9.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 9.0,
+        "aml": 4.0
+      },
+      "iso3": "IRQ"
+    },
+    {
+      "code": "SO",
+      "name": "Somalia",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 9,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 8.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.55,
+        "resilience": 2.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 9.0,
+        "aml": 2.0
+      },
+      "iso3": "SOM"
+    },
+    {
+      "code": "PA",
+      "name": "Panama",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "eu_tax": "annex1",
+        "sanctions": 1,
+        "secrecy": 7.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.93,
+        "resilience": 3.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 7.0,
+        "aml": 3.5
+      },
+      "regulator": {
+        "supervisor": "SBP",
+        "fiu": "UAF Panama",
+        "egmont": true
+      },
+      "iso3": "PAN"
+    },
+    {
+      "code": "TT",
+      "name": "Trinidad & Tobago",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 41,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.22,
+        "resilience": 5.0,
+        "eu_hrtc_since": "6 March 2018",
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 7.0,
+        "aml": 5.0
+      },
+      "iso3": "TTO"
+    },
+    {
+      "code": "VU",
+      "name": "Vanuatu",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 47,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 7.5,
+        "human_trafficking": 4.5,
+        "criminality": 2.33,
+        "resilience": 2.5,
+        "eu_hrtc_since": "23 September 2016",
+        "financial_crimes": 3.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 1.0,
+        "aml": 2.5
+      },
+      "iso3": "VUT"
+    },
+    {
+      "code": "WS",
+      "name": "Samoa",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 45,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 7.5,
+        "criminality": 2.38,
+        "resilience": 5.5,
+        "human_trafficking": 3.0,
+        "financial_crimes": 3.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 2.0,
+        "aml": 5.5
+      },
+      "iso3": "WSM"
+    },
+    {
+      "code": "FJ",
+      "name": "Fiji",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 55,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.02,
+        "resilience": 6.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 2.0,
+        "aml": 6.0
+      },
+      "iso3": "FJI"
+    },
+    {
+      "code": "AI",
+      "name": "Anguilla",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 58,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 8.0
+      },
+      "iso3": "AIA"
+    },
+    {
+      "code": "KY",
+      "name": "Cayman Islands",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 62,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 8.5
+      },
+      "iso3": "CYM"
+    },
+    {
+      "code": "BM",
+      "name": "Bermuda",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 65,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.5
+      },
+      "iso3": "BMU"
+    },
+    {
+      "code": "BS",
+      "name": "Bahamas",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 64,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.5,
+        "criminality": 3.88,
+        "resilience": 5.5,
+        "human_trafficking": 5.0,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 5.5,
+        "aml": 5.5
+      },
+      "iso3": "BHS"
+    },
+    {
+      "code": "AE",
+      "name": "UAE",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 69,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 8.0,
+        "human_trafficking": 8.5,
+        "criminality": 6.35,
+        "resilience": 3.5,
+        "financial_crimes": 9.0,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 7.0,
+        "aml": 3.5
+      },
+      "regulator": {
+        "supervisor": "CBUAE / SCA",
+        "fiu": "UAE FIU",
+        "egmont": true
+      },
+      "iso3": "ARE"
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 76,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 7.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.6,
+        "resilience": 6.5
+      },
+      "regulator": {
+        "supervisor": "HKMA / SFC",
+        "fiu": "JFIU",
+        "egmont": true
+      },
+      "iso3": "HKG"
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 84,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 5.5,
+        "criminality": 3.72,
+        "resilience": 7.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 2.5,
+        "aml": 7.5
+      },
+      "regulator": {
+        "supervisor": "MAS",
+        "fiu": "STRO",
+        "egmont": true
+      },
+      "iso3": "SGP"
+    },
+    {
+      "code": "CH",
+      "name": "Switzerland",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 80,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.65,
+        "resilience": 5.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 6.0,
+        "aml": 5.5
+      },
+      "regulator": {
+        "supervisor": "FINMA",
+        "fiu": "MROS",
+        "egmont": true
+      },
+      "iso3": "CHE"
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 78,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 4.0,
+        "criminality": 2.75,
+        "resilience": 5.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 2.0,
+        "aml": 5.5
+      },
+      "regulator": {
+        "supervisor": "CSSF",
+        "fiu": "CRF",
+        "egmont": true
+      },
+      "iso3": "LUX"
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 49,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.87,
+        "resilience": 4.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 3.0,
+        "aml": 4.0
+      },
+      "regulator": {
+        "supervisor": "MFSA / FIAU",
+        "fiu": "FIAU",
+        "egmont": true
+      },
+      "iso3": "MLT"
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 55,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.5,
+        "resilience": 3.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 2.5,
+        "aml": 3.5
+      },
+      "regulator": {
+        "supervisor": "CBC / CySEC",
+        "fiu": "MOKAS",
+        "egmont": true
+      },
+      "iso3": "CYP"
+    },
+    {
+      "code": "LI",
+      "name": "Liechtenstein",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 77,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 2.0,
+        "criminality": 2.1,
+        "resilience": 5.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 1.0,
+        "aml": 5.5
+      },
+      "regulator": {
+        "supervisor": "FMA",
+        "fiu": "EFFI",
+        "egmont": true
+      },
+      "iso3": "LIE"
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 69,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.82,
+        "resilience": 7.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 6.5,
+        "aml": 7.0
+      },
+      "regulator": {
+        "supervisor": "NBB / FSMA",
+        "fiu": "CTIF-CFI",
+        "egmont": true
+      },
+      "iso3": "BEL"
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 78,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 5.5,
+        "criminality": 5.17,
+        "resilience": 6.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 6.0,
+        "aml": 6.5
+      },
+      "regulator": {
+        "supervisor": "DNB / AFM",
+        "fiu": "FIU-Nederland",
+        "egmont": true
+      },
+      "iso3": "NLD"
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 77,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 6.0,
+        "criminality": 5.35,
+        "resilience": 6.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 5.5,
+        "aml": 6.0
+      },
+      "regulator": {
+        "supervisor": "BaFin",
+        "fiu": "FIU Germany",
+        "egmont": true
+      },
+      "iso3": "DEU"
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 66,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.92,
+        "resilience": 8.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 6.5,
+        "aml": 8.0
+      },
+      "regulator": {
+        "supervisor": "ACPR / AMF",
+        "fiu": "TRACFIN",
+        "egmont": true
+      },
+      "iso3": "FRA"
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 70,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 7.0,
+        "criminality": 5.87,
+        "resilience": 7.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 4.0,
+        "aml": 7.0
+      },
+      "regulator": {
+        "supervisor": "FCA / PRA",
+        "fiu": "UKFIU (NCA)",
+        "egmont": true
+      },
+      "iso3": "GBR"
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 76,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.97,
+        "resilience": 7.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 4.0,
+        "aml": 7.5
+      },
+      "regulator": {
+        "supervisor": "Central Bank of Ireland",
+        "fiu": "FIU Ireland",
+        "egmont": true
+      },
+      "iso3": "IRL"
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "region": "Americas",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 64,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.0,
+        "human_trafficking": 6.5,
+        "criminality": 5.87,
+        "resilience": 6.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 7.5,
+        "aml": 6.0
+      },
+      "regulator": {
+        "supervisor": "FinCEN / OCC / Fed",
+        "fiu": "FinCEN",
+        "egmont": true
+      },
+      "iso3": "USA"
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "region": "Americas",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 75,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 4.0,
+        "criminality": 4.17,
+        "resilience": 6.0,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 4.0,
+        "aml": 6.0
+      },
+      "regulator": {
+        "supervisor": "OSFI / FINTRAC",
+        "fiu": "FINTRAC",
+        "egmont": true
+      },
+      "iso3": "CAN"
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 89,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 3.5,
+        "human_trafficking": 4.0,
+        "criminality": 4.1,
+        "resilience": 7.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 5.0,
+        "aml": 7.0
+      },
+      "regulator": {
+        "supervisor": "Finanstilsynet",
+        "fiu": "Hvidvasksekretariatet",
+        "egmont": true
+      },
+      "iso3": "DNK"
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 80,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.73,
+        "resilience": 8.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 6.5,
+        "aml": 8.0
+      },
+      "regulator": {
+        "supervisor": "Finansinspektionen",
+        "fiu": "Finanspolisen",
+        "egmont": true
+      },
+      "iso3": "SWE"
+    },
+    {
+      "code": "NO",
+      "name": "Norway",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 81,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.0,
+        "human_trafficking": 5.0,
+        "criminality": 3.83,
+        "resilience": 7.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 4.5,
+        "aml": 7.5
+      },
+      "regulator": {
+        "supervisor": "Finanstilsynet",
+        "fiu": "Økokrim",
+        "egmont": true
+      },
+      "iso3": "NOR"
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 53,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 7.0,
+        "criminality": 6.37,
+        "resilience": 5.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 6.0,
+        "aml": 5.5
+      },
+      "regulator": {
+        "supervisor": "Banca d'Italia / CONSOB",
+        "fiu": "UIF",
+        "egmont": true
+      },
+      "iso3": "ITA"
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 55,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.05,
+        "resilience": 6.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 4.5,
+        "aml": 6.0
+      },
+      "regulator": {
+        "supervisor": "Banco de España / CNMV",
+        "fiu": "SEPBLAC",
+        "egmont": true
+      },
+      "iso3": "ESP"
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 56,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 6.0,
+        "criminality": 4.97,
+        "resilience": 6.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 4.0,
+        "aml": 6.5
+      },
+      "regulator": {
+        "supervisor": "Banco de Portugal",
+        "fiu": "UIF Portugal",
+        "egmont": true
+      },
+      "iso3": "PRT"
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 53,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.67,
+        "resilience": 6.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 4.5,
+        "aml": 6.5
+      },
+      "regulator": {
+        "supervisor": "KNF",
+        "fiu": "GIIF",
+        "egmont": true
+      },
+      "iso3": "POL"
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 71,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 5.0,
+        "criminality": 4.25,
+        "resilience": 7.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 2.0,
+        "aml": 7.5
+      },
+      "regulator": {
+        "supervisor": "FSA",
+        "fiu": "JAFIC",
+        "egmont": true
+      },
+      "iso3": "JPN"
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "region": "Oceania",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 76,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 3.5,
+        "criminality": 4.07,
+        "resilience": 7.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 3.5,
+        "aml": 7.0
+      },
+      "regulator": {
+        "supervisor": "APRA / ASIC / AUSTRAC",
+        "fiu": "AUSTRAC",
+        "egmont": true
+      },
+      "iso3": "AUS"
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 43,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 6.5,
+        "human_trafficking": 7.5,
+        "criminality": 6.32,
+        "resilience": 6.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 8.5,
+        "arms_trafficking": 3.0,
+        "aml": 6.5
+      },
+      "regulator": {
+        "supervisor": "NFRA / PBoC",
+        "fiu": "CAMLMAC",
+        "egmont": true
+      },
+      "iso3": "CHN"
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 39,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 8.5,
+        "criminality": 5.9,
+        "resilience": 6.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 6.0,
+        "aml": 6.5
+      },
+      "regulator": {
+        "supervisor": "RBI / SEBI",
+        "fiu": "FIU-IND",
+        "egmont": true
+      },
+      "iso3": "IND"
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 35,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 6.5,
+        "criminality": 7.07,
+        "resilience": 6.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 8.5,
+        "aml": 6.0
+      },
+      "regulator": {
+        "supervisor": "BCB / CVM",
+        "fiu": "COAF",
+        "egmont": true
+      },
+      "iso3": "BRA"
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 27,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 8.0,
+        "criminality": 7.68,
+        "resilience": 4.5,
+        "financial_crimes": 8.5,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 9.0,
+        "aml": 4.5
+      },
+      "regulator": {
+        "supervisor": "CNBV",
+        "fiu": "UIF Mexico",
+        "egmont": true
+      },
+      "iso3": "MEX"
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 31,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 8.0,
+        "criminality": 7.2,
+        "resilience": 3.0,
+        "financial_crimes": 8.5,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 8.5,
+        "aml": 3.0
+      },
+      "regulator": {
+        "supervisor": "BDDK / SPK",
+        "fiu": "MASAK",
+        "egmont": true
+      },
+      "iso3": "TUR"
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 30,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 6.0,
+        "criminality": 5.3,
+        "resilience": 5.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 7.0,
+        "aml": 5.0
+      },
+      "iso3": "EGY"
+    },
+    {
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 57,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.33,
+        "resilience": 5.0,
+        "financial_crimes": 8.5,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 8.0,
+        "aml": 5.0
+      },
+      "regulator": {
+        "supervisor": "SAMA",
+        "fiu": "SAFIU",
+        "egmont": true
+      },
+      "iso3": "SAU"
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 28,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 7.0,
+        "human_trafficking": 8.5,
+        "criminality": 6.32,
+        "resilience": 4.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 8.5,
+        "aml": 4.0
+      },
+      "iso3": "PAK"
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 24,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 8.0,
+        "criminality": 5.3,
+        "resilience": 4.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 5.5,
+        "aml": 4.5
+      },
+      "iso3": "BGD"
+    },
+    {
+      "code": "PH",
+      "name": "Philippines",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 32,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.57,
+        "resilience": 5.5,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 7.0,
+        "aml": 5.5
+      },
+      "iso3": "PHL"
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 7.5,
+        "criminality": 6.85,
+        "resilience": 5.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 4.5,
+        "aml": 5.0
+      },
+      "iso3": "IDN"
+    },
+    {
+      "code": "TH",
+      "name": "Thailand",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.37,
+        "resilience": 5.5,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 6.5,
+        "aml": 5.5
+      },
+      "iso3": "THA"
+    },
+    {
+      "code": "MY",
+      "name": "Malaysia",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 52,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.53,
+        "resilience": 6.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 8.0,
+        "arms_trafficking": 5.0,
+        "aml": 6.0
+      },
+      "iso3": "MYS"
+    },
+    {
+      "code": "UA",
+      "name": "Ukraine",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 36,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.45,
+        "resilience": 4.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 8.5,
+        "arms_trafficking": 9.0,
+        "aml": 4.5
+      },
+      "iso3": "UKR"
+    },
+    {
+      "code": "MA",
+      "name": "Morocco",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 39,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 5.5,
+        "criminality": 5.37,
+        "resilience": 4.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 2.0,
+        "aml": 4.0
+      },
+      "iso3": "MAR"
+    },
+    {
+      "code": "GH",
+      "name": "Ghana",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 43,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.77,
+        "resilience": 6.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 6.5,
+        "aml": 6.0
+      },
+      "iso3": "GHA"
+    },
+    {
+      "code": "TZ",
+      "name": "Tanzania",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 40,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 6.5,
+        "criminality": 5.93,
+        "resilience": 4.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 6.0,
+        "aml": 4.5
+      },
+      "iso3": "TZA"
+    },
+    {
+      "code": "KW",
+      "iso3": "KWT",
+      "name": "Kuwait",
+      "region": "—",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false,
+        "cpi": 46,
+        "criminality": 5.1,
+        "resilience": 5.5,
+        "human_trafficking": 8.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 5.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "PN",
+      "iso3": "PNG",
+      "name": "Papua New Guinea",
+      "region": "—",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false,
+        "cpi": 26,
+        "criminality": 5.78,
+        "resilience": 3.5,
+        "human_trafficking": 7.0,
+        "financial_crimes": 8.5,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 6.5,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AL",
+      "iso3": "ALB",
+      "name": "Albania",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 39,
+        "criminality": 5.2,
+        "resilience": 4.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 4.5,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AN",
+      "iso3": "AND",
+      "name": "Andorra",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 2.7,
+        "resilience": 7.5,
+        "human_trafficking": 1.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 2.5,
+        "aml": 7.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AR",
+      "iso3": "ARG",
+      "name": "Argentina",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 36,
+        "criminality": 5.25,
+        "resilience": 6.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 4.5,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 4.0,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AR",
+      "iso3": "ARM",
+      "name": "Armenia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 46,
+        "criminality": 3.02,
+        "resilience": 5.5,
+        "human_trafficking": 3.5,
+        "financial_crimes": 3.5,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 2.5,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AT",
+      "iso3": "ATG",
+      "name": "Antigua and Barbuda",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 3.03,
+        "resilience": 4.0,
+        "human_trafficking": 4.0,
+        "financial_crimes": 2.5,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 4.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AU",
+      "iso3": "AUT",
+      "name": "Austria",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 69,
+        "criminality": 4.3,
+        "resilience": 6.5,
+        "human_trafficking": 4.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 5.0,
+        "aml": 6.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "AZ",
+      "iso3": "AZE",
+      "name": "Azerbaijan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 30,
+        "criminality": 5.03,
+        "resilience": 4.0,
+        "human_trafficking": 4.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 3.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BD",
+      "iso3": "BDI",
+      "name": "Burundi",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 17,
+        "criminality": 4.73,
+        "resilience": 2.5,
+        "human_trafficking": 8.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 7.5,
+        "aml": 2.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BE",
+      "iso3": "BEN",
+      "name": "Benin",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 45,
+        "criminality": 5.15,
+        "resilience": 4.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 6.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BH",
+      "iso3": "BHR",
+      "name": "Bahrain",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 50,
+        "criminality": 4.82,
+        "resilience": 5.5,
+        "human_trafficking": 8.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 4.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BI",
+      "iso3": "BIH",
+      "name": "Bosnia and Herzegovina",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "criminality": 5.92,
+        "resilience": 3.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 6.0,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BL",
+      "iso3": "BLZ",
+      "name": "Belize",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 36,
+        "criminality": 4.97,
+        "resilience": 2.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 5.0,
+        "aml": 2.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BR",
+      "iso3": "BRB",
+      "name": "Barbados",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 68,
+        "criminality": 2.9,
+        "resilience": 5.5,
+        "human_trafficking": 4.0,
+        "financial_crimes": 2.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 4.5,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BR",
+      "iso3": "BRN",
+      "name": "Brunei Darussalam",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 63,
+        "criminality": 2.9,
+        "resilience": 5.5,
+        "human_trafficking": 5.0,
+        "financial_crimes": 4.5,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 2.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BT",
+      "iso3": "BTN",
+      "name": "Bhutan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 71,
+        "criminality": 3.5,
+        "resilience": 4.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 3.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 2.5,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "BW",
+      "iso3": "BWA",
+      "name": "Botswana",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 58,
+        "criminality": 4.17,
+        "resilience": 5.5,
+        "human_trafficking": 4.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 3.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CA",
+      "iso3": "CAF",
+      "name": "Central African Republic",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 24,
+        "criminality": 7.03,
+        "resilience": 2.0,
+        "human_trafficking": 8.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 9.0,
+        "aml": 2.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CH",
+      "iso3": "CHL",
+      "name": "Chile",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 63,
+        "criminality": 5.48,
+        "resilience": 6.5,
+        "human_trafficking": 6.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 6.5,
+        "aml": 6.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CO",
+      "iso3": "COG",
+      "name": "Congo",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 23
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CO",
+      "iso3": "COL",
+      "name": "Colombia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "criminality": 7.82,
+        "resilience": 6.0,
+        "human_trafficking": 8.0,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 8.0,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CO",
+      "iso3": "COM",
+      "name": "Comoros",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 20,
+        "criminality": 3.83,
+        "resilience": 4.0,
+        "human_trafficking": 4.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 3.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CP",
+      "iso3": "CPV",
+      "name": "Cabo Verde",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 62,
+        "criminality": 4.08,
+        "resilience": 5.5,
+        "human_trafficking": 4.5,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 3.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CR",
+      "iso3": "CRI",
+      "name": "Costa Rica",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 56,
+        "criminality": 5.9,
+        "resilience": 4.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 5.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "CZ",
+      "iso3": "CZE",
+      "name": "Czechia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 59,
+        "criminality": 4.55,
+        "resilience": 6.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 5.0,
+        "aml": 6.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "DJ",
+      "iso3": "DJI",
+      "name": "Djibouti",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 31,
+        "criminality": 4.85,
+        "resilience": 5.0,
+        "human_trafficking": 7.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 8.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "DM",
+      "iso3": "DMA",
+      "name": "Dominica",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 60,
+        "criminality": 2.32,
+        "resilience": 5.5,
+        "human_trafficking": 2.0,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 5.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "DO",
+      "iso3": "DOM",
+      "name": "Dominican Republic",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "criminality": 5.17,
+        "resilience": 5.0,
+        "human_trafficking": 6.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 4.5,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "EC",
+      "iso3": "ECU",
+      "name": "Ecuador",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "criminality": 7.48,
+        "resilience": 5.0,
+        "human_trafficking": 6.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 8.5,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "ER",
+      "iso3": "ERI",
+      "name": "Eritrea",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 13,
+        "criminality": 3.92,
+        "resilience": 3.0,
+        "human_trafficking": 9.0,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 8.0,
+        "aml": 3.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "ES",
+      "iso3": "EST",
+      "name": "Estonia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 76,
+        "criminality": 3.87,
+        "resilience": 8.0,
+        "human_trafficking": 4.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 2.0,
+        "aml": 8.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "ET",
+      "iso3": "ETH",
+      "name": "Ethiopia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 38,
+        "criminality": 6.03,
+        "resilience": 6.0,
+        "human_trafficking": 8.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 8.5,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "FI",
+      "iso3": "FIN",
+      "name": "Finland",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 88,
+        "criminality": 3.25,
+        "resilience": 8.0,
+        "human_trafficking": 3.5,
+        "financial_crimes": 4.5,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 3.0,
+        "aml": 8.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "FS",
+      "iso3": "FSM",
+      "name": "Micronesia, Federated States of",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 2.72,
+        "resilience": 5.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 2.5,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 1.5,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GA",
+      "iso3": "GAB",
+      "name": "Gabon",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 29,
+        "criminality": 4.7,
+        "resilience": 2.0,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 2.5,
+        "aml": 2.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GE",
+      "iso3": "GEO",
+      "name": "Georgia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 50,
+        "criminality": 3.87,
+        "resilience": 4.5,
+        "human_trafficking": 4.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 3.5,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GI",
+      "iso3": "GIN",
+      "name": "Guinea",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 26,
+        "criminality": 5.05,
+        "resilience": 3.0,
+        "human_trafficking": 6.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 5.5,
+        "aml": 3.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GM",
+      "iso3": "GMB",
+      "name": "Gambia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "criminality": 4.58,
+        "resilience": 5.0,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 2.5,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GN",
+      "iso3": "GNB",
+      "name": "Guinea-Bissau",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 21,
+        "criminality": 4.88,
+        "resilience": 3.0,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 4.5,
+        "aml": 3.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GN",
+      "iso3": "GNQ",
+      "name": "Equatorial Guinea",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 15,
+        "criminality": 4.37,
+        "resilience": 2.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 1.0,
+        "arms_trafficking": 4.0,
+        "aml": 2.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GR",
+      "iso3": "GRC",
+      "name": "Greece",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 50,
+        "criminality": 5.55,
+        "resilience": 5.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 3.5,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GR",
+      "iso3": "GRD",
+      "name": "Grenada",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 56,
+        "criminality": 2.72,
+        "resilience": 5.0,
+        "human_trafficking": 2.0,
+        "financial_crimes": 3.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 3.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GT",
+      "iso3": "GTM",
+      "name": "Guatemala",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 26,
+        "criminality": 6.77,
+        "resilience": 4.0,
+        "human_trafficking": 7.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 7.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "GU",
+      "iso3": "GUY",
+      "name": "Guyana",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 40,
+        "criminality": 5.78,
+        "resilience": 4.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 6.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "HN",
+      "iso3": "HND",
+      "name": "Honduras",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 22,
+        "criminality": 7.1,
+        "resilience": 4.0,
+        "human_trafficking": 7.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 7.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "HR",
+      "iso3": "HRV",
+      "name": "Croatia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 47,
+        "criminality": 5.02,
+        "resilience": 6.5,
+        "human_trafficking": 5.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 4.5,
+        "aml": 6.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "HU",
+      "iso3": "HUN",
+      "name": "Hungary",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 40,
+        "criminality": 4.62,
+        "resilience": 5.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 4.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "IS",
+      "iso3": "ISL",
+      "name": "Iceland",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 77,
+        "criminality": 3.03,
+        "resilience": 8.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 2.0,
+        "aml": 8.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "IS",
+      "iso3": "ISR",
+      "name": "Israel",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 62,
+        "criminality": 5.07,
+        "resilience": 7.0,
+        "human_trafficking": 6.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 9.0,
+        "arms_trafficking": 7.0,
+        "aml": 7.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "JA",
+      "iso3": "JAM",
+      "name": "Jamaica",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 44,
+        "criminality": 5.93,
+        "resilience": 5.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 9.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "JO",
+      "iso3": "JOR",
+      "name": "Jordan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 50,
+        "criminality": 5.08,
+        "resilience": 7.0,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 7.0,
+        "aml": 7.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "KA",
+      "iso3": "KAZ",
+      "name": "Kazakhstan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 38,
+        "criminality": 4.45,
+        "resilience": 4.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 3.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "KG",
+      "iso3": "KGZ",
+      "name": "Kyrgyzstan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 26,
+        "criminality": 5.25,
+        "resilience": 3.5,
+        "human_trafficking": 7.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 3.5,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "KH",
+      "iso3": "KHM",
+      "name": "Cambodia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 20,
+        "criminality": 7.02,
+        "resilience": 4.0,
+        "human_trafficking": 8.5,
+        "financial_crimes": 8.5,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 6.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "KI",
+      "iso3": "KIR",
+      "name": "Kiribati",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 2.33,
+        "resilience": 4.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 1.5,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "KO",
+      "iso3": "KOR",
+      "name": "South Korea",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 63
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "KS",
+      "iso3": "KSV",
+      "name": "KSV",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 43
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "LB",
+      "iso3": "LBR",
+      "name": "Liberia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 28,
+        "criminality": 5.65,
+        "resilience": 3.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 5.0,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "LC",
+      "iso3": "LCA",
+      "name": "Saint Lucia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 59
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "LK",
+      "iso3": "LKA",
+      "name": "Sri Lanka",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 35,
+        "criminality": 4.97,
+        "resilience": 5.0,
+        "human_trafficking": 7.0,
+        "financial_crimes": 4.5,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 5.5,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "LS",
+      "iso3": "LSO",
+      "name": "Lesotho",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "criminality": 4.52,
+        "resilience": 4.0,
+        "human_trafficking": 4.0,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 5.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "LT",
+      "iso3": "LTU",
+      "name": "Lithuania",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 65,
+        "criminality": 4.08,
+        "resilience": 6.5,
+        "human_trafficking": 4.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 3.5,
+        "aml": 6.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "LV",
+      "iso3": "LVA",
+      "name": "Latvia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 60,
+        "criminality": 4.08,
+        "resilience": 6.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 3.5,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MD",
+      "iso3": "MDA",
+      "name": "Moldova",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 42,
+        "criminality": 5.53,
+        "resilience": 4.0,
+        "human_trafficking": 7.5,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 7.5,
+        "arms_trafficking": 7.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MD",
+      "iso3": "MDG",
+      "name": "Madagascar",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 25,
+        "criminality": 5.83,
+        "resilience": 4.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 5.5,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MD",
+      "iso3": "MDV",
+      "name": "Maldives",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 39,
+        "criminality": 4.42,
+        "resilience": 3.5,
+        "human_trafficking": 6.5,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 3.5,
+        "arms_trafficking": 2.0,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MH",
+      "iso3": "MHL",
+      "name": "Marshall Islands",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 2.28,
+        "resilience": 4.5,
+        "human_trafficking": 5.0,
+        "financial_crimes": 3.5,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 1.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MK",
+      "iso3": "MKD",
+      "name": "North Macedonia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 40,
+        "criminality": 5.0,
+        "resilience": 6.0,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.5,
+        "arms_trafficking": 5.0,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "ML",
+      "iso3": "MLI",
+      "name": "Mali",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 28,
+        "criminality": 6.33,
+        "resilience": 2.5,
+        "human_trafficking": 7.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 8.0,
+        "aml": 2.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MN",
+      "iso3": "MNE",
+      "name": "Montenegro",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 46,
+        "criminality": 5.82,
+        "resilience": 5.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 6.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MN",
+      "iso3": "MNG",
+      "name": "Mongolia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 31,
+        "criminality": 4.03,
+        "resilience": 5.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 3.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MR",
+      "iso3": "MRT",
+      "name": "Mauritania",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 30,
+        "criminality": 4.4,
+        "resilience": 4.5,
+        "human_trafficking": 7.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 4.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MU",
+      "iso3": "MUS",
+      "name": "Mauritius",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 48,
+        "criminality": 4.23,
+        "resilience": 4.0,
+        "human_trafficking": 4.5,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 2.5,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "MW",
+      "iso3": "MWI",
+      "name": "Malawi",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "criminality": 4.17,
+        "resilience": 5.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 4.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "NE",
+      "iso3": "NER",
+      "name": "Niger",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 31,
+        "criminality": 5.93,
+        "resilience": 4.0,
+        "human_trafficking": 8.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 1.0,
+        "arms_trafficking": 8.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "NR",
+      "iso3": "NRU",
+      "name": "Nauru",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 1.72,
+        "resilience": 7.0,
+        "human_trafficking": 1.0,
+        "financial_crimes": 2.5,
+        "cyber_crimes": 1.0,
+        "arms_trafficking": 1.0,
+        "aml": 7.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "NZ",
+      "iso3": "NZL",
+      "name": "New Zealand",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 81,
+        "criminality": 4.13,
+        "resilience": 7.0,
+        "human_trafficking": 3.5,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 7.0,
+        "arms_trafficking": 3.5,
+        "aml": 7.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "OM",
+      "iso3": "OMN",
+      "name": "Oman",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 52,
+        "criminality": 4.45,
+        "resilience": 6.0,
+        "human_trafficking": 7.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 5.5,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "PE",
+      "iso3": "PER",
+      "name": "Peru",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 30,
+        "criminality": 6.62,
+        "resilience": 4.5,
+        "human_trafficking": 7.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 7.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "PL",
+      "iso3": "PLW",
+      "name": "Palau",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 2.83,
+        "resilience": 4.5,
+        "human_trafficking": 4.0,
+        "financial_crimes": 3.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 1.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "PR",
+      "iso3": "PRY",
+      "name": "Paraguay",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 24,
+        "criminality": 7.48,
+        "resilience": 2.5,
+        "human_trafficking": 7.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 9.0,
+        "aml": 2.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "QA",
+      "iso3": "QAT",
+      "name": "Qatar",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 58,
+        "criminality": 5.37,
+        "resilience": 5.5,
+        "human_trafficking": 8.0,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 6.5,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "RO",
+      "iso3": "ROU",
+      "name": "Romania",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 45,
+        "criminality": 4.83,
+        "resilience": 5.0,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 5.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "RW",
+      "iso3": "RWA",
+      "name": "Rwanda",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 58,
+        "criminality": 3.87,
+        "resilience": 5.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 6.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SE",
+      "iso3": "SEN",
+      "name": "Senegal",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 46,
+        "criminality": 5.22,
+        "resilience": 5.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 5.5,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SL",
+      "iso3": "SLB",
+      "name": "Solomon Islands",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 44,
+        "criminality": 4.5,
+        "resilience": 4.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 2.5,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SL",
+      "iso3": "SLE",
+      "name": "Sierra Leone",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "criminality": 5.42,
+        "resilience": 4.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 3.5,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SL",
+      "iso3": "SLV",
+      "name": "El Salvador",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 32,
+        "criminality": 5.45,
+        "resilience": 3.5,
+        "human_trafficking": 7.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.5,
+        "arms_trafficking": 6.5,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SM",
+      "iso3": "SMR",
+      "name": "San Marino",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 3.12,
+        "resilience": 4.5,
+        "human_trafficking": 2.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 1.5,
+        "arms_trafficking": 2.0,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SR",
+      "iso3": "SRB",
+      "name": "Serbia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "criminality": 6.18,
+        "resilience": 5.5,
+        "human_trafficking": 6.0,
+        "financial_crimes": 7.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 6.5,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "ST",
+      "iso3": "STP",
+      "name": "Sao Tome and Principe",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 45,
+        "criminality": 1.8,
+        "resilience": 3.5,
+        "human_trafficking": 1.5,
+        "financial_crimes": 2.5,
+        "cyber_crimes": 1.0,
+        "arms_trafficking": 1.5,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SU",
+      "iso3": "SUR",
+      "name": "Suriname",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 38,
+        "criminality": 4.9,
+        "resilience": 2.5,
+        "human_trafficking": 4.5,
+        "financial_crimes": 5.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 5.5,
+        "aml": 2.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SV",
+      "iso3": "SVK",
+      "name": "Slovakia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 48,
+        "criminality": 4.75,
+        "resilience": 5.0,
+        "human_trafficking": 5.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 5.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SV",
+      "iso3": "SVN",
+      "name": "Slovenia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 58,
+        "criminality": 4.28,
+        "resilience": 5.5,
+        "human_trafficking": 4.5,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 4.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SW",
+      "iso3": "SWZ",
+      "name": "Eswatini",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 23,
+        "criminality": 4.25,
+        "resilience": 4.5,
+        "human_trafficking": 4.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 5.0,
+        "arms_trafficking": 3.5,
+        "aml": 4.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "SY",
+      "iso3": "SYC",
+      "name": "Seychelles",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 68,
+        "criminality": 3.65,
+        "resilience": 5.0,
+        "human_trafficking": 4.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 3.0,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TC",
+      "iso3": "TCD",
+      "name": "Chad",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 22,
+        "criminality": 6.0,
+        "resilience": 1.5,
+        "human_trafficking": 7.5,
+        "financial_crimes": 4.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 9.0,
+        "aml": 1.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TG",
+      "iso3": "TGO",
+      "name": "Togo",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 32,
+        "criminality": 5.22,
+        "resilience": 3.5,
+        "human_trafficking": 5.5,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 4.0,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TJ",
+      "iso3": "TJK",
+      "name": "Tajikistan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 19,
+        "criminality": 5.37,
+        "resilience": 3.0,
+        "human_trafficking": 7.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 2.0,
+        "arms_trafficking": 4.0,
+        "aml": 3.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TK",
+      "iso3": "TKM",
+      "name": "Turkmenistan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 17,
+        "criminality": 4.35,
+        "resilience": 3.0,
+        "human_trafficking": 8.0,
+        "financial_crimes": 6.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 2.0,
+        "aml": 3.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TL",
+      "iso3": "TLS",
+      "name": "Timor-Leste",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 44,
+        "criminality": 3.98,
+        "resilience": 4.0,
+        "human_trafficking": 5.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 4.0,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TO",
+      "iso3": "TON",
+      "name": "Tonga",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 3.42,
+        "resilience": 5.0,
+        "human_trafficking": 3.5,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 2.5,
+        "arms_trafficking": 4.5,
+        "aml": 5.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TU",
+      "iso3": "TUN",
+      "name": "Tunisia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 39,
+        "criminality": 4.68,
+        "resilience": 5.5,
+        "human_trafficking": 4.5,
+        "financial_crimes": 8.0,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 3.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TU",
+      "iso3": "TUV",
+      "name": "Tuvalu",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "criminality": 1.53,
+        "resilience": 6.0,
+        "human_trafficking": 1.5,
+        "financial_crimes": 2.0,
+        "cyber_crimes": 1.0,
+        "arms_trafficking": 1.0,
+        "aml": 6.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "TW",
+      "iso3": "TWN",
+      "name": "Taiwan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 68
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "UG",
+      "iso3": "UGA",
+      "name": "Uganda",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 25,
+        "criminality": 6.65,
+        "resilience": 3.5,
+        "human_trafficking": 7.5,
+        "financial_crimes": 7.5,
+        "cyber_crimes": 6.0,
+        "arms_trafficking": 6.5,
+        "aml": 3.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "UR",
+      "iso3": "URY",
+      "name": "Uruguay",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 73,
+        "criminality": 3.57,
+        "resilience": 6.5,
+        "human_trafficking": 3.5,
+        "financial_crimes": 4.0,
+        "cyber_crimes": 4.5,
+        "arms_trafficking": 4.0,
+        "aml": 6.5
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "UZ",
+      "iso3": "UZB",
+      "name": "Uzbekistan",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 31,
+        "criminality": 4.93,
+        "resilience": 4.0,
+        "human_trafficking": 8.0,
+        "financial_crimes": 6.0,
+        "cyber_crimes": 3.0,
+        "arms_trafficking": 2.5,
+        "aml": 4.0
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "VC",
+      "iso3": "VCT",
+      "name": "Saint Vincent and the Grenadines",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 63
+      },
+      "auto_added": "2026-07-14"
+    },
+    {
+      "code": "ZM",
+      "iso3": "ZMB",
+      "name": "Zambia",
+      "region": "—",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "criminality": 4.78,
+        "resilience": 5.5,
+        "human_trafficking": 5.0,
+        "financial_crimes": 5.5,
+        "cyber_crimes": 4.0,
+        "arms_trafficking": 3.0,
+        "aml": 5.5
+      },
+      "auto_added": "2026-07-14"
+    }
+  ]
+}
