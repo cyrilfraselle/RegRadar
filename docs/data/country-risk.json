@@ -1,0 +1,1646 @@
+{
+  "as_of": "2026-01-31",
+  "sources": {
+    "fatf": {
+      "name": "FATF public statements (High-Risk & Increased Monitoring)",
+      "url": "https://www.fatf-gafi.org/en/publications/High-risk-and-other-monitored-jurisdictions.html",
+      "as_of": "2026-01-31",
+      "note": "Updated at each FATF plenary (~Feb / Jun / Oct). Verify before use."
+    },
+    "eu_hrtc": {
+      "name": "EU list of high-risk third countries (Delegated Regulation)",
+      "url": "https://finance.ec.europa.eu/financial-crime/high-risk-third-countries_en",
+      "as_of": "2026-01-31",
+      "note": "Largely mirrors FATF but diverges; check the Official Journal."
+    },
+    "cpi": {
+      "name": "Transparency International — Corruption Perceptions Index",
+      "url": "https://www.transparency.org/en/cpi",
+      "as_of": "2025",
+      "note": "CPI 0-100 (100 = clean). Licensed CC BY-ND 4.0 — attribution required."
+    },
+    "eu_tax": {
+      "name": "EU list of non-cooperative tax jurisdictions (Annex I / II)",
+      "url": "https://www.consilium.europa.eu/en/policies/eu-list-of-non-cooperative-jurisdictions/",
+      "as_of": "2026-01-31",
+      "note": "Revised twice a year by ECOFIN."
+    },
+    "sanctions": {
+      "name": "Country-level sanctions exposure (EU / UN / OFAC programmes)",
+      "url": "https://www.sanctionsmap.eu/",
+      "as_of": "2026-01-31",
+      "note": "Analyst-assigned 0-10 intensity based on breadth/severity of country programmes. SUBJECTIVE — tune to your appetite."
+    },
+    "secrecy": {
+      "name": "Financial secrecy / opacity proxy",
+      "url": "https://fsi.taxjustice.net/",
+      "as_of": "2025",
+      "note": "Proxy score 0-10. Tax Justice Network FSI is the reference source."
+    },
+    "ocindex": {
+      "name": "GI-TOC Global Organized Crime Index 2025",
+      "url": "https://ocindex.net/downloads",
+      "as_of": "2025",
+      "note": "Criminality, resilience and 15 criminal markets. Attribution required; check download terms."
+    },
+    "regulator": {
+      "name": "AML supervisor / FIU (compiled reference)",
+      "url": "https://egmontgroup.org/membership/",
+      "as_of": "2026-01",
+      "note": "Supervisor and FIU per jurisdiction. Reference only — verify for operational use."
+    }
+  },
+  "disclaimer": "Seed dataset. FATF and EU lists change several times a year. Verify against primary sources before any operational use.",
+  "countries": [
+    {
+      "code": "KP",
+      "name": "North Korea",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "black",
+        "eu_hrtc": true,
+        "cpi": 17,
+        "eu_tax": null,
+        "sanctions": 10,
+        "secrecy": 9.0,
+        "human_trafficking": 9.0,
+        "criminality": 4.68,
+        "resilience": 1.63
+      },
+      "regulator": {
+        "supervisor": "—",
+        "fiu": "—",
+        "egmont": false
+      }
+    },
+    {
+      "code": "IR",
+      "name": "Iran",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "black",
+        "eu_hrtc": true,
+        "cpi": 23,
+        "eu_tax": null,
+        "sanctions": 10,
+        "secrecy": 8.5,
+        "human_trafficking": 8.0,
+        "criminality": 6.88,
+        "resilience": 3.08
+      },
+      "regulator": {
+        "supervisor": "CBI",
+        "fiu": "FIU Iran",
+        "egmont": false
+      }
+    },
+    {
+      "code": "MM",
+      "name": "Myanmar",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "black",
+        "eu_hrtc": true,
+        "cpi": 16,
+        "eu_tax": null,
+        "sanctions": 7,
+        "secrecy": 8.0,
+        "human_trafficking": 9.0,
+        "criminality": 8.08,
+        "resilience": 1.46
+      },
+      "regulator": {
+        "supervisor": "CBM",
+        "fiu": "MFIU",
+        "egmont": false
+      }
+    },
+    {
+      "code": "DZ",
+      "name": "Algeria",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.0,
+        "human_trafficking": 4.0,
+        "criminality": 4.97,
+        "resilience": 4.25
+      }
+    },
+    {
+      "code": "AO",
+      "name": "Angola",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 32,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 6.0,
+        "criminality": 5.62,
+        "resilience": 4.21
+      }
+    },
+    {
+      "code": "BO",
+      "name": "Bolivia",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false,
+        "cpi": 28,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.0,
+        "human_trafficking": 5.5,
+        "criminality": 5.12,
+        "resilience": 4.63
+      }
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "region": "Europe",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false,
+        "cpi": 43,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 5.0,
+        "criminality": 5.58,
+        "resilience": 5.33
+      }
+    },
+    {
+      "code": "BF",
+      "name": "Burkina Faso",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 41,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 6.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.03,
+        "resilience": 2.88
+      }
+    },
+    {
+      "code": "CM",
+      "name": "Cameroon",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 26,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 6.5,
+        "criminality": 6.18,
+        "resilience": 3.13
+      }
+    },
+    {
+      "code": "CI",
+      "name": "Côte d'Ivoire",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 45,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.78,
+        "resilience": 5.13
+      }
+    },
+    {
+      "code": "CD",
+      "name": "DR Congo",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 20,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 7.0,
+        "human_trafficking": 7.5,
+        "criminality": 7.47,
+        "resilience": 2.21
+      }
+    },
+    {
+      "code": "HT",
+      "name": "Haiti",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 16,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 6.5,
+        "human_trafficking": 8.0,
+        "criminality": 6.53,
+        "resilience": 2.21
+      }
+    },
+    {
+      "code": "KE",
+      "name": "Kenya",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 32,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 8.0,
+        "criminality": 7.18,
+        "resilience": 5.17
+      },
+      "regulator": {
+        "supervisor": "CBK",
+        "fiu": "FRC Kenya",
+        "egmont": true
+      }
+    },
+    {
+      "code": "LA",
+      "name": "Laos",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 28,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 7.0,
+        "human_trafficking": 8.0,
+        "criminality": 6.37,
+        "resilience": 3.38
+      }
+    },
+    {
+      "code": "LB",
+      "name": "Lebanon",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 22,
+        "eu_tax": null,
+        "sanctions": 4,
+        "secrecy": 7.5,
+        "human_trafficking": 8.0,
+        "criminality": 7.3,
+        "resilience": 3.08
+      }
+    },
+    {
+      "code": "MC",
+      "name": "Monaco",
+      "region": "Europe",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 70,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.0,
+        "human_trafficking": 1.5,
+        "criminality": 2.58,
+        "resilience": 5.83
+      },
+      "regulator": {
+        "supervisor": "CCAF",
+        "fiu": "AMSF",
+        "egmont": true
+      }
+    },
+    {
+      "code": "MZ",
+      "name": "Mozambique",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 25,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 5.0,
+        "criminality": 6.63,
+        "resilience": 3.25
+      }
+    },
+    {
+      "code": "NA",
+      "name": "Namibia",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 49,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 3.5,
+        "criminality": 4.43,
+        "resilience": 4.58
+      }
+    },
+    {
+      "code": "NP",
+      "name": "Nepal",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 35,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 8.0,
+        "criminality": 6.63,
+        "resilience": 3.88
+      }
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 26,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 7.0,
+        "human_trafficking": 8.0,
+        "criminality": 7.32,
+        "resilience": 5.46
+      },
+      "regulator": {
+        "supervisor": "CBN",
+        "fiu": "NFIU",
+        "egmont": true
+      }
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 41,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 4.5,
+        "criminality": 7.43,
+        "resilience": 5.67
+      },
+      "regulator": {
+        "supervisor": "SARB / FSCA",
+        "fiu": "FIC",
+        "egmont": true
+      }
+    },
+    {
+      "code": "SS",
+      "name": "South Sudan",
+      "region": "Africa",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 8,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 7.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.42,
+        "resilience": 2.04
+      }
+    },
+    {
+      "code": "SY",
+      "name": "Syria",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 12,
+        "eu_tax": null,
+        "sanctions": 9,
+        "secrecy": 8.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.98,
+        "resilience": 2.0
+      }
+    },
+    {
+      "code": "VE",
+      "name": "Venezuela",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 10,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 8.0,
+        "human_trafficking": 8.0,
+        "criminality": 6.97,
+        "resilience": 1.88
+      }
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "region": "Asia",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 40,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.58,
+        "resilience": 4.79
+      }
+    },
+    {
+      "code": "YE",
+      "name": "Yemen",
+      "region": "MENA",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": true,
+        "cpi": 13,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 8.0,
+        "human_trafficking": 9.0,
+        "criminality": 6.63,
+        "resilience": 1.92
+      }
+    },
+    {
+      "code": "VG",
+      "name": "British Virgin Is.",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": "grey",
+        "eu_hrtc": false,
+        "cpi": 60,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 8.5
+      }
+    },
+    {
+      "code": "RU",
+      "name": "Russia",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 22,
+        "eu_tax": "annex1",
+        "sanctions": 9,
+        "secrecy": 7.5,
+        "human_trafficking": 8.0,
+        "criminality": 6.92,
+        "resilience": 3.42
+      },
+      "regulator": {
+        "supervisor": "Bank of Russia",
+        "fiu": "Rosfinmonitoring",
+        "egmont": false
+      }
+    },
+    {
+      "code": "BY",
+      "name": "Belarus",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "eu_tax": null,
+        "sanctions": 8,
+        "secrecy": 7.0,
+        "human_trafficking": 7.0,
+        "criminality": 5.83,
+        "resilience": 3.08
+      }
+    },
+    {
+      "code": "CU",
+      "name": "Cuba",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 41,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 7.0,
+        "human_trafficking": 6.0,
+        "criminality": 3.35,
+        "resilience": 4.96
+      }
+    },
+    {
+      "code": "AF",
+      "name": "Afghanistan",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 17,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 8.0,
+        "human_trafficking": 9.0,
+        "criminality": 7.02,
+        "resilience": 1.5
+      }
+    },
+    {
+      "code": "NI",
+      "name": "Nicaragua",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 14,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 7.0,
+        "human_trafficking": 7.5,
+        "criminality": 5.73,
+        "resilience": 2.0
+      }
+    },
+    {
+      "code": "SD",
+      "name": "Sudan",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 15,
+        "eu_tax": null,
+        "sanctions": 6,
+        "secrecy": 7.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.63,
+        "resilience": 2.25
+      }
+    },
+    {
+      "code": "LY",
+      "name": "Libya",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 13,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 7.5,
+        "human_trafficking": 8.5,
+        "criminality": 7.05,
+        "resilience": 1.88
+      }
+    },
+    {
+      "code": "ZW",
+      "name": "Zimbabwe",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 21,
+        "eu_tax": null,
+        "sanctions": 4,
+        "secrecy": 7.0,
+        "human_trafficking": 5.5,
+        "criminality": 5.55,
+        "resilience": 3.04
+      }
+    },
+    {
+      "code": "IQ",
+      "name": "Iraq",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 26,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 7.5,
+        "human_trafficking": 7.5,
+        "criminality": 7.17,
+        "resilience": 3.33
+      }
+    },
+    {
+      "code": "SO",
+      "name": "Somalia",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 9,
+        "eu_tax": null,
+        "sanctions": 5,
+        "secrecy": 8.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.55,
+        "resilience": 1.88
+      }
+    },
+    {
+      "code": "PA",
+      "name": "Panama",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "eu_tax": "annex1",
+        "sanctions": 1,
+        "secrecy": 7.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.93,
+        "resilience": 4.71
+      },
+      "regulator": {
+        "supervisor": "SBP",
+        "fiu": "UAF Panama",
+        "egmont": true
+      }
+    },
+    {
+      "code": "TT",
+      "name": "Trinidad & Tobago",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 42,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.22,
+        "resilience": 5.08
+      }
+    },
+    {
+      "code": "VU",
+      "name": "Vanuatu",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": true,
+        "cpi": 47,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 7.5,
+        "human_trafficking": 4.5,
+        "criminality": 2.33,
+        "resilience": 4.88
+      }
+    },
+    {
+      "code": "WS",
+      "name": "Samoa",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 45,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 7.5
+      }
+    },
+    {
+      "code": "FJ",
+      "name": "Fiji",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 51,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.02,
+        "resilience": 5.38
+      }
+    },
+    {
+      "code": "AI",
+      "name": "Anguilla",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 58,
+        "eu_tax": "annex1",
+        "sanctions": 0,
+        "secrecy": 8.0
+      }
+    },
+    {
+      "code": "KY",
+      "name": "Cayman Islands",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 62,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 8.5
+      }
+    },
+    {
+      "code": "BM",
+      "name": "Bermuda",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 65,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.5
+      }
+    },
+    {
+      "code": "BS",
+      "name": "Bahamas",
+      "region": "Offshore",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 64,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.5
+      }
+    },
+    {
+      "code": "AE",
+      "name": "UAE",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 68,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 8.0,
+        "human_trafficking": 8.5,
+        "criminality": 6.35,
+        "resilience": 5.13
+      },
+      "regulator": {
+        "supervisor": "CBUAE / SCA",
+        "fiu": "UAE FIU",
+        "egmont": true
+      }
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 74,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 7.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.6,
+        "resilience": 6.5
+      },
+      "regulator": {
+        "supervisor": "HKMA / SFC",
+        "fiu": "JFIU",
+        "egmont": true
+      }
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 84,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 5.5,
+        "criminality": 3.72,
+        "resilience": 7.79
+      },
+      "regulator": {
+        "supervisor": "MAS",
+        "fiu": "STRO",
+        "egmont": true
+      }
+    },
+    {
+      "code": "CH",
+      "name": "Switzerland",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 81,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.65,
+        "resilience": 7.25
+      },
+      "regulator": {
+        "supervisor": "FINMA",
+        "fiu": "MROS",
+        "egmont": true
+      }
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 81,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 4.0,
+        "criminality": 2.75,
+        "resilience": 7.5
+      },
+      "regulator": {
+        "supervisor": "CSSF",
+        "fiu": "CRF",
+        "egmont": true
+      }
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 46,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.87,
+        "resilience": 5.08
+      },
+      "regulator": {
+        "supervisor": "MFSA / FIAU",
+        "fiu": "FIAU",
+        "egmont": true
+      }
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 56,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.5,
+        "resilience": 4.5
+      },
+      "regulator": {
+        "supervisor": "CBC / CySEC",
+        "fiu": "MOKAS",
+        "egmont": true
+      }
+    },
+    {
+      "code": "LI",
+      "name": "Liechtenstein",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 77,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 2.0,
+        "criminality": 2.1,
+        "resilience": 8.42
+      },
+      "regulator": {
+        "supervisor": "FMA",
+        "fiu": "EFFI",
+        "egmont": true
+      }
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 69,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.82,
+        "resilience": 7.17
+      },
+      "regulator": {
+        "supervisor": "NBB / FSMA",
+        "fiu": "CTIF-CFI",
+        "egmont": true
+      }
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 78,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 5.5,
+        "criminality": 5.17,
+        "resilience": 7.42
+      },
+      "regulator": {
+        "supervisor": "DNB / AFM",
+        "fiu": "FIU-Nederland",
+        "egmont": true
+      }
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 75,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 6.0,
+        "criminality": 5.35,
+        "resilience": 7.42
+      },
+      "regulator": {
+        "supervisor": "BaFin",
+        "fiu": "FIU Germany",
+        "egmont": true
+      }
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 67,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.92,
+        "resilience": 7.04
+      },
+      "regulator": {
+        "supervisor": "ACPR / AMF",
+        "fiu": "TRACFIN",
+        "egmont": true
+      }
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 71,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 7.0,
+        "criminality": 5.87,
+        "resilience": 7.63
+      },
+      "regulator": {
+        "supervisor": "FCA / PRA",
+        "fiu": "UKFIU (NCA)",
+        "egmont": true
+      }
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 77,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.97,
+        "resilience": 7.42
+      },
+      "regulator": {
+        "supervisor": "Central Bank of Ireland",
+        "fiu": "FIU Ireland",
+        "egmont": true
+      }
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "region": "Americas",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 65,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 7.0,
+        "human_trafficking": 6.5,
+        "criminality": 5.87,
+        "resilience": 6.96
+      },
+      "regulator": {
+        "supervisor": "FinCEN / OCC / Fed",
+        "fiu": "FinCEN",
+        "egmont": true
+      }
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "region": "Americas",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 75,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 4.0,
+        "criminality": 4.17,
+        "resilience": 7.38
+      },
+      "regulator": {
+        "supervisor": "OSFI / FINTRAC",
+        "fiu": "FINTRAC",
+        "egmont": true
+      }
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 90,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 3.5,
+        "human_trafficking": 4.0,
+        "criminality": 4.1,
+        "resilience": 8.21
+      },
+      "regulator": {
+        "supervisor": "Finanstilsynet",
+        "fiu": "Hvidvasksekretariatet",
+        "egmont": true
+      }
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 82,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.0,
+        "human_trafficking": 5.0,
+        "criminality": 4.73,
+        "resilience": 7.38
+      },
+      "regulator": {
+        "supervisor": "Finansinspektionen",
+        "fiu": "Finanspolisen",
+        "egmont": true
+      }
+    },
+    {
+      "code": "NO",
+      "name": "Norway",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 81,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.0,
+        "human_trafficking": 5.0,
+        "criminality": 3.83,
+        "resilience": 7.92
+      },
+      "regulator": {
+        "supervisor": "Finanstilsynet",
+        "fiu": "Økokrim",
+        "egmont": true
+      }
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 54,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.0,
+        "human_trafficking": 7.0,
+        "criminality": 6.37,
+        "resilience": 6.38
+      },
+      "regulator": {
+        "supervisor": "Banca d'Italia / CONSOB",
+        "fiu": "UIF",
+        "egmont": true
+      }
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 56,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 7.0,
+        "criminality": 6.05,
+        "resilience": 6.67
+      },
+      "regulator": {
+        "supervisor": "Banco de España / CNMV",
+        "fiu": "SEPBLAC",
+        "egmont": true
+      }
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 57,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 6.0,
+        "criminality": 4.97,
+        "resilience": 6.58
+      },
+      "regulator": {
+        "supervisor": "Banco de Portugal",
+        "fiu": "UIF Portugal",
+        "egmont": true
+      }
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 53,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 5.5,
+        "criminality": 4.67,
+        "resilience": 6.08
+      },
+      "regulator": {
+        "supervisor": "KNF",
+        "fiu": "GIIF",
+        "egmont": true
+      }
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 71,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 5.0,
+        "criminality": 4.25,
+        "resilience": 7.5
+      },
+      "regulator": {
+        "supervisor": "FSA",
+        "fiu": "JAFIC",
+        "egmont": true
+      }
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "region": "Oceania",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 77,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 4.5,
+        "human_trafficking": 3.5,
+        "criminality": 4.07,
+        "resilience": 7.54
+      },
+      "regulator": {
+        "supervisor": "APRA / ASIC / AUSTRAC",
+        "fiu": "AUSTRAC",
+        "egmont": true
+      }
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 43,
+        "eu_tax": null,
+        "sanctions": 3,
+        "secrecy": 6.5,
+        "human_trafficking": 7.5,
+        "criminality": 6.32,
+        "resilience": 5.54
+      },
+      "regulator": {
+        "supervisor": "NFRA / PBoC",
+        "fiu": "CAMLMAC",
+        "egmont": true
+      }
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 38,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 8.5,
+        "criminality": 5.9,
+        "resilience": 5.46
+      },
+      "regulator": {
+        "supervisor": "RBI / SEBI",
+        "fiu": "FIU-IND",
+        "egmont": true
+      }
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 6.5,
+        "criminality": 7.07,
+        "resilience": 5.04
+      },
+      "regulator": {
+        "supervisor": "BCB / CVM",
+        "fiu": "COAF",
+        "egmont": true
+      }
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "region": "LatAm",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 26,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 8.0,
+        "criminality": 7.68,
+        "resilience": 4.5
+      },
+      "regulator": {
+        "supervisor": "CNBV",
+        "fiu": "UIF Mexico",
+        "egmont": true
+      }
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 8.0,
+        "criminality": 7.2,
+        "resilience": 3.96
+      },
+      "regulator": {
+        "supervisor": "BDDK / SPK",
+        "fiu": "MASAK",
+        "egmont": true
+      }
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 30,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 6.0,
+        "criminality": 5.3,
+        "resilience": 3.75
+      }
+    },
+    {
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 59,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.5,
+        "human_trafficking": 8.5,
+        "criminality": 6.33,
+        "resilience": 3.79
+      },
+      "regulator": {
+        "supervisor": "SAMA",
+        "fiu": "SAFIU",
+        "egmont": true
+      }
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 27,
+        "eu_tax": null,
+        "sanctions": 2,
+        "secrecy": 7.0,
+        "human_trafficking": 8.5,
+        "criminality": 6.32,
+        "resilience": 3.96
+      }
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 23,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.5,
+        "human_trafficking": 8.0,
+        "criminality": 5.3,
+        "resilience": 4.08
+      }
+    },
+    {
+      "code": "PH",
+      "name": "Philippines",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 33,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.57,
+        "resilience": 4.46
+      }
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 7.5,
+        "criminality": 6.85,
+        "resilience": 4.29
+      }
+    },
+    {
+      "code": "TH",
+      "name": "Thailand",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 34,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.37,
+        "resilience": 4.96
+      }
+    },
+    {
+      "code": "MY",
+      "name": "Malaysia",
+      "region": "Asia",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 50,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.53,
+        "resilience": 5.71
+      }
+    },
+    {
+      "code": "UA",
+      "name": "Ukraine",
+      "region": "Europe",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 35,
+        "eu_tax": null,
+        "sanctions": 1,
+        "secrecy": 6.0,
+        "human_trafficking": 7.5,
+        "criminality": 6.45,
+        "resilience": 4.54
+      }
+    },
+    {
+      "code": "MA",
+      "name": "Morocco",
+      "region": "MENA",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 37,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 5.5,
+        "criminality": 5.37,
+        "resilience": 4.67
+      }
+    },
+    {
+      "code": "GH",
+      "name": "Ghana",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 42,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 5.5,
+        "human_trafficking": 6.5,
+        "criminality": 5.77,
+        "resilience": 5.33
+      }
+    },
+    {
+      "code": "TZ",
+      "name": "Tanzania",
+      "region": "Africa",
+      "indicators": {
+        "fatf": null,
+        "eu_hrtc": false,
+        "cpi": 41,
+        "eu_tax": null,
+        "sanctions": 0,
+        "secrecy": 6.0,
+        "human_trafficking": 6.5,
+        "criminality": 5.93,
+        "resilience": 4.17
+      }
+    }
+  ]
+}
