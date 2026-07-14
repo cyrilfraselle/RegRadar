@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar — Read the Law</title>
+<style>
+  :root {
+    --bg: #0E1117; --surface: #151A21; --surface-2: #1A2029; --border: #232B36;
+    --border-strong: #2E3845; --text: #E6EDF3; --text-2: #9AA7B4; --text-3: #5E6B79;
+    --accent: #6D8EE6; --accent-bg: #182236;
+    --crit: #F0616D; --imp: #E3A008; --info: #5DA9E9; --ok: #2EBD85; --purple: #9D7BD8;
+    --radius: 10px; --radius-sm: 6px;
+    --font: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono: 'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+    --reading: 'Georgia','Times New Roman',serif;
+  }
+  html[data-theme="light"] {
+    --bg: #F7F8FA; --surface: #FFFFFF; --surface-2: #F8FAFC; --border: #E6E9EF;
+    --border-strong: #D5DAE2; --text: #16202C; --text-2: #5A6675; --text-3: #94A0AE;
+    --accent: #2D5FCC; --accent-bg: #EDF2FD;
+    --crit: #C13515; --imp: #B25E09; --info: #1E6FB8; --ok: #0F8A5F; --purple: #6B2D8B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  .topbar { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .topbar-inner { display: flex; align-items: center; gap: 16px; height: 56px; }
+  .logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; }
+  .logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+  .logo-sub { font-size: 11px; color: var(--text-3); font-weight: 400; }
+  .nav { display: flex; gap: 2px; margin-left: 8px; }
+  .nav a { padding: 6px 13px; border-radius: var(--radius-sm); font-size: 13px; color: var(--text-2); font-weight: 500; }
+  .nav a.active { background: var(--accent-bg); color: var(--accent); }
+  .nav a:hover:not(.active) { background: var(--surface-2); }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .icon-btn { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2); cursor: pointer; font-size: 15px; }
+
+  .lib { padding: 28px 0 60px; }
+  .lib h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .lib .sub { color: var(--text-2); font-size: 14px; margin-bottom: 24px; }
+  .law-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 14px; }
+  .law-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: border-color .12s; }
+  .law-card:hover { border-color: var(--accent); }
+  .law-card.soon { opacity: .55; cursor: default; }
+  .law-card.soon:hover { border-color: var(--border); }
+  .law-name { font-size: 18px; font-weight: 700; }
+  .law-full { font-size: 12px; color: var(--text-2); margin: 4px 0 12px; line-height: 1.4; min-height: 32px; }
+  .law-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .pill { font-size: 10px; padding: 2px 8px; border-radius: 12px; background: var(--surface-2); color: var(--purple); border: 1px solid var(--border); }
+  .pill-celex { color: var(--text-3); font-family: var(--mono); }
+  .badge-soon { font-size: 10px; padding: 2px 8px; border-radius: 12px; background: var(--surface-2); color: var(--text-3); }
+
+  .reader { display: none; grid-template-columns: 250px 1fr 250px; gap: 24px; padding: 24px 0 80px; }
+  .reader.open { display: grid; }
+  @media (max-width: 980px){ .reader { grid-template-columns: 1fr; } .toc-wrap, .aside-defs { display: none; } }
+
+  .toc-wrap { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 96px); overflow-y: auto; }
+  .toc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .toc-head h3 { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; }
+  .toc-toggle-all { font-size: 10px; color: var(--text-3); cursor: pointer; background: none; border: none; }
+  .toc-toggle-all:hover { color: var(--accent); }
+  .toc-chapter { margin-bottom: 4px; }
+  .toc-chapter-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-2); padding: 5px 0; cursor: pointer; user-select: none; }
+  .toc-chapter-title:hover { color: var(--text); }
+  .toc-caret { font-size: 9px; color: var(--text-3); transition: transform .15s; display: inline-block; width: 8px; }
+  .toc-chapter.collapsed .toc-caret { transform: rotate(-90deg); }
+  .toc-arts { overflow: hidden; }
+  .toc-chapter.collapsed .toc-arts { display: none; }
+  .toc-art { display: block; font-size: 12px; color: var(--text-3); padding: 3px 0 3px 16px; cursor: pointer; border-left: 1px solid var(--border); line-height: 1.35; }
+  .toc-art:hover { color: var(--accent); border-left-color: var(--accent); }
+  .toc-art.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+
+  .law-body { min-width: 0; }
+  .back-link { font-size: 12px; color: var(--text-3); cursor: pointer; margin-bottom: 10px; display: inline-block; }
+  .back-link:hover { color: var(--accent); }
+  .law-header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 8px; }
+  .law-header h1 { font-size: 23px; font-weight: 700; line-height: 1.25; }
+  .law-header .ttl { font-size: 13px; color: var(--text-2); margin-top: 6px; line-height: 1.5; }
+  .law-header .meta { display: flex; gap: 10px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+
+  .status-box { display: flex; margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .status-cell { flex: 1; padding: 10px 14px; border-right: 1px solid var(--border); }
+  .status-cell:last-child { border-right: none; }
+  .status-label { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+  .status-val { font-size: 13px; font-weight: 600; margin-top: 3px; font-family: var(--mono); }
+  .status-val.applied { color: var(--ok); }
+  .status-val.pending { color: var(--imp); }
+
+  .lang-switch { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .lang-btn { padding: 6px 11px; font-size: 12px; font-weight: 600; color: var(--text-3); cursor: pointer; background: var(--surface-2); border: none; border-right: 1px solid var(--border); }
+  .lang-btn:last-child { border-right: none; }
+  .lang-btn.active { background: var(--accent); color: #fff; }
+  .lang-btn.disabled { opacity: .4; cursor: not-allowed; }
+
+  .eurlex-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text); }
+  .eurlex-link:hover { border-color: var(--accent); color: var(--accent); }
+  .reader-search { width: 100%; margin: 16px 0; padding: 9px 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 13px; outline: none; }
+  .reader-search:focus { border-color: var(--accent); }
+
+  .chapter-head { font-size: 11px; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: .08em; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); scroll-margin-top: 76px; }
+  .article { padding: 16px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 76px; }
+  .article-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .article-num { font-size: 11px; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+  .article-link { font-size: 11px; color: var(--text-3); cursor: pointer; opacity: 0; transition: opacity .12s; }
+  .article:hover .article-link { opacity: 1; }
+  .article-link:hover { color: var(--accent); }
+  .article h2 { font-size: 16px; font-weight: 600; margin: 3px 0 10px; }
+  .article-text { font-family: var(--reading); font-size: 15px; line-height: 1.75; color: var(--text); white-space: pre-wrap; }
+  .article-text .term { border-bottom: 1px dashed var(--accent); cursor: help; }
+  .article-text .lawref { color: var(--accent); border-bottom: 1px solid var(--accent); cursor: pointer; }
+  .article-refs { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .ref-label { font-size: 11px; color: var(--text-3); }
+  .ref-chip { font-size: 11px; padding: 2px 8px; border-radius: 4px; background: var(--accent-bg); color: var(--accent); cursor: pointer; font-family: var(--mono); }
+
+  .aside-defs { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 96px); overflow-y: auto; }
+  .aside-defs h3 { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 10px; }
+  .def-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; margin-bottom: 8px; }
+  .def-term { font-size: 13px; font-weight: 600; color: var(--purple); margin-bottom: 4px; }
+  .def-text { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+  #tooltip { position: fixed; z-index: 200; max-width: 320px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; padding: 11px 13px; font-size: 12px; line-height: 1.5; color: var(--text-2); box-shadow: 0 8px 30px rgba(0,0,0,.3); display: none; }
+  #tooltip .tt-term { font-weight: 600; color: var(--purple); display: block; margin-bottom: 4px; font-size: 13px; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 16px; font-size: 13px; box-shadow: 0 8px 30px rgba(0,0,0,.3); display: none; z-index: 210; }
+  .loading { padding: 60px 20px; text-align: center; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Read the Law</span></div>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="obligations.html">Obligations</a>
+      <a href="extractor.html">Extractor</a>
+      <a class="active" href="#">Read the Law</a>
+      <a href="country-risk.html">Country Risk</a>
+    </nav>
+    <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="lib" id="library">
+    <h1>EU Regulatory Library</h1>
+    <p class="sub">Read key EU financial regulations in a clean, structured viewer. Click a regulation to open it.</p>
+    <div class="law-grid" id="lawGrid"><div class="loading">Loading library…</div></div>
+  </div>
+
+  <div class="reader" id="reader">
+    <aside class="toc-wrap">
+      <div class="toc-head"><h3>Contents</h3><button class="toc-toggle-all" onclick="toggleAllChapters()">collapse all</button></div>
+      <div id="toc"></div>
+    </aside>
+    <div class="law-body">
+      <span class="back-link" onclick="closeReader()">← Back to library</span>
+      <div class="law-header" id="lawHeader"></div>
+      <input class="reader-search" id="readerSearch" placeholder="Search within this regulation…" oninput="searchInLaw()">
+      <div id="articles"></div>
+    </div>
+    <aside class="aside-defs"><h3>Defined terms</h3><div id="defs"></div></aside>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+let LAW=null, DEFS=[], INDEX=[], allCollapsed=false, CURLANG='EN', CURCELEX=null, LANGS=['EN'];
+
+async function loadLibrary(){
+  try{
+    INDEX = window.__EMBEDDED_LAW_INDEX__ || await fetch('data/laws/index.json').then(r=>r.json());
+    document.getElementById('lawGrid').innerHTML = INDEX.map(l=>{
+      const appliedDate = l.dates && l.dates.application ? `<span class="pill pill-celex">appl. ${l.dates.application}</span>` : '';
+      if(l.available){
+        return `<div class="law-card" onclick="openLaw('${l.celex}')">
+          <div class="law-name">${esc(l.name)}</div>
+          <div class="law-full">${esc(l.full_name)}</div>
+          <div class="law-meta"><span class="pill">${esc(l.topic)}</span>${appliedDate}</div></div>`;
+      }
+      return `<div class="law-card soon">
+        <div class="law-name">${esc(l.name)}</div>
+        <div class="law-full">${esc(l.full_name)}</div>
+        <div class="law-meta"><span class="pill">${esc(l.topic)}</span><span class="badge-soon">parse pending</span></div></div>`;
+    }).join('');
+    const params = new URLSearchParams(location.search);
+    const celex = params.get('celex');
+    if(celex){ await openLaw(celex, params.get('art'), params.get('lang')); }
+  }catch(e){
+    document.getElementById('lawGrid').innerHTML='<div class="loading">Could not load the library. Run the parser to generate law data.</div>';
+  }
+}
+
+// Load a specific language file for a regulation. Falls back to base file, then EN.
+async function fetchLaw(celex, lang){
+  // Embedded mode (preview)
+  if(window.__EMBEDDED_LAWS__){
+    const key = `${celex}_${lang}`;
+    return window.__EMBEDDED_LAWS__[key] || window.__EMBEDDED_LAWS__[celex] || null;
+  }
+  // Try language-specific file, then fall back
+  const tries = [`data/laws/${celex}_${lang}.json`, `data/laws/${celex}_EN.json`, `data/laws/${celex}.json`];
+  for(const url of tries){
+    try{ const r = await fetch(url); if(r.ok) return await r.json(); }catch(e){}
+  }
+  return null;
+}
+
+async function openLaw(celex, jumpArt, lang){
+  try{
+    const entry = INDEX.find(l=>l.celex===celex);
+    LANGS = (entry && entry.langs) || ['EN'];
+    CURLANG = (lang && LANGS.includes(lang)) ? lang : 'EN';
+    CURCELEX = celex;
+    LAW = await fetchLaw(celex, CURLANG);
+    if(!LAW){ showToast('Could not load this regulation.'); return; }
+    DEFS = LAW.definitions || [];
+    document.getElementById('library').style.display='none';
+    document.getElementById('reader').classList.add('open');
+    window.scrollTo(0,0);
+    renderHeader(); renderTOC(); renderArticles(); renderDefs();
+    history.replaceState(null,'',`?celex=${celex}${CURLANG!=='EN'?'&lang='+CURLANG:''}`);
+    if(jumpArt) setTimeout(()=>jumpTo(jumpArt), 200);
+  }catch(e){ showToast('Could not load this regulation.'); }
+}
+
+// Switch language while keeping the current article in view
+async function switchLang(lang){
+  if(lang===CURLANG || !LANGS.includes(lang) || !CURCELEX) return;
+  // Remember which article is near the top
+  let anchorArt=null, minDist=Infinity;
+  document.querySelectorAll('.article').forEach(a=>{
+    const d=Math.abs(a.getBoundingClientRect().top-80);
+    if(d<minDist){ minDist=d; anchorArt=a.id.replace('art-',''); }
+  });
+  CURLANG=lang;
+  LAW = await fetchLaw(CURCELEX, lang);
+  DEFS = LAW.definitions || [];
+  renderHeader(); renderTOC(); renderArticles(); renderDefs();
+  history.replaceState(null,'',`?celex=${CURCELEX}${lang!=='EN'?'&lang='+lang:''}`);
+  if(anchorArt) setTimeout(()=>{ const el=document.getElementById('art-'+anchorArt); if(el) el.scrollIntoView({block:'start'}); },50);
+}
+function closeReader(){
+  document.getElementById('reader').classList.remove('open');
+  document.getElementById('library').style.display='block';
+  LAW=null; history.replaceState(null,'',location.pathname);
+}
+
+function fmtDate(d){ if(!d) return '—'; return new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
+
+function renderHeader(){
+  const d = LAW.dates||{};
+  const now = new Date();
+  const applVal = d.application ? fmtDate(d.application) : '—';
+  const applCls = d.application ? (new Date(d.application) <= now ? 'applied' : 'pending') : '';
+  const applNote = d.application ? (new Date(d.application) <= now ? ' ✓' : ' (upcoming)') : '';
+  document.getElementById('lawHeader').innerHTML=`
+    <h1>${esc(LAW.name)} — ${esc(LAW.full_name)}</h1>
+    <div class="ttl">${esc(LAW.title)}</div>
+    <div class="meta">
+      <span class="pill">${esc(LAW.topic)}</span>
+      <span class="pill pill-celex">CELEX ${LAW.celex}</span>
+      <div class="lang-switch">
+        ${['EN','FR','NL'].map(lg=>{
+          const avail = LANGS.includes(lg);
+          const active = lg===CURLANG ? 'active' : '';
+          const dis = avail ? '' : 'disabled';
+          const handler = avail ? `onclick="switchLang('${lg}')"` : `title="Not yet parsed in this language"`;
+          return `<button class="lang-btn ${active} ${dis}" ${handler}>${lg}</button>`;
+        }).join('')}
+      </div>
+      <a class="eurlex-link" href="${LAW.url}" target="_blank" rel="noopener">View on EUR-Lex ↗</a>
+    </div>
+    <div class="status-box">
+      <div class="status-cell"><div class="status-label">Published</div><div class="status-val">${fmtDate(d.published)}</div></div>
+      <div class="status-cell"><div class="status-label">Entry into force</div><div class="status-val">${fmtDate(d.entry_into_force)}</div></div>
+      <div class="status-cell"><div class="status-label">Date of application</div><div class="status-val ${applCls}">${applVal}${applNote}</div></div>
+    </div>`;
+}
+
+function renderTOC(){
+  const chapters = LAW.chapters||[];
+  const byId = Object.fromEntries((LAW.articles||[]).map(a=>[a.id,a]));
+  let h='';
+  if(chapters.length){
+    chapters.forEach((ch,ci)=>{
+      const arts=(ch.articles||[]).filter(aid=>byId[aid]);
+      h+=`<div class="toc-chapter" id="tocch-${ci}">
+        <div class="toc-chapter-title" onclick="toggleChapter(${ci})"><span class="toc-caret">▼</span> Ch. ${esc(ch.id)} — ${esc(ch.title)}</div>
+        <div class="toc-arts">`;
+      arts.forEach(aid=>h+=`<span class="toc-art" data-art="${aid}" onclick="jumpTo('${aid}')">Art. ${aid} — ${esc(byId[aid].title)}</span>`);
+      h+=`</div></div>`;
+    });
+  } else {
+    (LAW.articles||[]).forEach(a=>h+=`<span class="toc-art" data-art="${a.id}" onclick="jumpTo('${a.id}')">Art. ${a.id} — ${esc(a.title)}</span>`);
+  }
+  document.getElementById('toc').innerHTML=h;
+}
+function toggleChapter(ci){ document.getElementById('tocch-'+ci).classList.toggle('collapsed'); }
+function toggleAllChapters(){
+  allCollapsed=!allCollapsed;
+  document.querySelectorAll('.toc-chapter').forEach(c=>c.classList.toggle('collapsed',allCollapsed));
+  document.querySelector('.toc-toggle-all').textContent = allCollapsed?'expand all':'collapse all';
+}
+
+function renderArticles(){
+  const chapters=LAW.chapters||[], arts=LAW.articles||[];
+  const renderArt = a => `<div class="article" id="art-${a.id}">
+      <div class="article-head"><span class="article-num">ARTICLE ${a.id}</span><span class="article-link" onclick="copyArtLink('${a.id}')">🔗 copy link</span></div>
+      <h2>${esc(a.title)}</h2>
+      <div class="article-text">${renderText(a)}</div>
+      ${(a.refs&&a.refs.length)?`<div class="article-refs"><span class="ref-label">Refers to:</span>${a.refs.map(r=>`<span class="ref-chip" onclick="jumpTo('${r}')">Art. ${r}</span>`).join('')}</div>`:''}
+    </div>`;
+  let h='';
+  if(chapters.length){
+    const byId=Object.fromEntries(arts.map(a=>[a.id,a]));
+    chapters.forEach((ch,ci)=>{
+      h+=`<div class="chapter-head" id="chhead-${ci}">Chapter ${esc(ch.id)} — ${esc(ch.title)}</div>`;
+      (ch.articles||[]).forEach(aid=>{ if(byId[aid]) h+=renderArt(byId[aid]); });
+    });
+  } else arts.forEach(a=>h+=renderArt(a));
+  document.getElementById('articles').innerHTML=h;
+  setupScrollSpy();
+}
+
+function renderText(a){
+  let out=esc(a.text);
+  (a.law_refs||[]).forEach(lr=>{
+    const re=new RegExp(escapeReg(esc(lr.text)),'g');
+    const inLib = INDEX.some(l=>l.celex===lr.celex && l.available);
+    const handler = inLib ? `onclick=&quot;openLaw('${lr.celex}')&quot;` : `onclick=&quot;window.open('https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:${lr.celex}','_blank')&quot;`;
+    out=out.replace(re,`<span class="lawref" ${handler.replace(/&quot;/g,'"')} title="${inLib?'Open in library':'Open on EUR-Lex'}">$&</span>`);
+  });
+  DEFS.forEach((d,i)=>{
+    const re=new RegExp(`\\b(${escapeReg(d.term)})\\b`,'gi');
+    out=out.replace(re,(m)=> m.includes('class=')?m:`<span class="term" data-def="${i}">${m}</span>`);
+  });
+  return out;
+}
+
+function renderDefs(){
+  document.getElementById('defs').innerHTML = DEFS.length
+    ? DEFS.map(d=>`<div class="def-card"><div class="def-term">${esc(d.term)}</div><div class="def-text">${esc(d.definition)}</div></div>`).join('')
+    : '<div style="font-size:12px;color:var(--text-3)">No defined terms parsed.</div>';
+}
+
+function jumpTo(id){
+  const el=document.getElementById('art-'+id);
+  if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); el.style.background='var(--accent-bg)'; setTimeout(()=>el.style.background='',1200); }
+}
+function copyArtLink(id){
+  const url=`${location.origin}${location.pathname}?celex=${LAW.celex}&art=${id}`;
+  navigator.clipboard.writeText(url).then(()=>showToast(`Link to Article ${id} copied`)).catch(()=>showToast('Copy failed'));
+}
+function setupScrollSpy(){
+  const arts=document.querySelectorAll('.article');
+  const tocLinks=document.querySelectorAll('.toc-art');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ const id=en.target.id.replace('art-',''); tocLinks.forEach(t=>t.classList.toggle('active',t.dataset.art===id)); }});
+  },{rootMargin:'-76px 0px -70% 0px'});
+  arts.forEach(a=>obs.observe(a));
+}
+function searchInLaw(){
+  const q=document.getElementById('readerSearch').value.toLowerCase().trim();
+  document.querySelectorAll('.article').forEach(art=>{
+    art.style.display=(!q||art.textContent.toLowerCase().includes(q))?'block':'none';
+  });
+}
+
+const tt=document.getElementById('tooltip');
+document.addEventListener('mouseover',e=>{ const t=e.target.closest('.term'); if(t){ const d=DEFS[t.dataset.def]; if(d){ tt.innerHTML=`<span class="tt-term">${esc(d.term)}</span>${esc(d.definition)}`; tt.style.display='block'; posTT(e);}}});
+document.addEventListener('mousemove',e=>{ if(tt.style.display==='block') posTT(e); });
+document.addEventListener('mouseout',e=>{ if(e.target.closest('.term')) tt.style.display='none'; });
+function posTT(e){ tt.style.left=Math.min(e.clientX+14,innerWidth-340)+'px'; tt.style.top=Math.min(e.clientY+14,innerHeight-120)+'px'; }
+
+let toastT;
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',1800); }
+function toggleTheme(){ const h=document.documentElement; h.dataset.theme=h.dataset.theme==='dark'?'light':'dark'; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+loadLibrary();
+</script>
+</body>
+</html>

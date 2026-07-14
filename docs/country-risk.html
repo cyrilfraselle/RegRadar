@@ -122,9 +122,12 @@
 <div class="topbar"><div class="wrap topbar-inner">
   <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Country Risk</span></div>
   <nav class="nav">
-    <a href="index.html">Dashboard</a><a href="law.html">Read the Law</a>
-    <a href="extractor.html">Extractor</a><a class="active" href="country-risk.html">Country Risk</a>
-  </nav>
+      <a href="index.html">Dashboard</a>
+      <a href="obligations.html">Obligations</a>
+      <a href="extractor.html">Extractor</a>
+      <a href="law.html">Read the Law</a>
+      <a class="active" href="#">Country Risk</a>
+    </nav>
   <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
 </div></div>
 
@@ -467,60 +470,54 @@ function exportMethodology(){
   const cnt={low:0,med:0,high:0,prohib:0};
   DATA.countries.forEach(c=>cnt[tierOf(c).tier]++);
   const lo=document.getElementById('thrLow').value,hi=document.getElementById('thrHigh').value;
-  const md=`# Country Risk Assessment \u2014 Methodology
-
-**Generated:** ${new Date().toISOString().slice(0,10)}
-**Data vintage:** ${DATA.as_of}
-**Risk appetite model:** ${PRESETS[activePreset].name} \u2014 ${PRESETS[activePreset].desc}
-
-## 1. Purpose
-Inherent ML/TF country risk rating for ${DATA.countries.length} jurisdictions (0-10, 10 = highest risk), supporting a risk-based approach to customer, counterparty and correspondent-banking risk assessment.
-
-## 2. Indicators and weights
-| Indicator | Weight | Normalised | Scoring rule |
-|---|---|---|---|
-${IND.map(i=>`| ${i.label} | ${W[i.k]||0}% | ${tot?((W[i.k]||0)/tot*100).toFixed(1):0}% | ${i.rule} |`).join('\n')}
-
-Weighting reflects institutional risk appetite and is a management judgement. It should be reviewed at least annually and upon material change to the risk environment.
-
-## 3. Rating tiers
-| Tier | Basis |
-|---|---|
-| Low | Score < ${lo} |
-| Medium | ${lo} - ${hi} |
-| High | >= ${hi} |
-| Prohibited | Rule-triggered; overrides the score |
-
-**Prohibition rules in force:**
-${RULEDEFS.filter(r=>RULES[r.k]).map(r=>'- '+r.label).join('\n')||'- none'}
-
-**Resulting distribution:** ${cnt.low} Low / ${cnt.med} Medium / ${cnt.high} High / ${cnt.prohib} Prohibited
-
-## 4. Explainability
-Every rating decomposes into indicator contributions (indicator value x normalised weight). Prohibited ratings state the rule that triggered them. Per-country breakdowns are available in the tool and in the Excel export.
-
-## 5. Data sources
-${Object.values(DATA.sources).map(s=>`- **${s.name}** \u2014 as of ${s.as_of}. ${s.note||''}\n  ${s.url}`).join('\n')}
-
-## 6. Limitations
-- FATF and EU lists change several times per year. Scores are only as current as the data vintage above.
-- Sanctions-exposure and financial-secrecy inputs are analyst-assigned proxies and carry subjectivity.
-- The CPI is perception-based and is not a measure of actual corruption levels.
-- OC Index scores are expert assessments of criminal-market activity, not incidence statistics.
-- **Binary listing indicators (FATF, EU) score zero when a country is not listed.** A jurisdiction can therefore score low on listings while carrying substantial criminal-activity risk. This is why continuous indicators (organised crime, AML resilience, corruption) carry meaningful weight in every preset, and why the divergence flag exists.
-- This model measures **inherent country risk only**. It is one input to a risk assessment and does not replace customer-level due diligence.
-- The tool is decision support. It does not constitute legal or regulatory advice.
-
-## 7. Governance
-- Model owner: _[to complete]_
-- Reviewed by: _[to complete]_
-- Approved by: _[to complete]_
-- Date approved: _[to complete]_
-- Next review date: _[to complete]_
-`;
-  const b=new Blob([md],{type:'text/markdown'}),u=URL.createObjectURL(b);
-  const a=document.createElement('a');a.href=u;a.download='country_risk_assessment.md';a.click();
-  toastMsg("Assessment document exported");
+  const today=new Date().toISOString().slice(0,10);
+  const indRows=IND.map(i=>`<tr><td>${i.label}</td><td style="text-align:center">${W[i.k]||0}%</td><td style="text-align:center">${tot?((W[i.k]||0)/tot*100).toFixed(1):0}%</td><td>${i.rule}</td></tr>`).join('');
+  const ruleList=RULEDEFS.filter(r=>RULES[r.k]).map(r=>`<li>${r.label}</li>`).join('')||'<li>none</li>';
+  const srcList=Object.values(DATA.sources).map(s=>`<li><b>${s.name}</b> — as of ${s.as_of}. ${s.note||''}<br><span style="color:#555">${s.url}</span></li>`).join('');
+  const html=`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Country Risk Assessment — Methodology</title>
+<style>
+ body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#1a1a1a;max-width:820px;margin:40px auto;line-height:1.5}
+ h1{font-size:20pt;border-bottom:2px solid #2D5FCC;padding-bottom:6px}
+ h2{font-size:14pt;color:#2D5FCC;margin-top:28px}
+ table{border-collapse:collapse;width:100%;margin:10px 0}
+ th,td{border:1px solid #bbb;padding:6px 9px;font-size:10pt;text-align:left}
+ th{background:#eef2fb}
+ .meta{color:#555;font-size:10pt}
+ ul{margin:6px 0}
+</style></head><body>
+<h1>Country Risk Assessment — Methodology</h1>
+<p class="meta"><b>Generated:</b> ${today} &nbsp;·&nbsp; <b>Data vintage:</b> ${DATA.as_of} &nbsp;·&nbsp; <b>Risk appetite model:</b> ${PRESETS[activePreset].name} — ${PRESETS[activePreset].desc}</p>
+<h2>1. Purpose</h2>
+<p>Inherent ML/TF country risk rating for ${DATA.countries.length} jurisdictions (0–10, 10 = highest risk), supporting a risk-based approach to customer, counterparty and correspondent-banking risk assessment.</p>
+<h2>2. Indicators and weights</h2>
+<table><tr><th>Indicator</th><th>Weight</th><th>Normalised</th><th>Scoring rule</th></tr>${indRows}</table>
+<p>Weighting reflects institutional risk appetite and is a management judgement. It should be reviewed at least annually and upon material change to the risk environment.</p>
+<h2>3. Rating tiers</h2>
+<table><tr><th>Tier</th><th>Basis</th></tr>
+<tr><td>Low</td><td>Score &lt; ${lo}</td></tr><tr><td>Medium</td><td>${lo} – ${hi}</td></tr>
+<tr><td>High</td><td>&ge; ${hi}</td></tr><tr><td>Prohibited</td><td>Rule-triggered; overrides the score</td></tr></table>
+<p><b>Prohibition rules in force:</b></p><ul>${ruleList}</ul>
+<p><b>Resulting distribution:</b> ${cnt.low} Low · ${cnt.med} Medium · ${cnt.high} High · ${cnt.prohib} Prohibited</p>
+<h2>4. Explainability</h2>
+<p>Every rating decomposes into indicator contributions (indicator value × normalised weight). Prohibited ratings state the rule that triggered them. Per-country breakdowns are available in the tool and in the Excel export.</p>
+<h2>5. Data sources</h2><ul>${srcList}</ul>
+<h2>6. Limitations</h2><ul>
+<li>FATF and EU lists change several times per year. Scores are only as current as the data vintage above.</li>
+<li>Sanctions-exposure and financial-secrecy inputs are analyst-assigned proxies and carry subjectivity.</li>
+<li>The CPI is perception-based and is not a measure of actual corruption levels.</li>
+<li>OC Index scores are expert assessments of criminal-market activity, not incidence statistics.</li>
+<li><b>Binary listing indicators (FATF, EU) score zero when a country is not listed.</b> A jurisdiction can therefore score low on listings while carrying substantial criminal-activity risk. This is why continuous indicators carry meaningful weight in every preset, and why the divergence flag exists.</li>
+<li>This model measures <b>inherent country risk only</b>. It is one input to a risk assessment and does not replace customer-level due diligence.</li>
+<li>The tool is decision support. It does not constitute legal or regulatory advice.</li></ul>
+<h2>7. Governance</h2>
+<table><tr><th style="width:40%">Field</th><th>Value</th></tr>
+<tr><td>Model owner</td><td></td></tr><tr><td>Reviewed by</td><td></td></tr>
+<tr><td>Approved by</td><td></td></tr><tr><td>Date approved</td><td></td></tr>
+<tr><td>Next review date</td><td></td></tr></table>
+</body></html>`;
+  const b=new Blob(['\ufeff'+html],{type:'application/msword'}),u=URL.createObjectURL(b);
+  const a=document.createElement('a');a.href=u;a.download='country_risk_assessment.doc';a.click();
+  toastMsg("Assessment document exported (Word)");
 }
 let tT;function toastMsg(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(tT);tT=setTimeout(()=>t.style.display='none',1700);}
 function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';}

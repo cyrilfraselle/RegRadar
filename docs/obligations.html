@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar — Obligations</title>
+<style>
+  :root {
+    --bg:#0E1117; --surface:#151A21; --surface-2:#1A2029; --border:#232B36; --border-strong:#2E3845;
+    --text:#E6EDF3; --text-2:#9AA7B4; --text-3:#5E6B79; --accent:#6D8EE6; --accent-bg:#182236;
+    --crit:#F0616D; --crit-bg:#2A1518; --imp:#E3A008; --imp-bg:#2A2008; --info:#5DA9E9; --ok:#2EBD85; --ok-bg:#0F2018; --purple:#9D7BD8;
+    --radius:10px; --radius-sm:6px;
+    --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; --mono:'SF Mono',ui-monospace,Menlo,monospace;
+  }
+  html[data-theme="light"] {
+    --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F8FAFC; --border:#E6E9EF; --border-strong:#D5DAE2;
+    --text:#16202C; --text-2:#5A6675; --text-3:#94A0AE; --accent:#2D5FCC; --accent-bg:#EDF2FD;
+    --crit:#C13515; --crit-bg:#FCEEE9; --imp:#B25E09; --imp-bg:#FBF1E2; --info:#1E6FB8; --ok:#0F8A5F; --ok-bg:#E7F5EE; --purple:#6B2D8B;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+
+  .topbar { position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:1px solid var(--border); }
+  .topbar-inner { display:flex; align-items:center; gap:16px; height:56px; }
+  .logo { display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; }
+  .logo-mark { width:28px; height:28px; border-radius:8px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+  .logo-sub { font-size:11px; color:var(--text-3); font-weight:400; }
+  .nav { display:flex; gap:2px; margin-left:8px; }
+  .nav a { padding:6px 13px; border-radius:var(--radius-sm); font-size:13px; color:var(--text-2); font-weight:500; }
+  .nav a.active { background:var(--accent-bg); color:var(--accent); }
+  .nav a:hover:not(.active) { background:var(--surface-2); }
+  .topbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+  .icon-btn { width:32px; height:32px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text-2); cursor:pointer; font-size:15px; }
+
+  .head { padding:26px 0 6px; }
+  .head h1 { font-size:22px; font-weight:700; }
+  .head .sub { color:var(--text-2); font-size:14px; margin-top:4px; }
+
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0; }
+  .stat { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:13px 15px; }
+  .stat .n { font-size:24px; font-weight:700; font-family:var(--mono); }
+  .stat .l { font-size:11px; color:var(--text-3); margin-top:4px; }
+
+  .toolbar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+  .search { flex:1; min-width:200px; padding:9px 12px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; outline:none; }
+  .search:focus { border-color:var(--accent); }
+  .sel { padding:9px 11px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; cursor:pointer; }
+
+  .filters { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; align-items:center; }
+  .filter-label { font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; }
+  .chip { font-size:12px; padding:5px 11px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text-2); cursor:pointer; font-weight:500; }
+  .chip:hover { border-color:var(--border-strong); color:var(--text); }
+  .chip.on { background:var(--accent-bg); border-color:var(--accent); color:var(--accent); }
+  .filter-sep { width:1px; height:18px; background:var(--border); margin:0 4px; }
+
+  .ob-list { display:flex; flex-direction:column; gap:10px; padding-bottom:60px; }
+  .ob { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:15px 17px; display:grid; grid-template-columns:1fr auto; gap:12px; align-items:start; }
+  .ob.imminent { border-left:3px solid var(--crit); }
+  .ob.upcoming { border-left:3px solid var(--imp); }
+  .ob.scheduled { border-left:3px solid var(--info); }
+  .ob.ongoing { border-left:3px solid var(--text-3); }
+  .ob.passed { opacity:.55; border-left:3px solid var(--text-3); }
+  .ob-main { min-width:0; }
+  .ob-what { font-size:14px; font-weight:600; line-height:1.4; margin-bottom:8px; }
+  .ob-who { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:8px; }
+  .ent-pill { font-size:10px; padding:2px 8px; border-radius:4px; background:var(--surface-2); color:var(--text-2); border:1px solid var(--border); }
+  .ob-meta { display:flex; gap:12px; flex-wrap:wrap; font-size:11px; color:var(--text-3); align-items:center; }
+  .ob-basis { color:var(--purple); }
+  .ob-topic { color:var(--text-2); }
+  .ob-src { color:var(--accent); cursor:pointer; }
+  .ob-src:hover { text-decoration:underline; }
+  .ob-right { text-align:right; white-space:nowrap; }
+  .ob-deadline { font-family:var(--mono); font-size:13px; font-weight:600; }
+  .dl-imminent { color:var(--crit); } .dl-upcoming { color:var(--imp); } .dl-scheduled { color:var(--info); } .dl-ongoing { color:var(--text-3); } .dl-passed { color:var(--text-3); }
+  .ob-status { font-size:10px; text-transform:uppercase; letter-spacing:.05em; margin-top:3px; padding:2px 7px; border-radius:10px; display:inline-block; }
+  .st-imminent { background:var(--crit-bg); color:var(--crit); } .st-upcoming { background:var(--imp-bg); color:var(--imp); } .st-scheduled { background:var(--info); color:#fff; opacity:.85; } .st-ongoing { background:var(--surface-2); color:var(--text-3); } .st-passed { background:var(--surface-2); color:var(--text-3); }
+  .prio-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:3px; }
+  .prio-high { background:var(--crit); } .prio-medium { background:var(--imp); }
+  .empty { text-align:center; padding:40px; color:var(--text-3); }
+  .export-btn { font-size:12px; padding:8px 13px; border-radius:var(--radius-sm); border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text); cursor:pointer; }
+  .export-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--border-strong); border-radius:8px; padding:10px 16px; font-size:13px; display:none; z-index:100; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Obligations</span></div>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a class="active" href="#">Obligations</a>
+      <a href="extractor.html">Extractor</a>
+      <a href="law.html">Read the Law</a>
+      <a href="country-risk.html">Country Risk</a>
+    </nav>
+    <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <h1>Obligations register</h1>
+    <p class="sub">Who must do what, by when — extracted from tracked regulatory developments.</p>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <input class="search" id="search" placeholder="Search obligations…" oninput="render()">
+    <select class="sel" id="sortBy" onchange="render()">
+      <option value="deadline">Sort: by deadline</option>
+      <option value="priority">Sort: by priority</option>
+      <option value="detected">Sort: recently detected</option>
+    </select>
+    <button class="export-btn" onclick="exportCsv()">⬇ Export CSV</button>
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div class="ob-list" id="list"><div class="empty">Loading obligations…</div></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let OBS=[], filters={status:null, entity:null, topic:null, priority:null};
+const STATUS_ORDER={imminent:0,upcoming:1,scheduled:2,ongoing:3,passed:4};
+
+async function load(){
+  try{
+    OBS = window.__EMBEDDED_OBLIGATIONS__ || await fetch('data/obligations.json').then(r=>r.json());
+    renderStats(); buildFilters(); render();
+  }catch(e){
+    document.getElementById('list').innerHTML='<div class="empty">No obligations yet. Run the engine to extract them.</div>';
+  }
+}
+
+function fmtDate(iso){ if(!iso) return 'ongoing'; return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
+function daysAway(iso){ if(!iso) return null; return Math.round((new Date(iso)-Date.now())/864e5); }
+
+function renderStats(){
+  const imminent=OBS.filter(o=>o.status==='imminent').length;
+  const upcoming=OBS.filter(o=>o.status==='upcoming').length;
+  const high=OBS.filter(o=>o.priority==='high').length;
+  const cards=[['Total',OBS.length,'var(--accent)'],['Imminent (≤30d)',imminent,'var(--crit)'],['Upcoming (≤90d)',upcoming,'var(--imp)'],['High priority',high,'var(--purple)']];
+  document.getElementById('stats').innerHTML=cards.map(([l,n,c])=>`<div class="stat"><div class="n" style="color:${c}">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+
+function buildFilters(){
+  const entities=[...new Set(OBS.flatMap(o=>o.who||[]))];
+  const topics=[...new Set(OBS.map(o=>o.topic).filter(Boolean))];
+  let h='<span class="filter-label">Status</span>';
+  [['imminent','Imminent'],['upcoming','Upcoming'],['scheduled','Scheduled'],['ongoing','Ongoing']].forEach(([v,l])=>h+=chip('status',v,l));
+  h+='<span class="filter-sep"></span><span class="filter-label">Priority</span>';
+  [['high','High'],['medium','Medium']].forEach(([v,l])=>h+=chip('priority',v,l));
+  h+='<span class="filter-sep"></span><span class="filter-label">Impacted</span>';
+  entities.forEach(e=>h+=chip('entity',e,e));
+  h+='<span class="filter-sep"></span><span class="filter-label">Topic</span>';
+  topics.forEach(t=>h+=chip('topic',t,t));
+  document.getElementById('filters').innerHTML=h;
+}
+function chip(type,val,label){ const on=String(filters[type])===String(val)?'on':''; return `<span class="chip ${on}" onclick="toggleFilter('${type}','${String(val).replace(/'/g,"\\'")}')">${esc(label)}</span>`; }
+function toggleFilter(type,val){ filters[type]=String(filters[type])===String(val)?null:val; buildFilters(); render(); }
+
+function getFiltered(){
+  let list=[...OBS];
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  if(q) list=list.filter(o=>(o.what+o.legal_basis+o.source_title+(o.who||[]).join(' ')+o.topic).toLowerCase().includes(q));
+  if(filters.status) list=list.filter(o=>o.status===filters.status);
+  if(filters.priority) list=list.filter(o=>o.priority===filters.priority);
+  if(filters.entity) list=list.filter(o=>(o.who||[]).includes(filters.entity));
+  if(filters.topic) list=list.filter(o=>o.topic===filters.topic);
+  const sort=document.getElementById('sortBy').value;
+  if(sort==='deadline') list.sort((a,b)=> (STATUS_ORDER[a.status]-STATUS_ORDER[b.status]) || ((a.deadline||'9999')<(b.deadline||'9999')?-1:1));
+  else if(sort==='priority') list.sort((a,b)=> (a.priority==='high'?0:1)-(b.priority==='high'?0:1));
+  else list.sort((a,b)=> (b.detected||'').localeCompare(a.detected||''));
+  return list;
+}
+
+function render(){
+  const list=getFiltered();
+  if(!list.length){ document.getElementById('list').innerHTML='<div class="empty">No obligations match these filters.</div>'; return; }
+  document.getElementById('list').innerHTML=list.map(o=>{
+    const da=daysAway(o.deadline);
+    const dlText = o.deadline ? (da<0?`${Math.abs(da)}d ago`:`in ${da}d`) : 'ongoing';
+    const who=(o.who||[]).map(w=>`<span class="ent-pill">${esc(w)}</span>`).join('');
+    return `<div class="ob ${o.status}">
+      <div class="ob-main">
+        <div class="ob-what"><span class="prio-dot prio-${o.priority}"></span>${esc(o.what)}</div>
+        <div class="ob-who">${who}</div>
+        <div class="ob-meta">
+          <span class="ob-basis">§ ${esc(o.legal_basis||'—')}</span>
+          <span class="ob-topic">${esc(o.topic||'')}</span>
+          ${o.source_url?`<span class="ob-src" onclick="window.open('${o.source_url}','_blank')">source ↗</span>`:''}
+        </div>
+      </div>
+      <div class="ob-right">
+        <div class="ob-deadline dl-${o.status}">${fmtDate(o.deadline)}</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:2px">${dlText}</div>
+        <span class="ob-status st-${o.status}">${o.status}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function exportCsv(){
+  const list=getFiltered();
+  const rows=[['Who','What','Deadline','Status','Legal basis','Topic','Priority','Source']];
+  list.forEach(o=>rows.push([(o.who||[]).join('; '),o.what,o.deadline||'ongoing',o.status,o.legal_basis||'',o.topic||'',o.priority,o.source_url||'']));
+  const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'}); const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='regradar_obligations.csv'; a.click();
+  showToast('CSV exported');
+}
+
+let toastT;
+function showToast(m){ const t=document.getElementById('toast'); t.textContent=m; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',1600); }
+function toggleTheme(){ const h=document.documentElement; h.dataset.theme=h.dataset.theme==='dark'?'light':'dark'; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+load();
+</script>
+</body>
+</html>

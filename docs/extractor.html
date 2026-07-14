@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar — Obligation Extractor</title>
+<style>
+  :root {
+    --bg:#0E1117; --surface:#151A21; --surface-2:#1A2029; --border:#232B36; --border-strong:#2E3845;
+    --text:#E6EDF3; --text-2:#9AA7B4; --text-3:#5E6B79; --accent:#6D8EE6; --accent-bg:#182236;
+    --crit:#F0616D; --imp:#E3A008; --ok:#2EBD85; --purple:#9D7BD8;
+    --radius:10px; --radius-sm:6px;
+    --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; --mono:'SF Mono',ui-monospace,Menlo,monospace; --serif:'Georgia',serif;
+  }
+  html[data-theme="light"] {
+    --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F8FAFC; --border:#E6E9EF; --border-strong:#D5DAE2;
+    --text:#16202C; --text-2:#5A6675; --text-3:#94A0AE; --accent:#2D5FCC; --accent-bg:#EDF2FD;
+    --crit:#C13515; --imp:#B25E09; --ok:#0F8A5F; --purple:#6B2D8B;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1320px; margin:0 auto; padding:0 20px; }
+
+  .topbar { position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:1px solid var(--border); }
+  .topbar-inner { display:flex; align-items:center; gap:16px; height:56px; }
+  .logo { display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; }
+  .logo-mark { width:28px; height:28px; border-radius:8px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
+  .logo-sub { font-size:11px; color:var(--text-3); font-weight:400; }
+  .nav { display:flex; gap:2px; margin-left:8px; }
+  .nav a { padding:6px 13px; border-radius:var(--radius-sm); font-size:13px; color:var(--text-2); font-weight:500; }
+  .nav a.active { background:var(--accent-bg); color:var(--accent); }
+  .nav a:hover:not(.active) { background:var(--surface-2); }
+  .topbar-right { margin-left:auto; display:flex; gap:10px; }
+  .icon-btn { width:32px; height:32px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text-2); cursor:pointer; font-size:15px; }
+
+  .head { padding:24px 0 8px; display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .head h1 { font-size:22px; font-weight:700; }
+  .head .sub { color:var(--text-2); font-size:14px; margin-top:4px; }
+  .head-actions { display:flex; gap:8px; align-items:center; }
+  .sel { padding:9px 11px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; cursor:pointer; }
+  .btn { font-size:13px; padding:9px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text); cursor:pointer; font-weight:500; }
+  .btn:hover { border-color:var(--accent); color:var(--accent); }
+  .btn-primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn-primary:hover { color:#fff; opacity:.9; }
+
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:18px 0; }
+  .stat { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 15px; }
+  .stat .n { font-size:22px; font-weight:700; font-family:var(--mono); }
+  .stat .l { font-size:11px; color:var(--text-3); margin-top:3px; }
+
+  .toolbar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+  .search { flex:1; min-width:200px; padding:9px 12px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; outline:none; }
+  .search:focus { border-color:var(--accent); }
+  .chip { font-size:12px; padding:5px 11px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text-2); cursor:pointer; }
+  .chip:hover { border-color:var(--border-strong); color:var(--text); }
+  .chip.on { background:var(--accent-bg); border-color:var(--accent); color:var(--accent); }
+
+  .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); margin-bottom:60px; }
+  table { border-collapse:collapse; width:100%; min-width:1100px; }
+  thead th { position:sticky; top:56px; background:var(--surface-2); text-align:left; font-size:11px; font-weight:700; color:var(--text-3); text-transform:uppercase; letter-spacing:.04em; padding:10px 12px; border-bottom:1px solid var(--border-strong); white-space:nowrap; }
+  tbody td { padding:12px; border-bottom:1px solid var(--border); font-size:13px; vertical-align:top; line-height:1.5; }
+  tbody tr:hover { background:var(--surface-2); }
+  .c-ref { font-family:var(--mono); font-size:12px; color:var(--accent); white-space:nowrap; font-weight:600; }
+  .c-section { font-size:11px; color:var(--text-3); max-width:150px; }
+  .c-verbatim { font-family:var(--serif); font-size:13px; color:var(--text); max-width:340px; }
+  .c-summary { font-size:13px; color:var(--text-2); max-width:300px; }
+  .c-type { }
+  .type-pill { font-size:10px; padding:2px 8px; border-radius:4px; background:var(--surface-2); color:var(--purple); border:1px solid var(--border); white-space:nowrap; }
+  .modal-tag { font-family:var(--mono); font-size:10px; color:var(--imp); background:var(--surface-2); padding:1px 6px; border-radius:3px; }
+  .ent-pill { font-size:10px; padding:1px 6px; border-radius:4px; background:var(--surface-2); color:var(--text-2); border:1px solid var(--border); display:inline-block; margin:1px; }
+  .c-link a { color:var(--accent); font-size:12px; }
+  .empty { text-align:center; padding:50px; color:var(--text-3); }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--border-strong); border-radius:8px; padding:10px 16px; font-size:13px; display:none; z-index:100; }
+  .note { font-size:11px; color:var(--text-3); margin:2px 0 12px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Obligation Extractor</span></div>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="obligations.html">Obligations</a>
+      <a class="active" href="#">Extractor</a>
+      <a href="law.html">Read the Law</a>
+      <a href="country-risk.html">Country Risk</a>
+    </nav>
+    <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>Obligation extractor</h1>
+      <p class="sub">Turn a regulation into a structured obligations table — verbatim requirement beside a clear, actionable summary.</p>
+    </div>
+    <div class="head-actions">
+      <select class="sel" id="regSelect" onchange="loadReg()"></select>
+      <button class="btn" onclick="exportCsv()">⬇ CSV</button>
+      <button class="btn btn-primary" onclick="exportExcel()">⬇ Excel</button>
+    </div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar" id="typeFilters"></div>
+  <div class="toolbar">
+    <input class="search" id="search" placeholder="Search verbatim, summary, reference…" oninput="render()">
+  </div>
+  <p class="note">Verbatim = exact regulatory text (the defensible truth). Summary = actionable restatement. This table is the base layer for later policy-vs-obligation gap mapping.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Reg.</th><th>Section</th><th>Reference</th>
+        <th>Regulatory requirement (verbatim)</th><th>Summary of rules</th>
+        <th>Type</th><th>Who</th><th>Regulator</th><th>Link</th>
+      </tr></thead>
+      <tbody id="tbody"><tr><td colspan="9" class="empty">Loading…</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+let ROWS=[], INDEX=[], typeFilter=null;
+
+async function boot(){
+  try{
+    INDEX = window.__EMBEDDED_OBLIG_INDEX__ || await fetch('data/obligations/index.json').then(r=>r.json());
+    const sel=document.getElementById('regSelect');
+    sel.innerHTML=INDEX.map(r=>`<option value="${r.celex}">${r.name} — ${r.full_name} (${r.count})</option>`).join('');
+    await loadReg();
+  }catch(e){
+    document.getElementById('tbody').innerHTML='<tr><td colspan="9" class="empty">No extractions yet. Run the extractor to generate obligation tables.</td></tr>';
+  }
+}
+async function loadReg(){
+  const celex=document.getElementById('regSelect').value;
+  try{
+    ROWS = (window.__EMBEDDED_OBLIGATIONS__ && window.__EMBEDDED_OBLIGATIONS__[celex]) || await fetch(`data/obligations/${celex}.json`).then(r=>r.json());
+    renderStats(); buildTypeFilters(); render();
+  }catch(e){ document.getElementById('tbody').innerHTML='<tr><td colspan="9" class="empty">Could not load this regulation.</td></tr>'; }
+}
+
+function renderStats(){
+  const types=new Set(ROWS.map(r=>r.obligation_type));
+  const ents=new Set(ROWS.flatMap(r=>r.entities||[]));
+  const cards=[['Obligations',ROWS.length,'var(--accent)'],['Obligation types',types.size,'var(--purple)'],['Entity types touched',ents.size,'var(--ok)'],['Articles covered',new Set(ROWS.map(r=>r.reg_reference)).size,'var(--imp)']];
+  document.getElementById('stats').innerHTML=cards.map(([l,n,c])=>`<div class="stat"><div class="n" style="color:${c}">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+function buildTypeFilters(){
+  const types=[...new Set(ROWS.map(r=>r.obligation_type))];
+  let h='<span style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em">Type:</span>';
+  types.forEach(t=>{ const on=typeFilter===t?'on':''; h+=`<span class="chip ${on}" onclick="toggleType('${t}')">${esc(t)}</span>`; });
+  document.getElementById('typeFilters').innerHTML=h;
+}
+function toggleType(t){ typeFilter=typeFilter===t?null:t; buildTypeFilters(); render(); }
+
+function getFiltered(){
+  let list=[...ROWS];
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  if(q) list=list.filter(r=>(r.requirement_verbatim+r.summary_of_rules+r.reg_reference+(r.entities||[]).join(' ')).toLowerCase().includes(q));
+  if(typeFilter) list=list.filter(r=>r.obligation_type===typeFilter);
+  return list;
+}
+function render(){
+  const list=getFiltered();
+  if(!list.length){ document.getElementById('tbody').innerHTML='<tr><td colspan="9" class="empty">No obligations match.</td></tr>'; return; }
+  document.getElementById('tbody').innerHTML=list.map(r=>`<tr>
+    <td><b>${esc(r.regulation_name)}</b></td>
+    <td class="c-section">${esc(r.section||'—')}</td>
+    <td class="c-ref">${esc(r.reg_reference)}</td>
+    <td class="c-verbatim">${esc(r.requirement_verbatim)} <span class="modal-tag">${esc(r.modal_verb||'')}</span></td>
+    <td class="c-summary">${esc(r.summary_of_rules)}</td>
+    <td class="c-type"><span class="type-pill">${esc(r.obligation_type)}</span></td>
+    <td>${(r.entities||[]).map(e=>`<span class="ent-pill">${esc(e)}</span>`).join('')}</td>
+    <td style="font-size:11px;color:var(--text-3)">${esc(r.regulator||'')}</td>
+    <td class="c-link"><a href="${r.link}" target="_blank" rel="noopener">EUR-Lex ↗</a></td>
+  </tr>`).join('');
+}
+
+function tableForExport(){
+  const list=getFiltered();
+  const header=['Regulation','Section','Reference','Regulatory requirement (verbatim)','Summary of rules','Type','Modal','Who','Doc type','Regulator','Link'];
+  const rows=list.map(r=>[r.regulation_name,r.section,r.reg_reference,r.requirement_verbatim,r.summary_of_rules,r.obligation_type,r.modal_verb,(r.entities||[]).join('; '),r.doc_type,r.regulator,r.link]);
+  return {header,rows};
+}
+function exportCsv(){
+  const {header,rows}=tableForExport();
+  const csv=[header,...rows].map(r=>r.map(c=>`"${String(c==null?'':c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=`obligations_${document.getElementById('regSelect').value}.csv`; a.click();
+  showToast('CSV exported');
+}
+function exportExcel(){
+  const {header,rows}=tableForExport();
+  const ws=XLSX.utils.aoa_to_sheet([header,...rows]);
+  ws['!cols']=[{wch:12},{wch:28},{wch:14},{wch:60},{wch:50},{wch:16},{wch:10},{wch:28},{wch:12},{wch:24},{wch:30}];
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Obligations');
+  XLSX.writeFile(wb,`obligations_${document.getElementById('regSelect').value}.xlsx`);
+  showToast('Excel exported');
+}
+
+let toastT;
+function showToast(m){ const t=document.getElementById('toast'); t.textContent=m; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',1600); }
+function toggleTheme(){ const h=document.documentElement; h.dataset.theme=h.dataset.theme==='dark'?'light':'dark'; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+boot();
+</script>
+</body>
+</html>
