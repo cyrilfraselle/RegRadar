@@ -1,64 +1,64 @@
 {
-  "last_updated": "2026-07-14T07:31:16.478305",
+  "last_updated": "2026-07-15T07:45:21.318303",
   "last_run_counts": {
-    "total": 9,
-    "critical": 0,
-    "important": 7,
+    "total": 13,
+    "critical": 1,
+    "important": 10,
     "info": 2
   },
-  "archive_size": 331,
-  "exec_summary": "The European Securities and Markets Authority's implementation of the Markets in Crypto-Assets Regulation, or MiCAR, is set to significantly impact the regulatory landscape for crypto payments in the EU, requiring licensure for certain market participants. In a notable enforcement action, Deutsche Bank was fined $2 million by an Australian regulator for systemic trade reporting failures, highlighting the importance of robust reporting systems. The European Central Bank's Isabel Schnabel recently discussed fostering growth and resilience in Europe, emphasizing the need for prudent regulatory oversight. Meanwhile, Webull has secured approval under the EU's MiCA framework, demonstrating the evolving regulatory environment for crypto and fintech firms operating in the region.",
+  "archive_size": 342,
+  "exec_summary": "The European Securities and Markets Authority has published an initial EU ESG ratings authorisation list, while also releasing a compliance table for guidelines on the assessment of knowledge and competence under the Markets in Crypto-Assets regulation. In a significant development, the European Central Bank has selected 36 payment service providers to join a digital euro pilot, marking a key step in the development of the digital currency. Meanwhile, Deutsche Bank has faced regulatory actions in multiple jurisdictions, including a fine of AU$2 million in Australia for trade reporting violations, and is also under investigation for money laundering in Frankfurt. The introduction of the MiCA compliance platform by a global law firm aims to assist crypto firms in meeting regulatory requirements under the new EU framework.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 65
+      "days_away": 64
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 170
+      "days_away": 169
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 171
+      "days_away": 170
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 180
+      "days_away": 179
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 350
+      "days_away": 349
     }
   ],
   "trends": [
     {
-      "theme": "AML/CFT",
-      "this_week": 6,
-      "avg": 1.5,
+      "theme": "Enforcement/Fines",
+      "this_week": 4,
+      "avg": 1.0,
       "pct": 300,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▂█",
+      "spark": "▁▁█",
       "values": [
         1,
-        2,
-        6
+        1,
+        4
       ],
       "weeks": 3
     },
@@ -79,18 +79,18 @@
       "weeks": 3
     },
     {
-      "theme": "Enforcement/Fines",
-      "this_week": 3,
-      "avg": 1.0,
-      "pct": 200,
+      "theme": "AML/CFT",
+      "this_week": 2,
+      "avg": 1.5,
+      "pct": 33,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁█",
+      "spark": "▁██",
       "values": [
         1,
-        1,
-        3
+        2,
+        2
       ],
       "weeks": 3
     },
@@ -127,17 +127,33 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 4,
+      "this_week": 7,
       "avg": 7.5,
-      "pct": -47,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▃█▁",
+      "pct": -7,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁█▃",
       "values": [
         6,
         9,
-        4
+        7
+      ],
+      "weeks": 3
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 1,
+      "avg": 1.5,
+      "pct": -33,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁█▁",
+      "values": [
+        1,
+        2,
+        1
       ],
       "weeks": 3
     },
@@ -183,21 +199,6 @@
       "values": [
         1,
         1
-      ],
-      "weeks": 2
-    },
-    {
-      "theme": "SFDR/ESG",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁█",
-      "values": [
-        1,
-        2
       ],
       "weeks": 2
     }
