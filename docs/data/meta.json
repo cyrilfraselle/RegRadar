@@ -1,64 +1,64 @@
 {
-  "last_updated": "2026-07-15T07:45:21.318303",
+  "last_updated": "2026-07-16T07:49:57.098815",
   "last_run_counts": {
-    "total": 13,
-    "critical": 1,
-    "important": 10,
-    "info": 2
+    "total": 12,
+    "critical": 2,
+    "important": 6,
+    "info": 4
   },
-  "archive_size": 342,
-  "exec_summary": "The European Securities and Markets Authority has published an initial EU ESG ratings authorisation list, while also releasing a compliance table for guidelines on the assessment of knowledge and competence under the Markets in Crypto-Assets regulation. In a significant development, the European Central Bank has selected 36 payment service providers to join a digital euro pilot, marking a key step in the development of the digital currency. Meanwhile, Deutsche Bank has faced regulatory actions in multiple jurisdictions, including a fine of AU$2 million in Australia for trade reporting violations, and is also under investigation for money laundering in Frankfurt. The introduction of the MiCA compliance platform by a global law firm aims to assist crypto firms in meeting regulatory requirements under the new EU framework.",
+  "archive_size": 353,
+  "exec_summary": "The European Union's Anti-Money Laundering Authority has opened a consultation on gambling risk supervision, marking a significant development in the EU's anti-money laundering regulatory framework. In related news, Frankfurt prosecutors have searched a Deutsche Bank branch as part of a deepening money laundering probe, highlighting the ongoing scrutiny of financial institutions' compliance with anti-money laundering regulations. The European Securities and Markets Authority has also launched a consultation aimed at reducing the business burden, which may have implications for financial services firms operating in the EU, including those in Belgium. Meanwhile, Deutsche Bank has faced enforcement actions, including a $2 million fine by the Australian regulator for trade reporting failures.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 64
+      "days_away": 63
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 169
+      "days_away": 168
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 170
+      "days_away": 169
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 179
+      "days_away": 178
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 349
+      "days_away": 348
     }
   ],
   "trends": [
     {
-      "theme": "Enforcement/Fines",
-      "this_week": 4,
-      "avg": 1.0,
-      "pct": 300,
+      "theme": "AML/CFT",
+      "this_week": 5,
+      "avg": 1.5,
+      "pct": 233,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁█",
+      "spark": "▁▂█",
       "values": [
         1,
-        1,
-        4
+        2,
+        5
       ],
       "weeks": 3
     },
@@ -79,18 +79,18 @@
       "weeks": 3
     },
     {
-      "theme": "AML/CFT",
-      "this_week": 2,
-      "avg": 1.5,
-      "pct": 33,
+      "theme": "Enforcement/Fines",
+      "this_week": 3,
+      "avg": 1.0,
+      "pct": 200,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁██",
+      "spark": "▁▁█",
       "values": [
         1,
-        2,
-        2
+        1,
+        3
       ],
       "weeks": 3
     },
@@ -127,17 +127,17 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 7,
+      "this_week": 5,
       "avg": 7.5,
-      "pct": -7,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁█▃",
+      "pct": -33,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▂█▁",
       "values": [
         6,
         9,
-        7
+        5
       ],
       "weeks": 3
     },
