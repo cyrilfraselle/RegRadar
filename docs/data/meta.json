@@ -1,56 +1,56 @@
 {
-  "last_updated": "2026-07-16T07:49:57.098815",
+  "last_updated": "2026-07-17T07:47:42.407023",
   "last_run_counts": {
-    "total": 12,
-    "critical": 2,
-    "important": 6,
-    "info": 4
+    "total": 17,
+    "critical": 1,
+    "important": 13,
+    "info": 3
   },
-  "archive_size": 353,
-  "exec_summary": "The European Union's Anti-Money Laundering Authority has opened a consultation on gambling risk supervision, marking a significant development in the EU's anti-money laundering regulatory framework. In related news, Frankfurt prosecutors have searched a Deutsche Bank branch as part of a deepening money laundering probe, highlighting the ongoing scrutiny of financial institutions' compliance with anti-money laundering regulations. The European Securities and Markets Authority has also launched a consultation aimed at reducing the business burden, which may have implications for financial services firms operating in the EU, including those in Belgium. Meanwhile, Deutsche Bank has faced enforcement actions, including a $2 million fine by the Australian regulator for trade reporting failures.",
+  "archive_size": 367,
+  "exec_summary": "The European Banking Authority has issued an email alert on July 16, 2026, which may be relevant to the team's compliance and regulatory work. Meanwhile, the Markets in Crypto-Assets regulation, or MiCA, has started to take effect, with BitPay obtaining a license under the new framework, and other firms such as Coinbase, Ripple, and Hilbert Group also taking steps to comply with the regulation. The National Bank of Belgium and the Financial Services and Markets Authority should be monitoring the implementation of MiCA and its impact on the Belgian financial sector. The recent developments in MiCA licensing and supervision may require the team to review and update their compliance procedures to ensure adherence to the new regulatory requirements.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 63
+      "days_away": 62
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 168
+      "days_away": 167
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 169
+      "days_away": 168
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 178
+      "days_away": 177
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 348
+      "days_away": 347
     }
   ],
   "trends": [
     {
       "theme": "AML/CFT",
-      "this_week": 5,
+      "this_week": 6,
       "avg": 1.5,
-      "pct": 233,
+      "pct": 300,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
@@ -58,39 +58,55 @@
       "values": [
         1,
         2,
-        5
+        6
+      ],
+      "weeks": 3
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 9,
+      "avg": 7.5,
+      "pct": 20,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁██",
+      "values": [
+        6,
+        9,
+        9
       ],
       "weeks": 3
     },
     {
       "theme": "Capital/CRR",
-      "this_week": 3,
+      "this_week": 1,
       "avg": 1.0,
-      "pct": 200,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁▁█",
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁",
       "values": [
         1,
         1,
-        3
+        1
       ],
       "weeks": 3
     },
     {
       "theme": "Enforcement/Fines",
-      "this_week": 3,
+      "this_week": 1,
       "avg": 1.0,
-      "pct": 200,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁▁█",
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁",
       "values": [
         1,
         1,
-        3
+        1
       ],
       "weeks": 3
     },
@@ -122,22 +138,6 @@
         1,
         1,
         1
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 5,
-      "avg": 7.5,
-      "pct": -33,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▂█▁",
-      "values": [
-        6,
-        9,
-        5
       ],
       "weeks": 3
     },
