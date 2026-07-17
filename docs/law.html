@@ -330,7 +330,7 @@ function renderTOC(){
     chapters.forEach((ch,ci)=>{
       const arts=(ch.articles||[]).filter(aid=>byId[aid]);
       h+=`<div class="toc-chapter" id="tocch-${ci}">
-        <div class="toc-chapter-title" onclick="toggleChapter(${ci})"><span class="toc-caret">▼</span> Ch. ${esc(ch.id)} — ${esc(ch.title)}</div>
+        <div class="toc-chapter-title" onclick="toggleChapter(${ci})"><span class="toc-caret">▼</span> ${esc(ch.title)}</div>
         <div class="toc-arts">`;
       arts.forEach(aid=>h+=`<span class="toc-art" data-art="${aid}" onclick="jumpTo('${aid}')">Art. ${aid} — ${esc(byId[aid].title)}</span>`);
       h+=`</div></div>`;
@@ -375,7 +375,7 @@ function showArticle(id){
   if(!a){ return; }
   CUR_ART=id;
   const chapterOf = (LAW.chapters||[]).find(ch=>(ch.articles||[]).includes(id));
-  const chapLine = chapterOf ? `<div class="article-chapter">Chapter ${esc(chapterOf.id)} — ${esc(chapterOf.title)}</div>` : '';
+  const chapLine = chapterOf ? `<div class="article-chapter">${esc(chapterOf.title)}</div>` : '';
   document.getElementById('articles').innerHTML = `
     <div class="article" id="art-${a.id}">
       ${chapLine}
