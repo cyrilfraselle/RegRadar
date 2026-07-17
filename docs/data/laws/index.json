@@ -1,5 +1,77 @@
 [
   {
+    "celex": "32024R1624",
+    "name": "AMLR",
+    "full_name": "Anti-Money Laundering Regulation",
+    "topic": "AML/CFT",
+    "dates": {
+      "published": "2024-05-31",
+      "entry_into_force": "2024-07-09",
+      "application": ""
+    },
+    "articles": 90,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32024L1640",
+    "name": "AMLD6",
+    "full_name": "6th Anti-Money Laundering Directive",
+    "topic": "AML/CFT",
+    "dates": {
+      "published": "2024-05-31",
+      "entry_into_force": "2024-07-09",
+      "application": ""
+    },
+    "articles": 80,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32024R1620",
+    "name": "AMLAR",
+    "full_name": "Anti-Money Laundering Authority Regulation",
+    "topic": "AML/CFT",
+    "dates": {
+      "published": "2024-05-31",
+      "entry_into_force": "2024-06-26",
+      "application": ""
+    },
+    "articles": 108,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32023R1113",
+    "name": "TFR",
+    "full_name": "Transfer of Funds Regulation (recast)",
+    "topic": "AML/CFT",
+    "dates": {
+      "published": "2023-05-31",
+      "entry_into_force": "2023-06-29",
+      "application": ""
+    },
+    "articles": 40,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
     "celex": "32022R2554",
     "name": "DORA",
     "full_name": "Digital Operational Resilience Act",
@@ -10,6 +82,24 @@
       "application": ""
     },
     "articles": 64,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32022L2555",
+    "name": "NIS2",
+    "full_name": "NIS2 Directive (network & information security)",
+    "topic": "Operational Resilience",
+    "dates": {
+      "published": "2022-12-14",
+      "entry_into_force": "2023-01-16",
+      "application": ""
+    },
+    "articles": 46,
     "langs": [
       "EN",
       "FR",
@@ -36,16 +126,52 @@
     "available": true
   },
   {
-    "celex": "32024R1624",
-    "name": "AMLR",
-    "full_name": "Anti-Money Laundering Regulation",
-    "topic": "AML/CFT",
+    "celex": "32014L0065",
+    "name": "MiFID II",
+    "full_name": "Markets in Financial Instruments Directive II",
+    "topic": "Markets",
     "dates": {
-      "published": "2024-05-31",
-      "entry_into_force": "2024-07-09",
+      "published": "2014-05-15",
+      "entry_into_force": "2014-07-02",
       "application": ""
     },
-    "articles": 90,
+    "articles": 97,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32014R0600",
+    "name": "MiFIR",
+    "full_name": "Markets in Financial Instruments Regulation",
+    "topic": "Markets",
+    "dates": {
+      "published": "2014-05-15",
+      "entry_into_force": "2014-07-02",
+      "application": ""
+    },
+    "articles": 55,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32014R0596",
+    "name": "MAR",
+    "full_name": "Market Abuse Regulation",
+    "topic": "Markets",
+    "dates": {
+      "published": "2014-04-16",
+      "entry_into_force": "2014-07-02",
+      "application": ""
+    },
+    "articles": 39,
     "langs": [
       "EN",
       "FR",
@@ -72,16 +198,70 @@
     "available": true
   },
   {
-    "celex": "32014L0065",
-    "name": "MiFID II",
-    "full_name": "Markets in Financial Instruments Directive II",
-    "topic": "Markets",
+    "celex": "32013L0036",
+    "name": "CRD IV",
+    "full_name": "Capital Requirements Directive IV",
+    "topic": "Capital",
     "dates": {
-      "published": "2014-05-15",
-      "entry_into_force": "2014-07-02",
+      "published": "2013-06-26",
+      "entry_into_force": "2013-07-17",
       "application": ""
     },
-    "articles": 97,
+    "articles": 165,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32015L2366",
+    "name": "PSD2",
+    "full_name": "Payment Services Directive 2",
+    "topic": "Payments",
+    "dates": {
+      "published": "2015-11-25",
+      "entry_into_force": "2016-01-12",
+      "application": ""
+    },
+    "articles": 117,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32009L0110",
+    "name": "EMD2",
+    "full_name": "E-Money Directive 2",
+    "topic": "Payments",
+    "dates": {
+      "published": "2009-09-16",
+      "entry_into_force": "2009-10-30",
+      "application": ""
+    },
+    "articles": 24,
+    "langs": [
+      "EN",
+      "FR",
+      "NL"
+    ],
+    "available": true
+  },
+  {
+    "celex": "32016R0679",
+    "name": "GDPR",
+    "full_name": "General Data Protection Regulation",
+    "topic": "Data Protection",
+    "dates": {
+      "published": "2016-04-27",
+      "entry_into_force": "2016-05-24",
+      "application": ""
+    },
+    "articles": 99,
     "langs": [
       "EN",
       "FR",
