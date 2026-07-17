@@ -113,19 +113,44 @@ def _parse_articles_from_html(html: str) -> tuple[str, list]:
                 break
 
     # Carte article → chapitre : pour chaque chapitre, quels articles il contient
+    # Les actes de l'UE se structurent en TITRES (tis_X), en CHAPITRES
+    # (cpt_X ou tis_X.cpt_Y quand nichés dans un titre), ou les deux. On
+    # repère tous les conteneurs de regroupement et, pour chaque article,
+    # on prend le regroupement le plus profond qui le contient.
     art_to_chapter = {}
-    chapter_order = []
-    for cpt in soup.find_all("div", id=re.compile(r"^cpt_[A-Z0-9]+$", re.I)):
-        cpt_id = cpt.get("id")
-        tit_el = soup.find("div", id=f"{cpt_id}.tit_1")
-        cpt_title = tit_el.get_text(" ", strip=True) if tit_el else ""
-        # numéro de chapitre lisible (CHAPTER I…)
-        num_m = re.search(r"cpt_([A-Z0-9]+)", cpt_id)
-        label = f"Chapter {num_m.group(1)}" if num_m else cpt_id
-        chapter_order.append({"id": cpt_id, "label": label, "title": cpt_title})
-        # les articles de ce chapitre
-        for art in cpt.find_all("div", id=re.compile(r"^art_\d+$")):
-            art_to_chapter[art.get("id")] = f"{label} — {cpt_title}" if cpt_title else label
+
+    def _label(gid):
+        # extrait le numéro romain/arabe de la division la plus à droite
+        last = gid.split(".")[-1]
+        m = re.search(r"(?:tis|tit|cpt)_([IVXLC0-9]+)", last, re.I)
+        kind = "Title" if last.lower().startswith("tis") else "Chapter"
+        return f"{kind} {m.group(1)}" if m else last
+
+    groupings = []  # (dom_id, depth) — depth: title=1, chapter=2
+    # Titres : tis_X (exact)
+    for tis in soup.find_all("div", id=re.compile(r"^tis_[IVXLC0-9]+$", re.I)):
+        groupings.append((tis.get("id"), 1))
+    # Chapitres : cpt_X (exact) OU tis_X.cpt_Y (nichés) — chiffres romains ou arabes
+    for cpt in soup.find_all("div", id=re.compile(r"^(?:tis_[IVXLC0-9]+\.)?cpt_[IVXLC0-9]+$", re.I)):
+        groupings.append((cpt.get("id"), 2))
+
+    def _grouping_title(gid):
+        tel = soup.find("div", id=f"{gid}.tit_1")
+        gtitle = tel.get_text(" ", strip=True) if tel else ""
+        lbl = _label(gid)
+        return f"{lbl} — {gtitle}" if gtitle else lbl
+
+    # Pour chaque article, choisir le regroupement le plus profond qui le contient
+    for div in soup.find_all("div", id=re.compile(r"^art_\d+$")):
+        art_id = div.get("id")
+        best = None  # (gid, depth)
+        for gid, depth in groupings:
+            g = soup.find("div", id=gid)
+            if g and g.find("div", id=art_id):
+                if best is None or depth > best[1]:
+                    best = (gid, depth)
+        if best:
+            art_to_chapter[art_id] = _grouping_title(best[0])
 
     # Articles : uniquement les id='art_N' EXACTS (pas art_N.tit_1)
     articles = []
