@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RegRadar — Country Risk</title>
@@ -28,7 +31,7 @@
   .nav a{padding:6px 13px;border-radius:var(--radius-sm);font-size:13px;color:var(--text-2);font-weight:500}
   .nav a.active{background:var(--accent-bg);color:var(--accent)}
   .nav a:hover:not(.active){background:var(--surface-2)}
-  .topbar-right{margin-left:auto}
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
   .icon-btn{width:32px;height:32px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer;font-size:15px}
 
   .head{padding:22px 0 4px}
@@ -82,7 +85,11 @@
 
   .table-wrap{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow-x:auto}
   table{border-collapse:collapse;width:100%;min-width:840px}
-  thead th{position:sticky;top:56px;background:var(--surface-2);text-align:left;font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.04em;padding:9px 10px;border-bottom:1px solid var(--border-strong);white-space:nowrap;cursor:pointer}
+  thead th{position:sticky;top:0;background:var(--surface-2);text-align:left;font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.04em;padding:9px 10px;border-bottom:1px solid var(--border-strong);white-space:nowrap;cursor:pointer;z-index:2}
+  .mapz{width:26px;height:26px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:5px;cursor:pointer;font-size:15px;font-weight:600;line-height:1}
+  .mapz:hover{border-color:var(--accent);color:var(--accent)}
+  .mapr{font-size:11px;padding:4px 9px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);border-radius:14px;cursor:pointer}
+  .mapr:hover{border-color:var(--accent);color:var(--accent)}
   thead th:hover{color:var(--text)}
   tbody td{padding:9px 10px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
   tbody tr{cursor:pointer}
@@ -120,7 +127,7 @@
 </head>
 <body>
 <div class="topbar"><div class="wrap topbar-inner">
-  <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Country Risk</span></div>
+  <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Belgium &amp; EU</span></div>
   <nav class="nav">
       <a href="index.html">Dashboard</a>
       <a href="obligations.html">Obligations</a>
@@ -166,7 +173,20 @@
         <span class="chip" id="chipDiv" onclick="toggleDiv()">Divergence only</span>
         <span class="chip" id="chipProhib" onclick="toggleProhib()">Prohibited only</span>
       </div>
-      <svg id="map" viewBox="0 0 900 420"></svg>
+      <div class="map-wrap" style="position:relative">
+        <svg id="map" viewBox="0 0 900 420"></svg>
+        <div class="map-zoom" style="position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px">
+          <button class="mapz" onclick="mapZoomStep(1.5)" title="Zoom in">+</button>
+          <button class="mapz" onclick="mapZoomStep(0.66)" title="Zoom out">−</button>
+        </div>
+        <div class="map-regions" style="position:absolute;bottom:10px;left:10px;display:flex;gap:4px;flex-wrap:wrap">
+          <button class="mapr" onclick="mapZoomTo('world')">World</button>
+          <button class="mapr" onclick="mapZoomTo('europe')">Europe</button>
+          <button class="mapr" onclick="mapZoomTo('africa')">Africa</button>
+          <button class="mapr" onclick="mapZoomTo('asia')">Asia</button>
+          <button class="mapr" onclick="mapZoomTo('americas')">Americas</button>
+        </div>
+      </div>
       <div class="legend" id="legend"></div>
       <div class="toolbar"><input class="search" id="search" placeholder="Search country or region…" oninput="render()"></div>
       <div class="table-wrap"><table>
@@ -222,6 +242,8 @@ let DATA=null,W={},RULES={},activePreset="balanced",sortKey="score",sortDir=-1,
     onlyDiv=false,onlyProhib=false,mapReady=false;
 const RAMP=["#2EBD85","#8FBF52","#E3A008","#E3701A","#F0616D"];
 const PROHIB="#B4243A",NODATA="#4A5560";
+const N3={"533":"ABW","004":"AFG","024":"AGO","660":"AIA","248":"ALA","008":"ALB","020":"AND","784":"ARE","032":"ARG","051":"ARM","016":"ASM","010":"ATA","260":"ATF","028":"ATG","036":"AUS","040":"AUT","031":"AZE","108":"BDI","056":"BEL","204":"BEN","535":"BES","854":"BFA","050":"BGD","100":"BGR","048":"BHR","044":"BHS","070":"BIH","652":"BLM","112":"BLR","084":"BLZ","060":"BMU","068":"BOL","076":"BRA","052":"BRB","096":"BRN","064":"BTN","074":"BVT","072":"BWA","140":"CAF","124":"CAN","166":"CCK","756":"CHE","152":"CHL","156":"CHN","384":"CIV","120":"CMR","180":"COD","178":"COG","184":"COK","170":"COL","174":"COM","132":"CPV","188":"CRI","192":"CUB","531":"CUW","162":"CXR","136":"CYM","196":"CYP","203":"CZE","276":"DEU","262":"DJI","212":"DMA","208":"DNK","214":"DOM","012":"DZA","218":"ECU","818":"EGY","232":"ERI","732":"ESH","724":"ESP","233":"EST","231":"ETH","246":"FIN","242":"FJI","238":"FLK","250":"FRA","234":"FRO","583":"FSM","266":"GAB","826":"GBR","268":"GEO","831":"GGY","288":"GHA","292":"GIB","324":"GIN","312":"GLP","270":"GMB","624":"GNB","226":"GNQ","300":"GRC","308":"GRD","304":"GRL","320":"GTM","254":"GUF","316":"GUM","328":"GUY","344":"HKG","334":"HMD","340":"HND","191":"HRV","332":"HTI","348":"HUN","360":"IDN","833":"IMN","356":"IND","086":"IOT","372":"IRL","364":"IRN","368":"IRQ","352":"ISL","376":"ISR","380":"ITA","388":"JAM","832":"JEY","400":"JOR","392":"JPN","398":"KAZ","404":"KEN","417":"KGZ","116":"KHM","296":"KIR","659":"KNA","410":"KOR","414":"KWT","418":"LAO","422":"LBN","430":"LBR","434":"LBY","662":"LCA","438":"LIE","144":"LKA","426":"LSO","440":"LTU","442":"LUX","428":"LVA","446":"MAC","663":"MAF","504":"MAR","492":"MCO","498":"MDA","450":"MDG","462":"MDV","484":"MEX","584":"MHL","807":"MKD","466":"MLI","470":"MLT","104":"MMR","499":"MNE","496":"MNG","580":"MNP","508":"MOZ","478":"MRT","500":"MSR","474":"MTQ","480":"MUS","454":"MWI","458":"MYS","175":"MYT","516":"NAM","540":"NCL","562":"NER","574":"NFK","566":"NGA","558":"NIC","570":"NIU","528":"NLD","578":"NOR","524":"NPL","520":"NRU","554":"NZL","512":"OMN","586":"PAK","591":"PAN","612":"PCN","604":"PER","608":"PHL","585":"PLW","598":"PNG","616":"POL","630":"PRI","408":"PRK","620":"PRT","600":"PRY","275":"PSE","258":"PYF","634":"QAT","638":"REU","642":"ROU","643":"RUS","646":"RWA","682":"SAU","729":"SDN","686":"SEN","702":"SGP","239":"SGS","654":"SHN","744":"SJM","090":"SLB","694":"SLE","222":"SLV","674":"SMR","706":"SOM","666":"SPM","688":"SRB","728":"SSD","678":"STP","740":"SUR","703":"SVK","705":"SVN","752":"SWE","748":"SWZ","534":"SXM","690":"SYC","760":"SYR","796":"TCA","148":"TCD","768":"TGO","764":"THA","762":"TJK","772":"TKL","795":"TKM","626":"TLS","776":"TON","780":"TTO","788":"TUN","792":"TUR","798":"TUV","158":"TWN","834":"TZA","800":"UGA","804":"UKR","581":"UMI","858":"URY","840":"USA","860":"UZB","336":"VAT","670":"VCT","862":"VEN","092":"VGB","850":"VIR","704":"VNM","548":"VUT","876":"WLF","882":"WSM","887":"YEM","710":"ZAF","894":"ZMB","716":"ZWE"};
+let BY_ISO3={};
 const ALIAS={"Dem. Rep. Korea":"North Korea","Korea":"South Korea","Lao PDR":"Laos","Turkey":"T\u00fcrkiye",
  "United States of America":"United States","Dem. Rep. Congo":"DR Congo","Czechia":"Czech Republic",
  "United Arab Emirates":"UAE","Trinidad and Tobago":"Trinidad & Tobago"};
@@ -270,6 +292,7 @@ function divergence(c){
 
 async function boot(){
   DATA=window.__EMBEDDED_COUNTRY_RISK__||await fetch('data/country-risk.json').then(r=>r.json());
+  BY_ISO3={}; DATA.countries.forEach(c=>{ if(c.iso3) BY_ISO3[c.iso3]=c; });
   document.getElementById('vintage').innerHTML=
     `\u26a0\ufe0f Data as of <b style="font-family:var(--mono)">${DATA.as_of}</b> \u2014 FATF and EU lists change several times a year. Verify against primary sources before operational use.`;
   document.getElementById('presets').innerHTML=Object.entries(PRESETS).map(([k,p])=>
@@ -329,7 +352,7 @@ function render(){
     if((ind.sanctions||0)>=6)f.push('<span class="flag f-sanc">SANCTIONS</span>');
     const tc=TIER[x.t.tier][0],tl=TIER[x.t.tier][1];
     const col=x.t.tier==="prohib"?"var(--prohib)":x.t.tier==="high"?"var(--crit)":x.t.tier==="med"?"var(--imp)":"var(--ok)";
-    return `<tr onclick="openCountry('${x.c.code}')">
+    return `<tr onclick="openCountry('${x.c.iso3||x.c.code}')">
       <td class="c-rank">${i+1}</td>
       <td><div class="c-name">${esc(x.c.name)}</div><div class="c-region">${esc(x.c.region)}</div></td>
       <td class="c-score" style="color:${col}">${x.s.toFixed(2)}</td>
@@ -351,28 +374,57 @@ async function loadMap(){
   try{
     const topo=window.__EMBEDDED_TOPO__||await d3.json("vendor/countries-110m.json");
     const feats=topojson.feature(topo,topo.objects.countries).features.filter(f=>f.properties.name!=="Antarctica");
-    svg.append("g").selectAll("path").data(feats).join("path")
+    const g=svg.append("g");
+    g.selectAll("path").data(feats).join("path")
       .attr("d",path).attr("stroke","var(--surface)").attr("stroke-width",.4)
       .style("cursor","pointer")
-      .on("click",(e,d)=>{const c=byName(d.properties.name);if(c)openCountry(c.code);})
+      .on("click",(e,d)=>{const c=byFeature(d);if(c)openCountry(c.iso3||c.code);})
       .append("title");
+    // Zoom & pan (scroll to zoom, drag to pan, + buttons + presets)
+    const zoom=d3.zoom().scaleExtent([1,8]).on("zoom",(e)=>{
+      g.attr("transform",e.transform);
+      g.selectAll("path").attr("stroke-width",0.4/e.transform.k);
+    });
+    svg.call(zoom);
+    window.__mapZoom={svg,zoom};
     mapReady=true;paintMap();
   }catch(e){ document.getElementById('map').style.display='none'; }
 }
-function byName(n){const k=ALIAS[n]||n;return DATA.countries.find(c=>c.name===k);}
+function mapZoomTo(region){
+  if(!window.__mapZoom) return;
+  const {svg,zoom}=window.__mapZoom;
+  // viewBox is 0 0 900 420; presets are [translateX,translateY,scale]
+  const P={world:[0,0,1], europe:[-780,-180,3.2], africa:[-560,-330,2.4], asia:[-1050,-250,2.6], americas:[-120,-260,2.2]};
+  const t=P[region]||P.world;
+  svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(t[0],t[1]).scale(t[2]));
+}
+function mapZoomStep(f){
+  if(!window.__mapZoom) return;
+  const {svg,zoom}=window.__mapZoom;
+  svg.transition().duration(250).call(zoom.scaleBy, f);
+}
+// La carte porte le code ISO numérique sur chaque pays. On joint là-dessus
+// (exact), et on ne retombe sur le nom que si le code manque.
+function byFeature(d){
+  const iso = N3[String(d.id).padStart(3,"0")];
+  if(iso && BY_ISO3[iso]) return BY_ISO3[iso];
+  const n = d.properties && d.properties.name;
+  const k = ALIAS[n] || n;
+  return DATA.countries.find(c=>c.name===k);
+}
 function paintMap(){
   if(!mapReady||!DATA)return;
   const layer=document.getElementById("layer").value;
   const sc=d3.scaleLinear().domain([0,2.5,5,7.5,10]).range(RAMP).clamp(true);
   d3.select("#map").selectAll("path").attr("fill",d=>{
-    const c=byName(d.properties.name);if(!c)return NODATA;
+    const c=byFeature(d);if(!c)return NODATA;
     if(layer==="rating"){const t=tierOf(c);
       return t.tier==="prohib"?PROHIB:t.tier==="low"?"#2EBD85":t.tier==="med"?"#E3A008":"#F0616D";}
     if(layer==="listing"){const i=c.indicators;
       return i.fatf==="black"?PROHIB:i.fatf==="grey"?"#E3A008":i.eu_hrtc?"#E3701A":"#2EBD85";}
     const v=risk(c,layer);return v==null?NODATA:sc(v);
   }).select("title").text(d=>{
-    const c=byName(d.properties.name);
+    const c=byFeature(d);
     return c?`${c.name} \u2014 ${tierOf(c).label} (${score(c).toFixed(2)})`:d.properties.name;
   });
   const L=document.getElementById("legend");
@@ -388,7 +440,7 @@ function paintMap(){
 }
 
 function openCountry(code){
-  const c=DATA.countries.find(x=>x.code===code);if(!c)return;
+  const c=BY_ISO3[code]||DATA.countries.find(x=>x.code===code);if(!c)return;
   const t=tierOf(c),s=score(c),cb=contributions(c),i=c.indicators,dv=divergence(c);
   const col=t.tier==="prohib"?"var(--prohib)":t.tier==="high"?"var(--crit)":t.tier==="med"?"var(--imp)":"var(--ok)";
   const bg=t.tier==="prohib"?"var(--prohib-bg)":t.tier==="high"?"var(--crit-bg)":t.tier==="med"?"var(--imp-bg)":"var(--ok-bg)";
@@ -520,7 +572,7 @@ function exportMethodology(){
   toastMsg("Assessment document exported (Word)");
 }
 let tT;function toastMsg(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(tT);tT=setTimeout(()=>t.style.display='none',1700);}
-function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';}
+function toggleTheme(){ const h=document.documentElement; const t=h.dataset.theme==='dark'?'light':'dark'; h.dataset.theme=t; try{localStorage.setItem('regradar-theme',t);}catch(e){} }
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 boot();
 </script>

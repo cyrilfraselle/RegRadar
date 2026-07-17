@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RegRadar — Obligations</title>
@@ -88,7 +91,7 @@
 
 <div class="topbar">
   <div class="wrap topbar-inner">
-    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Obligations</span></div>
+    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Belgium &amp; EU</span></div>
     <nav class="nav">
       <a href="index.html">Dashboard</a>
       <a class="active" href="#">Obligations</a>
@@ -217,7 +220,7 @@ function exportCsv(){
 
 let toastT;
 function showToast(m){ const t=document.getElementById('toast'); t.textContent=m; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',1600); }
-function toggleTheme(){ const h=document.documentElement; h.dataset.theme=h.dataset.theme==='dark'?'light':'dark'; }
+function toggleTheme(){ const h=document.documentElement; const t=h.dataset.theme==='dark'?'light':'dark'; h.dataset.theme=t; try{localStorage.setItem('regradar-theme',t);}catch(e){} }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 load();

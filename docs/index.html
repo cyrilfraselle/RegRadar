@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RegRadar — EU &amp; Belgian Regulatory Intelligence</title>
@@ -415,7 +418,7 @@ function cmdKey(e){
 function cmdSearch2(){ const r=document.querySelectorAll('.cmd-res'); r.forEach((el,i)=>el.classList.toggle('sel',i===cmdSel)); if(r[cmdSel])r[cmdSel].scrollIntoView({block:'nearest'}); }
 function cmdGo(x){ const it=cmdHits[x]; closeCmd(); const vis=getVisible(); const idx=vis.findIndex(v=>v.id===it.id); if(idx>=0)openDrawer(idx); else window.open(it.url,'_blank'); }
 
-function toggleTheme(){ const h=document.documentElement; h.dataset.theme = h.dataset.theme==='dark'?'light':'dark'; }
+function toggleTheme(){ const h=document.documentElement; const t=h.dataset.theme==='dark'?'light':'dark'; h.dataset.theme=t; try{localStorage.setItem('regradar-theme',t);}catch(e){} }
 document.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCmd();} });
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
