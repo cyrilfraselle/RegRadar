@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RegRadar — Read the Law</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
   :root {
     --bg: #0E1117; --surface: #151A21; --surface-2: #1A2029; --border: #232B36;
@@ -128,6 +129,28 @@
   #tooltip .tt-term { font-weight: 600; color: var(--purple); display: block; margin-bottom: 4px; font-size: 13px; }
   .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 16px; font-size: 13px; box-shadow: 0 8px 30px rgba(0,0,0,.3); display: none; z-index: 210; }
   .loading { padding: 60px 20px; text-align: center; color: var(--text-3); }
+
+.topbar .topbar-inner{max-width:1280px;}
+  .law-sticky { position: sticky; top: 56px; z-index: 10; background: var(--bg); padding: 12px 0 10px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+  .art-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 14px 0; }
+  .art-nav-btn { font-size: 13px; padding: 8px 14px; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: var(--radius-sm); cursor: pointer; font-weight: 500; }
+  .art-nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .art-nav-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .art-nav-pos { font-size: 12px; color: var(--text-3); font-family: var(--mono); }
+  .defs-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .defs-toggle { font-size: 10px; color: var(--text-3); background: none; border: none; cursor: pointer; }
+  .defs-toggle:hover { color: var(--accent); }
+  .defs-show { position: fixed; right: 0; top: 50%; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; background: var(--accent); color: #fff; border: none; padding: 12px 8px; border-radius: 8px 0 0 8px; cursor: pointer; font-size: 12px; font-weight: 600; z-index: 20; }
+  .credit { text-align: center; font-size: 11px; color: var(--text-3); padding: 20px 0 40px; }
+  .credit a { color: var(--text-2); text-decoration: underline; }
+  .search-results { display: none; }
+  .search-results.on { display: block; margin: 8px 0 4px; }
+  .search-result { font-size: 13px; padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 5px; cursor: pointer; background: var(--surface); }
+  .search-result:hover { border-color: var(--accent); }
+  .search-result b { color: var(--accent); }
+  .search-result .sr-snip { color: var(--text-3); font-size: 11px; margin-top: 2px; }
+  .reader.defs-hidden { grid-template-columns: 240px 1fr; }
+  .article-chapter { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -159,14 +182,32 @@
       <div id="toc"></div>
     </aside>
     <div class="law-body">
-      <span class="back-link" onclick="closeReader()">← Back to library</span>
-      <div class="law-header" id="lawHeader"></div>
-      <input class="reader-search" id="readerSearch" placeholder="Search within this regulation…" oninput="searchInLaw()">
+      <div class="law-sticky" id="lawSticky">
+        <span class="back-link" onclick="closeReader()">← Library</span>
+        <div class="law-header" id="lawHeader"></div>
+      </div>
+      <input class="reader-search" id="readerSearch" placeholder="Search this regulation (jumps to matching articles)…" oninput="searchInLaw()" autocomplete="off">
+      <div id="searchResults" class="search-results"></div>
+      <div class="art-nav" id="artNavTop">
+        <button class="art-nav-btn" id="prevBtnTop" onclick="navArticle(-1)">← Previous</button>
+        <span class="art-nav-pos" id="artPosTop"></span>
+        <button class="art-nav-btn" id="nextBtnTop" onclick="navArticle(1)">Next →</button>
+      </div>
       <div id="articles"></div>
+      <div class="art-nav" id="artNavBottom">
+        <button class="art-nav-btn" onclick="navArticle(-1)">← Previous</button>
+        <button class="art-nav-btn" onclick="navArticle(1)">Next →</button>
+      </div>
     </div>
-    <aside class="aside-defs"><h3>Defined terms</h3><div id="defs"></div></aside>
+    <aside class="aside-defs" id="asideDefs">
+      <div class="defs-head"><h3>Defined terms</h3><button class="defs-toggle" onclick="toggleDefs()">hide</button></div>
+      <div id="defs"></div>
+    </aside>
   </div>
+  <button class="defs-show" id="defsShow" onclick="toggleDefs()" style="display:none">Defined terms ›</button>
 </div>
+
+<div class="credit">Reader design inspired by <a href="https://legalviz.eu/" target="_blank" rel="noopener">legalviz.eu</a></div>
 
 <div id="tooltip"></div>
 <div class="toast" id="toast"></div>
@@ -226,6 +267,7 @@ async function openLaw(celex, jumpArt, lang){
     document.getElementById('reader').classList.add('open');
     window.scrollTo(0,0);
     renderHeader(); renderTOC(); renderArticles(); renderDefs();
+    try{ if(localStorage.getItem('regradar-defs-hidden')==='1' && !DEFS_HIDDEN) toggleDefs(); }catch(e){}
     history.replaceState(null,'',`?celex=${celex}${CURLANG!=='EN'?'&lang='+CURLANG:''}`);
     if(jumpArt) setTimeout(()=>jumpTo(jumpArt), 200);
   }catch(e){ showToast('Could not load this regulation.'); }
@@ -234,18 +276,13 @@ async function openLaw(celex, jumpArt, lang){
 // Switch language while keeping the current article in view
 async function switchLang(lang){
   if(lang===CURLANG || !LANGS.includes(lang) || !CURCELEX) return;
-  // Remember which article is near the top
-  let anchorArt=null, minDist=Infinity;
-  document.querySelectorAll('.article').forEach(a=>{
-    const d=Math.abs(a.getBoundingClientRect().top-80);
-    if(d<minDist){ minDist=d; anchorArt=a.id.replace('art-',''); }
-  });
+  const keep=CUR_ART;  // stay on the same article across languages
   CURLANG=lang;
   LAW = await fetchLaw(CURCELEX, lang);
   DEFS = LAW.definitions || [];
+  CUR_ART=keep;
   renderHeader(); renderTOC(); renderArticles(); renderDefs();
   history.replaceState(null,'',`?celex=${CURCELEX}${lang!=='EN'?'&lang='+lang:''}`);
-  if(anchorArt) setTimeout(()=>{ const el=document.getElementById('art-'+anchorArt); if(el) el.scrollIntoView({block:'start'}); },50);
 }
 function closeReader(){
   document.getElementById('reader').classList.remove('open');
@@ -310,24 +347,67 @@ function toggleAllChapters(){
   document.querySelector('.toc-toggle-all').textContent = allCollapsed?'expand all':'collapse all';
 }
 
-function renderArticles(){
+let CUR_ART = null;        // id of the currently displayed article
+let ART_ORDER = [];        // flat ordered list of article ids
+
+function buildArtOrder(){
   const chapters=LAW.chapters||[], arts=LAW.articles||[];
-  const renderArt = a => `<div class="article" id="art-${a.id}">
+  const byId=Object.fromEntries(arts.map(a=>[a.id,a]));
+  ART_ORDER=[];
+  if(chapters.length){
+    chapters.forEach(ch=>(ch.articles||[]).forEach(aid=>{ if(byId[aid]) ART_ORDER.push(aid); }));
+    // include any orphans not in a chapter
+    arts.forEach(a=>{ if(!ART_ORDER.includes(a.id)) ART_ORDER.push(a.id); });
+  } else {
+    ART_ORDER = arts.map(a=>a.id);
+  }
+}
+
+function renderArticles(){
+  buildArtOrder();
+  // show first article by default (or keep current if still valid)
+  const target = (CUR_ART && ART_ORDER.includes(CUR_ART)) ? CUR_ART : ART_ORDER[0];
+  showArticle(target);
+}
+
+function showArticle(id){
+  const a=(LAW.articles||[]).find(x=>x.id===id);
+  if(!a){ return; }
+  CUR_ART=id;
+  const chapterOf = (LAW.chapters||[]).find(ch=>(ch.articles||[]).includes(id));
+  const chapLine = chapterOf ? `<div class="article-chapter">Chapter ${esc(chapterOf.id)} — ${esc(chapterOf.title)}</div>` : '';
+  document.getElementById('articles').innerHTML = `
+    <div class="article" id="art-${a.id}">
+      ${chapLine}
       <div class="article-head"><span class="article-num">ARTICLE ${a.id}</span><span class="article-link" onclick="copyArtLink('${a.id}')">🔗 copy link</span></div>
       <h2>${esc(a.title)}</h2>
       <div class="article-text">${renderText(a)}</div>
       ${(a.refs&&a.refs.length)?`<div class="article-refs"><span class="ref-label">Refers to:</span>${a.refs.map(r=>`<span class="ref-chip" onclick="jumpTo('${r}')">Art. ${r}</span>`).join('')}</div>`:''}
     </div>`;
-  let h='';
-  if(chapters.length){
-    const byId=Object.fromEntries(arts.map(a=>[a.id,a]));
-    chapters.forEach((ch,ci)=>{
-      h+=`<div class="chapter-head" id="chhead-${ci}">Chapter ${esc(ch.id)} — ${esc(ch.title)}</div>`;
-      (ch.articles||[]).forEach(aid=>{ if(byId[aid]) h+=renderArt(byId[aid]); });
-    });
-  } else arts.forEach(a=>h+=renderArt(a));
-  document.getElementById('articles').innerHTML=h;
-  setupScrollSpy();
+  // update nav position + button states
+  const idx=ART_ORDER.indexOf(id);
+  const pos=`Article ${idx+1} of ${ART_ORDER.length}`;
+  document.getElementById('artPosTop').textContent=pos;
+  ['prevBtnTop'].forEach(b=>document.getElementById(b).disabled = idx<=0);
+  ['nextBtnTop'].forEach(b=>document.getElementById(b).disabled = idx>=ART_ORDER.length-1);
+  document.querySelectorAll('#artNavBottom .art-nav-btn')[0].disabled = idx<=0;
+  document.querySelectorAll('#artNavBottom .art-nav-btn')[1].disabled = idx>=ART_ORDER.length-1;
+  // highlight in TOC
+  document.querySelectorAll('.toc-art').forEach(t=>t.classList.toggle('active',t.dataset.art===id));
+  // expand the chapter containing this article in the TOC
+  if(chapterOf){
+    const ci=(LAW.chapters||[]).indexOf(chapterOf);
+    const el=document.getElementById('tocch-'+ci);
+    if(el) el.classList.remove('collapsed');
+  }
+  // scroll body to top of article
+  document.querySelector('.law-body').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function navArticle(dir){
+  const idx=ART_ORDER.indexOf(CUR_ART);
+  const next=idx+dir;
+  if(next>=0 && next<ART_ORDER.length) showArticle(ART_ORDER[next]);
 }
 
 function renderText(a){
@@ -352,27 +432,54 @@ function renderDefs(){
 }
 
 function jumpTo(id){
-  const el=document.getElementById('art-'+id);
-  if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); el.style.background='var(--accent-bg)'; setTimeout(()=>el.style.background='',1200); }
+  if(ART_ORDER.includes(id)){ showArticle(id); }
+  clearSearch();
 }
 function copyArtLink(id){
   const url=`${location.origin}${location.pathname}?celex=${LAW.celex}&art=${id}`;
   navigator.clipboard.writeText(url).then(()=>showToast(`Link to Article ${id} copied`)).catch(()=>showToast('Copy failed'));
 }
-function setupScrollSpy(){
-  const arts=document.querySelectorAll('.article');
-  const tocLinks=document.querySelectorAll('.toc-art');
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(en=>{ if(en.isIntersecting){ const id=en.target.id.replace('art-',''); tocLinks.forEach(t=>t.classList.toggle('active',t.dataset.art===id)); }});
-  },{rootMargin:'-76px 0px -70% 0px'});
-  arts.forEach(a=>obs.observe(a));
-}
+
 function searchInLaw(){
   const q=document.getElementById('readerSearch').value.toLowerCase().trim();
-  document.querySelectorAll('.article').forEach(art=>{
-    art.style.display=(!q||art.textContent.toLowerCase().includes(q))?'block':'none';
+  const box=document.getElementById('searchResults');
+  if(!q){ clearSearch(); return; }
+  const hits=[];
+  (LAW.articles||[]).forEach(a=>{
+    const hay=(a.title+' '+a.text).toLowerCase();
+    const pos=hay.indexOf(q);
+    if(pos>=0){
+      const snip=a.text.slice(Math.max(0,pos-30),pos+60).trim();
+      hits.push({id:a.id,title:a.title,snip});
+    }
   });
+  box.className='search-results on';
+  box.innerHTML = hits.length
+    ? hits.slice(0,40).map(h=>`<div class="search-result" onclick="jumpTo('${h.id}')"><b>Art. ${h.id}</b> — ${esc(h.title)}<div class="sr-snip">…${esc(h.snip)}…</div></div>`).join('')
+    : `<div class="search-result" style="cursor:default">No article matches “${esc(q)}”.</div>`;
 }
+function clearSearch(){
+  const box=document.getElementById('searchResults');
+  if(box){ box.className='search-results'; box.innerHTML=''; }
+  const inp=document.getElementById('readerSearch'); if(inp) inp.value='';
+}
+
+let DEFS_HIDDEN=false;
+function toggleDefs(){
+  DEFS_HIDDEN=!DEFS_HIDDEN;
+  document.getElementById('asideDefs').style.display = DEFS_HIDDEN?'none':'block';
+  document.getElementById('defsShow').style.display = DEFS_HIDDEN?'block':'none';
+  document.getElementById('reader').classList.toggle('defs-hidden',DEFS_HIDDEN);
+  try{ localStorage.setItem('regradar-defs-hidden', DEFS_HIDDEN?'1':'0'); }catch(e){}
+}
+
+// keyboard arrows for prev/next
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('reader').style.display==='none') return;
+  if(e.target.tagName==='INPUT') return;
+  if(e.key==='ArrowLeft') navArticle(-1);
+  if(e.key==='ArrowRight') navArticle(1);
+});
 
 const tt=document.getElementById('tooltip');
 document.addEventListener('mouseover',e=>{ const t=e.target.closest('.term'); if(t){ const d=DEFS[t.dataset.def]; if(d){ tt.innerHTML=`<span class="tt-term">${esc(d.term)}</span>${esc(d.definition)}`; tt.style.display='block'; posTT(e);}}});
