@@ -1,1 +1,25 @@
+name: Parse Laws
 
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 1 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - run: python parse_laws.py
+      - run: |
+          git config user.name "regradar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/data/laws/
+          git diff --staged --quiet || (git commit -m "refresh law data" && git push)
