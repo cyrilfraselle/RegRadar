@@ -1,55 +1,48 @@
 {
-  "last_updated": "2026-07-18T07:43:36.564652",
+  "last_updated": "2026-07-19T08:10:29.317857",
   "last_run_counts": {
-    "total": 18,
-    "critical": 1,
-    "important": 16,
-    "info": 1
+    "total": 3,
+    "critical": 0,
+    "important": 3,
+    "info": 0
   },
-  "archive_size": 383,
-  "exec_summary": "The European Banking Authority has published an official translation of amended guidelines on the application of the definition of default under the Capital Requirements Regulation, providing clarity for EU banks. In Belgium, there are no significant regulatory developments this week, but EU-wide, the Anti-Money Laundering Authority notes that know-your-customer failures are a top weakness for EU banks in preventing money laundering. The EBA has also consulted on draft Implementing Technical Standards amending the Implementing Regulation on benchmarking of internal models for the 2027 benchmarking exercise, and issued a final report on Regulatory Technical Standards and Implementing Technical Standards on material acquisitions, transfers, mergers and divisions under the CRD IV Directive.",
+  "archive_size": 385,
+  "exec_summary": "The European Banking Authority has not released any significant updates this week, however German prosecutors have raided a Deutsche Bank retail branch as part of a probe, highlighting increased scrutiny of financial institutions. In Belgium, there have been no major regulatory developments reported this week. The LIBRA probe has implicated several major crypto firms including Binance, Bybit, and OKX, with frozen wallets being investigated, demonstrating the need for robust anti-money laundering controls in the crypto space. The raid on Deutsche Bank's retail branch serves as a reminder of the importance of compliance with regulatory requirements, particularly in relation to anti-money laundering and know-your-customer rules.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 61
+      "days_away": 60
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 166
+      "days_away": 165
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 167
-    },
-    {
-      "date": "2027-01-01",
-      "event": "benchmarking exercise",
-      "theme": "EBA",
-      "type": "deadline",
-      "days_away": 167
+      "days_away": 166
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 176
+      "days_away": 175
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 346
+      "days_away": 345
     }
   ],
   "trends": [
