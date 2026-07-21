@@ -1,48 +1,48 @@
 {
-  "last_updated": "2026-07-20T08:51:54.512528",
+  "last_updated": "2026-07-21T08:21:50.769072",
   "last_run_counts": {
-    "total": 8,
+    "total": 4,
     "critical": 0,
-    "important": 7,
-    "info": 1
+    "important": 2,
+    "info": 2
   },
-  "archive_size": 391,
-  "exec_summary": "The European Securities and Markets Authority has added 14 new crypto-asset service providers to the MiCA register, as part of the European Union's Markets in Crypto-Assets regulation. In Belgium, KBC is under investigation for alleged goon activity related to its digital services. Meanwhile, a major global bank has overhauled its anti-money laundering compliance after a bank manager was sentenced for money laundering, highlighting the need for robust AML controls. The ESMA update is significant as it relates to the implementation of MiCA, a key EU regulation governing crypto-asset markets.",
+  "archive_size": 395,
+  "exec_summary": "The European Central Bank has released its July 2026 euro area bank lending survey, which provides insights into the lending practices of euro area banks. In Belgium, the National Bank of Belgium is likely to take into account the survey's findings when assessing the country's banking sector. Meanwhile, the European Union's new crypto regulations have come into effect, with Paymonade being one of the few crypto firms to clear the regulatory hurdles, highlighting the stringent compliance requirements for crypto firms operating in the EU. The European Commission's regulatory framework for crypto assets is expected to have a significant impact on the industry, with many firms facing challenges in meeting the new requirements.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 59
+      "days_away": 58
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 164
+      "days_away": 163
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 165
+      "days_away": 164
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 174
+      "days_away": 173
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 344
+      "days_away": 343
     }
   ],
   "trends": [
@@ -65,18 +65,18 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 3,
+      "this_week": 2,
       "avg": 8.0,
-      "pct": -62,
+      "pct": -75,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "▄██▁",
+      "spark": "▅██▁",
       "values": [
         6,
         9,
         9,
-        3
+        2
       ],
       "weeks": 4
     },
