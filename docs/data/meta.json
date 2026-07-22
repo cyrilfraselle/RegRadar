@@ -1,65 +1,113 @@
 {
-  "last_updated": "2026-07-21T08:21:50.769072",
+  "last_updated": "2026-07-22T08:22:27.626727",
   "last_run_counts": {
-    "total": 4,
+    "total": 10,
     "critical": 0,
-    "important": 2,
-    "info": 2
+    "important": 7,
+    "info": 3
   },
-  "archive_size": 395,
-  "exec_summary": "The European Central Bank has released its July 2026 euro area bank lending survey, which provides insights into the lending practices of euro area banks. In Belgium, the National Bank of Belgium is likely to take into account the survey's findings when assessing the country's banking sector. Meanwhile, the European Union's new crypto regulations have come into effect, with Paymonade being one of the few crypto firms to clear the regulatory hurdles, highlighting the stringent compliance requirements for crypto firms operating in the EU. The European Commission's regulatory framework for crypto assets is expected to have a significant impact on the industry, with many firms facing challenges in meeting the new requirements.",
+  "archive_size": 405,
+  "exec_summary": "The European Securities and Markets Authority has published a follow-up report to the peer review on the supervision of cross-border activities of investment firms, highlighting areas for improvement in EU regulatory frameworks. In Belgium, financial institutions should take note of the report's findings to ensure compliance with EU regulations. The European Central Bank has also warned that stablecoins could potentially drain deposits, despite the introduction of the Markets in Crypto-Assets regulation, emphasizing the need for vigilance in anti-money laundering and financial crime prevention. The ECB's concerns underscore the importance of robust compliance measures in the EU financial sector, particularly in light of emerging risks in the crypto and payments space.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 58
+      "days_away": 57
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 163
+      "days_away": 162
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 164
+      "days_away": 163
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 173
+      "days_away": 172
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 343
+      "days_away": 342
     }
   ],
   "trends": [
     {
       "theme": "AML/CFT",
-      "this_week": 3,
+      "this_week": 5,
       "avg": 2.0,
-      "pct": 50,
+      "pct": 150,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▄██",
+      "spark": "▁▂▄█",
       "values": [
         1,
         2,
         3,
-        3
+        5
+      ],
+      "weeks": 4
+    },
+    {
+      "theme": "MiFID/MiFIR",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.3,
+      "pct": -25,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁█▁",
+      "values": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "weeks": 4
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 1,
+      "avg": 1.3,
+      "pct": -25,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁█▁▁",
+      "values": [
+        1,
+        2,
+        1,
+        1
       ],
       "weeks": 4
     },
@@ -93,22 +141,6 @@
         1,
         1,
         3
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁█",
-      "values": [
-        1,
-        1,
-        2
       ],
       "weeks": 3
     },
@@ -187,22 +219,6 @@
         1
       ],
       "weeks": 2
-    },
-    {
-      "theme": "SFDR/ESG",
-      "this_week": 0,
-      "avg": 1.5,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁█▁",
-      "values": [
-        1,
-        2,
-        1
-      ],
-      "weeks": 3
     }
   ]
 }
