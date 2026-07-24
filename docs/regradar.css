@@ -1,0 +1,435 @@
+/* ═══════════════════════════════════════════════════════════════════
+   REGRADAR — DESIGN SYSTEM v1
+   ───────────────────────────────────────────────────────────────────
+   Grounded in the Vignelli Canon.
+
+   WHY THIS DIRECTION
+   A regulation is a network you navigate: chapters are lines, articles
+   are stops, cross-references are interchanges. Compliance work is
+   wayfinding through a legal network — which is precisely what Vignelli
+   spent his career designing (NYC Subway, Grandi Stazioni signage).
+   So the discipline is not borrowed decoration; it fits the subject.
+
+   THE RULES WE KEEP
+   · Two type sizes per surface. Heading ≈ 2× body. Everything else
+     is a weight or a colour, never a new size.
+   · Flush left. Never justified.
+   · Type hangs from a rule. 2px major, 1px minor.
+   · Colour identifies, it does not decorate. One signal blue.
+   · White space is the protagonist. Don't fill the page.
+   · Radius: 0. A record is a rectangle.
+
+   HOW TO USE
+   Add this ONE line to each page's <head>, after the existing <style>:
+       <link rel="stylesheet" href="regradar.css">
+   Existing markup and behaviour are untouched — this restyles, it does
+   not rebuild.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. TOKENS ─────────────────────────────────────────────────── */
+
+html[data-theme="light"],
+:root {
+  /* Ground & ink — neutral, not warm. Paper is white; white makes black sing. */
+  --bg:            #FAFAFA;
+  --surface:       #FFFFFF;
+  --surface-2:     #F4F5F6;
+  --border:        #E3E5E8;
+  --border-strong: #0A0A0A;
+
+  --text:   #0A0A0A;
+  --text-2: #5B6069;
+  --text-3: #8B9099;
+
+  /* Colour as identifier. Signal blue is the mark. */
+  --accent:    #0039A6;
+  --accent-bg: #EDF1F9;
+
+  /* Signals. Used for meaning only — never as decoration. */
+  --crit:    #C8320F;  --crit-bg:   #FBEDE9;
+  --imp:     #9A6B00;  --imp-bg:    #FBF3DF;
+  --ok:      #0F7B4F;  --ok-bg:     #E8F4EE;
+  --prohib:  #8C1027;  --prohib-bg: #FAE9EC;
+  --purple:  #4B2E83;  --purple-bg: #EFEBF7;
+
+  /* A record is a rectangle. */
+  --radius:    0px;
+  --radius-sm: 0px;
+
+  /* Rules — type hangs from them. */
+  --rule-major: 2px;
+  --rule-minor: 1px;
+
+  /* The house face is a grotesque. Liberation Sans keeps headless
+     renders honest instead of drifting to a rounded humanist. */
+  --font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", system-ui, sans-serif;
+  --mono: "SF Mono", ui-monospace, "IBM Plex Mono", Menlo, Consolas, monospace;
+
+  /* Two sizes, and the small print. */
+  --t-caption: 11px;
+  --t-body:    15px;
+  --t-lead:    20px;
+  --t-heading: 30px;   /* 2× body */
+  --t-display: 46px;
+
+  --gutter: 20px;      /* tight — about one line of type */
+  --ease: cubic-bezier(.2, 0, 0, 1);
+  --dur: 140ms;
+}
+
+html[data-theme="dark"] {
+  --bg:            #0A0A0A;
+  --surface:       #141414;
+  --surface-2:     #1B1B1B;
+  --border:        #282828;
+  --border-strong: #FFFFFF;
+
+  --text:   #F2F2F2;
+  --text-2: #A0A4AA;
+  --text-3: #70747A;
+
+  --accent:    #5C87E8;
+  --accent-bg: #10192E;
+
+  --crit:    #FF6B4A;  --crit-bg:   #2A1109;
+  --imp:     #E0A93A;  --imp-bg:    #241C06;
+  --ok:      #35C48A;  --ok-bg:     #062014;
+  --prohib:  #E24A63;  --prohib-bg: #2A0A11;
+  --purple:  #A98BE0;  --purple-bg: #1A1230;
+}
+
+/* ── 2. GROUND ─────────────────────────────────────────────────── */
+
+body {
+  font-family: var(--font);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Flush left. Never justified. */
+p, li, td, th, .article-text, .card, .cwhat { text-align: left; }
+
+::selection { background: var(--accent); color: #fff; }
+
+/* ── 3. SIGNAGE BAR (the topbar becomes a station sign) ────────── */
+
+.topbar {
+  background: var(--surface);
+  border-bottom: var(--rule-major) solid var(--border-strong);
+  box-shadow: none;
+}
+.topbar-inner { height: 60px; gap: 20px; }
+
+/* The mark is a square signal flag. Refined, not replaced. */
+.logo { font-size: var(--t-body); font-weight: 700; letter-spacing: -0.02em; gap: 10px; }
+.logo-mark {
+  width: 30px; height: 30px;
+  border-radius: 0;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.03em;
+}
+.logo-sub {
+  font-size: var(--t-caption);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-weight: 500;
+}
+
+/* Nav labels hang flush left; the active line is marked, not filled. */
+.nav { gap: 0; margin-left: 20px; }
+.nav a {
+  padding: 8px 14px;
+  border-radius: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  letter-spacing: -0.005em;
+  border-bottom: var(--rule-major) solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  margin-bottom: -2px;
+}
+.nav a:hover:not(.active) { background: transparent; color: var(--text); }
+.nav a.active {
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  border-bottom-color: var(--accent);
+}
+
+.icon-btn {
+  border-radius: 0;
+  border: var(--rule-minor) solid var(--border);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.icon-btn:hover { border-color: var(--border-strong); color: var(--text); }
+
+/* ── 4. TYPE: two sizes, hung from a rule ──────────────────────── */
+
+.head { padding: 40px 0 0; }
+.head h1 {
+  font-size: var(--t-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.head .sub {
+  font-size: var(--t-body);
+  color: var(--text-2);
+  margin-top: 8px;
+  max-width: 62ch;          /* measure, not full width */
+}
+
+/* Eyebrow label — the small print that names the section. */
+.eyebrow, .sect-l, .ctrl-label, .stat .l, thead th {
+  font-size: var(--t-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-3);
+}
+
+/* The recurring structural device: content hangs from a 2px rule. */
+.rule-major { border-top: var(--rule-major) solid var(--border-strong); padding-top: 12px; }
+.rule-minor { border-top: var(--rule-minor) solid var(--border); padding-top: 10px; }
+
+h2 { font-size: var(--t-lead); font-weight: 700; letter-spacing: -0.02em; }
+h3 { font-size: var(--t-body); font-weight: 700; letter-spacing: -0.01em; }
+
+/* Numerals in data positions are monospaced and tabular — columns align. */
+.stat .n, .c-score, .art-nav-pos, .cid, .dcid, .super, code, .mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ── 5. PANELS: hard rectangles, hairline rules ────────────────── */
+
+.card, .panel, .stat, .col, .law-card, .search-result,
+.delta-box, .action-box, .verbatim, .banner, .vintage {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.stat {
+  border: none;
+  border-top: var(--rule-major) solid var(--border-strong);
+  background: transparent;
+  padding: 12px 0 0;
+  min-width: 0;
+}
+.stat .n {
+  font-size: var(--t-heading);
+  font-weight: 700;
+  line-height: 1;
+}
+.stat .l { margin-top: 6px; }
+.summary { gap: var(--gutter); }
+
+.card {
+  border: var(--rule-minor) solid var(--border);
+  background: var(--surface);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.card:hover { border-color: var(--border-strong); }
+
+.col {
+  background: transparent;
+  border: none;
+  border-top: var(--rule-major) solid var(--border-strong);
+  padding: 14px 0 0;
+}
+.col-head {
+  border-bottom: none;
+  padding-bottom: 14px;
+  font-size: var(--t-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+}
+/* Signal dots become squares — primary shapes only. */
+.col-head .dot { border-radius: 0; width: 9px; height: 9px; }
+
+/* ── 6. SIGNAGE COMPONENTS (the signature) ─────────────────────── */
+
+/* Modality as a station sign: white grotesque on a signal panel. */
+.dmodal, .sign {
+  border-radius: 0;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: var(--t-caption);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  background: var(--accent);
+  color: #fff;
+}
+.sign--prohibition { background: var(--prohib); }
+.sign--permission  { background: var(--ok); }
+
+/* Chips and tags: rectangles, hairline, no fill unless they mean something. */
+.chip, .tag, .mapr {
+  border-radius: 0;
+  font-size: var(--t-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+}
+.chip { border: var(--rule-minor) solid var(--border); background: transparent; }
+
+/* Domain colour = line colour, carried on the left edge of a card.
+   Colour identifies which body of law you are standing in. */
+.line-aml        { box-shadow: inset 3px 0 0 #0039A6; }
+.line-resilience { box-shadow: inset 3px 0 0 #F04E23; }
+.line-markets    { box-shadow: inset 3px 0 0 #C9A227; }
+.line-capital    { box-shadow: inset 3px 0 0 #0A0A0A; }
+.line-payments   { box-shadow: inset 3px 0 0 #0F7B4F; }
+.line-data       { box-shadow: inset 3px 0 0 #6B6F76; }
+
+/* Verbatim law: quoted material sits behind a heavy rule, like a citation. */
+.verbatim {
+  background: var(--surface-2);
+  border-left: var(--rule-major) solid var(--accent);
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.banner, .vintage {
+  border-radius: 0;
+  border-width: var(--rule-minor);
+  border-left-width: 3px;
+  font-size: 13px;
+}
+
+/* ── 7. CONTROLS ───────────────────────────────────────────────── */
+
+select, input, textarea, button {
+  font-family: var(--font);
+  border-radius: 0;
+}
+select, input[type="text"], input[type="search"], .reader-search, textarea {
+  border: var(--rule-minor) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 14px;
+  transition: border-color var(--dur) var(--ease);
+}
+select:focus, input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.art-nav-btn, .mapz, .mapr, .btn {
+  border-radius: 0;
+  border: var(--rule-minor) solid var(--border);
+  background: var(--surface);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.art-nav-btn:hover:not(:disabled), .mapz:hover, .mapr:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+/* Keyboard focus is visible and square. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── 8. TABLES: the data grid ──────────────────────────────────── */
+
+table { border-collapse: collapse; }
+thead th {
+  background: var(--surface);
+  border-bottom: var(--rule-major) solid var(--border-strong);
+  padding: 10px 12px;
+}
+tbody td {
+  border-bottom: var(--rule-minor) solid var(--border);
+  padding: 11px 12px;
+  font-size: 14px;
+}
+tbody tr { transition: background var(--dur) var(--ease); }
+tbody tr:hover { background: var(--surface-2); }
+
+/* ── 9. READER ─────────────────────────────────────────────────── */
+
+.toc-chapter-title {
+  font-size: var(--t-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--text-2);
+}
+.toc-art {
+  border-radius: 0;
+  border-left: var(--rule-major) solid transparent;
+  padding-left: 12px;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.toc-art.active {
+  border-left-color: var(--accent);
+  color: var(--text);
+  font-weight: 700;
+  background: transparent;
+}
+.article-num, .article-chapter {
+  font-size: var(--t-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+}
+.article h2 {
+  font-size: var(--t-heading);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-top: 4px;
+}
+.article-text { font-size: 15px; line-height: 1.65; max-width: 68ch; }
+.law-sticky { border-bottom: var(--rule-major) solid var(--border-strong); }
+
+/* ── 10. MOTION — restrained, and only on arrival ──────────────── */
+
+@keyframes rr-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.head, .summary, .cols, .panel, .reader {
+  animation: rr-rise 320ms var(--ease) both;
+}
+.summary { animation-delay: 40ms; }
+.cols, .reader { animation-delay: 80ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── 11. RESPONSIVE ────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  /* Must match the base selector's specificity or the desktop scale wins. */
+  html[data-theme="light"], html[data-theme="dark"], :root {
+    --t-heading: 24px;
+    --t-display: 30px;
+    --t-lead: 17px;
+    --gutter: 14px;
+  }
+  .topbar-inner { height: 54px; gap: 12px; }
+  .nav { margin-left: 0; overflow-x: auto; }
+  .nav a { padding: 8px 10px; white-space: nowrap; }
+  .logo-sub { display: none; }
+  .head { padding-top: 24px; }
+}
