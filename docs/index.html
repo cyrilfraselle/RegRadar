@@ -1,432 +1,521 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRadar — Signal</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <script>
-(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+(function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RegRadar — EU &amp; Belgian Regulatory Intelligence</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
-  :root {
-    --bg: #0E1117; --surface: #151A21; --surface-2: #1A2029; --border: #232B36;
-    --border-strong: #2E3845; --text: #E6EDF3; --text-2: #9AA7B4; --text-3: #5E6B79;
-    --accent: #6D8EE6; --accent-bg: #182236;
-    --crit: #F0616D; --crit-bg: #2A1518; --imp: #E3A008; --imp-bg: #2A2008;
-    --info: #5DA9E9; --info-bg: #14202E; --ok: #2EBD85; --ok-bg: #0F2018;
-    --purple: #9D7BD8; --teal: #4FB38A;
-    --radius: 10px; --radius-sm: 6px;
-    --font: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    --mono: 'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F4F5F6; --border:#E3E5E8; --border-strong:#0A0A0A;
+    --text:#0A0A0A; --text-2:#5B6069; --text-3:#8B9099;
+    --accent:#0039A6;
+    --crit:#C8320F; --imp:#9A6B00; --ok:#0F7B4F; --info:#0039A6;
+    --grid-line:rgba(10,10,10,.10); --sweep:rgba(0,57,166,.18);
+    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"IBM Plex Mono",Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.2,0,0,1);
   }
-  html[data-theme="light"] {
-    --bg: #F7F8FA; --surface: #FFFFFF; --surface-2: #F8FAFC; --border: #E6E9EF;
-    --border-strong: #D5DAE2; --text: #16202C; --text-2: #5A6675; --text-3: #94A0AE;
-    --accent: #2D5FCC; --accent-bg: #EDF2FD;
-    --crit: #C13515; --crit-bg: #FCEEE9; --imp: #B25E09; --imp-bg: #FBF1E2;
-    --info: #1E6FB8; --info-bg: #EAF2FB; --ok: #0F8A5F; --ok-bg: #E7F5EE;
-    --purple: #6B2D8B; --teal: #0F6E56;
+  html[data-theme="dark"]{
+    --bg:#08090B; --surface:#0E1013; --surface-2:#14171B; --border:#20242A; --border-strong:#F2F2F2;
+    --text:#F2F4F6; --text-2:#98A0AA; --text-3:#666E78;
+    --accent:#4D8DFF;
+    --crit:#FF5C3D; --imp:#FFB93D; --ok:#2DD48F; --info:#4D8DFF;
+    --grid-line:rgba(77,141,255,.16); --sweep:rgba(77,141,255,.22);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.5;
+    letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
 
-  /* Top bar */
-  .topbar { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); }
-  .topbar-inner { display: flex; align-items: center; gap: 16px; height: 56px; }
-  .logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
-  .logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
-  .logo-sub { font-size: 11px; color: var(--text-3); font-weight: 400; letter-spacing: 0.04em; }
-  .nav { display: flex; gap: 2px; margin-left: 8px; }
-  .nav a { padding: 6px 13px; border-radius: var(--radius-sm); font-size: 13px; color: var(--text-2); font-weight: 500; }
-  .nav a.active { background: var(--accent-bg); color: var(--accent); }
-  .nav a:hover:not(.active) { background: var(--surface-2); }
-  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-  .cmdk { display: flex; align-items: center; gap: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 11px; color: var(--text-3); font-size: 13px; cursor: pointer; min-width: 200px; }
-  .cmdk kbd { margin-left: auto; font-family: var(--mono); font-size: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; color: var(--text-3); }
-  .icon-btn { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); color: var(--text-2); cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
-  .icon-btn:hover { color: var(--text); border-color: var(--border-strong); }
-  .updated { font-size: 11px; color: var(--text-3); font-family: var(--mono); }
+  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
+  .topbar-inner{display:flex;align-items:center;gap:20px;height:60px;max-width:1280px;margin:0 auto;padding:0 24px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+  .logo-mark{width:30px;height:30px;background:var(--accent);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:17px}
+  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
+  .nav{display:flex;margin-left:16px}
+  .nav a{padding:8px 14px;font-size:13px;font-weight:500;color:var(--text-2);
+    border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 140ms var(--ease),border-color 140ms var(--ease)}
+  .nav a:hover:not(.active){color:var(--text)}
+  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
+  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .kbd{font-family:var(--mono);font-size:11px;color:var(--text-3);border:1px solid var(--border);
+    padding:4px 8px;cursor:pointer;transition:border-color 140ms var(--ease),color 140ms var(--ease)}
+  .kbd:hover{border-color:var(--accent);color:var(--accent)}
+  .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;color:var(--text-2);
+    cursor:pointer;font-size:15px;transition:border-color 140ms var(--ease),color 140ms var(--ease)}
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-  /* Layout */
-  .grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; padding: 20px 0 60px; }
-  @media (max-width: 920px) { .grid { grid-template-columns: 1fr; } .side { order: -1; } }
+  .console{display:grid;grid-template-columns:minmax(320px,420px) 1fr;gap:44px;padding:36px 0 30px;align-items:start}
+  @media(max-width:940px){.console{grid-template-columns:1fr;gap:28px}}
 
-  /* Section heading */
-  .sec-h { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px; }
-  .sec-h .count { background: var(--surface-2); color: var(--text-2); border-radius: 10px; padding: 1px 8px; font-size: 10px; }
+  .scope svg{display:block;width:100%;height:auto}
+  .scope-cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;
+    border-top:1px solid var(--border);padding-top:9px}
+  .scope-cap span{font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.09em;font-weight:700}
+  .scope-cap .live{color:var(--ok);display:flex;align-items:center;gap:6px}
+  .scope-cap .live i{width:6px;height:6px;background:var(--ok);display:block;animation:blink 2.4s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-  /* Briefing */
-  .briefing { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 18px; }
-  .briefing-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .briefing-head .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
-  .briefing-head h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
-  .briefing p { font-size: 14px; color: var(--text); line-height: 1.65; }
+  .readout .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+  .readout h1{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1.05;margin-top:12px}
+  .readout .stamp{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:10px}
 
-  /* Stat strip */
-  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 18px; }
-  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
-  .stat .n { font-size: 26px; font-weight: 700; font-family: var(--mono); line-height: 1; }
-  .stat .l { font-size: 11px; color: var(--text-3); margin-top: 5px; }
+  .gauges{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+    border-top:2px solid var(--border-strong);border-bottom:1px solid var(--border);margin:22px 0}
+  .gauge{background:var(--bg);padding:14px 0 12px}
+  .gauge .n{font-family:var(--mono);font-size:30px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .gauge .l{font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.09em;font-weight:700;margin-top:7px}
+  .gauge.crit .n{color:var(--crit)} .gauge.imp .n{color:var(--imp)}
 
-  /* Filter bar */
-  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; align-items: center; }
-  .chip { font-size: 12px; padding: 5px 11px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; font-weight: 500; user-select: none; }
-  .chip:hover { border-color: var(--border-strong); color: var(--text); }
-  .chip.on { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
-  .filter-label { font-size: 11px; color: var(--text-3); margin-right: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .filter-sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+  .brief{border-left:2px solid var(--accent);padding:2px 0 2px 16px}
+  .brief .bl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-bottom:7px}
+  .brief p{font-size:14px;line-height:1.6;color:var(--text-2);max-width:62ch}
+  .brief button{margin-top:12px;background:transparent;border:1px solid var(--border);color:var(--text-2);
+    font-family:var(--font);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    padding:7px 12px;cursor:pointer;transition:border-color 140ms var(--ease),color 140ms var(--ease)}
+  .brief button:hover{border-color:var(--accent);color:var(--accent)}
 
-  /* Feed cards */
-  .feed { display: flex; flex-direction: column; gap: 10px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; transition: border-color .12s; position: relative; }
-  .card:hover { border-color: var(--border-strong); }
-  .card.c3 { border-left: 3px solid var(--crit); }
-  .card.c2 { border-left: 3px solid var(--imp); }
-  .card.c1 { border-left: 3px solid var(--info); }
-  .card-top { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; flex-wrap: wrap; }
-  .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
-  .tag-crit { background: var(--crit-bg); color: var(--crit); }
-  .tag-imp { background: var(--imp-bg); color: var(--imp); }
-  .tag-info { background: var(--info-bg); color: var(--info); }
-  .tag-src { background: var(--surface-2); color: var(--text-2); }
-  .tag-theme { background: var(--surface-2); color: var(--purple); }
-  .tag-jur { background: var(--surface-2); color: var(--text-2); font-family: var(--mono); }
-  .impact-score { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 4px; }
-  .impact-dots { display: inline-flex; gap: 2px; }
-  .impact-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--border-strong); display: inline-block; }
-  .impact-dots i.fill3 { background: var(--crit); } .impact-dots i.fill2 { background: var(--imp); } .impact-dots i.fill1 { background: var(--info); }
-  .card h3 { font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 5px; }
-  .card .sum { font-size: 13px; color: var(--text-2); line-height: 1.55; }
-  .card .meta-row { display: flex; align-items: center; gap: 12px; margin-top: 9px; font-size: 11px; color: var(--text-3); flex-wrap: wrap; }
-  .card .ent { display: flex; gap: 4px; flex-wrap: wrap; }
-  .ent-pill { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
-  .deadline-flag { color: var(--crit); font-weight: 600; }
-  .action-row { margin-top: 8px; background: var(--imp-bg); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px; color: var(--imp); display: none; }
-  .action-row.show { display: block; }
-  .action-row b { font-weight: 700; }
+  .bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:2px solid var(--border-strong);
+    padding:14px 0;margin-top:8px}
+  .bar .bl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-right:4px}
+  .fchip{font-size:12px;font-weight:600;padding:5px 11px;border:1px solid var(--border);color:var(--text-2);
+    cursor:pointer;transition:all 140ms var(--ease);white-space:nowrap}
+  .fchip:hover{border-color:var(--text-3);color:var(--text)}
+  .fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .fcount{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-3);font-variant-numeric:tabular-nums}
 
-  /* Sidebar */
-  .side { display: flex; flex-direction: column; gap: 18px; }
-  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 16px; }
-  .panel h3 { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
-  /* Timeline */
-  .tl-item { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
-  .tl-item:last-child { border-bottom: none; }
-  .tl-date { font-family: var(--mono); font-size: 11px; color: var(--text-2); white-space: nowrap; min-width: 52px; }
-  .tl-body { flex: 1; }
-  .tl-ev { font-size: 12px; color: var(--text); line-height: 1.4; }
-  .tl-away { font-size: 10px; font-family: var(--mono); margin-top: 2px; }
-  .away-soon { color: var(--crit); } .away-mid { color: var(--imp); } .away-far { color: var(--text-3); }
-  /* Trends */
-  .tr-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
-  .tr-theme { font-size: 12px; flex: 1; }
-  .tr-spark { font-family: var(--mono); font-size: 13px; letter-spacing: 1px; color: var(--text-2); }
-  .tr-badge { font-size: 10px; font-weight: 700; font-family: var(--mono); min-width: 26px; text-align: right; }
-  .tr-rising { color: var(--crit); } .tr-cooling { color: var(--info); } .tr-stable { color: var(--text-3); }
-  /* Heatmap */
-  .heat-wrap { overflow-x: auto; }
-  .heat { border-collapse: collapse; font-size: 11px; width: 100%; }
-  .heat th { font-weight: 500; color: var(--text-3); padding: 4px 6px; text-align: center; font-size: 10px; }
-  .heat td.lbl { color: var(--text-2); text-align: left; padding: 4px 8px 4px 0; white-space: nowrap; font-size: 11px; }
-  .heat td.cell { width: 26px; height: 24px; text-align: center; border-radius: 4px; font-family: var(--mono); font-size: 10px; color: var(--text); }
+  .feed{border-top:1px solid var(--border)}
+  .sig{display:grid;grid-template-columns:16px 76px 46px 1fr auto;gap:16px;align-items:baseline;
+    padding:15px 0;border-bottom:1px solid var(--border);cursor:pointer;
+    transition:background 140ms var(--ease)}
+  .sig:hover{background:var(--surface-2)}
+  .sig:hover .arrow{opacity:1;transform:translateX(0)}
+  .sig .lamp{width:8px;height:8px;position:relative;top:5px}
+  .sig .src{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-2);
+    text-transform:uppercase;position:relative;top:1px}
+  .sig .age{font-family:var(--mono);font-size:11px;color:var(--text-3);font-variant-numeric:tabular-nums;position:relative;top:1px}
+  .sig .body h3{font-size:15px;font-weight:600;line-height:1.35;letter-spacing:-.01em}
+  .sig .body p{font-size:13px;color:var(--text-2);line-height:1.5;margin-top:5px;max-width:76ch}
+  .sig .meta{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+  .tg{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;
+    border:1px solid var(--border);color:var(--text-3)}
+  .tg.due{border-color:var(--crit);color:var(--crit)}
+  .arrow{font-family:var(--mono);color:var(--accent);opacity:0;transform:translateX(-4px);
+    transition:all 140ms var(--ease);position:relative;top:2px}
+  .empty{padding:44px 0;text-align:center;color:var(--text-3);font-size:14px}
 
-  /* Command palette */
-  .cmd-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 100; align-items: flex-start; justify-content: center; padding-top: 12vh; }
-  .cmd-overlay.open { display: flex; }
-  .cmd-box { width: 90%; max-width: 560px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
-  .cmd-input { width: 100%; border: none; background: transparent; padding: 16px 18px; font-size: 16px; color: var(--text); outline: none; border-bottom: 1px solid var(--border); font-family: var(--font); }
-  .cmd-results { max-height: 50vh; overflow-y: auto; }
-  .cmd-res { padding: 11px 18px; cursor: pointer; border-bottom: 1px solid var(--border); }
-  .cmd-res:hover, .cmd-res.sel { background: var(--surface-2); }
-  .cmd-res .t { font-size: 13px; font-weight: 500; }
-  .cmd-res .m { font-size: 11px; color: var(--text-3); margin-top: 2px; }
-  .cmd-empty { padding: 20px 18px; color: var(--text-3); font-size: 13px; text-align: center; }
+  .ov{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity 160ms;z-index:100}
+  .ov.on{opacity:1;pointer-events:auto}
+  .dw{position:fixed;top:0;right:0;height:100%;width:min(580px,94vw);background:var(--bg);
+    border-left:2px solid var(--border-strong);transform:translateX(100%);transition:transform 200ms var(--ease);
+    z-index:101;overflow-y:auto}
+  .dw.on{transform:none}
+  .dw-in{padding:26px 28px 70px;position:relative}
+  .dw .x{position:absolute;top:16px;right:18px;font-size:22px;color:var(--text-3);cursor:pointer;background:none;border:none}
+  .dw h2{font-size:22px;font-weight:700;letter-spacing:-.025em;line-height:1.2;margin:8px 0 12px;padding-right:34px}
+  .dsec{margin-top:20px;border-top:1px solid var(--border);padding-top:12px}
+  .dsec .dl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-bottom:8px}
+  .dsec p{font-size:14px;line-height:1.6;color:var(--text-2)}
+  .dsec.act{border-top:2px solid var(--accent)}
+  .dsec.act p{color:var(--text)}
+  .dlink{display:inline-block;margin-top:20px;font-size:11px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px}
 
-  /* Drawer */
-  .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 90; }
-  .drawer-overlay.open { display: block; }
-  .drawer { position: fixed; top: 0; right: 0; height: 100%; width: 460px; max-width: 92vw; background: var(--surface); border-left: 1px solid var(--border-strong); z-index: 91; transform: translateX(100%); transition: transform .22s ease; overflow-y: auto; }
-  .drawer.open { transform: translateX(0); }
-  .drawer-pad { padding: 22px 24px; }
-  .drawer h2 { font-size: 17px; line-height: 1.35; margin: 10px 0 12px; }
-  .drawer .block { margin-top: 16px; }
-  .drawer .block-h { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
-  .drawer .block p { font-size: 13px; color: var(--text); line-height: 1.6; }
-  .drawer-close { position: absolute; top: 16px; right: 18px; font-size: 20px; color: var(--text-3); cursor: pointer; background: none; border: none; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text); cursor: pointer; }
-  .btn:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .cmd{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:120;padding-top:14vh}
+  .cmd.on{display:block}
+  .cmd-box{max-width:600px;margin:0 auto;background:var(--surface);border:2px solid var(--border-strong)}
+  .cmd input{width:100%;padding:16px 18px;border:none;border-bottom:1px solid var(--border);
+    background:transparent;color:var(--text);font-size:16px;font-family:var(--font);outline:none}
+  .cmd-res{max-height:50vh;overflow-y:auto}
+  .cmd-res div{padding:11px 18px;font-size:14px;cursor:pointer;border-bottom:1px solid var(--border);color:var(--text-2)}
+  .cmd-res div:hover,.cmd-res div.sel{background:var(--accent);color:#fff}
 
-  .empty { text-align: center; padding: 40px 20px; color: var(--text-3); font-size: 14px; }
-  .loading { text-align: center; padding: 60px 20px; color: var(--text-3); }
+  footer{border-top:2px solid var(--border-strong);margin-top:34px;padding:20px 0 50px;
+    font-size:10px;color:var(--text-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    text-transform:uppercase;letter-spacing:.08em;font-weight:700}
 
-.topbar .topbar-inner{max-width:1280px;}
+  @keyframes pulse{0%,90%{opacity:.5}95%{opacity:1}100%{opacity:.5}}
+  @keyframes rotate{to{transform:rotate(360deg)}}
+  #sweep{animation:rotate 8s linear infinite;transform-origin:200px 200px}
+  .blip{animation:pulse 8s linear infinite}
+
+  @media(prefers-reduced-motion:reduce){
+    #sweep,.blip,.live i{animation:none!important}
+    *,*::before,*::after{transition-duration:.01ms!important}
+  }
+  @media(max-width:720px){
+    .readout h1{font-size:26px}
+    .gauges{grid-template-columns:repeat(2,1fr)}
+    .sig{grid-template-columns:14px 1fr;gap:10px}
+    .sig .src,.sig .age,.arrow{display:none}
+    .nav{overflow-x:auto;margin-left:0} .logo-sub{display:none}
+  }
 </style>
-
-  <link rel="stylesheet" href="regradar.css">
 </head>
 <body>
 
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Belgium &amp; EU</span></div>
-    <nav class="nav">
-      <a class="active" href="#">Dashboard</a>
-      <a href="obligations.html">Obligations</a>
-      <a href="extractor.html">Extractor</a>
-      <a href="law.html">Read the Law</a>
-      <a href="country-risk.html">Country Risk</a>
-    </nav>
-    <div class="topbar-right">
-      <div class="cmdk" onclick="openCmd()"><span>Search…</span><kbd>⌘K</kbd></div>
-      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">◐</button>
-    </div>
+<div class="topbar"><div class="topbar-inner">
+  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Belgium &amp; EU</span></div>
+  <nav class="nav">
+    <a href="index.html" class="active">Signal</a>
+    <a href="law.html">Read the Law</a>
+    <a href="country-risk.html">Country Risk</a>
+    <a href="obligations.html">Obligations</a>
+    <a href="extractor.html">Extractor</a>
+  </nav>
+  <div class="topbar-right">
+    <span class="kbd" onclick="openCmd()">⌘K</span>
+    <button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button>
   </div>
-</div>
+</div></div>
 
 <div class="wrap">
-  <div class="grid">
-    <main>
-      <div id="briefing"></div>
-      <div class="stats" id="stats"></div>
 
-      <div class="sec-h">AI-ranked feed <span class="count" id="feedCount">0</span>
-        <label style="margin-left:auto;font-size:11px;color:var(--text-3);text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer">
-          <input type="checkbox" id="showActions" onchange="render()" style="vertical-align:-1px"> show actions
-        </label>
-      </div>
-      <div class="filters" id="filters"></div>
-      <div class="feed" id="feed"><div class="loading">Loading data…</div></div>
-    </main>
+  <section class="console">
+    <div class="scope">
+      <svg viewBox="0 0 400 400" role="img"
+           aria-label="Signal scope. Bearing shows the regulatory sector, distance from centre shows how recent the signal is.">
+        <defs>
+          <radialGradient id="sweepGrad">
+            <stop offset="0%" stop-color="var(--sweep)" stop-opacity="0"/>
+            <stop offset="100%" stop-color="var(--sweep)" stop-opacity="1"/>
+          </radialGradient>
+          <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+            <feGaussianBlur stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
 
-    <aside class="side">
-      <div class="panel">
-        <h3>Regulatory calendar</h3>
-        <div id="timeline"></div>
+        <g fill="none" stroke="var(--grid-line)" stroke-width="1">
+          <circle cx="200" cy="200" r="46"/><circle cx="200" cy="200" r="92"/>
+          <circle cx="200" cy="200" r="138"/><circle cx="200" cy="200" r="184"/>
+        </g>
+        <g stroke="var(--grid-line)" stroke-width="1" id="spokes"></g>
+
+        <g id="sweep">
+          <path d="M200,200 L200,16 A184,184 0 0,1 291,41 Z" fill="url(#sweepGrad)"/>
+          <line x1="200" y1="200" x2="200" y2="16" stroke="var(--accent)" stroke-width="1.5" opacity=".75"/>
+        </g>
+
+        <g id="rangeLabels" font-family="SF Mono, ui-monospace, Menlo, monospace" font-size="8"
+           fill="var(--text-3)" letter-spacing="1"></g>
+        <circle cx="200" cy="200" r="2.5" fill="var(--accent)"/>
+        <g id="blips"></g>
+        <g id="sectorLabels" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+           font-size="8.5" font-weight="700" fill="var(--text-3)" letter-spacing="1.2" text-anchor="middle"></g>
+      </svg>
+      <div class="scope-cap">
+        <span class="live"><i></i> Sweeping</span>
+        <span id="rangeSet">—</span>
+        <span id="scopeMeta">—</span>
       </div>
-      <div class="panel">
-        <h3>Activity trends · 8 wks</h3>
-        <div id="trends"></div>
+    </div>
+
+    <div class="readout">
+      <div class="eyebrow">Regulatory signal · Belgium &amp; EU</div>
+      <h1 id="headline">Reading the sweep…</h1>
+      <div class="stamp" id="stamp">—</div>
+
+      <div class="gauges">
+        <div class="gauge crit"><div class="n" id="gCrit">0</div><div class="l">Critical</div></div>
+        <div class="gauge imp"><div class="n" id="gImp">0</div><div class="l">Important</div></div>
+        <div class="gauge"><div class="n" id="gTot">0</div><div class="l">Signals</div></div>
+        <div class="gauge"><div class="n" id="gDue">0</div><div class="l">Deadlines</div></div>
       </div>
-      <div class="panel">
-        <h3>Heat map · topic × jurisdiction</h3>
-        <div class="heat-wrap"><table class="heat" id="heat"></table></div>
+
+      <div class="brief">
+        <div class="bl">The brief</div>
+        <p id="briefText">—</p>
+        <button onclick="copyBrief(event)">Copy briefing</button>
       </div>
-    </aside>
-  </div>
+    </div>
+  </section>
+
+  <div class="bar" id="filters"><span class="bl">Sector</span></div>
+  <div class="feed" id="feed"></div>
+
+  <footer>
+    <span>RegRadar · automated regulatory watch</span>
+    <span id="footStamp">—</span>
+  </footer>
 </div>
 
-<div class="cmd-overlay" id="cmdOverlay" onclick="if(event.target===this)closeCmd()">
+<div class="ov" id="ov" onclick="closeDrawer()"></div>
+<div class="dw" id="dw"><div class="dw-in" id="dwBody"></div></div>
+
+<div class="cmd" id="cmd" onclick="if(event.target.id==='cmd')closeCmd()">
   <div class="cmd-box">
-    <input class="cmd-input" id="cmdInput" placeholder="Search regulations, sources, topics, entities…" oninput="cmdSearch()" onkeydown="cmdKey(event)">
-    <div class="cmd-results" id="cmdResults"></div>
+    <input id="cmdIn" placeholder="Search signals, sources, sectors…" oninput="cmdSearch()" onkeydown="cmdKey(event)" autocomplete="off">
+    <div class="cmd-res" id="cmdRes"></div>
   </div>
 </div>
-
-<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-<aside class="drawer" id="drawer"><button class="drawer-close" onclick="closeDrawer()">✕</button><div class="drawer-pad" id="drawerBody"></div></aside>
 
 <script>
-const IMPACT = { 3:{label:'Critical',cls:'crit',tag:'tag-crit'}, 2:{label:'Important',cls:'imp',tag:'tag-imp'}, 1:{label:'Info',cls:'info',tag:'tag-info'} };
-let DATA = { items: [], meta: {} };
-let activeFilters = { impact: null, theme: null, jurisdiction: null, entity: null };
-let cmdSel = 0, cmdHits = [];
+let ITEMS=[], META={}, ACTIVE=new Set(), SEL=0;
 
-async function load() {
-  try {
-    const [items, meta] = await Promise.all([
-      fetch('data/items.json').then(r=>r.json()),
-      fetch('data/meta.json').then(r=>r.json()).catch(()=>({}))
-    ]);
-    DATA.items = items; DATA.meta = meta;
-    renderBriefing(); renderStats(); renderTimeline(); renderTrends(); renderHeat(); buildFilters(); render();
-  } catch(e) {
-    document.getElementById('feed').innerHTML = '<div class="empty">Could not load data. Run the watch engine to generate <code>data/items.json</code>.</div>';
+/* Bearing = regulatory sector. Distance = age. Both carry meaning. */
+const SECTORS=[
+  {key:'AML/CFT',                label:'AML',        a:-90},
+  {key:'MiCA/Crypto',            label:'CRYPTO',     a:-30},
+  {key:'Markets',                label:'MARKETS',    a:30},
+  {key:'Capital',                label:'CAPITAL',    a:90},
+  {key:'Payments',               label:'PAYMENTS',   a:150},
+  {key:'Operational Resilience', label:'RESILIENCE', a:210}
+];
+const IMPACT={3:{c:'var(--crit)',n:'Critical'},2:{c:'var(--imp)',n:'Important'},1:{c:'var(--info)',n:'Info'}};
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const hoursAgo=d=>Math.max(0,(Date.now()-new Date(d).getTime())/36e5);
+function ageLabel(h){ if(h<1)return'now'; if(h<24)return Math.round(h)+'h'; return Math.round(h/24)+'d'; }
+function fmtDate(d){ try{return new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return d||'';} }
+function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
+  h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}}
+
+/* A sector is a wedge, not a line. Contacts in the same sector spread
+   across it so several signals in one area stay countable. */
+function assignBearings(list){
+  const groups=new Map();
+  list.forEach(it=>{
+    const th=it.themes||[];
+    const sec=SECTORS.find(s=>th.includes(s.key));
+    let base;
+    if(sec) base=sec.a;
+    else { let h=0; for(const ch of (it.id||'x')) h=(h*31+ch.charCodeAt(0))%360; base=h-180; }
+    if(!groups.has(base)) groups.set(base,[]);
+    groups.get(base).push(it);
+  });
+  const out=new Map();
+  groups.forEach((arr,base)=>{
+    const n=arr.length, spanDeg=44;
+    arr.forEach((it,i)=>{
+      const off = n===1 ? 0 : (-spanDeg/2 + (i/(n-1))*spanDeg);
+      out.set(it.id, base+off);
+    });
+  });
+  return out;
+}
+/* Range scales, like a real scope. We pick the tightest one that still
+   contains every contact, then label the rings honestly. */
+const RANGES=[[6,24,168,720],[24,168,720,2160],[168,720,2160,8760]];
+let BANDS=RANGES[0];
+const RING=[46,92,138,184];
+
+function hLabel(h){
+  if(h<24) return h+'H';
+  if(h<720) return Math.round(h/24)+'D';
+  if(h<8760) return Math.round(h/720)+'M';
+  return Math.round(h/8760)+'Y';
+}
+function pickRange(items){
+  const max=Math.max(0,...items.map(i=>hoursAgo(i.date)));
+  BANDS = RANGES.find(r=>r[3]>=max) || RANGES[RANGES.length-1];
+  // relabel the rings
+  const g=document.getElementById('rangeLabels');
+  if(g) g.innerHTML=BANDS.map((h,i)=>
+    `<text x="205" y="${(200-RING[i]+5).toFixed(0)}">${hLabel(h)}</text>`).join('');
+  const rl=document.getElementById('rangeSet');
+  if(rl) rl.textContent='Range '+hLabel(BANDS[3]);
+}
+function radiusOf(it){
+  const h=hoursAgo(it.date);
+  const lo=[0,...BANDS.slice(0,3)], hi=BANDS;
+  let r=RING[3];
+  for(let i=0;i<4;i++){
+    if(h<=hi[i]){
+      const prevR = i===0?20:RING[i-1];
+      const span  = hi[i]-lo[i] || 1;
+      r = prevR + ((h-lo[i])/span)*(RING[i]-prevR);
+      break;
+    }
   }
+  /* Contacts picked up in the same sweep share a true range. Spread them
+     a little so a cluster reads as several contacts, not one thick arc. */
+  let s=0; for(const ch of (it.id||'x')) s=(s*31+ch.charCodeAt(0))%97;
+  return Math.max(24, Math.min(184, r + ((s/97)-0.5)*34));
 }
 
-function fmtDate(iso, withTime) {
-  if (!iso) return '';
-  const d = new Date(iso);
-  const opt = withTime ? {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'} : {day:'2-digit',month:'short',year:'numeric'};
-  return d.toLocaleDateString('en-GB', opt);
-}
-function hoursAgo(iso){ if(!iso)return ''; const h=Math.round((Date.now()-new Date(iso))/36e5); if(h<1)return 'just now'; if(h<24)return h+'h ago'; return Math.round(h/24)+'d ago'; }
-
-function renderBriefing() {
-  const m = DATA.meta; const s = m.exec_summary || 'No briefing available yet. Run the engine with Groq enabled to generate the daily briefing.';
-  document.getElementById('briefing').innerHTML =
-    `<div class="briefing"><div class="briefing-head"><span class="dot"></span><h2>Daily briefing — what changed</h2>
-     <span style="margin-left:auto;font-size:11px;color:var(--text-3)" class="updated">Updated ${m.last_updated?fmtDate(m.last_updated,true):'—'}</span></div>
-     <p>${esc(s)}</p></div>`;
-}
-
-function renderStats() {
-  const c = (DATA.meta.last_run_counts)||{};
-  const crit = DATA.items.filter(i=>i.impact===3).length;
-  const imp = DATA.items.filter(i=>i.impact===2).length;
-  const dl = DATA.items.filter(i=>i.deadline).length;
-  const enf = DATA.items.filter(i=>(i.themes||[]).includes('Enforcement/Fines')).length;
-  const cards = [
-    ['Critical', crit, 'var(--crit)'], ['Important', imp, 'var(--imp)'],
-    ['Open deadlines', dl, 'var(--accent)'], ['Enforcement', enf, 'var(--purple)']
-  ];
-  document.getElementById('stats').innerHTML = cards.map(([l,n,col])=>
-    `<div class="stat"><div class="n" style="color:${col}">${n}</div><div class="l">${l}</div></div>`).join('');
+function drawScope(){
+  let s='';
+  SECTORS.forEach(sec=>{
+    const r=(sec.a-30)*Math.PI/180;
+    s+=`<line x1="200" y1="200" x2="${(200+190*Math.cos(r)).toFixed(1)}" y2="${(200+190*Math.sin(r)).toFixed(1)}"/>`;
+  });
+  document.getElementById('spokes').innerHTML=s;
+  let l='';
+  SECTORS.forEach(sec=>{
+    const r=sec.a*Math.PI/180, R=196;
+    l+=`<text x="${(200+R*Math.cos(r)).toFixed(1)}" y="${(200+R*Math.sin(r)+3).toFixed(1)}">${sec.label}</text>`;
+  });
+  document.getElementById('sectorLabels').innerHTML=l;
 }
 
-function renderTimeline() {
-  const tl = (DATA.meta.timeline)||[];
-  if(!tl.length){ document.getElementById('timeline').innerHTML='<div style="font-size:12px;color:var(--text-3)">No upcoming dates.</div>'; return; }
-  document.getElementById('timeline').innerHTML = tl.map(t=>{
-    const d=t.days_away; const cls=d<=14?'away-soon':(d<90?'away-mid':'away-far');
-    const away=d<=90?`in ${d}d`:`in ~${Math.round(d/30)}mo`;
-    const dt=new Date(t.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
-    return `<div class="tl-item"><div class="tl-date">${dt}</div><div class="tl-body"><div class="tl-ev">${esc(t.event)}</div><div class="tl-away ${cls}">${away}</div></div></div>`;
-  }).join('');
+function drawBlips(list){
+  let s=''; const BEAR=assignBearings(list);
+  list.forEach((it,i)=>{
+    const a=BEAR.get(it.id), rad=radiusOf(it), r=a*Math.PI/180;
+    const x=(200+rad*Math.cos(r)).toFixed(1), y=(200+rad*Math.sin(r)).toFixed(1);
+    const col=(IMPACT[it.impact]||IMPACT[1]).c;
+    const size=it.impact===3?5:it.impact===2?4:3.2;
+    const delay=((((a+90)%360)+360)%360)/360*8;      /* pulse when the sweep passes */
+    s+=`<g class="blip" style="animation-delay:${delay.toFixed(2)}s" data-i="${i}">
+          <circle cx="${x}" cy="${y}" r="${size+7}" fill="${col}" opacity=".07"/>
+          <circle cx="${x}" cy="${y}" r="${size}" fill="${col}" filter="url(#glow)" style="cursor:pointer"/>
+        </g>`;
+  });
+  const g=document.getElementById('blips');
+  g.innerHTML=s;
+  g.querySelectorAll('.blip').forEach(el=>el.addEventListener('click',()=>openDrawer(list[+el.dataset.i].id)));
 }
 
-function renderTrends() {
-  const tr=(DATA.meta.trends)||[];
-  if(!tr.length){ document.getElementById('trends').innerHTML='<div style="font-size:12px;color:var(--text-3)">Trends build over a few weeks.</div>'; return; }
-  document.getElementById('trends').innerHTML = tr.slice(0,6).map(t=>{
-    const cls=t.label==='RISING'?'tr-rising':(t.label==='COOLING'?'tr-cooling':'tr-stable');
-    return `<div class="tr-item"><span class="tr-theme">${esc(t.theme)}</span><span class="tr-spark">${esc(t.spark||'')}</span><span class="tr-badge ${cls}">${esc(t.arrow||'')}</span></div>`;
-  }).join('');
+function visible(){ return ACTIVE.size? ITEMS.filter(i=>(i.themes||[]).some(t=>ACTIVE.has(t))) : ITEMS; }
+
+function buildFilters(){
+  const themes=[...new Set(ITEMS.flatMap(i=>i.themes||[]))].sort();
+  const bar=document.getElementById('filters');
+  bar.querySelectorAll('.fchip,.fcount').forEach(e=>e.remove());
+  themes.forEach(t=>{
+    const b=document.createElement('span');
+    b.className='fchip'; b.textContent=t;
+    b.onclick=()=>{ACTIVE.has(t)?ACTIVE.delete(t):ACTIVE.add(t);render();};
+    bar.appendChild(b);
+  });
+  const c=document.createElement('span'); c.className='fcount'; c.id='fcount'; bar.appendChild(c);
 }
 
-function renderHeat() {
-  const items=DATA.items;
-  const topics=[...new Set(items.flatMap(i=>i.themes||[]))].slice(0,7);
-  const jurs=['Belgium','EU','Global'];
-  if(!topics.length){ document.getElementById('heat').innerHTML=''; return; }
-  let max=1; const grid={};
-  topics.forEach(tp=>{ grid[tp]={}; jurs.forEach(j=>{ const n=items.filter(i=>(i.themes||[]).includes(tp)&&i.jurisdiction===j).length; grid[tp][j]=n; if(n>max)max=n; }); });
-  const cellBg=(n)=>{ if(!n)return 'var(--surface-2)'; const a=0.18+0.62*(n/max); return `rgba(109,142,230,${a.toFixed(2)})`; };
-  let html='<tr><th></th>'+jurs.map(j=>`<th>${j==='Belgium'?'BE':j==='EU'?'EU':'GL'}</th>`).join('')+'</tr>';
-  topics.forEach(tp=>{ html+=`<tr><td class="lbl">${esc(tp)}</td>`+jurs.map(j=>{const n=grid[tp][j];return `<td class="cell" style="background:${cellBg(n)}">${n||''}</td>`;}).join('')+'</tr>'; });
-  document.getElementById('heat').innerHTML=html;
-}
-
-function buildFilters() {
-  const themes=[...new Set(DATA.items.flatMap(i=>i.themes||[]))];
-  const jurs=[...new Set(DATA.items.map(i=>i.jurisdiction).filter(Boolean))];
-  const ents=[...new Set(DATA.items.flatMap(i=>i.entities||[]))];
-  let h='<span class="filter-label">Impact</span>';
-  [[3,'Critical'],[2,'Important'],[1,'Info']].forEach(([v,l])=>h+=chip('impact',v,l));
-  h+='<span class="filter-sep"></span><span class="filter-label">Topic</span>';
-  themes.forEach(t=>h+=chip('theme',t,t));
-  h+='<span class="filter-sep"></span><span class="filter-label">Juris.</span>';
-  jurs.forEach(j=>h+=chip('jurisdiction',j,j));
-  if(ents.length){ h+='<span class="filter-sep"></span><span class="filter-label">Impacted</span>'; ents.forEach(e=>h+=chip('entity',e,e)); }
-  document.getElementById('filters').innerHTML=h;
-}
-function chip(type,val,label){ const on=activeFilters[type]==val?'on':''; return `<span class="chip ${on}" onclick="toggleFilter('${type}','${String(val).replace(/'/g,"\\'")}')">${esc(label)}</span>`; }
-function toggleFilter(type,val){ const cur=activeFilters[type]; activeFilters[type]=(String(cur)===String(val))?null:(type==='impact'?+val:val); buildFilters(); render(); }
-
-function render() {
-  let items=[...DATA.items];
-  if(activeFilters.impact) items=items.filter(i=>i.impact===activeFilters.impact);
-  if(activeFilters.theme) items=items.filter(i=>(i.themes||[]).includes(activeFilters.theme));
-  if(activeFilters.jurisdiction) items=items.filter(i=>i.jurisdiction===activeFilters.jurisdiction);
-  if(activeFilters.entity) items=items.filter(i=>(i.entities||[]).includes(activeFilters.entity));
-  // Rank: impact desc, then date desc
-  items.sort((a,b)=> b.impact-a.impact || new Date(b.date)-new Date(a.date));
-  document.getElementById('feedCount').textContent=items.length;
-  const showAct=document.getElementById('showActions').checked;
-  if(!items.length){ document.getElementById('feed').innerHTML='<div class="empty">No items match these filters.</div>'; return; }
-  document.getElementById('feed').innerHTML=items.map((it,idx)=>card(it,idx,showAct)).join('');
-}
-
-function card(it,idx,showAct) {
+function sigRow(it){
   const im=IMPACT[it.impact]||IMPACT[1];
-  const dots=`<span class="impact-dots">${[1,2,3].map(n=>`<i class="${it.impact>=n?'fill'+it.impact:''}"></i>`).join('')}</span>`;
-  const themes=(it.themes||[]).slice(0,2).map(t=>`<span class="tag tag-theme">${esc(t)}</span>`).join('');
-  const ents=(it.entities||[]).slice(0,4).map(e=>`<span class="ent-pill">${esc(e)}</span>`).join('');
-  const dl=it.deadline?`<span class="deadline-flag">⏰ ${fmtDate(it.deadline)}</span>`:'';
-  const jur=it.jurisdiction?`<span class="tag tag-jur">${it.jurisdiction==='Belgium'?'BE':it.jurisdiction==='EU'?'EU':'GLOBAL'}</span>`:'';
-  const act=(showAct&&it.action&&!/no action/i.test(it.action))?`<div class="action-row show"><b>Action:</b> ${esc(it.action)}</div>`:'';
-  return `<div class="card c${it.impact}" onclick="openDrawer(${idx})" data-idx="${idx}">
-    <div class="card-top">
-      <span class="tag ${im.tag}">${im.label}</span>${jur}
-      <span class="tag tag-src">${esc(it.source)}</span>${themes}
-      <span class="impact-score">${dots} ${it.impact}/3</span>
+  const due=it.deadline?`<span class="tg due">Due ${fmtDate(it.deadline)}</span>`:'';
+  const tags=(it.themes||[]).slice(0,2).map(t=>`<span class="tg">${esc(t)}</span>`).join('');
+  const ent=(it.entities||[]).slice(0,2).map(e=>`<span class="tg">${esc(e)}</span>`).join('');
+  return `<div class="sig" onclick="openDrawer('${it.id}')">
+    <span class="lamp" style="background:${im.c}"></span>
+    <span class="src">${esc(it.source)}</span>
+    <span class="age">${ageLabel(hoursAgo(it.date))}</span>
+    <div class="body">
+      <h3>${esc(it.title)}</h3>
+      <p>${esc(it.so_what||it.summary||'')}</p>
+      <div class="meta">${due}${tags}${ent}</div>
     </div>
-    <h3>${esc(it.title)}</h3>
-    <div class="sum">${esc(it.summary||'')}</div>
-    ${act}
-    <div class="meta-row"><span>${hoursAgo(it.date)}</span>${dl}<span class="ent">${ents}</span></div>
+    <span class="arrow">→</span>
   </div>`;
 }
 
-// Drawer
-function openDrawer(idx){
-  const visible=getVisible(); const it=visible[idx]; if(!it)return;
-  const im=IMPACT[it.impact]||IMPACT[1];
-  const ents=(it.entities||[]).map(e=>`<span class="ent-pill">${esc(e)}</span>`).join(' ')||'<span style="color:var(--text-3)">Not specified</span>';
-  const themes=(it.themes||[]).map(t=>`<span class="tag tag-theme">${esc(t)}</span>`).join(' ');
-  const brief=`${it.title}\nStatus: ${im.label} (${it.jurisdiction||'EU'})\n${it.deadline?'Deadline: '+fmtDate(it.deadline)+'\n':''}Summary: ${it.summary||''}\nImplication: ${it.so_what||''}\nAction: ${it.action||'—'}\nAffected: ${(it.entities||[]).join(', ')||'—'}\nSource: ${it.url}`;
-  document.getElementById('drawerBody').innerHTML=`
-    <div class="card-top"><span class="tag ${im.tag}">${im.label}</span>
-      ${it.jurisdiction?`<span class="tag tag-jur">${it.jurisdiction}</span>`:''}
-      <span class="tag tag-src">${esc(it.source)}</span></div>
-    <h2>${esc(it.title)}</h2>
-    <div style="font-size:11px;color:var(--text-3);font-family:var(--mono)">${fmtDate(it.date,true)} · impact ${it.impact}/3</div>
-    ${themes?`<div class="block"><div class="block-h">Topics</div>${themes}</div>`:''}
-    <div class="block"><div class="block-h">What it is</div><p>${esc(it.summary||'—')}</p></div>
-    ${it.so_what?`<div class="block"><div class="block-h">Why it matters</div><p>${esc(it.so_what)}</p></div>`:''}
-    ${(it.action&&!/no action/i.test(it.action))?`<div class="block"><div class="block-h">Recommended action</div><p style="color:var(--imp)">${esc(it.action)}</p></div>`:''}
-    ${it.deadline?`<div class="block"><div class="block-h">Deadline</div><p style="color:var(--crit);font-weight:600">${fmtDate(it.deadline)}</p></div>`:''}
-    <div class="block"><div class="block-h">Who is impacted</div><div>${ents}</div></div>
-    <div class="block" style="display:flex;gap:8px;margin-top:22px">
-      <a class="btn btn-primary" href="${it.url}" target="_blank" rel="noopener">Read source ↗</a>
-      <button class="btn" onclick='copyBrief(${JSON.stringify(brief)})'>Copy briefing</button>
-    </div>`;
-  document.getElementById('drawer').classList.add('open');
-  document.getElementById('drawerOverlay').classList.add('open');
+function render(){
+  const v=visible();
+  document.getElementById('feed').innerHTML =
+    v.length ? v.map(sigRow).join('') : '<div class="empty">No signals match this filter.</div>';
+  const fc=document.getElementById('fcount'); if(fc) fc.textContent=`${v.length} / ${ITEMS.length}`;
+  document.querySelectorAll('#filters .fchip').forEach(c=>c.classList.toggle('on',ACTIVE.has(c.textContent)));
+  drawBlips(v);
+  document.getElementById('scopeMeta').textContent=`${v.length} contacts`;
 }
-function getVisible(){
-  let items=[...DATA.items];
-  if(activeFilters.impact) items=items.filter(i=>i.impact===activeFilters.impact);
-  if(activeFilters.theme) items=items.filter(i=>(i.themes||[]).includes(activeFilters.theme));
-  if(activeFilters.jurisdiction) items=items.filter(i=>i.jurisdiction===activeFilters.jurisdiction);
-  if(activeFilters.entity) items=items.filter(i=>(i.entities||[]).includes(activeFilters.entity));
-  items.sort((a,b)=> b.impact-a.impact || new Date(b.date)-new Date(a.date));
-  return items;
-}
-function closeDrawer(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('open'); }
-function copyBrief(t){ navigator.clipboard.writeText(t).then(()=>{ const b=event.target; const o=b.textContent; b.textContent='Copied ✓'; setTimeout(()=>b.textContent=o,1400); }); }
 
-// Command palette
-function openCmd(){ document.getElementById('cmdOverlay').classList.add('open'); document.getElementById('cmdInput').focus(); cmdSearch(); }
-function closeCmd(){ document.getElementById('cmdOverlay').classList.remove('open'); document.getElementById('cmdInput').value=''; }
+function countUp(el,to){
+  const t=+to||0; if(!t){el.textContent='0';return;}
+  let n=0; const step=Math.max(1,Math.round(t/18));
+  const iv=setInterval(()=>{n+=step; if(n>=t){n=t;clearInterval(iv);} el.textContent=n;},26);
+}
+
+function openDrawer(id){
+  const it=ITEMS.find(x=>x.id===id); if(!it)return;
+  const im=IMPACT[it.impact]||IMPACT[1];
+  document.getElementById('dwBody').innerHTML=`
+    <button class="x" onclick="closeDrawer()">×</button>
+    <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <span style="width:8px;height:8px;background:${im.c};display:block"></span>
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-2);text-transform:uppercase">${esc(it.source)}</span>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--text-3)">${fmtDate(it.date)}</span>
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:${im.c}">${im.n}</span>
+    </div>
+    <h2>${esc(it.title)}</h2>
+    ${it.summary?`<div class="dsec"><div class="dl">What happened</div><p>${esc(it.summary)}</p></div>`:''}
+    ${it.so_what?`<div class="dsec"><div class="dl">So what</div><p>${esc(it.so_what)}</p></div>`:''}
+    ${it.action?`<div class="dsec act"><div class="dl">Action</div><p>${esc(it.action)}</p></div>`:''}
+    <div class="dsec"><div class="dl">Scope</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${(it.entities||[]).map(e=>`<span class="tg">${esc(e)}</span>`).join('')}
+        ${(it.themes||[]).map(t=>`<span class="tg">${esc(t)}</span>`).join('')}
+        ${it.jurisdiction?`<span class="tg">${esc(it.jurisdiction)}</span>`:''}
+        ${it.deadline?`<span class="tg due">Due ${fmtDate(it.deadline)}</span>`:''}
+      </div>
+    </div>
+    ${it.url?`<a class="dlink" href="${esc(it.url)}" target="_blank" rel="noopener">Open source ↗</a>`:''}`;
+  document.getElementById('dw').classList.add('on');
+  document.getElementById('ov').classList.add('on');
+}
+function closeDrawer(){document.getElementById('dw').classList.remove('on');document.getElementById('ov').classList.remove('on');}
+
+function copyBrief(ev){
+  const t=META.exec_summary||'';
+  const b=ev&&ev.target;
+  navigator.clipboard.writeText(t).then(()=>{
+    if(b){const o=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=o,1400);}
+  }).catch(()=>{});
+}
+
+function openCmd(){document.getElementById('cmd').classList.add('on');document.getElementById('cmdIn').focus();cmdSearch();}
+function closeCmd(){document.getElementById('cmd').classList.remove('on');document.getElementById('cmdIn').value='';}
 function cmdSearch(){
-  const q=document.getElementById('cmdInput').value.toLowerCase().trim(); cmdSel=0;
-  cmdHits = !q ? DATA.items.slice(0,8) : DATA.items.filter(i=>
-    (i.title||'').toLowerCase().includes(q)||(i.summary||'').toLowerCase().includes(q)||
-    (i.source||'').toLowerCase().includes(q)||(i.themes||[]).join(' ').toLowerCase().includes(q)||
-    (i.entities||[]).join(' ').toLowerCase().includes(q)).slice(0,10);
-  const el=document.getElementById('cmdResults');
-  if(!cmdHits.length){ el.innerHTML='<div class="cmd-empty">No matches</div>'; return; }
-  el.innerHTML=cmdHits.map((i,x)=>`<div class="cmd-res ${x===cmdSel?'sel':''}" onclick="cmdGo(${x})">
-    <div class="t">${esc(i.title)}</div><div class="m">${esc(i.source)} · ${(i.themes||[]).join(', ')} · impact ${i.impact}/3</div></div>`).join('');
+  const q=document.getElementById('cmdIn').value.toLowerCase().trim(); SEL=0;
+  const hits=ITEMS.filter(i=>!q||(i.title+' '+i.source+' '+(i.themes||[]).join(' ')).toLowerCase().includes(q)).slice(0,8);
+  document.getElementById('cmdRes').innerHTML=hits.length
+    ? hits.map((h,i)=>`<div class="${i===0?'sel':''}" onclick="closeCmd();openDrawer('${h.id}')">
+        <b style="color:var(--accent)">${esc(h.source)}</b> · ${esc(h.title)}</div>`).join('')
+    : '<div style="cursor:default">No match</div>';
 }
 function cmdKey(e){
+  const rows=[...document.querySelectorAll('#cmdRes div')];
   if(e.key==='Escape')return closeCmd();
-  if(e.key==='ArrowDown'){e.preventDefault();cmdSel=Math.min(cmdSel+1,cmdHits.length-1);cmdSearch2();}
-  if(e.key==='ArrowUp'){e.preventDefault();cmdSel=Math.max(cmdSel-1,0);cmdSearch2();}
-  if(e.key==='Enter'&&cmdHits[cmdSel])cmdGo(cmdSel);
+  if(e.key==='ArrowDown') SEL=Math.min(SEL+1,rows.length-1);
+  else if(e.key==='ArrowUp') SEL=Math.max(SEL-1,0);
+  else if(e.key==='Enter'){ rows[SEL]&&rows[SEL].click(); return; }
+  else return;
+  rows.forEach((r,i)=>r.classList.toggle('sel',i===SEL));
+  e.preventDefault();
 }
-function cmdSearch2(){ const r=document.querySelectorAll('.cmd-res'); r.forEach((el,i)=>el.classList.toggle('sel',i===cmdSel)); if(r[cmdSel])r[cmdSel].scrollIntoView({block:'nearest'}); }
-function cmdGo(x){ const it=cmdHits[x]; closeCmd(); const vis=getVisible(); const idx=vis.findIndex(v=>v.id===it.id); if(idx>=0)openDrawer(idx); else window.open(it.url,'_blank'); }
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openCmd();}
+  if(e.key==='Escape'){closeDrawer();closeCmd();}
+});
 
-function toggleTheme(){ const h=document.documentElement; const t=h.dataset.theme==='dark'?'light':'dark'; h.dataset.theme=t; try{localStorage.setItem('regradar-theme',t);}catch(e){} }
-document.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCmd();} });
-function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function load(){
+  drawScope();
+  try{
+    let raw = window.__EMBEDDED_ITEMS__ || await fetch('data/items.json').then(r=>r.json());
+    ITEMS = Array.isArray(raw)? raw : (raw.items||[]);
+    META  = window.__EMBEDDED_META__ || await fetch('data/meta.json').then(r=>r.json()).catch(()=>({}));
+  }catch(e){
+    document.getElementById('headline').textContent='No signal data yet.';
+    document.getElementById('feed').innerHTML='<div class="empty">Run the daily watch to populate the scope.</div>';
+    return;
+  }
+  ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
 
+  const crit=ITEMS.filter(i=>i.impact===3).length;
+  const imp =ITEMS.filter(i=>i.impact===2).length;
+  const due =ITEMS.filter(i=>i.deadline).length;
+  countUp(document.getElementById('gCrit'),crit);
+  countUp(document.getElementById('gImp'),imp);
+  countUp(document.getElementById('gTot'),ITEMS.length);
+  countUp(document.getElementById('gDue'),due);
+
+  document.getElementById('headline').textContent =
+    crit ? `${crit} critical signal${crit>1?'s':''} in range.` : 'Nothing critical in range.';
+  const lu=META.last_updated?fmtDate(META.last_updated):'—';
+  document.getElementById('stamp').textContent=`Last sweep ${lu} · ${ITEMS.length} contacts · Belgium & EU`;
+  document.getElementById('footStamp').textContent=`Last sweep ${lu}`;
+  document.getElementById('briefText').textContent=META.exec_summary||'No briefing generated for this run.';
+
+  pickRange(ITEMS);
+  buildFilters(); render();
+}
 load();
 </script>
 </body>
