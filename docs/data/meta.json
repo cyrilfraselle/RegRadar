@@ -1,65 +1,89 @@
 {
-  "last_updated": "2026-07-22T08:22:27.626727",
+  "last_updated": "2026-07-24T08:21:36.501955",
   "last_run_counts": {
-    "total": 10,
-    "critical": 0,
-    "important": 7,
-    "info": 3
+    "total": 24,
+    "critical": 3,
+    "important": 19,
+    "info": 2
   },
-  "archive_size": 405,
-  "exec_summary": "The European Securities and Markets Authority has published a follow-up report to the peer review on the supervision of cross-border activities of investment firms, highlighting areas for improvement in EU regulatory frameworks. In Belgium, financial institutions should take note of the report's findings to ensure compliance with EU regulations. The European Central Bank has also warned that stablecoins could potentially drain deposits, despite the introduction of the Markets in Crypto-Assets regulation, emphasizing the need for vigilance in anti-money laundering and financial crime prevention. The ECB's concerns underscore the importance of robust compliance measures in the EU financial sector, particularly in light of emerging risks in the crypto and payments space.",
+  "archive_size": 429,
+  "exec_summary": "The European Banking Authority has launched a consultation on the first four mandates under the DGSD3, which aims to enhance regulatory standards for banks. In Belgium, the Financial Services and Markets Authority and the National Bank of Belgium continue to oversee the implementation of EU regulations, including the recently published Commission Delegated Regulation on firms' order execution policies under MiFID II. The European Commission's delegated regulation provides clarity on the requirements for firms to establish and implement order execution policies. Meanwhile, Deutsche Bank is under scrutiny, with its headquarters raided for the third time this year amid a tax fraud probe, highlighting the importance of regulatory compliance and anti-money laundering efforts.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 57
+      "days_away": 55
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 162
+      "days_away": 160
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 163
+      "days_away": 161
+    },
+    {
+      "date": "2027-01-01",
+      "event": "FCA Crypto Authorisation Regime",
+      "theme": "Crypto",
+      "type": "deadline",
+      "days_away": 161
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 172
+      "days_away": 170
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 342
+      "days_away": 340
     }
   ],
   "trends": [
     {
       "theme": "AML/CFT",
-      "this_week": 5,
+      "this_week": 8,
       "avg": 2.0,
-      "pct": 150,
+      "pct": 300,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▂▄█",
+      "spark": "▁▂▃█",
       "values": [
         1,
         2,
         3,
-        5
+        8
+      ],
+      "weeks": 4
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 3,
+      "avg": 1.3,
+      "pct": 125,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▄█",
+      "values": [
+        1,
+        1,
+        2,
+        3
       ],
       "weeks": 4
     },
@@ -76,23 +100,6 @@
         1
       ],
       "weeks": 1
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 1,
-      "avg": 1.3,
-      "pct": -25,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁█▁",
-      "values": [
-        1,
-        1,
-        2,
-        1
-      ],
-      "weeks": 4
     },
     {
       "theme": "SFDR/ESG",
@@ -113,18 +120,18 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 2,
+      "this_week": 4,
       "avg": 8.0,
-      "pct": -75,
+      "pct": -50,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "▅██▁",
+      "spark": "▃██▁",
       "values": [
         6,
         9,
         9,
-        2
+        4
       ],
       "weeks": 4
     },
