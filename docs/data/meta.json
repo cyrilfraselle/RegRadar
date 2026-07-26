@@ -1,48 +1,48 @@
 {
-  "last_updated": "2026-07-25T08:02:19.875967",
+  "last_updated": "2026-07-26T08:21:28.969361",
   "last_run_counts": {
-    "total": 13,
-    "critical": 3,
-    "important": 9,
-    "info": 1
+    "total": 5,
+    "critical": 0,
+    "important": 3,
+    "info": 2
   },
-  "archive_size": 440,
-  "exec_summary": "The European Commission has published a Delegated Regulation in the Official Journal regarding firms' order execution policies under MiFID II, which will impact financial institutions' compliance obligations. In Belgium and the broader EU, this development is significant as it clarifies expectations for best execution practices. The ECB has also announced plans to extend the use of climate factors in the Eurosystem collateral framework to non-financial corporate credit claims, reflecting the regulator's increasing focus on environmental risk. Meanwhile, Deutsche Bank's headquarters were raided in Frankfurt as part of a probe into its retail banking arm, highlighting the ongoing scrutiny of major financial institutions by European regulators.",
+  "archive_size": 443,
+  "exec_summary": "The European Central Bank has issued a warning that stablecoins could potentially drain deposits from the traditional banking system, despite the upcoming Markets in Crypto-Assets regulation, highlighting the need for continued vigilance in the regulatory framework. In Belgium, financial institutions should be aware of the evolving landscape and ensure compliance with relevant EU regulations. The ECB's July 2026 euro area bank lending survey also provides insight into current lending conditions and may inform regulatory decisions. The European Commission's MiCA regulation remains a key focus for compliance efforts in the crypto space.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 54
+      "days_away": 53
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 159
+      "days_away": 158
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 160
+      "days_away": 159
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 169
+      "days_away": 168
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 339
+      "days_away": 338
     }
   ],
   "trends": [
@@ -127,23 +127,6 @@
       "weeks": 4
     },
     {
-      "theme": "MiCA/Crypto",
-      "this_week": 4,
-      "avg": 8.0,
-      "pct": -50,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▃██▁",
-      "values": [
-        6,
-        9,
-        9,
-        4
-      ],
-      "weeks": 4
-    },
-    {
       "theme": "AML/CFT",
       "this_week": 1,
       "avg": 2.0,
@@ -157,6 +140,23 @@
         2,
         3,
         1
+      ],
+      "weeks": 4
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 2,
+      "avg": 8.0,
+      "pct": -75,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▅██▁",
+      "values": [
+        6,
+        9,
+        9,
+        2
       ],
       "weeks": 4
     },
