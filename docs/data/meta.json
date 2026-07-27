@@ -1,164 +1,68 @@
 {
-  "last_updated": "2026-07-26T08:21:28.969361",
+  "last_updated": "2026-07-27T09:43:11.789289",
   "last_run_counts": {
-    "total": 5,
+    "total": 3,
     "critical": 0,
     "important": 3,
-    "info": 2
+    "info": 0
   },
-  "archive_size": 443,
-  "exec_summary": "The European Central Bank has issued a warning that stablecoins could potentially drain deposits from the traditional banking system, despite the upcoming Markets in Crypto-Assets regulation, highlighting the need for continued vigilance in the regulatory framework. In Belgium, financial institutions should be aware of the evolving landscape and ensure compliance with relevant EU regulations. The ECB's July 2026 euro area bank lending survey also provides insight into current lending conditions and may inform regulatory decisions. The European Commission's MiCA regulation remains a key focus for compliance efforts in the crypto space.",
+  "archive_size": 445,
+  "exec_summary": "The European Union's Markets in Crypto-Assets regulation, known as MiCA, has introduced significant regulatory developments, including restrictions on Belarusian control of MiCA firms, which may impact the compliance landscape for crypto-asset service providers. In Belgium, financial institutions should be aware of the potential implications of MiCA on their operations, particularly with regards to third-tier exchanges. The European Central Bank has also released its Consumer Expectations Survey results for June 2026, which may inform regulatory priorities and supervisory actions. The ECB's survey results may be relevant to Belgian financial institutions in terms of understanding consumer expectations and behaviors in the context of regulatory compliance.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 53
+      "days_away": 52
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 158
+      "days_away": 157
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 159
+      "days_away": 158
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 168
+      "days_away": 167
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 338
+      "days_away": 337
     }
   ],
   "trends": [
     {
-      "theme": "DORA",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁",
-      "values": [
-        1,
-        1,
-        1
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "Market Infrastructure",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁",
-      "values": [
-        1,
-        1,
-        1
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "MiFID/MiFIR",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁",
-      "values": [
-        1
-      ],
-      "weeks": 1
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 1,
-      "avg": 1.3,
-      "pct": -25,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁█▁",
-      "values": [
-        1,
-        1,
-        2,
-        1
-      ],
-      "weeks": 4
-    },
-    {
-      "theme": "SFDR/ESG",
-      "this_week": 1,
-      "avg": 1.3,
-      "pct": -25,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁█▁▁",
-      "values": [
-        1,
-        2,
-        1,
-        1
-      ],
-      "weeks": 4
-    },
-    {
-      "theme": "AML/CFT",
-      "this_week": 1,
-      "avg": 2.0,
-      "pct": -50,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▄█▁",
-      "values": [
-        1,
-        2,
-        3,
-        1
-      ],
-      "weeks": 4
-    },
-    {
       "theme": "MiCA/Crypto",
       "this_week": 2,
-      "avg": 8.0,
-      "pct": -75,
+      "avg": 6.5,
+      "pct": -69,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "▅██▁",
+      "spark": "▅██▁▁",
       "values": [
         6,
         9,
         9,
+        2,
         2
       ],
-      "weeks": 4
+      "weeks": 5
     },
     {
       "theme": "Capital/CRR",
@@ -177,6 +81,23 @@
       "weeks": 3
     },
     {
+      "theme": "Enforcement/Fines",
+      "this_week": 0,
+      "avg": 1.3,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁█▁",
+      "values": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "weeks": 4
+    },
+    {
       "theme": "Stress Test",
       "this_week": 0,
       "avg": 1.0,
@@ -190,6 +111,23 @@
         1
       ],
       "weeks": 2
+    },
+    {
+      "theme": "AML/CFT",
+      "this_week": 0,
+      "avg": 2.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▄█▁",
+      "values": [
+        1,
+        2,
+        3,
+        1
+      ],
+      "weeks": 4
     },
     {
       "theme": "Retail Investment",
@@ -221,6 +159,69 @@
         1
       ],
       "weeks": 3
+    },
+    {
+      "theme": "DORA",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁",
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "weeks": 3
+    },
+    {
+      "theme": "Market Infrastructure",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁",
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "weeks": 3
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 0,
+      "avg": 1.3,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁█▁▁",
+      "values": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "weeks": 4
+    },
+    {
+      "theme": "MiFID/MiFIR",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
     }
   ]
 }
