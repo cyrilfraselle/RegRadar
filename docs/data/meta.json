@@ -1,91 +1,102 @@
 {
-  "last_updated": "2026-07-29T08:33:52.001442",
+  "last_updated": "2026-07-30T08:19:30.096974",
   "last_run_counts": {
-    "total": 10,
-    "critical": 0,
-    "important": 8,
-    "info": 2
+    "total": 14,
+    "critical": 2,
+    "important": 11,
+    "info": 1
   },
-  "archive_size": 469,
-  "exec_summary": "The European Banking Authority has published a draft technical package of its reporting and disclosure framework, version 4.4, which is a significant development for EU financial institutions. In Belgium, the financial watchdog has issued a warning against Forex trading coach Cédric Bergans, highlighting the importance of regulatory compliance in the country. Meanwhile, the EU's Markets in Crypto-Assets regulation, or MiCA, continues to shape the regulatory landscape for crypto firms, with Capital Wallet Greece securing a landmark MiCA CASP authorisation and Nexo reinforcing MiCA compliance via licensed partners. The Lombard Odier fine in the Gulnara Karimova money laundering case also underscores the need for robust anti-money laundering controls across the EU.",
+  "archive_size": 483,
+  "exec_summary": "The European Securities and Markets Authority has clarified the compliance landscape for MiCA crypto regulations, providing guidance on the new rules for crypto assets in the EU. In a significant enforcement action, Lombard Odier was fined 3 million francs for a major money laundering ruling, highlighting the importance of anti-money laundering compliance. Meanwhile, Hungary has granted its first MiCA license, marking a key development in the EU's regulatory framework for crypto assets. The European Central Bank has also announced that its digital euro app will incorporate the highest accessibility standards, demonstrating its commitment to inclusive and secure payment systems.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 50
+      "days_away": 49
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 155
+      "days_away": 154
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 156
-    },
-    {
-      "date": "2027-01-01",
-      "event": "ECB wage tracker at 2.7%",
-      "theme": "Economic Stability",
-      "type": "report",
-      "days_away": 156
+      "days_away": 155
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 165
+      "days_away": 164
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 335
+      "days_away": 334
     }
   ],
   "trends": [
     {
       "theme": "Enforcement/Fines",
-      "this_week": 2,
+      "this_week": 5,
       "avg": 1.2,
-      "pct": 60,
+      "pct": 300,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁█▁█",
+      "spark": "▁▁▂▁█",
       "values": [
         1,
         1,
         2,
         1,
-        2
+        5
       ],
       "weeks": 5
     },
     {
       "theme": "AML/CFT",
-      "this_week": 2,
+      "this_week": 5,
       "avg": 1.8,
-      "pct": 14,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▄█▁▄",
+      "pct": 186,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▂▄▁█",
       "values": [
         1,
         2,
         3,
         1,
-        2
+        5
+      ],
+      "weeks": 5
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 6,
+      "avg": 6.5,
+      "pct": -8,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▅██▁▅",
+      "values": [
+        6,
+        9,
+        9,
+        2,
+        6
       ],
       "weeks": 5
     },
@@ -105,24 +116,6 @@
         1
       ],
       "weeks": 4
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 3,
-      "avg": 6.5,
-      "pct": -54,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▅██▁▂",
-      "values": [
-        6,
-        9,
-        9,
-        2,
-        3
-      ],
-      "weeks": 5
     },
     {
       "theme": "Stress Test",
