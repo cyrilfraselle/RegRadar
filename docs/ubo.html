@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UBO Discovery — RegRadar</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- pdf.js is vendored, not loaded from a CDN: a page handling shareholder
+     registers should not be making third-party requests, and this way the
+     whole thing keeps working with the network off. -->
+<script src="vendor/pdf.min.js"></script>
+<script>
+  if(window.pdfjsLib) window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
+</script>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
+<style>
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F4F5F6; --border:#E3E5E8; --border-strong:#0A0A0A;
+    --text:#0A0A0A; --text-2:#5B6069; --text-3:#8B9099;
+    --accent:#0039A6; --crit:#C8320F; --imp:#9A6B00; --ok:#0F7B4F; --purple:#4B2E83;
+    --node-co:#FFFFFF; --node-line:#5B6069;
+    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"IBM Plex Mono",Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.2,0,0,1);
+  }
+  html[data-theme="dark"]{
+    --bg:#08090B; --surface:#0E1013; --surface-2:#14171B; --border:#20242A; --border-strong:#F2F2F2;
+    --text:#F2F4F6; --text-2:#98A0AA; --text-3:#666E78;
+    --accent:#4D8DFF; --crit:#FF5C3D; --imp:#FFB93D; --ok:#2DD48F; --purple:#A98BE0;
+    --node-co:#0E1013; --node-line:#98A0AA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.5;
+    letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 24px}
+
+  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
+  .topbar-inner{display:flex;align-items:center;gap:20px;height:60px;max-width:1400px;margin:0 auto;padding:0 24px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+  .logo-mark{width:30px;height:30px;background:var(--accent);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:17px}
+  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
+  .nav{display:flex;margin-left:16px}
+  .nav a{padding:8px 14px;font-size:13px;font-weight:500;color:var(--text-2);
+    border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 140ms var(--ease),border-color 140ms var(--ease)}
+  .nav a:hover:not(.active){color:var(--text)}
+  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
+  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;color:var(--text-2);
+    cursor:pointer;font-size:15px;transition:border-color 140ms var(--ease),color 140ms var(--ease)}
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+  .head{padding:30px 0 0}
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+  .head h1{font-size:30px;font-weight:700;letter-spacing:-.028em;line-height:1.08;margin-top:10px}
+  .head .sub{font-size:14px;color:var(--text-2);margin-top:9px;max-width:74ch}
+
+  .demoNote{border-left:2px solid var(--imp);padding:8px 0 8px 14px;margin-top:16px;font-size:12.5px;
+    color:var(--text-2);max-width:82ch;line-height:1.55}
+
+  /* upload strip */
+  .docs{border-top:2px solid var(--border-strong);margin-top:22px;padding:14px 0 16px}
+  .docs .dl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-bottom:11px}
+  .docrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .doc{display:flex;align-items:center;gap:8px;border:1px solid var(--border);padding:7px 11px;font-size:12px;
+    color:var(--text-2);cursor:pointer;transition:border-color 140ms var(--ease),color 140ms var(--ease)}
+  .doc:hover{border-color:var(--accent);color:var(--text)}
+  .doc .ext{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.05em;color:var(--accent)}
+  .doc .pg{font-family:var(--mono);font-size:10px;color:var(--text-3)}
+  .upl{border:1px dashed var(--border);padding:7px 13px;font-size:12px;color:var(--text-3);cursor:not-allowed}
+
+  /* control bar */
+  .ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:2px solid var(--border-strong);
+    padding:14px 0;margin-top:6px}
+  .ctrl .bl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-right:2px}
+  .th{font-family:var(--mono);font-size:12.5px;font-weight:700;padding:6px 14px;border:1px solid var(--border);
+    color:var(--text-2);cursor:pointer;transition:all 140ms var(--ease)}
+  .th:hover{border-color:var(--text-3);color:var(--text)}
+  .th.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tog{font-size:11.5px;font-weight:600;padding:6px 11px;border:1px solid var(--border);color:var(--text-2);
+    cursor:pointer;transition:all 140ms var(--ease)}
+  .tog:hover{border-color:var(--text-3);color:var(--text)}
+  .tog.on{border-color:var(--accent);color:var(--accent)}
+  .ctrl .right{margin-left:auto;display:flex;gap:8px}
+  .btn{font-family:var(--font);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    padding:8px 14px;border:1px solid var(--border);background:transparent;color:var(--text-2);cursor:pointer;
+    transition:all 140ms var(--ease)}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.pri:hover{opacity:.88;color:#fff}
+
+  /* main split */
+  .split{display:grid;grid-template-columns:1fr 380px;gap:28px;padding:4px 0 20px;align-items:start}
+  @media(max-width:1080px){.split{grid-template-columns:1fr}}
+
+  .graphbox{border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden}
+  .graphbox svg{display:block;width:100%;height:auto;touch-action:none}
+  .gtools{position:absolute;top:10px;right:10px;display:flex;gap:5px}
+  .gtool{width:27px;height:27px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+    font-size:13px;cursor:pointer;font-family:var(--mono)}
+  .gtool:hover{border-color:var(--accent);color:var(--accent)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border);padding:9px 12px;
+    font-size:10.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+  .legend i{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px}
+
+  /* UBO panel */
+  .panel{border-top:2px solid var(--border-strong);padding-top:12px}
+  .panel .pl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);
+    display:flex;justify-content:space-between;align-items:baseline}
+  .panel .pl b{font-family:var(--mono);color:var(--accent);font-size:11px}
+
+  .ubo{border-bottom:1px solid var(--border);padding:13px 0;cursor:pointer;transition:background 140ms var(--ease)}
+  .ubo:hover{background:var(--surface-2)}
+  .ubo.sel{background:var(--surface-2)}
+  .ubo-top{display:flex;align-items:baseline;gap:9px}
+  .ubo-pct{font-family:var(--mono);font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+  .ubo-nm{font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+  .ubo-why{font-size:12.5px;color:var(--text-2);line-height:1.5;margin-top:7px}
+  .ubo-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+  .tg{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 6px;
+    border:1px solid var(--border);color:var(--text-3)}
+  .tg.hi{border-color:var(--ok);color:var(--ok)}
+  .tg.med{border-color:var(--imp);color:var(--imp)}
+  .tg.lo{border-color:var(--crit);color:var(--crit)}
+  .tg.ctrl{border-color:var(--purple);color:var(--purple)}
+  .paths{margin-top:9px;border-left:1px solid var(--border);padding-left:11px}
+  .pathrow{font-family:var(--mono);font-size:11px;color:var(--text-3);line-height:1.7}
+  .pathrow b{color:var(--text-2)}
+  .below{opacity:.5}
+
+  /* discrepancies */
+  .disc{border-bottom:1px solid var(--border);padding:12px 0;cursor:pointer}
+  .disc:hover{background:var(--surface-2)}
+  .disc h4{font-size:13px;font-weight:700;display:flex;gap:8px;align-items:baseline}
+  .disc h4 span{font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .disc p{font-size:12.5px;color:var(--text-2);line-height:1.5;margin-top:5px}
+  .sev-hi{color:var(--crit)} .sev-med{color:var(--imp)} .sev-lo{color:var(--text-3)}
+
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2px}
+  .tab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);
+    padding:9px 13px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 140ms var(--ease)}
+  .tab:hover{color:var(--text-2)}
+  .tab.on{color:var(--text);border-bottom-color:var(--accent)}
+
+  /* drawer */
+  .ov{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity 160ms;z-index:100}
+  .ov.on{opacity:1;pointer-events:auto}
+  .dw{position:fixed;top:0;right:0;height:100%;width:min(560px,94vw);background:var(--bg);
+    border-left:2px solid var(--border-strong);transform:translateX(100%);transition:transform 200ms var(--ease);
+    z-index:101;overflow-y:auto}
+  .dw.on{transform:none}
+  .dw-in{padding:24px 26px 70px;position:relative}
+  .dw .x{position:absolute;top:14px;right:16px;font-size:22px;color:var(--text-3);cursor:pointer;background:none;border:none}
+  .dw h2{font-size:20px;font-weight:700;letter-spacing:-.022em;line-height:1.2;margin:6px 0 4px;padding-right:34px}
+  .dsec{margin-top:18px;border-top:1px solid var(--border);padding-top:11px}
+  .dsec .dl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-bottom:8px}
+  .dsec p{font-size:13.5px;line-height:1.6;color:var(--text-2)}
+  .excerpt{border-left:2px solid var(--accent);background:var(--surface-2);padding:11px 14px;font-size:13px;
+    line-height:1.6;color:var(--text)}
+  .excerpt mark{background:var(--accent);color:#fff;padding:0 2px}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:5px 12px;font-size:12.5px}
+  .kv .k{color:var(--text-3);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding-top:2px}
+  .kv .v{color:var(--text-2)}
+  .kv .v.mono{font-family:var(--mono)}
+
+  /* report modal */
+  .rep{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:120;overflow-y:auto;padding:40px 20px}
+  .rep.on{display:block}
+  .rep-box{max-width:860px;margin:0 auto;background:var(--surface);border:2px solid var(--border-strong);padding:36px 40px 50px}
+  .rep-box h1{font-size:26px;font-weight:700;letter-spacing:-.028em;line-height:1.15}
+  .rep-box h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);
+    border-top:2px solid var(--border-strong);padding-top:10px;margin:26px 0 10px}
+  .rep-box p,.rep-box li{font-size:13.5px;line-height:1.6;color:var(--text-2)}
+  .rep-box ul{margin-left:17px}
+  .rep-box table{width:100%;border-collapse:collapse;margin-top:6px}
+  .rep-box th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);
+    border-bottom:2px solid var(--border-strong);padding:7px 8px 7px 0}
+  .rep-box td{font-size:13px;border-bottom:1px solid var(--border);padding:9px 8px 9px 0;color:var(--text-2)}
+  .rep-box td.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .rep-close{position:sticky;top:0;float:right;font-size:22px;background:none;border:none;color:var(--text-3);cursor:pointer}
+
+  footer{border-top:2px solid var(--border-strong);margin-top:26px;padding:18px 0 46px;font-size:10px;
+    color:var(--text-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+
+  /* empty state / onboarding */
+  .onb{display:grid;grid-template-columns:1fr 340px;gap:34px;border-top:2px solid var(--border-strong);
+    margin-top:22px;padding-top:18px}
+  @media(max-width:880px){.onb{grid-template-columns:1fr;gap:24px}}
+  .onb-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--text-3);margin-bottom:10px}
+  .onb-main p{font-size:14px;line-height:1.6;color:var(--text-2);max-width:64ch}
+  .onb-steps{margin:8px 0 0 18px}
+  .onb-steps li{font-size:14px;line-height:1.6;color:var(--text-2);margin-bottom:7px;max-width:62ch}
+  .onb-steps b,.onb-install b{color:var(--text)}
+  .onb-btns{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+  .onb-note{font-size:12px;color:var(--text-3);line-height:1.5;margin-top:11px;max-width:60ch}
+  .onb-side{border-left:1px solid var(--border);padding-left:22px}
+  @media(max-width:880px){.onb-side{border-left:none;border-top:1px solid var(--border);
+    padding-left:0;padding-top:18px}}
+  .onb-install{margin:0 0 0 17px;padding:0}
+  .onb-install li{font-size:13px;line-height:1.55;color:var(--text-2);margin-bottom:12px}
+  .onb-install span{color:var(--text-3);font-size:11.5px}
+  .onb-install code{font-family:var(--mono);font-size:11.5px;background:var(--surface-2);
+    padding:2px 6px;display:inline-block;margin:3px 0}
+  .onb-install a{color:var(--accent);border-bottom:1px solid var(--accent)}
+  .onb-why{border-left:2px solid var(--imp);padding:8px 0 8px 12px;margin-top:18px;
+    font-size:12.5px;line-height:1.55;color:var(--text-2)}
+  .onb-why b{color:var(--text)}
+
+  /* history */
+  #historyPanel{border-top:2px solid var(--border-strong);margin-top:26px;padding-top:14px}
+  .hist-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .hist-list{display:flex;flex-direction:column}
+  .hist{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:baseline;
+    padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer;
+    transition:background 140ms var(--ease)}
+  .hist:hover{background:var(--surface-2)}
+  .hist .hn{font-size:14px;font-weight:600}
+  .hist .hm{font-size:11.5px;color:var(--text-3);font-family:var(--mono)}
+  .hist .hd{font-size:11px;color:var(--text-3);font-family:var(--mono)}
+
+  /* local app mode */
+  .local{border-top:2px solid var(--border-strong);margin-top:20px;padding:14px 0 4px}
+  .local .dl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--text-3);margin-bottom:11px}
+  .privacy{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);
+    padding:10px 13px;font-size:12.5px;color:var(--text-2);line-height:1.5;margin-bottom:12px}
+  .privacy b{color:var(--text);font-size:13px}
+  .privacy.ok{border-color:var(--ok)}
+  .privacy.warn{border-color:var(--imp)}
+  .privacy.none{border-color:var(--crit)}
+  .pdot{width:9px;height:9px;margin-top:5px;flex-shrink:0;background:var(--text-3)}
+  .privacy.ok .pdot{background:var(--ok)}
+  .privacy.warn .pdot{background:var(--imp)}
+  .privacy.none .pdot{background:var(--crit)}
+  .drop{border:1px dashed var(--border);padding:22px 18px;text-align:center;
+    transition:border-color 140ms var(--ease),background 140ms var(--ease)}
+  .drop.over{border-color:var(--accent);background:var(--surface-2)}
+  .dropmsg{font-size:13.5px;color:var(--text-2)}
+  .filelist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+  .filelist span{font-size:11.5px;border:1px solid var(--border);padding:4px 9px;color:var(--text-2)}
+  .filelist span i{font-style:normal;color:var(--text-3);font-family:var(--mono);font-size:10px;margin-left:6px}
+  .localrow{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+  .localrow input{flex:1;min-width:200px;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);padding:8px 11px;font-size:13px;font-family:var(--font)}
+  .localrow input:focus{outline:none;border-color:var(--accent)}
+  .runstat{font-size:12px;color:var(--text-3);font-family:var(--mono)}
+
+  .hostnote{border-left:2px solid var(--imp);padding:9px 0 9px 13px;margin-bottom:14px;
+    font-size:13px;line-height:1.55;color:var(--text-2);max-width:62ch}
+  .hostnote b{color:var(--text);display:block;margin-bottom:3px}
+  .local .hostnote,[data-local] .hostnote{display:none}
+  .blocked{border:1px solid var(--crit);border-left-width:3px;padding:12px 15px;margin-bottom:12px;
+    font-size:13px;line-height:1.55;color:var(--text-2)}
+  .blocked b{color:var(--text)}
+  .blocked ol{margin:9px 0 0 18px}
+  .blocked li{margin-bottom:5px}
+  .blocked code{font-family:var(--mono);font-size:11.5px;background:var(--surface-2);padding:2px 6px}
+  .blocked a{color:var(--accent);border-bottom:1px solid var(--accent)}
+  .bnote{display:block;margin-top:9px;font-size:12px;color:var(--text-3)}
+
+  /* demo gate */
+  .gate{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:200;display:flex;
+    align-items:flex-start;justify-content:center;padding:6vh 20px 40px;overflow-y:auto}
+  .gate.off{display:none}
+  .gate-box{max-width:620px;background:var(--surface);border:2px solid var(--border-strong);padding:30px 34px 30px}
+  .gate-box h2{font-size:23px;font-weight:700;letter-spacing:-.026em;line-height:1.2;margin-top:10px}
+  .gsec{margin-top:19px;border-top:1px solid var(--border);padding-top:11px}
+  .gsec .gl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-bottom:7px}
+  .gsec p,.gsec li{font-size:13.5px;line-height:1.6;color:var(--text-2)}
+  .gsec ul{margin-left:17px}
+  .gsec li{margin-bottom:4px}
+  .gcheck{display:flex;gap:10px;align-items:flex-start;margin-top:22px;border-top:2px solid var(--border-strong);
+    padding-top:15px;cursor:pointer;font-size:13.5px;line-height:1.5;color:var(--text)}
+  .gcheck input{margin-top:3px;width:15px;height:15px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .btn.pri:disabled:hover{opacity:.4}
+
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}}
+  @media(max-width:720px){
+    .head h1{font-size:23px}
+    .nav{overflow-x:auto;margin-left:0} .logo-sub{display:none}
+    .kv{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">UBO Discovery</span></div>
+  <nav class="nav">
+    <a href="index.html">Signal</a>
+    <a href="law.html">Read the Law</a>
+    <a href="country-risk.html">Country Risk</a>
+    <a href="obligations.html">Obligations</a>
+    <a href="ubo.html" class="active">UBO</a>
+  </nav>
+  <div class="topbar-right">
+    <button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+  <div class="head">
+    <div class="eyebrow">Ownership analysis · AMLR Art. 22 &amp; 24
+      <span id="liveTag" style="display:none;color:var(--ok);margin-left:8px">● Loaded investigation</span></div>
+    <h1 id="custName">UBO Discovery</h1>
+    <div class="sub" id="custMeta">Reconstructs corporate ownership from filings, calculates
+      indirect holdings at any depth, and shows which individuals qualify as beneficial owners —
+      with every percentage traced to the sentence that states it.</div>
+  </div>
+
+  <!-- empty state: shown until an investigation is loaded -->
+  <div id="emptyState">
+    <div class="onb">
+      <div class="onb-main">
+        <div class="onb-l">How this works</div>
+        <div class="hostnote" id="hostNote">
+          <b>Your documents are read in this browser tab and go no further.</b>
+          This site has no server that could receive them. The analysis is done by Ollama running
+          on your own machine — install it once, and the upload box above starts working.
+        </div>
+        <p>Drop PDFs above to build an ownership graph: indirect holdings at any depth,
+          circular structures, and every percentage traced to the sentence that states it.</p>
+        <p style="margin-top:9px">Or, if a colleague sent you a finished analysis:</p>
+        <ol class="onb-steps">
+          <li><b>Open a result file</b> with <b>Load investigation…</b> — read in this tab,
+            never uploaded.</li>
+          <li><b>Try the mechanics</b> with the worked example, which uses invented data.</li>
+        </ol>
+        <div class="onb-btns">
+          <button class="btn pri" onclick="pickFile()">Load investigation…</button>
+          <button class="btn" onclick="loadSample()">See a worked example</button>
+        </div>
+        <div class="onb-note">The worked example uses an <b>invented</b> company and invented
+          documents. It exists to show the mechanics — nothing in it is real.</div>
+      </div>
+
+      <div class="onb-side">
+        <div class="onb-l">One-time setup</div>
+        <ol class="onb-install">
+          <li><b>Install Ollama</b> — <a href="https://ollama.com/download" target="_blank"
+              rel="noopener">ollama.com/download</a><br>
+            <span>Runs the AI model on your machine. Free.</span></li>
+          <li><b>Get the model</b><br><code>ollama pull llama3.1:8b</code><br>
+            <span>~5 GB, once. Then it works offline.</span></li>
+          <li><b>Allow this site</b> to reach Ollama<br>
+            <code>launchctl setenv OLLAMA_ORIGINS "*"</code><br>
+            <span>Then restart Ollama. Needed once — Ollama blocks websites by default.</span></li>
+        </ol>
+        <div class="onb-why">
+          <b>Why install anything at all?</b><br>
+          Because the alternative is sending your documents to someone's server. The model runs on
+          your machine, so the files never leave it — and you can prove that by turning off the
+          wifi and watching the analysis still work.
+        </div>
+      </div>
+    </div>
+
+    <div id="historyPanel" style="display:none">
+      <div class="hist-head">
+        <span class="onb-l" style="margin:0">Recently viewed</span>
+        <button class="btn" style="padding:5px 10px" onclick="clearHistory()">Clear</button>
+      </div>
+      <div id="historyList" class="hist-list"></div>
+      <div class="onb-note" style="margin-top:8px">Stored in this browser only, on this machine.
+        Clearing removes it permanently.</div>
+    </div>
+  </div>
+
+  <!-- documents -->
+  <div class="docs">
+    <div class="dl">Source documents · click to inspect what was extracted</div>
+    <div class="docrow" id="docRow"></div>
+  </div>
+
+  <!-- local app mode only -->
+  <div class="local" id="localPanel" style="display:none">
+    <div class="dl">Analyse documents · runs on this machine</div>
+    <div class="privacy" id="privacyBanner">
+      <span class="pdot" id="pdot"></span>
+      <div style="flex:1"><b id="pLabel">—</b><div id="pNote" style="margin-top:3px"></div></div>
+      <button class="btn" style="padding:5px 10px;align-self:center" onclick="recheck()"
+              id="recheckBtn">Re-check</button>
+    </div>
+
+    <div id="blocked" class="blocked" style="display:none">
+      <b>Analysis is switched off — Ollama isn't answering this page.</b>
+      <p style="margin:8px 0 0">Two possible reasons, and the fix for each:</p>
+      <ol>
+        <li><b>Ollama isn't running.</b> Open the Ollama app, or run <code>ollama serve</code>.
+          First time only: <code>ollama pull llama3.1:8b</code></li>
+        <li><b>Ollama is running but refuses requests from a website.</b> That is its default,
+          and it is a sensible one. Allow this site, once:<br>
+          <code id="corsCmd">launchctl setenv OLLAMA_ORIGINS "*" &amp;&amp; pkill Ollama; open -a Ollama</code>
+          <button class="btn" style="padding:3px 8px;margin-left:6px"
+                  onclick="copyCors(event)">Copy</button><br>
+          <span>macOS. On Windows, set the <code>OLLAMA_ORIGINS</code> environment variable to
+          <code>*</code> and restart Ollama. To be stricter, use this site's address instead of
+          <code>*</code>.</span></li>
+      </ol>
+      <span class="bnote">Then click <b>Re-check</b> above — no reload needed.
+        Not installed? <a href="https://ollama.com/download" target="_blank"
+        rel="noopener">ollama.com/download</a> · Or use the
+        <b>downloadable tool</b>, which avoids this entirely.</span>
+    </div>
+
+    <div class="drop" id="drop">
+      <input type="file" id="fileIn" multiple style="display:none"
+             accept=".pdf,.docx,.xlsx,.xls,.txt,.md">
+      <div class="dropmsg" id="dropMsg">
+        <b>Drop documents here</b> or <u style="cursor:pointer" onclick="document.getElementById('fileIn').click()">browse</u>
+        <div style="font-size:11.5px;color:var(--text-3);margin-top:6px">
+          PDF · DOCX · XLSX · TXT — scanned PDFs need OCR first</div>
+      </div>
+      <div id="fileList" class="filelist"></div>
+    </div>
+    <div class="localrow">
+      <input type="text" id="custIn" placeholder="Customer entity name (optional)">
+      <button class="btn pri" id="runBtn" onclick="runExtraction()">Analyse</button>
+      <span id="runStat" class="runstat"></span>
+    </div>
+  </div>
+
+  <!-- controls -->
+  <div class="ctrl" id="ctrlBar" style="display:none">
+    <span class="bl">UBO threshold</span>
+    <span class="th" data-t="10">10%</span>
+    <span class="th" data-t="20">20%</span>
+    <span class="th on" data-t="25">25%</span>
+    <span class="th" data-t="30">30%</span>
+    <span class="tog on" id="togCtrl" onclick="toggleControl()">Control-based limb</span>
+    <span class="tog" id="togBelow" onclick="toggleBelow()">Show below threshold</span>
+    <span class="right">
+      <button class="btn" onclick="pickFile()">Load investigation…</button>
+      <button class="btn" onclick="runCorrob()" id="corrobBtn">Run corroboration</button>
+      <button class="btn pri" onclick="openReport()">Generate report</button>
+    </span>
+  </div>
+
+  <div class="split" id="splitMain" style="display:none">
+    <div>
+      <div class="graphbox">
+        <svg id="graph" viewBox="0 0 900 620" role="img"
+             aria-label="Ownership graph from the customer entity up to its ultimate beneficial owners">
+          <g id="gz">
+            <g id="edges"></g>
+            <g id="nodes"></g>
+          </g>
+        </svg>
+        <div class="gtools">
+          <button class="gtool" onclick="zoom(1.25)" title="Zoom in">+</button>
+          <button class="gtool" onclick="zoom(.8)" title="Zoom out">−</button>
+          <button class="gtool" onclick="resetZoom()" title="Reset">⤾</button>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--accent)"></i>Beneficial owner</span>
+          <span><i style="border:1.5px solid var(--node-line)"></i>Legal entity</span>
+          <span><i style="border:1.5px dashed var(--purple)"></i>Trust / nominee</span>
+          <span><i style="background:var(--crit)"></i>Customer</span>
+          <span><i style="background:var(--imp)"></i>Circular holding</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tabs">
+        <span class="tab on" data-tab="ubo" onclick="switchTab('ubo')">UBOs</span>
+        <span class="tab" data-tab="disc" onclick="switchTab('disc')">Discrepancies</span>
+        <span class="tab" data-tab="ext" onclick="switchTab('ext')">External</span>
+      </div>
+
+      <div id="tabUbo">
+        <div class="panel" style="border-top:none;padding-top:10px">
+          <div class="pl"><span>Identified beneficial owners</span><b id="uboCount">—</b></div>
+          <div id="uboList"></div>
+        </div>
+      </div>
+
+      <div id="tabDisc" style="display:none">
+        <div class="panel" style="border-top:none;padding-top:10px">
+          <div class="pl"><span>Conflicts requiring analyst review</span><b id="discCount">—</b></div>
+          <div id="discList"></div>
+        </div>
+      </div>
+
+      <div id="tabExt" style="display:none">
+        <div class="panel" style="border-top:none;padding-top:10px">
+          <div class="pl"><span>Registry corroboration</span><b id="extCount">—</b></div>
+          <div id="extList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>RegRadar · UBO Discovery — demo build</span>
+    <span>Determinations remain the analyst's · not a system of record</span>
+  </footer>
+</div>
+
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--imp)">
+      Prototype — please read</div>
+    <h2>A viewer, not a KYC system.</h2>
+
+    <div class="gsec">
+      <div class="gl">What this page does</div>
+      <p>It displays an ownership analysis: the graph, the indirect-ownership arithmetic, the
+      evidence behind each percentage. It <b>does not analyse documents</b> — that runs on your own
+      machine, offline. This page has no backend and no database.</p>
+    </div>
+
+    <div class="gsec">
+      <div class="gl">What it is not</div>
+      <ul>
+        <li>Not a UBO determination. It assembles evidence and shows the arithmetic; the conclusion
+          is the analyst's.</li>
+        <li>Not a system of record. Nothing is stored — close the tab and it is gone.</li>
+        <li>Not validated. It is a prototype built in evenings, with none of the review a production
+          compliance system requires.</li>
+      </ul>
+    </div>
+
+    <div class="gsec">
+      <div class="gl">A word on the extraction</div>
+      <p>Every fact must carry a quotation found verbatim in the source document; anything else is
+      discarded rather than flagged. The tool therefore <b>misses</b> relationships more often than
+      it invents them — which is the right direction to fail, but means you must read the graph
+      against the documents rather than trusting it.</p>
+    </div>
+
+    <label class="gcheck"><input type="checkbox" id="gateAck">
+      <span>I understand this is a prototype and that its output is not a UBO determination.</span></label>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <button class="btn pri" id="gateBtn" disabled onclick="closeGate()">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov" onclick="closeDrawer()"></div>
+<div class="dw" id="dw"><div class="dw-in" id="dwBody"></div></div>
+
+<div class="rep" id="rep" onclick="if(event.target.id==='rep')closeReport()">
+  <div class="rep-box" id="repBox"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   DATA — simulated corporate structure.
+   Deliberately built to include a cross-shareholding (circularity),
+   a trust layer, a nominee, and a threshold-sensitive owner.
+   ═══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   STATE — empty until an investigation is loaded.
+   The hosted page ships with no data. A worked example is available
+   behind an explicit button, clearly labelled as fictional.
+   ═══════════════════════════════════════════════════════════════ */
+let CUSTOMER=null, NODES=[], EDGES=[], CONTROL=[], DOCS={},
+    DISCREPANCIES=[], EXTERNAL=[];
+
+/* Worked example — invented company, invented documents.
+   Loaded only when the user asks for it. */
+const SAMPLE={
+  customer:'meridiaan',
+
+  nodes:[
+  {id:'meridiaan',name:'Meridiaan Payments NV',type:'company',juris:'BE',tier:0,x:430,
+   note:'Customer entity. Belgian payment institution.'},
+  {id:'kestrel',name:'Kestrel Holdings Sàrl',type:'company',juris:'LU',tier:1,x:250,
+   note:'Luxembourg intermediate holding.'},
+  {id:'ingrid',name:'Ingrid Van Damme',type:'person',juris:'BE',tier:1,x:700,
+   note:'Founder, retains a minority stake. Board member.'},
+  {id:'braxton',name:'Braxton Capital Ltd',type:'company',juris:'CY',tier:2,x:520,
+   note:'Cyprus holding. Holds both a direct and an indirect interest — creates a cross-shareholding.'},
+  {id:'zenith',name:'Zenith Family Trust',type:'trust',juris:'JE',tier:2,x:140,
+   note:'Jersey discretionary trust. Held via a nominee trustee.'},
+  {id:'pieter',name:'Pieter Janssens',type:'person',juris:'BE',tier:3,x:470,
+   note:'Appears in three separate ownership chains.'},
+  {id:'aurelio',name:'Aurelio Marchetti',type:'person',juris:'IT',tier:3,x:680,
+   note:'Also party to a shareholders\u2019 agreement conferring board appointment rights.'},
+  {id:'elena',name:'Elena Marchetti',type:'person',juris:'IT',tier:3,x:285,
+   note:'Sole named beneficiary of the Zenith Family Trust.'},
+  {id:'fiduciary',name:'Fiduciary Services SA',type:'nominee',juris:'CH',tier:3,x:100,
+   note:'Nominee trustee. Holds legal title only — no economic interest.'}
+  ],
+
+/* from = owner, to = owned */
+  edges:[
+  {from:'kestrel',to:'meridiaan',pct:60,kind:'shareholding',doc:'d1',page:4,conf:'high',
+   excerpt:'The share capital of the Company is held as to <mark>sixty per cent (60%)</mark> by Kestrel Holdings S\u00e0rl, a company incorporated under the laws of Luxembourg.'},
+  {from:'braxton',to:'meridiaan',pct:25,kind:'shareholding',doc:'d2',page:2,conf:'high',
+   excerpt:'Braxton Capital Ltd &mdash; <mark>25.00%</mark> of the issued ordinary shares, registered 14 March 2024.'},
+  {from:'ingrid',to:'meridiaan',pct:8,kind:'shareholding',doc:'d2',page:2,conf:'high',
+   excerpt:'Van Damme, Ingrid &mdash; <mark>8.00%</mark> of the issued ordinary shares.'},
+  {from:'pieter',to:'kestrel',pct:45,kind:'shareholding',doc:'d3',page:7,conf:'high',
+   excerpt:'Mr P. Janssens holds <mark>45%</mark> of the corporate units of Kestrel Holdings S\u00e0rl.'},
+  {from:'braxton',to:'kestrel',pct:30,kind:'shareholding',doc:'d3',page:7,conf:'medium',
+   excerpt:'Braxton Capital Ltd holds <mark>30%</mark> of the corporate units.'},
+  {from:'zenith',to:'kestrel',pct:25,kind:'shareholding',doc:'d3',page:8,conf:'medium',
+   excerpt:'The remaining <mark>25%</mark> is held by Fiduciary Services SA acting as trustee of the Zenith Family Trust.'},
+  {from:'pieter',to:'braxton',pct:20,kind:'shareholding',doc:'d4',page:3,conf:'high',
+   excerpt:'Janssens, Pieter &mdash; <mark>20%</mark> of issued share capital.'},
+  {from:'aurelio',to:'braxton',pct:55,kind:'shareholding',doc:'d4',page:3,conf:'high',
+   excerpt:'Marchetti, Aurelio &mdash; <mark>55%</mark> of issued share capital.'},
+  {from:'meridiaan',to:'braxton',pct:25,kind:'shareholding',doc:'d4',page:3,conf:'medium',
+   excerpt:'Meridiaan Payments NV &mdash; <mark>25%</mark> of issued share capital (treasury cross-holding).'},
+  {from:'elena',to:'zenith',pct:100,kind:'beneficiary',doc:'d5',page:2,conf:'medium',
+   excerpt:'The sole named discretionary beneficiary of the Trust is <mark>Elena Marchetti</mark>.'},
+  {from:'fiduciary',to:'zenith',pct:0,kind:'trustee',doc:'d5',page:1,conf:'high',
+   excerpt:'Fiduciary Services SA is appointed <mark>trustee</mark> of the Zenith Family Trust. The trustee holds legal title and no beneficial interest.'}
+  ],
+
+/* control-based qualification, independent of percentage (AMLR Art. 22(1)(b)) */
+  control:[
+  {person:'aurelio',basis:'Shareholders\u2019 agreement dated 11 Sept 2024 confers the right to appoint and remove a majority of the board of Meridiaan Payments NV.',doc:'d6',page:5,conf:'high'}
+  ],
+
+  documents:{
+  d1:{name:'Articles of Association',ext:'PDF',pages:22,date:'2023-06-14',source_type:'constitutive'},
+  d2:{name:'Shareholder Register',ext:'XLSX',pages:3,date:'2024-03-14',source_type:'registry'},
+  d3:{name:'Kestrel — Annual Report',ext:'PDF',pages:41,date:'2024-12-31',source_type:'audited'},
+  d4:{name:'Braxton — Company Extract',ext:'PDF',pages:6,date:'2025-01-20',source_type:'registry'},
+  d5:{name:'Zenith Trust Deed',ext:'PDF',pages:18,date:'2019-11-02',source_type:'constitutive'},
+  d6:{name:'Shareholders\u2019 Agreement',ext:'PDF',pages:31,date:'2024-09-11',source_type:'contract'},
+  d7:{name:'Board Resolution',ext:'DOCX',pages:2,date:'2025-02-03'},
+  d8:{name:'Ownership Chart (scan)',ext:'OCR',pages:1,date:'2024-08-19',source_type:'selfreported'},
+  d9:{name:'Annual Accounts 2024',ext:'PDF',pages:57,date:'2025-04-30'}
+  },
+
+  discrepancies:[
+  {sev:'high',title:'Conflicting stake — Kestrel in Meridiaan',
+   body:'Articles of Association (2023, p.4) record 60%. Annual Accounts 2024 (p.12) record 55%. A 5-point difference that moves indirect calculations. The 2023 figure is currently applied because it is the later-confirmed shareholder register position; this needs analyst resolution.',
+   nodes:['kestrel','meridiaan']},
+  {sev:'high',title:'Circular ownership detected',
+   body:'Meridiaan Payments NV holds 25% of Braxton Capital Ltd, which in turn holds 25% of Meridiaan. Ownership traversal was terminated at the loop rather than compounding it. Treasury cross-holdings dilute the true economic interest of external owners and should be confirmed against the annual accounts.',
+   nodes:['meridiaan','braxton']},
+  {sev:'med',title:'Name variation — Pieter Janssens',
+   body:'Appears as “Pieter Janssens” (Braxton extract), “Mr P. Janssens” (Kestrel annual report) and “Janssens-De Vos, P.” (board resolution). Treated as one natural person on date-of-birth match; not independently verified.',
+   nodes:['pieter']},
+  {sev:'med',title:'Nominee holding not looked through in source',
+   body:'Kestrel’s annual report records Fiduciary Services SA as the 25% holder. The trust deed identifies it as trustee only. Beneficial interest has been attributed to the trust beneficiary rather than the nominee.',
+   nodes:['zenith','fiduciary']},
+  {sev:'low',title:'Stale filing — Braxton Capital Ltd',
+   body:'Most recent Cyprus filing on record is dated 20 Jan 2025. Ownership may have changed since.',
+   nodes:['braxton']}
+  ],
+
+  external:[
+  {status:'confirmed',src:'KBO/BCE (Belgium)',entity:'Meridiaan Payments NV',
+   detail:'Entity active. Registered address and legal form match the uploaded documents.'},
+  {status:'confirmed',src:'LBR (Luxembourg)',entity:'Kestrel Holdings Sàrl',
+   detail:'Entity active. Corporate unit split consistent with the annual report.'},
+  {status:'conflict',src:'Cyprus Registrar',entity:'Braxton Capital Ltd',
+   detail:'Registry lists a fourth shareholder — Talbot Nominees Ltd, 12% — not present in any uploaded document. Reduces the other holders proportionally if confirmed.'},
+  {status:'notfound',src:'Jersey registry',entity:'Zenith Family Trust',
+   detail:'No public record. Jersey does not maintain a public trust register; absence is expected and not itself an adverse finding.'},
+  {status:'conflict',src:'Italian business register',entity:'Aurelio Marchetti',
+   detail:'Directorship recorded in two further entities not disclosed in the onboarding pack.'}
+  ],
+
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   ENGINE — indirect ownership with cycle detection.
+   Walks upward from the customer, multiplying along each path and
+   summing where a person is reached by more than one route.
+   ═══════════════════════════════════════════════════════════════ */
+let THRESHOLD=25, USE_CONTROL=true, SHOW_BELOW=false, SELECTED=null, CORROB=false, TAB='ubo';
+
+const node=id=>NODES.find(n=>n.id===id);
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function computeOwnership(rootId){
+  const res={}, cycles=[];
+  (function walk(cur,factor,path){
+    EDGES.forEach(e=>{
+      if(e.to!==cur) return;
+      if(e.kind==='trustee') return;              // legal title only, no economic interest
+      if(path.includes(e.from)){ cycles.push([...path,e.from]); return; }
+      const f=factor*(e.pct/100);
+      const np=[...path,e.from];
+      if(node(e.from).type==='person'){
+        if(!res[e.from]) res[e.from]={pct:0,paths:[]};
+        res[e.from].pct+=f*100;
+        res[e.from].paths.push({chain:np,pct:f*100});
+      } else {
+        walk(e.from,f,np);
+      }
+    });
+  })(rootId,1,[rootId]);
+  return {res,cycles};
+}
+
+let OWN={res:{},cycles:[]};
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SOURCE STRENGTH
+   Two facts can both be quoted verbatim and still deserve different
+   trust. An official registry extract is filed under legal duty and
+   sanction; a company's own slide deck is not. The verbatim gate
+   proves the fact was *stated* — this says how much the statement
+   is worth.
+   ═══════════════════════════════════════════════════════════════ */
+const SOURCE_RANK={
+  registry:      {w:1.00, label:'Official registry', note:'Filed with a public authority under legal duty.'},
+  audited:       {w:0.85, label:'Audited accounts',  note:'Independently audited and publicly filed.'},
+  constitutive:  {w:0.80, label:'Constitutive deed', note:'Articles, trust deed, notarial instrument.'},
+  contract:      {w:0.75, label:'Executed agreement',note:'Signed by the parties, but not public.'},
+  selfreported:  {w:0.45, label:'Self-reported',     note:'Produced by the client; no external check.'},
+  unknown:       {w:0.60, label:'Unclassified',      note:'Document type not identified.'}
+};
+function sourceOf(docId){
+  const d=DOCS[docId]||{};
+  return SOURCE_RANK[d.source_type] || SOURCE_RANK.unknown;
+}
+/* A chain is only as strong as its weakest document. */
+function chainStrength(chain){
+  let w=1;
+  for(let i=0;i<chain.length-1;i++){
+    const e=EDGES.find(x=>x.from===chain[i+1]&&x.to===chain[i]);
+    if(e) w=Math.min(w, sourceOf(e.doc).w);
+  }
+  return w;
+}
+function strengthLabel(w){
+  return w>=0.85?['strong','hi'] : w>=0.70?['moderate','med'] : ['weak','lo'];
+}
+
+function confOf(chain){
+  /* weakest link in the chain governs overall confidence */
+  let worst='high';
+  for(let i=0;i<chain.length-1;i++){
+    const e=EDGES.find(x=>x.from===chain[i+1]&&x.to===chain[i]);
+    if(!e) continue;
+    if(e.conf==='low') worst='low';
+    else if(e.conf==='medium'&&worst!=='low') worst='medium';
+  }
+  return worst;
+}
+function bestConf(paths){
+  const r=paths.map(p=>confOf(p.chain));
+  if(r.includes('high'))return'high';
+  if(r.includes('medium'))return'medium';
+  return'low';
+}
+
+function uboList(){
+  if(!CUSTOMER) return [];
+  const out=Object.entries(OWN.res).map(([id,v])=>({
+    id,name:node(id).name,pct:v.pct,paths:v.paths,
+    conf:bestConf(v.paths),
+    control:USE_CONTROL?CONTROL.find(c=>c.person===id):null
+  }));
+  out.forEach(u=>{ u.isUbo = u.pct>=THRESHOLD || !!u.control; });
+  return out.sort((a,b)=>b.pct-a.pct);
+}
+
+/* ── narrative explanation, per PRD §6 ── */
+function explain(u){
+  const nm=u.name.split(' ')[0];
+  if(u.paths.length===1){
+    const c=u.paths[0].chain;
+    if(c.length===2) return `${u.name} holds ${u.pct.toFixed(2)}% directly in ${node(CUSTOMER).name}.`;
+    const via=c.slice(1,-1).reverse().map(x=>node(x).name).join(' → ');
+    return `${u.name} is identified because they hold ${u.pct.toFixed(2)}% indirectly through ${via}.`;
+  }
+  const legs=u.paths.map(p=>{
+    const mid=p.chain.slice(1,-1).reverse().map(x=>node(x).name).join(' → ');
+    return `${mid} (${p.pct.toFixed(2)}%)`;
+  }).join(' and ');
+  return `${u.name} is identified because they indirectly own ${u.pct.toFixed(2)}% of ${node(CUSTOMER).name} through ${legs}.`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AUTO-LAYOUT — real investigations arrive without coordinates.
+   Tier = longest simple path from the customer upward (back edges
+   from circular holdings are skipped, not followed). Within a tier,
+   nodes are ordered by the mean position of what they own, which
+   keeps most edges from crossing.
+   ═══════════════════════════════════════════════════════════════ */
+function autoLayout(){
+  if(!CUSTOMER||!NODES.length){
+    document.getElementById('graph').setAttribute('viewBox','0 0 900 300');
+    return;
+  }
+  const tier={}; tier[CUSTOMER]=0;
+  (function walk(cur,depth,path){
+    EDGES.forEach(e=>{
+      if(e.to!==cur) return;
+      if(path.includes(e.from)) return;          // back edge — do not follow
+      const d=depth+1;
+      if(tier[e.from]===undefined||tier[e.from]<d) tier[e.from]=d;
+      walk(e.from,d,[...path,e.from]);
+    });
+  })(CUSTOMER,0,[CUSTOMER]);
+
+  NODES.forEach(n=>{ if(tier[n.id]===undefined) tier[n.id]=0; });  // orphans sit at base
+  const maxT=Math.max(0,...Object.values(tier));
+
+  const byTier={};
+  NODES.forEach(n=>{ n.tier=tier[n.id]; (byTier[n.tier]=byTier[n.tier]||[]).push(n); });
+
+  const W=900;
+  const widest=Math.max(1,...Object.values(byTier).map(r=>r.length));
+  NW=Math.max(96,Math.min(168, Math.floor(W/widest)-16));
+
+  const meanChildX=nd=>{
+    const ch=EDGES.filter(e=>e.from===nd.id)
+      .map(e=>NODES.find(x=>x.id===e.to)).filter(x=>x&&x.x!==undefined);
+    return ch.length? ch.reduce((s,c)=>s+c.x,0)/ch.length : W/2;
+  };
+  for(let t=0;t<=maxT;t++){
+    const row=byTier[t]||[];
+    if(t>0) row.sort((a,b)=>meanChildX(a)-meanChildX(b));
+    const slot=W/(row.length+1);
+    row.forEach((nd,i)=>{ nd.x=Math.round(slot*(i+1)); });
+  }
+
+  const top=80, bottom=maxT===0?300:80+maxT*150;
+  TIER_Y={};
+  for(let t=0;t<=maxT;t++) TIER_Y[t]=bottom-(bottom-top)*(maxT?t/maxT:0);
+
+  const h=bottom+110;
+  document.getElementById('graph').setAttribute('viewBox',`0 0 ${W} ${h}`);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING A REAL INVESTIGATION
+   The file is read in the browser and never transmitted anywhere.
+   ═══════════════════════════════════════════════════════════════ */
+function loadInvestigation(data, opt){
+  opt=opt||{};
+  const need=['customer','nodes','edges'];
+  const miss=need.filter(k=>!data[k]);
+  if(miss.length) throw new Error('Missing required field(s): '+miss.join(', '));
+
+  CUSTOMER=data.customer;
+  NODES=data.nodes.map(n=>({...n}));
+  EDGES=data.edges.map(e=>({...e}));
+  CONTROL=data.control||[];
+  DOCS=data.documents||{};
+  DISCREPANCIES=data.discrepancies||[];
+  EXTERNAL=data.external||[];
+
+  if(!NODES.find(n=>n.id===CUSTOMER)) throw new Error('customer id "'+CUSTOMER+'" is not among the nodes');
+  const ids=new Set(NODES.map(n=>n.id));
+  const bad=EDGES.filter(e=>!ids.has(e.from)||!ids.has(e.to));
+  if(bad.length) throw new Error(bad.length+' edge(s) reference an unknown node, e.g. '+bad[0].from+'→'+bad[0].to);
+
+  NODES.forEach(n=>{ n.type=n.type||'company'; n.juris=n.juris||'—'; n.note=n.note||''; });
+  EDGES.forEach(e=>{ e.kind=e.kind||'shareholding'; e.conf=e.conf||'medium'; e.pct=+e.pct||0; });
+
+  OWN=computeOwnership(CUSTOMER);
+  CORROB=EXTERNAL.length>0; SELECTED=null;
+  autoLayout();
+
+  const cname=NODES.find(n=>n.id===CUSTOMER).name;
+  document.getElementById('custName').textContent=cname;
+  document.getElementById('custMeta').textContent=
+    `${Object.keys(DOCS).length} document(s) · ${NODES.length} entities · ${EDGES.length} relationships`
+    + (opt.sample?' · worked example, invented data':'');
+  const tag=document.getElementById('liveTag');
+  tag.style.display='';
+  tag.textContent = opt.sample?'● Worked example — invented data':'● Loaded investigation';
+  tag.style.color = opt.sample?'var(--imp)':'var(--ok)';
+  showWorkspace(true);
+  noteHistory(cname, NODES.length, EDGES.length, opt.sample);
+  renderDocs(); drawGraph(); renderUbos(); renderDisc(); renderExt();
+}
+
+function pickFile(){
+  const i=document.createElement('input');
+  i.type='file'; i.accept='.json,application/json';
+  i.onchange=()=>{
+    const f=i.files[0]; if(!f) return;
+    const r=new FileReader();
+    r.onload=()=>{
+      try{ loadInvestigation(JSON.parse(r.result)); }
+      catch(err){ alert('Could not load this investigation file.\n\n'+err.message); }
+    };
+    r.readAsText(f);
+  };
+  i.click();
+}
+
+
+let TIER_Y={0:540,1:390,2:240,3:80};
+let NW=168; const NH=50;
+
+function nodeStyle(n,isUbo,onPath){
+  if(n.id===CUSTOMER) return {fill:'var(--crit)',stroke:'var(--crit)',text:'#fff',dash:''};
+  if(n.type==='person'&&isUbo) return {fill:'var(--accent)',stroke:'var(--accent)',text:'#fff',dash:''};
+  if(n.type==='trust'||n.type==='nominee')
+    return {fill:'var(--node-co)',stroke:'var(--purple)',text:'var(--text)',dash:'4 3'};
+  return {fill:'var(--node-co)',stroke:onPath?'var(--accent)':'var(--node-line)',text:'var(--text)',dash:''};
+}
+
+function drawGraph(){
+  const ubos=uboList(), uboIds=new Set(ubos.filter(u=>u.isUbo).map(u=>u.id));
+  let pathEdges=new Set(), pathNodes=new Set();
+  if(SELECTED){
+    const u=ubos.find(x=>x.id===SELECTED);
+    if(u) u.paths.forEach(p=>{
+      p.chain.forEach(n=>pathNodes.add(n));
+      for(let i=0;i<p.chain.length-1;i++) pathEdges.add(p.chain[i+1]+'>'+p.chain[i]);
+    });
+  }
+
+  /* edges first so nodes sit above */
+  let es='';
+  EDGES.forEach(e=>{
+    const a=node(e.from), b=node(e.to);
+    const x1=a.x, y1=TIER_Y[a.tier]+NH/2, x2=b.x, y2=TIER_Y[b.tier]-NH/2;
+    const key=e.from+'>'+e.to, on=pathEdges.has(key);
+    const cyc=(e.from===CUSTOMER);
+    const col=on?'var(--accent)':cyc?'var(--imp)':'var(--node-line)';
+    const w=on?2.6:1.2;
+    const op=SELECTED?(on?1:.2):(cyc?.85:.55);
+    const dash=e.kind==='trustee'?'5 4':cyc?'6 4':'';
+    /* A reciprocal pair (cross-shareholding) would otherwise draw two edges
+       on the same line with stacked labels. Bow them to opposite sides so the
+       loop is visible — the circularity is a finding, not a rendering accident. */
+    const recip=EDGES.some(x=>x.from===e.to&&x.to===e.from);
+    const off=recip?(e.from<e.to?58:-58):0;
+    const my=(y1+y2)/2, mx=(x1+x2)/2+off*0.75;
+    const d=`M${x1},${y1} C${x1+off},${my} ${x2+off},${my} ${x2},${y2}`;
+    es+=`<g class="edge" data-e="${key}" style="cursor:pointer">
+      <path d="${d}" fill="none" stroke="${col}"
+            stroke-width="${w}" stroke-dasharray="${dash}" opacity="${op}"/>
+      <path d="${d}" fill="none" stroke="transparent" stroke-width="14"/>
+      ${e.kind!=='trustee'?`<rect x="${mx-21}" y="${my-9}" width="42" height="17" fill="var(--surface)"
+             stroke="${col}" stroke-width="${on?1.4:.8}" opacity="${op}"/>
+      <text x="${mx}" y="${my+3.5}" text-anchor="middle" font-family="var(--mono)" font-size="10.5"
+            font-weight="700" fill="${on?'var(--accent)':'var(--text-2)'}" opacity="${op}">${e.pct}%</text>`:''}
+    </g>`;
+  });
+  document.getElementById('edges').innerHTML=es;
+
+  let ns='';
+  NODES.forEach(n=>{
+    const isU=uboIds.has(n.id), onP=pathNodes.has(n.id);
+    const st=nodeStyle(n,isU,onP);
+    const x=n.x-NW/2, y=TIER_Y[n.tier]-NH/2;
+    const op=SELECTED?(onP?1:.28):1;
+    const label=n.name.length>24?n.name.slice(0,23)+'…':n.name;
+    ns+=`<g class="node" data-n="${n.id}" style="cursor:pointer" opacity="${op}">
+      <rect x="${x}" y="${y}" width="${NW}" height="${NH}" fill="${st.fill}" stroke="${st.stroke}"
+            stroke-width="${isU||onP?2.4:1.3}" stroke-dasharray="${st.dash}"/>
+      <text x="${n.x}" y="${y+21}" text-anchor="middle" font-family="var(--font)" font-size="12.5"
+            font-weight="700" fill="${st.text}">${esc(label)}</text>
+      <text x="${n.x}" y="${y+37}" text-anchor="middle" font-family="var(--mono)" font-size="9.5"
+            fill="${st.text}" opacity=".72">${n.juris} · ${n.type.toUpperCase()}</text>
+      ${isU?`<rect x="${x+NW-9}" y="${y-7}" width="16" height="14" fill="var(--accent)"/>
+        <text x="${x+NW-1}" y="${y+3.5}" text-anchor="middle" font-family="var(--mono)" font-size="9"
+              font-weight="700" fill="#fff">U</text>`:''}
+    </g>`;
+  });
+  document.getElementById('nodes').innerHTML=ns;
+
+  document.querySelectorAll('#nodes .node').forEach(el=>
+    el.addEventListener('click',()=>openNode(el.dataset.n)));
+  document.querySelectorAll('#edges .edge').forEach(el=>
+    el.addEventListener('click',()=>openEdge(el.dataset.e)));
+}
+
+/* zoom / pan */
+let ZS=1,ZX=0,ZY=0;
+function applyZ(){document.getElementById('gz').setAttribute('transform',`translate(${ZX},${ZY}) scale(${ZS})`);}
+function zoom(f){ZS=Math.max(.5,Math.min(2.6,ZS*f));applyZ();}
+function resetZoom(){ZS=1;ZX=0;ZY=0;applyZ();}
+(function(){
+  const svg=document.getElementById('graph');
+  let drag=false,sx=0,sy=0;
+  svg.addEventListener('mousedown',e=>{drag=true;sx=e.clientX-ZX;sy=e.clientY-ZY;});
+  window.addEventListener('mouseup',()=>drag=false);
+  window.addEventListener('mousemove',e=>{if(!drag)return;ZX=e.clientX-sx;ZY=e.clientY-sy;applyZ();});
+  svg.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0?1.1:.9);},{passive:false});
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   PANELS
+   ═══════════════════════════════════════════════════════════════ */
+function renderUbos(){
+  const ubos=uboList();
+  const shown=SHOW_BELOW?ubos:ubos.filter(u=>u.isUbo);
+  document.getElementById('uboCount').textContent=`${ubos.filter(u=>u.isUbo).length} at ≥${THRESHOLD}%`;
+  document.getElementById('uboList').innerHTML = shown.length? shown.map(u=>{
+    const cls=u.conf==='high'?'hi':u.conf==='medium'?'med':'lo';
+    const sw=Math.max(...u.paths.map(pp=>chainStrength(pp.chain)));
+    const [slab,scls]=strengthLabel(sw);
+    const paths=u.paths.map(p=>{
+      const chain=p.chain.slice().reverse().map(x=>node(x).name.split(' ')[0]).join(' → ');
+      return `<div class="pathrow"><b>${p.pct.toFixed(2)}%</b> &nbsp;${esc(chain)}</div>`;
+    }).join('');
+    return `<div class="ubo ${u.isUbo?'':'below'} ${SELECTED===u.id?'sel':''}" onclick="selectUbo('${u.id}')">
+      <div class="ubo-top">
+        <span class="ubo-pct" style="color:${u.isUbo?'var(--accent)':'var(--text-3)'}">${u.pct.toFixed(2)}%</span>
+        <span class="ubo-nm">${esc(u.name)}</span>
+      </div>
+      <div class="ubo-why">${esc(explain(u))}</div>
+      <div class="ubo-tags">
+        <span class="tg ${cls}">${u.conf} confidence</span>
+        <span class="tg ${scls}">${slab} sourcing</span>
+        <span class="tg">${u.paths.length} path${u.paths.length>1?'s':''}</span>
+        ${u.control?'<span class="tg ctrl">Control — Art. 22(1)(b)</span>':''}
+        ${!u.isUbo?'<span class="tg">below threshold</span>':''}
+      </div>
+      <div class="paths">${paths}</div>
+    </div>`;
+  }).join('') : '<div style="padding:26px 0;color:var(--text-3);font-size:13px">No individual meets this threshold. Senior managing official fallback would apply.</div>';
+}
+
+function renderDisc(){
+  document.getElementById('discCount').textContent=`${DISCREPANCIES.length} open`;
+  document.getElementById('discList').innerHTML=DISCREPANCIES.map((d,i)=>
+    `<div class="disc" onclick="openDisc(${i})">
+      <h4><span class="sev-${d.sev}">${d.sev==='high'?'●':d.sev==='med'?'●':'●'} ${d.sev}</span>${esc(d.title)}</h4>
+      <p>${esc(d.body).slice(0,132)}…</p>
+    </div>`).join('');
+}
+
+function renderExt(){
+  if(!CORROB){
+    document.getElementById('extCount').textContent='not run';
+    document.getElementById('extList').innerHTML=
+      '<div style="padding:26px 0;color:var(--text-3);font-size:13px">Corroboration has not been run for this investigation.<br><br>Use <b>Run corroboration</b> above to query the registries.</div>';
+    return;
+  }
+  const conf=EXTERNAL.filter(e=>e.status==='conflict').length;
+  document.getElementById('extCount').textContent=`${conf} conflict${conf>1?'s':''}`;
+  document.getElementById('extList').innerHTML=EXTERNAL.map(e=>{
+    const c=e.status==='confirmed'?'hi':e.status==='conflict'?'lo':'';
+    const lbl=e.status==='confirmed'?'confirmed':e.status==='conflict'?'conflict':'not found';
+    return `<div class="disc" style="cursor:default">
+      <h4><span class="tg ${c}">${lbl}</span>${esc(e.entity)}</h4>
+      <p><b style="color:var(--text-3)">${esc(e.src)}</b> — ${esc(e.detail)}</p>
+    </div>`;
+  }).join('');
+}
+
+function renderDocs(){
+  document.getElementById('docRow').innerHTML=
+    Object.entries(DOCS).map(([id,d])=>
+      `<span class="doc" onclick="openDoc('${id}')">
+        <span class="ext">${d.ext}</span>${esc(d.name)}<span class="pg">${d.pages}p</span></span>`).join('')
+    + '<span class="upl">+ Upload documents (disabled in demo)</span>';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INTERACTION
+   ═══════════════════════════════════════════════════════════════ */
+function selectUbo(id){ SELECTED = SELECTED===id?null:id; drawGraph(); renderUbos(); }
+function switchTab(t){
+  TAB=t;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.tab===t));
+  document.getElementById('tabUbo').style.display = t==='ubo'?'':'none';
+  document.getElementById('tabDisc').style.display= t==='disc'?'':'none';
+  document.getElementById('tabExt').style.display = t==='ext'?'':'none';
+}
+function toggleControl(){USE_CONTROL=!USE_CONTROL;
+  document.getElementById('togCtrl').classList.toggle('on',USE_CONTROL);refresh();}
+function toggleBelow(){SHOW_BELOW=!SHOW_BELOW;
+  document.getElementById('togBelow').classList.toggle('on',SHOW_BELOW);renderUbos();}
+function runCorrob(){
+  const b=document.getElementById('corrobBtn');
+  b.textContent='Querying registries…'; b.disabled=true;
+  setTimeout(()=>{CORROB=true;b.textContent='Corroboration complete';b.disabled=false;
+    switchTab('ext');renderExt();},900);
+}
+function refresh(){drawGraph();renderUbos();}
+
+document.querySelectorAll('.th').forEach(el=>el.addEventListener('click',()=>{
+  THRESHOLD=+el.dataset.t;
+  document.querySelectorAll('.th').forEach(x=>x.classList.toggle('on',x===el));
+  refresh();
+}));
+
+/* ── drawers ── */
+function drawer(html){
+  document.getElementById('dwBody').innerHTML=html;
+  document.getElementById('dw').classList.add('on');
+  document.getElementById('ov').classList.add('on');
+}
+function closeDrawer(){document.getElementById('dw').classList.remove('on');
+  document.getElementById('ov').classList.remove('on');}
+
+function openNode(id){
+  const n=node(id);
+  const owns=EDGES.filter(e=>e.from===id), ownedBy=EDGES.filter(e=>e.to===id);
+  const u=uboList().find(x=>x.id===id);
+  drawer(`<button class="x" onclick="closeDrawer()">×</button>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3)">
+      ${n.type} · ${n.juris}</div>
+    <h2>${esc(n.name)}</h2>
+    <p style="font-size:13px;color:var(--text-2);line-height:1.55">${esc(n.note)}</p>
+    ${u?`<div class="dsec"><div class="dl">Effective interest in ${esc(node(CUSTOMER).name)}</div>
+      <div style="font-family:var(--mono);font-size:26px;font-weight:700;color:var(--accent)">${u.pct.toFixed(2)}%</div>
+      <p style="margin-top:7px">${esc(explain(u))}</p></div>`:''}
+    ${ownedBy.length?`<div class="dsec"><div class="dl">Owned by</div>${ownedBy.map(e=>
+      `<div style="font-size:13px;color:var(--text-2);padding:4px 0">
+        <b style="font-family:var(--mono);color:var(--text)">${e.pct}%</b> — ${esc(node(e.from).name)}
+        <span style="color:var(--text-3);font-size:11px">· ${esc(DOCS[e.doc].name)} p.${e.page}</span></div>`).join('')}</div>`:''}
+    ${owns.length?`<div class="dsec"><div class="dl">Holds</div>${owns.map(e=>
+      `<div style="font-size:13px;color:var(--text-2);padding:4px 0">
+        <b style="font-family:var(--mono);color:var(--text)">${e.pct}%</b> of ${esc(node(e.to).name)}</div>`).join('')}</div>`:''}`);
+}
+
+function openEdge(key){
+  const [f,t]=key.split('>');
+  const e=EDGES.find(x=>x.from===f&&x.to===t); if(!e)return;
+  const d=DOCS[e.doc];
+  drawer(`<button class="x" onclick="closeDrawer()">×</button>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3)">
+      Evidence · ${e.kind}</div>
+    <h2>${esc(node(f).name)} → ${esc(node(t).name)}</h2>
+    <div class="dsec"><div class="dl">Extracted excerpt</div>
+      <div class="excerpt">${e.excerpt}</div></div>
+    <div class="dsec"><div class="dl">Provenance</div>
+      <div class="kv">
+        <span class="k">Document</span><span class="v">${esc(d.name)}</span>
+        <span class="k">Format</span><span class="v mono">${d.ext} · ${d.pages} pages</span>
+        <span class="k">Page</span><span class="v mono">${e.page}</span>
+        <span class="k">Document date</span><span class="v mono">${d.date}</span>
+        <span class="k">Interest</span><span class="v mono">${e.kind==='trustee'?'legal title only':e.pct+'%'}</span>
+        <span class="k">Confidence</span><span class="v">${e.conf}</span>
+        <span class="k">Source type</span><span class="v">${sourceOf(e.doc).label}</span>
+      </div></div>
+    <div class="dsec"><div class="dl">Weight of this source</div>
+      <p>${sourceOf(e.doc).note}</p></div>
+    <div class="dsec"><div class="dl">Why this confidence</div>
+      <p>${e.conf==='high'?'Stated explicitly in a primary constitutive or registry document, and consistent with at least one other source.'
+        :e.conf==='medium'?'Present in the uploaded documents but corroborated by only one source, or the wording requires interpretation.'
+        :'Derived from a single low-quality source or an OCR pass with uncertain characters.'}</p></div>`);
+}
+
+function openDisc(i){
+  const d=DISCREPANCIES[i];
+  drawer(`<button class="x" onclick="closeDrawer()">×</button>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em"
+         class="sev-${d.sev}">${d.sev} severity</div>
+    <h2>${esc(d.title)}</h2>
+    <div class="dsec"><div class="dl">Detail</div><p>${esc(d.body)}</p></div>
+    <div class="dsec"><div class="dl">Entities involved</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${d.nodes.map(n=>`<span class="tg">${esc(node(n).name)}</span>`).join('')}</div></div>
+    <div class="dsec"><div class="dl">Analyst action</div>
+      <p>Resolve before the file is signed off. In a production build this is where the analyst records a
+      determination, attaches further documentation, or flags the item for QA.</p></div>`);
+}
+
+function openDoc(id){
+  const d=DOCS[id];
+  const facts=EDGES.filter(e=>e.doc===id);
+  drawer(`<button class="x" onclick="closeDrawer()">×</button>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3)">
+      ${d.ext} · ${d.pages} pages · ${d.date}</div>
+    <h2>${esc(d.name)}</h2>
+    <div class="dsec"><div class="dl">Facts extracted from this document</div>
+      ${facts.length?facts.map(e=>`<div style="border-bottom:1px solid var(--border);padding:9px 0">
+        <div style="font-size:13px"><b style="font-family:var(--mono)">${e.kind==='trustee'?'—':e.pct+'%'}</b>
+          ${esc(node(e.from).name)} → ${esc(node(e.to).name)}</div>
+        <div style="font-size:11px;color:var(--text-3);font-family:var(--mono);margin-top:3px">
+          p.${e.page} · ${e.conf} confidence</div></div>`).join('')
+      :'<p style="font-size:13px;color:var(--text-3)">No ownership facts extracted — document retained as supporting evidence.</p>'}
+    </div>`);
+}
+
+/* ── report ── */
+function openReport(){
+  const ubos=uboList(), qual=ubos.filter(u=>u.isUbo);
+  const rows=qual.map(u=>`<tr>
+    <td>${esc(u.name)}</td>
+    <td class="mono">${u.pct.toFixed(2)}%</td>
+    <td>${u.control?'Ownership + control':'Ownership'}</td>
+    <td>${u.conf}</td>
+    <td class="mono">${u.paths.length}</td></tr>`).join('');
+  document.getElementById('repBox').innerHTML=`
+    <button class="rep-close" onclick="closeReport()">×</button>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)">
+      UBO investigation report · draft</div>
+    <h1 style="margin-top:9px">${esc(node(CUSTOMER).name)}</h1>
+    <p style="margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--text-3)">
+      Generated ${new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})} ·
+      Threshold ${THRESHOLD}% · ${Object.keys(DOCS).length} documents ·
+      Control limb ${USE_CONTROL?'applied':'not applied'}</p>
+
+    <h3>Identified beneficial owners</h3>
+    <table><thead><tr><th>Individual</th><th>Effective interest</th><th>Basis</th><th>Confidence</th><th>Paths</th></tr></thead>
+      <tbody>${rows||'<tr><td colspan="5">None identified — senior managing official fallback applies.</td></tr>'}</tbody></table>
+
+    <h3>Ownership reasoning</h3>
+    ${qual.map(u=>`<p style="margin-bottom:9px">• ${esc(explain(u))}${u.control?
+      ` Additionally qualifies through control: ${esc(u.control.basis)}`:''}</p>`).join('')}
+
+    <h3>Method</h3>
+    <p>Indirect interests were calculated by multiplying shareholding percentages along each ownership path from
+    the customer entity upward, and summing where an individual is reached by more than one route. Traversal
+    terminates on revisiting an entity already in the path, so circular holdings are recorded rather than
+    compounded. Trustee relationships convey legal title only and are excluded from the economic calculation;
+    beneficial interest is attributed to the trust beneficiary.</p>
+
+    <h3>Circular holdings detected</h3>
+    ${OWN.cycles.length?`<ul>${OWN.cycles.map(c=>
+      `<li>${c.map(x=>esc(node(x).name)).join(' → ')}</li>`).join('')}</ul>`:'<p>None.</p>'}
+
+    <h3>Outstanding discrepancies</h3>
+    <ul>${DISCREPANCIES.map(d=>`<li><b style="color:var(--text)">${esc(d.title)}</b> — ${esc(d.body)}</li>`).join('')}</ul>
+
+    <h3>External corroboration</h3>
+    ${CORROB?`<ul>${EXTERNAL.map(e=>
+      `<li><b style="color:var(--text)">${esc(e.entity)}</b> (${esc(e.src)}) — ${esc(e.status)}: ${esc(e.detail)}</li>`).join('')}</ul>`
+      :'<p>Not performed for this investigation.</p>'}
+
+    <h3>Analyst conclusion</h3>
+    <p style="border-left:2px solid var(--border);padding-left:14px;color:var(--text-3)">
+      [To be completed by the analyst. This tool does not make a UBO determination — it assembles the evidence,
+      shows the arithmetic and surfaces what conflicts.]</p>
+
+    <div style="margin-top:30px;display:flex;gap:8px">
+      <button class="btn pri" onclick="window.print()">Print / PDF</button>
+      <button class="btn" onclick="closeReport()">Close</button>
+    </div>`;
+  document.getElementById('rep').classList.add('on');
+}
+function closeReport(){document.getElementById('rep').classList.remove('on');}
+
+function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
+  h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}drawGraph();}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeReport();}});
+
+/* ═══════════════════════════════════════════════════════════════════
+   BROWSER EXTRACTION ENGINE
+   ───────────────────────────────────────────────────────────────────
+   Everything here runs in the tab. Documents are read with pdf.js and
+   the model is your own Ollama on 127.0.0.1 — so the page can host the
+   whole workflow without a server and without your files leaving the
+   machine.
+
+   The provenance gate below is a direct port of the Python one: every
+   extracted fact must carry a quotation that is actually found in the
+   source text, otherwise the fact is discarded. That rule is the only
+   thing standing between "assisted analysis" and "confident fiction",
+   so it moves wherever the extraction moves.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const OLLAMA = 'http://127.0.0.1:11434';
+const VERBATIM_MIN = 0.82;      // calibrated below against known good/bad quotes
+const NAME_MATCH   = 0.86;
+
+/* ── text handling ─────────────────────────────────────────────── */
+function bnorm(s){
+  return (s||'')
+    .normalize('NFKD')
+    .replace(/\u00a0/g,' ')
+    .replace(/[\u2018\u2019]/g,"'")
+    .replace(/[\u201c\u201d]/g,'"')
+    .replace(/[\u2010-\u2015]/g,'-')
+    .replace(/\s+/g,' ')
+    .trim()
+    .toLowerCase();
+}
+
+/* Dice coefficient over character bigrams. Cheap, and well behaved for
+   "is this sentence present in this page" — which is all we need. */
+function simRatio(a,b){
+  if(a===b) return 1;
+  if(a.length<2||b.length<2) return 0;
+  const grams=s=>{const m=new Map();
+    for(let i=0;i<s.length-1;i++){const g=s.slice(i,i+2);m.set(g,(m.get(g)||0)+1);}
+    return m;};
+  const A=grams(a), B=grams(b);
+  let inter=0, total=0;
+  A.forEach((c,g)=>{ total+=c; inter+=Math.min(c, B.get(g)||0); });
+  B.forEach(c=>{ total+=c; });
+  return total? (2*inter)/total : 0;
+}
+
+/* Two-part gate.
+
+   Part one is fuzzy: punctuation, spacing and ligature drift are harmless,
+   so a near match on the sentence is accepted.
+
+   Part two is not fuzzy at all. A model that keeps the sentence intact and
+   changes only the figure — "holds 15%" becoming "holds 45%" — differs by a
+   single character and sails through any similarity score. That is also the
+   single most damaging thing it could do here. So every number appearing in
+   the quotation must also appear in the matched span of the source. */
+function verbatimIn(quote, text){
+  const q=bnorm(quote), t=bnorm(text);
+  if(!q || q.length<12) return {score:0, numbersOk:false, missing:[]};
+
+  let score=0, from=0;
+  const idx=t.indexOf(q);
+  if(idx>=0){ score=1; from=idx; }
+  else{
+    const n=q.length, step=Math.max(1,Math.floor(n/4));
+    let best=0, bestI=0;
+    for(let i=0;i+1<t.length;i+=step){
+      const r=simRatio(q, t.slice(i,i+n));
+      if(r>best){ best=r; bestI=i; }
+      if(best>=VERBATIM_MIN) break;
+    }
+    score=best; from=bestI;
+  }
+  const span=t.slice(Math.max(0,from-25), from+q.length+25);
+  const nums=q.match(/\d+(?:[.,]\d+)?/g)||[];
+  const missing=nums.filter(x=>!span.includes(x));
+  return {score, numbersOk:missing.length===0, missing};
+}
+
+function quoteOk(res){ return res.score>=VERBATIM_MIN && res.numbersOk; }
+
+/* Find the quote AND the page it is really on. The model routinely cites
+   the wrong page; a reference pointing at a blank page is worse than none,
+   because it looks like traceability that isn't there. */
+function locateQuote(quote, pages, claimed){
+  const hit=pages.find(p=>p.no===claimed);
+  if(hit){
+    const r=verbatimIn(quote, hit.text);
+    if(quoteOk(r)) return {ok:true, score:r.score, page:claimed, moved:false, missing:[]};
+  }
+  let bestScore=0, bestMissing=[];
+  for(const p of pages){
+    if(p.no===claimed) continue;
+    const r=verbatimIn(quote, p.text);
+    if(quoteOk(r)) return {ok:true, score:r.score, page:p.no, moved:true, missing:[]};
+    if(r.score>bestScore){ bestScore=r.score; bestMissing=r.missing; }
+  }
+  // Re-check the claimed page so a figure mismatch there is reported precisely
+  if(hit){
+    const r=verbatimIn(quote, hit.text);
+    if(r.score>bestScore){ bestScore=r.score; bestMissing=r.missing; }
+  }
+  return {ok:false, score:+bestScore.toFixed(3), page:claimed, moved:false, missing:bestMissing};
+}
+
+/* ── reading documents ─────────────────────────────────────────── */
+async function readPdfFile(file){
+  if(!window.pdfjsLib) throw new Error('PDF reader failed to load. Check your connection and reload.');
+  const buf=await file.arrayBuffer();
+  const doc=await window.pdfjsLib.getDocument({data:buf}).promise;
+  const pages=[];
+  for(let i=1;i<=doc.numPages;i++){
+    const pg=await doc.getPage(i);
+    const tc=await pg.getTextContent();
+    // Rebuild lines from positioned items, otherwise everything runs together
+    let last=null, line='', out=[];
+    for(const it of tc.items){
+      const y=it.transform[5];
+      if(last!==null && Math.abs(y-last)>3){ out.push(line.trim()); line=''; }
+      line+=it.str+(it.hasEOL?' ':'');
+      last=y;
+    }
+    if(line.trim()) out.push(line.trim());
+    const text=out.join('\n').replace(/[ \t]+/g,' ').trim();
+    if(text) pages.push({no:i, text});
+  }
+  return pages;
+}
+
+async function readAnyFile(file){
+  const ext=(file.name.split('.').pop()||'').toLowerCase();
+  if(ext==='pdf') return await readPdfFile(file);
+  if(['txt','md','csv'].includes(ext)){
+    const t=await file.text();
+    return t.trim()? [{no:1, text:t}] : [];
+  }
+  throw new Error(`${file.name}: only PDF and text files can be read in the browser. `
+    + `For Word and Excel, use the downloadable tool.`);
+}
+
+/* ── the model ─────────────────────────────────────────────────── */
+const EXTRACT_SYSTEM = `You extract corporate ownership facts from documents for an AML analyst.
+
+Return ONLY a JSON object. No preamble, no markdown fences.
+
+{
+  "entities": [
+    {"name":"exact name as written","type":"company|person|trust|foundation|partnership|nominee",
+     "jurisdiction":"ISO-2 or empty"}
+  ],
+  "relationships": [
+    {"owner":"entity name","owned":"entity name","percentage":60.0,
+     "kind":"shareholding|voting_rights|beneficiary|trustee|control",
+     "page":4,
+     "verbatim":"the exact sentence from the document that states this, copied character for character"}
+  ],
+  "control_arrangements": [
+    {"person":"entity name","basis":"what confers control","page":5,
+     "verbatim":"exact sentence, copied character for character"}
+  ]
+}
+
+RULES — these are not stylistic preferences:
+1. "verbatim" MUST be copied exactly from the text provided. Never paraphrase,
+   never tidy, never translate it. Facts whose verbatim cannot be located in the
+   source are discarded automatically, so an approximate quote loses the fact.
+2. Extract only what the document states. If a percentage is not stated, do not
+   infer one and do not estimate.
+3. Use the name exactly as written. Do not normalise or merge spelling variants.
+4. A trustee holds legal title, not economic interest: use kind "trustee" and
+   percentage 0. Use "beneficiary" for the person who benefits.
+5. If the document contains no ownership information, return empty arrays.`;
+
+async function ollamaChat(model, system, user, signal){
+  const r=await fetch(OLLAMA+'/api/chat',{
+    method:'POST', signal,
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model, stream:false, format:'json',
+      options:{temperature:0},
+      messages:[{role:'system',content:system},{role:'user',content:user}]})
+  });
+  if(!r.ok) throw new Error('Ollama returned '+r.status);
+  const d=await r.json();
+  return (d.message && d.message.content) || '';
+}
+
+async function ollamaModels(){
+  const r=await fetch(OLLAMA+'/api/tags',{cache:'no-store'});
+  if(!r.ok) throw new Error('Ollama returned '+r.status);
+  const d=await r.json();
+  return (d.models||[]).map(m=>m.name);
+}
+
+/* ── assembling an investigation ───────────────────────────────── */
+function slugify(name, taken){
+  let s=name.normalize('NFKD').replace(/[^\w\s]/g,'').replace(/\s+/g,'_')
+            .toLowerCase().slice(0,28) || 'entity';
+  let base=s, i=2;
+  while(taken.has(s)){ s=base+'_'+i; i++; }
+  taken.add(s); return s;
+}
+
+function buildInvestigation(docs, extractions, customerName){
+  const ents=new Map(), rels=[], ctrls=[], rejected=[];
+
+  docs.forEach((doc,di)=>{
+    const ex=extractions[di]||{};
+    const did='d'+(di+1);
+
+    (ex.entities||[]).forEach(e=>{
+      const nm=(e.name||'').trim(); if(!nm) return;
+      const prev=ents.get(nm);
+      if(!prev || !prev.explicit)
+        ents.set(nm,{name:nm, type:e.type||'company',
+                     juris:(e.jurisdiction||'').trim().slice(0,2).toUpperCase(),
+                     explicit:true});
+    });
+
+    (ex.relationships||[]).forEach(r=>{
+      const owner=(r.owner||'').trim(), owned=(r.owned||'').trim();
+      const vb=(r.verbatim||'').trim();
+      const claimed=+r.page||1;
+      if(!owner||!owned){ rejected.push({doc:did,reason:'owner/owned missing',raw:r}); return; }
+      const loc=locateQuote(vb, doc.pages, claimed);
+      if(!loc.ok){
+        const why = loc.missing && loc.missing.length
+          ? `figure ${loc.missing.join(', ')} does not appear in the source text`
+          : `quote not found in document (best match ${loc.score})`;
+        rejected.push({doc:did, reason:why, raw:r}); return;
+      }
+      [owner,owned].forEach(nm=>{ if(!ents.has(nm))
+        ents.set(nm,{name:nm,type:'company',juris:'',explicit:false}); });
+      rels.push({owner, owned, pct:+r.percentage||0, kind:r.kind||'shareholding',
+                 doc:did, page:loc.page, claimed, moved:loc.moved,
+                 verbatim:vb, match:loc.score});
+    });
+
+    (ex.control_arrangements||[]).forEach(c=>{
+      const person=(c.person||'').trim(), vb=(c.verbatim||'').trim();
+      const loc=locateQuote(vb, doc.pages, +c.page||1);
+      if(person && loc.ok){
+        const prev=ents.get(person);
+        if(!prev || !prev.explicit)
+          ents.set(person,{name:person,type:'person',juris:'',explicit:true});
+        ctrls.push({person, basis:c.basis||'', doc:did, page:loc.page, conf:'high'});
+      } else {
+        rejected.push({doc:did, reason:'control claim without a verifiable quote', raw:c});
+      }
+    });
+  });
+
+  /* name variants: linked, never silently merged */
+  const names=[...ents.keys()].sort((a,b)=>b.length-a.length);
+  const canon=new Map(), variants=[];
+  names.forEach(nm=>{
+    let hit=null;
+    for(const c of new Set(canon.values())){
+      if(simRatio(bnorm(nm), bnorm(c))>=NAME_MATCH){ hit=c; break; }
+    }
+    if(hit){ canon.set(nm,hit); variants.push([nm,hit]); }
+    else canon.set(nm,nm);
+  });
+
+  const taken=new Set(), ids=new Map();
+  [...new Set(canon.values())].forEach(nm=>ids.set(nm, slugify(nm,taken)));
+
+  const nodes=[...new Set(canon.values())].map(nm=>{
+    const group=[...ents.entries()].filter(([k])=>canon.get(k)===nm).map(([,v])=>v);
+    const explicit=group.filter(g=>g.explicit);
+    const pool=explicit.length?explicit:group;
+    // an explicitly declared "person" must beat a placeholder "company",
+    // or the engine walks through the node and the owner vanishes
+    const person=pool.find(g=>g.type==='person');
+    const src=person||pool[0];
+    const juris=(pool.find(g=>g.juris)||{}).juris||'';
+    return {id:ids.get(nm), name:nm.replace(/\s+/g,' ').trim(),
+            type:src.type, juris:juris||'—', note:''};
+  });
+
+  const edges=[];
+  rels.forEach(r=>{
+    const f=ids.get(canon.get(r.owner)), t=ids.get(canon.get(r.owned));
+    if(f===t){ rejected.push({reason:'self-ownership (owner == owned)',raw:r}); return; }
+    const e={from:f,to:t,pct:r.pct,kind:r.kind,doc:r.doc,page:r.page,
+             conf:r.match===1?'high':'medium', excerpt:r.verbatim};
+    if(r.moved) e.page_note=`model cited page ${r.claimed}, quote found on p.${r.page}`;
+    edges.push(e);
+  });
+
+  /* customer entity */
+  let cust=null;
+  if(customerName){
+    let best=null,bs=0;
+    nodes.forEach(n=>{const s=simRatio(bnorm(customerName),bnorm(n.name)); if(s>bs){best=n;bs=s;}});
+    if(bs>=0.6) cust=best.id;
+  }
+  if(!cust){
+    const owned=new Set(edges.map(e=>e.to)), owners=new Set(edges.map(e=>e.from));
+    const leaves=[...owned].filter(x=>!owners.has(x));
+    cust = leaves.sort((a,b)=>edges.filter(e=>e.to===b).length-edges.filter(e=>e.to===a).length)[0]
+           || (nodes[0]||{}).id;
+  }
+
+  /* quality checks */
+  const disc=[];
+  variants.forEach(([a,b])=>disc.push({sev:'med',
+    title:`Name variant — ${b}`,
+    body:`“${a}” and “${b}” were linked on spelling similarity. Confirm they are the same `
+        +`person or entity (date of birth, company number) before relying on the combined figure.`,
+    nodes:[ids.get(canon.get(a))]}));
+
+  const tot={};
+  edges.forEach(e=>{ if(['shareholding','voting_rights'].includes(e.kind))
+    tot[e.to]=(tot[e.to]||0)+e.pct; });
+  Object.entries(tot).forEach(([nid,s])=>{
+    const nm=(nodes.find(n=>n.id===nid)||{}).name||nid;
+    if(s>100.5) disc.push({sev:'high',title:`Holdings exceed 100% — ${nm}`,
+      body:`Extracted stakes total ${s.toFixed(2)}%. Contradictory documents, different dates, `
+          +`or double counting.`, nodes:[nid]});
+    else if(s<99.5) disc.push({sev:'low',title:`Holdings incomplete — ${nm}`,
+      body:`Extracted stakes total ${s.toFixed(2)}%. The balance appears in none of the documents provided.`,
+      nodes:[nid]});
+  });
+
+  docs.forEach((d,i)=>{ if(d.truncated) disc.unshift({sev:'high',
+    title:`Document truncated — ${d.name}`,
+    body:`This document has ${d.pages.length} page(s); only the first ${d.keptPages} were analysed `
+        +`(model size limit). Any holding stated beyond that point is missing from the graph. `
+        +`Extract the relevant pages into a separate file and re-run.`, nodes:[]}); });
+
+  if(rejected.length) disc.push({sev:'high',
+    title:`${rejected.length} fact(s) rejected during extraction`,
+    body:`These were discarded because their quotation could not be found in the source document. `
+        +`A real ownership link may be among them — they need manual review.`, nodes:[]});
+
+  const documents={};
+  docs.forEach((d,i)=>{ documents['d'+(i+1)]={name:d.name, ext:d.ext,
+    pages:d.pages.length, date:'', source_type:d.source_type||'unknown'}; });
+
+  return {customer:cust, nodes, edges, control:ctrls, documents,
+          discrepancies:disc, external:[], _rejected:rejected,
+          _meta:{documents:docs.length, entities:nodes.length,
+                 relationships:edges.length, rejected:rejected.length}};
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOCAL APP MODE
+   Only active when served by ubo_app.py on this machine. On the
+   hosted demo /api/config does not exist and none of this appears.
+   ═══════════════════════════════════════════════════════════════ */
+let PICKED=[], LOCAL=null;
+
+let MODE='browser', BROWSER_MODEL=null;
+
+async function detectLocal(quiet){
+  /* Prefer the Python backend when it is there: it reads Word and Excel too.
+     Otherwise the browser does the work and talks to your Ollama directly. */
+  try{
+    const r=await fetch('api/config',{cache:'no-store'});
+    if(!r.ok) throw 0;
+    LOCAL=await r.json();
+    MODE='server';
+  }catch(e){
+    MODE='browser';
+    return await detectBrowserOllama(quiet);
+  }
+
+  document.getElementById('localPanel').style.display='';
+  const hn=document.getElementById('hostNote'); if(hn) hn.style.display='none';
+  const ban=document.getElementById('privacyBanner');
+  const cls = !LOCAL.ready ? 'none' : LOCAL.offline ? 'ok' : 'warn';
+  ban.className='privacy '+cls;
+  document.getElementById('pLabel').textContent =
+    !LOCAL.ready ? 'No model configured'
+    : LOCAL.offline ? 'Offline — '+LOCAL.provider
+    : 'Remote model — '+LOCAL.provider;
+  document.getElementById('pNote').textContent=LOCAL.note;
+  document.getElementById('runBtn').disabled=!LOCAL.ready;
+  document.getElementById('blocked').style.display = LOCAL.ready?'none':'';
+
+  /* the gate says different things depending on what is actually true */
+  const g=document.querySelector('.gate-box h2');
+  if(g && LOCAL.offline){
+    g.textContent='Running locally with an offline model.';
+    document.querySelector('.gcheck span').textContent=
+      'I understand this is a prototype and that its output is not a UBO determination.';
+  }
+  if(!quiet) setupDrop();
+  return LOCAL.ready;
+}
+
+/* ── browser mode: talk to the user's own Ollama ── */
+async function detectBrowserOllama(quiet){
+  const panel=document.getElementById('localPanel');
+  panel.style.display='';
+  const hn=document.getElementById('hostNote'); if(hn) hn.style.display='none';
+  if(!quiet) setupDrop();
+
+  const ban=document.getElementById('privacyBanner');
+  const lab=document.getElementById('pLabel'), note=document.getElementById('pNote');
+  const blocked=document.getElementById('blocked');
+  try{
+    const models=await ollamaModels();
+    if(!models.length){
+      ban.className='privacy none'; lab.textContent='Ollama running, no model installed';
+      note.textContent='Run: ollama pull llama3.1:8b';
+      blocked.style.display=''; document.getElementById('runBtn').disabled=true;
+      return false;
+    }
+    BROWSER_MODEL = models.find(m=>/llama3\.1|qwen2\.5|llama3\.2/.test(m)) || models[0];
+    ban.className='privacy ok';
+    lab.textContent='Offline — Ollama · '+BROWSER_MODEL;
+    note.textContent='Documents are read in this tab and sent only to Ollama on your own machine. '
+      +'Nothing reaches this website — it has no server to receive it.';
+    blocked.style.display='none';
+    document.getElementById('runBtn').disabled=false;
+    return true;
+  }catch(e){
+    ban.className='privacy none';
+    lab.textContent='Ollama not reachable from this page';
+    note.textContent='Either it is not running, or it is refusing requests from this site.';
+    blocked.style.display='';
+    document.getElementById('runBtn').disabled=true;
+    return false;
+  }
+}
+
+/* Ollama may be started after this tool. Re-check without restarting. */
+function copyCors(ev){
+  const t=document.getElementById('corsCmd').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=ev.target, o=b.textContent; b.textContent='Copied';
+    setTimeout(()=>b.textContent=o,1400);
+  }).catch(()=>{});
+}
+
+async function recheck(){
+  const b=document.getElementById('recheckBtn');
+  b.disabled=true; b.textContent='Checking…';
+  const ok = MODE==='browser' ? await detectBrowserOllama(true) : await detectLocal(true);
+  b.disabled=false; b.textContent='Re-check';
+  if(!ok){
+    const n=document.getElementById('pNote');
+    n.textContent='Still not detected. Is the Ollama app actually open? '
+      + 'In Terminal, `curl http://127.0.0.1:11434/api/tags` should return a list.';
+  }
+}
+
+function setupDrop(){
+  const d=document.getElementById('drop'), inp=document.getElementById('fileIn');
+  ['dragenter','dragover'].forEach(ev=>d.addEventListener(ev,e=>{
+    e.preventDefault();d.classList.add('over');}));
+  ['dragleave','drop'].forEach(ev=>d.addEventListener(ev,e=>{
+    e.preventDefault();d.classList.remove('over');}));
+  d.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+  inp.addEventListener('change',()=>addFiles(inp.files));
+  d.addEventListener('click',e=>{ if(e.target===d) inp.click(); });
+}
+
+function addFiles(list){
+  [...list].forEach(f=>{ if(!PICKED.some(p=>p.name===f.name&&p.size===f.size)) PICKED.push(f); });
+  document.getElementById('fileList').innerHTML=PICKED.map((f,i)=>
+    `<span>${esc(f.name)}<i>${(f.size/1024).toFixed(0)} kB</i>
+      <i style="cursor:pointer" onclick="dropFile(${i})">×</i></span>`).join('');
+  document.getElementById('dropMsg').style.display=PICKED.length?'none':'';
+}
+function dropFile(i){ PICKED.splice(i,1); addFiles([]); }
+
+const b64=f=>new Promise((res,rej)=>{
+  const r=new FileReader();
+  r.onload=()=>res(r.result.split(',')[1]);
+  r.onerror=()=>rej(new Error('could not read '+f.name));
+  r.readAsDataURL(f);
+});
+
+async function runExtraction(){
+  if(!PICKED.length) return alert('Add at least one document.');
+  const btn=document.getElementById('runBtn'), stat=document.getElementById('runStat');
+  btn.disabled=true;
+  try{
+    const customer=document.getElementById('custIn').value.trim();
+    const data = MODE==='server'
+      ? await extractViaServer(stat)
+      : await extractInBrowser(stat, customer);
+    if(!data) return;
+    if(data.error){ stat.textContent=''; return alert(data.error); }
+    loadInvestigation(data);
+    const rej=(data._rejected||[]).length;
+    stat.textContent=`${data.edges.length} relationship(s)`+(rej?` · ${rej} rejected`:'');
+  }catch(e){
+    stat.textContent='';
+    alert('Extraction failed.\n\n'+e.message);
+  }finally{ btn.disabled=false; }
+}
+
+async function extractViaServer(stat){
+  stat.textContent='reading files…';
+  const files=[];
+  for(const f of PICKED){ files.push({name:f.name, b64:await b64(f)}); }
+  stat.textContent=`extracting from ${files.length} document(s)…`;
+  const r=await fetch('api/extract',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({files, customer:document.getElementById('custIn').value.trim()})});
+  return await r.json();
+}
+
+const MAX_CHARS=90000;
+
+async function extractInBrowser(stat, customer){
+  if(!BROWSER_MODEL){ alert('No model available. Start Ollama and click Re-check.'); return null; }
+
+  stat.textContent='reading documents…';
+  const docs=[];
+  for(const f of PICKED){
+    const pages=await readAnyFile(f);
+    if(!pages.length){
+      alert(`${f.name} has no readable text. Scanned PDFs must be put through OCR first `
+           +`(for example ocrmypdf in.pdf out.pdf).`);
+      continue;
+    }
+    docs.push({name:f.name.replace(/\.[^.]+$/,''),
+               ext:(f.name.split('.').pop()||'').toUpperCase(), pages});
+  }
+  if(!docs.length){ stat.textContent=''; return null; }
+
+  const extractions=[];
+  for(let i=0;i<docs.length;i++){
+    const d=docs[i];
+    stat.textContent=`analysing ${i+1} of ${docs.length} — ${d.name} (this is slow, it is running on your CPU)`;
+    let full=d.pages.map(p=>`[page ${p.no}]\n${p.text}`).join('\n\n');
+    if(full.length>MAX_CHARS){
+      const cut=full.slice(0,MAX_CHARS);
+      d.truncated=true;
+      d.keptPages=(cut.match(/\[page /g)||[]).length;
+      full=cut;
+    }
+    let raw='';
+    try{
+      raw=await ollamaChat(BROWSER_MODEL, EXTRACT_SYSTEM, `Document: ${d.name}\n\n${full}`);
+    }catch(e){
+      throw new Error(`Ollama failed on "${d.name}": ${e.message}`);
+    }
+    raw=raw.replace(/^```(?:json)?|```$/gm,'').trim();
+    try{ extractions.push(JSON.parse(raw)); }
+    catch(e){ extractions.push({entities:[],relationships:[],control_arrangements:[]}); }
+  }
+
+  stat.textContent='verifying quotations against the source text…';
+  await new Promise(r=>setTimeout(r,30));
+  return buildInvestigation(docs, extractions, customer);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   EMPTY STATE / WORKED EXAMPLE / HISTORY
+   ═══════════════════════════════════════════════════════════════ */
+function showWorkspace(on){
+  document.getElementById('emptyState').style.display = on?'none':'';
+  ['ctrlBar','splitMain'].forEach(id=>{
+    const e=document.getElementById(id); if(e) e.style.display = on?'':'none';
+  });
+}
+
+function loadSample(){
+  loadInvestigation(JSON.parse(JSON.stringify(SAMPLE)), {sample:true});
+}
+
+/* History lives in this browser only. It holds company names and the
+   date checked — not the ownership detail, and never the documents. */
+const HKEY='ubo-history';
+function readHistory(){
+  try{ return JSON.parse(localStorage.getItem(HKEY)||'[]'); }catch(e){ return []; }
+}
+function noteHistory(name, entities, rels, isSample){
+  if(isSample) return;                       // the worked example is not a check
+  try{
+    const h=readHistory().filter(x=>x.name!==name);
+    h.unshift({name, entities, rels, at:new Date().toISOString()});
+    localStorage.setItem(HKEY, JSON.stringify(h.slice(0,25)));
+  }catch(e){}
+  renderHistory();
+}
+function clearHistory(){
+  try{ localStorage.removeItem(HKEY); }catch(e){}
+  renderHistory();
+}
+function renderHistory(){
+  const h=readHistory(), panel=document.getElementById('historyPanel');
+  if(!panel) return;
+  panel.style.display = h.length?'':'none';
+  document.getElementById('historyList').innerHTML = h.map(x=>{
+    const d=new Date(x.at);
+    return `<div class="hist" onclick="alert('Investigations are not stored — only this list. Re-open the file, or re-run the analysis locally.')">
+      <span class="hn">${esc(x.name)}</span>
+      <span class="hm">${x.entities} entities · ${x.rels} links</span>
+      <span class="hd">${d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}</span>
+    </div>`;}).join('');
+}
+
+/* ── demo gate ── */
+function closeGate(){
+  document.getElementById('gate').classList.add('off');
+  try{sessionStorage.setItem('ubo-gate-ack','1')}catch(e){}
+}
+(function(){
+  const cb=document.getElementById('gateAck'), btn=document.getElementById('gateBtn');
+  cb.addEventListener('change',()=>{btn.disabled=!cb.checked;});
+  let acked=false; try{acked=sessionStorage.getItem('ubo-gate-ack')==='1'}catch(e){}
+  if(acked) document.getElementById('gate').classList.add('off');
+})();
+
+/* boot — no data until asked */
+renderHistory();
+detectLocal();
+</script>
+</body>
+</html>
