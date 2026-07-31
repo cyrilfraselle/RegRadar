@@ -5,12 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UBO Discovery — RegRadar</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<!-- pdf.js is vendored, not loaded from a CDN: a page handling shareholder
-     registers should not be making third-party requests, and this way the
-     whole thing keeps working with the network off. -->
-<script src="vendor/pdf.min.js"></script>
+<!-- pdf.js is vendored rather than loaded from a CDN: a page handling
+     shareholder registers should not be making third-party requests, and this
+     way it keeps working with the network off.
+
+     The loader tries several locations because uploading through GitHub's web
+     interface does not preserve folders — the files often land beside this
+     page instead of inside vendor/. Rather than fail on that, it looks. -->
 <script>
-  if(window.pdfjsLib) window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
+window.__PDF_PATHS__ = ['vendor/pdf.min.js', 'pdf.min.js', 'lib/pdf.min.js', 'assets/pdf.min.js'];
+window.__pdfLoad = (async function(){
+  for(const src of window.__PDF_PATHS__){
+    try{
+      const head = await fetch(src, {method:'HEAD'});
+      if(!head.ok) continue;
+      await new Promise((res, rej)=>{
+        const s=document.createElement('script');
+        s.src=src; s.onload=res; s.onerror=rej;
+        document.head.appendChild(s);
+      });
+      if(window.pdfjsLib){
+        const worker = src.replace('pdf.min.js','pdf.worker.min.js');
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = worker;
+        window.__PDF_SRC__ = src;
+        return true;
+      }
+    }catch(e){ /* try the next location */ }
+  }
+  return false;
+})();
 </script>
 <script>
 (function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
@@ -224,6 +247,21 @@
   .hist .hm{font-size:11.5px;color:var(--text-3);font-family:var(--mono)}
   .hist .hd{font-size:11px;color:var(--text-3);font-family:var(--mono)}
 
+  .selfcheck{border-top:2px solid var(--border-strong);margin-top:20px;padding:14px 0 4px}
+  .sc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px;
+    font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3)}
+  .sc-head b{color:var(--text);font-size:11px}
+  .sc-ver{font-family:var(--mono);font-size:10px}
+  .sc-row{display:grid;grid-template-columns:20px 190px 1fr;gap:10px;align-items:baseline;
+    padding:7px 0;border-bottom:1px solid var(--border);font-size:12.5px}
+  .sc-row .i{font-family:var(--mono);font-weight:700}
+  .sc-row .n{color:var(--text-2);font-weight:600}
+  .sc-row .d{color:var(--text-3);font-size:12px;line-height:1.5}
+  .sc-row .d code{font-family:var(--mono);font-size:11px;background:var(--surface-2);padding:1px 5px}
+  .sc-ok .i{color:var(--ok)} .sc-bad .i{color:var(--crit)} .sc-warn .i{color:var(--imp)}
+  .sc-note{font-size:12px;color:var(--text-3);margin-top:10px;line-height:1.55}
+  .sc-note a{color:var(--accent);border-bottom:1px solid var(--accent)}
+
   /* local app mode */
   .local{border-top:2px solid var(--border-strong);margin-top:20px;padding:14px 0 4px}
   .local .dl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
@@ -378,6 +416,16 @@
   <div class="docs">
     <div class="dl">Source documents · click to inspect what was extracted</div>
     <div class="docrow" id="docRow"></div>
+  </div>
+
+  <!-- self check: turns "it doesn't work" into a specific answer -->
+  <div id="selfCheck" class="selfcheck" style="display:none">
+    <div class="sc-head">
+      <b>Setup check</b>
+      <span class="sc-ver">build 2026-07-31</span>
+    </div>
+    <div id="scRows"></div>
+    <div class="sc-note" id="scNote"></div>
   </div>
 
   <!-- local app mode only -->
@@ -1346,7 +1394,10 @@ function locateQuote(quote, pages, claimed){
 
 /* ── reading documents ─────────────────────────────────────────── */
 async function readPdfFile(file){
-  if(!window.pdfjsLib) throw new Error('PDF reader failed to load. Check your connection and reload.');
+  await (window.__pdfLoad || Promise.resolve(false));
+  if(!window.pdfjsLib) throw new Error(
+    'The PDF reader is not available on this page. Open the Setup check above — it says which '
+    + 'file is missing and where to put it.');
   const buf=await file.arrayBuffer();
   const doc=await window.pdfjsLib.getDocument({data:buf}).promise;
   const pages=[];
@@ -1837,6 +1888,65 @@ function renderHistory(){
     </div>`;}).join('');
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   SELF CHECK
+   "It doesn't work" is not something anyone can act on. This reports
+   which specific piece is missing, with the fix next to it.
+   ═══════════════════════════════════════════════════════════════ */
+async function selfCheck(force){
+  const rows=[];
+  const add=(state,name,detail)=>rows.push({state,name,detail});
+
+  // 1. is the page itself the new build?
+  add('ok','This page','Build 2026-07-31 — browser upload enabled.');
+
+  // 2. pdf.js — the loader has already tried every likely location
+  await (window.__pdfLoad || Promise.resolve(false));
+  if(window.pdfjsLib){
+    add('ok','PDF reader',`Loaded from <code>${window.__PDF_SRC__}</code>.`);
+    const worker=window.__PDF_SRC__.replace('pdf.min.js','pdf.worker.min.js');
+    try{
+      const r=await fetch(worker,{method:'HEAD'});
+      if(r.ok) add('ok','PDF worker',`Found at <code>${worker}</code>.`);
+      else add('bad','PDF worker',
+        `<code>${worker}</code> returned <b>${r.status}</b>. It must sit beside `
+        +`<code>pdf.min.js</code> — both files are needed.`);
+    }catch(e){ add('bad','PDF worker','Could not be reached.'); }
+  }else{
+    const tried=(window.__PDF_PATHS__||[]).map(s=>`<code>${s}</code>`).join(', ');
+    add('bad','PDF reader',
+      `Not found. Looked in: ${tried}. Upload <b>pdf.min.js</b> and <b>pdf.worker.min.js</b> `
+      +`into the same folder as this page, or a <code>vendor</code> folder beside it. `
+      +`If they are there and still 404, add an empty <code>.nojekyll</code> file — GitHub Pages `
+      +`silently drops any folder named <code>vendor</code>.`);
+  }
+
+  // 4. Ollama
+  try{
+    const models=await ollamaModels();
+    if(models.length) add('ok','Ollama',`Reachable. Model in use: <b>${models[0]}</b>.`);
+    else add('warn','Ollama','Running, but no model installed. Run <code>ollama pull llama3.1:8b</code>.');
+  }catch(e){
+    add('warn','Ollama',
+      'Not reachable from this page. Either it is not running, or it is refusing requests from a '
+      +'website — see the red box below for the one-line fix.');
+  }
+
+  const bad=rows.filter(r=>r.state==='bad').length;
+  const el=document.getElementById('selfCheck');
+  if(!bad && !force){ el.style.display='none'; return; }   // quiet when healthy
+  el.style.display='';
+  document.getElementById('scRows').innerHTML=rows.map(r=>
+    `<div class="sc-row sc-${r.state}">
+       <span class="i">${r.state==='ok'?'✓':r.state==='warn'?'!':'✗'}</span>
+       <span class="n">${r.name}</span>
+       <span class="d">${r.detail}</span>
+     </div>`).join('');
+  document.getElementById('scNote').innerHTML = bad
+    ? 'Document upload stays disabled until the items marked ✗ are fixed.'
+    : 'Everything required is present.';
+}
+
 /* ── demo gate ── */
 function closeGate(){
   document.getElementById('gate').classList.add('off');
@@ -1851,7 +1961,7 @@ function closeGate(){
 
 /* boot — no data until asked */
 renderHistory();
-detectLocal();
+detectLocal().then(()=>selfCheck(false));
 </script>
 </body>
 </html>
