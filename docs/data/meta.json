@@ -1,86 +1,102 @@
 {
-  "last_updated": "2026-07-30T08:19:30.096974",
+  "last_updated": "2026-07-31T08:44:03.576202",
   "last_run_counts": {
-    "total": 14,
-    "critical": 2,
-    "important": 11,
-    "info": 1
+    "total": 11,
+    "critical": 1,
+    "important": 8,
+    "info": 2
   },
-  "archive_size": 483,
-  "exec_summary": "The European Securities and Markets Authority has clarified the compliance landscape for MiCA crypto regulations, providing guidance on the new rules for crypto assets in the EU. In a significant enforcement action, Lombard Odier was fined 3 million francs for a major money laundering ruling, highlighting the importance of anti-money laundering compliance. Meanwhile, Hungary has granted its first MiCA license, marking a key development in the EU's regulatory framework for crypto assets. The European Central Bank has also announced that its digital euro app will incorporate the highest accessibility standards, demonstrating its commitment to inclusive and secure payment systems.",
+  "archive_size": 491,
+  "exec_summary": "The European Banking Authority has issued an EBA email alert on 24 July 2026, although details of the alert are not specified. In Belgium and the EU, the Markets in Crypto-Assets regulation, or MiCA, has seen its first license granted, with Unlimit securing authorization to expand digital-asset services across the European Union. The MiCA framework is expected to have significant implications for crypto-asset service providers, with some reports suggesting that smaller exchanges may be impacted. The National Bank of Belgium and the European Commission will likely play a key role in overseeing the implementation of MiCA in Belgium.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 49
+      "days_away": 48
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 154
+      "days_away": 153
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 155
+      "days_away": 154
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 164
+      "days_away": 163
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 334
+      "days_away": 333
     }
   ],
   "trends": [
     {
-      "theme": "Enforcement/Fines",
-      "this_week": 5,
-      "avg": 1.2,
-      "pct": 300,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁▁▂▁█",
-      "values": [
-        1,
-        1,
-        2,
-        1,
-        5
-      ],
-      "weeks": 5
-    },
-    {
       "theme": "AML/CFT",
-      "this_week": 5,
+      "this_week": 2,
       "avg": 1.8,
-      "pct": 186,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁▂▄▁█",
+      "pct": 14,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▄█▁▄",
       "values": [
         1,
         2,
         3,
         1,
-        5
+        2
       ],
       "weeks": 5
+    },
+    {
+      "theme": "Solvency/Insurance",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 4
+    },
+    {
+      "theme": "DORA",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 4
     },
     {
       "theme": "MiCA/Crypto",
@@ -97,6 +113,24 @@
         9,
         2,
         6
+      ],
+      "weeks": 5
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.2,
+      "pct": -20,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁█▁▁",
+      "values": [
+        1,
+        1,
+        2,
+        1,
+        1
       ],
       "weeks": 5
     },
@@ -146,38 +180,6 @@
         1
       ],
       "weeks": 2
-    },
-    {
-      "theme": "Solvency/Insurance",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁",
-      "values": [
-        1,
-        1,
-        1
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "DORA",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁",
-      "values": [
-        1,
-        1,
-        1
-      ],
-      "weeks": 3
     },
     {
       "theme": "Market Infrastructure",
