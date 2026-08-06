@@ -1,85 +1,104 @@
 {
-  "last_updated": "2026-08-05T08:29:53.831636",
+  "last_updated": "2026-08-06T08:29:02.786217",
   "last_run_counts": {
-    "total": 16,
-    "critical": 2,
-    "important": 13,
+    "total": 17,
+    "critical": 1,
+    "important": 15,
     "info": 1
   },
-  "archive_size": 555,
-  "exec_summary": "The European Securities and Markets Authority has clarified the compliance landscape for the Markets in Crypto-Assets regulation, providing guidance on the implementation of MiCA. In a significant enforcement action, UBS was fined a record $125 million by US regulators for repeated money laundering failures. The Dutch Implementation Act on the MiFID II review has also been announced, outlining the Netherlands' approach to the EU's financial markets framework. Additionally, Lombard Odier, a Swiss private bank, was fined $3.7 million in a money laundering case, highlighting the ongoing focus on anti-money laundering compliance in the financial sector.",
+  "archive_size": 568,
+  "exec_summary": "The European Banking Authority has launched a consultation on a reporting framework for the validation and monitoring of the ISDA Standard Initial Margin Model, aiming to enhance regulatory oversight. In a significant development for the Belgian financial sector, the EU's Markets in Crypto-Assets regulation is being implemented, with the MiCA Register now listing 321 entities, including banks and crypto exchanges. UBS has been fined $125 million for violating anti-money laundering laws, highlighting the importance of robust AML programs. The EBA's consultation and the UBS fine demonstrate the ongoing focus on regulatory compliance and anti-money laundering efforts in the EU.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 43
+      "days_away": 42
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 148
+      "days_away": 147
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 149
+      "days_away": 148
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 158
+      "days_away": 157
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 328
+      "days_away": 327
     }
   ],
   "trends": [
     {
       "theme": "Enforcement/Fines",
-      "this_week": 6,
+      "this_week": 2,
       "avg": 1.2,
-      "pct": 400,
+      "pct": 67,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁▂▁▁█",
+      "spark": "▁▁█▁▁█",
       "values": [
         1,
         1,
         2,
         1,
         1,
-        6
+        2
       ],
       "weeks": 6
     },
     {
       "theme": "AML/CFT",
-      "this_week": 7,
+      "this_week": 4,
       "avg": 2.4,
-      "pct": 192,
+      "pct": 67,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▂▃▁▅█",
+      "spark": "▁▂▄▁█▆",
       "values": [
         1,
         2,
         3,
         1,
         5,
+        4
+      ],
+      "weeks": 6
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 7,
+      "avg": 6.0,
+      "pct": 17,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▅██▁▃▆",
+      "values": [
+        6,
+        9,
+        9,
+        2,
+        4,
         7
       ],
       "weeks": 6
@@ -134,25 +153,6 @@
         1
       ],
       "weeks": 5
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 3,
-      "avg": 6.0,
-      "pct": -50,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▅██▁▃▂",
-      "values": [
-        6,
-        9,
-        9,
-        2,
-        4,
-        3
-      ],
-      "weeks": 6
     },
     {
       "theme": "Stress Test",
