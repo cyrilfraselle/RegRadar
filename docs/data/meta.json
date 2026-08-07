@@ -1,123 +1,104 @@
 {
-  "last_updated": "2026-08-06T08:29:02.786217",
+  "last_updated": "2026-08-07T07:09:25.317957",
   "last_run_counts": {
-    "total": 17,
+    "total": 15,
     "critical": 1,
-    "important": 15,
-    "info": 1
+    "important": 10,
+    "info": 4
   },
-  "archive_size": 568,
-  "exec_summary": "The European Banking Authority has launched a consultation on a reporting framework for the validation and monitoring of the ISDA Standard Initial Margin Model, aiming to enhance regulatory oversight. In a significant development for the Belgian financial sector, the EU's Markets in Crypto-Assets regulation is being implemented, with the MiCA Register now listing 321 entities, including banks and crypto exchanges. UBS has been fined $125 million for violating anti-money laundering laws, highlighting the importance of robust AML programs. The EBA's consultation and the UBS fine demonstrate the ongoing focus on regulatory compliance and anti-money laundering efforts in the EU.",
+  "archive_size": 579,
+  "exec_summary": "The European Banking Authority has issued an email alert on August 6, 2026, as part of its ongoing regulatory oversight. In a significant development, EU watchdogs have warned of scammers posing as crypto firms and regulators following the MiCA deadline, highlighting the need for vigilance in compliance and regulatory efforts. The launch of the CASP Tracker for easy verification of MiCA crypto licenses is also noteworthy, as it aims to facilitate regulatory compliance in the crypto space. Additionally, UBS has been fined $125 million under anti-money laundering law, emphasizing the importance of robust AML measures in the financial sector.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 42
+      "days_away": 41
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 147
+      "days_away": 146
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 148
+      "days_away": 147
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 157
+      "days_away": 156
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 327
+      "days_away": 326
     }
   ],
   "trends": [
     {
       "theme": "Enforcement/Fines",
-      "this_week": 2,
+      "this_week": 3,
       "avg": 1.2,
-      "pct": 67,
+      "pct": 150,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁█▁▁█",
+      "spark": "▁▁▄▁▁█",
       "values": [
         1,
         1,
         2,
         1,
         1,
-        2
+        3
       ],
       "weeks": 6
     },
     {
       "theme": "AML/CFT",
-      "this_week": 4,
+      "this_week": 5,
       "avg": 2.4,
-      "pct": 67,
+      "pct": 108,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▂▄▁█▆",
+      "spark": "▁▂▄▁██",
       "values": [
         1,
         2,
         3,
         1,
         5,
-        4
-      ],
-      "weeks": 6
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 7,
-      "avg": 6.0,
-      "pct": 17,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▅██▁▃▆",
-      "values": [
-        6,
-        9,
-        9,
-        2,
-        4,
-        7
+        5
       ],
       "weeks": 6
     },
     {
       "theme": "Capital/CRR",
-      "this_week": 2,
+      "this_week": 3,
       "avg": 1.8,
-      "pct": 14,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁█▄▄",
+      "pct": 71,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁█▄█",
       "values": [
         1,
         1,
         3,
         2,
-        2
+        3
       ],
       "weeks": 5
     },
@@ -137,6 +118,25 @@
       "weeks": 2
     },
     {
+      "theme": "SFDR/ESG",
+      "this_week": 1,
+      "avg": 1.2,
+      "pct": -17,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁█▁▁▁▁",
+      "values": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 6
+    },
+    {
       "theme": "Solvency/Insurance",
       "this_week": 1,
       "avg": 1.2,
@@ -153,6 +153,25 @@
         1
       ],
       "weeks": 5
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 3,
+      "avg": 6.0,
+      "pct": -50,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▅██▁▃▂",
+      "values": [
+        6,
+        9,
+        9,
+        2,
+        4,
+        3
+      ],
+      "weeks": 6
     },
     {
       "theme": "Stress Test",
@@ -216,24 +235,6 @@
         1
       ],
       "weeks": 3
-    },
-    {
-      "theme": "SFDR/ESG",
-      "this_week": 0,
-      "avg": 1.2,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁█▁▁▁",
-      "values": [
-        1,
-        2,
-        1,
-        1,
-        1
-      ],
-      "weeks": 5
     }
   ]
 }
