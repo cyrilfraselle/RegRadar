@@ -1,71 +1,51 @@
 {
-  "last_updated": "2026-08-10T07:24:15.802725",
+  "last_updated": "2026-08-11T07:00:06.604590",
   "last_run_counts": {
-    "total": 10,
+    "total": 9,
     "critical": 0,
     "important": 7,
-    "info": 3
+    "info": 2
   },
-  "archive_size": 607,
-  "exec_summary": "The European Banking Authority has issued an email alert on August 6, 2026, which is a significant development for EU financial institutions. In Belgium, financial services firms should note the growing number of crypto firms approved under the EU's Markets in Crypto-Assets regulation, with over 300 MiCA-approved firms now operating in the region. The European Insurance and Occupational Pensions Authority has also called for industry opinion on the supervision of reinsurance undertakings, which may impact Belgian insurance companies. Additionally, recent anti-money laundering actions, such as the freezing of assets in a money laundering probe, highlight the need for continued vigilance in compliance and risk management.",
+  "archive_size": 615,
+  "exec_summary": "The European Banking Authority has issued an email alert on August 6, 2026, which is a significant development for EU financial institutions. Additionally, the Anti-Money Laundering Authority has published draft guidelines on ongoing monitoring under Article 26(5) of the Anti-Money Laundering Regulation, providing clarity for firms on their AML obligations. In Belgium, the financial regulator has awarded a payment license to FinTech innovators, demonstrating the country's efforts to foster innovation in the financial sector. The AMLA's draft guidelines are particularly noteworthy as they aim to strengthen the EU's anti-money laundering framework.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 38
+      "days_away": 37
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 143
+      "days_away": 142
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 144
+      "days_away": 143
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 153
+      "days_away": 152
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 323
+      "days_away": 322
     }
   ],
   "trends": [
-    {
-      "theme": "AML/CFT",
-      "this_week": 2,
-      "avg": 2.2,
-      "pct": -8,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▂▄▁█▁▂",
-      "values": [
-        1,
-        2,
-        3,
-        1,
-        5,
-        1,
-        2
-      ],
-      "weeks": 7
-    },
     {
       "theme": "SFDR/ESG",
       "this_week": 1,
@@ -125,14 +105,34 @@
       "weeks": 6
     },
     {
-      "theme": "MiCA/Crypto",
-      "this_week": 3,
-      "avg": 5.5,
-      "pct": -45,
+      "theme": "AML/CFT",
+      "this_week": 1,
+      "avg": 2.2,
+      "pct": -54,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "▅██▁▃▂▂",
+      "spark": "▁▂▄▁█▁▁",
+      "values": [
+        1,
+        2,
+        3,
+        1,
+        5,
+        1,
+        1
+      ],
+      "weeks": 7
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 1,
+      "avg": 5.5,
+      "pct": -82,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▅██▁▃▂▁",
       "values": [
         6,
         9,
@@ -140,7 +140,7 @@
         2,
         4,
         3,
-        3
+        1
       ],
       "weeks": 7
     },
