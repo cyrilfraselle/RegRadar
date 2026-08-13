@@ -1,55 +1,55 @@
 {
-  "last_updated": "2026-08-12T07:18:32.973742",
+  "last_updated": "2026-08-13T07:20:47.869109",
   "last_run_counts": {
-    "total": 7,
+    "total": 9,
     "critical": 0,
     "important": 6,
-    "info": 1
+    "info": 3
   },
-  "archive_size": 621,
-  "exec_summary": "The European Securities and Markets Authority has launched a consultation on guidelines for the implementation of the T+1 settlement cycle, a significant development in EU securities regulation. In a related move, the European Insurance and Occupational Pensions Authority is seeking industry input on the supervision of reinsurance undertakings. Meanwhile, the rejection of Dutch fintech Bunq's US banking license application by a US regulator highlights the challenges faced by fintech firms in navigating complex regulatory environments. The ESMA consultation on T+1 guidelines is a key development for EU financial services firms to monitor, with potential implications for operational and compliance processes.",
+  "archive_size": 626,
+  "exec_summary": "The Anti-Money Laundering Authority (AMLA) has published draft guidelines on ongoing monitoring under Article 26(5) of the Anti-Money Laundering Regulation (AMLR), a significant EU regulatory development. In Belgium, there are no notable developments this week, but the AMLA guidelines will be relevant to Belgian financial institutions. The European Insurance and Occupational Pensions Authority (EIOPA) has also called for industry opinion on the supervision of reinsurance undertakings, which may impact Belgian insurers. The AMLA guidelines are a key development for the EU financial sector, and institutions should review them to ensure compliance with the AMLR.",
   "timeline": [
     {
       "date": "2026-08-20",
       "event": "Europa Open Air concert",
       "theme": "Community Outreach",
       "type": "event",
-      "days_away": 8
+      "days_away": 7
     },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 36
+      "days_away": 35
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 141
+      "days_away": 140
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 142
+      "days_away": 141
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 151
+      "days_away": 150
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 321
+      "days_away": 320
     }
   ],
   "trends": [
@@ -153,9 +153,9 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 1,
+      "this_week": 2,
       "avg": 5.5,
-      "pct": -82,
+      "pct": -64,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
@@ -167,7 +167,7 @@
         2,
         4,
         3,
-        1
+        2
       ],
       "weeks": 7
     },
