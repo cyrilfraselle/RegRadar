@@ -1,58 +1,71 @@
 {
-  "last_updated": "2026-08-13T07:20:47.869109",
+  "last_updated": "2026-08-14T07:18:59.694505",
   "last_run_counts": {
-    "total": 9,
+    "total": 16,
     "critical": 0,
-    "important": 6,
-    "info": 3
+    "important": 11,
+    "info": 5
   },
-  "archive_size": 626,
-  "exec_summary": "The Anti-Money Laundering Authority (AMLA) has published draft guidelines on ongoing monitoring under Article 26(5) of the Anti-Money Laundering Regulation (AMLR), a significant EU regulatory development. In Belgium, there are no notable developments this week, but the AMLA guidelines will be relevant to Belgian financial institutions. The European Insurance and Occupational Pensions Authority (EIOPA) has also called for industry opinion on the supervision of reinsurance undertakings, which may impact Belgian insurers. The AMLA guidelines are a key development for the EU financial sector, and institutions should review them to ensure compliance with the AMLR.",
+  "archive_size": 640,
+  "exec_summary": "The European Central Bank has noted that cash remains the most widely accepted payment method in the euro area, while the EU's regulatory landscape continues to evolve with Monaco preparing a new framework inspired by the Markets in Crypto-Assets regulation. In licensing news, BaFin is overseeing the expansion of e-money and payment institutions across the EU, with Dutch fintech Bunq recently having its US banking license application rejected by a US regulator. The rejection of Bunq's application highlights the regulatory scrutiny faced by fintech firms seeking to expand their services.",
   "timeline": [
-    {
-      "date": "2026-08-20",
-      "event": "Europa Open Air concert",
-      "theme": "Community Outreach",
-      "type": "event",
-      "days_away": 7
-    },
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 35
+      "days_away": 34
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 140
+      "days_away": 139
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 141
+      "days_away": 140
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 150
+      "days_away": 149
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 320
+      "days_away": 319
     }
   ],
   "trends": [
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 2,
+      "avg": 1.3,
+      "pct": 50,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁█▁▁██",
+      "values": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2
+      ],
+      "weeks": 7
+    },
     {
       "theme": "SFDR/ESG",
       "this_week": 1,
@@ -93,22 +106,22 @@
       "weeks": 6
     },
     {
-      "theme": "Enforcement/Fines",
-      "this_week": 1,
-      "avg": 1.3,
-      "pct": -25,
+      "theme": "MiCA/Crypto",
+      "this_week": 4,
+      "avg": 5.5,
+      "pct": -27,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
-      "spark": "▁▁█▁▁█▁",
+      "spark": "▅██▁▃▂▃",
       "values": [
-        1,
-        1,
+        6,
+        9,
+        9,
         2,
-        1,
-        1,
-        2,
-        1
+        4,
+        3,
+        4
       ],
       "weeks": 7
     },
@@ -148,26 +161,6 @@
         5,
         1,
         1
-      ],
-      "weeks": 7
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 2,
-      "avg": 5.5,
-      "pct": -64,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▅██▁▃▂▁",
-      "values": [
-        6,
-        9,
-        9,
-        2,
-        4,
-        3,
-        2
       ],
       "weeks": 7
     },
