@@ -1,48 +1,48 @@
 {
-  "last_updated": "2026-08-15T06:31:20.576348",
+  "last_updated": "2026-08-16T06:32:39.355272",
   "last_run_counts": {
     "total": 7,
     "critical": 0,
-    "important": 6,
-    "info": 1
+    "important": 4,
+    "info": 3
   },
-  "archive_size": 646,
-  "exec_summary": "The European Union's Anti-Money Laundering Authority has published draft guidelines on ongoing monitoring under Article 26(5) of the Anti-Money Laundering Regulation, which will impact financial institutions' compliance obligations. In a related development, the Markets in Crypto-Assets regulation framework is planning to revise access rules for non-EU stablecoin issuers, affecting firms operating in the region. In Belgium, financial institutions should take note of these developments to ensure compliance with EU regulations. The AMLA guidelines and MiCA framework revisions will be key areas of focus for the compliance team to monitor and implement.",
+  "archive_size": 650,
+  "exec_summary": "The European Securities and Markets Authority has launched a consultation on guidelines for a shortened settlement cycle of T+1, which is a significant development in EU regulatory framework. In Belgium, there are no notable regulatory developments this week. Meanwhile, the European Central Bank has observed that cash remains the most widely accepted payment method in the euro area, which may have implications for payment institutions and fintech firms operating in the region, such as those licensed by BaFin under the E-Money and Payment Institution License. The ESMA consultation on T+1 guidelines is the most significant regulatory development this week, with potential impact on market participants and post-trade processes.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 33
+      "days_away": 32
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 138
+      "days_away": 137
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 139
+      "days_away": 138
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 148
+      "days_away": 147
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 318
+      "days_away": 317
     }
   ],
   "trends": [
@@ -146,9 +146,9 @@
     },
     {
       "theme": "MiCA/Crypto",
-      "this_week": 2,
+      "this_week": 1,
       "avg": 5.5,
-      "pct": -64,
+      "pct": -82,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
@@ -160,7 +160,7 @@
         2,
         4,
         3,
-        2
+        1
       ],
       "weeks": 7
     },
