@@ -1,115 +1,119 @@
 {
-  "last_updated": "2026-08-16T06:32:39.355272",
+  "last_updated": "2026-08-17T06:44:46.804779",
   "last_run_counts": {
-    "total": 7,
+    "total": 9,
     "critical": 0,
-    "important": 4,
-    "info": 3
+    "important": 7,
+    "info": 2
   },
-  "archive_size": 650,
-  "exec_summary": "The European Securities and Markets Authority has launched a consultation on guidelines for a shortened settlement cycle of T+1, which is a significant development in EU regulatory framework. In Belgium, there are no notable regulatory developments this week. Meanwhile, the European Central Bank has observed that cash remains the most widely accepted payment method in the euro area, which may have implications for payment institutions and fintech firms operating in the region, such as those licensed by BaFin under the E-Money and Payment Institution License. The ESMA consultation on T+1 guidelines is the most significant regulatory development this week, with potential impact on market participants and post-trade processes.",
+  "archive_size": 656,
+  "exec_summary": "The European Union's Anti-Money Laundering Authority has published draft guidelines on ongoing monitoring under Article 26(5) of the Anti-Money Laundering Regulation, which will impact financial institutions' compliance obligations. In Belgium, financial services firms should take note of these developments as they navigate the EU's regulatory landscape. The guidelines aim to clarify expectations for ongoing monitoring, a critical component of anti-money laundering efforts. Meanwhile, the rejection of Dutch fintech Bunq's banking license application by a US regulator serves as a reminder of the importance of robust licensing and compliance frameworks in the fintech space.",
   "timeline": [
     {
       "date": "2026-09-17",
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 32
+      "days_away": 31
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 137
+      "days_away": 136
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 138
+      "days_away": 137
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 147
+      "days_away": 146
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 317
+      "days_away": 316
     }
   ],
   "trends": [
     {
       "theme": "Enforcement/Fines",
       "this_week": 2,
-      "avg": 1.3,
-      "pct": 50,
+      "avg": 1.4,
+      "pct": 40,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁█▁▁██",
+      "spark": "▁▁█▁▁███",
       "values": [
         1,
         1,
         2,
         1,
         1,
+        2,
         2,
         2
       ],
-      "weeks": 7
+      "weeks": 8
     },
     {
-      "theme": "SFDR/ESG",
-      "this_week": 1,
-      "avg": 1.2,
-      "pct": -14,
+      "theme": "AML/CFT",
+      "this_week": 2,
+      "avg": 2.0,
+      "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
-      "spark": "▁█▁▁▁▁▁",
+      "spark": "▁▂▄▁█▁▁▂",
       "values": [
         1,
         2,
+        3,
+        1,
+        5,
         1,
         1,
-        1,
-        1,
-        1
+        2
       ],
-      "weeks": 7
+      "weeks": 8
     },
     {
-      "theme": "Solvency/Insurance",
-      "this_week": 1,
-      "avg": 1.2,
-      "pct": -17,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁█▁▁",
+      "theme": "MiCA/Crypto",
+      "this_week": 3,
+      "avg": 4.9,
+      "pct": -38,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▅██▁▃▂▁▂",
       "values": [
-        1,
-        1,
-        1,
+        6,
+        9,
+        9,
         2,
+        4,
+        3,
         1,
-        1
+        3
       ],
-      "weeks": 6
+      "weeks": 8
     },
     {
       "theme": "Capital/CRR",
-      "this_week": 1,
+      "this_week": 0,
       "avg": 1.8,
-      "pct": -44,
+      "pct": -100,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
@@ -123,46 +127,6 @@
         1
       ],
       "weeks": 6
-    },
-    {
-      "theme": "AML/CFT",
-      "this_week": 1,
-      "avg": 2.2,
-      "pct": -54,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▂▄▁█▁▁",
-      "values": [
-        1,
-        2,
-        3,
-        1,
-        5,
-        1,
-        1
-      ],
-      "weeks": 7
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 1,
-      "avg": 5.5,
-      "pct": -82,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▅██▁▃▂▁",
-      "values": [
-        6,
-        9,
-        9,
-        2,
-        4,
-        3,
-        1
-      ],
-      "weeks": 7
     },
     {
       "theme": "Stress Test",
@@ -193,6 +157,25 @@
         1
       ],
       "weeks": 2
+    },
+    {
+      "theme": "Solvency/Insurance",
+      "this_week": 0,
+      "avg": 1.2,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁█▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      "weeks": 6
     },
     {
       "theme": "DORA",
@@ -226,6 +209,26 @@
         1
       ],
       "weeks": 3
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 0,
+      "avg": 1.2,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁█▁▁▁▁▁",
+      "values": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 7
     },
     {
       "theme": "MiFID/MiFIR",
