@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-08-18T06:36:04.954436",
+  "last_updated": "2026-08-19T06:36:51.227230",
   "last_run_counts": {
-    "total": 6,
-    "critical": 0,
+    "total": 10,
+    "critical": 1,
     "important": 5,
-    "info": 1
+    "info": 4
   },
-  "archive_size": 661,
+  "archive_size": 669,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,47 +14,47 @@
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 30
+      "days_away": 29
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 135
+      "days_away": 134
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 136
+      "days_away": 135
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 145
+      "days_away": 144
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 315
+      "days_away": 314
     }
   ],
   "trends": [
     {
       "theme": "Enforcement/Fines",
-      "this_week": 3,
+      "this_week": 2,
       "avg": 1.4,
-      "pct": 110,
+      "pct": 40,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁▄▁▁▄▄█",
+      "spark": "▁▁█▁▁███",
       "values": [
         1,
         1,
@@ -63,7 +63,7 @@
         1,
         2,
         2,
-        3
+        2
       ],
       "weeks": 8
     },
