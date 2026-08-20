@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THE DESK — RegRadar Academy</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   THE DESK — one game, not a menu of modules.
+
+   The shell is a case journal: dated entries accumulating downward, the
+   way a real file does. Days are the unit, not lessons. Consequences
+   arrive as entries you find waiting, which is the only way "a decision
+   you made in March" can land as an event rather than a paragraph.
+
+   Palette carried over from NIGHT SHIFT deliberately — console at 22:47,
+   monospace as the display face because everything here is machine
+   output, four signal colours each with exactly one meaning.
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
+  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
+  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--void);color:var(--ink);font-family:var(--mono);font-size:14px;
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 80% at 50% 0%,rgba(143,184,255,.06),transparent 62%)}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+::selection{background:var(--ice);color:var(--void)}
+
+/* ── HUD ── */
+.hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:18px;
+  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--console),rgba(14,20,28,.55));
+  border-bottom:1px solid var(--grid)}
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
+.brand .dot{width:7px;height:7px;background:var(--ice);border-radius:50%;
+  box-shadow:0 0 10px var(--ice);animation:beat 3s infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
+.g{display:flex;align-items:center;gap:8px}
+.g .l{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.g .v{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.hours{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.hours.low{color:var(--amber)} .hours.out{color:var(--alarm)}
+.xpw{flex:1;max-width:180px;min-width:70px}
+.xpt{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.13em;color:var(--ink-3);margin-bottom:5px}
+.xpt b{color:var(--ice)}
+.xpb{height:4px;background:var(--grid);position:relative;overflow:hidden}
+.xpb i{position:absolute;inset:0 auto 0 0;background:var(--ice);width:0;
+  box-shadow:0 0 12px var(--ice);transition:width .7s var(--ease)}
+.hud-r{margin-left:auto;display:flex;align-items:center;gap:9px}
+.ib{width:30px;height:30px;border:1px solid var(--grid);color:var(--ink-3);font-size:13px;
+  display:grid;place-items:center;transition:all .16s}
+.ib:hover{border-color:var(--ice);color:var(--ice)}
+
+/* ── views ── */
+.view{position:relative;z-index:2;flex:1 1 auto;overflow-y:auto;min-height:0;display:none}
+.view.on{display:block}
+.view::-webkit-scrollbar{width:8px} .view::-webkit-scrollbar-thumb{background:var(--grid)}
+.pad{max-width:960px;margin:0 auto;padding:34px 28px 90px}
+
+/* ── TIMELINE (the hub) ── */
+.tl-head{border-bottom:1px solid var(--grid);padding-bottom:20px;margin-bottom:8px}
+.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+.tl-head h1{font-size:clamp(24px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;
+  line-height:1.05;margin-top:12px}
+.tl-head h1 em{font-style:normal;color:var(--ice)}
+.tl-head .sub{font-family:var(--sans);font-size:14.5px;color:var(--ink-2);margin-top:14px;
+  max-width:64ch;line-height:1.6}
+
+.entry{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:16px 0;
+  border-bottom:1px solid rgba(31,44,59,.55);position:relative}
+.entry .when{font-size:10px;letter-spacing:.11em;color:var(--ink-3);padding-top:3px;text-align:right}
+.entry .when b{display:block;color:var(--ink-2);font-size:11.5px;letter-spacing:.06em}
+.entry .what{min-width:0}
+.entry .et{font-size:14.5px;font-weight:700;letter-spacing:-.005em;display:flex;
+  align-items:baseline;gap:9px;flex-wrap:wrap}
+.entry .eb{font-family:var(--sans);font-size:13px;color:var(--ink-2);line-height:1.55;margin-top:6px;max-width:66ch}
+.entry .chip{font-size:8.5px;letter-spacing:.13em;padding:2px 7px;border:1px solid currentColor;font-weight:700}
+.entry.done .et{color:var(--ink-2)} .entry.done .chip{color:var(--phos)}
+.entry.harm .chip{color:var(--alarm)} .entry.harm .et{color:var(--ink)}
+.entry.next{background:linear-gradient(90deg,rgba(143,184,255,.06),transparent 60%);
+  margin:0 -14px;padding:18px 14px;border-left:2px solid var(--ice)}
+.entry.next .et{color:var(--ice)}
+.entry.locked{opacity:.34}
+.entry .go{margin-top:12px;border:1px solid var(--ice);color:var(--ice);padding:10px 20px;
+  font-size:11px;font-weight:700;letter-spacing:.15em;background:rgba(143,184,255,.07);
+  transition:all .18s;display:inline-block}
+.entry .go:hover{background:var(--ice);color:var(--void)}
+.entry.consequence{border-left:2px solid var(--alarm);margin:0 -14px;padding:18px 14px;
+  background:linear-gradient(90deg,rgba(255,90,82,.05),transparent 55%)}
+.entry.consequence .et{color:var(--alarm)}
+
+/* ── BRIEF (day intro) ── */
+.brief-in{max-width:640px}
+.brief-in h2{font-size:clamp(22px,3.2vw,34px);font-weight:700;letter-spacing:-.028em;line-height:1.08;margin-top:14px}
+.brief-in .body{font-family:var(--sans);font-size:15px;line-height:1.66;color:var(--ink-2);margin-top:18px}
+.brief-in .body p{margin-top:13px}
+.rules{border:1px solid var(--grid);margin-top:24px}
+.rules .rh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
+.rules .rr{padding:12px 15px;border-bottom:1px solid var(--grid);display:grid;
+  grid-template-columns:26px 1fr;gap:12px;font-family:var(--sans);font-size:13.5px;
+  line-height:1.55;color:var(--ink-2)}
+.rules .rr:last-child{border-bottom:none}
+.rules .rr .i{font-family:var(--mono);color:var(--ice);font-weight:700}
+.rules .rr b{color:var(--ink)}
+.go-big{margin-top:28px;border:1px solid var(--phos);color:var(--phos);padding:15px 34px;
+  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(125,240,200,.07);transition:all .18s}
+.go-big:hover{background:var(--phos);color:var(--void);box-shadow:0 0 34px rgba(125,240,200,.35)}
+.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
+  font-weight:700;letter-spacing:.14em;transition:all .16s}
+.ghost:hover{border-color:var(--ink-2);color:var(--ink)}
+.row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+
+/* ── WORK (alerts + onboarding share this) ── */
+.work{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0;height:100%}
+@media(max-width:1000px){.work{grid-template-columns:1fr}}
+.wmain{overflow-y:auto;padding:24px 28px 40px;min-height:0}
+.wmain::-webkit-scrollbar{width:8px} .wmain::-webkit-scrollbar-thumb{background:var(--grid)}
+.wside{border-left:1px solid var(--grid);background:rgba(14,20,28,.4);overflow-y:auto;
+  padding:22px 20px 40px;min-height:0}
+@media(max-width:1000px){.wside{border-left:none;border-top:1px solid var(--grid)}}
+
+.meta{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;font-size:9.5px;
+  letter-spacing:.14em;color:var(--ink-3)}
+.meta .rule{border:1px solid var(--amber);color:var(--amber);padding:2px 7px;letter-spacing:.1em}
+.meta .pos{margin-left:auto;font-variant-numeric:tabular-nums}
+h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
+  line-height:1.16;margin:12px 0 6px;max-width:25ch}
+.subj{font-size:11.5px;color:var(--ink-2);letter-spacing:.04em}
+
+.blk{margin-top:22px;border-top:1px solid var(--grid);padding-top:12px}
+.blk .bl{font-size:9px;letter-spacing:.18em;color:var(--ink-3);margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:baseline}
+.blk .bl b{color:var(--ink-2);letter-spacing:.09em}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px 20px}
+.facts .k{font-size:8.5px;letter-spacing:.14em;color:var(--ink-3)}
+.facts .v{font-size:13px;color:var(--ink);margin-top:3px}
+.prose{font-family:var(--sans);font-size:14.5px;line-height:1.62;color:var(--ink-2);max-width:72ch}
+.ledger{width:100%;border-collapse:collapse;margin-top:4px}
+.ledger td{font-size:12.5px;padding:6px 12px 6px 0;border-bottom:1px solid rgba(31,44,59,.55);
+  color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger td.amt{color:var(--ink);text-align:right;font-weight:700}
+.ledger td.det{white-space:normal;color:var(--ink-3);font-size:11.5px}
+
+.docs{display:grid;gap:9px}
+.doc{border:1px solid var(--grid);padding:11px 13px}
+.doc .dn{font-size:12px;font-weight:700;letter-spacing:.03em}
+.doc .ds{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-top:5px}
+
+/* actions */
+.acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px}
+.act{border:1px solid var(--grid);padding:11px 13px;transition:all .16s var(--ease);position:relative}
+.act:hover:not(:disabled){border-color:var(--ice);transform:translateY(-2px)}
+.act:disabled{opacity:.3;cursor:not-allowed}
+.act.done{opacity:.48}
+.act .an{font-size:12px;font-weight:700;line-height:1.35;padding-right:32px}
+.act .ac{position:absolute;top:10px;right:12px;font-size:10px;color:var(--amber);font-weight:700}
+.act.done .ac{color:var(--phos)}
+
+.ev{border-left:2px solid var(--grid);padding:10px 0 10px 14px;margin-bottom:10px;
+  animation:slide .4s var(--ease)}
+@keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.ev.decisive{border-left-color:var(--alarm)} .ev.supporting{border-left-color:var(--ice)}
+.ev.exculpatory{border-left-color:var(--phos)} .ev.noise{border-left-color:var(--ink-3);opacity:.7}
+.ev .et2{font-size:11.5px;font-weight:700;display:flex;gap:9px;align-items:baseline}
+.ev .ew{font-size:8.5px;letter-spacing:.13em;padding:1px 6px;border:1px solid currentColor}
+.ev.decisive .ew{color:var(--alarm)} .ev.supporting .ew{color:var(--ice)}
+.ev.exculpatory .ew{color:var(--phos)} .ev.noise .ew{color:var(--ink-3)}
+.ev .eb2{font-family:var(--sans);font-size:13px;line-height:1.58;color:var(--ink-2);margin-top:6px}
+
+/* decisions */
+.dec{display:grid;gap:8px;margin-top:10px}
+.db{border:1px solid var(--grid);padding:11px 13px;transition:all .16s var(--ease)}
+.db:hover:not(:disabled){transform:translateX(3px)}
+.db:disabled{opacity:.3;cursor:not-allowed}
+.db .dn{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.04em}
+.db .num{width:18px;height:18px;border:1px solid currentColor;display:grid;place-items:center;
+  font-size:9.5px;flex:0 0 auto}
+.db .dd{font-size:10.5px;color:var(--ink-3);margin-top:5px;line-height:1.42}
+.db.a{color:var(--phos)} .db.a:hover:not(:disabled){border-color:var(--phos)}
+.db.b{color:var(--amber)} .db.b:hover:not(:disabled){border-color:var(--amber)}
+.db.c{color:var(--ice)}   .db.c:hover:not(:disabled){border-color:var(--ice)}
+.db.d{color:var(--alarm)} .db.d:hover:not(:disabled){border-color:var(--alarm)}
+
+/* Nadia */
+.nadia{border:1px solid var(--violet);padding:12px 13px;margin-bottom:18px;background:rgba(180,140,255,.05)}
+.nadia .nh{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.13em;
+  color:var(--violet);font-weight:700}
+.nadia .nh .av{width:20px;height:20px;border:1px solid var(--violet);display:grid;place-items:center;font-size:10px}
+.nadia .nb{font-family:var(--sans);font-size:12.5px;line-height:1.56;color:var(--ink-2);margin-top:9px}
+.nadia button{margin-top:10px;border:1px solid var(--violet);color:var(--violet);padding:7px 11px;
+  font-size:9.5px;font-weight:700;letter-spacing:.11em;transition:all .16s;width:100%;text-align:center}
+.nadia button:hover:not(:disabled){background:var(--violet);color:var(--void)}
+.nadia button:disabled{opacity:.4;cursor:not-allowed}
+
+/* tutorial coach */
+.coach{position:fixed;z-index:60;max-width:330px;border:1px solid var(--ice);
+  background:var(--console);padding:14px 16px;box-shadow:0 12px 44px rgba(0,0,0,.6);
+  animation:pop .34s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.coach .ch{font-size:9px;letter-spacing:.16em;color:var(--ice);font-weight:700}
+.coach .cb{font-family:var(--sans);font-size:13.5px;line-height:1.58;color:var(--ink);margin-top:9px}
+.coach .cf{display:flex;justify-content:space-between;align-items:center;margin-top:13px}
+.coach .cs{font-size:9.5px;color:var(--ink-3);letter-spacing:.1em}
+.coach button{border:1px solid var(--ice);color:var(--ice);padding:7px 15px;font-size:10px;
+  font-weight:700;letter-spacing:.12em;transition:all .16s}
+.coach button:hover{background:var(--ice);color:var(--void)}
+.spot{position:fixed;z-index:55;pointer-events:none;border:2px solid var(--ice);
+  box-shadow:0 0 0 9999px rgba(8,11,16,.76),0 0 24px rgba(143,184,255,.5);
+  transition:all .34s var(--ease)}
+
+/* outcome */
+.vhead{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.stamp{font-size:10.5px;font-weight:700;letter-spacing:.19em;padding:6px 12px;border:2px solid currentColor}
+.vhead h2{font-size:clamp(18px,2.4vw,26px);font-weight:700;letter-spacing:-.015em}
+.vxp{margin-left:auto;font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+.scoregrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:1px;
+  background:var(--grid);border:1px solid var(--grid);margin-top:22px}
+.scoregrid div{background:var(--console);padding:14px 10px}
+.scoregrid .n{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums}
+.scoregrid .l{font-size:8.5px;letter-spacing:.14em;color:var(--ink-3);margin-top:6px}
+.note{font-family:var(--sans);font-size:13.5px;line-height:1.62;color:var(--ink-2);
+  margin-top:18px;border-left:2px solid var(--amber);padding-left:15px;max-width:68ch}
+.note.ice{border-left-color:var(--ice)} .note.red{border-left-color:var(--alarm)}
+.note .nl{font-family:var(--mono);font-size:9px;letter-spacing:.17em;color:var(--amber);
+  margin-bottom:7px;display:block}
+.note.ice .nl{color:var(--ice)} .note.red .nl{color:var(--alarm)}
+.lawline{font-size:11.5px;color:var(--ice);margin-top:18px;line-height:1.58}
+.missbox{border:1px solid var(--grid);margin-top:18px}
+.missbox .mh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--grid)}
+.missbox .mr{padding:11px 14px;border-bottom:1px solid var(--grid);font-family:var(--sans);
+  font-size:13px;line-height:1.55;color:var(--ink-2)}
+.missbox .mr:last-child{border-bottom:none}
+.missbox .mr b{color:var(--alarm);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:70;
+  border:1px solid var(--amber);background:var(--console);color:var(--amber);padding:10px 19px;
+  font-size:10.5px;letter-spacing:.11em;font-weight:700;animation:toast 2.6s var(--ease) forwards;
+  pointer-events:none}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}12%,78%{opacity:1;transform:translate(-50%,0)}
+  100%{opacity:0;transform:translate(-50%,-8px)}}
+
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{
+  animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:760px){
+  .hud{gap:11px;padding:0 11px;height:48px} .xpw,.g.hide-s{display:none}
+  .pad{padding:22px 16px 80px} .wmain{padding:18px 15px 26px} .wside{padding:18px 15px 30px}
+  .acts{grid-template-columns:1fr} .entry{grid-template-columns:56px 1fr;gap:12px}
+  .coach{left:12px!important;right:12px!important;max-width:none;bottom:16px!important;top:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="hud">
+  <div class="brand"><span class="dot"></span>THE DESK</div>
+  <div class="g hide-s"><span class="l">DAY</span><span class="v" id="hDay">—</span></div>
+  <div class="g" id="hoursWrap" style="display:none"><span class="l">HOURS</span><span class="hours" id="hHours">—</span></div>
+  <div class="xpw">
+    <div class="xpt"><span id="hRank">TRAINEE</span><b id="hXp">0 XP</b></div>
+    <div class="xpb"><i id="hXpFill"></i></div>
+  </div>
+  <div class="hud-r">
+    <button class="ib" onclick="toTimeline()" title="Journal">☰</button>
+    <button class="ib" onclick="toggleSnd()" id="sndBtn" title="Sound">♪</button>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="view on" id="vTimeline"><div class="pad">
+  <div class="tl-head">
+    <div class="kick">REGRADAR ACADEMY</div>
+    <h1 id="tlTitle">Your first week at <em>Meridiaan Bank</em>.</h1>
+    <div class="sub" id="tlSub">This is a journal, not a syllabus. Days accumulate behind you.
+      What you decide on one of them can come back on another.</div>
+  </div>
+  <div id="tlEntries"></div>
+</div></div>
+
+<!-- BRIEF -->
+<div class="view" id="vBrief"><div class="pad"><div class="brief-in">
+  <div class="kick" id="bKick">—</div>
+  <h2 id="bTitle">—</h2>
+  <div class="body" id="bBody"></div>
+  <div id="bRules"></div>
+  <div class="row">
+    <button class="go-big" id="bGo">BEGIN</button>
+    <button class="ghost" onclick="toTimeline()">NOT NOW</button>
+  </div>
+</div></div></div>
+
+<!-- WORK -->
+<div class="view" id="vWork"><div class="work">
+  <div class="wmain" id="wMain"></div>
+  <div class="wside" id="wSide"></div>
+</div></div>
+
+<!-- OUTCOME -->
+<div class="view" id="vOut"><div class="pad">
+  <div class="vhead">
+    <span class="stamp" id="oStamp">—</span>
+    <h2 id="oTitle">—</h2>
+    <span class="vxp" id="oXp"></span>
+  </div>
+  <div class="prose" id="oBody" style="margin-top:16px"></div>
+  <div class="scoregrid" id="oScores"></div>
+  <div id="oExtras"></div>
+  <div class="lawline" id="oLaw"></div>
+  <div class="note" id="oLesson"><span class="nl">WHAT THIS TEACHES</span><span id="oLessonText"></span></div>
+  <div class="row"><button class="go-big" id="oNext">CONTINUE</button></div>
+</div></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   ONE GAME.
+
+   The merge that mattered: a shift has alerts AND a shared hour budget.
+   Closing an alert on the file is free. Opening one to investigate
+   spends hours nobody gives back. So escalating everything is no longer
+   an abstract cost of "two investigator days" — it is your own afternoon,
+   and you end the day with six half-worked files you could not defend.
+   Precision and recall stop being scores and become a felt constraint.
+   ═══════════════════════════════════════════════════════════════════ */
+const SKEY='regradar-desk', EVKEY='regradar-events';
+const RANKS=[
+ {xp:0,n:'TRAINEE'},{xp:500,n:'ANALYST I'},{xp:1300,n:'ANALYST II'},
+ {xp:2600,n:'SENIOR'},{xp:4400,n:'LEAD'},{xp:6800,n:'MLRO'}];
+
+/* The career. Each day is a unit of work, not a lesson. */
+const DAYS=[
+ {d:1, type:'tutorial', label:'Day 1', name:'Induction',
+  blurb:'Nadia walks you through the desk. Two alerts, nothing at stake.'},
+ {d:2, type:'onboard', label:'Day 2', name:'The onboarding queue', n:2,
+  blurb:'Four applications. Decide how much diligence each one deserves.'},
+ {d:3, type:'desk', label:'Day 3', name:'First real shift', n:4, hours:6,
+  blurb:'Four alerts. Six hours. Close what you can, investigate what you must.'},
+ {d:5, type:'onboard', label:'Day 5', name:'Harder applications', n:2, hard:true,
+  blurb:'Files where nothing is wrong and nothing is proven.'},
+ {d:8, type:'desk', label:'Day 8', name:'A busier queue', n:5, hours:7,
+  blurb:'Five alerts, seven hours. The maths gets tighter.'},
+ {d:14,type:'desk', label:'Day 14', name:'Second week', n:5, hours:6,
+  blurb:'Five alerts, six hours. Something you saw before comes back.'},
+ {d:21,type:'desk', label:'Day 21', name:'Month end', n:6, hours:7,
+  blurb:'Six alerts. The queue does not care that it is month end.'},
+];
+
+let S={xp:0, day:0, done:[], harm:[], seen:{}, tutorialDone:false};
+let BOOK=[], ONB=[], PROFILES=[];
+let RUN=null;            /* the day in progress */
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const rankOf=xp=>{let r=RANKS[0];RANKS.forEach(x=>{if(xp>=x.xp)r=x});return r};
+const nextRank=xp=>RANKS.find(x=>x.xp>xp)||null;
+function save(){try{localStorage.setItem(SKEY,JSON.stringify(S))}catch(e){}}
+function load(){try{const p=JSON.parse(localStorage.getItem(SKEY)||'null');if(p)S={...S,...p}}catch(e){}}
+function logEvent(e){try{const a=JSON.parse(localStorage.getItem(EVKEY)||'[]');a.push(e);
+  localStorage.setItem(EVKEY,JSON.stringify(a.slice(-2000)))}catch(x){}}
+
+/* audio */
+let AC=null,SND=true;
+try{SND=localStorage.getItem('regradar-snd')!=='off'}catch(e){}
+function tone(f,d,t='sine',g=.05,dl=0){if(!SND)return;
+  try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+    const s=AC.currentTime+dl,o=AC.createOscillator(),v=AC.createGain();
+    o.type=t;o.frequency.setValueAtTime(f,s);v.gain.setValueAtTime(0,s);
+    v.gain.linearRampToValueAtTime(g,s+.012);v.gain.exponentialRampToValueAtTime(.0001,s+d);
+    o.connect(v);v.connect(AC.destination);o.start(s);o.stop(s+d+.02)}catch(e){}}
+const sfx={good:()=>{tone(587,.13,'sine',.06);tone(880,.22,'sine',.05,.08)},
+  bad:()=>{tone(150,.3,'square',.05);tone(100,.36,'square',.04,.06)},
+  find:()=>{tone(660,.1,'sine',.05);tone(990,.15,'sine',.03,.07)},
+  tick:()=>tone(880,.05,'square',.02),
+  rank:()=>[523,659,784,1047].forEach((f,i)=>tone(f,.28,'sine',.06,i*.09))};
+function toggleSnd(){SND=!SND;try{localStorage.setItem('regradar-snd',SND?'on':'off')}catch(e){}
+  document.getElementById('sndBtn').style.color=SND?'':'var(--grid)';if(SND)sfx.tick();}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),2700);}
+
+function paintHud(){
+  const r=rankOf(S.xp), nx=nextRank(S.xp);
+  document.getElementById('hRank').textContent=r.n;
+  document.getElementById('hXp').textContent=S.xp+' XP';
+  document.getElementById('hXpFill').style.width=Math.round((nx?(S.xp-r.xp)/(nx.xp-r.xp):1)*100)+'%';
+  document.getElementById('hDay').textContent=S.day?('D'+S.day):'—';
+  const hw=document.getElementById('hoursWrap');
+  if(RUN&&RUN.hours!=null){hw.style.display='';
+    const h=document.getElementById('hHours');h.textContent=RUN.hours+'h';
+    h.className='hours'+(RUN.hours<=2?' low':'')+(RUN.hours<=0?' out':'');
+  } else hw.style.display='none';
+  document.getElementById('sndBtn').style.color=SND?'':'var(--grid)';
+}
+function show(id){['vTimeline','vBrief','vWork','vOut'].forEach(v=>
+  document.getElementById(v).classList.toggle('on',v===id));
+  document.getElementById(id).scrollTop=0;}
+
+/* ═══════════ TIMELINE ═══════════ */
+function toTimeline(){
+  RUN=null; paintHud(); show('vTimeline');
+  const nextDay=DAYS.find(d=>!S.done.includes(d.d));
+  document.getElementById('tlTitle').innerHTML = S.done.length
+    ? `Day <em>${S.done[S.done.length-1]}</em> and counting.`
+    : `Your first week at <em>Meridiaan Bank</em>.`;
+  document.getElementById('tlSub').textContent = S.done.length
+    ? 'A journal, not a syllabus. It grows behind you — and what you decided on one day can '
+      + 'come back on another.'
+    : 'This is a journal, not a syllabus. Days accumulate behind you. What you decide on one of '
+      + 'them can come back on another.';
+
+  let html='';
+  DAYS.forEach(d=>{
+    const done=S.done.includes(d.d);
+    const isNext=nextDay&&nextDay.d===d.d;
+    const locked=!done&&!isNext;
+    const rec=S.seen['day'+d.d];
+
+    /* a consequence from an earlier day surfaces here as its own entry */
+    const cons=S.harm.filter(h=>h.surfaceOn===d.d);
+    cons.forEach(h=>{
+      html+=`<div class="entry consequence">
+        <div class="when"><b>LATER</b>follow-up</div>
+        <div class="what">
+          <div class="et">${esc(h.headline)}</div>
+          <div class="eb">${esc(h.body)}</div>
+        </div></div>`;
+    });
+
+    html+=`<div class="entry ${done?'done':''} ${isNext?'next':''} ${locked?'locked':''}">
+      <div class="when"><b>${esc(d.label)}</b>${done?'worked':isNext?'today':'ahead'}</div>
+      <div class="what">
+        <div class="et">${esc(d.name)}
+          ${done?`<span class="chip">${rec?esc(rec):'DONE'}</span>`:''}
+          ${isNext?'<span class="chip">NEXT</span>':''}</div>
+        <div class="eb">${esc(d.blurb)}</div>
+        ${isNext?`<button class="go" onclick="startDay(${d.d})">
+          ${d.type==='tutorial'?'START INDUCTION':'CLOCK IN'}</button>`:''}
+      </div></div>`;
+  });
+  if(S.done.length>=DAYS.length){
+    html+=`<div class="entry next"><div class="when"><b>—</b>ahead</div><div class="what">
+      <div class="et">More days are being written</div>
+      <div class="eb">You have worked everything currently in the journal. The Filing and the
+        Inspection come next — writing the report, then defending the decisions you made here.</div>
+      </div></div>`;
+  }
+  document.getElementById('tlEntries').innerHTML=html;
+}
+
+/* ═══════════ DAY START ═══════════ */
+function startDay(dn){
+  const d=DAYS.find(x=>x.d===dn); if(!d) return;
+  S.day=dn; paintHud();
+  document.getElementById('bKick').textContent=`${d.label.toUpperCase()} · ${d.name.toUpperCase()}`;
+  const go=document.getElementById('bGo');
+
+  if(d.type==='tutorial'){
+    document.getElementById('bTitle').textContent='First morning.';
+    document.getElementById('bBody').innerHTML=
+      `<p>Nadia has the desk next to yours and eleven years on you. She is going to sit with you
+        through two alerts, and she will interrupt.</p>
+       <p>Nothing counts today. That is the only day of which that will be true.</p>`;
+    document.getElementById('bRules').innerHTML='';
+    go.textContent='SIT DOWN';
+    go.onclick=()=>runDesk(d,true);
+  }else if(d.type==='onboard'){
+    document.getElementById('bTitle').textContent='The onboarding queue.';
+    document.getElementById('bBody').innerHTML=
+      `<p>Applications waiting for a decision. For each one you decide how much diligence is
+        proportionate — and set the profile of activity you would expect to see.</p>
+       <p>That profile is not paperwork. It is the baseline every future alert on this customer
+        gets measured against. Set it carelessly and you generate noise for a decade.</p>`;
+    document.getElementById('bRules').innerHTML=`<div class="rules">
+      <div class="rh">WHAT YOU ARE DECIDING</div>
+      <div class="rr"><span class="i">1</span><div><b>Standard</b> — proportionate measures, ordinary risk.</div></div>
+      <div class="rr"><span class="i">2</span><div><b>Enhanced</b> — where the law or the risk requires more.</div></div>
+      <div class="rr"><span class="i">3</span><div><b>Ask first</b> — a fact is missing that decides the answer.</div></div>
+      <div class="rr"><span class="i">4</span><div><b>Decline</b> — the relationship cannot be established.</div></div>
+    </div>`;
+    go.textContent='OPEN THE QUEUE';
+    go.onclick=()=>runOnboard(d);
+  }else{
+    document.getElementById('bTitle').textContent=`${d.n} alerts. ${d.hours} hours.`;
+    document.getElementById('bBody').innerHTML=
+      `<p>Most of these you will resolve on the file in front of you, and that costs nothing.
+        Some you cannot resolve without looking further — and looking further costs hours out of
+        the same ${d.hours}.</p>
+       <p>There is not enough time to investigate everything. That is not a flaw in the day.
+        It is the day.</p>`;
+    document.getElementById('bRules').innerHTML=`<div class="rules">
+      <div class="rh">HOW THE HOURS WORK</div>
+      <div class="rr"><span class="i">·</span><div><b>Closing on the file</b> costs nothing. Do it confidently where the file supports it.</div></div>
+      <div class="rr"><span class="i">·</span><div><b>Opening an investigation</b> spends hours on each line of enquiry you buy.</div></div>
+      <div class="rr"><span class="i">·</span><div><b>Run out</b> and you decide the remaining alerts blind.</div></div>
+    </div>`;
+    go.textContent='CLOCK IN';
+    go.onclick=()=>runDesk(d,false);
+  }
+  show('vBrief');
+}
+
+/* ═══════════ THE DESK (merged loop) ═══════════ */
+function pickAlerts(n, tutorial){
+  const seen=new Set(Object.keys(S.seen));
+  let pool=BOOK.slice();
+  if(tutorial){
+    /* induction: one obviously benign, one obviously not */
+    const benign=pool.find(c=>!c.is_real_case&&c.depth==='shallow');
+    const real=pool.find(c=>c.is_real_case&&c.depth==='shallow');
+    return [benign,real].filter(Boolean);
+  }
+  /* about a third review, rest fresh — and never the same case twice in a day */
+  const fresh=pool.filter(c=>!seen.has(c.id)).sort(()=>Math.random()-0.5);
+  const old=pool.filter(c=>seen.has(c.id)).sort(()=>Math.random()-0.5);
+  const wantOld=Math.min(old.length, Math.round(n*0.34));
+  const out=[...old.slice(0,wantOld), ...fresh.slice(0,n-wantOld)];
+  while(out.length<n && pool.length){
+    const extra=pool.find(c=>!out.includes(c)); if(!extra) break; out.push(extra);
+  }
+  return out.slice(0,n).sort(()=>Math.random()-0.5);
+}
+
+function runDesk(d, tutorial){
+  const alerts=pickAlerts(tutorial?2:d.n, tutorial);
+  RUN={type:'desk', d, tutorial, alerts, i:0, hours:tutorial?4:d.hours,
+       budget:tutorial?4:d.hours, results:[], opened:false, spent:[], gathered:[], nadia:0};
+  paintHud(); show('vWork'); renderAlert();
+  if(tutorial) setTimeout(()=>coach(0),600);
+}
+
+function renderAlert(){
+  const c=RUN.alerts[RUN.i];
+  if(!c) return endDay();
+  RUN.opened=false; RUN.spent=[]; RUN.gathered=[]; RUN.nadia=0;
+  const deep=(c.actions||[]).length>0;
+
+  document.getElementById('wMain').innerHTML=`
+    <div class="meta"><span class="rule">${esc(c.rule)}</span><span>${esc(c.id)}</span>
+      <span class="pos">${RUN.i+1} / ${RUN.alerts.length}</span></div>
+    <h2 class="ct">${esc(c.title)}</h2>
+    <div class="subj">${esc(c.customer)}</div>
+    ${Object.keys(c.facts||{}).length?`<div class="blk"><div class="bl">CUSTOMER</div>
+      <div class="facts">${Object.entries(c.facts).map(([k,v])=>
+        `<div><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>`:''}
+    <div class="blk"><div class="bl">WHAT TRIPPED THE RULE</div>
+      <div class="prose">${esc(c.narrative)}</div>
+      ${(c.transactions||[]).length?`<table class="ledger">${c.transactions.map(t=>
+        `<tr><td>${esc(t[0])}</td><td>${esc(t[1])}</td><td class="amt">${esc(t[2])}</td>
+         <td class="det">${esc(t[3])}</td></tr>`).join('')}</table>`:''}</div>
+    <div class="blk"><div class="bl">ON FILE</div><div class="prose">${esc(c.on_file)}</div></div>
+    <div id="invZone"></div>`;
+  renderSide(c, deep);
+  paintHud();
+  document.getElementById('wMain').scrollTop=0;
+}
+
+function renderSide(c, deep){
+  const canOpen = deep && RUN.hours>0 && !RUN.opened;
+  document.getElementById('wSide').innerHTML=`
+    ${RUN.opened?`<div class="nadia">
+      <div class="nh"><span class="av">N</span>NADIA</div>
+      <div class="nb" id="nadiaText">She will not tell you the answer. She will ask what you have
+        not asked yourself.</div>
+      <button id="nadiaBtn" onclick="askNadia()">ASK HER · 1 HOUR</button></div>`:''}
+    <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
+      YOUR CALL</div>
+    <div class="dec">
+      <button class="db a" onclick="deskDecide('close')">
+        <span class="dn"><span class="num">1</span>CLOSE ON THE FILE</span>
+        <span class="dd">Resolved with what you have. Costs nothing.</span></button>
+      ${deep?`<button class="db c" onclick="openInvestigation()" ${canOpen?'':'disabled'}>
+        <span class="dn"><span class="num">2</span>${RUN.opened?'INVESTIGATING…':'OPEN AN INVESTIGATION'}</span>
+        <span class="dd">${RUN.opened?'Lines of enquiry below.':'Spends hours from the day budget.'}</span></button>`:''}
+      ${RUN.opened||!deep?`
+      <button class="db b" onclick="deskDecide('rfi')">
+        <span class="dn"><span class="num">3</span>REQUEST INFORMATION</span>
+        <span class="dd">Back to the customer or RM before concluding.</span></button>
+      <button class="db c" onclick="deskDecide('escalate')">
+        <span class="dn"><span class="num">4</span>ESCALATE</span>
+        <span class="dd">Hand up with what you have.</span></button>
+      <button class="db d" onclick="deskDecide('sar')">
+        <span class="dn"><span class="num">5</span>FILE A REPORT</span>
+        <span class="dd">Suspicion articulated and reported.</span></button>`:''}
+    </div>
+    <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.55;margin-top:14px">
+      ${deep? 'This one has depth. Closing it costs nothing — but if it needed looking at, that will show.'
+            : 'Everything you need is on the file. The skill is deciding without buying time you do not need to spend.'}
+    </div>`;
+}
+
+function openInvestigation(){
+  const c=RUN.alerts[RUN.i];
+  RUN.opened=true;
+  const total=(c.actions||[]).reduce((s,a)=>s+a.cost,0);
+  document.getElementById('invZone').innerHTML=`
+    <div class="blk"><div class="bl"><span>LINES OF ENQUIRY</span>
+      <b id="budgLine">${RUN.hours}h left · ${total}h would buy everything</b></div>
+      <div class="acts" id="acts"></div></div>
+    <div class="blk"><div class="bl"><span>EVIDENCE</span><b id="evCount"></b></div>
+      <div id="board"><div class="prose" style="color:var(--ink-3)">Nothing yet. You cannot afford
+        every line — pick the one most likely to change your answer.</div></div></div>`;
+  paintActs(); renderSide(c,true); paintHud();
+  document.getElementById('invZone').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function paintActs(){
+  const c=RUN.alerts[RUN.i];
+  const total=(c.actions||[]).reduce((s,a)=>s+a.cost,0);
+  const bl=document.getElementById('budgLine');
+  if(bl) bl.textContent=`${RUN.hours}h left · ${total}h would buy everything`;
+  const el=document.getElementById('acts'); if(!el) return;
+  el.innerHTML=c.actions.map(a=>{
+    const done=RUN.spent.includes(a.id), afford=RUN.hours>=a.cost;
+    return `<button class="act ${done?'done':''}" ${done||!afford?'disabled':''}
+      onclick="buyAction('${a.id}')">
+      <span class="ac">${done?'✓':a.cost+'h'}</span>
+      <span class="an">${esc(a.name)}</span></button>`}).join('');
+}
+
+function buyAction(aid){
+  const c=RUN.alerts[RUN.i];
+  const a=c.actions.find(x=>x.id===aid);
+  if(!a||RUN.spent.includes(aid)||RUN.hours<a.cost) return;
+  RUN.hours-=a.cost; RUN.spent.push(aid);
+  const ev=c.evidence[a.reveals];
+  if(ev){
+    RUN.gathered.push(a.reveals); sfx.find();
+    const b=document.getElementById('board');
+    if(RUN.gathered.length===1) b.innerHTML='';
+    b.insertAdjacentHTML('afterbegin',`<div class="ev ${ev.weight}">
+      <div class="et2">${esc(ev.title)}<span class="ew">${ev.weight.toUpperCase()}</span></div>
+      <div class="eb2">${esc(ev.body)}</div></div>`);
+    const ec=document.getElementById('evCount');
+    if(ec) ec.textContent=`${RUN.gathered.length} item${RUN.gathered.length>1?'s':''}`;
+    if(ev.weight==='decisive') toast('DECISIVE');
+  }
+  paintActs(); paintHud();
+  if(RUN.hours<=0) toast('OUT OF HOURS');
+}
+
+function askNadia(){
+  const c=RUN.alerts[RUN.i];
+  if(RUN.hours<1||RUN.nadia>=2) return;
+  RUN.hours-=1; RUN.nadia++;
+  const found=new Set(RUN.gathered);
+  const missing=(c.decisive||[]).filter(k=>!found.has(k));
+  let line;
+  if(RUN.nadia===1){
+    line='"What would have to be true for this to be completely innocent? Work that out, then go '
+      +'and look for it. If it is not there, you have your answer."';
+  }else if(missing.length){
+    const act=c.actions.find(a=>a.reveals===missing[0]);
+    const what=act?act.name.replace(/^(Pull|Obtain|Request|Review|Check|Look for|Examine|Map|Establish|Compare|Re-run|Screen|Cross-reference|Open|Call|Ask|Interview|Aggregate)\s+/i,''):'the part that matters';
+    line=`"Everything you have shown me is consistent with itself. That is not the same as being `
+      +`true. Have you looked at ${what.toLowerCase()}?"`;
+  }else{
+    line='"You have what you need. Say it in two sentences: what is the suspicion, and which fact '
+      +'supports it. If you cannot, you are not done thinking."';
+  }
+  const nt=document.getElementById('nadiaText'); if(nt) nt.textContent=line;
+  const nb=document.getElementById('nadiaBtn');
+  if(nb){nb.disabled=RUN.nadia>=2||RUN.hours<1; if(RUN.nadia>=2) nb.textContent='SHE HAS SAID HER PIECE';}
+  paintActs(); paintHud();
+}
+
+function deskDecide(choice){
+  const c=RUN.alerts[RUN.i];
+  const deep=(c.actions||[]).length>0;
+  const found=new Set(RUN.gathered);
+  const decisive=c.decisive||[];
+  const foundAll=decisive.length? decisive.every(k=>found.has(k)) : true;
+  const foundN=decisive.filter(k=>found.has(k)).length;
+
+  let verdict, xp=0;
+  if(choice===c.best_action){ verdict = foundAll?'right':'thin'; }
+  else if((choice==='escalate'||choice==='sar') && c.is_real_case) verdict='part';
+  else if(choice==='rfi' && c.best_action!=='close') verdict='part';
+  else verdict = c.is_real_case ? 'harm' : 'wrong';
+
+  xp = verdict==='right'?260 : verdict==='thin'?110 : verdict==='part'?120 : verdict==='wrong'?30 : 0;
+  if(verdict==='right' && deep && RUN.hours>=2) xp+=60;
+  if(RUN.tutorial) xp=0;
+
+  const before=rankOf(S.xp).n;
+  S.xp+=xp; S.seen[c.id]=verdict; save();
+  const after=rankOf(S.xp).n;
+
+  logEvent({module:'desk', case:c.id, family:c.family, decision:choice, correct:verdict,
+            evidence:RUN.gathered.length, hours:RUN.budget-RUN.hours, at:new Date().toISOString()});
+  RUN.results.push({c, choice, verdict, xp, foundN, decisiveTotal:decisive.length});
+
+  /* a harmful call is scheduled to resurface on a later day */
+  if(verdict==='harm' && !RUN.tutorial){
+    const later=DAYS.find(d=>d.d>S.day && !S.done.includes(d.d));
+    if(later) S.harm.push({surfaceOn:later.d, caseId:c.id,
+      headline:`Follow-up: ${c.title}`,
+      body: c.epilogue_wrong || `The file you closed on day ${S.day} has come back. `
+        +`Compliance has asked why the alert was dismissed without the question being put.`});
+    save();
+  }
+  (verdict==='right'||verdict==='part'?sfx.good:sfx.bad)();
+  showOutcome(c, choice, verdict, xp, foundN, decisive);
+  if(after!==before) setTimeout(()=>toast('PROMOTED — '+after),900);
+}
+
+function showOutcome(c, choice, verdict, xp, foundN, decisive){
+  const map={right:['CORRECT','var(--phos)'], thin:['RIGHT CALL, THIN FILE','var(--amber)'],
+    part:['DEFENSIBLE','var(--amber)'], wrong:['WRONG CALL','var(--alarm)'],
+    harm:['HARM DONE','var(--alarm)']};
+  const [label,col]=map[verdict];
+  const st=document.getElementById('oStamp');
+  st.textContent=label; st.style.color=col;
+  document.getElementById('oTitle').textContent =
+    (c.outcome_titles&&c.outcome_titles[choice]) ||
+    (choice==='close'?'You closed it':choice==='rfi'?'You went back for more':
+     choice==='escalate'?'You escalated it':'You reported it');
+  document.getElementById('oXp').innerHTML = xp?`<span style="color:${col}">+${xp} XP</span>`
+    : (RUN.tutorial?'<span style="color:var(--ink-3)">induction</span>':'');
+
+  let body=(c.consequences&&c.consequences[choice])||c.why||'';
+  if(verdict==='thin'){
+    body+='\n\nBut you reached it without the evidence that establishes it. The file cannot carry '
+      +'the decision, and next time the same instinct will be wrong.';
+  }
+  document.getElementById('oBody').innerText=body;
+
+  document.getElementById('oScores').innerHTML=
+    decisive.length?`
+    <div><div class="n" style="color:${foundN===decisive.length?'var(--phos)':'var(--alarm)'}">${foundN}/${decisive.length}</div>
+      <div class="l">DECISIVE FACTS</div></div>
+    <div><div class="n">${RUN.gathered.length}</div><div class="l">EVIDENCE</div></div>
+    <div><div class="n" style="color:var(--amber)">${RUN.hours}h</div><div class="l">HOURS LEFT</div></div>`
+    :`<div><div class="n" style="color:var(--amber)">${RUN.hours}h</div><div class="l">HOURS LEFT</div></div>
+      <div><div class="n">${RUN.i+1}/${RUN.alerts.length}</div><div class="l">ALERTS WORKED</div></div>`;
+
+  let extras='';
+  const missed=decisive.filter(k=>!RUN.gathered.includes(k));
+  if(missed.length) extras+=`<div class="missbox"><div class="mh">WHAT YOU NEVER LOOKED AT</div>${
+    missed.map(k=>{const ev=c.evidence[k], a=c.actions.find(x=>x.reveals===k);
+      return `<div class="mr"><b>${esc(a?a.name:ev.title)}</b><br>${esc(ev.body)}</div>`}).join('')}</div>`;
+  if((c.flags||[]).length) extras+=`<div class="missbox"><div class="mh">THE FLAGS ON THIS FILE</div>${
+    c.flags.map(f=>`<div class="mr"><b style="color:${f.present?'var(--alarm)':'var(--phos)'}">${
+      f.present?'▲ PRESENT':'○ NOT A CONCERN'}</b><br>${esc(f.text)}</div>`).join('')}</div>`;
+  document.getElementById('oExtras').innerHTML=extras;
+
+  document.getElementById('oLaw').textContent=c.law||'';
+  document.getElementById('oLessonText').textContent=c.why||'';
+  document.getElementById('oLesson').style.display=c.why?'':'none';
+
+  const last=RUN.i>=RUN.alerts.length-1;
+  const btn=document.getElementById('oNext');
+  btn.textContent=last?'END THE DAY':'NEXT ALERT';
+  btn.onclick=()=>{ if(last) endDay(); else { RUN.i++; show('vWork'); renderAlert(); } };
+  paintHud(); show('vOut');
+}
+
+/* ═══════════ ONBOARDING ═══════════ */
+function runOnboard(d){
+  const pool=ONB.slice().sort((a,b)=>a.difficulty-b.difficulty);
+  const set = d.hard? pool.slice(2) : pool.slice(0,2);
+  RUN={type:'onboard', d, cases:set, i:0, hours:null, results:[]};
+  paintHud(); show('vWork'); renderOnb();
+}
+
+function renderOnb(){
+  const c=RUN.cases[RUN.i]; if(!c) return endDay();
+  document.getElementById('wMain').innerHTML=`
+    <div class="meta"><span class="rule">APPLICATION</span><span>${esc(c.id)}</span>
+      <span class="pos">${RUN.i+1} / ${RUN.cases.length}</span></div>
+    <h2 class="ct">${esc(c.title)}</h2>
+    <div class="subj">${esc(c.applicant)}</div>
+    <div class="blk"><div class="bl">THE FILE</div>
+      <div class="facts">${Object.entries(c.facts).map(([k,v])=>
+        `<div><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>
+    <div class="blk"><div class="bl">DOCUMENTS PROVIDED</div>
+      <div class="docs">${c.documents.map(d=>
+        `<div class="doc"><div class="dn">${esc(d.n)}</div><div class="ds">${esc(d.s)}</div></div>`).join('')}</div></div>
+    <div class="blk"><div class="bl">SCREENING</div><div class="prose">${esc(c.screening)}</div></div>`;
+  document.getElementById('wSide').innerHTML=`
+    <div class="prose" style="font-size:12.5px;color:var(--ink-3);margin-bottom:16px">${esc(c.intro)}</div>
+    <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
+      HOW MUCH DILIGENCE?</div>
+    <div class="dec">
+      <button class="db a" onclick="onbDecide('standard')">
+        <span class="dn"><span class="num">1</span>STANDARD</span>
+        <span class="dd">Proportionate measures. Ordinary risk.</span></button>
+      <button class="db b" onclick="onbDecide('edd')">
+        <span class="dn"><span class="num">2</span>ENHANCED</span>
+        <span class="dd">The law or the risk requires more.</span></button>
+      <button class="db c" onclick="onbDecide('more')">
+        <span class="dn"><span class="num">3</span>ASK FIRST</span>
+        <span class="dd">A missing fact decides this.</span></button>
+      <button class="db d" onclick="onbDecide('decline')">
+        <span class="dn"><span class="num">4</span>DECLINE</span>
+        <span class="dd">The relationship cannot be established.</span></button>
+    </div>`;
+  paintHud();
+  document.getElementById('wMain').scrollTop=0;
+}
+
+function onbDecide(choice){
+  const c=RUN.cases[RUN.i];
+  const right=choice===c.decision;
+  const verdict=right?'right':(choice==='edd'&&c.decision==='standard')?'part':'wrong';
+  let xp=right?220:verdict==='part'?70:20;
+  const before=rankOf(S.xp).n;
+  S.xp+=xp; S.seen[c.id]=verdict; save();
+  const after=rankOf(S.xp).n;
+  logEvent({module:'onboard', case:c.id, family:c.family, decision:choice,
+            correct:verdict, at:new Date().toISOString()});
+  RUN.results.push({c,choice,verdict,xp});
+  (right?sfx.good:sfx.bad)();
+
+  const col=right?'var(--phos)':verdict==='part'?'var(--amber)':'var(--alarm)';
+  const st=document.getElementById('oStamp');
+  st.textContent=right?'CORRECT':verdict==='part'?'OVER-APPLIED':'WRONG CALL';
+  st.style.color=col;
+  const names={standard:'Standard due diligence',edd:'Enhanced due diligence',
+    more:'Requested more information',decline:'Declined the relationship'};
+  document.getElementById('oTitle').textContent=names[choice];
+  document.getElementById('oXp').innerHTML=`<span style="color:${col}">+${xp} XP</span>`;
+  document.getElementById('oBody').innerText=c.outcomes[choice];
+  document.getElementById('oScores').innerHTML=
+    `<div><div class="n" style="color:${col}">${right?'✓':'✗'}</div><div class="l">THIS FILE</div></div>
+     <div><div class="n">${RUN.i+1}/${RUN.cases.length}</div><div class="l">APPLICATIONS</div></div>`;
+  document.getElementById('oExtras').innerHTML=
+    `<div class="note ice"><span class="nl">WHY</span>${esc(c.why)}</div>`;
+  document.getElementById('oLaw').textContent=c.law;
+  document.getElementById('oLessonText').textContent=c.lesson;
+  document.getElementById('oLesson').style.display='';
+  const last=RUN.i>=RUN.cases.length-1;
+  const btn=document.getElementById('oNext');
+  btn.textContent=last?'END THE DAY':'NEXT APPLICATION';
+  btn.onclick=()=>{ if(last) endDay(); else { RUN.i++; show('vWork'); renderOnb(); } };
+  paintHud(); show('vOut');
+  if(after!==before) setTimeout(()=>toast('PROMOTED — '+after),900);
+}
+
+/* ═══════════ END OF DAY ═══════════ */
+function endDay(){
+  const d=RUN.d;
+  const res=RUN.results;
+  const good=res.filter(r=>r.verdict==='right').length;
+  const harm=res.filter(r=>r.verdict==='harm').length;
+  const xp=res.reduce((s,r)=>s+r.xp,0);
+  const hoursUsed=RUN.budget!=null?(RUN.budget-RUN.hours):null;
+
+  if(!S.done.includes(d.d)){ S.done.push(d.d); }
+  S.seen['day'+d.d]= harm? 'HARM' : good===res.length? 'CLEAN' : 'MIXED';
+  if(RUN.tutorial) S.tutorialDone=true;
+  save();
+
+  const st=document.getElementById('oStamp');
+  st.textContent='DAY '+d.d+' CLOSED'; st.style.color='var(--ice)';
+  document.getElementById('oTitle').textContent =
+    RUN.tutorial? 'Induction over.'
+    : harm? `${harm} of them will come back.`
+    : good===res.length? 'A clean day.' : 'Worked, with gaps.';
+  document.getElementById('oXp').innerHTML=xp?`<span style="color:var(--ice)">+${xp} XP</span>`:'';
+  document.getElementById('oBody').innerText = RUN.tutorial
+    ? 'Nothing you did today counted. From tomorrow it does — and Nadia will get steadily less '
+      + 'forthcoming as you rank up, which is the intention.'
+    : harm
+    ? 'A file closed wrongly does not disappear. It sits there until something forces it back into '
+      + 'view, and by then the question is not what you decided but why nobody asked.'
+    : hoursUsed!=null
+    ? `You spent ${hoursUsed} of ${RUN.budget} hours. The ones you closed on the file are what paid `
+      + `for the ones you could open.`
+    : 'Profiles set. Every alert these customers generate from now on is measured against what you '
+      + 'decided today.';
+
+  document.getElementById('oScores').innerHTML=`
+    <div><div class="n" style="color:var(--phos)">${good}</div><div class="l">CORRECT</div></div>
+    <div><div class="n" style="color:${harm?'var(--alarm)':'var(--ink-3)'}">${harm}</div><div class="l">HARM DONE</div></div>
+    ${hoursUsed!=null?`<div><div class="n" style="color:var(--amber)">${hoursUsed}h</div><div class="l">HOURS SPENT</div></div>`:''}
+    <div><div class="n" style="color:var(--ice)">${xp}</div><div class="l">XP</div></div>`;
+
+  const nextD=DAYS.find(x=>!S.done.includes(x.d));
+  document.getElementById('oExtras').innerHTML = nextD
+    ? `<div class="note ice"><span class="nl">NEXT IN THE JOURNAL</span>
+        <b>${esc(nextD.label)} — ${esc(nextD.name)}.</b> ${esc(nextD.blurb)}</div>`
+    : `<div class="note ice"><span class="nl">THE JOURNAL SO FAR</span>You have worked every day
+        currently written. The Filing and the Inspection come next.</div>`;
+  document.getElementById('oLaw').textContent='';
+  document.getElementById('oLesson').style.display='none';
+  const btn=document.getElementById('oNext');
+  btn.textContent='BACK TO THE JOURNAL';
+  btn.onclick=toTimeline;
+  RUN=null; paintHud(); show('vOut');
+}
+
+/* ═══════════ TUTORIAL COACH ═══════════ */
+const COACH=[
+ {sel:'.wmain .blk', t:'This is the file. Everything the system knows, and nothing it does not. '
+   +'Read the counterparty and the reason before you read the amount — that order matters more than it sounds.'},
+ {sel:'.wside .dec', t:'Three ways out, and closing is not the coward\'s option. Most alerts are noise, '
+   +'and an analyst who cannot close confidently ends up escalating everything — which is how the real cases '
+   +'get buried.'},
+ {sel:'.hud .xpw', t:'You are scored on both failures: missing a case, and drowning the team in noise. '
+   +'Hold both. That tension is the entire job.'},
+ {sel:null, t:'Work these two however you like. Nothing counts today. Tomorrow it will.'},
+];
+let coachI=0;
+function coach(i){
+  coachI=i;
+  document.querySelectorAll('.coach,.spot').forEach(e=>e.remove());
+  const step=COACH[i]; if(!step) return;
+  const el=step.sel?document.querySelector(step.sel):null;
+  if(el){
+    const r=el.getBoundingClientRect();
+    const sp=document.createElement('div'); sp.className='spot';
+    sp.style.cssText=`left:${r.left-6}px;top:${r.top-6}px;width:${r.width+12}px;height:${r.height+12}px`;
+    document.body.appendChild(sp);
+  }
+  const c=document.createElement('div'); c.className='coach';
+  const r=el?el.getBoundingClientRect():null;
+  let top = r? Math.min(window.innerHeight-190, r.bottom+14) : window.innerHeight/2-80;
+  let left= r? Math.min(window.innerWidth-350, Math.max(14, r.left)) : window.innerWidth/2-165;
+  c.style.cssText=`top:${top}px;left:${left}px`;
+  c.innerHTML=`<div class="ch">NADIA</div><div class="cb">${esc(step.t)}</div>
+    <div class="cf"><span class="cs">${i+1} / ${COACH.length}</span>
+      <button onclick="${i<COACH.length-1?`coach(${i+1})`:'endCoach()'}">
+        ${i<COACH.length-1?'GO ON':'GOT IT'}</button></div>`;
+  document.body.appendChild(c);
+}
+function endCoach(){ document.querySelectorAll('.coach,.spot').forEach(e=>e.remove()); }
+
+document.addEventListener('keydown',e=>{
+  if(!RUN||!document.getElementById('vWork').classList.contains('on')) return;
+  const k=e.key;
+  if(RUN.type==='onboard'){
+    ({'1':()=>onbDecide('standard'),'2':()=>onbDecide('edd'),
+      '3':()=>onbDecide('more'),'4':()=>onbDecide('decline')}[k]||(()=>{}))();
+  }else{
+    const c=RUN.alerts[RUN.i]; const deep=(c.actions||[]).length>0;
+    if(k==='1') deskDecide('close');
+    else if(k==='2'&&deep&&!RUN.opened) openInvestigation();
+    else if(k==='3'&&(RUN.opened||!deep)) deskDecide('rfi');
+    else if(k==='4'&&(RUN.opened||!deep)) deskDecide('escalate');
+    else if(k==='5'&&(RUN.opened||!deep)) deskDecide('sar');
+  }
+});
+
+/* ═══════════ BOOT ═══════════ */
+(async function(){
+  load();
+  for(const u of ['data/academy/casebook.json','casebook.json']){
+    try{const r=await fetch(u,{cache:'no-store'}); if(r.ok){BOOK=(await r.json()).cases||[]; break}}catch(e){}
+  }
+  for(const u of ['data/academy/onboarding.json','onboarding.json']){
+    try{const r=await fetch(u,{cache:'no-store'}); if(r.ok){const d=await r.json();
+      ONB=d.cases||[]; PROFILES=d.profiles||[]; break}}catch(e){}
+  }
+  if(!BOOK.length||!ONB.length){
+    document.getElementById('tlEntries').innerHTML=
+      `<div class="entry"><div class="when"><b>—</b></div><div class="what">
+       <div class="et" style="color:var(--alarm)">The casebook did not load</div>
+       <div class="eb">This page needs <b>casebook.json</b> and <b>onboarding.json</b>, either beside
+       it or in <b>data/academy/</b>. If you opened the file from disk, serve it over http instead —
+       browsers block local file reads.</div></div></div>`;
+    return;
+  }
+  paintHud(); toTimeline();
+})();
+</script>
+</body>
+</html>

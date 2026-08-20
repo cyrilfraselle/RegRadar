@@ -124,8 +124,7 @@
   <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Academy</span></div>
   <nav class="nav">
     <a href="academy.html" class="active">Academy</a>
-    <a href="shift.html">Night Shift</a>
-    <a href="casefile.html">Casefile</a>
+    <a href="desk.html">The Desk</a>
     <a href="laundromat.html">Laundromat</a>
     <a href="index.html">Signal</a>
     <a href="law.html">Read the Law</a>
@@ -146,7 +145,7 @@
         problem — it is a format problem. Reading about structuring teaches you the word; trying to
         structure €10 million and watching a threshold rule catch you teaches you the shape.</p>
       <div class="btns" style="margin-top:24px">
-        <a class="btn pri" href="shift.html">Clock in — Module 04</a>
+        <a class="btn pri" href="desk.html">Clock in — The Desk</a>
         <a class="btn" href="laundromat.html">Or play the criminal</a>
       </div>
     </div>
@@ -167,10 +166,10 @@
   <!-- CURRICULUM -->
   <section class="sect">
     <div class="sl"><span>The curriculum</span><span id="progLbl"></span></div>
-    <div class="sh">From "what is a red flag" to "defend this file to an examiner"</div>
-    <div class="sd">Seven modules following the actual arc of the job. Each is playable in fifteen to
-      thirty minutes, each produces a measurable result, and each explains the law at the moment it
-      bites rather than in a preamble nobody reads.</div>
+    <div class="sh">Four modules, in the order the job actually teaches you</div>
+    <div class="sd">Play them in order. The Laundromat first, because you cannot spot a pattern you
+      have never produced. Then The Desk, which is the job — and which absorbed what used to be two
+      separate modules, because triage and investigation are the same skill under one clock.</div>
     <div class="mods" id="mods"></div>
   </section>
 
@@ -260,47 +259,32 @@
 const K='regradar-academy';
 
 const MODULES=[
- {id:'law', no:'01', n:'The Rulebook', role:'Foundation', live:false, comp:'Law',
-  d:'Drill the obligations that actually bind you: what triggers CDD, what triggers EDD, which '
-   +'thresholds apply to whom, and what has to happen by 10 July 2027.',
-  teach:'Tests recall under time pressure against the real AMLR text, not a paraphrase.'},
-
- {id:'laundromat', no:'02', n:'The Laundromat', role:'Know the adversary', live:true, comp:'Typologies',
+ {id:'laundromat', no:'01', n:'The Laundromat', role:'Know the adversary', live:true, comp:'Typologies',
   href:'laundromat.html',
-  d:'You have €10 million in dirty money and a compliance function watching. Placement, layering, '
-   +'integration — thirteen real typologies across eight jurisdictions.',
-  teach:'Builds red-flag intuition from the other side. Every catch names the control and the article.'},
+  d:'You have €10 million in dirty money and a compliance function watching. Thirteen real '
+   +'typologies across eight jurisdictions.',
+  teach:'Start here. You cannot recognise a pattern you have never produced — this builds the '
+   +'model everything downstream tests.'},
 
- {id:'cdd', no:'03', n:'The Onboarding', role:'Do the job', live:false, comp:'CDD',
-  d:'A corporate customer wants an account. Work the ownership structure, rate the risk, decide what '
-   +'due diligence is proportionate, and justify where you stopped.',
-  teach:'The judgment nobody trains: how much diligence is enough, and how to defend that line.'},
+ {id:'desk', no:'02', n:'The Desk', role:'The job itself', live:true, comp:'Triage',
+  href:'desk.html',
+  d:'A career, not a lesson. Induction, then the onboarding queue, then real shifts: alerts and a '
+   +'shared budget of hours. Closing on the file is free; investigating is not.',
+  teach:'Merges triage and investigation into one constraint. Escalate everything and you have no '
+   +'hours left to investigate anything properly.'},
 
- {id:'triage', no:'04', n:'The Queue', role:'Do the job', live:true, comp:'Triage',
-  href:'shift.html',
-  d:'22:47. Six alerts, fifteen minutes, and two analysts you can call on. Close, escalate, or go '
-   +'back for more — and live with what each one costs.',
-  teach:'Scored on precision and recall, plus whether your confidence matched your competence.'},
-
- {id:'casefile', no:'05', n:'The Casefile', role:'Do the job', live:true, comp:'Investigation',
-  href:'casefile.html',
-  d:'A fixed budget of analyst hours and more lines of enquiry than you can afford. What you choose '
-   +'to look at decides what you are able to conclude — and a wrong call has consequences you read '
-   +'about months later.',
-  teach:'Reaching the right answer without the evidence scores as luck, because on a real file it is.'},
-
- {id:'sar', no:'06', n:'The Filing', role:'Produce the output', live:false, comp:'Reporting',
-  d:'Write the suspicious transaction report. Graded on whether a receiving FIU analyst could act on '
-   +'it: is the suspicion articulated, is it evidenced, is the narrative followable.',
+ {id:'sar', no:'03', n:'The Filing', role:'Produce the output', live:false, comp:'Reporting',
+  d:'Write the report. Graded on whether a receiving FIU analyst could act on it: is the suspicion '
+   +'articulated, is it evidenced, is the narrative followable.',
   teach:'The least-trained skill in the profession, and the one the FIU actually receives.'},
 
- {id:'exam', no:'07', n:'The Inspection', role:'Defend it', live:false, comp:'Defence',
-  d:'A supervisor reviews the files you produced in earlier modules and asks why. Your own decisions, '
+ {id:'exam', no:'04', n:'The Inspection', role:'Defend it', live:false, comp:'Defence',
+  d:'A supervisor reviews the files you produced on the desk and asks why. Your own decisions, '
    +'interrogated — including the ones you got wrong.',
-  teach:'Closes the loop: every earlier shortcut resurfaces as a question you have to answer.'},
+  teach:'Closes the loop: every shortcut you took resurfaces as a question you have to answer.'},
 ];
 
-const COMPS=['Law','Typologies','CDD','Triage','Investigation','Reporting','Defence'];
+const COMPS=['Typologies','CDD','Triage','Investigation','Reporting','Defence'];
 
 function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
   h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}drawRadar();}
@@ -312,9 +296,16 @@ function state(){ try{ return JSON.parse(localStorage.getItem(K)||'{}'); }catch(
 function scores(){
   const st=state(), out={};
   COMPS.forEach(c=>out[c]=0);
-  if(st.triage){
-    out['Triage']=st.triage.best||0;
-  }
+  if(st.triage){ out['Triage']=st.triage.best||0; }
+  /* the merged desk feeds three competencies at once */
+  try{
+    const ev=JSON.parse(localStorage.getItem('regradar-events')||'[]');
+    const desk=ev.filter(e=>e.module==='desk'), onb=ev.filter(e=>e.module==='onboard');
+    const rate=a=>a.length? Math.round(a.filter(x=>x.correct==='right').length/a.length*100):0;
+    if(desk.length){ out['Triage']=Math.max(out['Triage']||0, rate(desk));
+      out['Investigation']=rate(desk.filter(e=>e.evidence>0)); }
+    if(onb.length) out['CDD']=rate(onb);
+  }catch(e){}
   if(st.laundromat){
     // understanding the adversary: how much you got through, capped
     out['Typologies']=Math.min(100, Math.round((st.laundromat.best||0)));
