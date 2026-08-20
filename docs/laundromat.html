@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THE LAUNDROMAT — RegRadar Academy</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   THE LAUNDROMAT — module 01. You play the launderer.
+
+   Same world as THE DESK: console at 22:47, monospace as the display
+   face, four signal colours with one meaning each. Here the sweep line
+   is the adversary's view — you are the blip trying not to be one.
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
+  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
+  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--void);color:var(--ink);font-family:var(--mono);font-size:14px;
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 80% at 50% 0%,rgba(255,90,82,.05),transparent 62%)}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+button:disabled{cursor:default;opacity:.35}
+::selection{background:var(--alarm);color:var(--void)}
+a{color:inherit;text-decoration:none}
+
+/* ── HUD ── */
+.hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:16px;
+  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--console),rgba(14,20,28,.55));
+  border-bottom:1px solid var(--grid)}
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700;white-space:nowrap}
+.brand .dot{width:7px;height:7px;background:var(--alarm);border-radius:50%;
+  box-shadow:0 0 10px var(--alarm);animation:beat 3s infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
+.g{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.g .l{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.g .v{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.heatw{flex:1;max-width:220px;min-width:90px}
+.heatt{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.13em;color:var(--ink-3);margin-bottom:5px}
+.heatt b{color:var(--alarm)}
+.heatb{height:5px;background:var(--grid);position:relative;overflow:hidden}
+.heatb i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--amber),var(--alarm));
+  width:0;box-shadow:0 0 12px var(--alarm);transition:width .7s var(--ease)}
+.strikes{display:flex;gap:6px}
+.strikes s{width:9px;height:9px;border:1px solid var(--grid);border-radius:50%;display:block}
+.strikes s.hit{background:var(--alarm);border-color:var(--alarm);box-shadow:0 0 9px var(--alarm)}
+.hud-r{margin-left:auto;display:flex;align-items:center;gap:9px}
+.ib{width:30px;height:30px;border:1px solid var(--grid);color:var(--ink-3);font-size:12px;
+  display:grid;place-items:center;transition:all .16s;text-align:center}
+.ib:hover{border-color:var(--ice);color:var(--ice)}
+
+/* ── ledger strip ── */
+.ledger{flex:0 0 auto;display:flex;border-bottom:1px solid var(--grid);background:var(--console)}
+.ledger .cell{flex:1;padding:9px 16px;border-right:1px solid var(--grid)}
+.ledger .cell:last-child{border-right:none}
+.ledger .cl{font-size:8.5px;letter-spacing:.17em;color:var(--ink-3)}
+.ledger .cv{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:3px}
+.cv.dirty{color:var(--amber)} .cv.play{color:var(--ice)} .cv.clean{color:var(--phos)} .cv.frozen{color:var(--alarm)}
+
+/* ── views ── */
+.view{position:relative;z-index:2;flex:1 1 auto;overflow-y:auto;min-height:0;display:none}
+.view.on{display:block}
+.view::-webkit-scrollbar{width:8px} .view::-webkit-scrollbar-thumb{background:var(--grid)}
+.pad{max-width:1080px;margin:0 auto;padding:30px 26px 80px}
+
+/* ── INTRO ── */
+.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+.intro h1{font-size:clamp(26px,4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin-top:12px}
+.intro h1 em{font-style:normal;color:var(--alarm)}
+.intro .sub{font-family:var(--sans);font-size:15px;color:var(--ink-2);margin-top:16px;max-width:62ch;line-height:1.65}
+.rules{border:1px solid var(--grid);margin-top:26px;max-width:640px}
+.rules .rh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
+.rules .rr{padding:12px 15px;border-bottom:1px solid var(--grid);display:grid;
+  grid-template-columns:26px 1fr;gap:12px;font-family:var(--sans);font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.rules .rr:last-child{border-bottom:none}
+.rules .rr .i{font-family:var(--mono);color:var(--alarm);font-weight:700}
+.rules .rr b{color:var(--ink)}
+.go-big{margin-top:28px;border:1px solid var(--alarm);color:var(--alarm);padding:15px 34px;
+  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(255,90,82,.07);transition:all .18s}
+.go-big:hover{background:var(--alarm);color:var(--void);box-shadow:0 0 34px rgba(255,90,82,.35)}
+.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
+  font-weight:700;letter-spacing:.14em;transition:all .16s;display:inline-block}
+.ghost:hover{border-color:var(--ink-2);color:var(--ink)}
+.row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.note{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-top:22px;max-width:62ch;line-height:1.6}
+
+/* ── GAME layout ── */
+.game{display:grid;grid-template-columns:280px 1fr;gap:0;height:100%}
+.rail{border-right:1px solid var(--grid);overflow-y:auto;min-height:0;background:rgba(14,20,28,.5)}
+.rail::-webkit-scrollbar{width:6px} .rail::-webkit-scrollbar-thumb{background:var(--grid)}
+.rail .rh2{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:12px 14px 8px}
+.feed{padding:0 14px 30px}
+.fe{padding:9px 0;border-bottom:1px solid rgba(31,44,59,.5);font-size:11.5px;line-height:1.5}
+.fe .fw{color:var(--ink-3);font-size:9.5px;letter-spacing:.1em}
+.fe.ok .ft{color:var(--phos)} .fe.caught .ft{color:var(--alarm);font-weight:700}
+.fe.wait .ft{color:var(--ink-3)} .fe .fs{color:var(--ink-2)}
+.main{overflow-y:auto;min-height:0;padding:22px 24px 90px}
+.main::-webkit-scrollbar{width:8px} .main::-webkit-scrollbar-thumb{background:var(--grid)}
+
+.stageh{font-size:9px;letter-spacing:.2em;color:var(--ink-3);margin:20px 0 8px;display:flex;align-items:center;gap:10px}
+.stageh:first-child{margin-top:0}
+.stageh .amt{color:var(--ink-2);letter-spacing:.05em}
+.ops{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px}
+.op{border:1px solid var(--grid);padding:11px 12px;transition:all .15s;position:relative}
+.op:not(:disabled):hover{border-color:var(--ice)}
+.op.sel{border-color:var(--alarm);background:rgba(255,90,82,.06)}
+.op .on2{font-size:12.5px;font-weight:700;letter-spacing:-.005em}
+.op .od{font-family:var(--sans);font-size:11px;color:var(--ink-2);line-height:1.45;margin-top:5px}
+.op .om{font-size:9px;color:var(--ink-3);letter-spacing:.08em;margin-top:7px}
+.op .used{position:absolute;top:8px;right:10px;font-size:8.5px;color:var(--amber);letter-spacing:.1em}
+
+/* config panel */
+.cfg{border:1px solid var(--alarm);margin-top:18px;background:rgba(255,90,82,.03)}
+.cfg .ch{padding:12px 16px;border-bottom:1px solid var(--grid);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cfg .ch b{font-size:14px}
+.cfg .ch .sub2{font-family:var(--sans);font-size:11.5px;color:var(--ink-2)}
+.cfg .sec{padding:12px 16px;border-bottom:1px solid var(--grid)}
+.cfg .sl{font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:1px solid var(--grid);padding:7px 11px;font-size:11px;transition:all .14s}
+.chip:hover{border-color:var(--ink-2)}
+.chip.sel{border-color:var(--ice);color:var(--ice);background:rgba(143,184,255,.07)}
+.chip .cr{display:inline-block;margin-left:7px;font-size:8.5px;letter-spacing:.05em}
+.jnote{font-family:var(--sans);font-size:11.5px;color:var(--ink-2);margin-top:9px;line-height:1.5;min-height:17px}
+.sizes .chip .amt2{color:var(--ink-2);margin-left:7px;font-size:10px}
+/* exposure meter */
+.expo{padding:13px 16px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.exrows{display:grid;gap:5px}
+.exr{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center;font-size:9px;letter-spacing:.12em;color:var(--ink-3)}
+.exb{height:3px;background:var(--grid);position:relative}
+.exb i{position:absolute;inset:0 auto 0 0;background:var(--ink-2);transition:width .3s}
+.exr.hot .exb i{background:var(--amber)} .exr.crit .exb i{background:var(--alarm)}
+.verdict{text-align:right}
+.verdict .vt{font-size:16px;font-weight:700;letter-spacing:.08em}
+.verdict .vs{font-family:var(--sans);font-size:10.5px;color:var(--ink-3);margin-top:3px}
+.v-quiet{color:var(--phos)} .v-elev{color:var(--amber)} .v-loud{color:var(--alarm)} .v-reck{color:var(--alarm);text-shadow:0 0 12px var(--alarm)}
+.actions{padding:13px 16px;display:flex;gap:9px;flex-wrap:wrap}
+.exec{border:1px solid var(--alarm);color:var(--alarm);padding:12px 26px;font-size:11px;
+  font-weight:700;letter-spacing:.15em;background:rgba(255,90,82,.07);transition:all .16s}
+.exec:hover:not(:disabled){background:var(--alarm);color:var(--void)}
+.waitrow{display:flex;gap:9px;margin-top:16px;align-items:center;flex-wrap:wrap}
+.waitrow .wl{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+
+/* ── overlays ── */
+.ov{position:fixed;inset:0;background:rgba(8,11,16,.88);z-index:90;display:none;
+  align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.ov.on{display:flex}
+.card{background:var(--console);border:1px solid var(--alarm);max-width:560px;width:100%;
+  max-height:88vh;overflow-y:auto;box-shadow:0 0 60px rgba(255,90,82,.18);animation:pop .3s var(--ease)}
+@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+.card.okc{border-color:var(--grid);box-shadow:0 0 40px rgba(0,0,0,.5)}
+.card .kh{padding:14px 20px;border-bottom:1px solid var(--grid);font-size:10px;letter-spacing:.22em;color:var(--alarm);font-weight:700}
+.okc .kh{color:var(--phos)}
+.card .kb{padding:18px 20px}
+.card .flag{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.card .kmeta{font-size:10px;color:var(--ink-3);letter-spacing:.1em;margin-top:9px}
+.card .ktext{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);line-height:1.62;margin-top:14px}
+.lawbox{border:1px solid var(--grid);border-left:2px solid var(--ice);margin-top:16px;padding:12px 15px}
+.lawbox .la{font-size:11px;font-weight:700;color:var(--ice);letter-spacing:.06em}
+.lawbox .lt{font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-top:4px;line-height:1.5}
+.card .kfoot{padding:14px 20px;border-top:1px solid var(--grid);display:flex;gap:9px;justify-content:flex-end}
+
+/* ── END ── */
+.endwrap{max-width:760px;margin:0 auto;padding:40px 26px 90px}
+.endwrap h2{font-size:clamp(24px,3.4vw,38px);font-weight:700;letter-spacing:-.03em;line-height:1.06;margin-top:12px}
+.score-row{display:flex;gap:0;border:1px solid var(--grid);margin-top:24px}
+.score-cell{flex:1;padding:14px 18px;border-right:1px solid var(--grid)}
+.score-cell:last-child{border-right:none}
+.score-cell .sl2{font-size:8.5px;letter-spacing:.17em;color:var(--ink-3)}
+.score-cell .sv2{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:4px}
+.endwrap .why{font-family:var(--sans);font-size:14.5px;color:var(--ink-2);line-height:1.65;margin-top:20px;max-width:62ch}
+.flagslist{border:1px solid var(--grid);margin-top:26px}
+.flagslist .fh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
+.flagslist .fr{padding:12px 15px;border-bottom:1px solid var(--grid);display:grid;grid-template-columns:52px 1fr;gap:12px}
+.flagslist .fr:last-child{border-bottom:none}
+.flagslist .fwk{font-size:10px;color:var(--ink-3);letter-spacing:.08em;padding-top:2px}
+.flagslist .fn2{font-size:12.5px;font-weight:700;color:var(--alarm)}
+.flagslist .fa2{font-size:10.5px;color:var(--ice);margin-top:3px}
+.flagslist .fd2{font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.5;margin-top:5px}
+.calib{font-family:var(--sans);font-size:12px;color:var(--ink-3);line-height:1.6;margin-top:24px;max-width:62ch}
+
+@media (max-width:760px){
+  .game{grid-template-columns:1fr}
+  .rail{display:none}
+  .ledger .cell{padding:8px 10px}
+  .hud{gap:10px;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="hud">
+  <div class="brand"><span class="dot"></span> THE LAUNDROMAT <span style="color:var(--ink-3)">/ MODULE 01</span></div>
+  <div class="g"><span class="l">WEEK</span><span class="v" id="hWeek">—</span></div>
+  <div class="heatw">
+    <div class="heatt"><span>HEAT</span><b id="hHeatN">0</b></div>
+    <div class="heatb"><i id="hHeat"></i></div>
+  </div>
+  <div class="g"><span class="l">STRIKES</span>
+    <span class="strikes"><s id="s1"></s><s id="s2"></s><s id="s3"></s></span></div>
+  <div class="hud-r">
+    <a class="ib" href="academy.html" title="Back to Academy">✕</a>
+  </div>
+</div>
+
+<div class="ledger" id="ledger" style="display:none">
+  <div class="cell"><div class="cl">DIRTY</div><div class="cv dirty" id="lDirty">—</div></div>
+  <div class="cell"><div class="cl">IN PLAY</div><div class="cv play" id="lPlay">—</div></div>
+  <div class="cell"><div class="cl">CLEAN</div><div class="cv clean" id="lClean">—</div></div>
+  <div class="cell"><div class="cl">FROZEN</div><div class="cv frozen" id="lFrozen">—</div></div>
+</div>
+
+<!-- INTRO -->
+<div class="view on" id="vIntro">
+  <div class="pad intro">
+    <div class="kick">REGRADAR ACADEMY · MODULE 01 · PLAY THE ADVERSARY</div>
+    <h1>You have <em>€10,000,000</em><br>and it is all dirty.</h1>
+    <p class="sub">Get as much of it as you can into the legitimate economy before the
+      compliance function closes the net. Every euro must survive three stages —
+      placement, layering, integration. Every operation leaves a trace. The monitoring
+      never sleeps, and the heat you accumulate <b style="color:var(--ink)">never goes away</b>.</p>
+    <div class="rules">
+      <div class="rh">HOUSE RULES</div>
+      <div class="rr"><span class="i">01</span><span><b>Three strikes.</b> Each frozen tranche brings the
+        investigation closer. The third opens a file with your name on it — run over.</span></div>
+      <div class="rr"><span class="i">02</span><span><b>Heat only rises.</b> Successful operations leave
+        footprints too. Lying low slows your visible tempo, but the record does not shrink.</span></div>
+      <div class="rr"><span class="i">03</span><span><b>Size rings bells.</b> Maxing a channel is exponentially
+        louder than using it discreetly. Speed, repetition and risky jurisdictions all compound.</span></div>
+      <div class="rr"><span class="i">04</span><span><b>Every catch teaches.</b> When you are caught, you see the
+        red flag that tripped you and the AMLR article that put that control there. That is the point
+        of the module: you cannot recognise a pattern you have never produced.</span></div>
+      <div class="rr"><span class="i">05</span><span><b>You can walk away.</b> Banking what is already clean
+        is a decision real launderers get wrong. So do analysts.</span></div>
+    </div>
+    <div class="row">
+      <button class="go-big" onclick="startRun()">OPEN FOR BUSINESS</button>
+      <a class="ghost" href="academy.html">BACK TO THE ACADEMY</a>
+    </div>
+    <p class="note">A training simulator. Typologies are described at the level of the public FATF /
+      EBA typology literature; the mechanics are abstracted. Best score so far:
+      <b id="introBest" style="color:var(--ink)">—</b></p>
+  </div>
+</div>
+
+<!-- GAME -->
+<div class="view" id="vGame">
+  <div class="game">
+    <div class="rail">
+      <div class="rh2">OPERATION LOG</div>
+      <div class="feed" id="feed"></div>
+    </div>
+    <div class="main" id="main"></div>
+  </div>
+</div>
+
+<!-- END -->
+<div class="view" id="vEnd"><div class="endwrap" id="endwrap"></div></div>
+
+<!-- catch / success overlay -->
+<div class="ov" id="ov"><div class="card" id="ovCard"></div></div>
+
+<script>
+/* THE LAUNDROMAT — core engine. Pure logic, no DOM.
+   Loaded by laundromat.html (browser) and sim.js (node balance harness). */
+(function(root){
+'use strict';
+
+const TOTAL = 10000000;           // €10M dirty
+const MAX_WEEKS = 104;            // two years before the file goes cold
+const MAX_CATCHES = 3;            // third frozen tranche = investigation opened
+const HEAT_FATAL = 100;           // heat never decreases
+
+/* ── jurisdictions ─────────────────────────────────────────────
+   risk: how loud a transaction here rings on a monitoring screen
+   (EU high-risk lists, FATF). scrutiny: quality of the local
+   compliance net — high scrutiny catches sloppy work even at low risk. */
+const JURISDICTIONS = [
+ {id:'be', n:'Belgium',      risk:0.06, scrutiny:0.90, note:'Home turf. Nothing rings country-risk alarms — but the net here is competent.'},
+ {id:'lu', n:'Luxembourg',   risk:0.10, scrutiny:0.85, note:'Dense financial centre, comfortable with holding structures. Watched accordingly.'},
+ {id:'ch', n:'Switzerland',  risk:0.14, scrutiny:0.80, note:'Discretion by tradition, cooperation by treaty. Old reputation, modern reporting.'},
+ {id:'hk', n:'Hong Kong',    risk:0.22, scrutiny:0.62, note:'Trade hub. Paper moves as fast as money — invoices are hard to verify at volume.'},
+ {id:'ee', n:'Estonia',      risk:0.20, scrutiny:0.58, note:'Digital-first banking and a crypto-licensing past it is still living down.'},
+ {id:'ae', n:'UAE',          risk:0.34, scrutiny:0.45, note:'Gold, property, free zones. Recently delisted, still on every screening matrix.'},
+ {id:'pa', n:'Panama',       risk:0.44, scrutiny:0.35, note:'Corporate services on demand. Any EU counterparty applies enhanced diligence — Art. 34.'},
+ {id:'ky', n:'Cayman Is.',   risk:0.38, scrutiny:0.40, note:'Zero-tax vehicles. The structure is legal; the questions about it are mandatory.'},
+];
+
+/* ── typologies ────────────────────────────────────────────────
+   stage: placement | layering | integration
+   cap: max € per operation      fee: cost of the service
+   base: detection floor         amp: how sharply amount scales risk
+   weeks: time the operation takes
+   flag / art / artTitle / detects: what the catch screen teaches */
+const TYPOLOGIES = [
+ /* PLACEMENT */
+ {id:'structuring', stage:'placement', n:'Structured deposits', cap:2000000, fee:0.02, base:0.0153, amp:0.9, weeks:2,
+  juris:['be','lu','ch','ee'],
+  d:'Teams of runners deposit cash below the identification threshold, many branches, many days.',
+  flag:'Structuring below the threshold',
+  art:'Art. 19 & 26', artTitle:'Application of CDD / Ongoing monitoring',
+  detects:'Thresholds are not a blind spot — linked transactions are aggregated. A pattern of deposits sitting just under the limit is itself the alarm, and Art. 26 obliges the bank to monitor for exactly that.'},
+ {id:'front', stage:'placement', n:'Cash-intensive front', cap:2500000, fee:0.06, base:0.0136, amp:0.7, weeks:2,
+  juris:['be','lu','ae','hk'],
+  d:'A launderette, a car wash, a restaurant. Dirty cash rides in on top of real takings.',
+  flag:'Turnover inconsistent with business profile',
+  art:'Art. 25 & 26', artTitle:'Purpose and nature of the relationship / Ongoing monitoring',
+  detects:'At onboarding the bank recorded what a business of this size and sector should turn over. Art. 26 obliges it to keep comparing. A café banking like a supermarket is a one-line query.'},
+ {id:'casino', stage:'placement', n:'Casino chips', cap:1000000, fee:0.08, base:0.0153, amp:1.0, weeks:1,
+  juris:['be','ae','hk','ky'],
+  d:'Buy chips in cash, play the minimum, cash out as documented winnings.',
+  flag:'Minimal play against high buy-in',
+  art:'Art. 3 & 19', artTitle:'Obliged entities / Application of CDD',
+  detects:'Casinos are obliged entities under Art. 3 — the cage applies CDD on collection of winnings. Buy-in with no gambling pattern behind the cash-out is a standing red flag in every casino AML programme.'},
+ {id:'smuggle', stage:'placement', n:'Bulk cash movement', cap:4000000, fee:0.09, base:0.0213, amp:1.45, weeks:2,
+  juris:['ae','pa','ky','hk'],
+  d:'Vacuum-packed notes in freight or luggage, placed with a bank where questions are softer.',
+  flag:'Undeclared cash at the border',
+  art:'Reg. (EU) 2018/1672', artTitle:'Cash entering or leaving the Union',
+  detects:'€10,000 or more in cash crossing the EU border must be declared — controls run both directions, and detection dogs do not read declarations. Seizure first, explanation later.'},
+
+ /* LAYERING */
+ {id:'tbml', stage:'layering', n:'Trade over-invoicing', cap:3500000, fee:0.07, base:0.0170, amp:0.8, weeks:2,
+  juris:['hk','ae','pa','ee'],
+  d:'Goods ship at one value, invoices say another. The difference crosses the border as trade.',
+  flag:'Invoice value far from market price',
+  art:'Art. 25 & 26', artTitle:'Purpose and nature / Ongoing monitoring',
+  detects:'Trade finance desks screen unit prices against market ranges. A container of phone cases invoiced like a container of phones is the oldest pattern in the TBML typology library.'},
+ {id:'shells', stage:'layering', n:'Shell company loop', cap:4000000, fee:0.05, base:0.0153, amp:0.85, weeks:2,
+  juris:['pa','ky','lu','ch'],
+  d:'Funds tour a ring of companies that exist as filing-cabinet folders, then come home as "intercompany".',
+  flag:'No identifiable beneficial owner behind the chain',
+  art:'Art. 51 & 52', artTitle:'Identification of beneficial owners',
+  detects:'Every EU counterparty must resolve the chain to a natural person — ownership through layers is computed through the layers, per Art. 52. A loop that resolves to nobody is not private, it is reportable.'},
+ {id:'mules', stage:'layering', n:'Money mule network', cap:1800000, fee:0.12, base:0.0195, amp:1.05, weeks:1,
+  juris:['be','ee','hk'],
+  d:'Dozens of recruited accounts each pass a small slice along, fast.',
+  flag:'Fan-out / fan-in velocity pattern',
+  art:'Art. 26 & 69', artTitle:'Monitoring of transactions / Reporting of suspicions',
+  detects:'Mule patterns are the best-trained detection models in retail banking: new accounts, immediate onward transfers, shared devices. One mule flagged unravels the network — and Art. 69 puts the report on the FIU\'s desk the same week.'},
+ {id:'crypto', stage:'layering', n:'Crypto chain-hop', cap:2500000, fee:0.06, base:0.0170, amp:0.95, weeks:1,
+  juris:['ee','ch','hk','ae'],
+  d:'Fiat in at an exchange, hop across chains and mixers, fiat out at another.',
+  flag:'Mixer exposure on chain analytics',
+  art:'Art. 40', artTitle:'Transactions with self-hosted addresses',
+  detects:'CASPs are obliged entities; Art. 40 imposes specific measures on self-hosted address flows. Chain analytics tag mixer contact permanently — the blockchain forgets nothing, which is the opposite of what you needed.'},
+ {id:'loanback', stage:'layering', n:'Loan-back scheme', cap:3000000, fee:0.05, base:0.0145, amp:0.7, weeks:3,
+  juris:['lu','ch','pa','ky'],
+  d:'Your offshore company "lends" you your own money. Repayments even make it look responsible.',
+  flag:'Loan with no commercial logic',
+  art:'Art. 25 & 53', artTitle:'Purpose and nature / Beneficial ownership through control',
+  detects:'A loan needs a lender with an origin of funds and a reason to lend. When the borrower controls the lender — Art. 53 control test — the "loan" is a mirror, and mirrors get questions.'},
+ {id:'invoices', stage:'layering', n:'Phantom services', cap:2200000, fee:0.08, base:0.0153, amp:0.8, weeks:2,
+  juris:['be','lu','hk','pa'],
+  d:'Consulting, marketing, "management fees" — invoices for work nobody can point to.',
+  flag:'Services with no observable delivery',
+  art:'Art. 26 & 69', artTitle:'Ongoing monitoring / Reporting of suspicions',
+  detects:'Service invoices leave no customs trail, which auditors know as well as you do. Round amounts, generic descriptions, counterparties two weeks old — the monitoring rule for this is standard-issue.'},
+
+ /* INTEGRATION */
+ {id:'realestate', stage:'integration', n:'Real estate', cap:5000000, fee:0.10, base:0.0153, amp:0.85, weeks:3,
+  juris:['be','ae','pa','ky'],
+  d:'Property bought through a company, rented out. Clean rent, appreciating asset.',
+  flag:'Opaque buyer behind a property vehicle',
+  art:'Art. 3 & 20', artTitle:'Obliged entities / Customer due diligence',
+  detects:'Estate agents and notaries are obliged entities under Art. 3 — the deed does not pass without CDD on the buyer and the buyer behind the buyer. Property is where laundering is looked for first.'},
+ {id:'luxury', stage:'integration', n:'Luxury assets', cap:1800000, fee:0.13, base:0.0170, amp:0.9, weeks:1,
+  juris:['ae','ch','hk'],
+  d:'Art, watches, cars. Portable value with an auction receipt.',
+  flag:'High-value goods bought against no known income',
+  art:'Art. 74 & 80', artTitle:'Threshold-based reports on high-value goods / Cash limits',
+  detects:'Dealers in high-value goods file threshold-based reports under Art. 74, and Art. 80 caps what cash can buy at €10,000. The receipt you wanted as cover is itself a report.'},
+ {id:'business', stage:'integration', n:'Business acquisition', cap:4500000, fee:0.08, base:0.0136, amp:0.75, weeks:4,
+  juris:['be','lu','ee','hk'],
+  d:'Buy a real company, run it, pay yourself dividends. The slowest and the cleanest.',
+  flag:'Acquisition funds from an unverifiable origin',
+  art:'Art. 20 & 51', artTitle:'Customer due diligence / Beneficial owners',
+  detects:'The seller\'s bank, the notary and the target\'s bank each run CDD on where the purchase price originates. Source-of-funds is the question the whole scheme exists to avoid — asked three times.'},
+];
+
+/* ── amounts offered per op: fractions of the typology cap ── */
+const SIZES = [
+ {id:'small',  n:'Discreet', f:0.35},
+ {id:'medium', n:'Standard', f:0.65},
+ {id:'large',  n:'Aggressive', f:1.00},
+];
+
+/* ── engine state ── */
+function newGame(seed){
+  return {
+    seed: seed>>>0 || 1,
+    week: 1,
+    heat: 0,                       // 0..100, never decreases
+    catches: 0,
+    pools: {dirty: TOTAL, placed: 0, layered: 0, clean: 0, frozen: 0},
+    fees: 0,
+    useCount: {},                  // typology id -> times used
+    jUse: {},                      // jurisdiction id -> times used
+    recent: [],                    // weeks of recent ops (velocity window)
+    log: [],                       // event log entries
+    over: false, verdict: null,
+  };
+}
+
+/* deterministic PRNG (mulberry32) so the balance harness is reproducible */
+function rng(S){ S.seed|=0; S.seed=S.seed+0x6D2B79F5|0;
+  let t=Math.imul(S.seed^S.seed>>>15,1|S.seed);
+  t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }
+
+const SRC = {placement:'dirty', layering:'placed', integration:'layered'};
+const DST = {placement:'placed', layering:'layered', integration:'clean'};
+
+function velocity(S){ const w=S.week; return S.recent.filter(x=>w-x<5).length; }
+
+/* risk model — the whole game is making this legible through play */
+function opRisk(S, t, j, sizeF, amount){
+  const amt = amount/t.cap;                          // 0..1 of typology capacity
+  let p = t.base
+        + t.amp * 0.20 * amt*amt*amt                     // louder the bigger the blip (superlinear)
+        + j.risk * 0.15 * (0.3 + amt)                // country risk scales with size
+        + j.scrutiny * 0.010                         // competent nets catch sloppiness
+        + Math.pow(S.heat/100, 2.2) * 0.20          // accumulated attention
+        + Math.max(0, velocity(S)-1) * 0.10         // speed: >1 op in 4 weeks
+        + Math.max(0, (S.useCount[t.id]||0)-1) * 0.030  // repetition of a pattern
+        + Math.max(0, (S.jUse[j.id]||0)-2) * 0.018;  // wearing out a corridor
+  return Math.min(0.92, p);
+}
+
+/* footprint: heat added by a SUCCESSFUL op (the trail you leave anyway) */
+function footprint(t, j, amount){
+  const a=amount/t.cap; return 0.9 + 3.0*Math.pow(a,1.6) + j.risk*2.5;
+}
+
+function canRun(S, t){
+  return !S.over && S.pools[SRC[t.stage]] >= 25000;
+}
+
+function doOp(S, tid, jid, sizeId){
+  const t = TYPOLOGIES.find(x=>x.id===tid);
+  const j = JURISDICTIONS.find(x=>x.id===jid);
+  const size = SIZES.find(x=>x.id===sizeId);
+  if(!t||!j||!size||S.over) return null;
+  if(!t.juris.includes(j.id)) return null;
+  const src = SRC[t.stage];
+  const amount = Math.min(S.pools[src], Math.round(t.cap*size.f));
+  if(amount < 25000) return null;
+
+  const p = opRisk(S, t, j, size.f, amount);
+  const roll = rng(S);
+  S.week += t.weeks;
+  S.recent.push(S.week);
+  S.useCount[t.id] = (S.useCount[t.id]||0)+1;
+  S.jUse[j.id] = (S.jUse[j.id]||0)+1;
+
+  let ev;
+  if(roll < p){                                     /* CAUGHT */
+    S.pools[src] -= amount;
+    S.pools.frozen += amount;
+    S.catches += 1;
+    S.heat = Math.min(100, S.heat + 15 + j.risk*10);
+    ev = {kind:'caught', week:S.week, t, j, amount, p};
+  } else {                                          /* through */
+    const fee = Math.round(amount*t.fee);
+    S.pools[src] -= amount;
+    S.pools[DST[t.stage]] += amount - fee;
+    S.fees += fee;
+    S.heat = Math.min(100, S.heat + footprint(t,j,amount));
+    ev = {kind:'ok', week:S.week, t, j, amount, fee, p};
+  }
+  S.log.push(ev);
+  endCheck(S);
+  return ev;
+}
+
+function layLow(S, weeks){
+  if(S.over) return null;
+  S.week += weeks;
+  const ev = {kind:'wait', week:S.week, weeks};
+  S.log.push(ev);
+  endCheck(S);
+  return ev;
+}
+
+function walkAway(S){
+  if(S.over) return;
+  S.over = true; S.verdict = 'walked';
+}
+
+function endCheck(S){
+  if(S.catches >= MAX_CATCHES){ S.over=true; S.verdict='investigation'; return; }
+  if(S.heat >= HEAT_FATAL){ S.over=true; S.verdict='heat'; return; }
+  if(S.week > MAX_WEEKS){ S.over=true; S.verdict='time'; return; }
+  const movable = S.pools.dirty + S.pools.placed + S.pools.layered;
+  if(movable < 25000){ S.over=true; S.verdict='done'; }
+}
+
+function score(S){ return S.pools.clean / TOTAL * 100; }
+
+const api = {TOTAL, MAX_WEEKS, MAX_CATCHES, HEAT_FATAL,
+  JURISDICTIONS, TYPOLOGIES, SIZES, SRC, DST,
+  newGame, doOp, layLow, walkAway, opRisk, velocity, score, rng};
+
+if (typeof module!=='undefined' && module.exports) module.exports = api;
+else root.LAUNDROMAT = api;
+})(typeof self!=='undefined'?self:this);
+
+</script>
+<script>
+/* THE LAUNDROMAT — UI layer over the engine. */
+'use strict';
+const E = window.LAUNDROMAT;
+let S = null;                       // engine state
+let sel = {tid:null, jid:null, size:'small'};
+
+const $ = id => document.getElementById(id);
+const esc = s => (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const eur = n => '€'+Math.round(n).toLocaleString('en-IE');
+const eurM = n => n>=1e6 ? '€'+(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M'
+                : n>=1e3 ? '€'+Math.round(n/1e3)+'k' : eur(n);
+
+/* ── persistence (contract with academy.html) ── */
+const K='regradar-academy', EVK='regradar-events';
+function acState(){ try{ return JSON.parse(localStorage.getItem(K)||'{}'); }catch(e){ return {}; } }
+function acSave(st){ try{ localStorage.setItem(K, JSON.stringify(st)); }catch(e){} }
+function logEvent(e){ try{ const a=JSON.parse(localStorage.getItem(EVK)||'[]');
+  a.push(e); localStorage.setItem(EVK, JSON.stringify(a.slice(-2000))); }catch(x){} }
+
+/* ── views ── */
+function show(v){ document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
+  $(v).classList.add('on'); $('ledger').style.display = v==='vGame' ? 'flex' : 'none'; }
+
+/* ── HUD / ledger ── */
+function hud(){
+  $('hWeek').textContent = S ? S.week+' / '+E.MAX_WEEKS : '—';
+  const h = S ? S.heat : 0;
+  $('hHeat').style.width = h+'%';
+  $('hHeatN').textContent = Math.round(h);
+  for(let i=1;i<=3;i++) $('s'+i).classList.toggle('hit', S && S.catches>=i);
+  if(!S) return;
+  $('lDirty').textContent = eurM(S.pools.dirty);
+  $('lPlay').textContent = eurM(S.pools.placed + S.pools.layered);
+  $('lClean').textContent = eurM(S.pools.clean);
+  $('lFrozen').textContent = eurM(S.pools.frozen);
+}
+
+/* ── feed ── */
+function feed(){
+  $('feed').innerHTML = S.log.slice().reverse().map(e=>{
+    if(e.kind==='wait') return `<div class="fe wait"><div class="fw">WK ${e.week}</div>
+      <div class="ft">Lay low — ${e.weeks} week${e.weeks>1?'s':''} of silence.</div></div>`;
+    if(e.kind==='caught') return `<div class="fe caught"><div class="fw">WK ${e.week} · ${esc(e.j.n).toUpperCase()}</div>
+      <div class="ft">FROZEN ${eurM(e.amount)}</div><div class="fs">${esc(e.t.n)} — ${esc(e.t.flag)}</div></div>`;
+    return `<div class="fe ok"><div class="fw">WK ${e.week} · ${esc(e.j.n).toUpperCase()}</div>
+      <div class="ft">${eurM(e.amount)} through</div><div class="fs">${esc(e.t.n)} · fee ${eurM(e.fee)}</div></div>`;
+  }).join('') || '<div class="fe wait"><div class="ft">No operations yet.</div></div>';
+}
+
+/* ── main board ── */
+const STAGES=[
+  ['placement','PLACEMENT — get cash into the system','dirty'],
+  ['layering','LAYERING — break the trail','placed'],
+  ['integration','INTEGRATION — make it yours again','layered']];
+
+function board(){
+  let h='';
+  for(const [stage,label,pool] of STAGES){
+    const avail = S.pools[pool];
+    h += `<div class="stageh">${label} <span class="amt">· ${eurM(avail)} available</span></div>`;
+    h += '<div class="ops">';
+    for(const t of E.TYPOLOGIES.filter(x=>x.stage===stage)){
+      const can = avail>=25000 && !S.over;
+      const used = S.useCount[t.id]||0;
+      h += `<button class="op ${sel.tid===t.id?'sel':''}" ${can?'':'disabled'} onclick="pick('${t.id}')">
+        ${used?`<span class="used">×${used}</span>`:''}
+        <div class="on2">${esc(t.n)}</div>
+        <div class="od">${esc(t.d)}</div>
+        <div class="om">UP TO ${eurM(t.cap)} · ${t.weeks} WK · FEE ${(t.fee*100).toFixed(0)}%</div>
+      </button>`;
+    }
+    h += '</div>';
+  }
+  h += `<div id="cfgMount"></div>
+  <div class="waitrow">
+    <span class="wl">OR</span>
+    <button class="ghost" onclick="wait(2)">LAY LOW · 2 WK</button>
+    <button class="ghost" onclick="wait(4)">LAY LOW · 4 WK</button>
+    <button class="ghost" onclick="confirmWalk()">WALK AWAY — BANK ${eurM(S.pools.clean)}</button>
+  </div>`;
+  $('main').innerHTML=h;
+  cfg();
+}
+
+window.pick = tid => {
+  sel.tid = tid;
+  const t = E.TYPOLOGIES.find(x=>x.id===tid);
+  if(!t.juris.includes(sel.jid)) sel.jid = t.juris[0];
+  board();
+  const m=$('cfgMount'); if(m) m.scrollIntoView({behavior:'smooth',block:'nearest'});
+};
+window.pickJ = jid => { sel.jid=jid; cfg(); };
+window.pickS = sid => { sel.size=sid; cfg(); };
+
+/* exposure buckets — legible, not numeric */
+function bucket(p){
+  if(p<0.07)  return ['QUIET','v-quiet','Below the noise floor of the monitoring.'];
+  if(p<0.13)  return ['ELEVATED','v-elev','Visible if anyone is already looking.'];
+  if(p<0.22)  return ['LOUD','v-loud','This is the kind of blip that gets a case opened.'];
+  return ['RECKLESS','v-reck','You are asking to be caught.'];
+}
+
+function cfg(){
+  const m=$('cfgMount');
+  if(!m) return;
+  if(!sel.tid){ m.innerHTML=''; return; }
+  const t=E.TYPOLOGIES.find(x=>x.id===sel.tid);
+  const pool=S.pools[E.SRC[t.stage]];
+  const j=E.JURISDICTIONS.find(x=>x.id===sel.jid);
+  const size=E.SIZES.find(x=>x.id===sel.size);
+  const amount=Math.min(pool, Math.round(t.cap*size.f));
+  const p=E.opRisk(S,t,j,size.f,amount);
+  const [vt,vc,vs]=bucket(p);
+
+  /* decompose the risk so the detection model is legible */
+  const amt=amount/t.cap;
+  const parts=[
+    ['SIZE',        t.amp*0.20*amt*amt*amt,                 0.25],
+    ['COUNTRY',     j.risk*0.15*(0.3+amt) + j.scrutiny*0.010, 0.12],
+    ['HEAT',        Math.pow(S.heat/100,2.2)*0.20,          0.20],
+    ['SPEED',       Math.max(0,E.velocity(S)-1)*0.10,       0.20],
+    ['REPETITION',  Math.max(0,(S.useCount[t.id]||0)-1)*0.030, 0.12],
+  ];
+  const rows=parts.map(([n,v,max])=>{
+    const w=Math.min(100,v/max*100);
+    const cls=w>66?'crit':w>33?'hot':'';
+    return `<div class="exr ${cls}"><span>${n}</span><div class="exb"><i style="width:${w}%"></i></div></div>`;
+  }).join('');
+
+  m.innerHTML=`<div class="cfg">
+    <div class="ch"><b>${esc(t.n)}</b><span class="sub2">${esc(t.d)}</span></div>
+    <div class="sec"><div class="sl">JURISDICTION</div>
+      <div class="chips">${t.juris.map(jid=>{
+        const jj=E.JURISDICTIONS.find(x=>x.id===jid);
+        const stars='•'.repeat(Math.max(1,Math.round(jj.risk*10)));
+        return `<button class="chip ${sel.jid===jid?'sel':''}" onclick="pickJ('${jid}')">${esc(jj.n)}
+          <span class="cr" style="color:var(--${jj.risk>0.3?'alarm':jj.risk>0.15?'amber':'phos'})">${stars}</span></button>`;
+      }).join('')}</div>
+      <div class="jnote">${esc(j.note)}</div></div>
+    <div class="sec sizes"><div class="sl">TRANCHE</div>
+      <div class="chips">${E.SIZES.map(sz=>{
+        const a=Math.min(pool, Math.round(t.cap*sz.f));
+        return `<button class="chip ${sel.size===sz.id?'sel':''}" onclick="pickS('${sz.id}')">${sz.n}
+          <span class="amt2">${eurM(a)}</span></button>`;
+      }).join('')}</div></div>
+    <div class="expo">
+      <div class="exrows">${rows}</div>
+      <div class="verdict"><div class="vt ${vc}">${vt}</div><div class="vs">${vs}</div></div>
+    </div>
+    <div class="actions">
+      <button class="exec" onclick="exec()">EXECUTE — ${eurM(amount)} · ${t.weeks} WK</button>
+    </div>
+  </div>`;
+}
+
+/* ── actions ── */
+window.exec = () => {
+  const ev=E.doOp(S, sel.tid, sel.jid, sel.size);
+  if(!ev) return;
+  hud(); feed();
+  if(ev.kind==='caught') showCatch(ev); else showOk(ev);
+};
+window.wait = w => { E.layLow(S,w); hud(); feed(); afterMove(); };
+window.confirmWalk = () => {
+  const card=$('ovCard');
+  card.className='card okc';
+  card.innerHTML=`<div class="kh">WALK AWAY?</div><div class="kb">
+    <div class="flag">Bank ${eurM(S.pools.clean)} and disappear.</div>
+    <div class="ktext">Everything not yet integrated — ${eurM(S.pools.dirty+S.pools.placed+S.pools.layered)} —
+    stays where it is, radioactive. The run ends. Knowing when to stop is the one skill the
+    reckless never develop.</div></div>
+    <div class="kfoot"><button class="ghost" onclick="closeOv()">KEEP WORKING</button>
+    <button class="exec" onclick="doWalk()">WALK AWAY</button></div>`;
+  $('ov').classList.add('on');
+};
+window.doWalk = () => { closeOv(); E.walkAway(S); finish(); };
+window.closeOv = () => { $('ov').classList.remove('on'); afterMove(); };
+
+function afterMove(){ if(S.over) finish(); else board(); }
+
+/* ── catch & success cards ── */
+function showCatch(ev){
+  const card=$('ovCard');
+  card.className='card';
+  card.innerHTML=`<div class="kh">■ TRANCHE FROZEN — STRIKE ${S.catches} OF ${E.MAX_CATCHES}</div>
+  <div class="kb">
+    <div class="flag">${esc(ev.t.flag)}</div>
+    <div class="kmeta">WK ${ev.week} · ${esc(ev.t.n).toUpperCase()} · ${esc(ev.j.n).toUpperCase()} · ${eurM(ev.amount)} SEIZED</div>
+    <div class="ktext">${esc(ev.t.detects)}</div>
+    <div class="lawbox"><div class="la">AMLR — ${esc(ev.t.art)}</div>
+    <div class="lt">${esc(ev.t.artTitle)}</div></div>
+  </div>
+  <div class="kfoot"><button class="exec" onclick="closeOv()">UNDERSTOOD</button></div>`;
+  $('ov').classList.add('on');
+}
+function showOk(ev){
+  /* successes pass silently unless they were loud — keep the tempo */
+  if(ev.p<0.13){ afterMove(); return; }
+  const card=$('ovCard');
+  card.className='card okc';
+  card.innerHTML=`<div class="kh">THROUGH — BARELY</div><div class="kb">
+    <div class="flag">${eurM(ev.amount)} made it.</div>
+    <div class="ktext">That operation was loud — the kind of pattern that survives on luck, not craft.
+    The footprint it left is permanent.</div></div>
+  <div class="kfoot"><button class="ghost" onclick="closeOv()">MOVE ON</button></div>`;
+  $('ov').classList.add('on');
+}
+
+/* ── run lifecycle ── */
+window.startRun = () => {
+  S = E.newGame(Date.now() & 0xffffffff);
+  sel={tid:null,jid:null,size:'small'};
+  hud(); feed(); board(); show('vGame');
+};
+
+const VERDICTS={
+  investigation:['THE FILE IS OPEN.','Three frozen tranches was all it took. The investigation now owns everything you did not integrate — and a timeline of everything you did.'],
+  heat:['THE NET CLOSED.','No single operation gave you away. All of them did, together. Accumulated heat is how patient monitoring beats patient laundering.'],
+  time:['THE TRAIL WENT COLD — FOR THEM AND FOR YOU.','Two years is as long as the network would hold. What was not integrated stays dirty.'],
+  walked:['YOU WALKED.','You banked what was clean and left the rest. In the typology literature this is the ending nobody writes about, because the ones who manage it are not in the case files.'],
+  done:['NOTHING LEFT TO MOVE.','Every euro is either clean or frozen. The ledger is the verdict.'],
+};
+
+function finish(){
+  const sc=E.score(S);
+  const st=acState();
+  const prev=(st.laundromat&&st.laundromat.best)||0;
+  st.laundromat={ best:Math.max(prev,sc), last:sc, runs:((st.laundromat&&st.laundromat.runs)||0)+1,
+    verdict:S.verdict, at:Date.now() };
+  acSave(st);
+  logEvent({module:'laundromat', at:Date.now(), score:Math.round(sc), verdict:S.verdict,
+    catches:S.catches, weeks:S.week});
+
+  const caught=S.log.filter(e=>e.kind==='caught');
+  const [vh,vb]=VERDICTS[S.verdict]||VERDICTS.done;
+  $('endwrap').innerHTML=`
+    <div class="kick">RUN COMPLETE · ${S.week} WEEKS</div>
+    <h2>${vh}</h2>
+    <div class="score-row">
+      <div class="score-cell"><div class="sl2">LAUNDERED</div>
+        <div class="sv2" style="color:var(--phos)">${sc.toFixed(1)}%</div></div>
+      <div class="score-cell"><div class="sl2">CLEAN</div>
+        <div class="sv2">${eurM(S.pools.clean)}</div></div>
+      <div class="score-cell"><div class="sl2">FROZEN</div>
+        <div class="sv2" style="color:var(--alarm)">${eurM(S.pools.frozen)}</div></div>
+      <div class="score-cell"><div class="sl2">FEES PAID</div>
+        <div class="sv2" style="color:var(--ink-2)">${eurM(S.fees)}</div></div>
+      <div class="score-cell"><div class="sl2">BEST</div>
+        <div class="sv2" style="color:var(--ice)">${st.laundromat.best.toFixed(1)}%</div></div>
+    </div>
+    <p class="why">${vb}</p>
+    ${caught.length?`<div class="flagslist">
+      <div class="fh">EVERY FLAG YOU TRIPPED — AND THE ARTICLE THAT PUT IT THERE</div>
+      ${caught.map(e=>`<div class="fr"><div class="fwk">WK ${e.week}</div><div>
+        <div class="fn2">${esc(e.t.flag)}</div>
+        <div class="fa2">AMLR ${esc(e.t.art)} — ${esc(e.t.artTitle)}</div>
+        <div class="fd2">${esc(e.t.detects)}</div></div></div>`).join('')}
+    </div>`:`<p class="why" style="color:var(--phos)">You tripped nothing. Whatever you take from this
+      module, take the discipline that produced that.</p>`}
+    <p class="calib">Calibration: across 600 simulated runs per style, patient play cleans ≈50%,
+      unfocused play ≈24%, maximum-size speed runs ≈19%. Craft beats appetite by a factor of about 2.7.</p>
+    <div class="row">
+      <button class="go-big" onclick="startRun()">RUN IT AGAIN</button>
+      <a class="ghost" href="desk.html">MODULE 02 — THE DESK</a>
+      <a class="ghost" href="academy.html">BACK TO THE ACADEMY</a>
+    </div>`;
+  show('vEnd'); hud();
+}
+
+/* ── boot ── */
+(function(){
+  const st=acState();
+  $('introBest').textContent = (st.laundromat&&st.laundromat.best)
+    ? st.laundromat.best.toFixed(1)+'% laundered' : 'no runs yet';
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && $('ov').classList.contains('on')) closeOv();
+  });
+  hud();
+})();
+
+</script>
+</body>
+</html>
