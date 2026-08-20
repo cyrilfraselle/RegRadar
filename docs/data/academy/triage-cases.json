@@ -1,0 +1,876 @@
+{
+ "_meta": {
+  "module": "triage",
+  "name": "The Queue",
+  "version": 3,
+  "case_count": 12,
+  "note": "Composite cases. best_action is the defensible call, not the only one; is_real_case drives recall scoring (true = genuinely suspicious).",
+  "schema": {
+   "best_action": "close | rfi | escalate",
+   "difficulty": "1 easy · 2 moderate · 3 hard",
+   "flags": "present=true means the red flag IS in this case",
+   "family": "review serves a DIFFERENT case from the same family (interleaving)"
+  }
+ },
+ "cases": [
+  {
+   "id": "A-4471",
+   "module": "triage",
+   "rule": "Threshold — cash deposits",
+   "title": "Six cash deposits in eleven days",
+   "customer": "Retail · Ms L. Peeters · customer since 2011 · low risk",
+   "facts": {
+    "Profile": "Salaried nurse, single account",
+    "Expected activity": "Salary in, card spend out, ~€3.2k/month",
+    "Alert amount": "€53,400 across 6 deposits",
+    "Jurisdictions": "Belgium only"
+   },
+   "narrative": "Six cash deposits of between €8,000 and €9,600, all at branch counters, over eleven days. No prior cash activity of any size on this account in fourteen years.",
+   "transactions": [
+    [
+     "02 Mar",
+     "Cash deposit",
+     "9,600",
+     "Antwerp Centraal"
+    ],
+    [
+     "04 Mar",
+     "Cash deposit",
+     "8,900",
+     "Antwerp Centraal"
+    ],
+    [
+     "06 Mar",
+     "Cash deposit",
+     "9,200",
+     "Berchem"
+    ],
+    [
+     "09 Mar",
+     "Cash deposit",
+     "8,000",
+     "Antwerp Centraal"
+    ],
+    [
+     "11 Mar",
+     "Cash deposit",
+     "9,100",
+     "Berchem"
+    ],
+    [
+     "13 Mar",
+     "Cash deposit",
+     "8,600",
+     "Antwerp Centraal"
+    ]
+   ],
+   "on_file": "No supporting documentation on file. Relationship manager has not been contacted.",
+   "best_action": "rfi",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Amounts consistently below the €10,000 cash reporting threshold",
+     "present": true
+    },
+    {
+     "text": "Sharp departure from a fourteen-year behavioural baseline",
+     "present": true
+    },
+    {
+     "text": "Deposits split across two branches",
+     "present": true
+    },
+    {
+     "text": "No known adverse media or sanctions nexus",
+     "present": false
+    }
+   ],
+   "law": "AMLR Art. 69 — occasional transactions above €10,000; Art. 25 — ongoing monitoring",
+   "why": "This looks exactly like structuring, and it may well be. But there is a mundane explanation that fits equally well — an inheritance, a car sale, cash gifts at a wedding — and you have not asked. Escalating now sends investigations a case with no source-of-funds question posed; closing it ignores a textbook pattern. The correct first move is cheap: ask.",
+   "consequences": {
+    "close": "You closed a textbook structuring pattern without asking a single question. If this was laundering, the file shows an analyst who saw the pattern and did nothing.",
+    "escalate": "Defensible, but you spent two investigator days on a question a five-minute call might have answered. Do this across a queue and the real cases wait behind it.",
+    "rfi": "Right. Source of funds first, decision second."
+   },
+   "typologies": [
+    "structuring"
+   ],
+   "difficulty": 2,
+   "sector": "bank",
+   "family": "structuring"
+  },
+  {
+   "id": "A-4472",
+   "module": "triage",
+   "rule": "Velocity — outbound transfers",
+   "title": "Salary account suddenly forwarding funds",
+   "customer": "Retail · Mr D. Okonkwo · customer since 2024 · standard risk",
+   "facts": {
+    "Profile": "Student account, part-time income",
+    "Expected activity": "~€900/month in, small card spend",
+    "Alert amount": "€47,200 in, €46,850 out over 9 days",
+    "Jurisdictions": "BE → PL, LT, RO"
+   },
+   "narrative": "Twelve inbound transfers from unrelated private individuals, each €2,900–€4,600, followed within hours by outbound transfers to three accounts abroad. Balance returns to near zero each time.",
+   "transactions": [
+    [
+     "05 Mar",
+     "Inbound — private",
+     "4,200",
+     "from J. Nowak"
+    ],
+    [
+     "05 Mar",
+     "Outbound",
+     "4,150",
+     "to LT account"
+    ],
+    [
+     "06 Mar",
+     "Inbound — private",
+     "3,800",
+     "from A. Ivanova"
+    ],
+    [
+     "06 Mar",
+     "Outbound",
+     "3,760",
+     "to PL account"
+    ],
+    [
+     "08 Mar",
+     "Inbound — private",
+     "4,600",
+     "from M. Dumitru"
+    ],
+    [
+     "08 Mar",
+     "Outbound",
+     "4,540",
+     "to RO account"
+    ]
+   ],
+   "on_file": "Customer is 21, opened the account for a student job. No business activity declared. Two inbound senders appear in an internal fraud-victim list.",
+   "best_action": "escalate",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Pass-through: funds in and straight out, balance returns to zero",
+     "present": true
+    },
+    {
+     "text": "Activity wholly inconsistent with a declared student profile",
+     "present": true
+    },
+    {
+     "text": "Inbound senders unrelated to each other and to the customer",
+     "present": true
+    },
+    {
+     "text": "Two senders already flagged as fraud victims",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 25 — ongoing monitoring; Art. 69 — reporting of suspicious transactions",
+   "why": "This is a money mule account and the fraud-victim match makes it close to certain. Pass-through behaviour on a young account with no economic rationale is one of the clearest patterns there is. Asking the customer here is not neutral — it risks tipping off, and the answer would not change what the transaction record already shows.",
+   "consequences": {
+    "close": "A live mule account left running. Victim funds continued to move through it.",
+    "escalate": "Correct, and quickly. This is what the escalation route exists for.",
+    "rfi": "You delayed a near-certain mule case to ask a question the data already answered — and contacting the customer risks tipping off."
+   },
+   "typologies": [
+    "money-mule",
+    "pass-through"
+   ],
+   "difficulty": 1,
+   "sector": "bank",
+   "family": "mule-passthrough"
+  },
+  {
+   "id": "A-4473",
+   "module": "triage",
+   "rule": "High-value transfer",
+   "title": "€180,000 to a notary",
+   "customer": "Retail · Mr & Mrs Vandenberghe · customers since 2003 · low risk",
+   "facts": {
+    "Profile": "Two salaried professionals, joint account",
+    "Expected activity": "~€7k/month combined",
+    "Alert amount": "€180,000 single outbound",
+    "Jurisdictions": "Belgium only"
+   },
+   "narrative": "A single transfer of €180,000 to a Belgian notary account, referenced with a property address. Funded by the closure of a savings account held at the same bank since 2009.",
+   "transactions": [
+    [
+     "11 Mar",
+     "Internal transfer",
+     "180,000",
+     "from savings ****4471"
+    ],
+    [
+     "11 Mar",
+     "Outbound",
+     "180,000",
+     "Notaris Devos & Partners"
+    ]
+   ],
+   "on_file": "Savings account shows fourteen years of regular monthly contributions. Mortgage application with this bank was approved two weeks earlier for the same address.",
+   "best_action": "close",
+   "is_real_case": false,
+   "flags": [
+    {
+     "text": "Source of funds fully visible and internally verifiable",
+     "present": false
+    },
+    {
+     "text": "Counterparty is a regulated notary, not an opaque third party",
+     "present": false
+    },
+    {
+     "text": "Corroborated by an approved mortgage on the same property",
+     "present": false
+    },
+    {
+     "text": "Amount is a large deviation from monthly baseline",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 20 — CDD proportionate to risk; Art. 34 — EDD only where higher risk is present",
+   "why": "The rule fired on size alone, and size alone is not suspicion. Everything here reconciles: fourteen years of savings, a notary counterparty, a mortgage file in the same institution for the same address. This is the 95% of the queue that is noise — and closing it confidently, with a recorded rationale, is a skill in its own right. Analysts who cannot close cleanly escalate everything, and then nothing gets investigated properly.",
+   "consequences": {
+    "close": "Right. Rationale recorded, capacity preserved.",
+    "escalate": "Two investigator days spent on a documented house purchase. Multiply that across a queue and the genuinely suspicious cases sit in a backlog.",
+    "rfi": "You asked for information the bank already holds — the mortgage file is internal."
+   },
+   "typologies": [
+    "false-positive",
+    "high-value"
+   ],
+   "difficulty": 1,
+   "sector": "bank",
+   "family": "benign-verified"
+  },
+  {
+   "id": "A-4474",
+   "module": "triage",
+   "rule": "Jurisdiction — high-risk nexus",
+   "title": "Trade payments routed through three countries",
+   "customer": "Corporate · Meridian Trading BVBA · customer since 2019 · high risk",
+   "facts": {
+    "Profile": "Import/export, declared turnover €4.1M",
+    "Expected activity": "Trade payments, EU and Türkiye",
+    "Alert amount": "€620,000 across 4 payments",
+    "Jurisdictions": "BE → AE → PK"
+   },
+   "narrative": "Four payments for machinery parts, invoiced by a UAE intermediary, with goods shipped directly from Pakistan to Belgium. Invoice values are 40–60% above comparable market pricing.",
+   "transactions": [
+    [
+     "03 Mar",
+     "Outbound",
+     "185,000",
+     "Gulf Machinery FZE, UAE"
+    ],
+    [
+     "07 Mar",
+     "Outbound",
+     "160,000",
+     "Gulf Machinery FZE, UAE"
+    ],
+    [
+     "12 Mar",
+     "Outbound",
+     "140,000",
+     "Gulf Machinery FZE, UAE"
+    ],
+    [
+     "14 Mar",
+     "Outbound",
+     "135,000",
+     "Gulf Machinery FZE, UAE"
+    ]
+   ],
+   "on_file": "Gulf Machinery FZE was incorporated four months ago. Beneficial owner not established — corporate shareholder in a jurisdiction with no public register. Goods never enter the UAE.",
+   "best_action": "escalate",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Intermediary adds no logistical function — goods bypass it entirely",
+     "present": true
+    },
+    {
+     "text": "Invoice pricing materially above market",
+     "present": true
+    },
+    {
+     "text": "Counterparty incorporated four months ago",
+     "present": true
+    },
+    {
+     "text": "Beneficial ownership of the counterparty not established",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 34 — EDD where no apparent economic purpose; Art. 22 — beneficial ownership",
+   "why": "Classic trade-based laundering: an intermediary that handles no goods, over-invoicing that moves value rather than merchandise, and a counterparty whose owner you cannot identify. Any one of these would warrant a question. Together they are a case. Note that this customer was already rated high risk — which should have meant enhanced monitoring, not a routine alert.",
+   "consequences": {
+    "close": "You closed a trade-based laundering pattern on a high-risk customer.",
+    "escalate": "Correct. Note the beneficial ownership gap — that alone required action.",
+    "rfi": "Reasonable instinct, but you already have enough: three independent red flags on a customer rated high risk. Asking delays a case that is already made."
+   },
+   "typologies": [
+    "trade-based",
+    "beneficial-ownership"
+   ],
+   "difficulty": 3,
+   "sector": "bank",
+   "family": "value-transfer"
+  },
+  {
+   "id": "A-4475",
+   "module": "triage",
+   "rule": "Dormancy — reactivation",
+   "title": "Dormant account wakes up with a round sum",
+   "customer": "Retail · Mr S. Haddad · customer since 2016 · standard risk",
+   "facts": {
+    "Profile": "Account dormant since 2021",
+    "Expected activity": "None for three years",
+    "Alert amount": "€25,000 inbound",
+    "Jurisdictions": "BE ← FR"
+   },
+   "narrative": "A single inbound transfer of €25,000 from a French bank, reference \"prêt familial\". No subsequent activity. Funds remain in the account.",
+   "transactions": [
+    [
+     "09 Mar",
+     "Inbound",
+     "25,000",
+     "from Crédit Mutuel, ref: prêt familial"
+    ]
+   ],
+   "on_file": "Sender name matches the customer’s surname. Customer address updated to France in 2021. No adverse media. Funds have not moved.",
+   "best_action": "close",
+   "is_real_case": false,
+   "flags": [
+    {
+     "text": "Sender shares the customer surname — consistent with a family loan",
+     "present": false
+    },
+    {
+     "text": "Funds have not moved on; no layering behaviour",
+     "present": false
+    },
+    {
+     "text": "Sending institution is an EU regulated bank",
+     "present": false
+    },
+    {
+     "text": "Account reactivation after long dormancy",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 20 — purpose and intended nature of the relationship",
+   "why": "Dormancy rules generate enormous noise. Here the reactivation has a coherent story: the customer moved to France, and a same-surname sender at a regulated French bank transferred a stated family loan that has not moved since. Nothing layers, nothing structures. Escalating this is defensible but wasteful; the discipline is to write the rationale down and close it.",
+   "consequences": {
+    "close": "Right. Coherent explanation, no layering, rationale recorded.",
+    "escalate": "Understandable caution, but capacity spent on a family transfer that never moved.",
+    "rfi": "Not unreasonable — but everything you would ask is already visible on the file."
+   },
+   "typologies": [
+    "false-positive",
+    "dormancy"
+   ],
+   "difficulty": 2,
+   "sector": "bank",
+   "family": "benign-verified"
+  },
+  {
+   "id": "A-4476",
+   "module": "triage",
+   "rule": "Structuring — related parties",
+   "title": "Three accounts, one pattern",
+   "customer": "Retail · Three unrelated customers, same branch · all standard risk",
+   "facts": {
+    "Profile": "Three individual accounts, no declared connection",
+    "Expected activity": "Modest retail activity",
+    "Alert amount": "€142,000 aggregate",
+    "Jurisdictions": "Belgium only"
+   },
+   "narrative": "Three customers with no declared relationship each deposited cash on the same three dates, at the same branch, in amounts between €4,500 and €6,200 — then each transferred the balance to a single fourth account within 48 hours.",
+   "transactions": [
+    [
+     "04 Mar",
+     "Cash — customer A",
+     "6,200",
+     "Ghent Zuid"
+    ],
+    [
+     "04 Mar",
+     "Cash — customer B",
+     "5,800",
+     "Ghent Zuid"
+    ],
+    [
+     "04 Mar",
+     "Cash — customer C",
+     "4,900",
+     "Ghent Zuid"
+    ],
+    [
+     "06 Mar",
+     "Transfers to account ****8812",
+     "16,900",
+     "consolidated"
+    ]
+   ],
+   "on_file": "The receiving account belongs to a company whose director is the brother of customer A. The company is a car dealership.",
+   "best_action": "escalate",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Coordinated timing across supposedly unrelated parties",
+     "present": true
+    },
+    {
+     "text": "Amounts individually below any single-transaction trigger",
+     "present": true
+    },
+    {
+     "text": "Rapid consolidation into one controlled account",
+     "present": true
+    },
+    {
+     "text": "Undisclosed familial link to the receiving entity",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 69 — structuring is reportable; Art. 22 — control relationships",
+   "why": "The individual deposits are unremarkable. The pattern is the case. Structuring detection is about aggregation across parties, and the undisclosed family link to the receiving company removes the innocent reading. This is exactly the case that gets missed when analysts work alerts one account at a time instead of looking across them.",
+   "consequences": {
+    "close": "A coordinated structuring ring left in place.",
+    "escalate": "Correct — and note you had to look across three alerts to see it.",
+    "rfi": "You have four converging flags and an undisclosed relationship. Asking delays a case that is already sufficient."
+   },
+   "typologies": [
+    "structuring",
+    "related-party"
+   ],
+   "difficulty": 3,
+   "sector": "bank",
+   "family": "structuring"
+  },
+  {
+   "id": "A-4477",
+   "module": "triage",
+   "rule": "Sanctions — name match",
+   "title": "A 78% name match on a designated person",
+   "customer": "Retail · Mr A. Kuznetsov · customer since 2018 · standard risk",
+   "facts": {
+    "Profile": "Salaried engineer, Belgian resident",
+    "Expected activity": "~€4.1k/month salary, mortgage",
+    "Alert amount": "€2,300 outbound",
+    "Jurisdictions": "BE → BE"
+   },
+   "narrative": "Screening flagged the customer against a designated individual on the EU consolidated list at 78% fuzzy match. The alert relates to a routine €2,300 rent payment.",
+   "transactions": [
+    [
+     "12 Mar",
+     "Standing order",
+     "2,300",
+     "Immo Verhoeven BVBA — rent"
+    ]
+   ],
+   "on_file": "Designated person: Aleksei KUZNETSOV, born 1961, Russian national, resident Moscow. Customer: Anton KUZNETSOV, born 1989, Belgian national, born in Ghent, holds Belgian ID verified at onboarding. Different date of birth, different first name, different nationality.",
+   "best_action": "close",
+   "is_real_case": false,
+   "flags": [
+    {
+     "text": "Date of birth, first name and nationality all differ from the designated person",
+     "present": false
+    },
+    {
+     "text": "Identity verified against a Belgian ID document at onboarding",
+     "present": false
+    },
+    {
+     "text": "Payment is a long-standing routine standing order",
+     "present": false
+    },
+    {
+     "text": "Surname matches a designated individual",
+     "present": true
+    }
+   ],
+   "law": "EU Regulation 269/2014 — asset freeze obligations; AMLR Art. 20 — CDD proportionate to risk",
+   "why": "Sanctions screening produces enormous fuzzy-match noise, and the discipline is to resolve the match on identifiers rather than on the name. Here three independent identifiers diverge: first name, date of birth and nationality. This is a false positive and should be closed with the discriminating data recorded — that record is what stops the same alert consuming time every month.",
+   "consequences": {
+    "close": "Right. And recording which identifiers discriminated is what prevents this alert recurring forever.",
+    "escalate": "Sanctions hits feel dangerous to close, which is exactly why they clog queues. Three identifiers differ; escalating this spends capacity and teaches the screening system nothing.",
+    "rfi": "You asked for information already on the file — the verified Belgian ID answers this."
+   },
+   "typologies": [
+    "sanctions",
+    "false-positive"
+   ],
+   "difficulty": 2,
+   "sector": "bank",
+   "family": "benign-verified"
+  },
+  {
+   "id": "A-4478",
+   "module": "triage",
+   "rule": "Crypto — exposure screening",
+   "title": "Inbound from an exchange, onward to a private wallet",
+   "customer": "Retail · Ms N. Ferreira · customer since 2022 · standard risk",
+   "facts": {
+    "Profile": "Freelance designer",
+    "Expected activity": "Client invoices €2–6k/month",
+    "Alert amount": "€88,000 in, €86,500 out",
+    "Jurisdictions": "BE ← EE, → unknown"
+   },
+   "narrative": "Four inbound transfers from a crypto exchange registered in Estonia, then onward transfers to two accounts the customer has not previously used. Chain analytics on the originating addresses shows indirect exposure to a sanctioned mixing service two hops back.",
+   "transactions": [
+    [
+     "02 Mar",
+     "Inbound — exchange",
+     "24,000",
+     "BitBaltic OÜ"
+    ],
+    [
+     "03 Mar",
+     "Outbound",
+     "23,800",
+     "private account"
+    ],
+    [
+     "07 Mar",
+     "Inbound — exchange",
+     "31,000",
+     "BitBaltic OÜ"
+    ],
+    [
+     "09 Mar",
+     "Outbound",
+     "30,700",
+     "private account"
+    ],
+    [
+     "13 Mar",
+     "Inbound — exchange",
+     "33,000",
+     "BitBaltic OÜ"
+    ]
+   ],
+   "on_file": "Customer declared crypto trading as a side activity at onboarding in 2022. Volumes then were under €5,000 a year. No source-of-wealth documentation on file. Travel-rule originator data absent on three of the four inbound transfers.",
+   "best_action": "escalate",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Indirect exposure to a sanctioned mixing service",
+     "present": true
+    },
+    {
+     "text": "Volumes roughly twenty times the declared activity level",
+     "present": true
+    },
+    {
+     "text": "Travel-rule originator information missing on most transfers",
+     "present": true
+    },
+    {
+     "text": "Immediate onward transfer to previously unused accounts",
+     "present": true
+    }
+   ],
+   "law": "TFR (EU) 2023/1113 Art. 14 — missing originator information; AMLR Art. 34(4) — source of funds and wealth",
+   "why": "Mixer exposure alone justifies enhanced scrutiny, but the decisive fact is the combination: sanctioned-service exposure, a twentyfold departure from declared activity, and absent travel-rule data. Missing originator information is not an administrative gap under the TFR — it is itself a trigger. Asking the customer risks tipping off and would not change what the chain analytics already establish.",
+   "consequences": {
+    "close": "You closed a case with sanctioned-mixer exposure and missing travel-rule data.",
+    "escalate": "Correct. Note that the missing originator data was independently sufficient.",
+    "rfi": "You have four converging flags including sanctions exposure. Asking delays a made case and risks tipping off."
+   },
+   "typologies": [
+    "crypto",
+    "sanctions",
+    "layering"
+   ],
+   "difficulty": 2,
+   "sector": "fintech",
+   "family": "crypto-vasp"
+  },
+  {
+   "id": "A-4479",
+   "module": "triage",
+   "rule": "PEP — screening match",
+   "title": "A mayor's spouse opens a savings account",
+   "customer": "Retail · Mrs C. Lemaire · new customer · PEP-related",
+   "facts": {
+    "Profile": "Retired teacher, spouse of a municipal mayor",
+    "Expected activity": "Pension in, savings transfers",
+    "Alert amount": "€35,000 initial deposit",
+    "Jurisdictions": "BE only"
+   },
+   "narrative": "Screening identified the customer as the spouse of a domestic PEP — mayor of a Belgian municipality of 18,000 inhabitants. Initial funding of €35,000 transferred from a joint account held at another Belgian bank.",
+   "transactions": [
+    [
+     "10 Mar",
+     "Inbound",
+     "35,000",
+     "joint account, KBC — same customer name"
+    ]
+   ],
+   "on_file": "Source of funds: proceeds of a property sale, notarial deed provided at onboarding. Senior management approval for the PEP relationship was NOT obtained. Source of wealth documented. No adverse media.",
+   "best_action": "rfi",
+   "is_real_case": false,
+   "flags": [
+    {
+     "text": "Senior management approval for a PEP relationship was never obtained",
+     "present": true
+    },
+    {
+     "text": "Source of funds documented by notarial deed",
+     "present": false
+    },
+    {
+     "text": "Funds transferred from an account in the customer's own name",
+     "present": false
+    },
+    {
+     "text": "No adverse media or corruption indicators",
+     "present": false
+    }
+   ],
+   "law": "AMLR Art. 42 — politically exposed persons; requires senior management approval, source of wealth, and enhanced ongoing monitoring",
+   "why": "The transaction is not suspicious — the money is documented and comes from her own account. But PEP status carries a procedural obligation that has been missed: Art. 42 requires senior management approval before establishing the relationship, and it was never obtained. This is the case that teaches an important distinction: not every alert is about laundering. Some are about your own control failing. Closing this hides a compliance gap; escalating to investigations sends it to the wrong team. It goes back for the approval.",
+   "consequences": {
+    "close": "You closed it as a false positive — which the transaction was. But you also closed a live gap: no senior management approval exists for a PEP relationship. An examiner would find that.",
+    "escalate": "Investigations will find no suspicion here, because there isn't any. The missing item is a procedural approval, not a case.",
+    "rfi": "Right. The transaction is clean; the file is not. Route it back for the Art. 42 approval."
+   },
+   "typologies": [
+    "pep",
+    "control-failure"
+   ],
+   "difficulty": 3,
+   "sector": "bank",
+   "family": "pep"
+  },
+  {
+   "id": "A-4480",
+   "module": "triage",
+   "rule": "Velocity — merchant acquiring",
+   "title": "A new merchant's volumes triple in a fortnight",
+   "customer": "Corporate · SunGlow Wellness BV · merchant since Jan 2026 · standard risk",
+   "facts": {
+    "Profile": "Online supplement retailer",
+    "Expected activity": "€40k/month card volume projected",
+    "Alert amount": "€310,000 in 14 days",
+    "Jurisdictions": "Cardholders: 31 countries"
+   },
+   "narrative": "Card acquiring volume rose from €38,000 in February to €310,000 in the first fortnight of March. Chargeback rate 11%. Average ticket €189 against a projected €45. Cardholder geography spread across 31 countries where the merchant declared Benelux-only sales.",
+   "transactions": [
+    [
+     "01–07 Mar",
+     "Card settlements",
+     "142,000",
+     "4,100 transactions"
+    ],
+    [
+     "08–14 Mar",
+     "Card settlements",
+     "168,000",
+     "3,900 transactions"
+    ],
+    [
+     "14 Mar",
+     "Chargebacks",
+     "34,100",
+     "11% of volume"
+    ]
+   ],
+   "on_file": "Merchant declared Benelux-only online sales of supplements at onboarding. Website currently shows a single product page with no stock information. Director appointed three months before onboarding, no prior retail history.",
+   "best_action": "escalate",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Chargeback rate of 11% against a typical retail norm under 1%",
+     "present": true
+    },
+    {
+     "text": "Cardholder geography inconsistent with declared Benelux-only sales",
+     "present": true
+    },
+    {
+     "text": "Average ticket four times the projected value",
+     "present": true
+    },
+    {
+     "text": "Minimal web presence for the volume claimed",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 20 — purpose and nature of the business relationship; Art. 25 — ongoing monitoring",
+   "why": "This is transaction laundering: a merchant account processing payments that are not what they claim to be. The 11% chargeback rate is the giveaway — real retail sits under 1%, and that level of dispute means cardholders do not recognise what they paid for. Combined with geography that contradicts the declared business and a shell-like web presence, this is a case. Payments firms see this pattern far more than banks do.",
+   "consequences": {
+    "close": "You left a transaction-laundering merchant processing. Chargeback liability sits with the acquirer.",
+    "escalate": "Correct. The chargeback rate alone warranted it.",
+    "rfi": "Asking the merchant is reasonable in principle, but an 11% chargeback rate with contradictory geography is already sufficient — and every day of delay is more settlement exposure."
+   },
+   "typologies": [
+    "transaction-laundering",
+    "merchant-acquiring"
+   ],
+   "difficulty": 2,
+   "sector": "fintech",
+   "family": "merchant"
+  },
+  {
+   "id": "A-4481",
+   "module": "triage",
+   "rule": "Threshold — aggregated cash",
+   "title": "A restaurant's takings rise with its bookings",
+   "customer": "Corporate · Trattoria Lucia BVBA · customer since 2014 · standard risk",
+   "facts": {
+    "Profile": "Restaurant, 60 covers, Antwerp",
+    "Expected activity": "€45–70k/month, cash-heavy",
+    "Alert amount": "€96,400 cash deposits in March",
+    "Jurisdictions": "BE only"
+   },
+   "narrative": "Cash deposits of €96,400 across March against a twelve-month average of €58,000. Deposits made weekly, amounts varying between €18,000 and €27,000, all at the same branch.",
+   "transactions": [
+    [
+     "06 Mar",
+     "Cash deposit",
+     "24,100",
+     "Antwerp Zuid"
+    ],
+    [
+     "13 Mar",
+     "Cash deposit",
+     "27,000",
+     "Antwerp Zuid"
+    ],
+    [
+     "20 Mar",
+     "Cash deposit",
+     "18,900",
+     "Antwerp Zuid"
+    ],
+    [
+     "27 Mar",
+     "Cash deposit",
+     "26,400",
+     "Antwerp Zuid"
+    ]
+   ],
+   "on_file": "VAT returns filed and consistent with declared turnover. March included Easter weekend and a two-week city food festival. Card takings rose 41% over the same period, proportionate to the cash increase. Same pattern visible in March of the two previous years.",
+   "best_action": "close",
+   "is_real_case": false,
+   "flags": [
+    {
+     "text": "Card takings rose proportionately, corroborating genuine trade",
+     "present": false
+    },
+    {
+     "text": "Same seasonal pattern in the two prior years",
+     "present": false
+    },
+    {
+     "text": "Deposits well above the reporting threshold, not structured beneath it",
+     "present": false
+    },
+    {
+     "text": "Cash volume 66% above the twelve-month average",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 20 — CDD proportionate to risk; Art. 25 — monitoring against the expected profile",
+   "why": "Cash-intensive businesses generate constant alerts, and the skill is knowing what corroborates. Here three things do: proportionate card growth, an identical pattern in prior years, and deposits made openly above the threshold rather than structured below it. Note the last point — a launderer structures to avoid reporting; this customer walked in with €27,000. The seasonal explanation is verifiable and verified.",
+   "consequences": {
+    "close": "Right, and the corroborating card data is what makes the rationale defensible.",
+    "escalate": "Capacity spent on a documented seasonal peak with proportionate card corroboration.",
+    "rfi": "Everything you would ask is already on file — VAT returns, card data, and two years of prior pattern."
+   },
+   "typologies": [
+    "cash-intensive",
+    "false-positive"
+   ],
+   "difficulty": 2,
+   "sector": "bank",
+   "family": "benign-verified"
+  },
+  {
+   "id": "A-4482",
+   "module": "triage",
+   "rule": "Related parties — circular flow",
+   "title": "Money that goes around in a circle",
+   "customer": "Corporate · Novara Consulting BVBA · customer since 2021 · standard risk",
+   "facts": {
+    "Profile": "Management consultancy, 2 employees",
+    "Expected activity": "Invoices €15–30k/month",
+    "Alert amount": "€540,000 across 9 transactions",
+    "Jurisdictions": "BE → LU → CY → BE"
+   },
+   "narrative": "Nine transfers over five weeks. Funds leave the customer to a Luxembourg entity, then to a Cypriot entity, then return to a second Belgian account also held by the customer's director. Each leg carries a consultancy invoice. Net position after five weeks is approximately zero.",
+   "transactions": [
+    [
+     "04 Mar",
+     "Outbound",
+     "180,000",
+     "Aurex Sàrl, LU — invoice 2026-014"
+    ],
+    [
+     "07 Mar",
+     "Outbound",
+     "180,000",
+     "Kestros Ltd, CY — invoice 2026-015"
+    ],
+    [
+     "11 Mar",
+     "Inbound",
+     "178,500",
+     "Kestros Ltd, CY — invoice 2026-016"
+    ],
+    [
+     "18 Mar",
+     "Outbound",
+     "180,000",
+     "Aurex Sàrl, LU — invoice 2026-021"
+    ]
+   ],
+   "on_file": "Corporate registry checks show the director of Novara is also a shareholder of Aurex Sàrl. Kestros Ltd beneficial ownership not established — nominee shareholder. No deliverables, contracts or work product on file for any invoice. Total invoiced exceeds the company's entire prior-year turnover.",
+   "best_action": "escalate",
+   "is_real_case": true,
+   "flags": [
+    {
+     "text": "Funds return to an account controlled by the same person — circular flow",
+     "present": true
+    },
+    {
+     "text": "Undisclosed common ownership between customer and counterparty",
+     "present": true
+    },
+    {
+     "text": "Invoiced amounts exceed the company's entire prior-year turnover",
+     "present": true
+    },
+    {
+     "text": "No evidence any service was actually delivered",
+     "present": true
+    }
+   ],
+   "law": "AMLR Art. 34 — EDD where no apparent economic purpose; Art. 22 — beneficial ownership of counterparties",
+   "why": "Circular flows have no legitimate explanation. Money that leaves and returns to the same controller, carrying invoices for services with no work product, is round-tripping — and the undisclosed common ownership removes any innocent reading. The detail worth internalising: no single transaction here looks odd. Each has an invoice and a plausible counterparty. Only the shape of the whole reveals it, which is why looking across transactions rather than at them is the core analytical habit.",
+   "consequences": {
+    "close": "A round-tripping structure left in place, with an unestablished beneficial owner in the chain.",
+    "escalate": "Correct. Note that no individual transaction would have justified this — only the pattern.",
+    "rfi": "You could ask for the deliverables, and their absence would be telling. But with circular flow and undisclosed common ownership already established, the case is made."
+   },
+   "typologies": [
+    "round-tripping",
+    "related-party",
+    "trade-based"
+   ],
+   "difficulty": 3,
+   "sector": "bank",
+   "family": "value-transfer"
+  }
+ ]
+}

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NIGHT SHIFT — RegRadar Academy</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   NIGHT SHIFT
+   Mission control at 22:47. Everything in this world is machine-
+   generated — alert IDs, timestamps, amounts — so monospace carries
+   the display role and the prose face appears only inside a dossier.
+   Four signal colours, each with one meaning, the way a real console
+   assigns them. The scanline is inherited from the Signal radar: it
+   is the monitoring system finding something.
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
+  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
+  --phos:#7DF0C8;      /* cleared / correct */
+  --amber:#FFC24D;     /* caution / defensible */
+  --alarm:#FF5A52;     /* alarm / wrong */
+  --ice:#8FB8FF;       /* information / accent */
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  background:var(--void); color:var(--ink); font-family:var(--mono);
+  font-size:14px; -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column;
+}
+/* the room is lit by the screen */
+body::before{
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(115% 85% at 50% 0%, rgba(143,184,255,.07), transparent 62%);
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::selection{background:var(--ice);color:var(--void)}
+
+/* ── HUD ────────────────────────────────────────────────────────── */
+.hud{
+  position:relative; z-index:40; flex:0 0 auto;
+  display:flex; align-items:center; gap:22px;
+  padding:0 18px; height:52px;
+  background:linear-gradient(180deg,var(--console),rgba(14,20,28,.6));
+  border-bottom:1px solid var(--grid);
+}
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
+.brand .dot{width:7px;height:7px;background:var(--alarm);border-radius:50%;
+  box-shadow:0 0 10px var(--alarm);animation:beat 2.6s infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.28}}
+.clock{font-size:11px;color:var(--ink-3);letter-spacing:.1em}
+
+.gauge{display:flex;align-items:center;gap:9px}
+.gauge .lbl{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.gauge .val{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+
+.xpwrap{flex:1;max-width:230px;min-width:90px}
+.xptop{display:flex;justify-content:space-between;font-size:9px;
+  letter-spacing:.14em;color:var(--ink-3);margin-bottom:5px}
+.xptop b{color:var(--ice);letter-spacing:.1em}
+.xpbar{height:4px;background:var(--grid);position:relative;overflow:hidden}
+.xpbar i{position:absolute;inset:0 auto 0 0;background:var(--ice);width:0;
+  box-shadow:0 0 12px var(--ice);transition:width .7s var(--ease)}
+
+.rep{display:flex;gap:3px}
+.rep span{width:16px;height:5px;background:var(--grid);transition:background .4s}
+.rep span.on{background:var(--phos);box-shadow:0 0 7px var(--phos)}
+.rep span.hurt{background:var(--alarm);box-shadow:0 0 7px var(--alarm)}
+
+.streak{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.streak.hot{color:var(--amber)}
+.streak .fl{font-size:15px;display:inline-block}
+.streak.hot .fl{animation:flick .9s infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-4deg)}to{transform:scale(1.18) rotate(4deg)}}
+
+.hud-r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.ibtn{width:30px;height:30px;border:1px solid var(--grid);color:var(--ink-3);font-size:13px;
+  display:grid;place-items:center;transition:all .16s}
+.ibtn:hover{border-color:var(--ice);color:var(--ice)}
+
+/* timer drains across the whole top edge — you feel it, you don't read it */
+.timer{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:transparent}
+.timer i{display:block;height:100%;width:100%;background:var(--ice);
+  transform-origin:left;transition:transform 1s linear,background .5s}
+.timer.warn i{background:var(--amber)} .timer.crit i{background:var(--alarm)}
+
+/* ── STAGE ──────────────────────────────────────────────────────── */
+.stage{position:relative;z-index:2;flex:1 1 auto;display:flex;min-height:0}
+
+/* queue rail: the shift as a column of slots */
+.rail{flex:0 0 62px;border-right:1px solid var(--grid);padding:16px 0;
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  background:rgba(14,20,28,.45)}
+.rail .rlbl{font-size:8px;letter-spacing:.18em;color:var(--ink-3);
+  writing-mode:vertical-rl;margin-bottom:6px}
+.slot{width:26px;height:26px;border:1px solid var(--grid);display:grid;place-items:center;
+  font-size:11px;font-weight:700;color:var(--ink-3);transition:all .3s var(--ease)}
+.slot.now{border-color:var(--ice);color:var(--ice);box-shadow:0 0 12px rgba(143,184,255,.4);
+  transform:scale(1.12)}
+.slot.ok{border-color:var(--phos);color:var(--phos)}
+.slot.part{border-color:var(--amber);color:var(--amber)}
+.slot.bad{border-color:var(--alarm);color:var(--alarm)}
+
+/* dossier */
+.desk{flex:1 1 auto;overflow-y:auto;padding:26px 30px 150px;position:relative}
+.desk::-webkit-scrollbar{width:8px}
+.desk::-webkit-scrollbar-thumb{background:var(--grid)}
+
+.meta{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  font-size:10px;letter-spacing:.14em;color:var(--ink-3)}
+.meta .id{color:var(--ice);font-weight:700}
+.meta .rule{border:1px solid var(--amber);color:var(--amber);padding:2px 7px;letter-spacing:.1em}
+.meta .pos{margin-left:auto;font-variant-numeric:tabular-nums}
+
+h1.case{font-family:var(--mono);font-size:clamp(20px,2.7vw,31px);font-weight:700;
+  letter-spacing:-.01em;line-height:1.14;margin:14px 0 6px;max-width:26ch}
+.subject{font-size:11.5px;color:var(--ink-2);letter-spacing:.04em}
+
+.rows{margin-top:22px;display:grid;gap:18px}
+.blk{border-top:1px solid var(--grid);padding-top:12px}
+.blk>.bl{font-size:9px;letter-spacing:.18em;color:var(--ink-3);margin-bottom:10px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:11px 20px}
+.facts .f .k{font-size:8.5px;letter-spacing:.14em;color:var(--ink-3)}
+.facts .f .v{font-size:13px;color:var(--ink);margin-top:3px;font-variant-numeric:tabular-nums}
+.prose{font-family:var(--sans);font-size:14.5px;line-height:1.62;color:var(--ink-2);max-width:74ch}
+
+.ledger{width:100%;border-collapse:collapse;margin-top:2px}
+.ledger td{font-size:12.5px;padding:6px 12px 6px 0;border-bottom:1px solid rgba(31,44,59,.6);
+  color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger td.amt{color:var(--ink);text-align:right;font-weight:700}
+.ledger td.det{white-space:normal;color:var(--ink-3);font-size:11.5px}
+
+/* ── DECK: confidence + the three keys ──────────────────────────── */
+.deck{position:absolute;left:0;right:0;bottom:0;z-index:6;
+  background:linear-gradient(180deg,rgba(8,11,16,0),var(--void) 34%);
+  padding:26px 30px 20px;pointer-events:none}
+.deck>*{pointer-events:auto}
+.conf{display:flex;align-items:center;gap:13px;margin-bottom:13px;flex-wrap:wrap}
+.conf .cl{font-size:9px;letter-spacing:.17em;color:var(--ink-3)}
+.pips{display:flex;gap:7px}
+.pip{width:26px;height:26px;border:1px solid var(--grid);color:var(--ink-3);
+  font-size:10px;font-weight:700;display:grid;place-items:center;transition:all .16s}
+.pip:hover{border-color:var(--ink-2);color:var(--ink-2)}
+.pip.on{border-color:var(--ice);color:var(--void);background:var(--ice);
+  box-shadow:0 0 14px rgba(143,184,255,.45)}
+.conf .hint{font-size:10.5px;color:var(--ink-3);letter-spacing:.03em}
+
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.key{border:1px solid var(--grid);background:rgba(20,30,41,.82);backdrop-filter:blur(6px);
+  padding:13px 15px;text-align:left;transition:all .16s var(--ease);position:relative;overflow:hidden}
+.key:hover:not(:disabled){transform:translateY(-3px)}
+.key:disabled{opacity:.4}
+.key .kn{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;letter-spacing:.05em}
+.key .num{width:19px;height:19px;border:1px solid currentColor;display:grid;place-items:center;
+  font-size:10px;flex:0 0 auto}
+.key .kd{font-size:10.5px;color:var(--ink-3);margin-top:6px;line-height:1.4}
+.key.k1{color:var(--phos)} .key.k1:hover:not(:disabled){border-color:var(--phos);box-shadow:0 0 22px rgba(125,240,200,.2)}
+.key.k2{color:var(--amber)} .key.k2:hover:not(:disabled){border-color:var(--amber);box-shadow:0 0 22px rgba(255,194,77,.2)}
+.key.k3{color:var(--alarm)} .key.k3:hover:not(:disabled){border-color:var(--alarm);box-shadow:0 0 22px rgba(255,90,82,.2)}
+
+/* ── SIGNATURE: scanline sweep on arrival ───────────────────────── */
+.scan{position:fixed;top:52px;bottom:0;width:2px;z-index:20;pointer-events:none;
+  background:var(--ice);box-shadow:0 0 30px 7px rgba(143,184,255,.55);opacity:0;left:0}
+.scan.go{animation:sweep .62s var(--ease)}
+@keyframes sweep{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}}
+.rise{opacity:0;transform:translateY(14px)}
+.rise.in{animation:rise .5s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* edge pulse on verdict */
+.edge{position:fixed;inset:0;z-index:18;pointer-events:none;opacity:0;
+  box-shadow:inset 0 0 0 3px currentColor, inset 0 0 90px rgba(255,255,255,.05)}
+.edge.hit{animation:pulse .55s ease-out}
+@keyframes pulse{0%{opacity:.95}100%{opacity:0}}
+
+/* floating XP */
+.pop{position:fixed;z-index:25;font-size:26px;font-weight:700;pointer-events:none;
+  letter-spacing:-.02em;animation:fly 1.1s var(--ease) forwards}
+@keyframes fly{0%{opacity:0;transform:translateY(6px) scale(.8)}
+  22%{opacity:1;transform:translateY(-8px) scale(1.1)}
+  100%{opacity:0;transform:translateY(-52px) scale(1)}}
+
+/* ── VERDICT PANEL ──────────────────────────────────────────────── */
+.verdict{position:absolute;inset:0;z-index:12;background:rgba(8,11,16,.965);
+  display:none;flex-direction:column;overflow-y:auto;padding:24px 30px 100px}
+.verdict.on{display:flex;animation:rise .34s var(--ease)}
+.vhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.stamp{font-size:11px;font-weight:700;letter-spacing:.2em;padding:6px 13px;border:2px solid currentColor}
+.vhead h2{font-family:var(--mono);font-size:clamp(18px,2.3vw,26px);font-weight:700;letter-spacing:-.01em}
+.vxp{margin-left:auto;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.vwhy{font-family:var(--sans);font-size:14.5px;line-height:1.65;color:var(--ink-2);
+  margin-top:16px;max-width:76ch}
+.flagrid{margin-top:20px;display:grid;gap:1px;background:var(--grid);border:1px solid var(--grid)}
+.fg{background:var(--console);padding:10px 13px;display:grid;grid-template-columns:20px 1fr;
+  gap:11px;font-size:12.5px;line-height:1.48;color:var(--ink-2)}
+.fg .m{font-weight:700}
+.fg.yes .m{color:var(--alarm)} .fg.no .m{color:var(--phos)}
+.fg b{color:var(--ink);font-weight:700}
+.law{font-size:11.5px;color:var(--ice);margin-top:16px;letter-spacing:.02em;line-height:1.55}
+.cost{font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--ink-2);
+  margin-top:14px;border-left:2px solid var(--amber);padding-left:14px;max-width:72ch}
+.calib{font-family:var(--sans);font-size:13px;line-height:1.6;margin-top:14px;
+  border-left:2px solid var(--ice);padding-left:14px;color:var(--ink-2);max-width:72ch}
+.vnext{position:absolute;left:30px;right:30px;bottom:22px}
+.bigbtn{width:100%;border:1px solid var(--ice);color:var(--ice);padding:14px;
+  font-size:12px;font-weight:700;letter-spacing:.16em;transition:all .16s;
+  background:rgba(143,184,255,.07)}
+.bigbtn:hover{background:var(--ice);color:var(--void)}
+
+/* ── SCREENS (boot / rank-up / debrief) ─────────────────────────── */
+.screen{position:fixed;inset:52px 0 0;z-index:30;background:var(--void);
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:34px 26px;overflow-y:auto;text-align:center}
+.screen.on{display:flex}
+.screen .kicker{font-size:10px;letter-spacing:.28em;color:var(--alarm)}
+.screen h1{font-family:var(--mono);font-size:clamp(30px,6.6vw,62px);font-weight:700;
+  letter-spacing:-.035em;line-height:.98;margin-top:16px}
+.screen h1 em{font-style:normal;color:var(--ice)}
+.screen .sub{font-family:var(--sans);font-size:16px;color:var(--ink-2);margin-top:18px;
+  max-width:56ch;line-height:1.55}
+.screen .fine{font-family:var(--sans);font-size:13px;color:var(--ink-3);margin-top:14px;
+  max-width:60ch;line-height:1.6}
+.screen .go{margin-top:32px;border:1px solid var(--phos);color:var(--phos);
+  padding:15px 34px;font-size:12px;font-weight:700;letter-spacing:.18em;
+  background:rgba(125,240,200,.07);transition:all .18s}
+.screen .go:hover{background:var(--phos);color:var(--void);box-shadow:0 0 36px rgba(125,240,200,.4)}
+.keyhint{margin-top:20px;font-size:10px;letter-spacing:.14em;color:var(--ink-3)}
+.keyhint kbd{border:1px solid var(--grid);padding:2px 6px;margin:0 2px;font-family:var(--mono)}
+
+.tally{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;
+  background:var(--grid);border:1px solid var(--grid);margin:28px 0 4px;width:min(660px,100%)}
+.tally div{background:var(--console);padding:16px 10px}
+.tally .n{font-size:27px;font-weight:700;font-variant-numeric:tabular-nums}
+.tally .l{font-size:8.5px;letter-spacing:.16em;color:var(--ink-3);margin-top:6px}
+.note{font-family:var(--sans);font-size:13.5px;line-height:1.62;color:var(--ink-2);
+  margin-top:22px;max-width:64ch;text-align:left;border-left:2px solid var(--amber);padding-left:15px}
+.note b{color:var(--ink)}
+.row{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
+  font-weight:700;letter-spacing:.14em;transition:all .16s}
+.ghost:hover{border-color:var(--ink-2);color:var(--ink)}
+.rankart{font-size:clamp(46px,11vw,104px);line-height:1;font-weight:700;color:var(--phos);
+  text-shadow:0 0 46px rgba(125,240,200,.5)}
+
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rise{opacity:1;transform:none}
+}
+@media(max-width:760px){
+  .hud{gap:12px;padding:0 11px;height:48px}
+  .screen{inset:48px 0 0}
+  .clock,.xpwrap,.gauge.hide-s{display:none}
+  .rail{flex-basis:44px}
+  .desk{padding:18px 15px 190px}
+  .deck{padding:20px 15px 15px}
+  .keys{grid-template-columns:1fr;gap:7px}
+  .key .kd{display:none}
+  .key{padding:11px 13px}
+  .verdict{padding:18px 16px 100px}
+  .vnext{left:16px;right:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="hud">
+  <div class="brand"><span class="dot"></span>NIGHT SHIFT</div>
+  <div class="clock" id="clock">22:47</div>
+  <div class="xpwrap">
+    <div class="xptop"><span id="rankName">ROOKIE</span><b id="xpNum">0 XP</b></div>
+    <div class="xpbar"><i id="xpFill"></i></div>
+  </div>
+  <div class="gauge hide-s">
+    <span class="lbl">STANDING</span>
+    <span class="rep" id="rep"></span>
+  </div>
+  <div class="gauge">
+    <span class="lbl">RUN</span>
+    <span class="streak" id="streak"><span class="fl">◇</span><span id="streakN">0</span></span>
+  </div>
+  <div class="hud-r">
+    <button class="ibtn" id="sndBtn" onclick="toggleSound()" title="Sound">♪</button>
+    <button class="ibtn" onclick="location.href='academy.html'" title="Leave">✕</button>
+  </div>
+  <div class="timer" id="timer"><i id="timerFill"></i></div>
+</div>
+
+<div class="stage">
+  <div class="rail">
+    <span class="rlbl">QUEUE</span>
+    <div id="slots" style="display:flex;flex-direction:column;gap:9px"></div>
+  </div>
+
+  <div class="desk" id="desk">
+    <div class="meta rise" id="mRow">
+      <span class="id" id="aId">—</span>
+      <span class="rule" id="aRule">—</span>
+      <span class="pos" id="aPos">—</span>
+    </div>
+    <h1 class="case rise" id="aTitle">—</h1>
+    <div class="subject rise" id="aSubject">—</div>
+
+    <div class="rows">
+      <div class="blk rise" id="bFacts">
+        <div class="bl">CUSTOMER PROFILE</div>
+        <div class="facts" id="aFacts"></div>
+      </div>
+      <div class="blk rise" id="bTrig">
+        <div class="bl">WHAT TRIPPED THE RULE</div>
+        <div class="prose" id="aNarr"></div>
+        <div id="aLedger"></div>
+      </div>
+      <div class="blk rise" id="bFile">
+        <div class="bl">ON FILE</div>
+        <div class="prose" id="aFile"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deck" id="deck">
+    <div class="conf">
+      <span class="cl">HOW SURE ARE YOU?</span>
+      <div class="pips" id="pips"></div>
+      <span class="hint" id="confHint">arrow keys</span>
+    </div>
+    <div class="keys">
+      <button class="key k1" onclick="decide('close')">
+        <span class="kn"><span class="num">1</span>CLOSE</span>
+        <span class="kd">No further action. Rationale recorded.</span>
+      </button>
+      <button class="key k2" onclick="decide('rfi')">
+        <span class="kn"><span class="num">2</span>ASK</span>
+        <span class="kd">Back to the RM before deciding. Costs half a day.</span>
+      </button>
+      <button class="key k3" onclick="decide('escalate')">
+        <span class="kn"><span class="num">3</span>ESCALATE</span>
+        <span class="kd">Refer to investigations. Costs two days.</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="verdict" id="verdict">
+    <div class="vhead">
+      <span class="stamp" id="vStamp">—</span>
+      <h2 id="vTitle">—</h2>
+      <span class="vxp" id="vXp"></span>
+    </div>
+    <div class="vwhy" id="vWhy"></div>
+    <div class="calib" id="vCalib"></div>
+    <div class="flagrid" id="vFlags"></div>
+    <div class="law" id="vLaw"></div>
+    <div class="cost" id="vCost"></div>
+    <div class="vnext"><button class="bigbtn" id="vNext" onclick="advance()">NEXT ALERT &nbsp;›</button></div>
+  </div>
+</div>
+
+<div class="scan" id="scan"></div>
+<div class="edge" id="edge"></div>
+
+<!-- BOOT -->
+<div class="screen on" id="scBoot">
+  <div class="kicker">REGRADAR ACADEMY · MODULE 04</div>
+  <h1>It's 22:47.<br>The queue is <em>full</em>.</h1>
+  <p class="sub">Six alerts. Fifteen minutes. Two analysts you can call on,
+    and every escalation burns two of their days.</p>
+  <p class="fine">Close everything and you are the reason a fine gets issued. Escalate everything and
+    the real case sits behind the noise for six weeks. Both are failures, and both are scored.</p>
+  <button class="go" onclick="boot()">CLOCK IN</button>
+  <div class="keyhint"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> decide ·
+    <kbd>←</kbd><kbd>→</kbd> confidence · <kbd>↵</kbd> continue</div>
+</div>
+
+<!-- RANK UP -->
+<div class="screen" id="scRank">
+  <div class="kicker">PROMOTION</div>
+  <div class="rankart" id="rankArt">★</div>
+  <h1 id="rankTitle">—</h1>
+  <p class="sub" id="rankBlurb"></p>
+  <button class="go" onclick="closeRank()">CARRY ON</button>
+</div>
+
+<!-- DEBRIEF -->
+<div class="screen" id="scEnd">
+  <div class="kicker" id="endKick">SHIFT COMPLETE</div>
+  <h1 id="endTitle">—</h1>
+  <div class="tally">
+    <div><div class="n" id="tPrec" style="color:var(--phos)">—</div><div class="l">PRECISION</div></div>
+    <div><div class="n" id="tRec" style="color:var(--ice)">—</div><div class="l">RECALL</div></div>
+    <div><div class="n" id="tMiss">—</div><div class="l">MISSED</div></div>
+    <div><div class="n" id="tDays" style="color:var(--amber)">—</div><div class="l">DAYS BURNED</div></div>
+    <div><div class="n" id="tXp">—</div><div class="l">XP EARNED</div></div>
+  </div>
+  <div class="note" id="endNote"></div>
+  <div class="note" id="endNext" style="border-left-color:var(--ice)"></div>
+  <div class="row">
+    <button class="go" onclick="boot()">NEXT SHIFT</button>
+    <button class="ghost" onclick="location.href='casefile.html'">THE CASEFILE</button>
+    <button class="ghost" onclick="location.href='academy.html'">ACADEMY</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   THE NIGHT SHIFT — game layer over the triage engine.
+
+   Design decisions that matter more than they look:
+   · Review serves a DIFFERENT case from the same family, never the same
+     case twice. Re-serving a case tests memory of the answer; serving a
+     sibling tests the skill. That distinction is the whole point.
+   · Standing drops only on a REPEATED mistake in the same family. Being
+     wrong is how you learn; failing to learn from it is the fault.
+   · Confidence is captured before the decision, so being confidently
+     wrong can be named — a miscalibrated analyst is a risk an accuracy
+     score alone will never show.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const SHIFT_SIZE=6, SHIFT_SECONDS=900, REVIEW_SHARE=0.34;
+const COST={close:0, rfi:0.5, escalate:2};
+const EVKEY='regradar-events', PROGKEY='regradar-progress';
+
+const RANKS=[
+ {xp:0,    n:'ROOKIE',        art:'·',  blurb:'You have a login and a queue. Everything else is earned.'},
+ {xp:600,  n:'ANALYST I',     art:'▹',  blurb:'You can tell a documented house purchase from a structured deposit. That is further than it sounds.'},
+ {xp:1500, n:'ANALYST II',    art:'▸',  blurb:'You are closing cleanly and escalating deliberately. Investigations has noticed.'},
+ {xp:2800, n:'SENIOR',        art:'◆',  blurb:'You read the counterparty before the amount. That habit is what separates an analyst from an alert-clearer.'},
+ {xp:4500, n:'LEAD',          art:'◈',  blurb:'You could calibrate a desk. Which is the point at which this stops being training.'},
+ {xp:7000, n:'SPECIALIST',    art:'★',  blurb:'Consistent across typologies, calibrated in confidence, economical with capacity. There is no higher score than that.'},
+];
+
+let CASES=[], Q=[], idx=0, answered=[], cap=0, xpRun=0, conf=2;
+let left=SHIFT_SECONDS, T=null, locked=false;
+let P={xp:0, standing:5, streak:0, best:0};
+
+/* ── persistence ────────────────────────────────────────────────── */
+const events=()=>{try{return JSON.parse(localStorage.getItem(EVKEY)||'[]')}catch(e){return[]}};
+function logEvent(e){try{const a=events();a.push(e);
+  localStorage.setItem(EVKEY,JSON.stringify(a.slice(-2000)))}catch(x){}}
+function loadProg(){try{const p=JSON.parse(localStorage.getItem(PROGKEY)||'null');
+  if(p) P={...P,...p}}catch(e){}}
+function saveProg(){try{localStorage.setItem(PROGKEY,JSON.stringify(P))}catch(e){}}
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ── sound: synthesized, so nothing to download ─────────────────── */
+let AC=null, SND=true;
+try{ SND = localStorage.getItem('regradar-snd')!=='off'; }catch(e){}
+function tone(freq,dur,type='sine',gain=.06,delay=0){
+  if(!SND) return;
+  try{
+    AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+    const t=AC.currentTime+delay;
+    const o=AC.createOscillator(), g=AC.createGain();
+    o.type=type; o.frequency.setValueAtTime(freq,t);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(gain,t+.012);
+    g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t+dur+.02);
+  }catch(e){}
+}
+const sfx={
+  tick:()=>tone(880,.05,'square',.02),
+  sweep:()=>{tone(300,.16,'sine',.03);tone(600,.2,'sine',.02,.05)},
+  right:()=>{tone(587,.14,'sine',.06);tone(880,.22,'sine',.05,.09)},
+  part: ()=>{tone(494,.16,'triangle',.05);tone(494,.16,'triangle',.04,.13)},
+  wrong:()=>{tone(150,.3,'square',.05);tone(104,.36,'square',.04,.05)},
+  rank: ()=>[523,659,784,1047].forEach((f,i)=>tone(f,.3,'sine',.06,i*.1)),
+};
+function toggleSound(){
+  SND=!SND;
+  try{localStorage.setItem('regradar-snd',SND?'on':'off')}catch(e){}
+  document.getElementById('sndBtn').style.color=SND?'':'var(--grid)';
+  if(SND) sfx.tick();
+}
+
+/* ── content ────────────────────────────────────────────────────── */
+async function loadCases(){
+  for(const u of ['data/academy/triage-cases.json','triage-cases.json']){
+    try{ const r=await fetch(u,{cache:'no-store'}); if(!r.ok) continue;
+      const d=await r.json(); CASES=d.cases||[]; if(CASES.length) return true;
+    }catch(e){}
+  }
+  return false;
+}
+
+/* Interleaving: review pulls a SIBLING from the family, not the same case. */
+function selectShift(n){
+  const ev=events().filter(e=>e.module==='triage');
+  const lastSeen={}, errs={}, famErr={};
+  ev.forEach(e=>{
+    lastSeen[e.case]=e.at;
+    if(e.correct!=='right'){ errs[e.case]=(errs[e.case]||0)+1;
+      if(e.family) famErr[e.family]=(famErr[e.family]||0)+1; }
+  });
+  const daysAgo=id=>lastSeen[id]?(Date.now()-new Date(lastSeen[id]).getTime())/864e5:null;
+
+  const weakFams=Object.keys(famErr).sort((a,b)=>famErr[b]-famErr[a]);
+  const review=[];
+  weakFams.forEach(f=>{
+    /* prefer an unseen sibling; fall back to the stalest seen one */
+    const sibs=CASES.filter(c=>c.family===f);
+    const unseen=sibs.filter(c=>!lastSeen[c.id]);
+    const pick=unseen[0] || sibs.slice().sort((a,b)=>(daysAgo(b.id)||0)-(daysAgo(a.id)||0))[0];
+    if(pick && !review.includes(pick)) review.push(pick);
+  });
+  /* plus anything seen long enough ago to have faded */
+  CASES.filter(c=>lastSeen[c.id] && (daysAgo(c.id)||0)>=3 && !review.includes(c))
+    .sort((a,b)=>(daysAgo(b.id)||0)-(daysAgo(a.id)||0)).forEach(c=>review.push(c));
+
+  const fresh=CASES.filter(c=>!lastSeen[c.id] && !review.includes(c))
+    .sort(()=>Math.random()-0.5);
+
+  const want=Math.min(review.length, Math.round(n*REVIEW_SHARE));
+  let picked=[...review.slice(0,want), ...fresh.slice(0,n-want)];
+
+  if(picked.length<n){                                    /* top up */
+    const have=new Set(picked.map(c=>c.id));
+    [...fresh,...review,...CASES].forEach(c=>{
+      if(picked.length<n && !have.has(c.id)){ picked.push(c); have.add(c.id); }});
+  }
+  /* every shift carries at least one benign case: closing confidently is a
+     trained skill, not the absence of one */
+  if(picked.length && !picked.some(c=>!c.is_real_case)){
+    const fp=CASES.find(c=>!c.is_real_case);
+    if(fp) picked[picked.length-1]=fp;
+  }
+  return picked.slice(0,n).sort(()=>Math.random()-0.5);
+}
+
+/* ── flow ───────────────────────────────────────────────────────── */
+async function boot(){
+  if(!CASES.length){
+    const ok=await loadCases();
+    if(!ok){
+      document.getElementById('scBoot').innerHTML=
+        `<div class="kicker" style="color:var(--alarm)">NO CASE LIBRARY</div>
+         <h1>The queue is empty.</h1>
+         <p class="sub">This page needs <b>triage-cases.json</b> next to it, or in
+           <b>data/academy/</b>.</p>
+         <p class="fine">If you opened the file straight from disk, serve it over http instead —
+           browsers block local file reads.</p>`;
+      document.getElementById('scBoot').classList.add('on');
+      return;
+    }
+  }
+  loadProg();
+  Q=selectShift(SHIFT_SIZE);
+  idx=0; answered=[]; cap=0; xpRun=0; left=SHIFT_SECONDS; locked=false;
+  ['scBoot','scEnd','scRank'].forEach(i=>document.getElementById(i).classList.remove('on'));
+  document.getElementById('sndBtn').style.color=SND?'':'var(--grid)';
+  clearInterval(T); T=setInterval(tick,1000);
+  paintHud(); render();
+}
+
+function tick(){
+  left--;
+  const m=Math.floor(Math.max(0,left)/60), s=Math.max(0,left)%60;
+  document.getElementById('clock').textContent=
+    `22:${String(47+Math.floor((SHIFT_SECONDS-left)/60)).padStart(2,'0')}`;
+  const f=Math.max(0,left/SHIFT_SECONDS);
+  document.getElementById('timerFill').style.transform=`scaleX(${f})`;
+  const t=document.getElementById('timer');
+  t.classList.toggle('warn',f<.4); t.classList.toggle('crit',f<.15);
+  if(left<=0){ clearInterval(T); endShift(true); }
+}
+
+function rankOf(xp){ let r=RANKS[0]; RANKS.forEach(x=>{if(xp>=x.xp) r=x}); return r; }
+function nextRank(xp){ return RANKS.find(x=>x.xp>xp)||null; }
+
+function paintHud(){
+  const r=rankOf(P.xp), nx=nextRank(P.xp);
+  document.getElementById('rankName').textContent=r.n;
+  document.getElementById('xpNum').textContent=P.xp+' XP';
+  const span=nx? (P.xp-r.xp)/(nx.xp-r.xp) : 1;
+  document.getElementById('xpFill').style.width=Math.round(span*100)+'%';
+  document.getElementById('rep').innerHTML=[0,1,2,3,4].map(i=>
+    `<span class="${i<P.standing?'on':(i<3?'hurt':'')}"></span>`).join('');
+  const st=document.getElementById('streak');
+  document.getElementById('streakN').textContent=P.streak;
+  st.classList.toggle('hot',P.streak>=3);
+  st.querySelector('.fl').textContent=P.streak>=3?'▲':'◇';
+}
+
+function paintSlots(){
+  document.getElementById('slots').innerHTML=Q.map((c,i)=>{
+    const a=answered.find(x=>x.c.id===c.id);
+    let cls='',ch=(i+1);
+    if(a){ cls=a.correct==='right'?'ok':a.correct==='part'?'part':'bad';
+           ch=a.correct==='right'?'✓':a.correct==='part'?'~':'✗'; }
+    else if(i===idx) cls='now';
+    return `<div class="slot ${cls}">${ch}</div>`;
+  }).join('');
+}
+
+function render(){
+  const c=Q[idx]; if(!c) return endShift(false);
+  locked=false; conf=2;
+  document.getElementById('verdict').classList.remove('on');
+  document.getElementById('deck').style.display='';
+  document.querySelectorAll('.key').forEach(k=>k.disabled=false);
+
+  document.getElementById('aId').textContent=c.id;
+  document.getElementById('aRule').textContent=c.rule;
+  document.getElementById('aPos').textContent=`${idx+1} / ${Q.length}`;
+  document.getElementById('aTitle').textContent=c.title;
+  document.getElementById('aSubject').textContent=c.customer;
+  document.getElementById('aFacts').innerHTML=Object.entries(c.facts||{}).map(([k,v])=>
+    `<div class="f"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('');
+  document.getElementById('aNarr').textContent=c.narrative;
+  document.getElementById('aLedger').innerHTML=(c.transactions||[]).length
+    ? `<table class="ledger">${c.transactions.map(t=>
+        `<tr><td>${esc(t[0])}</td><td>${esc(t[1])}</td>
+             <td class="amt">${esc(t[2])}</td><td class="det">${esc(t[3])}</td></tr>`).join('')}</table>`
+    : '';
+  document.getElementById('aFile').textContent=c.on_file;
+  paintPips(); paintSlots();
+  document.getElementById('desk').scrollTop=0;
+
+  /* the sweep: the monitoring system surfacing a contact */
+  const sc=document.getElementById('scan');
+  sc.classList.remove('go'); void sc.offsetWidth; sc.classList.add('go');
+  sfx.sweep();
+  document.querySelectorAll('.rise').forEach((el,i)=>{
+    el.classList.remove('in'); void el.offsetWidth;
+    el.style.animationDelay=(90+i*55)+'ms'; el.classList.add('in');
+  });
+}
+
+function paintPips(){
+  const L=['NO IDEA','LEANING','FAIRLY','CERTAIN'];
+  document.getElementById('pips').innerHTML=L.map((l,i)=>
+    `<button class="pip ${i===conf?'on':''}" onclick="setConf(${i})" title="${l}">${i+1}</button>`).join('');
+  document.getElementById('confHint').textContent=L[conf].toLowerCase();
+}
+function setConf(i){ conf=Math.max(0,Math.min(3,i)); paintPips(); sfx.tick(); }
+
+function flash(col){
+  const e=document.getElementById('edge');
+  e.style.color=col; e.classList.remove('hit'); void e.offsetWidth; e.classList.add('hit');
+}
+function popXp(txt,col){
+  const p=document.createElement('div');
+  p.className='pop'; p.textContent=txt; p.style.color=col;
+  p.style.left='calc(50% - 40px)'; p.style.top='42%';
+  document.body.appendChild(p); setTimeout(()=>p.remove(),1200);
+}
+
+function decide(choice){
+  if(locked) return;
+  const c=Q[idx]; if(!c) return;
+  locked=true;
+  document.querySelectorAll('.key').forEach(k=>k.disabled=true);
+  cap+=COST[choice];
+
+  const correct = choice===c.best_action ? 'right'
+    : (choice==='escalate' && c.is_real_case) || (choice==='rfi' && c.best_action==='escalate')
+      ? 'part' : 'wrong';
+
+  /* XP rewards correct reasoning, and calibration on top of it */
+  let xp = correct==='right'?100 : correct==='part'?40 : 0;
+  let calib='';
+  if(correct==='right'){
+    if(conf>=2){ xp+=40; calib='Right, and you knew it. Confidence matched competence — that is what makes a decision defensible in a file.'; }
+    else{ xp+=15; calib='Right, but you were unsure. Worth noticing what you actually had: the evidence supported this call more strongly than it felt.'; }
+  }else if(correct==='wrong' && conf>=3){
+    calib='You were certain, and you were wrong. That combination is the most dangerous state an analyst can be in — far more than being wrong and knowing it. Slow down where you feel most sure.';
+  }else if(correct!=='right' && conf<=1){
+    xp+=10; calib='Wrong, but you knew you were unsure — and that instinct is worth something. When a case feels unclear, that is the signal to ask rather than guess.';
+  }
+  const mult=1+Math.min(.5,P.streak*.1);
+  xp=Math.round(xp*mult);
+
+  /* Standing: a first mistake in a family is learning. A repeat is not. */
+  const prior=events().filter(e=>e.module==='triage'&&e.family===c.family&&e.correct!=='right').length;
+  let repeated=false;
+  if(correct==='wrong'){
+    P.streak=0;
+    if(prior>0){ P.standing=Math.max(0,P.standing-1); repeated=true; }
+  }else{
+    P.streak++; xpRun+=0;
+    if(P.streak%4===0) P.standing=Math.min(5,P.standing+1);
+  }
+  P.xp+=xp; xpRun+=xp;
+  const before=rankOf(P.xp-xp), after=rankOf(P.xp);
+  saveProg();
+
+  answered.push({c,choice,correct,conf,xp});
+  logEvent({module:'triage', case:c.id, family:c.family, decision:choice,
+            correct, confidence:conf, best:c.best_action, at:new Date().toISOString()});
+
+  const col = correct==='right'?'var(--phos)':correct==='part'?'var(--amber)':'var(--alarm)';
+  flash(col);
+  if(xp) popXp('+'+xp, col);
+  (correct==='right'?sfx.right:correct==='part'?sfx.part:sfx.wrong)();
+  paintHud(); paintSlots();
+  showVerdict(c,choice,correct,xp,calib,repeated);
+
+  if(after.n!==before.n) setTimeout(()=>showRank(after),700);
+}
+
+function showVerdict(c,choice,correct,xp,calib,repeated){
+  const st=document.getElementById('vStamp');
+  const col = correct==='right'?'var(--phos)':correct==='part'?'var(--amber)':'var(--alarm)';
+  st.textContent = correct==='right'?'CORRECT':correct==='part'?'DEFENSIBLE':'WRONG CALL';
+  st.style.color=col;
+  document.getElementById('vTitle').textContent =
+    choice==='close'?'You closed it':choice==='rfi'?'You went back for more':'You escalated it';
+  document.getElementById('vXp').innerHTML = xp?`<span style="color:${col}">+${xp} XP</span>`:'';
+  document.getElementById('vWhy').textContent=c.why;
+  document.getElementById('vCalib').innerHTML = calib
+    ? esc(calib) + (repeated
+      ? ' <b style="color:var(--alarm)">And this is the second time this typology has caught you — standing down one.</b>'
+      : '')
+    : (repeated?'<b style="color:var(--alarm)">Second miss in this typology. Standing down one.</b>':'');
+  document.getElementById('vCalib').style.display = (calib||repeated)?'':'none';
+  document.getElementById('vFlags').innerHTML=(c.flags||[]).map(f=>
+    `<div class="fg ${f.present?'yes':'no'}"><span class="m">${f.present?'▲':'○'}</span>
+      <div><b>${f.present?'Red flag present':'Not a concern here'}</b> — ${esc(f.text)}</div></div>`).join('');
+  document.getElementById('vLaw').textContent=c.law;
+  document.getElementById('vCost').textContent=(c.consequences||{})[choice]||'';
+  document.getElementById('vNext').innerHTML =
+    (answered.length>=Q.length? 'END SHIFT' : 'NEXT ALERT') + ' &nbsp;›';
+  document.getElementById('deck').style.display='none';
+  document.getElementById('verdict').classList.add('on');
+  document.getElementById('verdict').scrollTop=0;
+}
+
+function advance(){
+  if(answered.length>=Q.length) return endShift(false);
+  idx++;
+  while(idx<Q.length && answered.find(a=>a.c.id===Q[idx].id)) idx++;
+  if(idx>=Q.length) return endShift(false);
+  render();
+}
+
+function showRank(r){
+  sfx.rank();
+  document.getElementById('rankArt').textContent=r.art;
+  document.getElementById('rankTitle').textContent=r.n;
+  document.getElementById('rankBlurb').textContent=r.blurb;
+  document.getElementById('scRank').classList.add('on');
+  if(P.xp>P.best){P.best=P.xp;saveProg();}
+}
+function closeRank(){ document.getElementById('scRank').classList.remove('on'); }
+
+/* ── debrief ────────────────────────────────────────────────────── */
+function endShift(ranOut){
+  clearInterval(T);
+  const escs=answered.filter(a=>a.choice==='escalate');
+  const truePos=escs.filter(a=>a.c.is_real_case).length;
+  const real=Q.filter(c=>c.is_real_case);
+  const kept=answered.filter(a=>a.c.is_real_case&&a.choice!=='close').length;
+  const missed=real.filter(c=>{const a=answered.find(x=>x.c.id===c.id);return !a||a.choice==='close'});
+  const prec=escs.length?Math.round(truePos/escs.length*100):null;
+  const rec=real.length?Math.round(kept/real.length*100):0;
+
+  document.getElementById('tPrec').textContent=prec===null?'—':prec+'%';
+  document.getElementById('tRec').textContent=rec+'%';
+  document.getElementById('tMiss').textContent=missed.length;
+  document.getElementById('tMiss').style.color=missed.length?'var(--alarm)':'var(--phos)';
+  document.getElementById('tDays').textContent=cap.toFixed(1);
+  document.getElementById('tXp').textContent=xpRun;
+
+  let kick='SHIFT COMPLETE', title, note;
+  if(ranOut && answered.length<Q.length){
+    kick='TIME';
+    title=`${Q.length-answered.length} still open.`;
+    note='<b>Unworked alerts do not disappear.</b> They age, and ageing alerts are one of the first '
+      +'things an examiner asks about. Speed is not a virtue on its own — but a queue you cannot clear '
+      +'is a finding waiting to happen.';
+  }else if(missed.length===0 && prec>=75 && cap<=Q.length*1.5){
+    title='Clean shift.';
+    note='<b>You caught every real case without flooding investigations.</b> Notice what that took: '
+      +'closing the documented purchase and the corroborated cash without hesitation, so the capacity '
+      +'existed for the cases that needed it. Confident closing is what makes escalation mean anything.';
+  }else if(missed.length===0){
+    title = cap>Q.length*1.5 ? 'Nothing missed. Everything spent.' : 'Nothing missed. At a cost.';
+    note='<b>You caught everything by escalating widely.</b> That is the most common failure in a real '
+      +'queue and it does not look like failure — it looks like diligence. But two days per escalation '
+      +'is finite, and the trade-based case waits behind the house purchase you sent up.';
+  }else{
+    title=`${missed.length} got past you.`;
+    note='<b>Every miss here is one a supervisor would expect you to have caught.</b> Look at what they '
+      +'had in common: the decisive fact was rarely the amount. It was the counterparty, the relationship '
+      +'between accounts, or the absence of any economic reason for the structure.';
+  }
+  document.getElementById('endKick').textContent=kick;
+  document.getElementById('endTitle').textContent=title;
+  document.getElementById('endNote').innerHTML=note;
+
+  /* what the next shift will target — adaptive selection nobody can see
+     is indistinguishable from randomness */
+  const ev=events().filter(e=>e.module==='triage');
+  const famErr={}, famSeen={};
+  ev.forEach(e=>{ if(!e.family) return; famSeen[e.family]=(famSeen[e.family]||0)+1;
+    if(e.correct!=='right') famErr[e.family]=(famErr[e.family]||0)+1; });
+  const weak=Object.keys(famErr).sort((a,b)=>famErr[b]-famErr[a]).slice(0,3);
+  const seen=new Set(ev.map(e=>e.case)).size;
+  const nx=nextRank(P.xp);
+  document.getElementById('endNext').innerHTML =
+    (weak.length
+      ? `<b>Next shift is being built around ${weak.map(w=>esc(w)).join(', ')}.</b> Not the same cases — `
+        +`a different one from the same family, because re-serving a case you have already read tests `
+        +`whether you remember the answer, not whether you have the skill.`
+      : `<b>Nothing is failing consistently yet.</b> About a third of every shift is review, spaced far `
+        +`enough apart that you have genuinely started to forget. That gap is where retention is built.`)
+    + `<br><br><span style="color:var(--ink-3);font-size:12.5px">${seen} of ${CASES.length} cases seen · `
+    + `${P.xp} XP · ${rankOf(P.xp).n}${nx?` · ${nx.xp-P.xp} XP to ${nx.n}`:' · top rank'}</span>`;
+
+  /* feed the shared Academy record */
+  try{
+    const K='regradar-academy';
+    const st=JSON.parse(localStorage.getItem(K)||'{}');
+    st.triage=st.triage||{plays:0};
+    st.triage.plays++; st.triage.precision=prec===null?0:prec; st.triage.recall=rec;
+    st.triage.missed=missed.length; st.triage.casesSeen=seen; st.triage.libraryTotal=CASES.length;
+    st.triage.weakest=weak[0]||null; st.triage.xp=P.xp; st.triage.rank=rankOf(P.xp).n;
+    st.triage.best=Math.max(st.triage.best||0, Math.round(rec*.65+(prec||0)*.35));
+    st.triage.lastAt=new Date().toISOString();
+    localStorage.setItem(K,JSON.stringify(st));
+  }catch(e){}
+
+  document.getElementById('scEnd').classList.add('on');
+}
+
+/* ── keyboard: games are played with keys ───────────────────────── */
+document.addEventListener('keydown',e=>{
+  const rankOpen=document.getElementById('scRank').classList.contains('on');
+  const bootOpen=document.getElementById('scBoot').classList.contains('on');
+  const endOpen=document.getElementById('scEnd').classList.contains('on');
+  const vOpen=document.getElementById('verdict').classList.contains('on');
+  if(rankOpen){ if(e.key==='Enter'||e.key===' '){e.preventDefault();closeRank();} return; }
+  if(bootOpen||endOpen){ if(e.key==='Enter'||e.key===' '){e.preventDefault();boot();} return; }
+  if(vOpen){ if(e.key==='Enter'||e.key===' '){e.preventDefault();advance();} return; }
+  if(e.key==='1') decide('close');
+  else if(e.key==='2') decide('rfi');
+  else if(e.key==='3') decide('escalate');
+  else if(e.key==='ArrowLeft'){e.preventDefault();setConf(conf-1);}
+  else if(e.key==='ArrowRight'){e.preventDefault();setConf(conf+1);}
+});
+
+loadProg(); paintHud();
+</script>
+</body>
+</html>

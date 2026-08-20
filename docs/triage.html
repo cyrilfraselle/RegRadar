@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRadar Academy — The Queue</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
+<style>
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F4F5F6; --border:#E3E5E8; --border-strong:#0A0A0A;
+    --text:#0A0A0A; --text-2:#5B6069; --text-3:#8B9099;
+    --accent:#0039A6; --crit:#C8320F; --imp:#9A6B00; --ok:#0F7B4F; --purple:#4B2E83;
+    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"IBM Plex Mono",Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.2,0,0,1);
+  }
+  html[data-theme="dark"]{
+    --bg:#08090B; --surface:#0E1013; --surface-2:#14171B; --border:#20242A; --border-strong:#F2F2F2;
+    --text:#F2F4F6; --text-2:#98A0AA; --text-3:#666E78;
+    --accent:#4D8DFF; --crit:#FF5C3D; --imp:#FFB93D; --ok:#2DD48F; --purple:#A98BE0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;
+    line-height:1.5;letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+
+  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
+  .topbar-inner{display:flex;align-items:center;gap:18px;height:60px;max-width:1280px;margin:0 auto;padding:0 24px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+  .logo-mark{width:30px;height:30px;background:var(--accent);color:#fff;display:flex;
+    align-items:center;justify-content:center;font-weight:700;font-size:17px}
+  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
+  .nav{display:flex;margin-left:14px}
+  .nav a{padding:8px 12px;font-size:13px;font-weight:500;color:var(--text-2);
+    border-bottom:2px solid transparent;margin-bottom:-2px}
+  .nav a:hover:not(.active){color:var(--text)}
+  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
+  .topbar-right{margin-left:auto;display:flex;gap:10px}
+  .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;
+    color:var(--text-2);cursor:pointer;font-size:15px}
+
+  .btn{font-family:var(--font);font-size:12px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.08em;padding:11px 18px;border:1px solid var(--border);background:transparent;
+    color:var(--text-2);cursor:pointer;transition:all 140ms var(--ease)}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.pri:hover{opacity:.88;color:#fff}
+  .btns{display:flex;gap:9px;flex-wrap:wrap}
+
+  /* intro */
+  .intro{padding:38px 0 26px;max-width:72ch}
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+  .intro h1{font-size:40px;font-weight:700;letter-spacing:-.033em;line-height:1.02;margin-top:12px}
+  .intro .lede{font-size:17px;color:var(--text-2);margin-top:15px;line-height:1.45}
+  .intro p{font-size:14px;color:var(--text-2);margin-top:13px;line-height:1.6}
+  .callout{border-left:2px solid var(--accent);padding:10px 0 10px 15px;margin-top:18px;
+    font-size:13.5px;line-height:1.6;color:var(--text-2)}
+  .callout b{color:var(--text)}
+
+  /* HUD */
+  .hud{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);
+    border-top:2px solid var(--border-strong);border-bottom:1px solid var(--border);margin-bottom:8px}
+  .hud div{background:var(--bg);padding:12px 0 10px}
+  .hud .n{font-family:var(--mono);font-size:23px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .hud .l{font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.09em;
+    font-weight:700;margin-top:5px}
+  .hud .miss .n{color:var(--crit)} .hud .good .n{color:var(--ok)} .hud .time .n{color:var(--imp)}
+  .timerbar{height:5px;background:var(--surface-2);margin-bottom:22px}
+  .timerbar i{display:block;height:100%;background:var(--ok);width:100%;transition:width 1s linear}
+  .timerbar.warn i{background:var(--imp)} .timerbar.crit i{background:var(--crit)}
+
+  /* case */
+  .case{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;padding-bottom:26px}
+  @media(max-width:980px){.case{grid-template-columns:1fr}}
+
+  .alert{border-top:2px solid var(--border-strong);padding-top:14px}
+  .arow{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .aid{font-family:var(--mono);font-size:11px;color:var(--text-3);font-weight:700}
+  .arule{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+    padding:2px 7px;border:1px solid var(--imp);color:var(--imp)}
+  .alert h2{font-size:23px;font-weight:700;letter-spacing:-.024em;line-height:1.2;margin:10px 0 2px}
+  .asub{font-size:13px;color:var(--text-3);font-family:var(--mono)}
+
+  .facts{border-top:1px solid var(--border);margin-top:16px;padding-top:12px}
+  .fl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--text-3);margin-bottom:9px}
+  .kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:13.5px}
+  .kv .k{color:var(--text-3);font-size:10px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.07em;padding-top:3px}
+  .kv .v{color:var(--text-2)}
+  .kv .v.mono{font-family:var(--mono)}
+  .narr{font-size:14px;line-height:1.65;color:var(--text-2);margin-top:6px;max-width:72ch}
+
+  .txs{margin-top:6px;width:100%;border-collapse:collapse}
+  .txs th{text-align:left;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--text-3);border-bottom:2px solid var(--border-strong);padding:6px 8px 6px 0}
+  .txs td{font-size:12.5px;border-bottom:1px solid var(--border);padding:7px 8px 7px 0;color:var(--text-2)}
+  .txs td.m{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .txs tr.hot td{color:var(--text)}
+
+  /* decision */
+  .decide{border-top:2px solid var(--border-strong);margin-top:20px;padding-top:15px}
+  .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+  @media(max-width:700px){.opts{grid-template-columns:1fr}}
+  .opt{border:1px solid var(--border);padding:14px;cursor:pointer;text-align:left;
+    background:transparent;color:inherit;font-family:var(--font);transition:all 140ms var(--ease)}
+  .opt:hover{border-color:var(--accent);background:var(--surface-2)}
+  .opt .on{font-size:14px;font-weight:700;letter-spacing:-.01em}
+  .opt .od{font-size:12px;color:var(--text-2);line-height:1.45;margin-top:5px}
+  .opt .oc{font-size:10.5px;color:var(--text-3);margin-top:7px;font-family:var(--mono)}
+
+  /* feedback */
+  .fb{border-top:2px solid var(--border-strong);margin-top:20px;padding-top:16px;display:none}
+  .fb.on{display:block}
+  .verdict{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .vtag{font-family:var(--mono);font-size:11px;font-weight:700;padding:3px 9px;border:1px solid}
+  .v-right .vtag{border-color:var(--ok);color:var(--ok)}
+  .v-wrong .vtag{border-color:var(--crit);color:var(--crit)}
+  .v-part .vtag{border-color:var(--imp);color:var(--imp)}
+  .verdict h3{font-size:18px;font-weight:700;letter-spacing:-.02em}
+  .fb .why{font-size:14px;line-height:1.65;color:var(--text-2);margin-top:12px;max-width:74ch}
+  .flags{margin-top:16px}
+  .flag{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 0;
+    border-bottom:1px solid var(--border);font-size:13px;line-height:1.5}
+  .flag .i{font-family:var(--mono);font-weight:700}
+  .flag.seen .i{color:var(--ok)} .flag.missed .i{color:var(--crit)}
+  .flag b{font-weight:700}
+  .lawref{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-top:12px}
+  .cost{font-size:13px;color:var(--text-2);margin-top:12px;border-left:2px solid var(--imp);
+    padding-left:13px;line-height:1.6}
+
+  /* queue side panel */
+  .panel{border-top:2px solid var(--border-strong);padding-top:12px}
+  .pl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);
+    display:flex;justify-content:space-between;margin-bottom:9px}
+  .qitem{display:grid;grid-template-columns:20px 1fr auto;gap:9px;align-items:baseline;
+    padding:8px 0;border-bottom:1px solid var(--border);font-size:12.5px}
+  .qitem .i{font-family:var(--mono);font-weight:700;font-size:11px}
+  .qitem.done-ok .i{color:var(--ok)} .qitem.done-bad .i{color:var(--crit)}
+  .qitem.done-part .i{color:var(--imp)} .qitem.pending{opacity:.4}
+  .qitem .qn{color:var(--text-2)}
+  .qitem .qd{font-family:var(--mono);font-size:10.5px;color:var(--text-3)}
+
+  /* result */
+  .result{border-top:2px solid var(--border-strong);margin-top:8px;padding-top:22px}
+  .result h2{font-size:32px;font-weight:700;letter-spacing:-.03em;line-height:1.05}
+  .result .verd{font-size:15px;color:var(--text-2);margin-top:12px;max-width:70ch;line-height:1.6}
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:22px 0}
+  .metrics div{background:var(--bg);padding:15px 0 13px}
+  .metrics .n{font-family:var(--mono);font-size:27px;font-weight:700;line-height:1}
+  .metrics .l{font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:.09em;
+    font-weight:700;margin-top:6px}
+  .metrics .sub{font-size:10px;color:var(--text-3);margin-top:3px}
+  @media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}.hud{grid-template-columns:repeat(3,1fr)}}
+
+  footer{border-top:2px solid var(--border-strong);margin-top:26px;padding:18px 0 46px;font-size:10px;
+    color:var(--text-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .hide{display:none}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+  @media(max-width:720px){.intro h1{font-size:28px}.nav{overflow-x:auto;margin-left:0}.logo-sub{display:none}
+    .kv{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Academy</span></div>
+  <nav class="nav">
+    <a href="academy.html">Academy</a>
+    <a href="triage.html" class="active">The Queue</a>
+    <a href="laundromat.html">Laundromat</a>
+    <a href="index.html">Signal</a>
+    <a href="law.html">Read the Law</a>
+    <a href="shift.html">Night Shift</a>
+    <a href="casefile.html">Casefile</a>
+  </nav>
+  <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button></div>
+</div></div>
+
+<div class="wrap">
+
+  <section id="intro" class="intro">
+    <div class="eyebrow">Module 04 · Alert triage</div>
+    <h1>It's Monday.<br>Six alerts, and a queue behind them.</h1>
+    <p class="lede">This is the job. Not the theory of the job — the job. A queue that never empties,
+      mostly noise, with something real hiding in it. Fifteen minutes on the clock.</p>
+    <p>For each alert you close it, escalate it, or go back and ask for more. Every choice costs
+      something. Escalate everything and you bury the investigations team so the real case sits in
+      a backlog for six weeks. Close everything and you are the reason a fine gets issued.</p>
+    <div class="callout">
+      <b>You are scored the way a model is scored.</b> Precision: of the alerts you escalated, how
+      many were genuinely suspicious. Recall: of the genuinely suspicious ones, how many you caught.
+      Those two numbers fight each other, and learning to hold both is the entire craft.
+      <b>A missed case costs you far more than a wasted escalation</b> — as it should.
+    </div>
+    <div class="btns" style="margin-top:24px">
+      <button class="btn pri" onclick="startShift()">Start the shift</button>
+      <a class="btn" href="academy.html">Back to Academy</a>
+    </div>
+  </section>
+
+  <section id="game" class="hide">
+    <div class="hud">
+      <div><div class="n" id="hDone">0/6</div><div class="l">Worked</div></div>
+      <div class="good"><div class="n" id="hPrec">—</div><div class="l">Precision</div></div>
+      <div class="miss"><div class="n" id="hRec">—</div><div class="l">Recall</div></div>
+      <div><div class="n" id="hCap">0</div><div class="l">Investigator days</div></div>
+      <div class="time"><div class="n" id="hTime">15:00</div><div class="l">Time left</div></div>
+    </div>
+    <div class="timerbar" id="tbar"><i id="tfill"></i></div>
+
+    <div class="case">
+      <div>
+        <div class="alert">
+          <div class="arow">
+            <span class="aid" id="aId">—</span>
+            <span class="arule" id="aRule">—</span>
+          </div>
+          <h2 id="aTitle">—</h2>
+          <div class="asub" id="aSub">—</div>
+
+          <div class="facts">
+            <div class="fl">Customer</div>
+            <div class="kv" id="aKv"></div>
+          </div>
+
+          <div class="facts">
+            <div class="fl">What triggered the alert</div>
+            <div class="narr" id="aNarr"></div>
+            <div id="aTxWrap"></div>
+          </div>
+
+          <div class="facts" id="aCtxWrap">
+            <div class="fl">On file</div>
+            <div class="narr" id="aCtx"></div>
+          </div>
+        </div>
+
+        <div class="decide" id="decide">
+          <div class="fl">Your decision</div>
+          <div class="opts">
+            <button class="opt" onclick="decide('close')">
+              <div class="on">Close</div>
+              <div class="od">No further action. Rationale recorded.</div>
+              <div class="oc">costs 0 · frees the queue</div>
+            </button>
+            <button class="opt" onclick="decide('rfi')">
+              <div class="on">Request information</div>
+              <div class="od">Go back to the relationship manager or customer before deciding.</div>
+              <div class="oc">costs 0.5 day · delays</div>
+            </button>
+            <button class="opt" onclick="decide('escalate')">
+              <div class="on">Escalate</div>
+              <div class="od">Refer to investigations for a full case review.</div>
+              <div class="oc">costs 2 days of capacity</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="fb" id="fb">
+          <div class="verdict" id="fbVerdict"></div>
+          <div class="why" id="fbWhy"></div>
+          <div class="flags" id="fbFlags"></div>
+          <div class="lawref" id="fbLaw"></div>
+          <div class="cost" id="fbCost"></div>
+          <div class="btns" style="margin-top:20px">
+            <button class="btn pri" onclick="nextAlert()" id="nextBtn">Next alert</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <div class="pl"><span>The queue</span><span id="qLeft"></span></div>
+          <div id="queue"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <h2 id="rTitle">—</h2>
+      <div class="verd" id="rVerd"></div>
+      <div class="metrics">
+        <div><div class="n" id="mPrec">—</div><div class="l">Precision</div>
+          <div class="sub" id="mPrecS"></div></div>
+        <div><div class="n" id="mRec">—</div><div class="l">Recall</div>
+          <div class="sub" id="mRecS"></div></div>
+        <div><div class="n" id="mMiss">—</div><div class="l">Missed cases</div>
+          <div class="sub">each is a reportable failure</div></div>
+        <div><div class="n" id="mCap">—</div><div class="l">Investigator days</div>
+          <div class="sub">capacity you consumed</div></div>
+      </div>
+      <div class="callout" id="rLesson"></div>
+      <div style="margin-top:22px">
+        <div class="pl"><span>Case by case</span><span id="rCount"></span></div>
+        <div id="rBreak"></div>
+      </div>
+      <div id="rAdapt"></div>
+      <div class="btns" style="margin-top:22px">
+        <button class="btn pri" onclick="startShift()">Work another shift</button>
+        <a class="btn" href="academy.html">Back to Academy</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>RegRadar Academy · Module 04</span>
+    <span>Cases are composites · figures illustrative</span>
+  </footer>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   THE QUEUE — alert triage under time pressure.
+
+   The pedagogy: an analyst is not graded on knowing typologies, they
+   are graded on decisions made with incomplete information and a
+   finite investigations team. So the scoring is precision and recall,
+   the same pair used to judge the monitoring model itself — and the
+   two are deliberately in tension.
+
+   Each case carries the red flags that were present and the ones that
+   were not, so the debrief teaches what to look at rather than what
+   to conclude.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const SHIFT_SECONDS=900, CAPACITY_PER_ESC=2, CAPACITY_PER_RFI=0.5;
+const SHIFT_SIZE=6;
+
+/* ── content lives in data, not in code ───────────────────────────
+   Cases are fetched from data/academy/triage-cases.json so the library
+   can grow to hundreds without touching this file. Authoring a case is
+   editing data; adding a feature is editing code. Keeping those apart
+   is what makes the case library cheap to extend.                    */
+let CASES=[], META={};
+
+async function loadCases(){
+  const paths=['data/academy/triage-cases.json','triage-cases.json'];
+  for(const u of paths){
+    try{
+      const r=await fetch(u,{cache:'no-store'});
+      if(!r.ok) continue;
+      const d=await r.json();
+      CASES=d.cases||[]; META=d._meta||{};
+      return true;
+    }catch(e){/* try next */}
+  }
+  return false;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   EVENT HISTORY + ADAPTIVE SELECTION
+
+   Every decision is appended as an event, never overwritten:
+       {case, decision, correct, at}
+   Everything else — weakness by typology, spaced repetition, team
+   dispersion — is a query over that list. Getting the event shape
+   right is the whole trick; the "intelligence" on top is arithmetic.
+   ═══════════════════════════════════════════════════════════════ */
+const EVKEY='regradar-events';
+const MAX_EVENTS=2000;
+
+function events(){ try{ return JSON.parse(localStorage.getItem(EVKEY)||'[]'); }catch(e){ return []; } }
+function logEvent(ev){
+  try{
+    const all=events(); all.push(ev);
+    localStorage.setItem(EVKEY, JSON.stringify(all.slice(-MAX_EVENTS)));
+  }catch(e){}
+}
+
+/* Which typologies does this analyst get wrong? */
+function weakTypologies(){
+  const score={}, seen={};
+  events().filter(e=>e.module==='triage').forEach(e=>{
+    const c=CASES.find(x=>x.id===e.case); if(!c) return;
+    (c.typologies||[]).forEach(t=>{
+      seen[t]=(seen[t]||0)+1;
+      if(e.correct!=='right') score[t]=(score[t]||0)+1;
+    });
+  });
+  return Object.keys(seen).map(t=>({typology:t, seen:seen[t],
+    errRate:(score[t]||0)/seen[t]})).sort((a,b)=>b.errRate-a.errRate);
+}
+
+/* Pick a shift. Deliberately simple — spacing beats cleverness.
+
+   Two pools, mixed by quota rather than by one combined score. That
+   matters: with a single score, "never seen" always outranks "got it
+   wrong", so once the library is large enough the analyst never
+   revisits anything they failed — which defeats the whole point.
+   A fixed review quota makes revisiting structural.                  */
+const REVIEW_SHARE=0.34;          // about a third of each shift is review
+
+function selectShift(n){
+  const ev=events().filter(e=>e.module==='triage');
+  const lastSeen={}, errs={};
+  ev.forEach(e=>{ lastSeen[e.case]=e.at; if(e.correct!=='right') errs[e.case]=(errs[e.case]||0)+1; });
+  const weak=new Set(weakTypologies().filter(w=>w.errRate>0.34).map(w=>w.typology));
+  const days=id=>lastSeen[id]?(Date.now()-new Date(lastSeen[id]).getTime())/864e5:null;
+
+  /* review pool: seen before, and either failed or long enough ago to have faded */
+  const review=CASES.filter(c=>lastSeen[c.id] && (errs[c.id] || days(c.id)>=3))
+    .map(c=>({c, pri:(errs[c.id]||0)*50 + Math.min(40,(days(c.id)||0)*3)
+                  + ((c.typologies||[]).some(t=>weak.has(t))?25:0) + Math.random()*8}))
+    .sort((a,b)=>b.pri-a.pri);
+
+  /* new pool: never seen, hardest-first among weak typologies */
+  const fresh=CASES.filter(c=>!lastSeen[c.id])
+    .map(c=>({c, pri:((c.typologies||[]).some(t=>weak.has(t))?25:0) + Math.random()*8}))
+    .sort((a,b)=>b.pri-a.pri);
+
+  const wantReview=Math.min(review.length, Math.round(n*REVIEW_SHARE));
+  let picked=[...review.slice(0,wantReview).map(s=>s.c),
+              ...fresh.slice(0,n-wantReview).map(s=>s.c)];
+
+  /* top up from whichever pool still has material */
+  if(picked.length<n){
+    const have=new Set(picked.map(c=>c.id));
+    [...review,...fresh].forEach(s=>{
+      if(picked.length<n && !have.has(s.c.id)){ picked.push(s.c); have.add(s.c.id); }
+    });
+  }
+  /* last resort: repeat the least-recently-seen rather than serve a short shift */
+  if(picked.length<n){
+    const have=new Set(picked.map(c=>c.id));
+    CASES.filter(c=>!have.has(c.id))
+      .sort((a,b)=>(days(b.id)||0)-(days(a.id)||0))
+      .forEach(c=>{ if(picked.length<n) picked.push(c); });
+  }
+
+  /* keep at least one clear false positive in every shift: closing
+     confidently is a trained skill, not an absence of one */
+  if(picked.length && !picked.some(c=>!c.is_real_case)){
+    const fp=CASES.find(c=>!c.is_real_case && !picked.some(x=>x.id===c.id))
+          || CASES.find(c=>!c.is_real_case);
+    if(fp) picked[picked.length-1]=fp;
+  }
+  return picked.sort(()=>Math.random()-0.5);
+}
+
+/* ── state ── */
+let Q=[], idx=0, T=null, left=SHIFT_SECONDS, cap=0, answered=[];
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
+  h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}}
+
+async function startShift(){
+  if(!CASES.length){
+    const ok=await loadCases();
+    if(!ok){
+      alert('Could not load the case library.\n\nExpected data/academy/triage-cases.json '
+        +'alongside this page. If you opened this file directly from disk, serve it over http '
+        +'instead — browsers block local file reads.');
+      return;
+    }
+  }
+  Q=selectShift(SHIFT_SIZE);
+  idx=0; cap=0; answered=[]; left=SHIFT_SECONDS;
+  document.getElementById('intro').classList.add('hide');
+  document.getElementById('result').classList.add('hide');
+  document.getElementById('game').classList.remove('hide');
+  clearInterval(T);
+  T=setInterval(tick,1000);
+  renderCase(); renderQueue(); renderHUD();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function tick(){
+  left--;
+  const m=Math.floor(left/60), s=left%60;
+  document.getElementById('hTime').textContent=`${m}:${String(s).padStart(2,'0')}`;
+  const pct=Math.max(0,left/SHIFT_SECONDS*100);
+  document.getElementById('tfill').style.width=pct+'%';
+  const bar=document.getElementById('tbar');
+  bar.classList.toggle('warn',pct<40); bar.classList.toggle('crit',pct<15);
+  if(left<=0){ clearInterval(T); endShift(true); }
+}
+
+function renderHUD(){
+  const esc_=answered.filter(a=>a.choice==='escalate');
+  const truePos=esc_.filter(a=>a.c.is_real_case).length;
+  const realCases=Q.filter(c=>c.is_real_case).length;
+  const caught=answered.filter(a=>a.c.is_real_case && a.choice!=='close').length;
+  document.getElementById('hDone').textContent=`${answered.length}/${Q.length}`;
+  document.getElementById('hPrec').textContent= esc_.length? Math.round(truePos/esc_.length*100)+'%' : '—';
+  document.getElementById('hRec').textContent= answered.length? Math.round(caught/realCases*100)+'%' : '—';
+  document.getElementById('hCap').textContent=cap.toFixed(1);
+}
+
+function renderQueue(){
+  document.getElementById('qLeft').textContent=`${Q.length-answered.length} left`;
+  document.getElementById('queue').innerHTML=Q.map((c,i)=>{
+    const a=answered.find(x=>x.c.id===c.id);
+    let cls='pending', ic='·';
+    if(a){ cls = a.correct==='right'?'done-ok':a.correct==='part'?'done-part':'done-bad';
+           ic = a.correct==='right'?'✓':a.correct==='part'?'~':'✗'; }
+    else if(i===idx){ cls=''; ic='▶'; }
+    return `<div class="qitem ${cls}"><span class="i">${ic}</span>
+      <span class="qn">${esc(c.rule)}</span><span class="qd">${esc(c.id)}</span></div>`;}).join('');
+}
+
+function renderCase(){
+  const c=Q[idx];
+  document.getElementById('aId').textContent=c.id;
+  document.getElementById('aRule').textContent=c.rule;
+  document.getElementById('aTitle').textContent=c.title;
+  document.getElementById('aSub').textContent=c.customer;
+  document.getElementById('aKv').innerHTML=Object.entries(c.facts).map(([k,v])=>
+    `<span class="k">${esc(k)}</span><span class="v ${/€|\d/.test(v)?'mono':''}">${esc(v)}</span>`).join('');
+  document.getElementById('aNarr').textContent=c.narrative;
+  document.getElementById('aTxWrap').innerHTML = c.transactions? `<table class="txs">
+    <thead><tr><th>Date</th><th>Type</th><th>Amount €</th><th>Detail</th></tr></thead>
+    <tbody>${c.transactions.map(r=>`<tr class="hot"><td class="m">${esc(r[0])}</td><td>${esc(r[1])}</td>
+      <td class="m">${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join('')}</tbody></table>` : '';
+  document.getElementById('aCtx').textContent=c.on_file;
+  document.getElementById('decide').style.display='';
+  document.getElementById('fb').classList.remove('on');
+}
+
+function decide(choice){
+  const c=Q[idx];
+  cap += choice==='escalate'?CAPACITY_PER_ESC : choice==='rfi'?CAPACITY_PER_RFI : 0;
+  const correct = choice===c.best_action ? 'right'
+    : (choice==='escalate' && c.is_real_case) || (choice==='rfi' && c.best_action==='escalate') ? 'part'
+    : 'wrong';
+  answered.push({c, choice, correct});
+  logEvent({module:'triage', case:c.id, decision:choice, correct,
+            best:c.best_action, at:new Date().toISOString()});
+  document.getElementById('decide').style.display='none';
+
+  const fb=document.getElementById('fb'); fb.classList.add('on');
+  const v=document.getElementById('fbVerdict');
+  v.className='verdict '+(correct==='right'?'v-right':correct==='part'?'v-part':'v-wrong');
+  const label=correct==='right'?'CORRECT':correct==='part'?'DEFENSIBLE':'WRONG CALL';
+  const head=choice==='close'?'You closed it':choice==='rfi'?'You asked for more':'You escalated it';
+  v.innerHTML=`<span class="vtag">${label}</span><h3>${head}</h3>`;
+  document.getElementById('fbWhy').textContent=c.why;
+  document.getElementById('fbFlags').innerHTML=c.flags.map(f=>
+    `<div class="flag ${f.present?'missed':'seen'}">
+      <span class="i">${f.present?'▲':'○'}</span>
+      <div><b>${f.present?'Red flag present':'Not a concern here'}</b> — ${esc(f.text)}</div>
+    </div>`).join('');
+  document.getElementById('fbLaw').textContent=c.law;
+  document.getElementById('fbCost').textContent=c.consequences[choice];
+  document.getElementById('nextBtn').textContent =
+    answered.length>=Q.length ? 'End shift' : 'Next alert';
+  renderQueue(); renderHUD();
+}
+
+function nextAlert(){
+  if(answered.length>=Q.length) return endShift(false);
+  idx++;
+  while(idx<Q.length && answered.find(a=>a.c.id===Q[idx].id)) idx++;
+  if(idx>=Q.length) return endShift(false);
+  renderCase(); renderQueue();
+  window.scrollTo({top:120,behavior:'smooth'});
+}
+
+function endShift(ranOut){
+  clearInterval(T);
+  document.getElementById('game').classList.add('hide');
+  document.getElementById('result').classList.remove('hide');
+
+  const escs=answered.filter(a=>a.choice==='escalate');
+  const truePos=escs.filter(a=>a.c.is_real_case).length;
+  const realCases=Q.filter(c=>c.is_real_case);
+  /* A real case is only "missed" if you closed it. Sending it back for more
+     information keeps it alive, so it counts as caught. */
+  const caught=answered.filter(a=>a.c.is_real_case && a.choice!=='close').length;
+  const missed=realCases.filter(c=>{
+    const a=answered.find(x=>x.c.id===c.id);
+    return !a || a.choice==='close';
+  });
+  const prec= escs.length? Math.round(truePos/escs.length*100) : null;
+  const rec = Math.round(caught/realCases.length*100);
+
+  document.getElementById('mPrec').textContent= prec===null?'—':prec+'%';
+  document.getElementById('mPrecS').textContent=`${truePos} of ${escs.length} escalations were real`;
+  document.getElementById('mRec').textContent=rec+'%';
+  document.getElementById('mRecS').textContent=`${caught} of ${realCases.length} real cases kept alive`;
+  document.getElementById('mMiss').textContent=missed.length;
+  document.getElementById('mMiss').style.color=missed.length?'var(--crit)':'var(--ok)';
+  document.getElementById('mCap').textContent=cap.toFixed(1);
+
+  let title, verd;
+  if(ranOut && answered.length<Q.length){
+    title='The shift ended with alerts still open.';
+    verd=`You worked ${answered.length} of ${Q.length}. Unworked alerts do not disappear — they age, `
+      +`and ageing alerts are one of the first things an examiner asks about. Speed is not a virtue on `
+      +`its own, but a queue you cannot clear is a finding waiting to happen.`;
+  }else if(missed.length===0 && prec>=75){
+    title='A genuinely strong shift.';
+    verd='You caught every real case and did not flood investigations to do it. That balance is the '
+      +'whole skill, and it is rarer than it sounds — most analysts drift to one extreme or the other.';
+  }else if(missed.length===0){
+    title='Nothing missed — but at a cost.';
+    verd='You caught every real case by escalating widely. In a live queue that behaviour creates a '
+      +'backlog, and the case that matters ends up queued behind the ones that did not. Precision is '
+      +'not administrative tidiness; it is what keeps the real cases moving.';
+  }else{
+    title=`You missed ${missed.length} case${missed.length>1?'s':''}.`;
+    verd='Every missed case here is one a supervisor would expect to have been caught. Look at what '
+      +'they had in common below — it is usually pattern across accounts rather than anything visible '
+      +'in a single transaction.';
+  }
+  document.getElementById('rTitle').textContent=title;
+  document.getElementById('rVerd').textContent=verd;
+
+  let lesson;
+  if(!missed.length && prec!==null && prec<75){
+    lesson='<b>You caught everything by escalating almost everything.</b> That is the most common '
+      +'failure in a real queue, and it does not look like a failure — it looks like diligence. '
+      +'But investigations capacity is finite: the documented house purchase and the family loan you '
+      +'sent up are two days each that the trade-based case then waits behind. Closing cleanly, with '
+      +'a written rationale, is not laziness. It is what makes escalation mean something.';
+  }else if(missed.length){
+    lesson=`<b>What you let through:</b> ${missed.map(c=>esc(c.title)).join('; ')}. `
+      +`In each, the decisive fact was not the size of the transaction — it was the relationship `
+      +`between accounts, or the absence of an economic reason for the structure. That is the habit `
+      +`worth building: read the counterparty and the rationale before you read the amount.`;
+  }else{
+    lesson='<b>You held both numbers at once.</b> Worth noticing what that required: closing the '
+      +'documented house purchase and the family loan without hesitation, so that capacity existed '
+      +'for the mule account and the trade-based case. Confident closing is what makes confident '
+      +'escalation affordable.';
+  }
+  document.getElementById('rLesson').innerHTML=lesson;
+
+  document.getElementById('rCount').textContent=`${answered.length} worked`;
+  document.getElementById('rBreak').innerHTML=answered.map(a=>{
+    const ic=a.correct==='right'?'✓':a.correct==='part'?'~':'✗';
+    const col=a.correct==='right'?'var(--ok)':a.correct==='part'?'var(--imp)':'var(--crit)';
+    const chose=a.choice==='close'?'closed':a.choice==='rfi'?'requested info':'escalated';
+    const should=a.c.best_action==='close'?'close':a.c.best_action==='rfi'?'request info':'escalate';
+    return `<div class="flag"><span class="i" style="color:${col}">${ic}</span>
+      <div><b>${esc(a.c.title)}</b><br>
+        <span style="color:var(--text-3);font-size:12px">You ${chose} · best action: ${should}</span>
+      </div></div>`;}).join('');
+
+  /* Show the analyst what the next shift will target. Adaptive selection
+     that nobody can see is indistinguishable from randomness. */
+  const weak=weakTypologies().filter(w=>w.errRate>0.34).slice(0,4);
+  const nEv=events().filter(e=>e.module==='triage').length;
+  const seenIds=new Set(events().filter(e=>e.module==='triage').map(e=>e.case));
+  document.getElementById('rAdapt').innerHTML=`
+    <div class="callout" style="border-left-color:var(--imp)">
+      <b>Your next shift is being built from this.</b>
+      ${weak.length
+        ? `Weakest areas so far: ${weak.map(w=>`<b>${esc(w.typology)}</b> (${Math.round(w.errRate*100)}% wrong)`).join(', ')}.
+           Cases in those typologies will be weighted up, and anything you got wrong will come back — not immediately,
+           but after enough time to have genuinely forgotten it.`
+        : `Nothing is failing consistently yet. Keep going: about a third of every shift is review of material you have
+           already seen, which is the part that actually builds retention.`}
+      <br><br>
+      <span style="color:var(--text-3);font-size:12.5px">${seenIds.size} of ${CASES.length} cases seen ·
+      ${nEv} decisions recorded. Fifteen minutes a week beats a day once a year — the forgetting curve does not
+      care how thorough the annual session was.</span>
+    </div>`;
+
+  /* competence record for the Academy */
+  try{
+    const K='regradar-academy';
+    const st=JSON.parse(localStorage.getItem(K)||'{}');
+    st.triage=st.triage||{plays:0};
+    st.triage.plays++;
+    st.triage.precision=prec===null?0:prec;
+    st.triage.recall=rec;
+    st.triage.missed=missed.length;
+    st.triage.best=Math.max(st.triage.best||0, Math.round((rec*0.65)+( (prec===null?0:prec)*0.35)));
+    st.triage.lastAt=new Date().toISOString();
+    st.triage.weakest=(weakTypologies().filter(w=>w.errRate>0.34)[0]||{}).typology||null;
+    st.triage.casesSeen=seenIds.size;
+    st.triage.libraryTotal=CASES.length;
+    localStorage.setItem(K, JSON.stringify(st));
+  }catch(e){}
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
