@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-08-22T06:32:50.457410",
+  "last_updated": "2026-08-23T06:34:02.894915",
   "last_run_counts": {
-    "total": 22,
+    "total": 6,
     "critical": 0,
-    "important": 19,
-    "info": 3
+    "important": 6,
+    "info": 0
   },
-  "archive_size": 700,
+  "archive_size": 704,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,47 +14,47 @@
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 26
+      "days_away": 25
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 131
+      "days_away": 130
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 132
+      "days_away": 131
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 141
+      "days_away": 140
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 311
+      "days_away": 310
     }
   ],
   "trends": [
     {
       "theme": "Enforcement/Fines",
-      "this_week": 7,
+      "this_week": 3,
       "avg": 1.4,
-      "pct": 390,
+      "pct": 110,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁▂▁▁▂▂█",
+      "spark": "▁▁▄▁▁▄▄█",
       "values": [
         1,
         1,
@@ -63,19 +63,19 @@
         1,
         2,
         2,
-        7
+        3
       ],
       "weeks": 8
     },
     {
       "theme": "AML/CFT",
-      "this_week": 5,
+      "this_week": 3,
       "avg": 2.0,
-      "pct": 150,
+      "pct": 50,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▂▄▁█▁▁█",
+      "spark": "▁▂▄▁█▁▁▄",
       "values": [
         1,
         2,
@@ -84,28 +84,7 @@
         5,
         1,
         1,
-        5
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 8,
-      "avg": 4.9,
-      "pct": 65,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▅██▁▃▂▁▇",
-      "values": [
-        6,
-        9,
-        9,
-        2,
-        4,
-        3,
-        1,
-        8
+        3
       ],
       "weeks": 8
     },
@@ -145,6 +124,27 @@
         1
       ],
       "weeks": 7
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 1,
+      "avg": 4.9,
+      "pct": -79,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▅██▁▃▂▁▁",
+      "values": [
+        6,
+        9,
+        9,
+        2,
+        4,
+        3,
+        1,
+        1
+      ],
+      "weeks": 8
     },
     {
       "theme": "Stress Test",
