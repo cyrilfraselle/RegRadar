@@ -1,443 +1,162 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RegRadar Academy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RegRadar Academy — Parcours</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<script>
-(function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
-</script>
+<link rel="stylesheet" href="academy.css">
+<script src="academy-shell.js"></script>
 <style>
-  :root{
-    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F4F5F6; --border:#E3E5E8; --border-strong:#0A0A0A;
-    --text:#0A0A0A; --text-2:#5B6069; --text-3:#8B9099;
-    --accent:#0039A6; --crit:#C8320F; --imp:#9A6B00; --ok:#0F7B4F; --purple:#4B2E83;
-    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
-    --mono:"SF Mono",ui-monospace,"IBM Plex Mono",Menlo,Consolas,monospace;
-    --ease:cubic-bezier(.2,0,0,1);
-  }
-  html[data-theme="dark"]{
-    --bg:#08090B; --surface:#0E1013; --surface-2:#14171B; --border:#20242A; --border-strong:#F2F2F2;
-    --text:#F2F4F6; --text-2:#98A0AA; --text-3:#666E78;
-    --accent:#4D8DFF; --crit:#FF5C3D; --imp:#FFB93D; --ok:#2DD48F; --purple:#A98BE0;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;
-    line-height:1.5;letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  ::selection{background:var(--accent);color:#fff}
-  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+/* La page d'accueil du parcours : ce que je sais faire, ce qui vient
+   ensuite, et ce que ça m'a rapporté. Rien d'autre. */
+.pad{max-width:960px;margin:0 auto;padding:34px 26px 70px}
+.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+h1{font-size:clamp(24px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;
+  line-height:1.05;margin-top:12px}
+h1 em{font-style:normal;color:var(--violet)}
+.lede{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink-2);
+  margin-top:16px;max-width:62ch}
 
-  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
-  .topbar-inner{display:flex;align-items:center;gap:18px;height:60px;max-width:1280px;margin:0 auto;padding:0 24px}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
-  .logo-mark{width:30px;height:30px;background:var(--accent);color:#fff;display:flex;
-    align-items:center;justify-content:center;font-weight:700;font-size:17px}
-  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
-  .nav{display:flex;margin-left:14px}
-  .nav a{padding:8px 12px;font-size:13px;font-weight:500;color:var(--text-2);
-    border-bottom:2px solid transparent;margin-bottom:-2px}
-  .nav a:hover:not(.active){color:var(--text)}
-  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
-  .topbar-right{margin-left:auto;display:flex;gap:10px}
-  .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;
-    color:var(--text-2);cursor:pointer;font-size:15px}
+/* bandeau de progression */
+.prog{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+  background:var(--grid);border:1px solid var(--grid);margin-top:28px}
+.prog div{background:var(--console);padding:15px 14px}
+.prog .n{font-size:25px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.prog .l{font-size:8.5px;letter-spacing:.15em;color:var(--ink-3);margin-top:7px}
+.prog .rank .n{color:var(--violet);font-size:18px;letter-spacing:-.01em}
+.prog .xp .n{color:var(--ink)}
 
-  .btn{font-family:var(--font);font-size:12px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.08em;padding:10px 17px;border:1px solid var(--border);background:transparent;
-    color:var(--text-2);cursor:pointer;transition:all 140ms var(--ease);display:inline-block}
-  .btn:hover{border-color:var(--accent);color:var(--accent)}
-  .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
-  .btn.pri:hover{opacity:.88;color:#fff}
-  .btns{display:flex;gap:9px;flex-wrap:wrap}
+/* le chemin */
+.path{margin-top:34px;position:relative}
+.path::before{content:'';position:absolute;left:23px;top:26px;bottom:26px;width:1px;
+  background:var(--grid)}
+.node{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:11px 0;position:relative}
+.mark{width:48px;display:flex;align-items:flex-start;justify-content:center;padding-top:3px}
+.mark span{width:30px;height:30px;border:1px solid var(--grid);background:var(--void);
+  display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--ink-3);
+  position:relative;z-index:2;transition:all .2s var(--ease)}
+.node.done .mark span{border-color:var(--phos);color:var(--phos)}
+.node.now .mark span{border-color:var(--violet);color:var(--violet);
+  box-shadow:0 0 0 4px rgba(180,140,255,.12)}
+.node.soon .mark span{opacity:.4}
+.card{border:1px solid var(--grid);padding:16px 18px;transition:all .18s var(--ease)}
+.node.open .card{cursor:pointer}
+.node.open .card:hover{border-color:var(--violet);transform:translateX(4px)}
+.node.soon .card{opacity:.42}
+.card .top{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+.card .nm{font-size:17px;font-weight:700;letter-spacing:-.015em}
+.card .st{font-size:8.5px;letter-spacing:.14em;padding:2px 8px;border:1px solid currentColor;
+  font-weight:700}
+.node.done .card .st{color:var(--phos)}
+.node.now .card .st{color:var(--violet)}
+.node.soon .card .st{color:var(--ink-3)}
+.card .sub{font-size:11px;color:var(--ink-3);letter-spacing:.05em;margin-top:5px}
+.card .tag{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);line-height:1.55;
+  margin-top:10px;max-width:64ch}
+.card .why{font-family:var(--sans);font-size:12.5px;color:var(--ink-3);line-height:1.5;
+  margin-top:9px;border-left:2px solid var(--grid);padding-left:12px;max-width:62ch}
+.card .go{margin-top:13px;display:inline-block;border:1px solid var(--violet);
+  color:var(--violet);padding:9px 18px;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  background:rgba(180,140,255,.07);transition:all .16s}
+.card .go:hover{background:var(--violet);color:var(--void)}
 
-  .hero{padding:44px 0 30px;display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:start}
-  @media(max-width:920px){.hero{grid-template-columns:1fr;gap:28px}}
-  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
-  .hero h1{font-size:44px;font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-top:12px;max-width:18ch}
-  .hero .lede{font-size:18px;color:var(--text-2);margin-top:16px;line-height:1.45;max-width:56ch}
-  .hero p{font-size:14px;color:var(--text-2);margin-top:13px;line-height:1.6;max-width:66ch}
-
-  /* competency radar */
-  .radar{border-top:2px solid var(--border-strong);padding-top:12px}
-  .rl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
-    color:var(--text-3);margin-bottom:10px}
-  .radar svg{width:100%;height:auto;display:block}
-  .rnote{font-size:11.5px;color:var(--text-3);line-height:1.5;margin-top:9px}
-
-  /* curriculum */
-  .sect{border-top:2px solid var(--border-strong);padding-top:14px;margin-top:12px}
-  .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;
-    color:var(--text-3);display:flex;justify-content:space-between;align-items:baseline}
-  .sh{font-size:22px;font-weight:700;letter-spacing:-.022em;margin:8px 0 6px}
-  .sd{font-size:14px;color:var(--text-2);line-height:1.6;max-width:74ch}
-
-  .mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:20px}
-  .mod{border:1px solid var(--border);padding:16px 17px;position:relative;
-    transition:border-color 140ms var(--ease);display:flex;flex-direction:column}
-  .mod.live{cursor:pointer}
-  .mod.live:hover{border-color:var(--accent)}
-  .mod.soon{opacity:.62}
-  .mno{font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--text-3);letter-spacing:.05em}
-  .mn{font-size:17px;font-weight:700;letter-spacing:-.018em;margin-top:7px}
-  .mrole{font-size:10.5px;color:var(--accent);font-weight:700;text-transform:uppercase;
-    letter-spacing:.07em;margin-top:5px}
-  .md{font-size:13px;color:var(--text-2);line-height:1.5;margin-top:9px;flex:1}
-  .mteach{font-size:12px;color:var(--text-3);line-height:1.5;margin-top:10px;
-    border-top:1px solid var(--border);padding-top:9px}
-  .mteach b{color:var(--text-2)}
-  .mstat{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
-  .pill{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
-    padding:3px 8px;border:1px solid}
-  .p-live{border-color:var(--ok);color:var(--ok)}
-  .p-soon{border-color:var(--border);color:var(--text-3)}
-  .p-score{border-color:var(--accent);color:var(--accent);font-family:var(--mono)}
-
-  /* record */
-  .rec{border:1px solid var(--border);padding:20px 22px;margin-top:20px}
-  .recrow{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
-  .rec h3{font-size:17px;font-weight:700;letter-spacing:-.018em}
-  .rec p{font-size:13.5px;color:var(--text-2);line-height:1.6;margin-top:8px;max-width:64ch}
-  .recgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
-    border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:18px}
-  .recgrid div{background:var(--bg);padding:13px 0 11px}
-  .recgrid .n{font-family:var(--mono);font-size:22px;font-weight:700;line-height:1}
-  .recgrid .l{font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.09em;
-    font-weight:700;margin-top:5px}
-  @media(max-width:700px){.recgrid{grid-template-columns:repeat(2,1fr)}.recrow{grid-template-columns:1fr}}
-
-  .why{border-left:2px solid var(--accent);padding:11px 0 11px 15px;margin-top:20px;
-    font-size:13.5px;line-height:1.65;color:var(--text-2);max-width:76ch}
-  .why b{color:var(--text)}
-
-  footer{border-top:2px solid var(--border-strong);margin-top:30px;padding:18px 0 46px;font-size:10px;
-    color:var(--text-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-    text-transform:uppercase;letter-spacing:.08em;font-weight:700}
-  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
-  @media(max-width:720px){.hero h1{font-size:31px}.nav{overflow-x:auto;margin-left:0}.logo-sub{display:none}}
+.foot{margin-top:38px;border-top:1px solid var(--grid);padding-top:18px;
+  display:flex;gap:20px;flex-wrap:wrap;align-items:center;
+  font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+.foot button{border:1px solid var(--grid);color:var(--ink-3);padding:8px 14px;
+  font-size:10px;letter-spacing:.12em;transition:all .16s}
+.foot button:hover{border-color:var(--alarm);color:var(--alarm)}
+.foot .sp{margin-left:auto}
+@media(max-width:760px){.pad{padding:22px 15px 60px}.node{grid-template-columns:36px 1fr;gap:11px}
+  .mark{width:36px}.path::before{left:17px}}
 </style>
 </head>
 <body>
 
-<div class="topbar"><div class="topbar-inner">
-  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Academy</span></div>
-  <nav class="nav">
-    <a href="academy.html" class="active">Academy</a>
-    <a href="desk.html">The Desk</a>
-    <a href="laundromat.html">Laundromat</a>
-    <a href="index.html">Signal</a>
-    <a href="law.html">Read the Law</a>
-  </nav>
-  <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button></div>
-</div></div>
+<div class="pad">
+  <div class="kick">PARCOURS</div>
+  <h1 id="hd">Devenir analyste, <em>en faisant le travail</em>.</h1>
+  <div class="lede" id="lede">Cinq modules dans l'ordre où le métier les enseigne. Chacun se joue
+    en quinze à trente minutes, et chacun produit un résultat mesurable.</div>
 
-<div class="wrap">
+  <div class="prog">
+    <div class="rank"><div class="n" id="pRank">—</div><div class="l">RANG</div></div>
+    <div class="xp"><div class="n" id="pXp">0</div><div class="l">XP TOTAL</div></div>
+    <div><div class="n" id="pMods">0/5</div><div class="l">MODULES ENTAMÉS</div></div>
+    <div><div class="n" id="pNext">—</div><div class="l">PROCHAIN RANG</div></div>
+  </div>
 
-  <section class="hero">
-    <div>
-      <div class="eyebrow">Practitioner training · AML/CFT</div>
-      <h1>Nobody became a good analyst by watching a slide.</h1>
-      <p class="lede">Seven modules that put you in the seat and let you get it wrong, where getting
-        it wrong is free.</p>
-      <p>Gallup finds only 10% of employees say compliance training changed how they work, and 23%
-        rate it as excellent. Retention falls below 30% inside a fortnight. That is not a content
-        problem — it is a format problem. Reading about structuring teaches you the word; trying to
-        structure €10 million and watching a threshold rule catch you teaches you the shape.</p>
-      <div class="btns" style="margin-top:24px">
-        <a class="btn pri" href="desk.html">Clock in — The Desk</a>
-        <a class="btn" href="laundromat.html">Or play the criminal</a>
-      </div>
-    </div>
+  <div class="path" id="path"></div>
 
-    <div class="radar">
-      <div class="rl">Competency profile</div>
-      <svg viewBox="0 0 260 260" role="img" aria-label="Competency profile across seven skill areas">
-        <g id="rGrid"></g>
-        <polygon id="rShape" fill="var(--accent)" fill-opacity=".22" stroke="var(--accent)" stroke-width="2"/>
-        <g id="rDots"></g>
-        <g id="rLabels" font-size="7.5" font-weight="700" fill="var(--text-3)"
-           font-family="Helvetica Neue, Helvetica, Arial, sans-serif" text-anchor="middle"></g>
-      </svg>
-      <div class="rnote" id="rNote">Nothing recorded yet. Complete a module and it appears here.</div>
-    </div>
-  </section>
-
-  <!-- CURRICULUM -->
-  <section class="sect">
-    <div class="sl"><span>The curriculum</span><span id="progLbl"></span></div>
-    <div class="sh">Four modules, in the order the job actually teaches you</div>
-    <div class="sd">Play them in order. The Laundromat first, because you cannot spot a pattern you
-      have never produced. Then The Desk, which is the job — and which absorbed what used to be two
-      separate modules, because triage and investigation are the same skill under one clock.</div>
-    <div class="mods" id="mods"></div>
-  </section>
-
-  <!-- THE RECORD -->
-  <section class="sect">
-    <div class="sl"><span>Why an institution would buy this</span></div>
-    <div class="sh">A completion certificate proves attendance. This proves competence.</div>
-    <div class="sd">Supervisors have moved from asking whether training happened to asking whether it
-      worked. FinCEN's April 2026 proposed rule shifts AML programme assessment toward effectiveness,
-      and OCC Bulletin 2025-37 lets examiners carry forward a satisfactory conclusion on the training
-      pillar rather than re-examining it — turning a documented training record into fewer examiner
-      weeks. Neither is answerable with an attendance log.</div>
-    <div class="sd" style="margin-top:12px">The delivery mechanism is short, repeated practice rather
-      than an annual course, because that is what the forgetting curve requires: retention falls below
-      30% within a fortnight of a single session. Each shift mixes new cases with review of material
-      you have seen before, weighted toward whatever you keep getting wrong.</div>
-
-    <div class="rec">
-      <div class="recrow">
-        <div>
-          <h3>Training record</h3>
-          <p>Every decision is scored, so the output is not "completed on 14 March" but a profile:
-            which typologies this analyst falls for, whether they over-escalate or under-escalate,
-            and how that has moved over time. That is a supervisory conversation you can actually
-            have — and a remediation plan you can actually target.</p>
-        </div>
-        <div class="btns"><button class="btn" onclick="exportRecord()">Export record</button>
-          <button class="btn" onclick="resetRecord()">Reset</button></div>
-      </div>
-      <div class="recgrid">
-        <div><div class="n" id="kMods">0/7</div><div class="l">Modules attempted</div></div>
-        <div><div class="n" id="kSess">0</div><div class="l">Sessions</div></div>
-        <div><div class="n" id="kScore">—</div><div class="l">Composite</div></div>
-        <div><div class="n" id="kWeak">—</div><div class="l">Weakest area</div></div>
-      </div>
-      <div class="why" style="margin-top:18px">
-        <b>Held locally, on purpose.</b> In this prototype the record lives in your browser and
-        nowhere else. In a deployed version this is the piece an institution licenses: per-analyst
-        profiles, team-level heat maps showing which typologies the desk collectively misses, and an
-        export their second line can put in front of an examiner.
-      </div>
-    </div>
-  </section>
-
-  <!-- PEDAGOGY -->
-  <section class="sect">
-    <div class="sl"><span>How it teaches</span></div>
-    <div class="sh">Three rules the whole thing follows</div>
-    <div class="mods" style="margin-top:18px">
-      <div class="mod">
-        <div class="mno">01</div>
-        <div class="mn">Consequence before explanation</div>
-        <div class="md">You act first and find out afterwards. The explanation lands on a decision you
-          already made and already care about, which is the difference between reading a red flag and
-          recognising one.</div>
-      </div>
-      <div class="mod">
-        <div class="mno">02</div>
-        <div class="mn">The law arrives when it bites</div>
-        <div class="md">Every outcome names the article behind the control that caught you. AMLR Art. 36
-          means nothing in a slide deck and a great deal when it is the reason your correspondent
-          chain just collapsed.</div>
-      </div>
-      <div class="mod">
-        <div class="mno">03</div>
-        <div class="mn">Both failure modes hurt</div>
-        <div class="md">Missing a case is scored, and so is drowning the investigations team. Real
-          judgment lives in the tension between the two, and any training that only punishes one
-          teaches the wrong instinct.</div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <span>RegRadar Academy · prototype</span>
-    <span>Cases are composites · not a substitute for accredited training</span>
-  </footer>
+  <div class="foot">
+    <span>Toutes les données sont fictives. Environnement de formation uniquement.</span>
+    <span class="sp"></span>
+    <button onclick="wipe()">Réinitialiser ma progression</button>
+  </div>
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   ACADEMY HUB
-   Curriculum, competency profile and the training record. Module
-   results are written to localStorage by each module; this page
-   only reads and presents them.
-   ═══════════════════════════════════════════════════════════════ */
-const K='regradar-academy';
+AcademyShell.mount('');
 
-const MODULES=[
- {id:'laundromat', no:'01', n:'The Laundromat', role:'Know the adversary', live:true, comp:'Typologies',
-  href:'laundromat.html',
-  d:'You have €10 million in dirty money and a compliance function watching. Thirteen real '
-   +'typologies across eight jurisdictions.',
-  teach:'Start here. You cannot recognise a pattern you have never produced — this builds the '
-   +'model everything downstream tests.'},
+const S=AcademyShell;
+const P=S.progress;
 
- {id:'desk', no:'02', n:'The Desk', role:'The job itself', live:true, comp:'Triage',
-  href:'desk.html',
-  d:'A career, not a lesson. Induction, then the onboarding queue, then real shifts: alerts and a '
-   +'shared budget of hours. Closing on the file is free; investigating is not.',
-  teach:'Merges triage and investigation into one constraint. Escalate everything and you have no '
-   +'hours left to investigate anything properly.'},
+function paint(){
+  const r=S.rank, mods=S.modules;
+  const done=mods.filter(m=>(P.modules[m.id]||{}).done>0).length;
+  const started=mods.filter(m=>(P.modules[m.id]||{}).started).length;
 
- {id:'sar', no:'03', n:'The Filing', role:'Produce the output', live:false, comp:'Reporting',
-  d:'Write the report. Graded on whether a receiving FIU analyst could act on it: is the suspicion '
-   +'articulated, is it evidenced, is the narrative followable.',
-  teach:'The least-trained skill in the profession, and the one the FIU actually receives.'},
+  document.getElementById('pRank').textContent=r.n;
+  document.getElementById('pXp').textContent=S.xp.toLocaleString('fr-BE');
+  document.getElementById('pMods').textContent=`${started}/${mods.length}`;
+  /* Le prochain seuil vient de la coque : dupliquer le barème ici, c'était
+     garantir qu'un jour les deux divergent. */
+  const nx=[600,1500,2800,4500,6800].find(x=>x>S.xp);
+  document.getElementById('pNext').textContent = nx? (nx-S.xp).toLocaleString('fr-BE')+' XP' : 'rang max';
 
- {id:'exam', no:'04', n:'The Inspection', role:'Defend it', live:false, comp:'Defence',
-  d:'A supervisor reviews the files you produced on the desk and asks why. Your own decisions, '
-   +'interrogated — including the ones you got wrong.',
-  teach:'Closes the loop: every shortcut you took resurfaces as a question you have to answer.'},
-];
-
-const COMPS=['Typologies','CDD','Triage','Investigation','Reporting','Defence'];
-
-function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
-  h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}drawRadar();}
-const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-function state(){ try{ return JSON.parse(localStorage.getItem(K)||'{}'); }catch(e){ return {}; } }
-
-/* module score → competency score, 0–100 */
-function scores(){
-  const st=state(), out={};
-  COMPS.forEach(c=>out[c]=0);
-  if(st.triage){ out['Triage']=st.triage.best||0; }
-  /* the merged desk feeds three competencies at once */
-  try{
-    const ev=JSON.parse(localStorage.getItem('regradar-events')||'[]');
-    const desk=ev.filter(e=>e.module==='desk'), onb=ev.filter(e=>e.module==='onboard');
-    const rate=a=>a.length? Math.round(a.filter(x=>x.correct==='right').length/a.length*100):0;
-    if(desk.length){ out['Triage']=Math.max(out['Triage']||0, rate(desk));
-      out['Investigation']=rate(desk.filter(e=>e.evidence>0)); }
-    if(onb.length) out['CDD']=rate(onb);
-  }catch(e){}
-  if(st.laundromat){
-    // understanding the adversary: how much you got through, capped
-    out['Typologies']=Math.min(100, Math.round((st.laundromat.best||0)));
+  if(S.xp>0){
+    document.getElementById('hd').innerHTML=`Rang atteint : <em>${r.n}</em>.`;
+    document.getElementById('lede').textContent=
+      'Le parcours suit l\u2019ordre dans lequel le métier s\u2019apprend. Reprends où tu en étais, '
+      + 'ou reviens sur un module : les cas ne se répètent pas à l\u2019identique.';
   }
-  if(st.casefile){
-    /* Investigation competence is not "did you solve it" — it is whether the
-       conclusion rested on evidence. Weight the evidence-led runs highest. */
-    const solved=st.casefile.solved||0, total=st.casefile.libraryTotal||1;
-    const led=st.casefile.evidenceLed||0, harm=st.casefile.harm||0;
-    out['Investigation']=Math.max(0, Math.min(100,
-      Math.round((solved/total)*55 + (led/total)*45 - harm*12)));
-  }
-  return out;
+
+  /* Le chemin rend visible ce que les onglets ne peuvent pas dire :
+     ce qui est fait, ce qui vient, et pourquoi dans cet ordre. */
+  const WHY={
+   laundromat:'On ne reconnaît pas un schéma qu\u2019on n\u2019a jamais produit. Jouer l\u2019adversaire d\u2019abord.',
+   ownership:'Sans savoir qui possède vraiment une société, aucune alerte sur elle n\u2019a de sens.',
+   desk:'Le métier lui-même : trier, enquêter, et vivre avec ce que chaque choix coûte.',
+   filing:'Ce que la CTIF reçoit réellement — et la compétence la moins enseignée du métier.',
+   inspection:'Un superviseur reprend tes propres décisions et demande pourquoi.',
+  };
+  let nextFound=false;
+  document.getElementById('path').innerHTML=mods.map(m=>{
+    const rec=P.modules[m.id]||{};
+    const open=!!m.file && done>=m.needs;
+    let cls, st;
+    if(rec.done>0){ cls='done open'; st='FAIT'; }
+    else if(open && !nextFound){ cls='now open'; st='À FAIRE'; nextFound=true; }
+    else if(open){ cls='open'; st='DISPONIBLE'; }
+    else { cls='soon'; st=m.file?'VERROUILLÉ':'EN CONCEPTION'; }
+    const mark=rec.done>0?'✓':m.no;
+    return `<div class="node ${cls}">
+      <div class="mark"><span>${mark}</span></div>
+      <div class="card" ${open?`onclick="location.href='${m.file}'"`:''}>
+        <div class="top"><span class="nm">${m.label}</span><span class="st">${st}</span></div>
+        <div class="sub">MODULE ${m.no}${rec.done?` · ${rec.done} terminé${rec.done>1?'s':''}`:''}</div>
+        <div class="tag">${m.tag}</div>
+        <div class="why">${WHY[m.id]||''}</div>
+        ${open?`<span class="go">${rec.done?'REPRENDRE':'COMMENCER'} →</span>`:''}
+      </div></div>`;
+  }).join('');
 }
 
-function drawRadar(){
-  const sc=scores(), n=COMPS.length, cx=130, cy=132, R=86;
-  const ang=i=>(-90 + i*360/n)*Math.PI/180;
-  let grid='';
-  [0.25,0.5,0.75,1].forEach(f=>{
-    const pts=COMPS.map((_,i)=>`${(cx+R*f*Math.cos(ang(i))).toFixed(1)},${(cy+R*f*Math.sin(ang(i))).toFixed(1)}`).join(' ');
-    grid+=`<polygon points="${pts}" fill="none" stroke="var(--border)" stroke-width="1"/>`;
-  });
-  COMPS.forEach((_,i)=>{
-    grid+=`<line x1="${cx}" y1="${cy}" x2="${(cx+R*Math.cos(ang(i))).toFixed(1)}"
-             y2="${(cy+R*Math.sin(ang(i))).toFixed(1)}" stroke="var(--border)" stroke-width="1"/>`;
-  });
-  document.getElementById('rGrid').innerHTML=grid;
-
-  const pts=COMPS.map((c,i)=>{
-    const f=Math.max(0.04,(sc[c]||0)/100);
-    return `${(cx+R*f*Math.cos(ang(i))).toFixed(1)},${(cy+R*f*Math.sin(ang(i))).toFixed(1)}`;
-  }).join(' ');
-  document.getElementById('rShape').setAttribute('points',pts);
-
-  document.getElementById('rDots').innerHTML=COMPS.map((c,i)=>{
-    const f=Math.max(0.04,(sc[c]||0)/100);
-    return `<circle cx="${(cx+R*f*Math.cos(ang(i))).toFixed(1)}" cy="${(cy+R*f*Math.sin(ang(i))).toFixed(1)}"
-      r="3" fill="${sc[c]?'var(--accent)':'var(--text-3)'}"/>`;}).join('');
-
-  document.getElementById('rLabels').innerHTML=COMPS.map((c,i)=>{
-    const x=cx+(R+19)*Math.cos(ang(i)), y=cy+(R+19)*Math.sin(ang(i))+2.5;
-    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}">${esc(c)}</text>`;}).join('');
-
-  const done=COMPS.filter(c=>sc[c]>0);
-  document.getElementById('rNote').textContent = done.length
-    ? `${done.length} of ${COMPS.length} areas assessed. The shape is the point — a spike with hollows `
-      +`is a specialist, and specialists are where findings come from.`
-    : 'Nothing recorded yet. Complete a module and it appears here.';
+function wipe(){
+  if(confirm('Effacer toute la progression enregistrée dans ce navigateur ?')) S.reset();
 }
-
-function renderModules(){
-  const st=state();
-  document.getElementById('mods').innerHTML=MODULES.map(m=>{
-    const rec=st[m.id];
-    const live=m.live;
-    let pill = live? '<span class="pill p-live">Playable</span>'
-                   : '<span class="pill p-soon">In design</span>';
-    if(rec && rec.plays){
-      const s = m.id==='triage'
-        ? `P ${rec.precision}% · R ${rec.recall}%`
-        : `best ${rec.best}%`;
-      pill += `<span class="pill p-score">${esc(s)}</span>`
-           +  `<span class="pill p-soon">${rec.plays} session${rec.plays>1?'s':''}</span>`;
-      if(rec.rank)
-        pill += `<span class="pill" style="border-color:var(--ok);color:var(--ok)">${esc(rec.rank)} · ${rec.xp||0} XP</span>`;
-      const seen = rec.casesSeen!=null ? rec.casesSeen
-                 : rec.solved!=null ? rec.solved : null;
-      if(rec.libraryTotal && seen!=null)
-        pill += `<span class="pill p-soon">${seen}/${rec.libraryTotal} ${
-          rec.solved!=null?'solved':'cases'}</span>`;
-      if(rec.harm)
-        pill += `<span class="pill" style="border-color:var(--crit);color:var(--crit)">${rec.harm} harm</span>`;
-      if(rec.weakest)
-        pill += `<span class="pill" style="border-color:var(--imp);color:var(--imp)">weak: ${esc(rec.weakest)}</span>`;
-    }
-    const open = live? `onclick="location.href='${m.href}'"` : '';
-    return `<div class="mod ${live?'live':'soon'}" ${open}>
-      <div class="mno">Module ${esc(m.no)}</div>
-      <div class="mn">${esc(m.n)}</div>
-      <div class="mrole">${esc(m.role)}</div>
-      <div class="md">${esc(m.d)}</div>
-      <div class="mteach"><b>Teaches:</b> ${esc(m.teach)}</div>
-      <div class="mstat">${pill}</div>
-    </div>`;}).join('');
-
-  const attempted=MODULES.filter(m=>st[m.id]&&st[m.id].plays).length;
-  document.getElementById('progLbl').textContent=`${MODULES.filter(m=>m.live).length} playable · ${MODULES.length} planned`;
-  document.getElementById('kMods').textContent=`${attempted}/${MODULES.length}`;
-  const sess=MODULES.reduce((s,m)=>s+((st[m.id]&&st[m.id].plays)||0),0);
-  document.getElementById('kSess').textContent=sess;
-
-  const sc=scores(), assessed=COMPS.filter(c=>sc[c]>0);
-  document.getElementById('kScore').textContent = assessed.length
-    ? Math.round(assessed.reduce((s,c)=>s+sc[c],0)/assessed.length)+'%' : '—';
-  /* naming a "weakest" area from a single data point would be misleading */
-  document.getElementById('kWeak').textContent = assessed.length>=2
-    ? assessed.slice().sort((a,b)=>sc[a]-sc[b])[0]
-    : assessed.length===1 ? 'more data needed' : '—';
-  document.getElementById('kWeak').style.fontSize= assessed.length>=2?'15px':'12px';
-}
-
-function exportRecord(){
-  const st=state(), sc=scores();
-  const lines=['RegRadar Academy — training record',
-    'Generated '+new Date().toLocaleString('en-GB'),'',
-    'COMPETENCY PROFILE'];
-  COMPS.forEach(c=>lines.push(`  ${c.padEnd(16)} ${sc[c]?sc[c]+'%':'not assessed'}`));
-  lines.push('','MODULE HISTORY');
-  MODULES.forEach(m=>{
-    const r=st[m.id];
-    lines.push(`  ${m.no} ${m.n.padEnd(18)} `+(r&&r.plays
-      ? `${r.plays} session(s), last ${new Date(r.lastAt).toLocaleDateString('en-GB')}`
-      : 'not attempted'));
-    if(m.id==='triage'&&r&&r.plays)
-      lines.push(`       precision ${r.precision}% · recall ${r.recall}% · missed ${r.missed}`);
-  });
-  lines.push('','This is a prototype record and is not an accredited qualification.');
-  const blob=new Blob([lines.join('\n')],{type:'text/plain'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='regradar-training-record.txt';
-  a.click();
-}
-
-function resetRecord(){
-  if(!confirm('Delete all module results from this browser?')) return;
-  try{ localStorage.removeItem(K); }catch(e){}
-  drawRadar(); renderModules();
-}
-
-drawRadar(); renderModules();
+paint();
 </script>
 </body>
 </html>

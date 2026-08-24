@@ -1,0 +1,893 @@
+{
+ "_meta": {
+  "name": "Structures de détention",
+  "version": 1,
+  "note": "Module 03. L'utilisateur lit un organigramme, consulte des pièces, demande ce qui manque, puis désigne les bénéficiaires effectifs. Tous les pourcentages ont été calculés et vérifiés avant rédaction — un module qui enseigne un calcul faux est pire que pas de module.",
+  "threshold_default": 25
+ },
+ "primer": [
+  {
+   "id": "P1",
+   "title": "Le seuil",
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Vasco Trading NV",
+     "type": "company",
+     "juris": "BE"
+    },
+    {
+     "id": "anna",
+     "name": "Anna Peeters",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "flot",
+     "name": "Flottant",
+     "type": "other",
+     "juris": "—"
+    }
+   ],
+   "edges": [
+    {
+     "from": "anna",
+     "to": "cible",
+     "pct": 30
+    },
+    {
+     "from": "flot",
+     "to": "cible",
+     "pct": 70
+    }
+   ],
+   "question": "Anna est-elle bénéficiaire effectif ?",
+   "options": [
+    {
+     "id": "oui",
+     "label": "Oui"
+    },
+    {
+     "id": "non",
+     "label": "Non"
+    }
+   ],
+   "answer": "oui",
+   "explain": "30 % dépasse le seuil de 25 %. C'est le cas le plus simple, et le seul où la réponse se lit directement sur l'organigramme.",
+   "principle": "Le seuil indicatif est de 25 % + une action. Un seuil, ce n'est pas une règle absolue : c'est le point à partir duquel il faut regarder de plus près."
+  },
+  {
+   "id": "P2",
+   "title": "Multiplier le long de la chaîne",
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Vasco Trading NV",
+     "type": "company",
+     "juris": "BE"
+    },
+    {
+     "id": "hold",
+     "name": "Vasco Holding BV",
+     "type": "company",
+     "juris": "NL"
+    },
+    {
+     "id": "tom",
+     "name": "Tom Declerck",
+     "type": "person",
+     "juris": "BE"
+    }
+   ],
+   "edges": [
+    {
+     "from": "hold",
+     "to": "cible",
+     "pct": 60
+    },
+    {
+     "from": "tom",
+     "to": "hold",
+     "pct": 50
+    }
+   ],
+   "question": "Quelle est la détention indirecte de Tom dans Vasco Trading ?",
+   "options": [
+    {
+     "id": "50",
+     "label": "50 %"
+    },
+    {
+     "id": "60",
+     "label": "60 %"
+    },
+    {
+     "id": "30",
+     "label": "30 %"
+    },
+    {
+     "id": "110",
+     "label": "110 %"
+    }
+   ],
+   "answer": "30",
+   "explain": "60 % × 50 % = 30 %. On multiplie les pourcentages le long du chemin, on ne les additionne pas et on ne retient pas le plus faible.",
+   "principle": "Chaque niveau dilue. Tom contrôle la moitié d'une société qui détient 60 % de la cible : il en détient donc indirectement 30 %."
+  },
+  {
+   "id": "P3",
+   "title": "Additionner les chemins",
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Vasco Trading NV",
+     "type": "company",
+     "juris": "BE"
+    },
+    {
+     "id": "hold",
+     "name": "Vasco Holding BV",
+     "type": "company",
+     "juris": "NL"
+    },
+    {
+     "id": "rita",
+     "name": "Rita Moens",
+     "type": "person",
+     "juris": "BE"
+    }
+   ],
+   "edges": [
+    {
+     "from": "hold",
+     "to": "cible",
+     "pct": 60
+    },
+    {
+     "from": "rita",
+     "to": "hold",
+     "pct": 20
+    },
+    {
+     "from": "rita",
+     "to": "cible",
+     "pct": 15
+    }
+   ],
+   "question": "Rita atteint-elle le seuil de 25 % ?",
+   "options": [
+    {
+     "id": "non15",
+     "label": "Non — elle n'a que 15 % en direct"
+    },
+    {
+     "id": "non12",
+     "label": "Non — 12 % en indirect, c'est sous le seuil"
+    },
+    {
+     "id": "oui",
+     "label": "Oui — 27 % au total"
+    }
+   ],
+   "answer": "oui",
+   "explain": "15 % en direct, plus 60 % × 20 % = 12 % en indirect. Total 27 %. Aucun des deux chemins ne franchit le seuil isolément — c'est précisément ce qui rend ce cas dangereux.",
+   "principle": "Les chemins s'additionnent. Une structure conçue pour échapper à la détection répartit la détention sur plusieurs branches dont aucune ne dépasse le seuil. Regarder les branches une par une est l'erreur la plus fréquente."
+  },
+  {
+   "id": "P4",
+   "title": "Contrôler sans détenir",
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Vasco Trading NV",
+     "type": "company",
+     "juris": "BE"
+    },
+    {
+     "id": "karel",
+     "name": "Karel Dumont",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "autres",
+     "name": "Autres actionnaires",
+     "type": "other",
+     "juris": "—"
+    }
+   ],
+   "edges": [
+    {
+     "from": "karel",
+     "to": "cible",
+     "pct": 8
+    },
+    {
+     "from": "autres",
+     "to": "cible",
+     "pct": 92
+    }
+   ],
+   "note": "Un pacte d'actionnaires donne à Karel le droit de nommer et révoquer trois des cinq administrateurs, et un veto sur toute cession d'actifs.",
+   "question": "Karel est-il bénéficiaire effectif ?",
+   "options": [
+    {
+     "id": "non",
+     "label": "Non — 8 %, très en-dessous du seuil"
+    },
+    {
+     "id": "oui",
+     "label": "Oui — il exerce le contrôle par d'autres moyens"
+    }
+   ],
+   "answer": "oui",
+   "explain": "Le pourcentage n'est qu'une des deux voies. Nommer la majorité du conseil et disposer d'un veto sur les cessions, c'est du contrôle au sens de l'article 22, quelle que soit la participation.",
+   "principle": "Deux voies mènent au statut de bénéficiaire effectif : la propriété et le contrôle. Une analyse qui ne regarde que les pourcentages passe systématiquement à côté de la seconde — et c'est celle qu'on utilise pour se dissimuler."
+  }
+ ],
+ "cases": [
+  {
+   "id": "OWN-01",
+   "tier": 1,
+   "tier_name": "Deux niveaux",
+   "family": "chaine-simple",
+   "title": "Une holding et deux associés",
+   "subject": "Kortrijk Textiles NV · client corporate · seuil 25 %",
+   "threshold": 25,
+   "brief": "Une société d'exploitation détenue par une holding, elle-même partagée entre deux associés. Rien de dissimulé. La question est de savoir qui franchit le seuil — et qui passe juste à côté.",
+   "budget": 3,
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Kortrijk Textiles NV",
+     "type": "company",
+     "juris": "BE",
+     "customer": true
+    },
+    {
+     "id": "holding",
+     "name": "KT Holding BV",
+     "type": "company",
+     "juris": "NL"
+    },
+    {
+     "id": "mina",
+     "name": "Mina Vanhoutte",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "bram",
+     "name": "Bram Vanhoutte",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "ines",
+     "name": "Inès Lambert",
+     "type": "person",
+     "juris": "FR"
+    }
+   ],
+   "edges": [
+    {
+     "from": "holding",
+     "to": "cible",
+     "pct": 80,
+     "doc": "d1"
+    },
+    {
+     "from": "ines",
+     "to": "cible",
+     "pct": 20,
+     "doc": "d1"
+    },
+    {
+     "from": "mina",
+     "to": "holding",
+     "pct": 70,
+     "doc": "d2"
+    },
+    {
+     "from": "bram",
+     "to": "holding",
+     "pct": 30,
+     "doc": "d2"
+    }
+   ],
+   "documents": [
+    {
+     "id": "d1",
+     "name": "Registre des actionnaires — Kortrijk Textiles",
+     "body": "KT Holding BV : 80 % des actions. Inès Lambert : 20 % des actions. Registre tenu à jour, dernière inscription mars 2026."
+    },
+    {
+     "id": "d2",
+     "name": "Extrait KvK — KT Holding BV",
+     "body": "Parts sociales : Mina Vanhoutte 70 %, Bram Vanhoutte 30 %. Les deux sont administrateurs. Aucun pacte d'actionnaires déposé."
+    }
+   ],
+   "requests": [],
+   "answer": {
+    "ubos": [
+     "mina"
+    ],
+    "cannot_determine": false
+   },
+   "computed": {
+    "mina": 56.0,
+    "bram": 24.0,
+    "ines": 20.0
+   },
+   "why": "Mina détient 80 % × 70 % = 56 %, largement au-dessus du seuil. Bram arrive à 80 % × 30 % = 24 % — à un point du seuil, et donc pas bénéficiaire effectif au titre de la propriété. Inès plafonne à 20 % en direct.",
+   "trap": "Bram à 24 % est le piège du cas. La tentation est d'arrondir ou de considérer que « c'est presque 25 % ». Ce n'est pas une décision d'analyste : le seuil est le seuil. En revanche, un frère et une sœur détenant ensemble 80 % d'une holding méritent qu'on vérifie s'il existe un pacte entre eux — c'est ce que dit l'extrait, et c'est pour cela qu'on l'a lu.",
+   "law": "AMLR Art. 22 — identification des bénéficiaires effectifs ; seuil indicatif de 25 % + une action.",
+   "lesson": "Le calcul est trivial ; la discipline ne l'est pas. Un pourcentage juste sous le seuil n'est pas un bénéficiaire effectif, et l'écrire noir sur blanc dans le dossier vaut mieux que de l'inclure « par prudence » — inclure tout le monde revient à n'identifier personne."
+  },
+  {
+   "id": "OWN-02",
+   "tier": 2,
+   "tier_name": "Chemins multiples",
+   "family": "agregation",
+   "title": "Trois branches, aucune décisive",
+   "subject": "Namur Logistique SA · client corporate · seuil 25 %",
+   "brief": "Deux holdings et une participation directe. Prise isolément, aucune branche ne franchit le seuil pour l'un des associés. Prises ensemble, c'est une autre affaire.",
+   "budget": 4,
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Namur Logistique SA",
+     "type": "company",
+     "juris": "BE",
+     "customer": true
+    },
+    {
+     "id": "holdA",
+     "name": "Ardenne Invest SPRL",
+     "type": "company",
+     "juris": "BE"
+    },
+    {
+     "id": "holdB",
+     "name": "Sambre Participations",
+     "type": "company",
+     "juris": "LU"
+    },
+    {
+     "id": "lena",
+     "name": "Lena Gerard",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "victor",
+     "name": "Victor Gerard",
+     "type": "person",
+     "juris": "BE"
+    }
+   ],
+   "edges": [
+    {
+     "from": "holdA",
+     "to": "cible",
+     "pct": 55,
+     "doc": "d1"
+    },
+    {
+     "from": "holdB",
+     "to": "cible",
+     "pct": 30,
+     "doc": "d1"
+    },
+    {
+     "from": "lena",
+     "to": "cible",
+     "pct": 15,
+     "doc": "d1"
+    },
+    {
+     "from": "victor",
+     "to": "holdA",
+     "pct": 70,
+     "doc": "d2"
+    },
+    {
+     "from": "lena",
+     "to": "holdA",
+     "pct": 20,
+     "doc": "d2"
+    },
+    {
+     "from": "lena",
+     "to": "holdB",
+     "pct": 10,
+     "doc": "d3"
+    }
+   ],
+   "documents": [
+    {
+     "id": "d1",
+     "name": "Registre des actionnaires — Namur Logistique",
+     "body": "Ardenne Invest SPRL 55 %, Sambre Participations 30 %, Lena Gerard 15 %. Les 0 % restants correspondent à des actions propres annulées en 2024."
+    },
+    {
+     "id": "d2",
+     "name": "Extrait BCE — Ardenne Invest SPRL",
+     "body": "Victor Gerard 70 %, Lena Gerard 20 %, divers minoritaires 10 %. Victor est gérant."
+    },
+    {
+     "id": "d3",
+     "name": "Extrait RCS — Sambre Participations",
+     "body": "Actionnariat dispersé. Lena Gerard figure pour 10 %. Aucun actionnaire au-delà de 15 %."
+    }
+   ],
+   "requests": [],
+   "answer": {
+    "ubos": [
+     "victor",
+     "lena"
+    ],
+    "cannot_determine": false
+   },
+   "computed": {
+    "victor": 38.5,
+    "lena": 29.0
+   },
+   "why": "Victor : 55 % × 70 % = 38,5 %. Lena cumule trois chemins — 15 % en direct, 55 % × 20 % = 11 %, et 30 % × 10 % = 3 %. Total 29 %. Aucune de ses trois branches ne franchit le seuil isolément.",
+   "trap": "C'est le cas que les analystes ratent le plus. En parcourant l'organigramme branche par branche, on voit 15 %, puis 20 % d'une holding, puis 10 % d'une autre — trois chiffres tous inférieurs au seuil, et on conclut trop vite. L'agrégation par personne, et non par branche, est la seule manière de voir Lena.",
+   "law": "AMLR Art. 22 — la détention indirecte s'apprécie en cumulant l'ensemble des chemins.",
+   "lesson": "Répartir une participation sur plusieurs véhicules dont aucun ne franchit le seuil est la technique de dissimulation la plus simple qui existe, et elle fonctionne contre quiconque lit un organigramme de haut en bas. La parade est méthodologique : calculer par personne, pas par branche."
+  },
+  {
+   "id": "OWN-03",
+   "tier": 2,
+   "tier_name": "Nominee et trust",
+   "family": "look-through",
+   "title": "Celui qui détient n'est pas celui qui bénéficie",
+   "subject": "Ostende Marine BV · client corporate · seuil 25 %",
+   "brief": "Deux blocs de 35 %. L'un est détenu par une société fiduciaire, l'autre par un trust. Les deux figurent au registre. Aucun des deux n'est bénéficiaire effectif.",
+   "budget": 5,
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Ostende Marine BV",
+     "type": "company",
+     "juris": "BE",
+     "customer": true
+    },
+    {
+     "id": "nominee",
+     "name": "Fiduciaire Delmas SA",
+     "type": "nominee",
+     "juris": "LU"
+    },
+    {
+     "id": "trust",
+     "name": "Van Acker Family Trust",
+     "type": "trust",
+     "juris": "JE"
+    },
+    {
+     "id": "elin",
+     "name": "Elin Van Acker",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "joris",
+     "name": "Joris Maes",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "public",
+     "name": "Actionnariat dispersé",
+     "type": "other",
+     "juris": "—"
+    }
+   ],
+   "edges": [
+    {
+     "from": "nominee",
+     "to": "cible",
+     "pct": 35,
+     "kind": "trustee",
+     "doc": "d2"
+    },
+    {
+     "from": "trust",
+     "to": "cible",
+     "pct": 35,
+     "doc": "d1"
+    },
+    {
+     "from": "elin",
+     "to": "trust",
+     "pct": 100,
+     "kind": "beneficiary",
+     "doc": "d3"
+    },
+    {
+     "from": "joris",
+     "to": "cible",
+     "pct": 45,
+     "doc": "d1"
+    },
+    {
+     "from": "public",
+     "to": "cible",
+     "pct": 20,
+     "doc": "d1"
+    }
+   ],
+   "documents": [
+    {
+     "id": "d1",
+     "name": "Registre des actionnaires — Ostende Marine",
+     "body": "Joris Maes 45 %. Van Acker Family Trust, représenté par Fiduciaire Delmas SA agissant comme trustee, 35 %. Actionnariat dispersé 20 %."
+    },
+    {
+     "id": "d2",
+     "name": "Déclaration de la fiduciaire",
+     "body": "Fiduciaire Delmas SA détient les titres en qualité de trustee du Van Acker Family Trust. Elle ne détient aucun intérêt économique propre et n'exerce aucun droit de vote discrétionnaire."
+    },
+    {
+     "id": "d3",
+     "name": "Acte de trust — Van Acker Family Trust",
+     "body": "Bénéficiaire unique désignée : Elin Van Acker, née en 1974, résidente belge. Le trust est irrévocable. Le trustee distribue les revenus à la seule bénéficiaire désignée."
+    }
+   ],
+   "requests": [],
+   "answer": {
+    "ubos": [
+     "joris",
+     "elin"
+    ],
+    "cannot_determine": false
+   },
+   "computed": {
+    "joris": 45.0,
+    "elin": 35.0
+   },
+   "why": "Joris détient 45 % en direct. Le bloc de 35 % appartient économiquement à Elin, bénéficiaire unique du trust : la fiduciaire n'en détient que le titre légal. Elle n'a aucun intérêt économique et n'est donc pas bénéficiaire effectif.",
+   "trap": "Deux erreurs symétriques guettent. Désigner la fiduciaire — c'est le nom qui apparaît au registre, et c'est précisément ce que l'arrangement produit. Ou écarter le bloc de 35 % faute de savoir à qui il revient, alors que l'acte de trust nomme la bénéficiaire en toutes lettres. Il fallait lire les trois pièces, pas seulement le registre.",
+   "law": "AMLR Art. 22 — pour un trust, sont bénéficiaires effectifs le constituant, le trustee, le protecteur, les bénéficiaires et toute autre personne exerçant un contrôle effectif. Le trustee détient le titre, non l'intérêt économique.",
+   "lesson": "Le registre des actionnaires dit qui détient, pas qui bénéficie. Un arrangement fiduciaire est parfaitement licite et parfaitement transparent quand on demande l'acte — l'échec n'est jamais l'arrangement, c'est de s'arrêter au premier document."
+  },
+  {
+   "id": "OWN-04",
+   "tier": 3,
+   "tier_name": "Contrôle",
+   "family": "controle",
+   "title": "Huit pour cent et le conseil d'administration",
+   "subject": "Liège Composites SA · client corporate · seuil 25 %",
+   "brief": "L'actionnariat est morcelé : personne n'approche du seuil. Le dossier semble donc n'avoir aucun bénéficiaire effectif. C'est là qu'il faut regarder ailleurs que dans les pourcentages.",
+   "budget": 5,
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Liège Composites SA",
+     "type": "company",
+     "juris": "BE",
+     "customer": true
+    },
+    {
+     "id": "fonds",
+     "name": "Meuse Capital Fund",
+     "type": "company",
+     "juris": "LU"
+    },
+    {
+     "id": "karel",
+     "name": "Karel Dumont",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "sofia",
+     "name": "Sofia Renard",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "flot",
+     "name": "Actionnariat dispersé",
+     "type": "other",
+     "juris": "—"
+    }
+   ],
+   "edges": [
+    {
+     "from": "fonds",
+     "to": "cible",
+     "pct": 22,
+     "doc": "d1"
+    },
+    {
+     "from": "karel",
+     "to": "cible",
+     "pct": 8,
+     "doc": "d1"
+    },
+    {
+     "from": "sofia",
+     "to": "cible",
+     "pct": 14,
+     "doc": "d1"
+    },
+    {
+     "from": "flot",
+     "to": "cible",
+     "pct": 56,
+     "doc": "d1"
+    }
+   ],
+   "documents": [
+    {
+     "id": "d1",
+     "name": "Registre des actionnaires — Liège Composites",
+     "body": "Meuse Capital Fund 22 %, Sofia Renard 14 %, Karel Dumont 8 %, actionnariat dispersé 56 % (aucun détenteur au-delà de 3 %)."
+    },
+    {
+     "id": "d2",
+     "name": "Statuts coordonnés",
+     "body": "Le conseil compte cinq membres. Les décisions de cession d'actifs supérieures à 500 000 € requièrent l'unanimité du conseil."
+    },
+    {
+     "id": "d3",
+     "name": "Pacte d'actionnaires du 4 février 2025",
+     "body": "Karel Dumont dispose du droit de nommer et de révoquer trois des cinq administrateurs, et d'un droit de veto sur toute cession d'actifs, fusion ou augmentation de capital. Ce droit lui est consenti à titre personnel et n'est pas attaché à sa participation."
+    }
+   ],
+   "requests": [
+    {
+     "id": "r1",
+     "name": "Demander le pacte d'actionnaires",
+     "cost": 2,
+     "reveals": "d3"
+    }
+   ],
+   "answer": {
+    "ubos": [
+     "karel"
+    ],
+    "cannot_determine": false
+   },
+   "computed": {
+    "sofia": 14.0,
+    "karel": 8.0
+   },
+   "why": "Aucune personne physique n'atteint 25 % par la propriété. Mais Karel nomme la majorité du conseil et dispose d'un veto sur les décisions structurantes : c'est le contrôle par d'autres moyens, qui fait de lui un bénéficiaire effectif quels que soient ses 8 %.",
+   "trap": "Si le pacte n'a pas été demandé, le dossier se conclut par « aucun bénéficiaire effectif au seuil, dirigeant principal retenu par défaut » — une conclusion parfaitement argumentée et parfaitement fausse. Le recours au dirigeant principal n'est légitime qu'après avoir épuisé les deux voies, propriété et contrôle. L'épuiser suppose de demander les pactes.",
+   "law": "AMLR Art. 22(1)(b) — le contrôle exercé par d'autres moyens ; le recours au dirigeant principal n'intervient qu'en dernier ressort, après épuisement des autres voies.",
+   "lesson": "Un actionnariat morcelé n'est pas l'absence de bénéficiaire effectif : c'est souvent le signe qu'il faut chercher le contrôle ailleurs. Le réflexe du dirigeant principal par défaut est la façon la plus courante de clôturer proprement un dossier sans avoir rien identifié."
+  },
+  {
+   "id": "OWN-05",
+   "tier": 3,
+   "tier_name": "Participation croisée",
+   "family": "circulaire",
+   "title": "La société qui se détient elle-même",
+   "subject": "Gand Maritime NV · client corporate · seuil 25 %",
+   "brief": "Une holding détient la cible, et la cible détient une part de la holding. Le calcul boucle si on le laisse faire.",
+   "budget": 4,
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Gand Maritime NV",
+     "type": "company",
+     "juris": "BE",
+     "customer": true
+    },
+    {
+     "id": "holdC",
+     "name": "Schelde Holding NV",
+     "type": "company",
+     "juris": "BE"
+    },
+    {
+     "id": "sara",
+     "name": "Sara Willems",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "omar",
+     "name": "Omar Haddad",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "divers",
+     "name": "Divers minoritaires",
+     "type": "other",
+     "juris": "—"
+    }
+   ],
+   "edges": [
+    {
+     "from": "holdC",
+     "to": "cible",
+     "pct": 60,
+     "doc": "d1"
+    },
+    {
+     "from": "omar",
+     "to": "cible",
+     "pct": 22,
+     "doc": "d1"
+    },
+    {
+     "from": "sara",
+     "to": "cible",
+     "pct": 8,
+     "doc": "d1"
+    },
+    {
+     "from": "divers",
+     "to": "cible",
+     "pct": 10,
+     "doc": "d1"
+    },
+    {
+     "from": "sara",
+     "to": "holdC",
+     "pct": 50,
+     "doc": "d2"
+    },
+    {
+     "from": "cible",
+     "to": "holdC",
+     "pct": 20,
+     "doc": "d2"
+    },
+    {
+     "from": "divers",
+     "to": "holdC",
+     "pct": 30,
+     "doc": "d2"
+    }
+   ],
+   "documents": [
+    {
+     "id": "d1",
+     "name": "Registre des actionnaires — Gand Maritime",
+     "body": "Schelde Holding NV 60 %, Omar Haddad 22 %, Sara Willems 8 %, divers minoritaires 10 %."
+    },
+    {
+     "id": "d2",
+     "name": "Extrait BCE — Schelde Holding NV",
+     "body": "Sara Willems 50 %, Gand Maritime NV 20 % (participation croisée), divers minoritaires 30 %. La participation croisée date de la restructuration de 2022."
+    }
+   ],
+   "requests": [],
+   "answer": {
+    "ubos": [
+     "sara"
+    ],
+    "cannot_determine": false
+   },
+   "computed": {
+    "sara": 38.0,
+    "omar": 22.0
+   },
+   "why": "Sara détient 60 % × 50 % = 30 % via la holding, plus 8 % en direct, soit 38 %. Omar reste à 22 % en direct, sous le seuil. La participation croisée de Gand Maritime dans sa propre holding ne se propage pas : on l'enregistre comme une boucle et on arrête le parcours.",
+   "trap": "Deux façons de se tromper. Faire tourner la boucle et gonfler artificiellement les pourcentages — le calcul converge mathématiquement mais ne décrit plus rien de réel. Ou traiter la participation croisée comme un actionnaire supplémentaire et diluer les autres. Une détention croisée dilue l'intérêt économique réel des actionnaires externes ; il faut la signaler dans le dossier, pas l'intégrer au calcul.",
+   "law": "AMLR Art. 22 — l'analyse doit identifier les personnes physiques ; une participation circulaire ne crée aucun bénéficiaire effectif supplémentaire.",
+   "lesson": "Quand une chaîne revient sur une entité déjà parcourue, on s'arrête et on le note. Le fait vaut d'être signalé — les détentions croisées servent aussi à masquer l'intérêt économique réel — mais il ne se calcule pas."
+  },
+  {
+   "id": "OWN-06",
+   "tier": 3,
+   "tier_name": "Information manquante",
+   "family": "indetermine",
+   "title": "Le dossier qu'on ne peut pas conclure",
+   "subject": "Anvers Commodities BVBA · client corporate · seuil 25 %",
+   "brief": "L'organigramme est complet, les documents sont cohérents, et il manque la seule chose qui compte.",
+   "budget": 5,
+   "entities": [
+    {
+     "id": "cible",
+     "name": "Anvers Commodities BVBA",
+     "type": "company",
+     "juris": "BE",
+     "customer": true
+    },
+    {
+     "id": "offshore",
+     "name": "Redstone Holdings Ltd",
+     "type": "company",
+     "juris": "SC"
+    },
+    {
+     "id": "nomdir",
+     "name": "Corporate Nominees Ltd",
+     "type": "nominee",
+     "juris": "SC"
+    },
+    {
+     "id": "pieter",
+     "name": "Pieter Aerts",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "flot",
+     "name": "Divers minoritaires",
+     "type": "other",
+     "juris": "—"
+    }
+   ],
+   "edges": [
+    {
+     "from": "offshore",
+     "to": "cible",
+     "pct": 62,
+     "doc": "d1"
+    },
+    {
+     "from": "pieter",
+     "to": "cible",
+     "pct": 20,
+     "doc": "d1"
+    },
+    {
+     "from": "flot",
+     "to": "cible",
+     "pct": 18,
+     "doc": "d1"
+    },
+    {
+     "from": "nomdir",
+     "to": "offshore",
+     "pct": 100,
+     "kind": "trustee",
+     "doc": "d2"
+    }
+   ],
+   "documents": [
+    {
+     "id": "d1",
+     "name": "Registre des actionnaires — Anvers Commodities",
+     "body": "Redstone Holdings Ltd 62 %, Pieter Aerts 20 %, divers minoritaires 18 %."
+    },
+    {
+     "id": "d2",
+     "name": "Certificat d'immatriculation — Redstone Holdings Ltd",
+     "body": "Immatriculée aux Seychelles. Actionnaire unique : Corporate Nominees Ltd, agissant en qualité de nominee. Administrateur unique fourni par le même prestataire. Aucun registre public des bénéficiaires effectifs dans cette juridiction."
+    },
+    {
+     "id": "d3",
+     "name": "Déclaration du prestataire",
+     "body": "Corporate Nominees Ltd confirme détenir les titres pour le compte d'un bénéficiaire, sans nommer celui-ci. Le prestataire indique qu'une divulgation est possible sur demande formelle motivée adressée à son service conformité."
+    }
+   ],
+   "requests": [
+    {
+     "id": "r1",
+     "name": "Demander la déclaration du prestataire",
+     "cost": 2,
+     "reveals": "d3"
+    },
+    {
+     "id": "r2",
+     "name": "Rechercher un registre public aux Seychelles",
+     "cost": 1,
+     "reveals": null,
+     "empty": "Aucun registre public des bénéficiaires effectifs n'existe dans cette juridiction. La recherche ne produit rien."
+    }
+   ],
+   "answer": {
+    "ubos": [],
+    "cannot_determine": true
+   },
+   "computed": {
+    "pieter": 20.0
+   },
+   "why": "Pieter plafonne à 20 %, sous le seuil. Le bloc de 62 % est détenu par une structure dont le bénéficiaire effectif n'est pas identifiable avec les pièces disponibles. Ce n'est pas une conclusion partielle : c'est l'impossibilité de conclure, et l'article 21 en tire les conséquences.",
+   "trap": "Trois issues fausses, toutes défendables en apparence. Désigner Pieter parce qu'il est la seule personne physique visible. Désigner le nominee parce qu'il figure au registre. Ou retenir le dirigeant principal en dernier ressort — alors que ce recours suppose d'avoir épuisé les voies, et qu'ici on ne les a pas épuisées : le prestataire a explicitement ouvert un canal de divulgation.",
+   "law": "AMLR Art. 22 — identification des bénéficiaires effectifs ; Art. 21 — lorsque les mesures de vigilance ne peuvent être menées à bien, la relation ne doit pas être nouée.",
+   "lesson": "Le courage professionnel consiste ici à écrire « indéterminé » plutôt qu'un nom plausible. Un dossier qui désigne le mauvais bénéficiaire effectif est pire qu'un dossier qui reconnaît la lacune : le premier a l'air complet et ne sera jamais rouvert."
+  }
+ ]
+}

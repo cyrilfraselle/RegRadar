@@ -27,11 +27,8 @@
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
-body{background:var(--void);color:var(--ink);font-family:var(--mono);font-size:14px;
-  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 80% at 50% 0%,rgba(143,184,255,.06),transparent 62%)}
+/* la mise en page plein écran est désormais celle de la coque */
+
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
 ::selection{background:var(--ice);color:var(--void)}
 
@@ -60,7 +57,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 .ib:hover{border-color:var(--ice);color:var(--ice)}
 
 /* ── views ── */
-.view{position:relative;z-index:2;flex:1 1 auto;overflow-y:auto;min-height:0;display:none}
+.view{position:absolute;inset:0;z-index:2;overflow-y:auto;display:none}
 .view.on{display:block}
 .view::-webkit-scrollbar{width:8px} .view::-webkit-scrollbar-thumb{background:var(--grid)}
 .pad{max-width:960px;margin:0 auto;padding:34px 28px 90px}
@@ -119,7 +116,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 .row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
 
 /* ── WORK (alerts + onboarding share this) ── */
-.work{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0;height:100%}
+.work{display:grid;grid-template-columns:minmax(0,1fr) 320px;height:100%;min-height:0}
 @media(max-width:1000px){.work{grid-template-columns:1fr}}
 .wmain{overflow-y:auto;padding:24px 28px 40px;min-height:0}
 .wmain::-webkit-scrollbar{width:8px} .wmain::-webkit-scrollbar-thumb{background:var(--grid)}
@@ -257,22 +254,10 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
   .coach{left:12px!important;right:12px!important;max-width:none;bottom:16px!important;top:auto!important}
 }
 </style>
+<link rel="stylesheet" href="academy.css">
+<script src="academy-shell.js"></script>
 </head>
 <body>
-
-<div class="hud">
-  <div class="brand"><span class="dot"></span>THE DESK</div>
-  <div class="g hide-s"><span class="l">DAY</span><span class="v" id="hDay">—</span></div>
-  <div class="g" id="hoursWrap" style="display:none"><span class="l">HOURS</span><span class="hours" id="hHours">—</span></div>
-  <div class="xpw">
-    <div class="xpt"><span id="hRank">TRAINEE</span><b id="hXp">0 XP</b></div>
-    <div class="xpb"><i id="hXpFill"></i></div>
-  </div>
-  <div class="hud-r">
-    <button class="ib" onclick="toTimeline()" title="Journal">☰</button>
-    <button class="ib" onclick="toggleSnd()" id="sndBtn" title="Sound">♪</button>
-  </div>
-</div>
 
 <!-- TIMELINE -->
 <div class="view on" id="vTimeline"><div class="pad">
@@ -319,6 +304,7 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 </div></div>
 
 <script>
+AcademyShell.mount("desk");
 /* ═══════════════════════════════════════════════════════════════════
    ONE GAME.
 
@@ -330,9 +316,6 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
    Precision and recall stop being scores and become a felt constraint.
    ═══════════════════════════════════════════════════════════════════ */
 const SKEY='regradar-desk', EVKEY='regradar-events';
-const RANKS=[
- {xp:0,n:'TRAINEE'},{xp:500,n:'ANALYST I'},{xp:1300,n:'ANALYST II'},
- {xp:2600,n:'SENIOR'},{xp:4400,n:'LEAD'},{xp:6800,n:'MLRO'}];
 
 /* The career. Each day is a unit of work, not a lesson. */
 const DAYS=[
@@ -352,13 +335,11 @@ const DAYS=[
   blurb:'Six alerts. The queue does not care that it is month end.'},
 ];
 
-let S={xp:0, day:0, done:[], harm:[], seen:{}, tutorialDone:false};
+let S={day:0, done:[], harm:[], seen:{}, tutorialDone:false};
 let BOOK=[], ONB=[], PROFILES=[];
 let RUN=null;            /* the day in progress */
 
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const rankOf=xp=>{let r=RANKS[0];RANKS.forEach(x=>{if(xp>=x.xp)r=x});return r};
-const nextRank=xp=>RANKS.find(x=>x.xp>xp)||null;
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(S))}catch(e){}}
 function load(){try{const p=JSON.parse(localStorage.getItem(SKEY)||'null');if(p)S={...S,...p}}catch(e){}}
 function logEvent(e){try{const a=JSON.parse(localStorage.getItem(EVKEY)||'[]');a.push(e);
@@ -378,24 +359,22 @@ const sfx={good:()=>{tone(587,.13,'sine',.06);tone(880,.22,'sine',.05,.08)},
   find:()=>{tone(660,.1,'sine',.05);tone(990,.15,'sine',.03,.07)},
   tick:()=>tone(880,.05,'square',.02),
   rank:()=>[523,659,784,1047].forEach((f,i)=>tone(f,.28,'sine',.06,i*.09))};
-function toggleSnd(){SND=!SND;try{localStorage.setItem('regradar-snd',SND?'on':'off')}catch(e){}
-  document.getElementById('sndBtn').style.color=SND?'':'var(--grid)';if(SND)sfx.tick();}
-function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;
-  document.body.appendChild(t);setTimeout(()=>t.remove(),2700);}
+function toggleSnd(){SND=!SND;try{localStorage.setItem('regradar-snd',SND?'on':'off')}catch(e){}if(SND)sfx.tick();}
+function toast(m){ AcademyShell.toast(m); }
 
 function paintHud(){
-  const r=rankOf(S.xp), nx=nextRank(S.xp);
-  document.getElementById('hRank').textContent=r.n;
-  document.getElementById('hXp').textContent=S.xp+' XP';
-  document.getElementById('hXpFill').style.width=Math.round((nx?(S.xp-r.xp)/(nx.xp-r.xp):1)*100)+'%';
-  document.getElementById('hDay').textContent=S.day?('D'+S.day):'—';
-  const hw=document.getElementById('hoursWrap');
-  if(RUN&&RUN.hours!=null){hw.style.display='';
-    const h=document.getElementById('hHours');h.textContent=RUN.hours+'h';
-    h.className='hours'+(RUN.hours<=2?' low':'')+(RUN.hours<=0?' out':'');
-  } else hw.style.display='none';
-  document.getElementById('sndBtn').style.color=SND?'':'var(--grid)';
+  /* Le rang et l'XP appartiennent à la coque ; le module ne pousse que
+     ce qui lui est propre — le jour en cours et les heures restantes. */
+  const items=[];
+  if(S.day) items.push({k:'JOUR', v:String(S.day)});
+  if(RUN && RUN.hours!=null)
+    items.push({k:'HEURES', v:RUN.hours+' h',
+                s: RUN.hours<=0?'bad' : RUN.hours<=2?'warn':''});
+  if(RUN && RUN.alerts) items.push({k:'ALERTE', v:`${Math.min(RUN.i+1,RUN.alerts.length)}/${RUN.alerts.length}`});
+  if(RUN && RUN.cases)  items.push({k:'DOSSIER', v:`${Math.min(RUN.i+1,RUN.cases.length)}/${RUN.cases.length}`});
+  AcademyShell.status(items);
 }
+
 function show(id){['vTimeline','vBrief','vWork','vOut'].forEach(v=>
   document.getElementById(v).classList.toggle('on',v===id));
   document.getElementById(id).scrollTop=0;}
@@ -686,9 +665,8 @@ function deskDecide(choice){
   if(verdict==='right' && deep && RUN.hours>=2) xp+=60;
   if(RUN.tutorial) xp=0;
 
-  const before=rankOf(S.xp).n;
-  S.xp+=xp; S.seen[c.id]=verdict; save();
-  const after=rankOf(S.xp).n;
+  S.seen[c.id]=verdict; save();
+  if(xp) AcademyShell.award('desk', xp);
 
   logEvent({module:'desk', case:c.id, family:c.family, decision:choice, correct:verdict,
             evidence:RUN.gathered.length, hours:RUN.budget-RUN.hours, at:new Date().toISOString()});
@@ -705,7 +683,7 @@ function deskDecide(choice){
   }
   (verdict==='right'||verdict==='part'?sfx.good:sfx.bad)();
   showOutcome(c, choice, verdict, xp, foundN, decisive);
-  if(after!==before) setTimeout(()=>toast('PROMOTED — '+after),900);
+
 }
 
 function showOutcome(c, choice, verdict, xp, foundN, decisive){
@@ -808,9 +786,8 @@ function onbDecide(choice){
   const right=choice===c.decision;
   const verdict=right?'right':(choice==='edd'&&c.decision==='standard')?'part':'wrong';
   let xp=right?220:verdict==='part'?70:20;
-  const before=rankOf(S.xp).n;
-  S.xp+=xp; S.seen[c.id]=verdict; save();
-  const after=rankOf(S.xp).n;
+  S.seen[c.id]=verdict; save();
+  if(xp) AcademyShell.award('desk', xp);
   logEvent({module:'onboard', case:c.id, family:c.family, decision:choice,
             correct:verdict, at:new Date().toISOString()});
   RUN.results.push({c,choice,verdict,xp});
@@ -838,7 +815,7 @@ function onbDecide(choice){
   btn.textContent=last?'END THE DAY':'NEXT APPLICATION';
   btn.onclick=()=>{ if(last) endDay(); else { RUN.i++; show('vWork'); renderOnb(); } };
   paintHud(); show('vOut');
-  if(after!==before) setTimeout(()=>toast('PROMOTED — '+after),900);
+
 }
 
 /* ═══════════ END OF DAY ═══════════ */
@@ -851,6 +828,7 @@ function endDay(){
   const hoursUsed=RUN.budget!=null?(RUN.budget-RUN.hours):null;
 
   if(!S.done.includes(d.d)){ S.done.push(d.d); }
+  AcademyShell.complete('desk', S.done.length);
   S.seen['day'+d.d]= harm? 'HARM' : good===res.length? 'CLEAN' : 'MIXED';
   if(RUN.tutorial) S.tutorialDone=true;
   save();

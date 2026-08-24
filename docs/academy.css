@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════════════════════════
+   REGRADAR ACADEMY — coque partagée
+   ───────────────────────────────────────────────────────────────────
+   Deux enveloppes, et c'est tout l'enjeu de ce fichier.
+
+   L'ENVELOPPE EXTÉRIEURE est RegRadar Academy : une bande fine, sobre,
+   qui dit « tu utilises un simulateur ». Elle ne ressemble pas aux
+   pages outils du site — pas de barre de navigation RegRadar, pas de
+   bleu signal. Academy est un produit distinct et doit se voir comme tel.
+
+   L'ENVELOPPE INTÉRIEURE est le poste de travail d'une banque fictive.
+   Barre de titre, onglets, barre d'état : les codes d'une application
+   métier interne. C'est l'écran dans l'écran.
+
+   L'effet recherché n'est pas décoratif. Quand un utilisateur voit une
+   fenêtre dans une fenêtre, il comprend immédiatement qu'il manipule un
+   environnement simulé — sans qu'on ait à l'écrire.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
+  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
+  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+
+  --outer:34px;      /* bande RegRadar Academy */
+  --title:38px;      /* barre de titre du poste */
+  --tabs:40px;       /* onglets */
+  --status:28px;     /* barre d'état */
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:#05070A;color:var(--ink);font-family:var(--mono);font-size:14px;
+  -webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ice);color:var(--void)}
+
+/* ── ENVELOPPE EXTÉRIEURE : le produit ───────────────────────────── */
+.ac-outer{position:fixed;inset:0;display:flex;flex-direction:column;
+  background:#05070A;padding:0 10px 10px}
+.ac-brand{flex:0 0 var(--outer);display:flex;align-items:center;gap:11px;
+  padding:0 6px;font-size:10px;letter-spacing:.19em;color:var(--ink-3)}
+.ac-brand .mk{display:flex;align-items:center;gap:8px;color:var(--ink-2);font-weight:700}
+.ac-brand .mk i{width:16px;height:16px;background:var(--violet);display:grid;place-items:center;
+  font-style:normal;font-size:10px;color:var(--void);font-weight:700}
+.ac-brand .sep{width:1px;height:12px;background:var(--grid)}
+.ac-brand .sim{color:var(--ink-3);letter-spacing:.16em}
+.ac-brand .rr{margin-left:auto;display:flex;align-items:center;gap:14px}
+.ac-brand .rr a{color:var(--ink-3);letter-spacing:.14em;transition:color .15s}
+.ac-brand .rr a:hover{color:var(--ink-2)}
+
+/* ── ENVELOPPE INTÉRIEURE : le poste de travail ──────────────────── */
+.ac-machine{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;
+  border:1px solid var(--grid);background:var(--void);
+  box-shadow:0 0 0 1px rgba(143,184,255,.05), 0 24px 70px rgba(0,0,0,.6)}
+
+.ac-title{flex:0 0 var(--title);display:flex;align-items:center;gap:12px;
+  padding:0 14px;border-bottom:1px solid var(--grid);
+  background:linear-gradient(180deg,var(--raised),var(--console))}
+.ac-title .dots{display:flex;gap:5px}
+.ac-title .dots i{width:8px;height:8px;border-radius:50%;background:var(--grid);display:block}
+.ac-title .dots i:first-child{background:var(--alarm);opacity:.55}
+.ac-sys{display:flex;align-items:baseline;gap:9px;font-size:11px;letter-spacing:.11em}
+.ac-sys b{color:var(--ink);font-weight:700}
+.ac-sys span{color:var(--ink-3);font-size:10px;letter-spacing:.14em}
+.ac-title .env{margin-left:auto;display:flex;align-items:center;gap:8px;
+  font-size:9px;letter-spacing:.16em;color:var(--amber);
+  border:1px solid rgba(255,194,77,.3);padding:3px 9px}
+.ac-title .env i{width:5px;height:5px;background:var(--amber);border-radius:50%;
+  display:block;animation:acb 2.6s infinite}
+@keyframes acb{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* onglets : la navigation entre modules, comme une application métier */
+.ac-tabs{flex:0 0 var(--tabs);display:flex;align-items:stretch;gap:0;
+  border-bottom:1px solid var(--grid);background:rgba(14,20,28,.55);
+  overflow-x:auto;scrollbar-width:none}
+.ac-tabs::-webkit-scrollbar{display:none}
+.ac-tab{display:flex;align-items:center;gap:8px;padding:0 16px;font-size:11.5px;
+  letter-spacing:.06em;color:var(--ink-3);border-right:1px solid var(--grid);
+  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;
+  transition:color .16s,background .16s,border-color .16s;position:relative}
+.ac-tab:hover:not(.on):not(.locked){color:var(--ink-2);background:rgba(143,184,255,.04)}
+.ac-tab.on{color:var(--ink);background:var(--void);border-bottom-color:var(--violet);font-weight:700}
+.ac-tab.locked{opacity:.32;cursor:not-allowed}
+.ac-tab .n{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.1em}
+.ac-tab.on .n{color:var(--violet)}
+.ac-tab .tick{font-size:10px;color:var(--phos)}
+.ac-tabs .grow{flex:1 1 auto;border-right:none}
+
+/* zone de contenu du module */
+.ac-screen{flex:1 1 auto;position:relative;min-height:0;overflow:hidden;
+  background:var(--void)}
+.ac-screen::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(115% 75% at 50% 0%,rgba(143,184,255,.05),transparent 62%)}
+
+/* ── BARRE D'ÉTAT : progression toujours visible ─────────────────── */
+.ac-status{flex:0 0 var(--status);display:flex;align-items:center;gap:14px;
+  padding:0 14px;border-top:1px solid var(--grid);background:var(--console);
+  font-size:10px;letter-spacing:.1em;color:var(--ink-3);overflow-x:auto;
+  scrollbar-width:none;white-space:nowrap}
+.ac-status::-webkit-scrollbar{display:none}
+.ac-status .who{color:var(--ink-2)}
+.ac-status .rk{color:var(--violet);font-weight:700;letter-spacing:.13em}
+.ac-status .xp{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.ac-status .bar{width:82px;height:3px;background:var(--grid);position:relative;overflow:hidden}
+.ac-status .bar i{position:absolute;inset:0 auto 0 0;background:var(--violet);width:0;
+  box-shadow:0 0 8px var(--violet);transition:width .7s var(--ease);display:block}
+.ac-status .nxt{color:var(--ink-3)}
+.ac-status .mod{margin-left:auto;display:flex;align-items:center;gap:12px}
+.ac-status .mod .k{color:var(--ink-3)}
+.ac-status .mod .v{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.ac-status .mod .v.warn{color:var(--amber)}
+.ac-status .mod .v.bad{color:var(--alarm)}
+.ac-sbtn{border:1px solid var(--grid);color:var(--ink-3);padding:2px 8px;font-size:9px;
+  letter-spacing:.12em;transition:all .15s}
+.ac-sbtn:hover{border-color:var(--violet);color:var(--violet)}
+
+/* ── promotion : passe par-dessus la machine, pas par-dessus le produit ── */
+.ac-rank{position:absolute;inset:0;z-index:90;background:rgba(8,11,16,.96);
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:30px}
+.ac-rank.on{display:flex;animation:acf .35s var(--ease)}
+@keyframes acf{from{opacity:0}to{opacity:1}}
+.ac-rank .k{font-size:10px;letter-spacing:.26em;color:var(--violet)}
+.ac-rank .art{font-size:clamp(44px,10vw,92px);line-height:1;font-weight:700;color:var(--violet);
+  text-shadow:0 0 44px rgba(180,140,255,.5);margin-top:14px}
+.ac-rank h2{font-family:var(--mono);font-size:clamp(22px,4vw,36px);font-weight:700;
+  letter-spacing:-.03em;margin-top:14px}
+.ac-rank p{font-family:var(--sans);font-size:15px;color:var(--ink-2);margin-top:14px;
+  max-width:48ch;line-height:1.55}
+.ac-rank button{margin-top:26px;border:1px solid var(--violet);color:var(--violet);
+  padding:13px 30px;font-size:11px;font-weight:700;letter-spacing:.16em;
+  background:rgba(180,140,255,.08);transition:all .18s}
+.ac-rank button:hover{background:var(--violet);color:var(--void)}
+
+/* ── notification légère ─────────────────────────────────────────── */
+.ac-toast{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;z-index:80;
+  border:1px solid var(--phos);background:var(--console);color:var(--phos);
+  padding:9px 18px;font-size:10px;letter-spacing:.12em;font-weight:700;
+  animation:acT 2.6s var(--ease) forwards;pointer-events:none}
+@keyframes acT{0%{opacity:0;transform:translate(-50%,8px)}12%,78%{opacity:1;transform:translate(-50%,0)}
+  100%{opacity:0;transform:translate(-50%,-6px)}}
+
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{
+  animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+@media(max-width:820px){
+  :root{--outer:30px;--title:34px;--tabs:38px;--status:26px}
+  .ac-outer{padding:0 5px 5px}
+  .ac-brand{font-size:9px;letter-spacing:.14em;gap:8px}
+  .ac-brand .rr{gap:9px}
+  .ac-title .env span{display:none}
+  .ac-tab{padding:0 12px;font-size:11px}
+  .ac-tab .n{display:none}
+  .ac-status .nxt,.ac-status .who{display:none}
+}
