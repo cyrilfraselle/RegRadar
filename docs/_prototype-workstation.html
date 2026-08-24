@@ -3,6 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="academy-shell.js"></script>
 <style>
 :root{
   --wallpaper:#1B2430; --wallpaper-2:#222E3D; --taskbar:#12161D;
@@ -315,6 +316,96 @@ table.dt td b{color:var(--text);font-weight:600}
 .tm-compose{flex:0 0 46px;border-top:1px solid var(--border);display:flex;align-items:center;
   padding:0 14px;color:var(--text-3);font-size:11.5px;gap:8px}
 
+/* ── AML Investigation app: primer quiz + case workbench ─────────── */
+.inv-tabs{flex:0 0 40px;display:flex;gap:2px;padding:0 10px;background:var(--surface-2);
+  border-bottom:1px solid var(--border)}
+.inv-tab{display:flex;align-items:center;padding:0 16px;font-size:12.5px;font-weight:600;
+  color:var(--text-3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.inv-tab.on{color:var(--text);border-bottom-color:var(--brand)}
+.inv-body{flex:1;overflow:hidden;position:relative}
+.inv-view{position:absolute;inset:0;overflow-y:auto;padding:22px 26px;display:none}
+.inv-view.on{display:block}
+.inv-step{border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:16px;background:var(--surface)}
+.inv-step .sn{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
+.inv-step h3{font-size:16px;font-weight:600;margin:8px 0 0}
+.inv-step .note{font-size:12px;color:var(--text-2);margin-top:8px;border-left:2px solid var(--border);
+  padding-left:12px;line-height:1.55}
+.inv-mini{margin:14px 0}
+.inv-mini svg{display:block;width:100%;height:auto;max-height:190px}
+.inv-q{font-size:13.5px;font-weight:600;margin-top:12px}
+.inv-opts{display:grid;gap:7px;margin-top:10px}
+.inv-opt{border:1px solid var(--border-strong);border-radius:6px;padding:10px 13px;font-size:12.5px;
+  cursor:pointer;background:var(--surface);transition:all .12s;text-align:left;width:100%;font-family:var(--sans)}
+.inv-opt:hover:not(:disabled){border-color:var(--brand)}
+.inv-opt:disabled{cursor:default}
+.inv-opt.right{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.inv-opt.wrong{border-color:var(--crit);background:var(--crit-bg);color:var(--crit)}
+.inv-reveal{margin-top:12px;border-left:2px solid var(--ok);padding:9px 0 9px 13px;font-size:12.5px;
+  line-height:1.55;color:var(--text-2);display:none}
+.inv-reveal.on{display:block}
+.inv-reveal b{display:block;color:var(--ok);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.inv-reveal .pr{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);color:var(--text)}
+.inv-chart{border:1px solid var(--border);border-radius:8px;background:var(--surface-2);margin-top:14px;position:relative}
+.inv-chart svg{display:block;width:100%;height:auto}
+.inv-legend{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);padding:8px 12px;
+  font-size:10.5px;color:var(--text-3);font-weight:600}
+.inv-legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:2px}
+.inv-work{display:grid;grid-template-columns:1fr 300px;gap:22px;margin-top:6px}
+.inv-pick{display:grid;gap:7px;margin-top:10px}
+.inv-pk{border:1px solid var(--border-strong);border-radius:6px;padding:10px 12px;display:flex;
+  align-items:center;gap:10px;font-size:12.5px;cursor:pointer;background:var(--surface);width:100%;
+  font-family:var(--sans);text-align:left}
+.inv-pk:hover{border-color:var(--text-3)}
+.inv-pk.on{border-color:var(--brand);background:rgba(31,92,139,.06);color:var(--brand-ink);font-weight:600}
+.inv-pk .box{width:15px;height:15px;border:1px solid currentColor;border-radius:3px;flex:0 0 auto;
+  display:grid;place-items:center;font-size:10px}
+.inv-nd{border:1px solid var(--warn);color:var(--warn);border-radius:6px;padding:10px 12px;margin-top:10px;
+  font-size:12px;width:100%;font-family:var(--sans);text-align:left;cursor:pointer;background:var(--warn-bg)}
+.inv-nd.on{background:var(--warn);color:#fff}
+.inv-submit{margin-top:14px;border:none;border-radius:6px;background:var(--ok);color:#fff;padding:12px;
+  width:100%;font-size:12px;font-weight:700;letter-spacing:.04em;cursor:pointer}
+.inv-submit:disabled{opacity:.4;cursor:not-allowed}
+.inv-verdict{border-radius:8px;border:1px solid var(--border);padding:20px 22px;margin-top:6px}
+.inv-verdict .stamp{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;
+  padding:5px 12px;border-radius:5px;margin-bottom:10px}
+.inv-verdict .stamp.ok{background:var(--ok-bg);color:var(--ok)}
+.inv-verdict .stamp.bad{background:var(--crit-bg);color:var(--crit)}
+.inv-calc{border:1px solid var(--border);border-radius:6px;margin-top:14px;overflow:hidden}
+.inv-calc .cr{padding:9px 13px;border-bottom:1px solid var(--border);display:grid;
+  grid-template-columns:1fr 70px 90px;gap:10px;font-size:12px;align-items:baseline}
+.inv-calc .cr:last-child{border-bottom:none}
+.inv-calc .cr .pc{font-family:var(--mono);text-align:right;font-weight:600}
+.inv-calc .cr.right{color:var(--ok)} .inv-calc .cr.miss{color:var(--crit)} .inv-calc .cr.extra{color:var(--warn)}
+.inv-note{font-size:12.5px;line-height:1.6;color:var(--text-2);margin-top:14px;border-left:2px solid var(--warn);
+  padding-left:13px}
+.inv-note.crit{border-left-color:var(--crit)}
+.inv-note b{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);margin-bottom:4px}
+.inv-note.crit b{color:var(--crit)}
+.inv-law{font-size:11.5px;color:var(--brand-ink);margin-top:14px;line-height:1.55}
+.inv-locked{padding:40px 20px;text-align:center;color:var(--text-3)}
+.inv-locked .lk{font-size:32px;margin-bottom:10px}
+
+/* ── training path panel ─────────────────────────────────────────── */
+.path-prog{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);margin-bottom:22px}
+.path-prog div{background:var(--surface);padding:12px 13px}
+.path-prog .n{font-size:20px;font-weight:700;font-family:var(--mono)}
+.path-prog .l{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
+.path-mod{border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:14px}
+.path-mod .num{width:34px;height:34px;border-radius:8px;background:var(--surface-2);display:grid;
+  place-items:center;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--text-3);flex:0 0 auto}
+.path-mod.done .num{background:var(--ok-bg);color:var(--ok)}
+.path-mod.now .num{background:var(--brand);color:#fff}
+.path-mod .body{flex:1;min-width:0}
+.path-mod .nm{font-size:13.5px;font-weight:600}
+.path-mod .tag{font-size:11.5px;color:var(--text-2);margin-top:2px}
+.path-mod.locked{opacity:.5}
+.path-mod .st{font-size:10px;font-weight:700;letter-spacing:.06em;padding:4px 9px;border-radius:5px;flex:0 0 auto}
+.path-mod .st.done{background:var(--ok-bg);color:var(--ok)}
+.path-mod .st.now{background:var(--brand);color:#fff}
+.path-mod .st.locked{background:var(--surface-2);color:var(--text-3)}
+
 /* ── highlight pulse (Alex points at something) ──────────────────── */
 .hl-pulse{outline:3px solid var(--brand) !important;outline-offset:2px;
   animation:hlPulse 1.4s ease-in-out 3;box-shadow:0 0 0 6px rgba(31,92,139,.25) !important}
@@ -328,8 +419,8 @@ table.dt td b{color:var(--text);font-weight:600}
 <div class="desktop-mark"><span class="sq">M</span> MERIDIAAN BANK &middot; ANALYST WORKSTATION</div>
 
 <div class="dicon i1" data-open="explorer"><div class="ico" style="background:#4A5568">🗄️</div><div class="lbl">File Explorer</div></div>
-<div class="dicon i2" data-open="soon" data-soon="AML Investigation"><div class="ico" style="background:#1F5C8B">🛡️</div><div class="lbl">AML Investigation</div></div>
-<div class="dicon i3" data-open="soon" data-soon="Customer Database"><div class="ico" style="background:#4A5568">📇</div><div class="lbl">Customer Database</div></div>
+<div class="dicon i2" data-open="invest"><div class="ico" style="background:#1F5C8B">🛡️</div><div class="lbl">AML Investigation</div></div>
+<div class="dicon i3" data-open="path"><div class="ico" style="background:#6E3FBF">🎯</div><div class="lbl">Training Path</div></div>
 <div class="dicon i4" data-open="soon" data-soon="Transaction Monitoring"><div class="ico" style="background:#4A5568">📈</div><div class="lbl">Transaction Monitoring</div></div>
 
 <!-- ═══════════════════ OUTLOOK WINDOW ═══════════════════ -->
@@ -553,6 +644,33 @@ table.dt td b{color:var(--text);font-weight:600}
   <div class="resize-handle"></div>
 </div>
 
+<!-- ═══════════════════ AML INVESTIGATION WINDOW ═══════════════════ -->
+<div class="win" id="win-invest" style="top:50px;left:150px;width:900px;height:640px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tapp"><span class="tico" style="background:#1F5C8B"></span>AML Investigation — <span id="inv-case-title">Ownership structures</span></div>
+  </div>
+  <div class="inv-tabs">
+    <div class="inv-tab on" data-view="primer">Principles</div>
+    <div class="inv-tab" data-view="case">Case workbench</div>
+  </div>
+  <div class="inv-body">
+    <div class="inv-view on" id="inv-primer"></div>
+    <div class="inv-view" id="inv-case"></div>
+  </div>
+  <div class="resize-handle"></div>
+</div>
+
+<!-- ═══════════════════ TRAINING PATH WINDOW ═══════════════════ -->
+<div class="win" id="win-path" style="top:90px;left:220px;width:640px;height:560px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tapp"><span class="tico" style="background:#6E3FBF"></span>Training Path</div>
+  </div>
+  <div class="pad" id="path-body" style="overflow-y:auto"></div>
+  <div class="resize-handle"></div>
+</div>
+
 <!-- ═══════════════════ NOTIFICATIONS ═══════════════════ -->
 <div class="ntf-stack" id="ntf-stack"></div>
 
@@ -563,6 +681,8 @@ table.dt td b{color:var(--text);font-weight:600}
   <div class="tb-app" id="tb-browser" title="Chrome">🌐</div>
   <div class="tb-app" id="tb-mail" title="Meridiaan Mail">✉️</div>
   <div class="tb-app" id="tb-explorer" title="File Explorer">🗄️</div>
+  <div class="tb-app" id="tb-invest" title="AML Investigation">🛡️</div>
+  <div class="tb-app" id="tb-path" title="Training Path">🎯</div>
   <div class="tb-app" id="tb-teams" title="Teams">💬</div>
   <div class="tb-flag" id="tb-flag"><i></i>Alert A-4471 — 3h 40m remaining</div>
   <div class="tb-right">
@@ -1110,6 +1230,7 @@ function activateOwnershipCase(caseObj){
   renderActiveCase(caseObj);
   WM.open('browser'); openTab('cif'); goToTab('cif', true);
   notify('🔔', '#1F5C8B', 'Case switched', 'Now viewing '+caseObj.id+' — '+caseObj.title, ()=>{});
+  INV.onCaseSwitch();
 }
 
 async function loadCaseData(){
@@ -1117,6 +1238,7 @@ async function loadCaseData(){
   try{ const r = await fetch('data/academy/ownership.json', {cache:'no-store'}); if(r.ok) ownershipData = await r.json(); }catch(e){}
   try{ const r2 = await fetch('data/academy/investigations.json', {cache:'no-store'}); if(r2.ok) investigationsData = await r2.json(); }catch(e){}
   CASE.ownershipCases = (ownershipData && ownershipData.cases) || [];
+  CASE.ownershipPrimer = (ownershipData && ownershipData.primer) || [];
   CASE.investigationCases = (investigationsData && investigationsData.cases) || [];
   FE.renderCasesFolder(CASE.ownershipCases, CASE.investigationCases);
   const own1 = CASE.ownershipCases.find(c=>c.id==='OWN-01');
@@ -1126,7 +1248,336 @@ async function loadCaseData(){
   } else {
     notify('⚠️', '#B3392C', 'Case data unavailable', 'Could not load ownership.json — showing static demo content.');
   }
+  INV.boot();
+  PATH.render();
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   AML INVESTIGATION — the scored task itself: the four-principle
+   primer and the case workbench, ported from ownership.html's exact
+   solve()/layout()/drawChart() and submit() logic so this teaches the
+   same skill, not a simplified stand-in. Progress is written to the
+   same regradar-ownership + regradar-academy-progress keys the
+   classic page used, so nothing is lost either direction.
+   ═══════════════════════════════════════════════════════════════════ */
+const INV = (function(){
+  const esc = s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  let picked = new Set(), nd = false;
+  let doneMap = {};
+  try{ const p = JSON.parse(localStorage.getItem('regradar-ownership')||'null'); if(p && p.done) doneMap = p.done; }catch(e){}
+
+  function solve(entities, edges, root){
+    const persons = new Set(entities.filter(e=>e.type==='person').map(e=>e.id));
+    const res = {};
+    (function walk(n,f,path){
+      edges.forEach(e=>{
+        if(e.to!==n || path.includes(e.from)) return;
+        if(e.kind==='trustee') return;
+        const nf = f*(e.pct/100);
+        if(persons.has(e.from)){
+          if(!res[e.from]) res[e.from] = {pct:0};
+          res[e.from].pct += nf*100;
+        } else walk(e.from, nf, [...path, e.from]);
+      });
+    })(root, 1, [root]);
+    return res;
+  }
+
+  function layout(entities, edges, root, W, H){
+    const tier = {}; tier[root] = 0;
+    (function walk(cur, d, path){
+      edges.forEach(e=>{
+        if(e.to!==cur || path.includes(e.from)) return;
+        if(tier[e.from]===undefined || tier[e.from]<d+1) tier[e.from] = d+1;
+        walk(e.from, d+1, [...path, e.from]);
+      });
+    })(root, 0, [root]);
+    entities.forEach(e=>{ if(tier[e.id]===undefined) tier[e.id]=1; });
+    const maxT = Math.max(...Object.values(tier));
+    const rows = {};
+    entities.forEach(e=>{ (rows[tier[e.id]]=rows[tier[e.id]]||[]).push(e); });
+    const pos = {};
+    const top=40, bottom=H-40;
+    for(let t=0;t<=maxT;t++){
+      const r = rows[t]||[];
+      const y = maxT===0? bottom : bottom-(bottom-top)*(t/maxT);
+      const slot = W/(r.length+1);
+      r.forEach((e,i)=>{ pos[e.id] = {x:Math.round(slot*(i+1)), y:Math.round(y)}; });
+    }
+    return pos;
+  }
+
+  function drawChart(entities, edges, root, opts){
+    opts = opts||{};
+    const W = 720;
+    const depth = (()=>{ const t={}; t[root]=0;
+      (function w(c,d,p){ edges.forEach(e=>{ if(e.to!==c||p.includes(e.from)) return;
+        t[e.from]=Math.max(t[e.from]||0,d+1); w(e.from,d+1,[...p,e.from]); }); })(root,0,[root]);
+      return Math.max(1, ...Object.values(t)); })();
+    const H = Math.max(190, 110+depth*90);
+    const pos = layout(entities, edges, root, W, H);
+    const NW = opts.small?100:124, NH = opts.small?32:38;
+    let svg='';
+    edges.forEach(e=>{
+      const a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
+      const back = a.y>=b.y;
+      const col = e.kind==='trustee' ? '#8B93A0' : back ? '#9A6B00' : '#8B93A0';
+      const dash = e.kind==='trustee' ? '5 4' : back ? '6 4' : '';
+      const off = back? 40:0;
+      const my = (a.y+b.y)/2;
+      const d = `M${a.x},${a.y-NH/2} C${a.x+off},${my} ${b.x+off},${my} ${b.x},${b.y+NH/2}`;
+      svg += `<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4" stroke-dasharray="${dash}" opacity=".7"/>`;
+      const mx = (a.x+b.x)/2+off*.7;
+      const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'benef.' : e.pct+'%';
+      svg += `<g><rect x="${mx-24}" y="${my-9}" width="48" height="18" fill="#fff" stroke="${col}" stroke-width=".8"/>
+        <text x="${mx}" y="${my+4}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9.5" font-weight="700" fill="${col}">${lbl}</text></g>`;
+    });
+    entities.forEach(e=>{
+      const p = pos[e.id]; if(!p) return;
+      const isC = e.id===root, isP = e.type==='person';
+      const dashed = e.type==='trust'||e.type==='nominee';
+      const stroke = isC?'#B3392C' : isP?'#6E3FBF' : dashed?'#9A6B00':'#8B93A0';
+      const fill = isC?'#B3392C' : (opts.picked&&opts.picked.has(e.id))?'#6E3FBF':'#fff';
+      const txt = (isC||(opts.picked&&opts.picked.has(e.id)))?'#fff':'#1A1F27';
+      const nm = e.name.length>16? e.name.slice(0,15)+'…' : e.name;
+      svg += `<g class="inv-nod" data-n="${esc(e.id)}" style="cursor:${isP?'pointer':'default'}">
+        <rect x="${p.x-NW/2}" y="${p.y-NH/2}" width="${NW}" height="${NH}" rx="4" fill="${fill}"
+          stroke="${stroke}" stroke-width="${isP?2:1.3}" stroke-dasharray="${dashed?'4 3':''}"/>
+        <text x="${p.x}" y="${p.y-1}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="700" fill="${txt}">${esc(nm)}</text>
+        <text x="${p.x}" y="${p.y+11}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7.5" fill="${txt}" opacity=".75">${esc(e.juris)} · ${isP?'PERSON':e.type.toUpperCase()}</text>
+      </g>`;
+    });
+    return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ownership chart">${svg}</svg>`;
+  }
+
+  function switchView(v){
+    document.querySelectorAll('.inv-tab').forEach(t=>t.classList.toggle('on', t.dataset.view===v));
+    document.getElementById('inv-primer').classList.toggle('on', v==='primer');
+    document.getElementById('inv-case').classList.toggle('on', v==='case');
+  }
+  document.querySelectorAll('.inv-tab').forEach(t=>t.addEventListener('click', ()=>switchView(t.dataset.view)));
+
+  function isUnlocked(){
+    if(typeof AcademyShell==='undefined') return true;
+    const mods = AcademyShell.modules, P = AcademyShell.progress;
+    const m = mods.find(x=>x.id==='ownership');
+    const doneCount = mods.filter(x=>(P.modules[x.id]||{}).done>0).length;
+    return doneCount >= m.needs;
+  }
+  function lockedMsg(){
+    return `<div class="inv-locked"><div class="lk">🔒</div>
+      <div style="font-weight:600;color:var(--text-2);margin-bottom:6px">This module is locked</div>
+      Finish The Laundromat first — the path is sequential.
+      <div style="margin-top:14px"><button class="inv-submit" style="width:auto;padding:10px 18px" onclick="window.open('laundromat.html','_blank')">Open The Laundromat</button></div>
+      </div>`;
+  }
+  function renderPrimer(){
+    const el = document.getElementById('inv-primer');
+    if(!isUnlocked()){ el.innerHTML = lockedMsg(); return; }
+    const primer = CASE.ownershipPrimer;
+    if(!primer || !primer.length){ el.innerHTML = '<div class="inv-locked"><div class="lk">⏳</div>Loading principles…</div>'; return; }
+    el.innerHTML = `<div class="kicker">THE FOUR PRINCIPLES</div>
+      <h1 class="pt">Before you designate a beneficial owner.</h1>
+      <div class="sub">Answer first, understand after — getting it wrong here costs nothing.</div>
+      <div id="inv-primer-steps"></div>`;
+    document.getElementById('inv-primer-steps').innerHTML = primer.map((p,i)=>`
+      <div class="inv-step" id="ps${i}">
+        <div class="sn">PRINCIPLE ${i+1} / ${primer.length}</div>
+        <h3>${esc(p.title)}</h3>
+        ${p.note?`<div class="note">${esc(p.note)}</div>`:''}
+        <div class="inv-mini">${drawChart(p.entities, p.edges, 'cible', {small:true})}</div>
+        <div class="inv-q">${esc(p.question)}</div>
+        <div class="inv-opts">${p.options.map(o=>`<button class="inv-opt" data-o="${esc(o.id)}" onclick="INV.answerPrimer(${i},'${esc(o.id)}')">${esc(o.label)}</button>`).join('')}</div>
+        <div class="inv-reveal" id="pr${i}"><b>Why</b>${esc(p.explain)}<div class="pr">${esc(p.principle)}</div></div>
+      </div>`).join('');
+  }
+  function answerPrimer(i, oid){
+    const p = CASE.ownershipPrimer[i];
+    const box = document.getElementById('ps'+i);
+    box.querySelectorAll('.inv-opt').forEach(b=>{
+      b.disabled = true;
+      if(b.dataset.o===p.answer) b.classList.add('right');
+      else if(b.dataset.o===oid) b.classList.add('wrong');
+    });
+    document.getElementById('pr'+i).classList.add('on');
+  }
+
+  const legendHtml = `<div class="inv-legend">
+      <span><i style="background:#B3392C"></i>Client</span>
+      <span><i style="border:1.5px solid #6E3FBF;background:none"></i>Natural person</span>
+      <span><i style="border:1.5px dashed #9A6B00;background:none"></i>Trust / nominee</span>
+    </div>`;
+
+  function renderWorkbench(){
+    const el = document.getElementById('inv-case');
+    const c = CASE.active;
+    const titleEl = document.getElementById('inv-case-title');
+    if(titleEl) titleEl.textContent = c ? c.id : 'Ownership structures';
+    if(!isUnlocked()){ el.innerHTML = lockedMsg(); return; }
+    if(!c){ el.innerHTML = '<div class="inv-locked"><div class="lk">⏳</div>Loading case…</div>'; return; }
+    picked = new Set(); nd = false;
+    const root = c.entities.find(e=>e.customer).id;
+    const solved = doneMap[c.id]==='right';
+    el.innerHTML = `
+      <div class="kicker">${esc(c.id)} · ${esc((c.tier_name||'').toUpperCase())}${solved?' · ALREADY RESOLVED':''}</div>
+      <h1 class="pt">${esc(c.title)}</h1>
+      <div class="sub">${esc(c.subject||'')}</div>
+      <div class="inv-work">
+        <div><div class="inv-chart" id="inv-chartbox">${drawChart(c.entities, c.edges, root, {picked})}${legendHtml}</div></div>
+        <div id="inv-side"></div>
+      </div>`;
+    renderSide(); wireChart();
+  }
+  function renderSide(){
+    const c = CASE.active;
+    const persons = c.entities.filter(e=>e.type==='person');
+    document.getElementById('inv-side').innerHTML = `
+      <div class="kicker" style="margin-bottom:0">Who is a beneficial owner?</div>
+      <div class="inv-pick">${persons.map(p=>`
+        <button class="inv-pk ${picked.has(p.id)?'on':''}" data-pid="${esc(p.id)}">
+          <span class="box">${picked.has(p.id)?'✓':''}</span><span style="flex:1">${esc(p.name)}</span>
+          <span style="font-size:10px;color:var(--text-3)">${esc(p.juris)}</span>
+        </button>`).join('')}</div>
+      <button class="inv-nd ${nd?'on':''}" id="inv-nd-btn">${nd?'✓ ':''}Cannot be determined</button>
+      <button class="inv-submit" id="inv-submit-btn" ${(!picked.size&&!nd)?'disabled':''}>Submit designation</button>
+      <div style="font-size:11.5px;color:var(--text-3);margin-top:10px;line-height:1.5">
+        Select the natural persons who cross the threshold, or who exercise control by other means.</div>`;
+    document.querySelectorAll('.inv-pk').forEach(b=>b.addEventListener('click', ()=>{
+      if(nd) return;
+      const id = b.dataset.pid;
+      picked.has(id)?picked.delete(id):picked.add(id);
+      refreshChartAndSide();
+    }));
+    document.getElementById('inv-nd-btn').addEventListener('click', ()=>{
+      nd = !nd; if(nd) picked.clear();
+      refreshChartAndSide();
+    });
+    document.getElementById('inv-submit-btn').addEventListener('click', submit);
+  }
+  function refreshChartAndSide(){
+    const c = CASE.active;
+    const root = c.entities.find(e=>e.customer).id;
+    document.getElementById('inv-chartbox').innerHTML = drawChart(c.entities, c.edges, root, {picked}) + legendHtml;
+    wireChart();
+    renderSide();
+  }
+  function wireChart(){
+    document.querySelectorAll('.inv-nod').forEach(el=>el.addEventListener('click', ev=>{
+      ev.stopPropagation();
+      const c = CASE.active;
+      const e = c.entities.find(x=>x.id===el.dataset.n);
+      if(e && e.type==='person' && !nd){
+        picked.has(e.id)?picked.delete(e.id):picked.add(e.id);
+        refreshChartAndSide();
+      }
+    }));
+  }
+
+  function submit(){
+    const c = CASE.active;
+    const root = c.entities.find(e=>e.customer).id;
+    const res = solve(c.entities, c.edges, root);
+    const expected = new Set(c.answer.ubos);
+    const correct = c.answer.cannot_determine
+      ? (nd && !picked.size)
+      : (!nd && picked.size===expected.size && [...picked].every(x=>expected.has(x)));
+    const missed = [...expected].filter(x=>!picked.has(x));
+
+    doneMap[c.id] = correct ? 'right' : 'wrong';
+    try{ localStorage.setItem('regradar-ownership', JSON.stringify({done:doneMap})); }catch(e){}
+    const ok = Object.values(doneMap).filter(x=>x==='right').length;
+    AcademyShell.complete('ownership', ok);
+    AcademyShell.award('ownership', correct?200:40);
+    PATH.render();
+
+    const noms = {}; c.entities.forEach(e=>noms[e.id]=e.name);
+    const lines = c.entities.filter(e=>e.type==='person').map(e=>{
+      const pct = (res[e.id]||{}).pct||0;
+      const should = expected.has(e.id), did = picked.has(e.id);
+      const cls = should&&did?'right':should&&!did?'miss':!should&&did?'extra':'';
+      const verdict = should&&did?'CORRECT':should&&!did?'MISSED':!should&&did?'WRONGLY':'—';
+      return `<div class="cr ${cls}"><span>${esc(noms[e.id])}</span><span class="pc">${pct.toFixed(2)}%</span><span>${verdict}</span></div>`;
+    }).join('');
+
+    document.getElementById('inv-side').innerHTML = `
+      <div class="inv-verdict">
+        <span class="stamp ${correct?'ok':'bad'}">${correct?'CORRECT':missed.length?'BENEFICIAL OWNER MISSED':'OVER-DESIGNATION'}</span>
+        <h3 style="font-size:15px;margin:0 0 6px">${correct?'Structure read correctly':'Not quite'}</h3>
+        <div style="font-size:12.5px;color:var(--text-2);line-height:1.55">${esc(c.why)}</div>
+        <div class="inv-calc">${lines}</div>
+        ${c.trap?`<div class="inv-note ${correct?'':'crit'}"><b>${correct?'The trap avoided':'The trap'}</b>${esc(c.trap)}</div>`:''}
+        <div class="inv-law">${esc(c.law)}</div>
+        <div class="inv-note"><b>What this teaches</b>${esc(c.lesson)}</div>
+        <button class="inv-submit" id="inv-next-btn" style="margin-top:14px">Continue</button>
+      </div>`;
+    document.getElementById('inv-next-btn').addEventListener('click', goNextCase);
+    notify(correct?'✅':'⚠️', correct?'#1E7145':'#B3392C',
+      correct?'Case resolved':'Case needs another look', c.id+' — '+(correct?'+200 XP':'+40 XP'));
+  }
+  function goNextCase(){
+    const idx = CASE.ownershipCases.findIndex(x=>x.id===CASE.active.id);
+    const nxt = CASE.ownershipCases[idx+1];
+    if(nxt) activateOwnershipCase(nxt); else renderWorkbench();
+  }
+
+  function onCaseSwitch(){
+    const win = document.getElementById('win-invest');
+    if(win && win.classList.contains('show')) renderWorkbench();
+  }
+  function boot(){ renderPrimer(); renderWorkbench(); }
+
+  return {answerPrimer, boot, onCaseSwitch, renderWorkbench};
+})();
+
+/* ═══════════════════════════════════════════════════════════════════
+   TRAINING PATH — the workstation's view onto academy.html's hub:
+   rank, XP, and the locked module sequence. Laundromat and Desk still
+   open their classic pages (not migrated yet); Ownership opens the
+   AML Investigation window above.
+   ═══════════════════════════════════════════════════════════════════ */
+const PATH = (function(){
+  const esc = s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  function render(){
+    const el = document.getElementById('path-body');
+    if(!el || typeof AcademyShell==='undefined') return;
+    const r = AcademyShell.rank, mods = AcademyShell.modules, P = AcademyShell.progress;
+    const doneCount = mods.filter(m=>(P.modules[m.id]||{}).done>0).length;
+    el.innerHTML = `
+      <div class="kicker">TRAINING PATH</div>
+      <h1 class="pt">Meridiaan Academy</h1>
+      <div class="sub">Locked sequence — each module opens once the one before it is done.</div>
+      <div class="path-prog">
+        <div><div class="n">${esc(r.n)}</div><div class="l">Rank</div></div>
+        <div><div class="n">${AcademyShell.xp.toLocaleString('en-US')}</div><div class="l">XP</div></div>
+        <div><div class="n">${doneCount}/${mods.length}</div><div class="l">Completed</div></div>
+        <div><div class="n">3</div><div class="l">Live modules</div></div>
+      </div>
+      ${mods.map(m=>{
+        const rec = P.modules[m.id]||{};
+        const unlocked = m.file && doneCount>=m.needs;
+        const done = rec.done>0;
+        const cls = done?'done':unlocked?'now':'locked';
+        const where = m.id==='ownership' ? 'IN YOUR WORKSTATION' : 'CLASSIC PAGE';
+        const st = done?'DONE':unlocked?where:(m.file?'LOCKED':'IN DEVELOPMENT');
+        return `<div class="path-mod ${cls}" data-mid="${m.id}" ${unlocked?'':'style="cursor:default"'}>
+          <div class="num">${done?'✓':m.no}</div>
+          <div class="body"><div class="nm">${esc(m.label)}</div><div class="tag">${esc(m.tag)}</div></div>
+          <div class="st ${cls}">${st}</div>
+        </div>`;
+      }).join('')}`;
+    document.querySelectorAll('.path-mod').forEach(card=>{
+      card.addEventListener('click', ()=>{
+        const id = card.dataset.mid;
+        const m = mods.find(x=>x.id===id);
+        const unlocked = m.file && doneCount>=m.needs;
+        if(!unlocked) return;
+        if(id==='ownership'){ WM.open('invest'); }
+        else { window.open(m.file, '_blank'); notify('↗️','#5B6472','Opening classic page', m.label+' is not migrated into the workstation yet.'); }
+      });
+    });
+  }
+  return {render};
+})();
 
 /* ═══════════════════════════════════════════════════════════════════
    TEAMS — lightweight internal messaging, plus Alex: a scripted
@@ -1309,6 +1760,7 @@ document.querySelectorAll('.dicon').forEach(ic=>{
       notify('🔒', '#4A5568', ic.dataset.soon, "Not wired up yet in this prototype — coming in a later pass.");
       return;
     }
+    if(key==='path') PATH.render();
     WM.open(key);
   });
 });
@@ -1323,7 +1775,7 @@ function tickClock(){
 tickClock(); setInterval(tickClock, 30000);
 
 /* ═══════════════════ BOOT ═══════════════════ */
-WM.init(['mail','browser','explorer','teams']);
+WM.init(['mail','browser','explorer','teams','invest','path']);
 if(!localStorage.getItem('meridiaan-wm-v1')){
   WM.open('mail'); WM.open('browser');
 }

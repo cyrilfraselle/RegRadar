@@ -19,16 +19,17 @@
 const KEY='regradar-academy-progress';
 
 /* The path. The order IS the pedagogy: you can't recognise a pattern
-   you've never produced, so offence precedes defence. */
+   you've never produced, so offence precedes defence. The path is
+   locked: each module requires the ones before it. */
 const MODULES=[
  {id:'laundromat', n:'Laundromat', no:'01', file:'laundromat.html',
   label:'The launderer', needs:0,
   tag:'Play the adversary: thirteen typologies, eight jurisdictions.'},
  {id:'ownership',  n:'Ownership', no:'02', file:'ownership.html',
-  label:'Ownership structures', needs:0,
+  label:'Ownership structures', needs:1,
   tag:'Read an ownership chart and designate the beneficial owners.'},
  {id:'desk',       n:'The Desk', no:'03', file:'desk.html',
-  label:'Alerts and investigations', needs:0,
+  label:'Alerts and investigations', needs:2,
   tag:'One day: alerts, and hours you don’t get back.'},
  {id:'filing',     n:'Filing', no:'04', file:null,
   label:'Drafting the STR', needs:2, tag:'In development.'},
