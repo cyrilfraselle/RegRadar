@@ -1,0 +1,991 @@
+<meta charset="utf-8">
+<title>Meridiaan Workstation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wallpaper:#1B2430; --wallpaper-2:#222E3D; --taskbar:#12161D;
+  --chrome:#23303F; --chrome-2:#2C3B4E;
+  --surface:#FFFFFF; --surface-2:#F5F6F8; --surface-3:#EBEDF1;
+  --border:#DDE1E6; --border-strong:#C3C9D1;
+  --text:#1A1F27; --text-2:#5B6472; --text-3:#8B93A0;
+  --brand:#1F5C8B; --brand-ink:#164363;
+  --crit:#B3392C; --crit-bg:#FBEDEB;
+  --warn:#9A6B1F; --warn-bg:#FBF3E5;
+  --ok:#1E7145; --ok-bg:#EAF5EE;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius:4px;
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  font-family:var(--sans);color:var(--text);
+  background:
+    radial-gradient(ellipse 1200px 700px at 15% -10%, rgba(255,255,255,.05), transparent 60%),
+    linear-gradient(160deg,var(--wallpaper),var(--wallpaper-2) 70%);
+  height:100vh;overflow:hidden;position:relative;
+  -webkit-font-smoothing:antialiased;
+  user-select:none;
+}
+
+/* ── desktop chrome ──────────────────────────────────────────────── */
+.desktop-mark{position:absolute;top:36px;left:36px;display:flex;align-items:center;gap:10px;
+  color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  pointer-events:none}
+.desktop-mark .sq{width:22px;height:22px;border:1.5px solid rgba(255,255,255,.45);
+  display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:11px}
+
+.dicon{position:absolute;width:76px;display:flex;flex-direction:column;align-items:center;gap:7px;
+  color:rgba(255,255,255,.82);cursor:default}
+.dicon .ico{width:42px;height:42px;border-radius:9px;display:grid;place-items:center;font-size:19px;
+  box-shadow:0 1px 2px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.12);transition:transform .12s}
+.dicon:hover .ico{transform:translateY(-2px)}
+.dicon:active .ico{transform:translateY(0) scale(.96)}
+.dicon .lbl{font-size:11.5px;text-align:center;line-height:1.3;
+  text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.dicon.i1{top:100px;left:40px} .dicon.i2{top:210px;left:40px}
+.dicon.i3{top:320px;left:40px} .dicon.i4{top:430px;left:40px}
+
+/* ── windows ─────────────────────────────────────────────────────── */
+.win{position:absolute;background:var(--surface);border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.25), 0 24px 64px rgba(0,0,0,.4);
+  display:none;flex-direction:column;overflow:hidden;
+  border:1px solid rgba(0,0,0,.25);min-width:360px;min-height:220px}
+.win.show{display:flex}
+.win.maxed{top:0 !important;left:0 !important;width:100% !important;height:100% !important;
+  border-radius:0}
+
+.titlebar{flex:0 0 40px;display:flex;align-items:center;gap:10px;padding:0 10px 0 12px;
+  background:linear-gradient(180deg,var(--chrome-2),var(--chrome));color:#EAF0F6;
+  font-size:12.5px;font-weight:500;cursor:grab}
+.titlebar:active{cursor:grabbing}
+.tctl{display:flex;gap:7px;flex:0 0 auto}
+.tctl button{width:11px;height:11px;border-radius:50%;display:block;border:none;padding:0;
+  cursor:pointer;position:relative}
+.tctl button.tc-close{background:#E0574C} .tctl button.tc-min{background:#E0A93D}
+.tctl button.tc-max{background:#3FAE5C}
+.tctl button::after{content:'';position:absolute;inset:0;border-radius:50%}
+.tctl button:hover::after{background:rgba(0,0,0,.18)}
+.tapp{display:flex;align-items:center;gap:7px;color:rgba(234,240,246,.85);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.tapp .tico{width:15px;height:15px;border-radius:3px;flex:0 0 auto}
+.ttitle{margin-left:auto;color:rgba(234,240,246,.55);font-size:11.5px;white-space:nowrap}
+.resize-handle{position:absolute;right:0;bottom:0;width:16px;height:16px;cursor:nwse-resize;
+  background:
+    linear-gradient(135deg,transparent 0 40%,rgba(0,0,0,.18) 40% 46%,transparent 46% 58%,
+    rgba(0,0,0,.18) 58% 64%,transparent 64%)}
+
+/* browser chrome */
+.tabstrip{flex:0 0 36px;display:flex;align-items:flex-end;gap:2px;padding:0 8px;
+  background:var(--chrome-2);overflow-x:auto}
+.tab{display:flex;align-items:center;gap:7px;padding:8px 12px 7px;font-size:12px;
+  color:rgba(234,240,246,.6);background:rgba(255,255,255,.03);border-radius:7px 7px 0 0;
+  max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;
+  flex:0 0 auto}
+.tab.on{background:var(--surface);color:var(--text);font-weight:500}
+.tab .dot{width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:var(--text-3)}
+.tab.on .dot{background:var(--ok)}
+.tab .x{margin-left:auto;opacity:.5;font-size:13px}
+.tab .x:hover{opacity:1}
+.addrbar{flex:0 0 42px;display:flex;align-items:center;gap:10px;padding:0 12px;
+  background:var(--surface);border-bottom:1px solid var(--border)}
+.navbtn{color:var(--text-3);font-size:14px;width:22px;text-align:center;cursor:pointer}
+.navbtn:hover{color:var(--text)}
+.navbtn.dis{opacity:.3;cursor:default;pointer-events:none}
+.addrpill{flex:1;height:26px;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:13px;display:flex;align-items:center;gap:8px;padding:0 12px;
+  font-family:var(--mono);font-size:11.5px;color:var(--text-2)}
+.addrpill .lock{color:var(--ok);font-size:10px}
+.bmk{font-size:13px;color:var(--text-3);letter-spacing:.02em;cursor:pointer}
+.bmk.on{color:#D9A400}
+.bmkbar{flex:0 0 26px;display:flex;align-items:center;gap:14px;padding:0 14px;background:var(--surface-2);
+  border-bottom:1px solid var(--border);font-size:10.5px;color:var(--text-2)}
+.bmkbar span{cursor:pointer;display:flex;align-items:center;gap:4px}
+.bmkbar span:hover{color:var(--text)}
+
+.browser-body{flex:1;overflow:hidden;background:var(--surface);position:relative}
+.page{height:100%;overflow-y:auto;display:none}
+.page.on{display:block}
+
+/* ── outlook chrome ──────────────────────────────────────────────── */
+.mail-body{flex:1;display:grid;grid-template-columns:150px 210px 1fr;min-height:0}
+.mail-folders{background:var(--surface-2);border-right:1px solid var(--border);
+  padding:14px 0;font-size:12.5px;overflow-y:auto}
+.mail-folders .fh{padding:4px 16px 10px;color:var(--text-3);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.mail-folders .f{padding:7px 16px;color:var(--text-2);display:flex;justify-content:space-between;cursor:pointer}
+.mail-folders .f:hover{background:rgba(0,0,0,.03)}
+.mail-folders .f.on{background:var(--surface);color:var(--brand-ink);font-weight:600;
+  border-right:2px solid var(--brand)}
+.mail-folders .f b{font-weight:600;color:var(--text-3);font-size:11px}
+.mail-list{border-right:1px solid var(--border);overflow-y:auto}
+.mitem{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer}
+.mitem:hover{background:rgba(0,0,0,.02)}
+.mitem.on{background:var(--surface-3)}
+.mitem .mf{display:flex;justify-content:space-between;font-size:12px;font-weight:600}
+.mitem .mf time{font-weight:400;color:var(--text-3);font-size:10.5px}
+.mitem .ms{font-size:11.5px;color:var(--text);margin-top:3px;font-weight:500}
+.mitem .mp{font-size:11px;color:var(--text-3);margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mitem.unread .mf{position:relative}
+.mitem.unread .mf::before{content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--brand);display:inline-block;margin-right:6px}
+.mail-read{overflow-y:auto;padding:20px 24px}
+.mail-read h2{font-size:16px;margin:0 0 12px;font-weight:600;line-height:1.4}
+.mail-meta{font-size:11.5px;color:var(--text-3);line-height:1.7;margin-bottom:16px;
+  padding-bottom:14px;border-bottom:1px solid var(--border)}
+.mail-meta b{color:var(--text-2);font-weight:600}
+.mail-text{font-size:13px;line-height:1.7;color:var(--text)}
+.mail-text p{margin:0 0 12px}
+.attach{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.att{border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:11.5px;
+  display:flex;align-items:center;gap:8px;color:var(--text-2);background:var(--surface-2);cursor:pointer}
+.att:hover{border-color:var(--border-strong);color:var(--text)}
+
+/* ── generic site chrome inside browser tabs ─────────────────────── */
+.site-head{padding:14px 22px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between}
+.site-brand{font-size:13px;font-weight:700;letter-spacing:.01em;display:flex;align-items:center;gap:8px}
+.site-brand .mk{width:20px;height:20px;border-radius:4px;display:grid;place-items:center;
+  color:#fff;font-size:10px;font-weight:700}
+.site-nav{display:flex;gap:18px;font-size:11.5px;color:var(--text-3)}
+.pad{padding:22px}
+.kicker{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);
+  font-weight:600;margin-bottom:6px}
+h1.pt{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
+.sub{font-size:12px;color:var(--text-2);margin-bottom:18px}
+
+.kvgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);margin-top:6px}
+.kvgrid .kv{background:var(--surface);padding:11px 14px}
+.kvgrid .k{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
+.kvgrid .v{font-size:13px;margin-top:3px;font-weight:500}
+.kvgrid .v.mono{font-family:var(--mono);font-size:12.5px}
+
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;
+  padding:3px 9px;border-radius:11px;letter-spacing:.02em}
+.chip.crit{background:var(--crit-bg);color:var(--crit)}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+
+table.dt{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}
+table.dt th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-3);font-weight:600;padding:0 10px 8px;border-bottom:1px solid var(--border)}
+table.dt td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text-2)}
+table.dt td.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+table.dt tr:last-child td{border-bottom:none}
+table.dt td b{color:var(--text);font-weight:600}
+
+.searchbox{display:flex;gap:8px;margin-top:4px}
+.searchbox input{flex:1;height:34px;border:1px solid var(--border-strong);border-radius:6px;
+  padding:0 12px;font-family:var(--sans);font-size:12.5px;color:var(--text);background:var(--surface-2)}
+.searchbtn{height:34px;padding:0 16px;background:var(--brand);color:#fff;border-radius:6px;
+  font-size:12px;font-weight:600;display:grid;place-items:center}
+.result{border:1px solid var(--border);border-radius:6px;padding:13px 14px;margin-top:12px}
+.result .rh{display:flex;justify-content:space-between;align-items:baseline}
+.result .rn{font-size:13.5px;font-weight:600}
+.result .rmeta{margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  font-size:11px;color:var(--text-2)}
+.result .rmeta b{display:block;color:var(--text-3);font-size:9.5px;text-transform:uppercase;
+  letter-spacing:.06em;font-weight:600;margin-bottom:2px}
+.result .rsrc{margin-top:9px;font-size:10.5px;color:var(--text-3);font-family:var(--mono)}
+
+/* ── file explorer ───────────────────────────────────────────────── */
+.fe-body{flex:1;display:grid;grid-template-columns:170px 230px 1fr;min-height:0}
+.fe-tree{background:var(--surface-2);border-right:1px solid var(--border);padding:10px 0;
+  font-size:12.5px;overflow-y:auto}
+.fe-tree .t{padding:7px 16px;color:var(--text-2);display:flex;align-items:center;gap:8px;cursor:pointer}
+.fe-tree .t:hover{background:rgba(0,0,0,.03)}
+.fe-tree .t.on{background:var(--surface);color:var(--brand-ink);font-weight:600;
+  border-right:2px solid var(--brand)}
+.fe-search{margin:0 10px 8px;height:26px;border:1px solid var(--border);border-radius:5px;
+  background:var(--surface);display:flex;align-items:center;padding:0 9px;gap:6px;
+  font-size:11px;color:var(--text-3)}
+.fe-list{border-right:1px solid var(--border);overflow-y:auto;padding:6px 0}
+.fe-list .hd{padding:6px 14px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-3);font-weight:600}
+.fitem{padding:9px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px}
+.fitem:hover{background:rgba(0,0,0,.03)}
+.fitem.on{background:var(--surface-3)}
+.fitem .fico{width:26px;height:26px;border-radius:5px;display:grid;place-items:center;
+  font-size:12px;flex:0 0 auto;color:#fff}
+.fitem .fn{overflow:hidden}
+.fitem .fname{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fitem .fmeta{font-size:10px;color:var(--text-3);margin-top:1px}
+.fe-empty{padding:30px 14px;color:var(--text-3);font-size:12px;text-align:center}
+.fe-preview{overflow-y:auto;padding:22px 26px;background:var(--surface-2)}
+.fe-preview .ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.fe-preview .pt{font-size:13.5px;font-weight:600}
+.fe-preview .pm{font-size:11px;color:var(--text-3);margin-top:3px}
+.dlbtn{border:1px solid var(--border-strong);background:var(--surface);border-radius:5px;
+  padding:6px 12px;font-size:11px;font-weight:600;color:var(--text-2);cursor:pointer}
+.docsheet{background:var(--surface);border:1px solid var(--border);border-radius:2px;
+  padding:26px 28px;font-size:12px;line-height:1.6;color:var(--text-2);
+  box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.docsheet .dh{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--text-3);
+  text-transform:uppercase;margin-bottom:4px}
+.docsheet h3{font-size:14.5px;margin:0 0 14px;color:var(--text)}
+.docsheet .row{display:flex;gap:8px;margin-bottom:6px}
+.docsheet .row b{width:150px;flex:0 0 auto;color:var(--text-3);font-weight:600;font-size:11px}
+.docsheet ul{margin:8px 0;padding-left:18px}
+.docsheet li{margin-bottom:6px}
+.idcard{background:linear-gradient(135deg,#1F5C8B,#164363);border-radius:10px;padding:18px 20px;
+  color:#fff;display:flex;gap:16px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.idphoto{width:64px;height:80px;border-radius:4px;background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);flex:0 0 auto;display:grid;place-items:center;font-size:22px}
+.idfields{font-size:11px;line-height:1.9}
+.idfields b{display:block;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;
+  opacity:.65;margin-top:6px}
+.idfields b:first-child{margin-top:0}
+
+/* ── notifications ───────────────────────────────────────────────── */
+.ntf-stack{position:absolute;top:20px;right:20px;z-index:200;display:flex;flex-direction:column;
+  gap:8px;width:300px}
+.ntf{background:var(--surface);border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.35);
+  padding:12px 13px;display:flex;gap:10px;cursor:pointer;
+  animation:ntfIn .32s var(--ease);border:1px solid var(--border)}
+@keyframes ntfIn{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
+.ntf.out{animation:ntfOut .22s var(--ease) forwards}
+@keyframes ntfOut{to{opacity:0;transform:translateX(30px)}}
+.ntf .nico{width:32px;height:32px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;
+  font-size:14px;color:#fff}
+.ntf .nb{min-width:0}
+.ntf .nt{font-size:12px;font-weight:600;color:var(--text)}
+.ntf .nd{font-size:11px;color:var(--text-2);margin-top:2px;line-height:1.4}
+
+/* ── taskbar ─────────────────────────────────────────────────────── */
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;
+  background:rgba(18,22,29,.92);backdrop-filter:blur(14px);
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;padding:0 10px;gap:4px;z-index:100}
+.start{width:34px;height:34px;border-radius:7px;background:var(--brand);display:grid;
+  place-items:center;color:#fff;font-weight:700;font-size:13px;font-family:var(--mono);cursor:pointer}
+.tsep{width:1px;height:22px;background:rgba(255,255,255,.12);margin:0 6px}
+.tb-app{width:34px;height:34px;border-radius:7px;display:grid;place-items:center;font-size:15px;
+  position:relative;color:#EAF0F6;cursor:pointer;background:#2C3B4E;opacity:.55}
+.tb-app.open{opacity:1}
+.tb-app::after{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:transparent}
+.tb-app.open::after{background:rgba(234,240,246,.4)}
+.tb-app.active::after{background:#EAF0F6}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:14px;color:#C7CDD6;font-size:11.5px}
+.tb-right .grp{display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:11px}
+.tb-right .grp b{font-size:11.5px;color:#EAF0F6;font-weight:500}
+.tb-flag{display:flex;align-items:center;gap:6px;background:rgba(179,57,44,.18);
+  color:#F0A99E;border:1px solid rgba(179,57,44,.35);border-radius:5px;padding:5px 10px;font-size:11px;
+  cursor:pointer}
+.tb-flag i{width:6px;height:6px;border-radius:50%;background:#E0574C}
+
+@media(max-width:900px){
+  .dicon{display:none}
+}
+</style>
+
+<div class="desktop-mark"><span class="sq">M</span> MERIDIAAN BANK &middot; ANALYST WORKSTATION</div>
+
+<div class="dicon i1" data-open="explorer"><div class="ico" style="background:#4A5568">🗄️</div><div class="lbl">File Explorer</div></div>
+<div class="dicon i2" data-open="soon" data-soon="AML Investigation"><div class="ico" style="background:#1F5C8B">🛡️</div><div class="lbl">AML Investigation</div></div>
+<div class="dicon i3" data-open="soon" data-soon="Customer Database"><div class="ico" style="background:#4A5568">📇</div><div class="lbl">Customer Database</div></div>
+<div class="dicon i4" data-open="soon" data-soon="Transaction Monitoring"><div class="ico" style="background:#4A5568">📈</div><div class="lbl">Transaction Monitoring</div></div>
+
+<!-- ═══════════════════ OUTLOOK WINDOW ═══════════════════ -->
+<div class="win" id="win-mail" style="top:70px;left:96px;width:640px;height:520px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tapp"><span class="tico" style="background:#1F5C8B"></span>Meridiaan Mail — analyst.desk@meridiaanbank.eu</div>
+  </div>
+  <div class="mail-body">
+    <div class="mail-folders">
+      <div class="f on">Inbox <b>3</b></div>
+      <div class="f">Flagged</div>
+      <div class="f">Sent</div>
+      <div class="f">Drafts</div>
+      <div class="f">Archive</div>
+      <div class="fh" style="margin-top:10px">Teams</div>
+      <div class="f">Compliance</div>
+      <div class="f">Investigations</div>
+    </div>
+    <div class="mail-list" id="mail-list"></div>
+    <div class="mail-read" id="mail-read"></div>
+  </div>
+  <div class="resize-handle"></div>
+</div>
+
+<!-- ═══════════════════ BROWSER WINDOW ═══════════════════ -->
+<div class="win" id="win-browser" style="top:40px;left:270px;width:780px;height:600px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="ttitle" style="margin-left:4px" id="browser-title">Chrome — Meridiaan Analyst Profile</div>
+  </div>
+  <div class="tabstrip" id="tabstrip">
+    <div class="tab on" data-tab="cif"><span class="dot"></span>Customer Profile<span class="x" data-close-tab="cif">×</span></div>
+    <div class="tab" data-tab="reg"><span class="dot"></span>Company Registry<span class="x" data-close-tab="reg">×</span></div>
+    <div class="tab" data-tab="sanc"><span class="dot"></span>Sanctions &amp; PEP Search<span class="x" data-close-tab="sanc">×</span></div>
+    <div class="tab" data-tab="news"><span class="dot"></span>News search<span class="x" data-close-tab="news">×</span></div>
+  </div>
+  <div class="addrbar">
+    <span class="navbtn" id="nav-back">‹</span><span class="navbtn dis" id="nav-fwd">›</span><span class="navbtn">↻</span>
+    <div class="addrpill" id="addr"><span class="lock">🔒</span> <span id="addr-text">cif.meridiaanbank.internal/customer/BE-0741-KT</span></div>
+    <span class="bmk" id="bmk-star">☆</span>
+  </div>
+  <div class="bmkbar">
+    <span data-goto="cif">📁 CIF</span>
+    <span data-goto="reg">📁 KvK Register</span>
+    <span data-goto="sanc">📁 Watchlist</span>
+    <span data-goto="policy">📁 Internal Policy</span>
+  </div>
+  <div class="browser-body">
+
+    <div class="page on" id="page-cif">
+      <div class="site-head">
+        <div class="site-brand"><span class="mk" style="background:var(--brand)">M</span>Meridiaan CIF</div>
+        <div class="site-nav"><span>Overview</span><span>KYC</span><span>Accounts</span><span>Alerts</span></div>
+      </div>
+      <div class="pad">
+        <div class="kicker">Corporate client · CIF-BE-0741</div>
+        <h1 class="pt">Kortrijk Textiles NV</h1>
+        <div class="sub">Customer since 2019 &middot; Relationship manager: Nadia Verlinden &middot; Branch: Kortrijk</div>
+        <span class="chip warn">EDD — periodic review due</span>
+        <span class="chip ok" style="margin-left:6px">Risk rating: Medium</span>
+
+        <div class="kvgrid">
+          <div class="kv"><div class="k">Legal form</div><div class="v">Naamloze Vennootschap (NV)</div></div>
+          <div class="kv"><div class="k">Registered address</div><div class="v">Doorniksesteenweg 112, 8500 Kortrijk, BE</div></div>
+          <div class="kv"><div class="k">Sector</div><div class="v">Textile manufacturing (NACE 13.20)</div></div>
+          <div class="kv"><div class="k">Expected turnover</div><div class="v mono">€4.1M / year</div></div>
+          <div class="kv"><div class="k">Ultimate parent</div><div class="v"><a href="#" data-goto="reg" style="color:var(--brand);text-decoration:none">KT Holding BV (NL) →</a></div></div>
+          <div class="kv"><div class="k">Beneficial owner</div><div class="v">Mina Vanhoutte — 56% indirect</div></div>
+        </div>
+
+        <div class="kicker" style="margin-top:22px">Recent account activity</div>
+        <table class="dt">
+          <tr><th>Date</th><th>Description</th><th>Counterparty</th><th>Country</th><th>Amount</th></tr>
+          <tr><td class="mono">14 Mar</td><td>Outbound wire — parts &amp; components</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono"><b>€135,000</b></td></tr>
+          <tr><td class="mono">12 Mar</td><td>Outbound wire — parts &amp; components</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono"><b>€140,000</b></td></tr>
+          <tr><td class="mono">07 Mar</td><td>Outbound wire — parts &amp; components</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono"><b>€160,000</b></td></tr>
+          <tr><td class="mono">03 Mar</td><td>Outbound wire — parts &amp; components</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono"><b>€185,000</b></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="page" id="page-reg">
+      <div class="site-head">
+        <div class="site-brand"><span class="mk" style="background:#F7A800">KvK</span>Netherlands Chamber of Commerce</div>
+        <div class="site-nav"><span>Search register</span><span>Order extract</span><span>Help</span></div>
+      </div>
+      <div class="pad">
+        <div class="kicker">Trade register extract</div>
+        <h1 class="pt">KT Holding BV</h1>
+        <div class="sub">KvK number 74 118 822 &middot; Extract generated today, 09:52</div>
+        <span class="chip ok">Active</span>
+
+        <div class="kvgrid">
+          <div class="kv"><div class="k">Incorporated</div><div class="v">11 April 2019</div></div>
+          <div class="kv"><div class="k">Registered address</div><div class="v">Zuidplein 108, 1077 XV Amsterdam</div></div>
+          <div class="kv"><div class="k">Legal form</div><div class="v">Besloten Vennootschap (BV)</div></div>
+          <div class="kv"><div class="k">Share capital</div><div class="v mono">€18,000</div></div>
+        </div>
+
+        <div class="kicker" style="margin-top:22px">Directors</div>
+        <table class="dt">
+          <tr><th>Name</th><th>Role</th><th>Since</th></tr>
+          <tr><td><b>Mina Vanhoutte</b></td><td>Managing director</td><td class="mono">2019</td></tr>
+          <tr><td><b>Bram Vanhoutte</b></td><td>Director</td><td class="mono">2019</td></tr>
+        </table>
+
+        <div class="kicker" style="margin-top:22px">Shareholders</div>
+        <table class="dt">
+          <tr><th>Name</th><th>Shares held</th><th>Country</th></tr>
+          <tr><td><b>Mina Vanhoutte</b></td><td class="mono">70%</td><td>BE</td></tr>
+          <tr><td><b>Bram Vanhoutte</b></td><td class="mono">30%</td><td>BE</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="page" id="page-sanc">
+      <div class="site-head">
+        <div class="site-brand"><span class="mk" style="background:#4A5568">◈</span>Global Watchlist Search</div>
+        <div class="site-nav"><span>Sanctions</span><span>PEP</span><span>Adverse media</span></div>
+      </div>
+      <div class="pad">
+        <div class="kicker">Screening query</div>
+        <div class="searchbox">
+          <input value="Vanhoutte, Bram — Belgium" readonly>
+          <div class="searchbtn">Search</div>
+        </div>
+
+        <div class="result">
+          <div class="rh"><span class="rn">No exact matches on sanctions or PEP lists</span><span class="chip ok">Clear</span></div>
+          <div class="rmeta">
+            <div><b>Lists checked</b>EU, OFAC, UN, UK OFSI</div>
+            <div><b>PEP databases</b>World-Check, Dow Jones</div>
+            <div><b>Match threshold</b>85%</div>
+          </div>
+          <div class="rsrc">query_id: SC-88214-VH · run 09:41 today</div>
+        </div>
+
+        <div class="result">
+          <div class="rh"><span class="rn">Bram Van Houtte — possible fuzzy match</span><span class="chip warn">63% confidence</span></div>
+          <div class="rmeta">
+            <div><b>Date of birth</b>1971-02-14</div>
+            <div><b>Nationality</b>Netherlands</div>
+            <div><b>Listed as</b>Local council member, Zeeland (2014–2018)</div>
+          </div>
+          <div class="rsrc">source: World-Check ID WC-2249917 — name variant, different DOB, likely no relation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="page-news">
+      <div class="site-head">
+        <div class="site-brand"><span class="mk" style="background:#1A1F27">◎</span>Newswire Search</div>
+        <div class="site-nav"><span>News</span><span>Filings</span><span>Court records</span></div>
+      </div>
+      <div class="pad">
+        <div class="kicker">3 results for "Kortrijk Textiles"</div>
+        <table class="dt">
+          <tr><td style="width:90px" class="mono">2025-11-03</td><td><b>Kortrijk Textiles wins regional export award</b><br><span style="color:var(--text-3);font-size:11px">Flanders Trade Bulletin — recognised for growth in Gulf-region exports</span></td></tr>
+          <tr><td class="mono">2024-06-18</td><td><b>Local manufacturer expands into machinery parts trading</b><br><span style="color:var(--text-3);font-size:11px">Kortrijk Business Weekly — diversification beyond core textile line</span></td></tr>
+          <tr><td class="mono">2019-04-22</td><td><b>Vanhoutte family restructures holdings ahead of expansion</b><br><span style="color:var(--text-3);font-size:11px">KvK filing notice — KT Holding BV incorporated</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="page" id="page-policy">
+      <div class="site-head">
+        <div class="site-brand"><span class="mk" style="background:#164363">◫</span>Meridiaan Knowledge Portal</div>
+        <div class="site-nav"><span>AML Policy</span><span>Procedures</span><span>FAQ</span></div>
+      </div>
+      <div class="pad">
+        <div class="kicker">AML Policy v4.2 · Section 4</div>
+        <h1 class="pt">Enhanced Due Diligence triggers</h1>
+        <div class="sub">Last reviewed 3 January 2026 &middot; Owner: Compliance</div>
+        <div class="docsheet" style="margin-top:14px">
+          <p>A customer or transaction must be escalated to EDD when any of the following apply:</p>
+          <ul>
+            <li>Invoice or contract values <b style="color:var(--text)">40% or more above</b> comparable market pricing for the goods or service described.</li>
+            <li>Payment routed through a jurisdiction not party to the underlying trade (goods shipped A→B, payment routed via C).</li>
+            <li>Beneficial ownership involves a trust, nominee, or foreign holding structure with no public register.</li>
+            <li>Related parties (family members, co-directors) hold combined stakes near the 25% threshold without a shareholders' agreement on file.</li>
+            <li>Customer's expected activity profile has not been reviewed in the preceding 24 months.</li>
+          </ul>
+          <p>Where a trigger applies, the analyst must document the rationale in the case file before the relationship can proceed or continue.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="resize-handle"></div>
+</div>
+
+<!-- ═══════════════════ FILE EXPLORER WINDOW ═══════════════════ -->
+<div class="win" id="win-explorer" style="top:96px;left:180px;width:820px;height:560px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tapp"><span class="tico" style="background:#4A5568"></span>File Explorer — Case A-4471</div>
+  </div>
+  <div class="fe-body">
+    <div class="fe-tree" id="fe-tree"></div>
+    <div class="fe-list" id="fe-list"></div>
+    <div class="fe-preview" id="fe-preview"></div>
+  </div>
+  <div class="resize-handle"></div>
+</div>
+
+<!-- ═══════════════════ NOTIFICATIONS ═══════════════════ -->
+<div class="ntf-stack" id="ntf-stack"></div>
+
+<!-- ═══════════════════ TASKBAR ═══════════════════ -->
+<div class="taskbar">
+  <div class="start" title="Start">M</div>
+  <div class="tsep"></div>
+  <div class="tb-app" id="tb-browser" title="Chrome">🌐</div>
+  <div class="tb-app" id="tb-mail" title="Meridiaan Mail">✉️</div>
+  <div class="tb-app" id="tb-explorer" title="File Explorer">🗄️</div>
+  <div class="tb-flag" id="tb-flag"><i></i>Alert A-4471 — 3h 40m remaining</div>
+  <div class="tb-right">
+    <div class="grp"><b>Sim. environment</b>fictional data only</div>
+    <div class="grp"><b id="clock">14:07</b>Mon 24 Aug 2026</div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   WINDOW MANAGER — drag, resize, min/max/close, z-order, persistence.
+   Deliberately small: enough OS feel to sell "this is a workstation",
+   not a full desktop-environment reimplementation.
+   ═══════════════════════════════════════════════════════════════════ */
+const WM = (function(){
+  const STORE_KEY = 'meridiaan-wm-v1';
+  let zTop = 10;
+  let state = {};
+
+  function load(){
+    try{ state = JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }catch(e){ state = {}; }
+  }
+  function save(){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  function winEl(id){ return document.getElementById('win-'+id); }
+  function tbEl(id){ return document.getElementById('tb-'+id); }
+
+  function ensure(id){
+    if(!state[id]) state[id] = {open:false, min:false, max:false};
+    return state[id];
+  }
+
+  function focus(id){
+    const el = winEl(id); if(!el) return;
+    zTop += 1; el.style.zIndex = zTop;
+    document.querySelectorAll('.tb-app').forEach(b=>b.classList.remove('active'));
+    const tb = tbEl(id); if(tb) tb.classList.add('active');
+  }
+
+  function open(id){
+    const el = winEl(id); if(!el) return;
+    const s = ensure(id);
+    s.open = true; s.min = false;
+    el.classList.add('show');
+    const tb = tbEl(id); if(tb) tb.classList.add('open');
+    focus(id);
+    save();
+  }
+
+  function minimize(id){
+    const el = winEl(id); if(!el) return;
+    const s = ensure(id);
+    s.min = true;
+    el.classList.remove('show');
+    const tb = tbEl(id); if(tb) tb.classList.remove('active');
+    save();
+  }
+
+  function toggleMax(id){
+    const el = winEl(id); if(!el) return;
+    const s = ensure(id);
+    if(!s.max){
+      s.prevRect = {top:el.style.top,left:el.style.left,width:el.style.width,height:el.style.height};
+      el.classList.add('maxed'); s.max = true;
+    } else {
+      el.classList.remove('maxed'); s.max = false;
+      if(s.prevRect){ Object.assign(el.style, s.prevRect); }
+    }
+    focus(id); save();
+  }
+
+  function close(id){
+    const el = winEl(id); if(!el) return;
+    const s = ensure(id);
+    s.open = false; s.min = false;
+    el.classList.remove('show');
+    const tb = tbEl(id); if(tb){ tb.classList.remove('open'); tb.classList.remove('active'); }
+    save();
+  }
+
+  function taskbarClick(id){
+    const s = ensure(id);
+    if(!s.open){ open(id); return; }
+    const el = winEl(id);
+    const isFront = parseInt(el.style.zIndex||0) === zTop;
+    if(s.min){ open(id); }
+    else if(isFront){ minimize(id); }
+    else { focus(id); }
+  }
+
+  function wireDrag(el, id){
+    const bar = el.querySelector('.titlebar');
+    bar.addEventListener('mousedown', e=>{
+      if(e.target.closest('.tctl') || el.classList.contains('maxed')) return;
+      focus(id);
+      const startX=e.clientX, startY=e.clientY;
+      const r = el.getBoundingClientRect();
+      const parentR = el.parentElement.getBoundingClientRect();
+      const startLeft = r.left-parentR.left, startTop = r.top-parentR.top;
+      function mm(ev){
+        const nl = Math.max(0, startLeft + (ev.clientX-startX));
+        const nt = Math.max(0, startTop + (ev.clientY-startY));
+        el.style.left = nl+'px'; el.style.top = nt+'px';
+      }
+      function mu(){
+        document.removeEventListener('mousemove',mm);
+        document.removeEventListener('mouseup',mu);
+        const s = ensure(id); s.top=el.style.top; s.left=el.style.left; save();
+      }
+      document.addEventListener('mousemove',mm);
+      document.addEventListener('mouseup',mu);
+    });
+  }
+
+  function wireResize(el, id){
+    const h = el.querySelector('.resize-handle'); if(!h) return;
+    h.addEventListener('mousedown', e=>{
+      e.stopPropagation(); focus(id);
+      const startX=e.clientX, startY=e.clientY;
+      const r = el.getBoundingClientRect();
+      const startW=r.width, startH=r.height;
+      function mm(ev){
+        const nw = Math.max(360, startW + (ev.clientX-startX));
+        const nh = Math.max(220, startH + (ev.clientY-startY));
+        el.style.width = nw+'px'; el.style.height = nh+'px';
+      }
+      function mu(){
+        document.removeEventListener('mousemove',mm);
+        document.removeEventListener('mouseup',mu);
+        const s = ensure(id); s.width=el.style.width; s.height=el.style.height; save();
+      }
+      document.addEventListener('mousemove',mm);
+      document.addEventListener('mouseup',mu);
+    });
+  }
+
+  function wireControls(el, id){
+    el.querySelector('.tc-close').addEventListener('click', ()=>close(id));
+    el.querySelector('.tc-min').addEventListener('click', ()=>minimize(id));
+    el.querySelector('.tc-max').addEventListener('click', ()=>toggleMax(id));
+    el.addEventListener('mousedown', ()=>focus(id));
+  }
+
+  function init(ids){
+    load();
+    ids.forEach(id=>{
+      const el = winEl(id); if(!el) return;
+      wireDrag(el, id); wireResize(el, id); wireControls(el, id);
+      const tb = tbEl(id);
+      if(tb) tb.addEventListener('click', ()=>taskbarClick(id));
+      const s = ensure(id);
+      if(s.top) el.style.top = s.top;
+      if(s.left) el.style.left = s.left;
+      if(s.width) el.style.width = s.width;
+      if(s.height) el.style.height = s.height;
+      if(s.max) el.classList.add('maxed');
+      if(s.open && !s.min){ el.classList.add('show'); if(tb) tb.classList.add('open'); }
+    });
+  }
+
+  return {init, open, close, minimize, toggleMax, focus, taskbarClick};
+})();
+
+/* ═══════════════════ MAIL DATA + RENDER ═══════════════════ */
+const MAIL = [
+ {id:'m1', from:'S. Okonkwo (Compliance)', time:'09:14', subj:'RE: Kortrijk Textiles — EDD documentation',
+  snip:"Following up on the shareholder pact question you raised —", unread:true,
+  fromFull:'Sanmi Okonkwo &lt;s.okonkwo@meridiaanbank.eu&gt;',
+  body:[
+   'Morning —',
+   "Following up on the shareholder-pact question for Kortrijk Textiles NV. I pulled the KvK extract for KT Holding BV this morning — Mina and Bram Vanhoutte are listed at 70/30, no pact on file as of the last filing.",
+   "Given Bram sits at 24% once you run it through the holding, I'd note the sibling relationship in the file but I don't think it changes the UBO conclusion on its own. Worth a second look if anything else comes up on this customer.",
+   "Let me know if you want me to request the pact directly from the client's counsel — happy to send that today if it's useful.",
+   'Sanmi'],
+  attach:['KT_Holding_KvK_extract.pdf']},
+ {id:'m2', from:'Nadia Verlinden (RM)', time:'08:47', subj:'Re: Why the wire to Gulf Machinery FZE',
+  snip:"Spoke to the client this morning, here's the context —", unread:true,
+  fromFull:'Nadia Verlinden &lt;n.verlinden@meridiaanbank.eu&gt;',
+  body:[
+   'Hi —',
+   "Spoke to the client this morning. Mina says Gulf Machinery is a new supplier they found at a Dubai trade fair — parts for a new production line, first four shipments landed on time. She says pricing is 'about right for rush orders' but couldn't point me to a comparable quote.",
+   "I didn't push further since that's really your call to assess, not mine. Flagging in case it helps before you close this out.",
+   'Nadia'], attach:[]},
+ {id:'m3', from:'CTIF-CFI Portal', time:'Yesterday', subj:'Filing receipt — reference NL-2026-08841',
+  snip:'Your submission has been received and queued —', unread:false,
+  fromFull:'noreply@ctif-cfi.belgium.be',
+  body:['This is an automated receipt.', 'Your submission (reference NL-2026-08841) has been received and queued for review. No further action is required unless contacted by an investigator.'], attach:[]},
+ {id:'m4', from:'System Alert', time:'', subj:'Transaction monitoring — new alert A-4471 assigned',
+  snip:'A new alert has been routed to your queue —', unread:false,
+  fromFull:'tm-system@meridiaanbank.eu',
+  body:['Alert A-4471 has been assigned to your queue.', 'Customer: Kortrijk Textiles NV · Rule triggered: Jurisdiction — high-risk nexus · SLA: 4 hours.'], attach:[]},
+ {id:'m5', from:'T. Haverbeke (Team Lead)', time:'', subj:'Case deadline — A-4402 due Friday',
+  snip:'Checking in on where this one stands —', unread:false,
+  fromFull:'t.haverbeke@meridiaanbank.eu',
+  body:["Checking in on A-4402 — it's due Friday and I don't see an update yet. Let me know if you're blocked on anything."], attach:[]},
+];
+
+function renderMailList(activeId){
+  const el = document.getElementById('mail-list');
+  el.innerHTML = MAIL.map(m=>`
+    <div class="mitem ${m.id===activeId?'on':''} ${m.unread?'unread':''}" data-mid="${m.id}">
+      <div class="mf">${m.from}${m.time?` <time>${m.time}</time>`:''}</div>
+      <div class="ms">${m.subj}</div>
+      <div class="mp">${m.snip}</div>
+    </div>`).join('');
+  el.querySelectorAll('.mitem').forEach(it=>it.addEventListener('click', ()=>{
+    it.classList.remove('unread');
+    const m = MAIL.find(x=>x.id===it.dataset.mid);
+    if(m) m.unread = false;
+    renderMailList(it.dataset.mid);
+    renderMailRead(it.dataset.mid);
+  }));
+}
+function renderMailRead(id){
+  const m = MAIL.find(x=>x.id===id); if(!m) return;
+  const el = document.getElementById('mail-read');
+  el.innerHTML = `
+    <h2>${m.subj}</h2>
+    <div class="mail-meta">
+      <div><b>From</b> ${m.fromFull}</div>
+      <div><b>To</b> Analyst Desk</div>
+      <div><b>Date</b> ${m.time==='Yesterday'?'Yesterday':'Today, '+(m.time||'09:00')}</div>
+    </div>
+    <div class="mail-text">${m.body.map(p=>`<p>${p}</p>`).join('')}</div>
+    ${m.attach.length?`<div class="attach">${m.attach.map(a=>`<div class="att" data-open-file="${a}">📎 ${a}</div>`).join('')}</div>`:''}`;
+  el.querySelectorAll('[data-open-file]').forEach(a=>a.addEventListener('click', ()=>{
+    WM.open('explorer');
+    FE.openByName(a.dataset.openFile);
+  }));
+}
+renderMailList('m1'); renderMailRead('m1');
+
+/* ═══════════════════ BROWSER TABS ═══════════════════ */
+const TAB_TITLES = {cif:'Customer Profile', reg:'Company Registry', sanc:'Sanctions & PEP Search',
+  news:'News search', policy:'Internal Policy'};
+const TAB_ADDR = {cif:'cif.meridiaanbank.internal/customer/BE-0741-KT',
+  reg:'kvk.nl/register/74118822',
+  sanc:'watchlist.meridiaanbank.internal/search?q=vanhoutte',
+  news:'newswire.meridiaanbank.internal/search?q=kortrijk+textiles',
+  policy:'policy.meridiaanbank.internal/aml/section-4'};
+let history = ['cif'], histPos = 0;
+
+function openTab(key){
+  if(!document.getElementById('page-'+key)) return;
+  if(!document.querySelector(`.tab[data-tab="${key}"]`)){
+    const strip = document.getElementById('tabstrip');
+    const t = document.createElement('div');
+    t.className = 'tab'; t.dataset.tab = key;
+    t.innerHTML = `<span class="dot"></span>${TAB_TITLES[key]}<span class="x" data-close-tab="${key}">×</span>`;
+    strip.appendChild(t);
+    wireTab(t);
+  }
+  goToTab(key, true);
+}
+function goToTab(key, pushHistory){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));
+  const tab = document.querySelector(`.tab[data-tab="${key}"]`);
+  if(tab) tab.classList.add('on');
+  document.getElementById('page-'+key).classList.add('on');
+  document.getElementById('addr-text').textContent = TAB_ADDR[key];
+  document.getElementById('browser-title').textContent = 'Chrome — '+TAB_TITLES[key];
+  if(pushHistory){ history = history.slice(0, histPos+1); history.push(key); histPos = history.length-1; }
+  document.getElementById('nav-back').classList.toggle('dis', histPos<=0);
+  document.getElementById('nav-fwd').classList.toggle('dis', histPos>=history.length-1);
+}
+function wireTab(t){
+  t.addEventListener('click', e=>{
+    if(e.target.dataset.closeTab){
+      e.stopPropagation();
+      const remaining = [...document.querySelectorAll('.tab')].filter(x=>x!==t);
+      t.remove();
+      if(remaining.length) goToTab(remaining[remaining.length-1].dataset.tab, false);
+      return;
+    }
+    goToTab(t.dataset.tab, true);
+  });
+}
+document.querySelectorAll('.tab').forEach(wireTab);
+document.querySelectorAll('[data-goto]').forEach(el=>{
+  el.addEventListener('click', e=>{ e.preventDefault(); openTab(el.dataset.goto); });
+});
+document.getElementById('nav-back').addEventListener('click', ()=>{
+  if(histPos>0){ histPos--; goToTab(history[histPos], false); }
+});
+document.getElementById('nav-fwd').addEventListener('click', ()=>{
+  if(histPos<history.length-1){ histPos++; goToTab(history[histPos], false); }
+});
+document.getElementById('bmk-star').addEventListener('click', function(){ this.classList.toggle('on'); this.textContent = this.classList.contains('on')?'★':'☆'; });
+
+/* ═══════════════════ FILE EXPLORER ═══════════════════ */
+const FE = (function(){
+  const folders = [
+    {id:'cases', label:'Cases'}, {id:'customer', label:'Customer'}, {id:'kyc', label:'KYC'},
+    {id:'transactions', label:'Transactions'}, {id:'evidence', label:'Evidence'},
+    {id:'prev', label:'Previous Investigations'}, {id:'policies', label:'Policies'},
+  ];
+  const files = {
+    cases: [{n:'A-4471_case_summary.pdf', t:'pdf', k:'PDF · 1 page'}],
+    customer: [{n:'Kortrijk_Textiles_NV_profile.pdf', t:'pdf', k:'PDF · 2 pages'}],
+    kyc: [
+      {n:'Passport_Mina_Vanhoutte.jpg', t:'img', k:'JPEG · 412 KB'},
+      {n:'Proof_of_address.pdf', t:'pdf', k:'PDF · 1 page'},
+      {n:'KT_Holding_KvK_extract.pdf', t:'pdf', k:'PDF · 1 page'},
+    ],
+    transactions: [{n:'Statement_Feb-Mar_2026.xlsx', t:'xls', k:'XLSX · 4 rows'}],
+    evidence: [],
+    prev: [{n:'2023_Periodic_Review.pdf', t:'pdf', k:'PDF · 3 pages'}],
+    policies: [
+      {n:'AML_Policy_v4.2.pdf', t:'pdf', k:'PDF · 44 pages'},
+      {n:'EDD_Procedure.pdf', t:'pdf', k:'PDF · 6 pages'},
+    ],
+  };
+  const ICO = {pdf:{bg:'#B3392C', e:'📄'}, img:{bg:'#1F5C8B', e:'🖼️'}, xls:{bg:'#1E7145', e:'📊'}};
+  let curFolder = 'kyc', curFile = null;
+
+  function renderTree(){
+    document.getElementById('fe-tree').innerHTML = `
+      <div class="fe-search">🔍 Search files…</div>
+      ${folders.map(f=>`<div class="t ${f.id===curFolder?'on':''}" data-folder="${f.id}">📁 ${f.label}</div>`).join('')}`;
+    document.querySelectorAll('#fe-tree .t').forEach(t=>t.addEventListener('click', ()=>{
+      curFolder = t.dataset.folder; curFile = null; renderTree(); renderList();
+      document.getElementById('fe-preview').innerHTML = `<div class="fe-empty">Select a file to preview it.</div>`;
+    }));
+  }
+  function renderList(){
+    const list = files[curFolder] || [];
+    const el = document.getElementById('fe-list');
+    el.innerHTML = `<div class="hd">${folders.find(f=>f.id===curFolder).label.toUpperCase()} · ${list.length} item${list.length===1?'':'s'}</div>` +
+      (list.length? list.map(f=>`
+        <div class="fitem ${f.n===curFile?'on':''}" data-fname="${f.n}">
+          <div class="fico" style="background:${ICO[f.t].bg}">${ICO[f.t].e}</div>
+          <div class="fn"><div class="fname">${f.n}</div><div class="fmeta">${f.k}</div></div>
+        </div>`).join('')
+        : `<div class="fe-empty">No documents saved here yet.</div>`);
+    el.querySelectorAll('.fitem').forEach(it=>it.addEventListener('click', ()=>{
+      curFile = it.dataset.fname; renderList(); preview(curFile);
+    }));
+  }
+  function findFile(name){
+    for(const k in files){ const f = files[k].find(x=>x.n===name); if(f) return {folder:k, file:f}; }
+    return null;
+  }
+  function openByName(name){
+    const found = findFile(name); if(!found) return;
+    curFolder = found.folder; curFile = name;
+    renderTree(); renderList(); preview(name);
+  }
+
+  function preview(name){
+    const found = findFile(name); if(!found) return;
+    const f = found.file;
+    const el = document.getElementById('fe-preview');
+    const head = `<div class="ph"><div><div class="pt">${f.n}</div><div class="pm">${f.k} · Case A-4471</div></div><button class="dlbtn">Download</button></div>`;
+
+    let body = '';
+    if(name === 'Passport_Mina_Vanhoutte.jpg'){
+      body = `<div class="idcard">
+        <div class="idphoto">🪪</div>
+        <div class="idfields">
+          <b>Surname</b>VANHOUTTE
+          <b>Given names</b>MINA
+          <b>Nationality</b>BELGIAN
+          <b>Date of birth</b>14 MAR 1978
+          <b>Passport no.</b>BE0294817
+          <b>Expiry</b>02 JUN 2029
+        </div>
+      </div>`;
+    } else if(name === 'Proof_of_address.pdf'){
+      body = `<div class="docsheet"><div class="dh">Fluvius · Electricity statement</div>
+        <h3>Billing address confirmation</h3>
+        <div class="row"><b>Account holder</b>Mina Vanhoutte</div>
+        <div class="row"><b>Service address</b>Grote Markt 21, 8500 Kortrijk, BE</div>
+        <div class="row"><b>Billing period</b>01 Feb 2026 – 28 Feb 2026</div>
+        <div class="row"><b>Customer since</b>2011</div></div>`;
+    } else if(name === 'KT_Holding_KvK_extract.pdf'){
+      body = `<div class="docsheet"><div class="dh">Netherlands Chamber of Commerce</div>
+        <h3>KT Holding BV — trade register extract</h3>
+        <div class="row"><b>KvK number</b>74 118 822</div>
+        <div class="row"><b>Incorporated</b>11 April 2019</div>
+        <div class="row"><b>Directors</b>Mina Vanhoutte, Bram Vanhoutte</div>
+        <div class="row"><b>Shareholders</b>Mina Vanhoutte 70% · Bram Vanhoutte 30%</div></div>`;
+    } else if(name === 'A-4471_case_summary.pdf'){
+      body = `<div class="docsheet"><div class="dh">Meridiaan · Transaction Monitoring</div>
+        <h3>Alert A-4471 — Jurisdiction, high-risk nexus</h3>
+        <div class="row"><b>Customer</b>Kortrijk Textiles NV (CIF-BE-0741)</div>
+        <div class="row"><b>Rule triggered</b>4 outbound wires, BE→AE, 40–60% above market pricing</div>
+        <div class="row"><b>Amount</b>€620,000 across 4 payments</div>
+        <div class="row"><b>SLA</b>4 hours from assignment</div></div>`;
+    } else if(name === 'Kortrijk_Textiles_NV_profile.pdf'){
+      body = `<div class="docsheet"><div class="dh">Meridiaan CIF</div>
+        <h3>Kortrijk Textiles NV — customer profile</h3>
+        <div class="row"><b>Sector</b>Textile manufacturing (NACE 13.20)</div>
+        <div class="row"><b>Customer since</b>2019</div>
+        <div class="row"><b>Expected turnover</b>€4.1M / year</div>
+        <div class="row"><b>Relationship manager</b>Nadia Verlinden</div></div>`;
+    } else if(name === 'Statement_Feb-Mar_2026.xlsx'){
+      body = `<table class="dt" style="background:var(--surface);border:1px solid var(--border)">
+        <tr><th style="padding-left:12px">Date</th><th>Counterparty</th><th>Country</th><th style="padding-right:12px">Amount</th></tr>
+        <tr><td class="mono" style="padding-left:12px">03 Mar</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono" style="padding-right:12px"><b>€185,000</b></td></tr>
+        <tr><td class="mono" style="padding-left:12px">07 Mar</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono" style="padding-right:12px"><b>€160,000</b></td></tr>
+        <tr><td class="mono" style="padding-left:12px">12 Mar</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono" style="padding-right:12px"><b>€140,000</b></td></tr>
+        <tr><td class="mono" style="padding-left:12px">14 Mar</td><td>Gulf Machinery FZE</td><td>AE</td><td class="mono" style="padding-right:12px"><b>€135,000</b></td></tr>
+      </table>`;
+    } else if(name === '2023_Periodic_Review.pdf'){
+      body = `<div class="docsheet"><div class="dh">Meridiaan · Compliance</div>
+        <h3>Periodic review — completed 14 Nov 2023</h3>
+        <div class="row"><b>Risk rating</b>Medium (unchanged)</div>
+        <div class="row"><b>Findings</b>No adverse findings</div>
+        <div class="row"><b>Next review due</b>Nov 2025 <span style="color:var(--crit);font-weight:600">— overdue</span></div></div>`;
+    } else if(name === 'AML_Policy_v4.2.pdf'){
+      body = `<div class="docsheet"><div class="dh">Meridiaan · Compliance</div>
+        <h3>AML Policy v4.2 — Section 4.2, EDD triggers</h3>
+        <ul>
+          <li>Invoice values 40%+ above comparable market pricing</li>
+          <li>Payment routed through a jurisdiction outside the underlying trade</li>
+          <li>Beneficial ownership via trust, nominee, or unregistered foreign holding</li>
+          <li>Related-party shareholding near the 25% threshold, no pact on file</li>
+        </ul></div>`;
+    } else if(name === 'EDD_Procedure.pdf'){
+      body = `<div class="docsheet"><div class="dh">Meridiaan · Compliance</div>
+        <h3>Enhanced Due Diligence — procedure</h3>
+        <div class="row"><b>Step 1</b>Confirm source of funds with supporting docs</div>
+        <div class="row"><b>Step 2</b>Verify counterparty exists (registry + site check)</div>
+        <div class="row"><b>Step 3</b>Compare invoice pricing to 2 independent sources</div>
+        <div class="row"><b>Step 4</b>Document conclusion before closing or escalating</div></div>`;
+    } else {
+      body = `<div class="fe-empty">No preview available for this file type.</div>`;
+    }
+    el.innerHTML = head + body;
+  }
+
+  renderTree(); renderList();
+  document.getElementById('fe-preview').innerHTML = `<div class="fe-empty">Select a file to preview it.</div>`;
+  return {openByName};
+})();
+
+/* ═══════════════════ NOTIFICATIONS ═══════════════════ */
+function notify(icon, iconBg, title, desc, onClick){
+  const stack = document.getElementById('ntf-stack');
+  const n = document.createElement('div');
+  n.className = 'ntf';
+  n.innerHTML = `<div class="nico" style="background:${iconBg}">${icon}</div>
+    <div class="nb"><div class="nt">${title}</div><div class="nd">${desc}</div></div>`;
+  n.addEventListener('click', ()=>{ if(onClick) onClick(); dismiss(); });
+  stack.appendChild(n);
+  const dismiss = ()=>{ n.classList.add('out'); setTimeout(()=>n.remove(), 220); };
+  setTimeout(dismiss, 7000);
+}
+
+/* ═══════════════════ DESKTOP ICONS ═══════════════════ */
+document.querySelectorAll('.dicon').forEach(ic=>{
+  ic.addEventListener('click', ()=>{
+    const key = ic.dataset.open;
+    if(key==='soon'){
+      notify('🔒', '#4A5568', ic.dataset.soon, "Not wired up yet in this prototype — coming in a later pass.");
+      return;
+    }
+    WM.open(key);
+  });
+});
+document.getElementById('tb-flag').addEventListener('click', ()=>{ WM.open('browser'); openTab('cif'); });
+
+/* ═══════════════════ CLOCK ═══════════════════ */
+function tickClock(){
+  const d = new Date();
+  document.getElementById('clock').textContent =
+    d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+}
+tickClock(); setInterval(tickClock, 30000);
+
+/* ═══════════════════ BOOT ═══════════════════ */
+WM.init(['mail','browser','explorer']);
+if(!localStorage.getItem('meridiaan-wm-v1')){
+  WM.open('mail'); WM.open('browser');
+}
+
+/* scripted notifications — a living, not static, desk */
+setTimeout(()=>notify('✉️', '#1F5C8B', 'New email received', 'Nadia Verlinden — Re: Why the wire to Gulf Machinery FZE',
+  ()=>{ WM.open('mail'); renderMailRead('m2'); document.querySelectorAll('.mitem').forEach(x=>x.classList.toggle('on', x.dataset.mid==='m2')); }), 4000);
+setTimeout(()=>notify('📄', '#1E7145', 'Document added to case file', 'KT_Holding_KvK_extract.pdf was added to KYC',
+  ()=>{ WM.open('explorer'); FE.openByName('KT_Holding_KvK_extract.pdf'); }), 11000);
+</script>
