@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STRUCTURES DE DÉTENTION — RegRadar Academy</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   STRUCTURES DE DÉTENTION — module 03
+   Même monde que The Desk : console à 22h47, monospace en police
+   d'affichage, quatre couleurs de signal à sens unique.
+   L'organigramme est l'objet central : on le lit, on clique dedans,
+   on désigne dessus. Pas un schéma décoratif à côté d'un formulaire.
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
+  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
+  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+/* la mise en page plein écran est désormais celle de la coque */
+
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+::selection{background:var(--ice);color:var(--void)}
+
+.hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:18px;
+  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--console),rgba(14,20,28,.55));
+  border-bottom:1px solid var(--grid)}
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
+.brand .dot{width:7px;height:7px;background:var(--violet);border-radius:50%;
+  box-shadow:0 0 10px var(--violet);animation:beat 3s infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
+.g{display:flex;align-items:center;gap:8px}
+.g .l{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.g .v{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.g .v.seuil{color:var(--ice)}
+.hours{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.hours.low{color:var(--amber)}
+.hud-r{margin-left:auto;display:flex;gap:9px}
+.ib{width:30px;height:30px;border:1px solid var(--grid);color:var(--ink-3);font-size:13px;
+  display:grid;place-items:center;transition:all .16s}
+.ib:hover{border-color:var(--ice);color:var(--ice)}
+
+.view{position:absolute;inset:0;z-index:2;overflow-y:auto;display:none}
+.view.on{display:block}
+.view::-webkit-scrollbar{width:8px}.view::-webkit-scrollbar-thumb{background:var(--grid)}
+.pad{max-width:920px;margin:0 auto;padding:32px 26px 80px}
+.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+h1{font-size:clamp(23px,3.4vw,38px);font-weight:700;letter-spacing:-.03em;line-height:1.06;margin-top:12px}
+h1 em{font-style:normal;color:var(--violet)}
+.body{font-family:var(--sans);font-size:15px;line-height:1.66;color:var(--ink-2);margin-top:16px;max-width:66ch}
+.body p{margin-top:12px}
+.go{margin-top:26px;border:1px solid var(--phos);color:var(--phos);padding:14px 30px;
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;background:rgba(125,240,200,.07);transition:all .18s}
+.go:hover{background:var(--phos);color:var(--void);box-shadow:0 0 30px rgba(125,240,200,.32)}
+.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:13px 22px;font-size:11px;
+  font-weight:700;letter-spacing:.13em;transition:all .16s}
+.ghost:hover{border-color:var(--ink-2);color:var(--ink)}
+.row{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+
+/* ── initiation ── */
+.step{border:1px solid var(--grid);padding:20px 22px;margin-top:20px}
+.step .sn{font-size:9px;letter-spacing:.17em;color:var(--violet);font-weight:700}
+.step h3{font-size:18px;font-weight:700;letter-spacing:-.015em;margin-top:8px}
+.step .note{font-family:var(--sans);font-size:13px;line-height:1.55;color:var(--ink-3);
+  margin-top:10px;border-left:2px solid var(--grid);padding-left:12px}
+.mini{margin:16px 0}
+.mini svg{display:block;width:100%;height:auto;max-height:230px}
+.q{font-family:var(--sans);font-size:15px;color:var(--ink);margin-top:14px;font-weight:600}
+.opts{display:grid;gap:8px;margin-top:12px}
+.opt{border:1px solid var(--grid);padding:11px 14px;font-size:13px;transition:all .16s}
+.opt:hover:not(:disabled){border-color:var(--ice);transform:translateX(3px)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--phos);color:var(--phos)}
+.opt.wrong{border-color:var(--alarm);color:var(--alarm)}
+.reveal{margin-top:14px;border-left:2px solid var(--phos);padding:11px 0 11px 14px;
+  font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--ink-2);display:none}
+.reveal.on{display:block;animation:slide .35s var(--ease)}
+@keyframes slide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.reveal .pl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--phos);
+  display:block;margin-bottom:6px}
+.reveal .pr{margin-top:10px;padding-top:10px;border-top:1px solid var(--grid);color:var(--ink)}
+
+/* ── liste des cas ── */
+.cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:11px;margin-top:24px}
+.cc{border:1px solid var(--grid);padding:15px 16px;transition:all .16s var(--ease)}
+.cc:hover:not(.locked){border-color:var(--violet);transform:translateY(-3px)}
+.cc.locked{opacity:.35;cursor:not-allowed}
+.cc .ct{font-size:9px;letter-spacing:.14em;color:var(--violet)}
+.cc .cn{font-size:15px;font-weight:700;margin-top:8px;line-height:1.3}
+.cc .cd{font-family:var(--sans);font-size:12.5px;color:var(--ink-3);margin-top:8px;line-height:1.5}
+.cc .cs{font-size:9.5px;letter-spacing:.1em;margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+.cc .cs span{border:1px solid var(--grid);padding:2px 7px;color:var(--ink-3)}
+.cc .cs .ok{border-color:var(--phos);color:var(--phos)}
+.cc .cs .bad{border-color:var(--alarm);color:var(--alarm)}
+
+/* ── plan de travail ── */
+.work{display:grid;grid-template-columns:minmax(0,1fr) 330px;height:100%;min-height:0}
+@media(max-width:1000px){.work{grid-template-columns:1fr}}
+.wmain{overflow-y:auto;padding:22px 26px 40px;min-height:0}
+.wmain::-webkit-scrollbar{width:8px}.wmain::-webkit-scrollbar-thumb{background:var(--grid)}
+.wside{border-left:1px solid var(--grid);background:rgba(14,20,28,.4);overflow-y:auto;
+  padding:20px 18px 40px;min-height:0}
+@media(max-width:1000px){.wside{border-left:none;border-top:1px solid var(--grid)}}
+
+.chart{border:1px solid var(--grid);background:rgba(14,20,28,.5);margin-top:16px;position:relative}
+.chart svg{display:block;width:100%;height:auto;cursor:grab}
+.chart svg.drag{cursor:grabbing}
+.ctools{position:absolute;top:8px;right:8px;display:flex;gap:5px}
+.ct-b{width:26px;height:26px;border:1px solid var(--grid);background:var(--console);
+  color:var(--ink-3);font-family:var(--mono);font-size:12px}
+.ct-b:hover{border-color:var(--ice);color:var(--ice)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--grid);padding:8px 12px;
+  font-size:9.5px;color:var(--ink-3);letter-spacing:.08em;font-weight:700}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+
+.blk{margin-top:20px;border-top:1px solid var(--grid);padding-top:12px}
+.blk .bl{font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:baseline}
+.blk .bl b{color:var(--ink-2);letter-spacing:.08em}
+.doc{border:1px solid var(--grid);padding:11px 13px;margin-bottom:8px}
+.doc .dn{font-size:12px;font-weight:700}
+.doc .db{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:6px}
+.doc.new{border-color:var(--phos);animation:slide .4s var(--ease)}
+
+.req{border:1px solid var(--grid);padding:11px 13px;margin-bottom:8px;transition:all .16s;
+  display:block;width:100%;position:relative}
+.req:hover:not(:disabled){border-color:var(--ice);transform:translateY(-2px)}
+.req:disabled{opacity:.35;cursor:not-allowed}
+.req .rn{font-size:12px;font-weight:700;padding-right:34px}
+.req .rc{position:absolute;top:10px;right:12px;font-size:10px;color:var(--amber);font-weight:700}
+
+.pick{display:grid;gap:7px;margin-top:10px}
+.pk{border:1px solid var(--grid);padding:10px 12px;display:flex;align-items:center;gap:10px;
+  transition:all .16s;font-size:13px}
+.pk:hover{border-color:var(--ink-2)}
+.pk.on{border-color:var(--violet);background:rgba(180,140,255,.09);color:var(--violet)}
+.pk .box{width:15px;height:15px;border:1px solid currentColor;flex:0 0 auto;display:grid;
+  place-items:center;font-size:10px}
+.pk .who{flex:1}
+.pk .juris{font-size:10px;color:var(--ink-3);letter-spacing:.06em}
+.nd{border:1px solid var(--amber);color:var(--amber);padding:11px 13px;margin-top:10px;
+  font-size:12.5px;display:flex;align-items:center;gap:10px;transition:all .16s;width:100%}
+.nd:hover{background:rgba(255,194,77,.08)}
+.nd.on{background:var(--amber);color:var(--void)}
+.submit{margin-top:14px;border:1px solid var(--phos);color:var(--phos);padding:13px;width:100%;
+  font-size:11px;font-weight:700;letter-spacing:.15em;text-align:center;
+  background:rgba(125,240,200,.07);transition:all .18s}
+.submit:hover:not(:disabled){background:var(--phos);color:var(--void)}
+.submit:disabled{opacity:.35;cursor:not-allowed}
+.hint{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.55;margin-top:12px}
+
+/* ── correction ── */
+.vhead{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.stamp{font-size:10.5px;font-weight:700;letter-spacing:.19em;padding:6px 12px;border:2px solid currentColor}
+.vhead h2{font-size:clamp(19px,2.5vw,27px);font-weight:700;letter-spacing:-.02em}
+.calc{border:1px solid var(--grid);margin-top:20px}
+.calc .ch{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--grid)}
+.calc .cr{padding:10px 14px;border-bottom:1px solid var(--grid);display:grid;
+  grid-template-columns:1fr 80px 60px;gap:12px;align-items:baseline;font-size:13px}
+.calc .cr:last-child{border-bottom:none}
+.calc .cr .pc{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.calc .cr .vd{font-size:9.5px;letter-spacing:.1em;text-align:right}
+.calc .cr.isubo{color:var(--phos)} .calc .cr.sous{color:var(--ink-3)}
+.calc .cr.miss{color:var(--alarm)} .calc .cr.extra{color:var(--amber)}
+.note{font-family:var(--sans);font-size:13.5px;line-height:1.62;color:var(--ink-2);
+  margin-top:18px;border-left:2px solid var(--amber);padding-left:15px;max-width:70ch}
+.note.ice{border-left-color:var(--ice)}.note.red{border-left-color:var(--alarm)}
+.note .nl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--amber);
+  margin-bottom:7px;display:block}
+.note.ice .nl{color:var(--ice)}.note.red .nl{color:var(--alarm)}
+.lawline{font-size:11.5px;color:var(--ice);margin-top:18px;line-height:1.58}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:70;
+  border:1px solid var(--phos);background:var(--console);color:var(--phos);padding:10px 19px;
+  font-size:10.5px;letter-spacing:.11em;font-weight:700;animation:toast 2.6s var(--ease) forwards;
+  pointer-events:none}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}12%,78%{opacity:1;transform:translate(-50%,0)}
+  100%{opacity:0;transform:translate(-50%,-8px)}}
+
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{
+  animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .reveal{display:block}}
+@media(max-width:760px){
+  .hud{gap:11px;padding:0 11px;height:48px}.g.hide-s{display:none}
+  .pad{padding:22px 15px 70px}.wmain{padding:16px 14px 26px}.wside{padding:16px 14px 30px}
+  .cases{grid-template-columns:1fr}
+}
+</style>
+<link rel="stylesheet" href="academy.css">
+<script src="academy-shell.js"></script>
+</head>
+<body>
+
+<!-- ACCUEIL -->
+<div class="view on" id="vHome"><div class="pad">
+  <div class="kick">REGRADAR ACADEMY · MODULE 03</div>
+  <h1>Qui possède <em>vraiment</em> cette société ?</h1>
+  <div class="body">
+    <p>Un organigramme se lit vite et se comprend mal. Les pourcentages se multiplient le long
+      des chaînes, s'additionnent entre les branches, et parfois le nom qui figure au registre
+      n'est celui de personne.</p>
+    <p>Quatre principes d'abord, en quatre minutes. Ensuite six dossiers, du plus simple à
+      celui qu'on ne peut pas conclure.</p>
+  </div>
+  <div class="row">
+    <button class="go" onclick="startPrimer()">COMMENCER PAR LES PRINCIPES</button>
+    <button class="ghost" onclick="toCases()">ALLER AUX DOSSIERS</button>
+  </div>
+  <div id="homeCases"></div>
+</div></div>
+
+<!-- INITIATION -->
+<div class="view" id="vPrimer"><div class="pad">
+  <div class="kick">LES QUATRE PRINCIPES</div>
+  <h1>Avant de lire un organigramme.</h1>
+  <div class="body"><p>Réponds d'abord, comprends ensuite. Se tromper ici ne coûte rien et
+    c'est la seule fois où ce sera vrai.</p></div>
+  <div id="primerSteps"></div>
+  <div class="row" id="primerEnd" style="display:none">
+    <button class="go" onclick="toCases()">PASSER AUX DOSSIERS</button>
+  </div>
+</div></div>
+
+<!-- DOSSIERS -->
+<div class="view" id="vCases"><div class="pad">
+  <div class="kick">LES DOSSIERS</div>
+  <h1>Six structures.</h1>
+  <div class="body"><p>Lis l'organigramme, consulte les pièces, demande ce qui manque si
+    quelque chose manque, puis désigne les bénéficiaires effectifs.</p></div>
+  <div class="cases" id="caseList"></div>
+</div></div>
+
+<!-- TRAVAIL -->
+<div class="view" id="vWork"><div class="work">
+  <div class="wmain" id="wMain"></div>
+  <div class="wside" id="wSide"></div>
+</div></div>
+
+<!-- CORRECTION -->
+<div class="view" id="vOut"><div class="pad">
+  <div class="vhead"><span class="stamp" id="oStamp">—</span><h2 id="oTitle">—</h2></div>
+  <div class="body" id="oWhy"></div>
+  <div class="calc" id="oCalc"></div>
+  <div class="note red" id="oTrap" style="display:none"><span class="nl">LE PIÈGE</span><span id="oTrapT"></span></div>
+  <div class="lawline" id="oLaw"></div>
+  <div class="note ice"><span class="nl">CE QUE ÇA ENSEIGNE</span><span id="oLesson"></span></div>
+  <div class="row">
+    <button class="go" id="oNext">CONTINUER</button>
+    <button class="ghost" onclick="replay()">REFAIRE CE DOSSIER</button>
+  </div>
+</div></div>
+
+<script>
+AcademyShell.mount("ownership");
+/* ═══════════════════════════════════════════════════════════════════
+   Le moteur de calcul est ici pour CORRIGER, pas pour répondre à la
+   place de l'utilisateur. C'est toute la différence avec l'outil UBO
+   Discovery : là-bas la machine calcule, ici elle vérifie.
+   ═══════════════════════════════════════════════════════════════════ */
+const KEY='regradar-ownership';
+let D=null, C=null, S={done:{}, primer:0};
+let hours=0, seen=[], picked=new Set(), nd=false, spent=[];
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function load(){try{const p=JSON.parse(localStorage.getItem(KEY)||'null');if(p)S={...S,...p}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+let AC=null,SND=true;
+try{SND=localStorage.getItem('regradar-snd')!=='off'}catch(e){}
+function tone(f,d,t='sine',g=.05,dl=0){if(!SND)return;
+  try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    const s=AC.currentTime+dl,o=AC.createOscillator(),v=AC.createGain();
+    o.type=t;o.frequency.setValueAtTime(f,s);v.gain.setValueAtTime(0,s);
+    v.gain.linearRampToValueAtTime(g,s+.012);v.gain.exponentialRampToValueAtTime(.0001,s+d);
+    o.connect(v);v.connect(AC.destination);o.start(s);o.stop(s+d+.02)}catch(e){}}
+const sfx={good:()=>{tone(587,.13,'sine',.06);tone(880,.22,'sine',.05,.08)},
+  bad:()=>{tone(150,.3,'square',.05);tone(100,.35,'square',.04,.06)},
+  find:()=>{tone(660,.1,'sine',.05);tone(990,.15,'sine',.03,.07)},
+  tick:()=>tone(880,.05,'square',.02)};
+function toast(m){ AcademyShell.toast(m); }
+
+/* ── calcul : multiplication le long des chemins, addition entre eux,
+      arrêt sur boucle, trustee ignoré (titre légal, pas d'intérêt) ── */
+function solve(entities, edges, root){
+  const persons=new Set(entities.filter(e=>e.type==='person').map(e=>e.id));
+  const res={};
+  (function walk(n,f,path){
+    edges.forEach(e=>{
+      if(e.to!==n || path.includes(e.from)) return;
+      if(e.kind==='trustee') return;
+      const nf=f*(e.pct/100);
+      if(persons.has(e.from)){
+        if(!res[e.from]) res[e.from]={pct:0,paths:[]};
+        res[e.from].pct+=nf*100;
+        res[e.from].paths.push({chain:[...path,e.from], pct:nf*100});
+      } else walk(e.from,nf,[...path,e.from]);
+    });
+  })(root,1,[root]);
+  return res;
+}
+
+/* ── organigramme : niveaux par plus long chemin depuis la cible ── */
+function layout(entities, edges, root, W, H){
+  const tier={}; tier[root]=0;
+  (function walk(cur,d,path){
+    edges.forEach(e=>{
+      if(e.to!==cur || path.includes(e.from)) return;
+      if(tier[e.from]===undefined || tier[e.from]<d+1) tier[e.from]=d+1;
+      walk(e.from,d+1,[...path,e.from]);
+    });
+  })(root,0,[root]);
+  entities.forEach(e=>{ if(tier[e.id]===undefined) tier[e.id]=1; });
+  const maxT=Math.max(...Object.values(tier));
+  const rows={};
+  entities.forEach(e=>{ (rows[tier[e.id]]=rows[tier[e.id]]||[]).push(e); });
+  const pos={};
+  const top=44, bottom=H-44;
+  for(let t=0;t<=maxT;t++){
+    const r=rows[t]||[];
+    const y = maxT===0? bottom : bottom-(bottom-top)*(t/maxT);
+    const slot=W/(r.length+1);
+    r.forEach((e,i)=>{ pos[e.id]={x:Math.round(slot*(i+1)), y:Math.round(y)}; });
+  }
+  return pos;
+}
+
+function drawChart(entities, edges, root, opts){
+  opts=opts||{};
+  const W=760, maxT=6;
+  const depth=(()=>{const t={};t[root]=0;
+    (function w(c,d,p){edges.forEach(e=>{if(e.to!==c||p.includes(e.from))return;
+      t[e.from]=Math.max(t[e.from]||0,d+1);w(e.from,d+1,[...p,e.from])})})(root,0,[root]);
+    return Math.max(1,...Object.values(t))})();
+  const H=Math.max(210, 120+depth*95);
+  const pos=layout(entities,edges,root,W,H);
+  const NW=opts.small?110:132, NH=opts.small?34:40;
+
+  let svg='';
+  edges.forEach(e=>{
+    const a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
+    const back = a.y>=b.y;                       // arête remontante = boucle
+    const col = e.kind==='trustee'?'var(--ink-3)' : back?'var(--amber)':'var(--ink-3)';
+    const dash = e.kind==='trustee'?'5 4' : back?'6 4':'';
+    const off = back?46:0;
+    const my=(a.y+b.y)/2;
+    const d=`M${a.x},${a.y-NH/2} C${a.x+off},${my} ${b.x+off},${my} ${b.x},${b.y+NH/2}`;
+    svg+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4"
+            stroke-dasharray="${dash}" opacity=".65"/>`;
+    const mx=(a.x+b.x)/2+off*.72;
+    const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'bénéf.' : e.pct+' %';
+    svg+=`<g class="edg" data-e="${esc(e.from)}>${esc(e.to)}" style="cursor:${e.doc?'pointer':'default'}">
+      <rect x="${mx-26}" y="${my-9}" width="52" height="18" fill="var(--console)"
+        stroke="${col}" stroke-width=".8" opacity=".95"/>
+      <text x="${mx}" y="${my+4}" text-anchor="middle" font-family="var(--mono)"
+        font-size="10" font-weight="700" fill="${col}">${lbl}</text></g>`;
+  });
+
+  entities.forEach(e=>{
+    const p=pos[e.id]; if(!p) return;
+    const isC=e.id===root, isP=e.type==='person';
+    const dashed = e.type==='trust'||e.type==='nominee';
+    const stroke = isC?'var(--alarm)' : isP?'var(--violet)' : dashed?'var(--amber)':'var(--ink-3)';
+    const fill = isC?'var(--alarm)' : (opts.picked&&opts.picked.has(e.id))?'var(--violet)':'var(--console)';
+    const txt = (isC||(opts.picked&&opts.picked.has(e.id)))?'var(--void)':'var(--ink)';
+    const nm = e.name.length>17? e.name.slice(0,16)+'…' : e.name;
+    svg+=`<g class="nod" data-n="${esc(e.id)}" style="cursor:pointer">
+      <rect x="${p.x-NW/2}" y="${p.y-NH/2}" width="${NW}" height="${NH}" fill="${fill}"
+        stroke="${stroke}" stroke-width="${isP?2:1.3}" stroke-dasharray="${dashed?'4 3':''}"/>
+      <text x="${p.x}" y="${p.y-2}" text-anchor="middle" font-family="var(--mono)"
+        font-size="10.5" font-weight="700" fill="${txt}">${esc(nm)}</text>
+      <text x="${p.x}" y="${p.y+11}" text-anchor="middle" font-family="var(--mono)"
+        font-size="8" fill="${txt}" opacity=".7">${esc(e.juris)} · ${isP?'PERS.':e.type.toUpperCase()}</text>
+    </g>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
+    aria-label="Organigramme de détention"><g id="oz">${svg}</g></svg>`;
+}
+
+/* ═══════════ ACCUEIL ═══════════ */
+function pushStatus(){
+  /* Le rang appartient à la coque ; le module ne pousse que le seuil,
+     les heures et l'avancement — ce qui n'a de sens qu'ici. */
+  const items=[];
+  const ok=Object.values(S.done).filter(x=>x==='right').length;
+  items.push({k:'RÉSOLUS', v:`${ok}/${(D&&D.cases||[]).length}`});
+  if(C){
+    items.push({k:'SEUIL', v:(C.threshold||25)+' %'});
+    if((C.requests||[]).length)
+      items.push({k:'HEURES', v:hours+' h', s:hours<=0?'bad':hours<=1?'warn':''});
+  }
+  AcademyShell.status(items);
+}
+
+function toHome(){
+  C=null; show('vHome'); pushStatus();
+}
+function show(id){['vHome','vPrimer','vCases','vWork','vOut'].forEach(v=>
+  document.getElementById(v).classList.toggle('on',v===id));
+  const el=document.getElementById(id); if(el) el.scrollTop=0;}
+
+/* ═══════════ INITIATION ═══════════ */
+function startPrimer(){
+  show('vPrimer');
+  document.getElementById('primerSteps').innerHTML=D.primer.map((p,i)=>`
+    <div class="step" id="st${i}">
+      <div class="sn">PRINCIPE ${i+1} / ${D.primer.length}</div>
+      <h3>${esc(p.title)}</h3>
+      ${p.note?`<div class="note">${esc(p.note)}</div>`:''}
+      <div class="mini">${drawChart(p.entities,p.edges,'cible',{small:true})}</div>
+      <div class="q">${esc(p.question)}</div>
+      <div class="opts">${p.options.map(o=>
+        `<button class="opt" data-o="${esc(o.id)}" onclick="answerPrimer(${i},'${esc(o.id)}')">
+          ${esc(o.label)}</button>`).join('')}</div>
+      <div class="reveal" id="rv${i}">
+        <span class="pl">POURQUOI</span>${esc(p.explain)}
+        <div class="pr">${esc(p.principle)}</div></div>
+    </div>`).join('');
+}
+function answerPrimer(i,oid){
+  const p=D.primer[i], box=document.getElementById('st'+i);
+  box.querySelectorAll('.opt').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.o===p.answer) b.classList.add('right');
+    else if(b.dataset.o===oid) b.classList.add('wrong');
+  });
+  document.getElementById('rv'+i).classList.add('on');
+  (oid===p.answer?sfx.good:sfx.bad)();
+  S.primer=Math.max(S.primer,i+1); save();
+  if(i===D.primer.length-1) document.getElementById('primerEnd').style.display='';
+}
+
+/* ═══════════ LISTE ═══════════ */
+function toCases(){
+  show('vCases');
+  const solved=Object.values(S.done).filter(x=>x==='right').length;
+  document.getElementById('caseList').innerHTML=D.cases.map(c=>{
+    const st=S.done[c.id];
+    const unlocked = c.tier===1 || solved >= (c.tier===2?1:2);
+    const badge = st? `<span class="${st==='right'?'ok':'bad'}">${st==='right'?'RÉSOLU':'À REPRENDRE'}</span>`
+      : unlocked? '<span>NON TRAITÉ</span>' : `<span>REQUIERT ${c.tier===2?1:2} RÉSOLU${c.tier===3?'S':''}</span>`;
+    return `<button class="cc ${unlocked?'':'locked'}" ${unlocked?`onclick="open_('${c.id}')"`:'disabled'}>
+      <div class="ct">NIVEAU ${c.tier} · ${esc(c.tier_name.toUpperCase())}</div>
+      <div class="cn">${esc(c.title)}</div>
+      <div class="cd">${esc(c.brief)}</div>
+      <div class="cs">${badge}<span>SEUIL ${c.threshold||25} %</span></div>
+    </button>`}).join('');
+}
+
+/* ═══════════ TRAVAIL ═══════════ */
+function open_(id){
+  C=D.cases.find(x=>x.id===id); if(!C) return;
+  hours=C.budget||0; seen=[]; picked=new Set(); nd=false; spent=[];
+  // les pièces sans demande associée sont fournies d'emblée
+  const gated=new Set((C.requests||[]).map(r=>r.reveals).filter(Boolean));
+  C.documents.forEach(d=>{ if(!gated.has(d.id)) seen.push(d.id); });
+  pushStatus();
+  show('vWork'); renderWork();
+}
+
+function renderWork(){
+  const root=C.entities.find(e=>e.customer).id;
+  document.getElementById('wMain').innerHTML=`
+    <div class="kick">${esc(C.id)} · NIVEAU ${C.tier} · ${esc(C.tier_name.toUpperCase())}</div>
+    <h1 style="font-size:24px;margin-top:10px">${esc(C.title)}</h1>
+    <div style="font-size:11.5px;color:var(--ink-2);margin-top:6px">${esc(C.subject)}</div>
+    <div class="body" style="font-size:14px;margin-top:12px">${esc(C.brief)}</div>
+    <div class="chart">
+      ${drawChart(C.entities,C.edges,root,{picked})}
+      <div class="ctools">
+        <button class="ct-b" onclick="zoom(1.2)">+</button>
+        <button class="ct-b" onclick="zoom(.85)">−</button>
+        <button class="ct-b" onclick="rz()">⤾</button></div>
+      <div class="legend">
+        <span><i style="background:var(--alarm)"></i>Client</span>
+        <span><i style="border:1.5px solid var(--violet)"></i>Personne physique</span>
+        <span><i style="border:1.5px dashed var(--amber)"></i>Trust / nominee</span>
+        <span><i style="border-top:2px dashed var(--amber);width:16px;height:0"></i>Boucle</span>
+      </div>
+    </div>
+    <div class="blk"><div class="bl"><span>PIÈCES AU DOSSIER</span>
+      <b>${seen.length} / ${C.documents.length}</b></div>
+      <div id="docs"></div></div>
+    ${(C.requests||[]).length?`<div class="blk"><div class="bl"><span>DEMANDES POSSIBLES</span>
+      <b id="hb">${hours} h restantes</b></div><div id="reqs"></div></div>`:''}`;
+  paintDocs(); paintReqs(); paintSide(); wireChart();
+  document.getElementById('wMain').scrollTop=0;
+}
+
+function paintDocs(){
+  const el=document.getElementById('docs'); if(!el) return;
+  el.innerHTML=C.documents.filter(d=>seen.includes(d.id)).map(d=>
+    `<div class="doc" id="doc_${esc(d.id)}"><div class="dn">${esc(d.name)}</div>
+      <div class="db">${esc(d.body)}</div></div>`).join('')
+    || '<div class="hint">Aucune pièce disponible.</div>';
+}
+function paintReqs(){
+  const el=document.getElementById('reqs'); if(!el) return;
+  el.innerHTML=(C.requests||[]).map(r=>{
+    const done=spent.includes(r.id);
+    return `<button class="req" ${done||hours<r.cost?'disabled':''} onclick="request('${esc(r.id)}')">
+      <span class="rc">${done?'✓':r.cost+' h'}</span>
+      <span class="rn">${esc(r.name)}</span></button>`}).join('');
+  const hb=document.getElementById('hb'); if(hb) hb.textContent=hours+' h restantes';
+  pushStatus();
+}
+
+function request(rid){
+  const r=(C.requests||[]).find(x=>x.id===rid);
+  if(!r||spent.includes(rid)||hours<r.cost) return;
+  hours-=r.cost; spent.push(rid);
+  if(r.reveals){
+    seen.push(r.reveals); sfx.find(); paintDocs();
+    const d=document.getElementById('doc_'+r.reveals);
+    if(d){d.classList.add('new'); d.scrollIntoView({behavior:'smooth',block:'center'})}
+    toast('PIÈCE OBTENUE');
+  } else {
+    toast('AUCUN RÉSULTAT');
+    const el=document.getElementById('docs');
+    if(el) el.insertAdjacentHTML('beforeend',
+      `<div class="doc" style="border-color:var(--ink-3);opacity:.7">
+        <div class="dn">${esc(r.name)}</div>
+        <div class="db">${esc(r.empty||'La recherche ne produit aucun résultat.')}</div></div>`);
+  }
+  paintReqs();
+}
+
+function paintSide(){
+  const persons=C.entities.filter(e=>e.type==='person');
+  document.getElementById('wSide').innerHTML=`
+    <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
+      QUI EST BÉNÉFICIAIRE EFFECTIF ?</div>
+    <div class="pick">${persons.map(p=>
+      `<button class="pk ${picked.has(p.id)?'on':''}" onclick="toggle('${esc(p.id)}')">
+        <span class="box">${picked.has(p.id)?'✓':''}</span>
+        <span class="who">${esc(p.name)}</span>
+        <span class="juris">${esc(p.juris)}</span></button>`).join('')}</div>
+    <button class="nd ${nd?'on':''}" onclick="toggleND()">
+      <span class="box" style="width:15px;height:15px;border:1px solid currentColor;display:grid;place-items:center;font-size:10px">${nd?'✓':''}</span>
+      <span>Impossible de conclure</span></button>
+    <button class="submit" id="sub" ${(!picked.size&&!nd)?'disabled':''} onclick="submit()">
+      VALIDER LE DOSSIER</button>
+    <div class="hint">Sélectionne les personnes physiques qui franchissent le seuil, ou qui
+      exercent un contrôle par d'autres moyens. Si les pièces ne permettent pas de trancher,
+      dis-le — c'est une réponse valable, et parfois la seule juste.</div>`;
+}
+function toggle(id){ if(nd) return; picked.has(id)?picked.delete(id):picked.add(id);
+  sfx.tick(); renderWork(); }
+function toggleND(){ nd=!nd; if(nd) picked.clear(); sfx.tick(); renderWork(); }
+
+/* zoom / déplacement */
+let ZS=1,ZX=0,ZY=0;
+function az(){const g=document.getElementById('oz');
+  if(g) g.setAttribute('transform',`translate(${ZX},${ZY}) scale(${ZS})`)}
+function zoom(f){ZS=Math.max(.5,Math.min(3,ZS*f));az()}
+function rz(){ZS=1;ZX=0;ZY=0;az()}
+function wireChart(){
+  document.querySelectorAll('.nod').forEach(el=>el.addEventListener('click',ev=>{
+    ev.stopPropagation();
+    const e=C.entities.find(x=>x.id===el.dataset.n);
+    if(e&&e.type==='person') toggle(e.id);
+  }));
+  document.querySelectorAll('.edg').forEach(el=>el.addEventListener('click',ev=>{
+    ev.stopPropagation();
+    const [f,t]=el.dataset.e.split('>');
+    const edge=C.edges.find(x=>x.from===f&&x.to===t);
+    if(edge&&edge.doc&&seen.includes(edge.doc)){
+      const d=document.getElementById('doc_'+edge.doc);
+      if(d){d.classList.add('new');d.scrollIntoView({behavior:'smooth',block:'center'});
+        setTimeout(()=>d.classList.remove('new'),1400)}
+    } else if(edge&&edge.doc) toast('PIÈCE NON ENCORE OBTENUE');
+  }));
+  const svg=document.querySelector('.chart svg'); if(!svg) return;
+  let drag=false,sx=0,sy=0;
+  svg.addEventListener('mousedown',e=>{if(e.target.closest('.nod,.edg'))return;
+    drag=true;sx=e.clientX-ZX;sy=e.clientY-ZY;svg.classList.add('drag')});
+  window.addEventListener('mouseup',()=>{drag=false;svg.classList.remove('drag')});
+  window.addEventListener('mousemove',e=>{if(!drag)return;ZX=e.clientX-sx;ZY=e.clientY-sy;az()});
+}
+
+/* ═══════════ CORRECTION ═══════════ */
+function submit(){
+  const root=C.entities.find(e=>e.customer).id;
+  const seuil=C.threshold||25;
+  const res=solve(C.entities,C.edges,root);
+  const attendu=new Set(C.answer.ubos);
+  const juste = C.answer.cannot_determine
+    ? (nd && !picked.size)
+    : (!nd && picked.size===attendu.size && [...picked].every(x=>attendu.has(x)));
+
+  const manques=[...attendu].filter(x=>!picked.has(x));
+  const superflus=[...picked].filter(x=>!attendu.has(x));
+  S.done[C.id]=juste?'right':'wrong'; save();
+  const ok=Object.values(S.done).filter(x=>x==='right').length;
+  AcademyShell.complete('ownership', ok);
+  AcademyShell.award('ownership', juste?200:40);
+  pushStatus();          /* après l'enregistrement, sinon le compteur retarde d'un dossier */
+  (juste?sfx.good:sfx.bad)();
+
+  const st=document.getElementById('oStamp');
+  st.textContent = juste?'CORRECT' : manques.length?'BÉNÉFICIAIRE MANQUÉ':'DÉSIGNATION EXCESSIVE';
+  st.style.color = juste?'var(--phos)':'var(--alarm)';
+  document.getElementById('oTitle').textContent =
+    C.answer.cannot_determine && juste ? 'Tu as reconnu la lacune'
+    : juste ? 'Structure correctement lue'
+    : nd ? 'Le dossier pouvait être conclu'
+    : manques.length ? `${manques.length} bénéficiaire(s) non désigné(s)`
+    : 'Des personnes désignées à tort';
+  document.getElementById('oWhy').textContent=C.why;
+
+  const noms={}; C.entities.forEach(e=>noms[e.id]=e.name);
+  const lignes=C.entities.filter(e=>e.type==='person').map(e=>{
+    const pct=(res[e.id]||{}).pct||0;
+    const doit=attendu.has(e.id), a=picked.has(e.id);
+    let cls = doit&&a?'isubo' : doit&&!a?'miss' : !doit&&a?'extra':'sous';
+    let verdict = doit&&a?'JUSTE' : doit&&!a?'MANQUÉ' : !doit&&a?'À TORT':'—';
+    const ctrl = doit && pct<seuil ? ' (contrôle)' : '';
+    return `<div class="cr ${cls}"><span>${esc(noms[e.id])}${ctrl}</span>
+      <span class="pc">${pct.toFixed(2)} %</span><span class="vd">${verdict}</span></div>`;
+  }).join('');
+  document.getElementById('oCalc').innerHTML=
+    `<div class="ch">DÉTENTION CALCULÉE · SEUIL ${seuil} %</div>${lignes}`;
+
+  const trap=document.getElementById('oTrap');
+  if(C.trap && !juste){ trap.style.display=''; document.getElementById('oTrapT').textContent=C.trap; }
+  else if(C.trap){ trap.style.display=''; trap.className='note'; 
+    trap.querySelector('.nl').textContent='LE PIÈGE ÉVITÉ';
+    document.getElementById('oTrapT').textContent=C.trap; }
+  else trap.style.display='none';
+
+  document.getElementById('oLaw').textContent=C.law;
+  document.getElementById('oLesson').textContent=C.lesson;
+
+  const idx=D.cases.findIndex(x=>x.id===C.id);
+  const nxt=D.cases[idx+1];
+  const btn=document.getElementById('oNext');
+  btn.textContent = nxt? 'DOSSIER SUIVANT' : 'RETOUR AU SOMMAIRE';
+  btn.onclick = nxt? (()=>open_(nxt.id)) : toCases;
+  show('vOut');
+}
+function replay(){ if(C) open_(C.id); }
+
+/* ═══════════ DÉMARRAGE ═══════════ */
+(async function(){
+  load();
+  for(const u of ['data/academy/ownership.json','ownership.json']){
+    try{const r=await fetch(u,{cache:'no-store'});
+      if(r.ok){D=await r.json(); break}}catch(e){}
+  }
+  if(!D||!D.cases){
+    document.getElementById('vHome').innerHTML=
+      `<div class="pad"><div class="kick" style="color:var(--alarm)">DONNÉES ABSENTES</div>
+       <h1>Le module ne peut pas démarrer.</h1>
+       <div class="body"><p>Il attend <b>ownership.json</b>, à côté de cette page ou dans
+       <b>data/academy/</b>. Si tu as ouvert le fichier depuis le disque, sers-le en http —
+       les navigateurs bloquent la lecture locale.</p></div></div>`;
+    return;
+  }
+  const solved=Object.values(S.done).filter(x=>x==='right').length;
+  pushStatus();
+  document.getElementById('homeCases').innerHTML = solved
+    ? `<div class="note ice" style="margin-top:26px"><span class="nl">REPRISE</span>
+       ${solved} dossier(s) résolu(s) sur ${D.cases.length}.</div>` : '';
+})();
+</script>
+</body>
+</html>
