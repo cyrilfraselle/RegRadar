@@ -139,7 +139,7 @@ h1.ct{font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.015em;
 .db.d4{color:var(--alarm)} .db.d4:hover{border-color:var(--alarm)}
 
 /* overlays */
-.sheet{position:fixed;inset:52px 0 0;z-index:30;background:var(--void);display:none;
+.sheet{position:fixed;inset:112px 0 0;z-index:30;background:var(--void);display:none;
   flex-direction:column;overflow-y:auto;padding:30px 30px 110px}
 .sheet.on{display:flex;animation:fade .34s var(--ease)}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -206,13 +206,36 @@ h1.ct{font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.015em;
   animation-duration:.01ms!important;transition-duration:.01ms!important}}
 @media(max-width:760px){
   .hud{gap:11px;padding:0 11px;height:48px} .xpw,.g.hide-s{display:none}
-  .sheet{inset:48px 0 0;padding:20px 16px 100px}
+  .sheet{inset:108px 0 0;padding:20px 16px 100px}
   .main{padding:18px 15px 24px} .side{padding:18px 15px 26px}
   .acts{grid-template-columns:1fr}
 }
+.rr-brandrow{flex:0 0 auto;display:flex;align-items:center;gap:14px;height:28px;padding:0 16px;
+  background:var(--console);border-bottom:1px solid var(--grid);font-size:10px;letter-spacing:.1em}
+.rr-brandrow .rb{color:var(--ink-3);font-weight:700}
+.rr-brandrow a{color:var(--ink-3);transition:color .15s}
+.rr-brandrow a:hover{color:var(--ink)}
+.rr-brandrow .rr-sp{margin-left:auto;color:var(--ink-3)}
+.rr-acnavrow{flex:0 0 auto;display:flex;gap:2px;height:32px;padding:0 10px;overflow-x:auto;
+  background:var(--void);border-bottom:1px solid var(--grid)}
+.rr-acnavrow a{display:flex;align-items:center;padding:0 12px;font-size:11px;color:var(--ink-3);
+  border-bottom:2px solid transparent;white-space:nowrap}
+.rr-acnavrow a:hover{color:var(--ink-2)}
+.rr-acnavrow a.active{color:var(--ink);border-bottom-color:var(--violet);font-weight:700}
 </style>
 </head>
 <body>
+
+<div class="rr-brandrow"><span class="rb">REGRADAR</span><a href="index.html">← Suite principale (Signal)</a><span class="rr-sp">Academy · Simulateur de formation AML</span></div>
+<div class="rr-acnavrow">
+  <a href="academy.html">Parcours</a>
+  <a href="laundromat.html">01 Laundromat</a>
+  <a href="ownership.html">02 Détention</a>
+  <a href="desk.html">03 Le bureau</a>
+  <a href="triage.html">The Queue</a>
+  <a href="casefile.html" class="active">Casefile</a>
+  <a href="shift.html">Night Shift</a>
+</div>
 
 <div class="hud">
   <div class="brand"><span class="dot"></span>THE CASEFILE</div>

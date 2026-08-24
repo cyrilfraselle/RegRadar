@@ -43,6 +43,12 @@
   .topbar-right{margin-left:auto;display:flex;gap:10px}
   .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;
     color:var(--text-2);cursor:pointer;font-size:15px}
+  .subbar{position:sticky;top:60px;z-index:59;background:var(--surface-2);border-bottom:1px solid var(--border)}
+  .subbar-inner{display:flex;gap:2px;max-width:1280px;margin:0 auto;padding:0 24px;overflow-x:auto}
+  .subbar a{padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-2);white-space:nowrap;
+    border-bottom:2px solid transparent;margin-bottom:-1px}
+  .subbar a:hover:not(.active){color:var(--text)}
+  .subbar a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
 
   .btn{font-family:var(--font);font-size:12px;font-weight:700;text-transform:uppercase;
     letter-spacing:.08em;padding:11px 18px;border:1px solid var(--border);background:transparent;
@@ -171,17 +177,26 @@
 <body>
 
 <div class="topbar"><div class="topbar-inner">
-  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Academy</span></div>
+  <div class="logo"><span class="logo-mark">R</span>RegRadar</div>
   <nav class="nav">
-    <a href="academy.html">Academy</a>
-    <a href="triage.html" class="active">The Queue</a>
-    <a href="laundromat.html">Laundromat</a>
     <a href="index.html">Signal</a>
     <a href="law.html">Read the Law</a>
-    <a href="shift.html">Night Shift</a>
-    <a href="casefile.html">Casefile</a>
+    <a href="country-risk.html">Country Risk</a>
+    <a href="obligations.html">Obligations</a>
+    <a href="extractor.html">Extractor</a>
+    <a href="ubo.html">UBO</a>
+    <a href="academy.html" class="active">Academy</a>
   </nav>
   <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button></div>
+</div></div>
+<div class="subbar"><div class="subbar-inner">
+  <a href="academy.html">Parcours</a>
+  <a href="laundromat.html">01 Laundromat</a>
+  <a href="ownership.html">02 Détention</a>
+  <a href="desk.html">03 Le bureau</a>
+  <a href="triage.html" class="active">The Queue</a>
+  <a href="casefile.html">Casefile</a>
+  <a href="shift.html">Night Shift</a>
 </div></div>
 
 <div class="wrap">

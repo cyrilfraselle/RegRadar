@@ -164,7 +164,7 @@ h1.case{font-family:var(--mono);font-size:clamp(20px,2.7vw,31px);font-weight:700
 .key.k3{color:var(--alarm)} .key.k3:hover:not(:disabled){border-color:var(--alarm);box-shadow:0 0 22px rgba(255,90,82,.2)}
 
 /* ── SIGNATURE: scanline sweep on arrival ───────────────────────── */
-.scan{position:fixed;top:52px;bottom:0;width:2px;z-index:20;pointer-events:none;
+.scan{position:fixed;top:112px;bottom:0;width:2px;z-index:20;pointer-events:none;
   background:var(--ice);box-shadow:0 0 30px 7px rgba(143,184,255,.55);opacity:0;left:0}
 .scan.go{animation:sweep .62s var(--ease)}
 @keyframes sweep{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}}
@@ -213,7 +213,7 @@ h1.case{font-family:var(--mono);font-size:clamp(20px,2.7vw,31px);font-weight:700
 .bigbtn:hover{background:var(--ice);color:var(--void)}
 
 /* ── SCREENS (boot / rank-up / debrief) ─────────────────────────── */
-.screen{position:fixed;inset:52px 0 0;z-index:30;background:var(--void);
+.screen{position:fixed;inset:112px 0 0;z-index:30;background:var(--void);
   display:none;flex-direction:column;align-items:center;justify-content:center;
   padding:34px 26px;overflow-y:auto;text-align:center}
 .screen.on{display:flex}
@@ -254,7 +254,7 @@ h1.case{font-family:var(--mono);font-size:clamp(20px,2.7vw,31px);font-weight:700
 }
 @media(max-width:760px){
   .hud{gap:12px;padding:0 11px;height:48px}
-  .screen{inset:48px 0 0}
+  .screen{inset:108px 0 0}
   .clock,.xpwrap,.gauge.hide-s{display:none}
   .rail{flex-basis:44px}
   .desk{padding:18px 15px 190px}
@@ -265,9 +265,32 @@ h1.case{font-family:var(--mono);font-size:clamp(20px,2.7vw,31px);font-weight:700
   .verdict{padding:18px 16px 100px}
   .vnext{left:16px;right:16px}
 }
+.rr-brandrow{flex:0 0 auto;display:flex;align-items:center;gap:14px;height:28px;padding:0 16px;
+  background:var(--console);border-bottom:1px solid var(--grid);font-size:10px;letter-spacing:.1em}
+.rr-brandrow .rb{color:var(--ink-3);font-weight:700}
+.rr-brandrow a{color:var(--ink-3);transition:color .15s}
+.rr-brandrow a:hover{color:var(--ink)}
+.rr-brandrow .rr-sp{margin-left:auto;color:var(--ink-3)}
+.rr-acnavrow{flex:0 0 auto;display:flex;gap:2px;height:32px;padding:0 10px;overflow-x:auto;
+  background:var(--void);border-bottom:1px solid var(--grid)}
+.rr-acnavrow a{display:flex;align-items:center;padding:0 12px;font-size:11px;color:var(--ink-3);
+  border-bottom:2px solid transparent;white-space:nowrap}
+.rr-acnavrow a:hover{color:var(--ink-2)}
+.rr-acnavrow a.active{color:var(--ink);border-bottom-color:var(--violet);font-weight:700}
 </style>
 </head>
 <body>
+
+<div class="rr-brandrow"><span class="rb">REGRADAR</span><a href="index.html">← Suite principale (Signal)</a><span class="rr-sp">Academy · Simulateur de formation AML</span></div>
+<div class="rr-acnavrow">
+  <a href="academy.html">Parcours</a>
+  <a href="laundromat.html">01 Laundromat</a>
+  <a href="ownership.html">02 Détention</a>
+  <a href="desk.html">03 Le bureau</a>
+  <a href="triage.html">The Queue</a>
+  <a href="casefile.html">Casefile</a>
+  <a href="shift.html" class="active">Night Shift</a>
+</div>
 
 <div class="hud">
   <div class="brand"><span class="dot"></span>NIGHT SHIFT</div>
