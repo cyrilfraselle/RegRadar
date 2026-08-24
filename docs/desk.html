@@ -19,9 +19,9 @@
    output, four signal colours each with exactly one meaning.
    ═══════════════════════════════════════════════════════════════════ */
 :root{
-  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
-  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
-  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
+  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
+  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -34,7 +34,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 
 /* ── HUD ── */
 .hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:18px;
-  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--console),rgba(14,20,28,.55));
+  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--raised),var(--console));
   border-bottom:1px solid var(--grid)}
 .brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
 .brand .dot{width:7px;height:7px;background:var(--ice);border-radius:50%;
@@ -72,7 +72,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
   max-width:64ch;line-height:1.6}
 
 .entry{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:16px 0;
-  border-bottom:1px solid rgba(31,44,59,.55);position:relative}
+  border-bottom:1px solid var(--grid);position:relative}
 .entry .when{font-size:10px;letter-spacing:.11em;color:var(--ink-3);padding-top:3px;text-align:right}
 .entry .when b{display:block;color:var(--ink-2);font-size:11.5px;letter-spacing:.06em}
 .entry .what{min-width:0}
@@ -82,16 +82,16 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 .entry .chip{font-size:8.5px;letter-spacing:.13em;padding:2px 7px;border:1px solid currentColor;font-weight:700}
 .entry.done .et{color:var(--ink-2)} .entry.done .chip{color:var(--phos)}
 .entry.harm .chip{color:var(--alarm)} .entry.harm .et{color:var(--ink)}
-.entry.next{background:linear-gradient(90deg,rgba(143,184,255,.06),transparent 60%);
+.entry.next{background:linear-gradient(90deg,rgba(0,57,166,.05),transparent 60%);
   margin:0 -14px;padding:18px 14px;border-left:2px solid var(--ice)}
 .entry.next .et{color:var(--ice)}
 .entry.locked{opacity:.34}
 .entry .go{margin-top:12px;border:1px solid var(--ice);color:var(--ice);padding:10px 20px;
-  font-size:11px;font-weight:700;letter-spacing:.15em;background:rgba(143,184,255,.07);
+  font-size:11px;font-weight:700;letter-spacing:.15em;background:rgba(0,57,166,.06);
   transition:all .18s;display:inline-block}
 .entry .go:hover{background:var(--ice);color:var(--void)}
 .entry.consequence{border-left:2px solid var(--alarm);margin:0 -14px;padding:18px 14px;
-  background:linear-gradient(90deg,rgba(255,90,82,.05),transparent 55%)}
+  background:linear-gradient(90deg,rgba(200,50,15,.05),transparent 55%)}
 .entry.consequence .et{color:var(--alarm)}
 
 /* ── BRIEF (day intro) ── */
@@ -108,7 +108,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 .rules .rr .i{font-family:var(--mono);color:var(--ice);font-weight:700}
 .rules .rr b{color:var(--ink)}
 .go-big{margin-top:28px;border:1px solid var(--phos);color:var(--phos);padding:15px 34px;
-  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(125,240,200,.07);transition:all .18s}
+  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(15,123,79,.06);transition:all .18s}
 .go-big:hover{background:var(--phos);color:var(--void);box-shadow:0 0 34px rgba(125,240,200,.35)}
 .ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
   font-weight:700;letter-spacing:.14em;transition:all .16s}
@@ -120,7 +120,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 @media(max-width:1000px){.work{grid-template-columns:1fr}}
 .wmain{overflow-y:auto;padding:24px 28px 40px;min-height:0}
 .wmain::-webkit-scrollbar{width:8px} .wmain::-webkit-scrollbar-thumb{background:var(--grid)}
-.wside{border-left:1px solid var(--grid);background:rgba(14,20,28,.4);overflow-y:auto;
+.wside{border-left:1px solid var(--grid);background:var(--raised);overflow-y:auto;
   padding:22px 20px 40px;min-height:0}
 @media(max-width:1000px){.wside{border-left:none;border-top:1px solid var(--grid)}}
 
@@ -141,7 +141,7 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 .facts .v{font-size:13px;color:var(--ink);margin-top:3px}
 .prose{font-family:var(--sans);font-size:14.5px;line-height:1.62;color:var(--ink-2);max-width:72ch}
 .ledger{width:100%;border-collapse:collapse;margin-top:4px}
-.ledger td{font-size:12.5px;padding:6px 12px 6px 0;border-bottom:1px solid rgba(31,44,59,.55);
+.ledger td{font-size:12.5px;padding:6px 12px 6px 0;border-bottom:1px solid var(--grid);
   color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ledger td.amt{color:var(--ink);text-align:right;font-weight:700}
 .ledger td.det{white-space:normal;color:var(--ink-3);font-size:11.5px}
@@ -199,7 +199,7 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 
 /* tutorial coach */
 .coach{position:fixed;z-index:60;max-width:330px;border:1px solid var(--ice);
-  background:var(--console);padding:14px 16px;box-shadow:0 12px 44px rgba(0,0,0,.6);
+  background:var(--console);padding:14px 16px;box-shadow:0 12px 32px rgba(10,10,10,.18);
   animation:pop .34s var(--ease)}
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
 .coach .ch{font-size:9px;letter-spacing:.16em;color:var(--ice);font-weight:700}
@@ -210,7 +210,7 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
   font-weight:700;letter-spacing:.12em;transition:all .16s}
 .coach button:hover{background:var(--ice);color:var(--void)}
 .spot{position:fixed;z-index:55;pointer-events:none;border:2px solid var(--ice);
-  box-shadow:0 0 0 9999px rgba(8,11,16,.76),0 0 24px rgba(143,184,255,.5);
+  box-shadow:0 0 0 9999px rgba(10,10,10,.5),0 0 24px rgba(0,57,166,.35);
   transition:all .34s var(--ease)}
 
 /* outcome */

@@ -15,9 +15,9 @@
    evidence, and the evidence board is the thing you actually reason on.
    ═══════════════════════════════════════════════════════════════════ */
 :root{
-  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
-  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
-  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
+  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
+  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -27,13 +27,13 @@ html,body{height:100%;overflow:hidden}
 body{background:var(--void);color:var(--ink);font-family:var(--mono);font-size:14px;
   -webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 80% at 50% 0%,rgba(143,184,255,.06),transparent 60%)}
+  background:radial-gradient(120% 80% at 50% 0%,rgba(0,57,166,.05),transparent 60%)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
 ::selection{background:var(--ice);color:var(--void)}
 
 /* HUD */
 .hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:20px;
-  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--console),rgba(14,20,28,.6));
+  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--raised),var(--console));
   border-bottom:1px solid var(--grid)}
 .brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
 .brand .dot{width:7px;height:7px;background:var(--violet);border-radius:50%;
@@ -82,7 +82,7 @@ h1.ct{font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.015em;
 .acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:9px}
 .act{border:1px solid var(--grid);padding:12px 13px;transition:all .16s var(--ease);position:relative}
 .act:hover:not(:disabled){border-color:var(--ice);transform:translateY(-2px);
-  box-shadow:0 0 20px rgba(143,184,255,.14)}
+  box-shadow:0 0 20px rgba(0,57,166,.12)}
 .act:disabled{opacity:.32;cursor:not-allowed}
 .act.done{opacity:.5;border-color:var(--grid)}
 .act.done:hover{transform:none;box-shadow:none;border-color:var(--grid)}
@@ -107,14 +107,14 @@ h1.ct{font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.015em;
 .empty{font-family:var(--sans);font-size:13.5px;color:var(--ink-3);line-height:1.6;max-width:60ch}
 
 /* right column */
-.side{border-left:1px solid var(--grid);background:rgba(14,20,28,.4);
+.side{border-left:1px solid var(--grid);background:var(--raised);
   overflow-y:auto;padding:22px 20px 30px;min-height:0}
 .side::-webkit-scrollbar{width:8px} .side::-webkit-scrollbar-thumb{background:var(--grid)}
 @media(max-width:1000px){.side{border-left:none;border-top:1px solid var(--grid)}}
 
 /* AI partner */
 .nadia{border:1px solid var(--violet);padding:13px 14px;margin-bottom:20px;
-  background:rgba(180,140,255,.05)}
+  background:rgba(110,63,191,.06)}
 .nadia .nh{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.14em;
   color:var(--violet);font-weight:700}
 .nadia .nh .av{width:20px;height:20px;border:1px solid var(--violet);display:grid;
@@ -171,7 +171,7 @@ h1.ct{font-size:clamp(20px,2.6vw,30px);font-weight:700;letter-spacing:-.015em;
 .scoregrid .l{font-size:8.5px;letter-spacing:.15em;color:var(--ink-3);margin-top:6px}
 .act-row{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
 .go{border:1px solid var(--phos);color:var(--phos);padding:14px 30px;font-size:11.5px;
-  font-weight:700;letter-spacing:.16em;background:rgba(125,240,200,.07);transition:all .18s}
+  font-weight:700;letter-spacing:.16em;background:rgba(15,123,79,.06);transition:all .18s}
 .go:hover{background:var(--phos);color:var(--void);box-shadow:0 0 32px rgba(125,240,200,.35)}
 .ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
   font-weight:700;letter-spacing:.14em;transition:all .16s}

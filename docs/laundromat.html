@@ -15,9 +15,9 @@
    is the adversary's view — you are the blip trying not to be one.
    ═══════════════════════════════════════════════════════════════════ */
 :root{
-  --void:#080B10; --console:#0E141C; --raised:#141E29; --grid:#1F2C3B;
-  --ink:#E6EDF5; --ink-2:#93A4B8; --ink-3:#5A6B7E;
-  --phos:#7DF0C8; --amber:#FFC24D; --alarm:#FF5A52; --ice:#8FB8FF; --violet:#B48CFF;
+  --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
+  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
+  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -27,7 +27,7 @@ html,body{height:100%}
 body{background:var(--void);color:var(--ink);font-family:var(--mono);font-size:14px;
   -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;overflow:hidden}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 80% at 50% 0%,rgba(255,90,82,.05),transparent 62%)}
+  background:radial-gradient(120% 80% at 50% 0%,rgba(200,50,15,.04),transparent 62%)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
 button:disabled{cursor:default;opacity:.35}
 ::selection{background:var(--alarm);color:var(--void)}
@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
 
 /* ── HUD ── */
 .hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:16px;
-  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--console),rgba(14,20,28,.55));
+  padding:0 18px;height:52px;background:linear-gradient(180deg,var(--raised),var(--console));
   border-bottom:1px solid var(--grid)}
 .brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700;white-space:nowrap}
 .brand .dot{width:7px;height:7px;background:var(--alarm);border-radius:50%;
@@ -85,7 +85,7 @@ a{color:inherit;text-decoration:none}
 .rules .rr .i{font-family:var(--mono);color:var(--alarm);font-weight:700}
 .rules .rr b{color:var(--ink)}
 .go-big{margin-top:28px;border:1px solid var(--alarm);color:var(--alarm);padding:15px 34px;
-  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(255,90,82,.07);transition:all .18s}
+  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(200,50,15,.06);transition:all .18s}
 .go-big:hover{background:var(--alarm);color:var(--void);box-shadow:0 0 34px rgba(255,90,82,.35)}
 .ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
   font-weight:700;letter-spacing:.14em;transition:all .16s;display:inline-block}
@@ -95,11 +95,11 @@ a{color:inherit;text-decoration:none}
 
 /* ── GAME layout ── */
 .game{display:grid;grid-template-columns:280px 1fr;gap:0;height:100%}
-.rail{border-right:1px solid var(--grid);overflow-y:auto;min-height:0;background:rgba(14,20,28,.5)}
+.rail{border-right:1px solid var(--grid);overflow-y:auto;min-height:0;background:var(--raised)}
 .rail::-webkit-scrollbar{width:6px} .rail::-webkit-scrollbar-thumb{background:var(--grid)}
 .rail .rh2{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:12px 14px 8px}
 .feed{padding:0 14px 30px}
-.fe{padding:9px 0;border-bottom:1px solid rgba(31,44,59,.5);font-size:11.5px;line-height:1.5}
+.fe{padding:9px 0;border-bottom:1px solid var(--grid);font-size:11.5px;line-height:1.5}
 .fe .fw{color:var(--ink-3);font-size:9.5px;letter-spacing:.1em}
 .fe.ok .ft{color:var(--phos)} .fe.caught .ft{color:var(--alarm);font-weight:700}
 .fe.wait .ft{color:var(--ink-3)} .fe .fs{color:var(--ink-2)}
@@ -145,19 +145,19 @@ a{color:inherit;text-decoration:none}
 .v-quiet{color:var(--phos)} .v-elev{color:var(--amber)} .v-loud{color:var(--alarm)} .v-reck{color:var(--alarm);text-shadow:0 0 12px var(--alarm)}
 .actions{padding:13px 16px;display:flex;gap:9px;flex-wrap:wrap}
 .exec{border:1px solid var(--alarm);color:var(--alarm);padding:12px 26px;font-size:11px;
-  font-weight:700;letter-spacing:.15em;background:rgba(255,90,82,.07);transition:all .16s}
+  font-weight:700;letter-spacing:.15em;background:rgba(200,50,15,.06);transition:all .16s}
 .exec:hover:not(:disabled){background:var(--alarm);color:var(--void)}
 .waitrow{display:flex;gap:9px;margin-top:16px;align-items:center;flex-wrap:wrap}
 .waitrow .wl{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
 
 /* ── overlays ── */
-.ov{position:fixed;inset:0;background:rgba(8,11,16,.88);z-index:90;display:none;
+.ov{position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:90;display:none;
   align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
 .ov.on{display:flex}
 .card{background:var(--console);border:1px solid var(--alarm);max-width:560px;width:100%;
-  max-height:88vh;overflow-y:auto;box-shadow:0 0 60px rgba(255,90,82,.18);animation:pop .3s var(--ease)}
+  max-height:88vh;overflow-y:auto;box-shadow:0 0 40px rgba(200,50,15,.15);animation:pop .3s var(--ease)}
 @keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
-.card.okc{border-color:var(--grid);box-shadow:0 0 40px rgba(0,0,0,.5)}
+.card.okc{border-color:var(--grid);box-shadow:0 0 30px rgba(10,10,10,.15)}
 .card .kh{padding:14px 20px;border-bottom:1px solid var(--grid);font-size:10px;letter-spacing:.22em;color:var(--alarm);font-weight:700}
 .okc .kh{color:var(--phos)}
 .card .kb{padding:18px 20px}
