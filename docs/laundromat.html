@@ -193,9 +193,32 @@ a{color:inherit;text-decoration:none}
   .ledger .cell{padding:8px 10px}
   .hud{gap:10px;overflow-x:auto}
 }
+.rr-brandrow{flex:0 0 auto;display:flex;align-items:center;gap:14px;height:28px;padding:0 16px;
+  background:var(--console);border-bottom:1px solid var(--grid);font-size:10px;letter-spacing:.1em}
+.rr-brandrow .rb{color:var(--ink-3);font-weight:700}
+.rr-brandrow a{color:var(--ink-3);transition:color .15s}
+.rr-brandrow a:hover{color:var(--ink)}
+.rr-brandrow .rr-sp{margin-left:auto;color:var(--ink-3)}
+.rr-acnavrow{flex:0 0 auto;display:flex;gap:2px;height:32px;padding:0 10px;overflow-x:auto;
+  background:var(--void);border-bottom:1px solid var(--grid)}
+.rr-acnavrow a{display:flex;align-items:center;padding:0 12px;font-size:11px;color:var(--ink-3);
+  border-bottom:2px solid transparent;white-space:nowrap}
+.rr-acnavrow a:hover{color:var(--ink-2)}
+.rr-acnavrow a.active{color:var(--ink);border-bottom-color:var(--violet);font-weight:700}
 </style>
 </head>
 <body>
+
+<div class="rr-brandrow"><span class="rb">REGRADAR</span><a href="index.html">← Suite principale (Signal)</a><span class="rr-sp">Academy · Simulateur de formation AML</span></div>
+<div class="rr-acnavrow">
+  <a href="academy.html">Parcours</a>
+  <a href="laundromat.html" class="active">01 Laundromat</a>
+  <a href="ownership.html">02 Détention</a>
+  <a href="desk.html">03 Le bureau</a>
+  <a href="triage.html">The Queue</a>
+  <a href="casefile.html">Casefile</a>
+  <a href="shift.html">Night Shift</a>
+</div>
 
 <div class="hud">
   <div class="brand"><span class="dot"></span> THE LAUNDROMAT <span style="color:var(--ink-3)">/ MODULE 01</span></div>
@@ -777,7 +800,7 @@ function finish(){
       unfocused play ≈24%, maximum-size speed runs ≈19%. Craft beats appetite by a factor of about 2.7.</p>
     <div class="row">
       <button class="go-big" onclick="startRun()">RUN IT AGAIN</button>
-      <a class="ghost" href="desk.html">MODULE 02 — THE DESK</a>
+      <a class="ghost" href="ownership.html">MODULE 02 — DÉTENTION</a>
       <a class="ghost" href="academy.html">BACK TO THE ACADEMY</a>
     </div>`;
   show('vEnd'); hud();
