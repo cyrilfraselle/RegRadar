@@ -1,20 +1,20 @@
 /* ═══════════════════════════════════════════════════════════════════
-   REGRADAR ACADEMY — coque partagée
+   REGRADAR ACADEMY — shared shell
    ───────────────────────────────────────────────────────────────────
-   Deux enveloppes, et c'est tout l'enjeu de ce fichier.
+   Two envelopes, and that's the whole point of this file.
 
-   L'ENVELOPPE EXTÉRIEURE est RegRadar Academy : une bande fine, sobre,
-   qui dit « tu utilises un simulateur ». Elle ne ressemble pas aux
-   pages outils du site — pas de barre de navigation RegRadar, pas de
-   bleu signal. Academy est un produit distinct et doit se voir comme tel.
+   The OUTER ENVELOPE is RegRadar Academy: a thin, understated strip
+   that says "you're in a simulator". It doesn't resemble the site's
+   tool pages — no RegRadar nav bar, no signal blue. Academy is a
+   distinct product and should look like one.
 
-   L'ENVELOPPE INTÉRIEURE est le poste de travail d'une banque fictive.
-   Barre de titre, onglets, barre d'état : les codes d'une application
-   métier interne. C'est l'écran dans l'écran.
+   The INNER ENVELOPE is the workstation of a fictional bank. Title
+   bar, tabs, status bar: the visual language of an internal business
+   application. It's a screen within the screen.
 
-   L'effet recherché n'est pas décoratif. Quand un utilisateur voit une
-   fenêtre dans une fenêtre, il comprend immédiatement qu'il manipule un
-   environnement simulé — sans qu'on ait à l'écrire.
+   The effect isn't decorative. When a user sees a window within a
+   window, they immediately understand they're in a simulated
+   environment — without needing to be told.
    ═══════════════════════════════════════════════════════════════════ */
 
 :root{
@@ -25,10 +25,10 @@
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 
-  --outer:34px;      /* bande RegRadar Academy */
-  --title:38px;      /* barre de titre du poste */
-  --tabs:40px;       /* onglets */
-  --status:28px;     /* barre d'état */
+  --outer:34px;      /* RegRadar Academy strip */
+  --title:38px;      /* workstation title bar */
+  --tabs:40px;       /* tabs */
+  --status:28px;     /* status bar */
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -39,7 +39,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--ice);color:var(--void)}
 
-/* ── ENVELOPPE EXTÉRIEURE : le produit ───────────────────────────── */
+/* ── OUTER ENVELOPE: the product ───────────────────────────── */
 .ac-outer{position:fixed;inset:0;display:flex;flex-direction:column;
   background:#05070A;padding:0 10px 10px}
 .ac-brand{flex:0 0 var(--outer);display:flex;align-items:center;gap:11px;
@@ -53,7 +53,7 @@ a{color:inherit;text-decoration:none}
 .ac-brand .rr a{color:var(--ink-3);letter-spacing:.14em;transition:color .15s}
 .ac-brand .rr a:hover{color:var(--ink-2)}
 
-/* ── ENVELOPPE INTÉRIEURE : le poste de travail ──────────────────── */
+/* ── INNER ENVELOPE: the workstation ──────────────────── */
 .ac-machine{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;
   border:1px solid var(--grid);background:var(--void);
   box-shadow:0 0 0 1px rgba(143,184,255,.05), 0 24px 70px rgba(0,0,0,.6)}
@@ -74,7 +74,7 @@ a{color:inherit;text-decoration:none}
   display:block;animation:acb 2.6s infinite}
 @keyframes acb{0%,100%{opacity:1}50%{opacity:.25}}
 
-/* onglets : la navigation entre modules, comme une application métier */
+/* tabs: navigation between modules, like an internal business app */
 .ac-tabs{flex:0 0 var(--tabs);display:flex;align-items:stretch;gap:0;
   border-bottom:1px solid var(--grid);background:rgba(14,20,28,.55);
   overflow-x:auto;scrollbar-width:none}
@@ -91,13 +91,13 @@ a{color:inherit;text-decoration:none}
 .ac-tab .tick{font-size:10px;color:var(--phos)}
 .ac-tabs .grow{flex:1 1 auto;border-right:none}
 
-/* zone de contenu du module */
+/* module content area */
 .ac-screen{flex:1 1 auto;position:relative;min-height:0;overflow:hidden;
   background:var(--void)}
 .ac-screen::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(115% 75% at 50% 0%,rgba(143,184,255,.05),transparent 62%)}
 
-/* ── BARRE D'ÉTAT : progression toujours visible ─────────────────── */
+/* ── STATUS BAR: progress always visible ─────────────────── */
 .ac-status{flex:0 0 var(--status);display:flex;align-items:center;gap:14px;
   padding:0 14px;border-top:1px solid var(--grid);background:var(--console);
   font-size:10px;letter-spacing:.1em;color:var(--ink-3);overflow-x:auto;
@@ -119,7 +119,7 @@ a{color:inherit;text-decoration:none}
   letter-spacing:.12em;transition:all .15s}
 .ac-sbtn:hover{border-color:var(--violet);color:var(--violet)}
 
-/* ── promotion : passe par-dessus la machine, pas par-dessus le produit ── */
+/* ── promotion: overlays the machine, not the whole product ── */
 .ac-rank{position:absolute;inset:0;z-index:90;background:rgba(8,11,16,.96);
   display:none;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:30px}
@@ -137,7 +137,7 @@ a{color:inherit;text-decoration:none}
   background:rgba(180,140,255,.08);transition:all .18s}
 .ac-rank button:hover{background:var(--violet);color:var(--void)}
 
-/* ── notification légère ─────────────────────────────────────────── */
+/* ── lightweight notification ─────────────────────────────────────────── */
 .ac-toast{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;z-index:80;
   border:1px solid var(--phos);background:var(--console);color:var(--phos);
   padding:9px 18px;font-size:10px;letter-spacing:.12em;font-weight:700;

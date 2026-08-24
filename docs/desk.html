@@ -27,7 +27,7 @@
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-/* la mise en page plein écran est désormais celle de la coque */
+/* full-screen layout is now the shell's responsibility */
 
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
 ::selection{background:var(--ice);color:var(--void)}
@@ -363,15 +363,15 @@ function toggleSnd(){SND=!SND;try{localStorage.setItem('regradar-snd',SND?'on':'
 function toast(m){ AcademyShell.toast(m); }
 
 function paintHud(){
-  /* Le rang et l'XP appartiennent à la coque ; le module ne pousse que
-     ce qui lui est propre — le jour en cours et les heures restantes. */
+  /* Rank and XP belong to the shell; the module only pushes what's its
+     own — the current day and the hours remaining. */
   const items=[];
-  if(S.day) items.push({k:'JOUR', v:String(S.day)});
+  if(S.day) items.push({k:'DAY', v:String(S.day)});
   if(RUN && RUN.hours!=null)
-    items.push({k:'HEURES', v:RUN.hours+' h',
+    items.push({k:'HOURS', v:RUN.hours+' h',
                 s: RUN.hours<=0?'bad' : RUN.hours<=2?'warn':''});
-  if(RUN && RUN.alerts) items.push({k:'ALERTE', v:`${Math.min(RUN.i+1,RUN.alerts.length)}/${RUN.alerts.length}`});
-  if(RUN && RUN.cases)  items.push({k:'DOSSIER', v:`${Math.min(RUN.i+1,RUN.cases.length)}/${RUN.cases.length}`});
+  if(RUN && RUN.alerts) items.push({k:'ALERT', v:`${Math.min(RUN.i+1,RUN.alerts.length)}/${RUN.alerts.length}`});
+  if(RUN && RUN.cases)  items.push({k:'CASE', v:`${Math.min(RUN.i+1,RUN.cases.length)}/${RUN.cases.length}`});
   AcademyShell.status(items);
 }
 

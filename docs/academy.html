@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RegRadar Academy — Parcours</title>
+<title>RegRadar Academy — Path</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="academy.css">
 <script src="academy-shell.js"></script>
 <style>
-/* La page d'accueil du parcours : ce que je sais faire, ce qui vient
-   ensuite, et ce que ça m'a rapporté. Rien d'autre. */
+/* The path's home page: what I can do, what's next, and what it's
+   earned me. Nothing else. */
 .pad{max-width:960px;margin:0 auto;padding:34px 26px 70px}
 .kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
 h1{font-size:clamp(24px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;
@@ -18,7 +18,7 @@ h1 em{font-style:normal;color:var(--violet)}
 .lede{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink-2);
   margin-top:16px;max-width:62ch}
 
-/* bandeau de progression */
+/* progress strip */
 .prog{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
   background:var(--grid);border:1px solid var(--grid);margin-top:28px}
 .prog div{background:var(--console);padding:15px 14px}
@@ -27,7 +27,7 @@ h1 em{font-style:normal;color:var(--violet)}
 .prog .rank .n{color:var(--violet);font-size:18px;letter-spacing:-.01em}
 .prog .xp .n{color:var(--ink)}
 
-/* le chemin */
+/* the path */
 .path{margin-top:34px;position:relative}
 .path::before{content:'';position:absolute;left:23px;top:26px;bottom:26px;width:1px;
   background:var(--grid)}
@@ -75,24 +75,24 @@ h1 em{font-style:normal;color:var(--violet)}
 <body>
 
 <div class="pad">
-  <div class="kick">PARCOURS</div>
-  <h1 id="hd">Devenir analyste, <em>en faisant le travail</em>.</h1>
-  <div class="lede" id="lede">Cinq modules dans l'ordre où le métier les enseigne. Chacun se joue
-    en quinze à trente minutes, et chacun produit un résultat mesurable.</div>
+  <div class="kick">PATH</div>
+  <h1 id="hd">Become an analyst, <em>by doing the work</em>.</h1>
+  <div class="lede" id="lede">Five modules, in the order the job teaches them. Each takes fifteen
+    to thirty minutes, and each produces a measurable result.</div>
 
   <div class="prog">
-    <div class="rank"><div class="n" id="pRank">—</div><div class="l">RANG</div></div>
-    <div class="xp"><div class="n" id="pXp">0</div><div class="l">XP TOTAL</div></div>
-    <div><div class="n" id="pMods">0/5</div><div class="l">MODULES ENTAMÉS</div></div>
-    <div><div class="n" id="pNext">—</div><div class="l">PROCHAIN RANG</div></div>
+    <div class="rank"><div class="n" id="pRank">—</div><div class="l">RANK</div></div>
+    <div class="xp"><div class="n" id="pXp">0</div><div class="l">TOTAL XP</div></div>
+    <div><div class="n" id="pMods">0/5</div><div class="l">MODULES STARTED</div></div>
+    <div><div class="n" id="pNext">—</div><div class="l">NEXT RANK</div></div>
   </div>
 
   <div class="path" id="path"></div>
 
   <div class="foot">
-    <span>Toutes les données sont fictives. Environnement de formation uniquement.</span>
+    <span>All data is fictional. Training environment only.</span>
     <span class="sp"></span>
-    <button onclick="wipe()">Réinitialiser ma progression</button>
+    <button onclick="wipe()">Reset my progress</button>
   </div>
 </div>
 
@@ -108,53 +108,53 @@ function paint(){
   const started=mods.filter(m=>(P.modules[m.id]||{}).started).length;
 
   document.getElementById('pRank').textContent=r.n;
-  document.getElementById('pXp').textContent=S.xp.toLocaleString('fr-BE');
+  document.getElementById('pXp').textContent=S.xp.toLocaleString('en-US');
   document.getElementById('pMods').textContent=`${started}/${mods.length}`;
-  /* Le prochain seuil vient de la coque : dupliquer le barème ici, c'était
-     garantir qu'un jour les deux divergent. */
+  /* The next threshold comes from the shell: duplicating the scale here
+     would just guarantee the two drift apart one day. */
   const nx=[600,1500,2800,4500,6800].find(x=>x>S.xp);
-  document.getElementById('pNext').textContent = nx? (nx-S.xp).toLocaleString('fr-BE')+' XP' : 'rang max';
+  document.getElementById('pNext').textContent = nx? (nx-S.xp).toLocaleString('en-US')+' XP' : 'max rank';
 
   if(S.xp>0){
-    document.getElementById('hd').innerHTML=`Rang atteint : <em>${r.n}</em>.`;
+    document.getElementById('hd').innerHTML=`Rank reached: <em>${r.n}</em>.`;
     document.getElementById('lede').textContent=
-      'Le parcours suit l\u2019ordre dans lequel le métier s\u2019apprend. Reprends où tu en étais, '
-      + 'ou reviens sur un module : les cas ne se répètent pas à l\u2019identique.';
+      'The path follows the order in which the job is learned. Pick up where you left off, '
+      + 'or revisit a module — the cases don’t repeat identically.';
   }
 
-  /* Le chemin rend visible ce que les onglets ne peuvent pas dire :
-     ce qui est fait, ce qui vient, et pourquoi dans cet ordre. */
+  /* The path makes visible what the tabs can't say: what's done, what's
+     next, and why in this order. */
   const WHY={
-   laundromat:'On ne reconnaît pas un schéma qu\u2019on n\u2019a jamais produit. Jouer l\u2019adversaire d\u2019abord.',
-   ownership:'Sans savoir qui possède vraiment une société, aucune alerte sur elle n\u2019a de sens.',
-   desk:'Le métier lui-même : trier, enquêter, et vivre avec ce que chaque choix coûte.',
-   filing:'Ce que la CTIF reçoit réellement — et la compétence la moins enseignée du métier.',
-   inspection:'Un superviseur reprend tes propres décisions et demande pourquoi.',
+   laundromat:'You can’t recognise a pattern you’ve never produced. Play the adversary first.',
+   ownership:'Without knowing who actually owns a company, no alert on it makes sense.',
+   desk:'The job itself: triage, investigate, and live with what each choice costs.',
+   filing:'What the FIU actually receives — and the least-taught skill in the job.',
+   inspection:'A supervisor goes back through your own decisions and asks why.',
   };
   let nextFound=false;
   document.getElementById('path').innerHTML=mods.map(m=>{
     const rec=P.modules[m.id]||{};
     const open=!!m.file && done>=m.needs;
     let cls, st;
-    if(rec.done>0){ cls='done open'; st='FAIT'; }
-    else if(open && !nextFound){ cls='now open'; st='À FAIRE'; nextFound=true; }
-    else if(open){ cls='open'; st='DISPONIBLE'; }
-    else { cls='soon'; st=m.file?'VERROUILLÉ':'EN CONCEPTION'; }
+    if(rec.done>0){ cls='done open'; st='DONE'; }
+    else if(open && !nextFound){ cls='now open'; st='UP NEXT'; nextFound=true; }
+    else if(open){ cls='open'; st='AVAILABLE'; }
+    else { cls='soon'; st=m.file?'LOCKED':'IN DEVELOPMENT'; }
     const mark=rec.done>0?'✓':m.no;
     return `<div class="node ${cls}">
       <div class="mark"><span>${mark}</span></div>
       <div class="card" ${open?`onclick="location.href='${m.file}'"`:''}>
         <div class="top"><span class="nm">${m.label}</span><span class="st">${st}</span></div>
-        <div class="sub">MODULE ${m.no}${rec.done?` · ${rec.done} terminé${rec.done>1?'s':''}`:''}</div>
+        <div class="sub">MODULE ${m.no}${rec.done?` · ${rec.done} completed`:''}</div>
         <div class="tag">${m.tag}</div>
         <div class="why">${WHY[m.id]||''}</div>
-        ${open?`<span class="go">${rec.done?'REPRENDRE':'COMMENCER'} →</span>`:''}
+        ${open?`<span class="go">${rec.done?'RESUME':'START'} →</span>`:''}
       </div></div>`;
   }).join('');
 }
 
 function wipe(){
-  if(confirm('Effacer toute la progression enregistrée dans ce navigateur ?')) S.reset();
+  if(confirm('Clear all progress saved in this browser?')) S.reset();
 }
 paint();
 </script>
