@@ -279,6 +279,47 @@ table.dt td b{color:var(--text);font-weight:600}
   cursor:pointer}
 .tb-flag i{width:6px;height:6px;border-radius:50%;background:#E0574C}
 
+/* ── teams / messaging ────────────────────────────────────────────── */
+.tm-body{flex:1;display:grid;grid-template-columns:200px 1fr;min-height:0}
+.tm-side{background:var(--surface-2);border-right:1px solid var(--border);overflow-y:auto;padding:12px 0}
+.tm-side .sh{padding:6px 16px 8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-3);font-weight:600}
+.tm-chan{padding:8px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;color:var(--text-2)}
+.tm-chan:hover{background:rgba(0,0,0,.03)}
+.tm-chan.on{background:var(--surface);color:var(--brand-ink);font-weight:600;border-right:2px solid var(--brand)}
+.tm-chan .av{width:24px;height:24px;border-radius:6px;flex:0 0 auto;display:grid;place-items:center;
+  font-size:11px;font-weight:700;color:#fff}
+.tm-chan .badge{margin-left:auto;background:var(--brand);color:#fff;border-radius:9px;
+  font-size:9.5px;font-weight:700;padding:1px 6px}
+.tm-main{display:flex;flex-direction:column;min-height:0}
+.tm-head{flex:0 0 44px;display:flex;align-items:center;gap:10px;padding:0 18px;
+  border-bottom:1px solid var(--border);font-size:13px;font-weight:600}
+.tm-head .sub{font-weight:400;color:var(--text-3);font-size:11px;margin-left:8px}
+.tm-thread{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.tm-msg{display:flex;gap:10px;max-width:82%}
+.tm-msg .av{width:28px;height:28px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;
+  font-size:12px;font-weight:700;color:#fff}
+.tm-msg .body{min-width:0}
+.tm-msg .who{font-size:12px;font-weight:600;display:flex;align-items:baseline;gap:8px}
+.tm-msg .who time{font-weight:400;color:var(--text-3);font-size:10.5px}
+.tm-msg .txt{font-size:12.5px;line-height:1.55;color:var(--text);margin-top:3px;
+  background:var(--surface-2);border-radius:2px 10px 10px 10px;padding:9px 12px;display:inline-block}
+.tm-msg .txt p{margin:0 0 8px}.tm-msg .txt p:last-child{margin:0}
+.tm-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tm-btn{border:1px solid var(--brand);color:var(--brand-ink);background:rgba(31,92,139,.06);
+  border-radius:6px;padding:7px 13px;font-size:11.5px;font-weight:600;cursor:pointer}
+.tm-btn:hover{background:var(--brand);color:#fff}
+.tm-btn.ghost{border-color:var(--border-strong);color:var(--text-2);background:var(--surface)}
+.tm-btn.ghost:hover{background:var(--surface-3);color:var(--text)}
+.tm-typing{font-size:11px;color:var(--text-3);font-style:italic;padding-left:38px}
+.tm-compose{flex:0 0 46px;border-top:1px solid var(--border);display:flex;align-items:center;
+  padding:0 14px;color:var(--text-3);font-size:11.5px;gap:8px}
+
+/* ── highlight pulse (Alex points at something) ──────────────────── */
+.hl-pulse{outline:3px solid var(--brand) !important;outline-offset:2px;
+  animation:hlPulse 1.4s ease-in-out 3;box-shadow:0 0 0 6px rgba(31,92,139,.25) !important}
+@keyframes hlPulse{0%,100%{outline-color:var(--brand)}50%{outline-color:#7EB6DD}}
+
 @media(max-width:900px){
   .dicon{display:none}
 }
@@ -345,8 +386,8 @@ table.dt td b{color:var(--text);font-weight:600}
         <div class="site-nav"><span>Overview</span><span>KYC</span><span>Accounts</span><span>Alerts</span></div>
       </div>
       <div class="pad">
-        <div class="kicker">Corporate client · CIF-BE-0741</div>
-        <h1 class="pt">Kortrijk Textiles NV</h1>
+        <div class="kicker" id="cif-kicker">Corporate client · CIF-BE-0741</div>
+        <h1 class="pt" id="cif-title">Kortrijk Textiles NV</h1>
         <div class="sub">Customer since 2019 &middot; Relationship manager: Nadia Verlinden &middot; Branch: Kortrijk</div>
         <span class="chip warn">EDD — periodic review due</span>
         <span class="chip ok" style="margin-left:6px">Risk rating: Medium</span>
@@ -356,8 +397,8 @@ table.dt td b{color:var(--text);font-weight:600}
           <div class="kv"><div class="k">Registered address</div><div class="v">Doorniksesteenweg 112, 8500 Kortrijk, BE</div></div>
           <div class="kv"><div class="k">Sector</div><div class="v">Textile manufacturing (NACE 13.20)</div></div>
           <div class="kv"><div class="k">Expected turnover</div><div class="v mono">€4.1M / year</div></div>
-          <div class="kv"><div class="k">Ultimate parent</div><div class="v"><a href="#" data-goto="reg" style="color:var(--brand);text-decoration:none">KT Holding BV (NL) →</a></div></div>
-          <div class="kv"><div class="k">Beneficial owner</div><div class="v">Mina Vanhoutte — 56% indirect</div></div>
+          <div class="kv"><div class="k">Ultimate parent</div><div class="v" id="cif-parent"><a href="#" data-goto="reg" style="color:var(--brand);text-decoration:none">KT Holding BV (NL) →</a></div></div>
+          <div class="kv"><div class="k">Beneficial owner</div><div class="v" id="cif-ubo">Mina Vanhoutte — 56% indirect</div></div>
         </div>
 
         <div class="kicker" style="margin-top:22px">Recent account activity</div>
@@ -378,7 +419,7 @@ table.dt td b{color:var(--text);font-weight:600}
       </div>
       <div class="pad">
         <div class="kicker">Trade register extract</div>
-        <h1 class="pt">KT Holding BV</h1>
+        <h1 class="pt" id="reg-title">KT Holding BV</h1>
         <div class="sub">KvK number 74 118 822 &middot; Extract generated today, 09:52</div>
         <span class="chip ok">Active</span>
 
@@ -396,8 +437,8 @@ table.dt td b{color:var(--text);font-weight:600}
           <tr><td><b>Bram Vanhoutte</b></td><td>Director</td><td class="mono">2019</td></tr>
         </table>
 
-        <div class="kicker" style="margin-top:22px">Shareholders</div>
-        <table class="dt">
+        <div class="kicker" style="margin-top:22px">Shareholders <span style="text-transform:none;font-weight:400;color:var(--text-3)">— live from ownership.json</span></div>
+        <table class="dt" id="reg-shareholders">
           <tr><th>Name</th><th>Shares held</th><th>Country</th></tr>
           <tr><td><b>Mina Vanhoutte</b></td><td class="mono">70%</td><td>BE</td></tr>
           <tr><td><b>Bram Vanhoutte</b></td><td class="mono">30%</td><td>BE</td></tr>
@@ -485,12 +526,29 @@ table.dt td b{color:var(--text);font-weight:600}
 <div class="win" id="win-explorer" style="top:96px;left:180px;width:820px;height:560px">
   <div class="titlebar">
     <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#4A5568"></span>File Explorer — Case A-4471</div>
+    <div class="tapp"><span class="tico" style="background:#4A5568"></span>File Explorer — <span id="fe-case-title">Case A-4471</span></div>
   </div>
   <div class="fe-body">
     <div class="fe-tree" id="fe-tree"></div>
     <div class="fe-list" id="fe-list"></div>
     <div class="fe-preview" id="fe-preview"></div>
+  </div>
+  <div class="resize-handle"></div>
+</div>
+
+<!-- ═══════════════════ TEAMS WINDOW ═══════════════════ -->
+<div class="win" id="win-teams" style="top:120px;left:340px;width:660px;height:520px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tapp"><span class="tico" style="background:#5B4B9E"></span>Meridiaan Teams</div>
+  </div>
+  <div class="tm-body">
+    <div class="tm-side" id="tm-side"></div>
+    <div class="tm-main">
+      <div class="tm-head" id="tm-head"></div>
+      <div class="tm-thread" id="tm-thread"></div>
+      <div class="tm-compose">💬 Message @channel — replies aren't wired up in this prototype</div>
+    </div>
   </div>
   <div class="resize-handle"></div>
 </div>
@@ -505,6 +563,7 @@ table.dt td b{color:var(--text);font-weight:600}
   <div class="tb-app" id="tb-browser" title="Chrome">🌐</div>
   <div class="tb-app" id="tb-mail" title="Meridiaan Mail">✉️</div>
   <div class="tb-app" id="tb-explorer" title="File Explorer">🗄️</div>
+  <div class="tb-app" id="tb-teams" title="Teams">💬</div>
   <div class="tb-flag" id="tb-flag"><i></i>Alert A-4471 — 3h 40m remaining</div>
   <div class="tb-right">
     <div class="grp"><b>Sim. environment</b>fictional data only</div>
@@ -804,12 +863,11 @@ const FE = (function(){
     {id:'prev', label:'Previous Investigations'}, {id:'policies', label:'Policies'},
   ];
   const files = {
-    cases: [{n:'A-4471_case_summary.pdf', t:'pdf', k:'PDF · 1 page'}],
+    cases: [],
     customer: [{n:'Kortrijk_Textiles_NV_profile.pdf', t:'pdf', k:'PDF · 2 pages'}],
     kyc: [
       {n:'Passport_Mina_Vanhoutte.jpg', t:'img', k:'JPEG · 412 KB'},
       {n:'Proof_of_address.pdf', t:'pdf', k:'PDF · 1 page'},
-      {n:'KT_Holding_KvK_extract.pdf', t:'pdf', k:'PDF · 1 page'},
     ],
     transactions: [{n:'Statement_Feb-Mar_2026.xlsx', t:'xls', k:'XLSX · 4 rows'}],
     evidence: [],
@@ -819,7 +877,8 @@ const FE = (function(){
       {n:'EDD_Procedure.pdf', t:'pdf', k:'PDF · 6 pages'},
     ],
   };
-  const ICO = {pdf:{bg:'#B3392C', e:'📄'}, img:{bg:'#1F5C8B', e:'🖼️'}, xls:{bg:'#1E7145', e:'📊'}};
+  const dynamicDocBodies = {}; // filled from real case JSON — name -> {title, body}
+  const ICO = {pdf:{bg:'#B3392C', e:'📄'}, img:{bg:'#1F5C8B', e:'🖼️'}, xls:{bg:'#1E7145', e:'📊'}, case:{bg:'#5B4B9E', e:'🗂️'}};
   let curFolder = 'kyc', curFile = null;
 
   function renderTree(){
@@ -830,6 +889,10 @@ const FE = (function(){
       curFolder = t.dataset.folder; curFile = null; renderTree(); renderList();
       document.getElementById('fe-preview').innerHTML = `<div class="fe-empty">Select a file to preview it.</div>`;
     }));
+  }
+  function gotoFolder(id){
+    curFolder = id; curFile = null; renderTree(); renderList();
+    document.getElementById('fe-preview').innerHTML = `<div class="fe-empty">Select a file to preview it.</div>`;
   }
   function renderList(){
     const list = files[curFolder] || [];
@@ -855,13 +918,61 @@ const FE = (function(){
     renderTree(); renderList(); preview(name);
   }
 
+  /* ── real-data wiring: replace the KYC folder's registry doc with the
+     actual document object from ownership.json, and populate Cases
+     with every real case from the Ownership and Casefile modules ── */
+  function setActiveCaseDocs(caseObj){
+    if(!caseObj || !caseObj.documents) return;
+    files.kyc = files.kyc.filter(f=>!f.fromCase);
+    caseObj.documents.forEach(d=>{
+      const fname = d.name.replace(/[^\w\s.-]/g,'').trim()+'.pdf';
+      files.kyc.push({n:fname, t:'pdf', k:'PDF · from ownership.json', fromCase:true});
+      dynamicDocBodies[fname] = {title:d.name, body:d.body};
+    });
+    if(curFolder==='kyc') renderList();
+  }
+  function renderCasesFolder(ownershipCases, investigationCases){
+    files.cases = [
+      ...ownershipCases.map(c=>({n:c.id+' — '+c.title+'.case', t:'case', k:'Ownership module · '+(c.subject||''), caseRef:c, kind:'ownership'})),
+      ...investigationCases.map(c=>({n:c.id+' — '+c.title+'.case', t:'case', k:'Casefile module · '+(c.subject||''), caseRef:c, kind:'investigation'})),
+    ];
+    if(curFolder==='cases') renderList();
+  }
+
   function preview(name){
     const found = findFile(name); if(!found) return;
     const f = found.file;
     const el = document.getElementById('fe-preview');
-    const head = `<div class="ph"><div><div class="pt">${f.n}</div><div class="pm">${f.k} · Case A-4471</div></div><button class="dlbtn">Download</button></div>`;
+
+    if(f.t === 'case'){
+      const c = f.caseRef;
+      const btn = f.kind==='ownership'
+        ? `<button class="dlbtn" id="fe-open-case" data-case-id="${c.id}">Open as active case</button>`
+        : '';
+      el.innerHTML = `
+        <div class="ph"><div><div class="pt">${c.title}</div><div class="pm">${c.subject||''}</div></div>${btn}</div>
+        <div class="docsheet">
+          <div class="dh">${f.kind==='ownership'?'Ownership structures':'The Casefile'} · ${c.id}</div>
+          <h3>${c.brief||c.opening||''}</h3>
+          ${c.threshold?`<div class="row"><b>Threshold</b>${c.threshold}%</div>`:''}
+          ${c.documents?`<div class="row"><b>Documents on file</b>${c.documents.length}</div>`:''}
+          ${c.actions?`<div class="row"><b>Lines of enquiry</b>${c.actions.length}</div>`:''}
+        </div>`;
+      const openBtn = document.getElementById('fe-open-case');
+      if(openBtn) openBtn.addEventListener('click', ()=>{ activateOwnershipCase(c); });
+      return;
+    }
+
+    const head = `<div class="ph"><div><div class="pt">${f.n}</div><div class="pm">${f.k} · ${(CASE.active&&CASE.active.id)||'Case A-4471'}</div></div><button class="dlbtn">Download</button></div>`;
 
     let body = '';
+    if(dynamicDocBodies[name]){
+      const dd = dynamicDocBodies[name];
+      body = `<div class="docsheet"><div class="dh">Meridiaan · from ownership.json</div>
+        <h3>${dd.title}</h3><p style="margin:0">${dd.body}</p></div>`;
+      el.innerHTML = head + body;
+      return;
+    }
     if(name === 'Passport_Mina_Vanhoutte.jpg'){
       body = `<div class="idcard">
         <div class="idphoto">🪪</div>
@@ -881,20 +992,6 @@ const FE = (function(){
         <div class="row"><b>Service address</b>Grote Markt 21, 8500 Kortrijk, BE</div>
         <div class="row"><b>Billing period</b>01 Feb 2026 – 28 Feb 2026</div>
         <div class="row"><b>Customer since</b>2011</div></div>`;
-    } else if(name === 'KT_Holding_KvK_extract.pdf'){
-      body = `<div class="docsheet"><div class="dh">Netherlands Chamber of Commerce</div>
-        <h3>KT Holding BV — trade register extract</h3>
-        <div class="row"><b>KvK number</b>74 118 822</div>
-        <div class="row"><b>Incorporated</b>11 April 2019</div>
-        <div class="row"><b>Directors</b>Mina Vanhoutte, Bram Vanhoutte</div>
-        <div class="row"><b>Shareholders</b>Mina Vanhoutte 70% · Bram Vanhoutte 30%</div></div>`;
-    } else if(name === 'A-4471_case_summary.pdf'){
-      body = `<div class="docsheet"><div class="dh">Meridiaan · Transaction Monitoring</div>
-        <h3>Alert A-4471 — Jurisdiction, high-risk nexus</h3>
-        <div class="row"><b>Customer</b>Kortrijk Textiles NV (CIF-BE-0741)</div>
-        <div class="row"><b>Rule triggered</b>4 outbound wires, BE→AE, 40–60% above market pricing</div>
-        <div class="row"><b>Amount</b>€620,000 across 4 payments</div>
-        <div class="row"><b>SLA</b>4 hours from assignment</div></div>`;
     } else if(name === 'Kortrijk_Textiles_NV_profile.pdf'){
       body = `<div class="docsheet"><div class="dh">Meridiaan CIF</div>
         <h3>Kortrijk Textiles NV — customer profile</h3>
@@ -940,8 +1037,256 @@ const FE = (function(){
 
   renderTree(); renderList();
   document.getElementById('fe-preview').innerHTML = `<div class="fe-empty">Select a file to preview it.</div>`;
-  return {openByName};
+  return {openByName, gotoFolder, setActiveCaseDocs, renderCasesFolder};
 })();
+
+/* ═══════════════════════════════════════════════════════════════════
+   REAL CASE DATA — fetches the same JSON the live Ownership and
+   Casefile modules use, so this workstation is a second view onto
+   the real training content, not a standalone demo.
+   ═══════════════════════════════════════════════════════════════════ */
+const CASE = {active:null, ownershipCases:[], investigationCases:[]};
+
+function personsAndParent(caseObj){
+  const target = caseObj.entities.find(e=>e.customer) || caseObj.entities[0];
+  const inbound = caseObj.edges.filter(e=>e.to===target.id);
+  const companyInbound = inbound.filter(e=>{
+    const ent = caseObj.entities.find(x=>x.id===e.from);
+    return ent && (ent.type==='company'||ent.type==='trust'||ent.type==='nominee');
+  }).sort((a,b)=>(b.pct||0)-(a.pct||0));
+  const parentEdge = companyInbound[0];
+  const parent = parentEdge ? caseObj.entities.find(e=>e.id===parentEdge.from) : null;
+  let parentShareholders = [];
+  if(parent){
+    parentShareholders = caseObj.edges.filter(e=>e.to===parent.id).map(e=>{
+      const ent = caseObj.entities.find(x=>x.id===e.from);
+      return ent ? {name:ent.name, pct:e.pct, juris:ent.juris} : null;
+    }).filter(Boolean);
+  }
+  return {target, parent, parentShareholders};
+}
+
+function wireGotoLinks(scope){
+  scope.querySelectorAll('[data-goto]').forEach(el=>{
+    el.addEventListener('click', e=>{ e.preventDefault(); openTab(el.dataset.goto); });
+  });
+}
+
+function renderActiveCase(caseObj){
+  const {target, parent, parentShareholders} = personsAndParent(caseObj);
+
+  document.getElementById('cif-kicker').textContent = 'Corporate client · '+caseObj.id;
+  document.getElementById('cif-title').textContent = target.name;
+  const parentEl = document.getElementById('cif-parent');
+  parentEl.innerHTML = parent
+    ? `<a href="#" data-goto="reg" style="color:var(--brand);text-decoration:none">${parent.name} (${parent.juris}) →</a>`
+    : '—';
+  wireGotoLinks(parentEl);
+
+  let uboText = 'Undetermined — see case file';
+  if(caseObj.answer && !caseObj.answer.cannot_determine && caseObj.answer.ubos && caseObj.answer.ubos.length){
+    uboText = caseObj.answer.ubos.map(id=>{
+      const ent = caseObj.entities.find(e=>e.id===id);
+      const pct = caseObj.computed ? caseObj.computed[id] : null;
+      return ent ? ent.name + (pct!=null?` — ${pct}% indirect`:'') : id;
+    }).join(', ');
+  }
+  document.getElementById('cif-ubo').textContent = uboText;
+
+  document.getElementById('reg-title').textContent = parent ? parent.name : target.name;
+  const shTable = document.getElementById('reg-shareholders');
+  shTable.innerHTML = '<tr><th>Name</th><th>Shares held</th><th>Country</th></tr>' +
+    (parentShareholders.length
+      ? parentShareholders.map(s=>`<tr><td><b>${s.name}</b></td><td class="mono">${s.pct}%</td><td>${s.juris}</td></tr>`).join('')
+      : '<tr><td colspan="3" style="color:var(--text-3)">No shareholder data on file for this entity.</td></tr>');
+
+  document.getElementById('tb-flag').innerHTML = `<i></i>${caseObj.id} — ${target.name}`;
+  document.getElementById('fe-case-title').textContent = caseObj.id+' — '+target.name;
+  FE.setActiveCaseDocs(caseObj);
+}
+
+function activateOwnershipCase(caseObj){
+  CASE.active = caseObj;
+  renderActiveCase(caseObj);
+  WM.open('browser'); openTab('cif'); goToTab('cif', true);
+  notify('🔔', '#1F5C8B', 'Case switched', 'Now viewing '+caseObj.id+' — '+caseObj.title, ()=>{});
+}
+
+async function loadCaseData(){
+  let ownershipData = null, investigationsData = null;
+  try{ const r = await fetch('data/academy/ownership.json', {cache:'no-store'}); if(r.ok) ownershipData = await r.json(); }catch(e){}
+  try{ const r2 = await fetch('data/academy/investigations.json', {cache:'no-store'}); if(r2.ok) investigationsData = await r2.json(); }catch(e){}
+  CASE.ownershipCases = (ownershipData && ownershipData.cases) || [];
+  CASE.investigationCases = (investigationsData && investigationsData.cases) || [];
+  FE.renderCasesFolder(CASE.ownershipCases, CASE.investigationCases);
+  const own1 = CASE.ownershipCases.find(c=>c.id==='OWN-01');
+  if(own1){
+    CASE.active = own1;
+    renderActiveCase(own1);
+  } else {
+    notify('⚠️', '#B3392C', 'Case data unavailable', 'Could not load ownership.json — showing static demo content.');
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TEAMS — lightweight internal messaging, plus Alex: a scripted
+   senior-analyst mentor that opens/highlights real UI as it talks.
+   ═══════════════════════════════════════════════════════════════════ */
+const TM_PEOPLE = {
+  alex:  {name:'Alex Devereux',  role:'Senior AML Analyst', color:'#1F5C8B', initials:'AD'},
+  nadia: {name:'Nadia Verlinden',role:'Relationship Manager', color:'#9A6B1F', initials:'NV'},
+  sanmi: {name:'Sanmi Okonkwo',  role:'Compliance', color:'#1E7145', initials:'SO'},
+};
+const TM_CHANNELS = [
+  {id:'alex', kind:'dm'}, {id:'nadia', kind:'dm'}, {id:'sanmi', kind:'dm'},
+  {id:'compliance', kind:'channel', label:'compliance'},
+  {id:'investigations', kind:'channel', label:'investigations'},
+];
+const TM_UNREAD = {alex:0, nadia:1, sanmi:0, compliance:0, investigations:2};
+const TM_STATIC = {
+  nadia: [
+    {from:'nadia', time:'08:52', text:["Hey, got a sec? Kortrijk Textiles called, a bit put out about the extra questions. Told her it's routine on our side.",
+      "Let me know if you need anything else from me on this one."]},
+  ],
+  sanmi: [
+    {from:'sanmi', time:'09:16', text:["Hey — I've just received additional information regarding this customer. Can you take a look at the KvK extract before closing the case?"]},
+  ],
+  compliance: [
+    {from:'sanmi', time:'Yesterday', text:["Reminder: Q3 SAR filing stats are due to the MLRO Friday. Log your closed cases in the tracker if you haven't already."]},
+    {from:'alex', time:'Yesterday', text:["New typology bulletin is up on the portal — trade-based laundering via invoice mismatch. Worth a skim, it's relevant to a couple of open files."]},
+  ],
+  investigations: [
+    {from:'nadia', time:'2 days ago', text:["Does anyone have bandwidth to peer-review an EDD writeup this week? Not urgent."]},
+  ],
+};
+
+let tmActiveChannel = 'alex';
+let alexRevealed = 0;
+let alexHints = 0;
+const ALEX_SCRIPT = [
+  {text:["Hey — I'm Alex, senior on the desk this week. Good to have you.",
+    "Today's alert is on Kortrijk Textiles — jurisdiction nexus, four wires to the UAE. I'll point you at where things live, then you're on your own."],
+   action:{label:'Sounds good'}},
+  {text:["Start in the browser — that's where the customer profile and the company registry live."],
+   action:{label:'Open the browser', run:()=>{ WM.open('browser'); highlightWin('browser'); }}},
+  {text:["See the EDD flag on the CIF page? Not decorative — the periodic review is overdue. Worth remembering when you write this up."],
+   action:{label:'Got it'}},
+  {text:["Now check the File Explorer — the KYC folder has what's already on file for this customer."],
+   action:{label:'Open File Explorer', run:()=>{ WM.open('explorer'); FE.gotoFolder('kyc'); highlightWin('explorer'); }}},
+  {text:["That's the tour. From here it's yours — dig through what's there, cross-check the numbers, and ping me if you get stuck. I mean that."],
+   action:{label:"I'm stuck — give me a hint", run:()=>askAlexHint(), keepAction:true}},
+];
+
+function highlightWin(id){
+  const el = document.getElementById('win-'+id);
+  el.classList.add('hl-pulse');
+  setTimeout(()=>el.classList.remove('hl-pulse'), 4300);
+}
+
+function tmUnreadBadge(id){ return TM_UNREAD[id] || 0; }
+
+function tmSelect(id){
+  tmActiveChannel = id;
+  TM_UNREAD[id] = 0;
+  renderTmSide(); renderTmHead(); renderTmThread();
+}
+function renderTmSide(){
+  const el = document.getElementById('tm-side');
+  const dms = TM_CHANNELS.filter(c=>c.kind==='dm');
+  const chans = TM_CHANNELS.filter(c=>c.kind==='channel');
+  const row = c=>{
+    const label = c.kind==='dm' ? TM_PEOPLE[c.id].name : c.label;
+    const av = c.kind==='dm'
+      ? `<span class="av" style="background:${TM_PEOPLE[c.id].color}">${TM_PEOPLE[c.id].initials}</span>`
+      : `<span class="av" style="background:#5B6472">#</span>`;
+    const badge = tmUnreadBadge(c.id);
+    return `<div class="tm-chan ${c.id===tmActiveChannel?'on':''}" data-ch="${c.id}">${av}${label}${badge?`<span class="badge">${badge}</span>`:''}</div>`;
+  };
+  el.innerHTML = `<div class="sh">Direct messages</div>${dms.map(row).join('')}
+    <div class="sh" style="margin-top:10px">Channels</div>${chans.map(row).join('')}`;
+  el.querySelectorAll('.tm-chan').forEach(c=>c.addEventListener('click', ()=>tmSelect(c.dataset.ch)));
+}
+function renderTmHead(){
+  const el = document.getElementById('tm-head');
+  if(tmActiveChannel==='alex' || tmActiveChannel==='nadia' || tmActiveChannel==='sanmi'){
+    const p = TM_PEOPLE[tmActiveChannel];
+    el.innerHTML = `${p.name}<span class="sub">${p.role}</span>`;
+  } else {
+    const c = TM_CHANNELS.find(x=>x.id===tmActiveChannel);
+    el.innerHTML = `#${c.label}`;
+  }
+}
+function bubble(personId, timeLabel, paragraphs){
+  const p = TM_PEOPLE[personId] || {name:'You', color:'#4A5568', initials:'Y'};
+  return `<div class="tm-msg">
+    <span class="av" style="background:${p.color}">${p.initials}</span>
+    <div class="body">
+      <div class="who">${p.name} <time>${timeLabel}</time></div>
+      <div class="txt">${paragraphs.map(t=>`<p>${t}</p>`).join('')}</div>
+    </div></div>`;
+}
+function renderTmThread(){
+  const el = document.getElementById('tm-thread');
+  if(tmActiveChannel==='alex'){ renderAlexThread(el); return; }
+  const msgs = TM_STATIC[tmActiveChannel] || [];
+  el.innerHTML = msgs.map(m=>bubble(m.from, m.time, m.text)).join('') ||
+    `<div class="fe-empty">No messages yet.</div>`;
+  el.scrollTop = el.scrollHeight;
+}
+function renderAlexThread(el){
+  let html = '';
+  for(let i=0;i<alexRevealed;i++){
+    const step = ALEX_SCRIPT[i];
+    html += bubble('alex', i===0?'09:02':'', step.text);
+    if(step.done && step.pickedLabel){
+      html += `<div class="tm-msg" style="margin-left:auto;flex-direction:row-reverse">
+        <span class="av" style="background:#4A5568">Y</span>
+        <div class="body"><div class="who" style="justify-content:flex-end">You</div>
+        <div class="txt">${step.pickedLabel}</div></div></div>`;
+    }
+  }
+  const cur = ALEX_SCRIPT[alexRevealed-1];
+  const hints = [
+    "Look at who actually holds KT Holding BV, not just Kortrijk Textiles — the registry extract has the split.",
+    "Bram sits at exactly 24% once you run 80% × 30% through the holding. One point under the 25% threshold — worth double-checking whether that's a coincidence.",
+  ];
+  for(let h=0; h<alexHints; h++){
+    html += bubble('alex', '', [hints[Math.min(h, hints.length-1)]]);
+  }
+  if(cur && cur.action && (!cur.done || cur.action.keepAction)){
+    html += `<div class="tm-actions" style="padding-left:38px">
+      <button class="tm-btn" id="tm-alex-action">${cur.action.label}</button></div>`;
+  }
+  el.innerHTML = html;
+  const btn = document.getElementById('tm-alex-action');
+  if(btn) btn.addEventListener('click', onAlexAction);
+  el.scrollTop = el.scrollHeight;
+}
+function revealNextAlexStep(){
+  if(alexRevealed >= ALEX_SCRIPT.length) return;
+  alexRevealed++;
+  if(tmActiveChannel==='alex') renderAlexThread(document.getElementById('tm-thread'));
+  if(alexRevealed===1) TM_UNREAD.alex = tmActiveChannel==='alex'?0:1;
+  if(tmActiveChannel!=='alex') renderTmSide();
+}
+function onAlexAction(){
+  const step = ALEX_SCRIPT[alexRevealed-1];
+  if(!step) return;
+  step.done = true; step.pickedLabel = step.action.label;
+  if(step.action.run) step.action.run();
+  if(!step.action.keepAction){
+    renderAlexThread(document.getElementById('tm-thread'));
+    setTimeout(revealNextAlexStep, 900);
+  } else {
+    renderAlexThread(document.getElementById('tm-thread'));
+  }
+}
+function askAlexHint(){
+  alexHints++;
+  renderAlexThread(document.getElementById('tm-thread'));
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
 
 /* ═══════════════════ NOTIFICATIONS ═══════════════════ */
 function notify(icon, iconBg, title, desc, onClick){
@@ -978,14 +1323,21 @@ function tickClock(){
 tickClock(); setInterval(tickClock, 30000);
 
 /* ═══════════════════ BOOT ═══════════════════ */
-WM.init(['mail','browser','explorer']);
+WM.init(['mail','browser','explorer','teams']);
 if(!localStorage.getItem('meridiaan-wm-v1')){
   WM.open('mail'); WM.open('browser');
 }
+renderTmSide(); renderTmHead(); renderTmThread();
+loadCaseData();
 
 /* scripted notifications — a living, not static, desk */
+setTimeout(()=>{
+  revealNextAlexStep();
+  notify('💬', '#1F5C8B', 'New message from Alex', "Hey — I'm Alex, senior on the desk this week. Good to have you.",
+    ()=>{ WM.open('teams'); tmSelect('alex'); });
+}, 2500);
 setTimeout(()=>notify('✉️', '#1F5C8B', 'New email received', 'Nadia Verlinden — Re: Why the wire to Gulf Machinery FZE',
-  ()=>{ WM.open('mail'); renderMailRead('m2'); document.querySelectorAll('.mitem').forEach(x=>x.classList.toggle('on', x.dataset.mid==='m2')); }), 4000);
-setTimeout(()=>notify('📄', '#1E7145', 'Document added to case file', 'KT_Holding_KvK_extract.pdf was added to KYC',
-  ()=>{ WM.open('explorer'); FE.openByName('KT_Holding_KvK_extract.pdf'); }), 11000);
+  ()=>{ WM.open('mail'); renderMailRead('m2'); document.querySelectorAll('.mitem').forEach(x=>x.classList.toggle('on', x.dataset.mid==='m2')); }), 6000);
+setTimeout(()=>notify('📄', '#1E7145', 'Document added to case file', 'A new document was added to the KYC folder',
+  ()=>{ WM.open('explorer'); FE.gotoFolder('kyc'); }), 13000);
 </script>
