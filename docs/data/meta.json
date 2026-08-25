@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-08-24T06:49:44.303005",
+  "last_updated": "2026-08-25T06:39:23.297598",
   "last_run_counts": {
-    "total": 5,
-    "critical": 0,
+    "total": 7,
+    "critical": 1,
     "important": 4,
-    "info": 1
+    "info": 2
   },
-  "archive_size": 707,
+  "archive_size": 711,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,38 +14,56 @@
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 24
+      "days_away": 23
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 129
+      "days_away": 128
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 130
+      "days_away": 129
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 139
+      "days_away": 138
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 309
+      "days_away": 308
     }
   ],
   "trends": [
+    {
+      "theme": "Market Infrastructure",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 5
+    },
     {
       "theme": "SFDR/ESG",
       "this_week": 1,
@@ -63,6 +81,27 @@
         1,
         1,
         1,
+        1
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.7,
+      "pct": -42,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▄▁▁▄▄█▁",
+      "values": [
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        3,
         1
       ],
       "weeks": 8
@@ -107,27 +146,6 @@
         1
       ],
       "weeks": 7
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 0,
-      "avg": 1.4,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▄▁▁▄▄█",
-      "values": [
-        1,
-        1,
-        2,
-        1,
-        1,
-        2,
-        2,
-        3
-      ],
-      "weeks": 8
     },
     {
       "theme": "Stress Test",
@@ -201,23 +219,6 @@
     },
     {
       "theme": "DORA",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 4
-    },
-    {
-      "theme": "Market Infrastructure",
       "this_week": 0,
       "avg": 1.0,
       "pct": -100,
