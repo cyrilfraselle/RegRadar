@@ -2,163 +2,416 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="refresh" content="0; url=workstation.html">
-<title>RegRadar Academy — Path</title>
-<script>location.replace('workstation.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRadar — Academy</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="academy.css">
-<script src="academy-shell.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* The path's home page: what I can do, what's next, and what it's
-   earned me. Nothing else. */
-.pad{max-width:960px;margin:0 auto;padding:34px 26px 70px}
-.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
-h1{font-size:clamp(24px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;
-  line-height:1.05;margin-top:12px}
-h1 em{font-style:normal;color:var(--violet)}
-.lede{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink-2);
-  margin-top:16px;max-width:62ch}
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F5F6F8; --surface-3:#EBEDF1;
+    --border:#DDE1E6; --border-strong:#C3C9D1;
+    --text:#1A1F27; --text-2:#5B6472; --text-3:#8B93A0;
+    --brand:#1F5C8B; --brand-ink:#164363; --brand-bg:#E9F1F7;
+    --crit:#B3392C; --crit-bg:#FBEDEB;
+    --warn:#9A6B1F; --warn-bg:#FBF3E5;
+    --ok:#1E7145; --ok-bg:#EAF5EE;
+    --violet:#6E3FBF; --violet-bg:#F1EBFA;
+    --wallpaper:#1B2430; --wallpaper-2:#222E3D; --taskbar:#12161D;
+    --chrome:#23303F; --chrome-2:#2C3B4E;
+    --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.2,.7,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;
+    -webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--brand);color:#fff}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  img,svg{display:block;max-width:100%}
 
-/* progress strip */
-.prog{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
-  background:var(--grid);border:1px solid var(--grid);margin-top:28px}
-.prog div{background:var(--console);padding:15px 14px}
-.prog .n{font-size:25px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
-.prog .l{font-size:8.5px;letter-spacing:.15em;color:var(--ink-3);margin-top:7px}
-.prog .rank .n{color:var(--violet);font-size:18px;letter-spacing:-.01em}
-.prog .xp .n{color:var(--ink)}
+  /* ── topbar ─────────────────────────────────────────────────────── */
+  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
+  .topbar-inner{display:flex;align-items:center;gap:20px;height:60px;max-width:1180px;margin:0 auto;padding:0 24px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+  .logo-mark{width:30px;height:30px;background:var(--brand);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:17px;border-radius:6px}
+  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
+  .nav{display:flex;margin-left:16px;min-width:0;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{padding:8px 14px;font-size:13px;font-weight:500;color:var(--text-2);white-space:nowrap;flex:0 0 auto;
+    border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 140ms var(--ease),border-color 140ms var(--ease)}
+  .nav a:hover:not(.active){color:var(--text)}
+  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--brand)}
+  .topbar-right{margin-left:auto;flex:0 0 auto}
+  .tb-cta{display:inline-flex;align-items:center;gap:7px;background:var(--brand);color:#fff;
+    font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:6px;transition:background 140ms var(--ease);
+    white-space:nowrap}
+  .tb-cta:hover{background:var(--brand-ink)}
+  @media(max-width:760px){.nav{margin-left:0}.logo-sub{display:none}.tb-cta span.l{display:none}}
 
-/* the path */
-.path{margin-top:34px;position:relative}
-.path::before{content:'';position:absolute;left:23px;top:26px;bottom:26px;width:1px;
-  background:var(--grid)}
-.node{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:11px 0;position:relative}
-.mark{width:48px;display:flex;align-items:flex-start;justify-content:center;padding-top:3px}
-.mark span{width:30px;height:30px;border:1px solid var(--grid);background:var(--void);
-  display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--ink-3);
-  position:relative;z-index:2;transition:all .2s var(--ease)}
-.node.done .mark span{border-color:var(--phos);color:var(--phos)}
-.node.now .mark span{border-color:var(--violet);color:var(--violet);
-  box-shadow:0 0 0 4px rgba(110,63,191,.14)}
-.node.soon .mark span{opacity:.4}
-.card{border:1px solid var(--grid);padding:16px 18px;transition:all .18s var(--ease)}
-.node.open .card{cursor:pointer}
-.node.open .card:hover{border-color:var(--violet);transform:translateX(4px)}
-.node.soon .card{opacity:.42}
-.card .top{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
-.card .nm{font-size:17px;font-weight:700;letter-spacing:-.015em}
-.card .st{font-size:8.5px;letter-spacing:.14em;padding:2px 8px;border:1px solid currentColor;
-  font-weight:700}
-.node.done .card .st{color:var(--phos)}
-.node.now .card .st{color:var(--violet)}
-.node.soon .card .st{color:var(--ink-3)}
-.card .sub{font-size:11px;color:var(--ink-3);letter-spacing:.05em;margin-top:5px}
-.card .tag{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);line-height:1.55;
-  margin-top:10px;max-width:64ch}
-.card .why{font-family:var(--sans);font-size:12.5px;color:var(--ink-3);line-height:1.5;
-  margin-top:9px;border-left:2px solid var(--grid);padding-left:12px;max-width:62ch}
-.card .go{margin-top:13px;display:inline-block;border:1px solid var(--violet);
-  color:var(--violet);padding:9px 18px;font-size:10.5px;font-weight:700;letter-spacing:.14em;
-  background:rgba(110,63,191,.06);transition:all .16s}
-.card .go:hover{background:var(--violet);color:var(--void)}
+  /* ── hero ───────────────────────────────────────────────────────── */
+  .hero{background:
+      radial-gradient(ellipse 900px 520px at 82% -12%, rgba(110,63,191,.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -8% 10%, rgba(31,92,139,.20), transparent 55%),
+      linear-gradient(165deg,var(--wallpaper),var(--wallpaper-2) 75%);
+    color:#F2F4F7;overflow:hidden;position:relative}
+  .hero-inner{max-width:1180px;margin:0 auto;padding:68px 24px 0;display:grid;
+    grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .hero-kick{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:#8FB4D6}
+  .hero h1{font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.08;
+    margin-top:16px;text-wrap:balance}
+  .hero h1 em{font-style:normal;color:#8FB4D6}
+  .hero .lede{font-size:16px;line-height:1.65;color:#C3CBD6;margin-top:18px;max-width:46ch}
+  .hero-ctas{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
+  .cta-main{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--wallpaper);
+    font-size:14.5px;font-weight:700;padding:15px 26px;border-radius:8px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform 160ms var(--ease),box-shadow 160ms var(--ease)}
+  .cta-main:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.42)}
+  .cta-main .arrow{transition:transform 160ms var(--ease)}
+  .cta-main:hover .arrow{transform:translateX(3px)}
+  .cta-ghost{font-size:13px;font-weight:600;color:#C3CBD6;border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:2px}
+  .cta-ghost:hover{color:#fff;border-color:#fff}
+  .hero-meta{display:flex;gap:22px;margin-top:34px;flex-wrap:wrap}
+  .hero-meta div{font-family:var(--mono)}
+  .hero-meta .n{font-size:20px;font-weight:700;color:#fff}
+  .hero-meta .l{font-size:10px;color:#8791A0;text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
 
-.foot{margin-top:38px;border-top:1px solid var(--grid);padding-top:18px;
-  display:flex;gap:20px;flex-wrap:wrap;align-items:center;
-  font-size:11px;color:var(--ink-3);letter-spacing:.06em}
-.foot button{border:1px solid var(--grid);color:var(--ink-3);padding:8px 14px;
-  font-size:10px;letter-spacing:.12em;transition:all .16s}
-.foot button:hover{border-color:var(--alarm);color:var(--alarm)}
-.foot .sp{margin-left:auto}
-@media(max-width:760px){.pad{padding:22px 15px 60px}.node{grid-template-columns:36px 1fr;gap:11px}
-  .mark{width:36px}.path::before{left:17px}}
+  /* desktop mockup */
+  .mock{position:relative;padding-bottom:0}
+  .mock-frame{background:linear-gradient(165deg,#222E3D,#1B2430);border:1px solid rgba(255,255,255,.08);
+    border-radius:12px 12px 0 0;box-shadow:0 30px 70px rgba(0,0,0,.5);overflow:hidden;
+    transform:perspective(1400px) rotateX(2deg);transform-origin:bottom center}
+  .mock-bar{height:26px;background:rgba(0,0,0,.25);display:flex;align-items:center;gap:6px;padding:0 12px}
+  .mock-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
+  .mock-body{position:relative;height:280px;padding:16px}
+  .mwin{position:absolute;background:#F5F6F8;border-radius:6px;box-shadow:0 14px 34px rgba(0,0,0,.4);overflow:hidden}
+  .mwin .mt{height:20px;background:#E4E7EC;display:flex;align-items:center;gap:5px;padding:0 8px;
+    font-family:var(--mono);font-size:8px;color:#5B6472;font-weight:600}
+  .mwin .mt i{width:6px;height:6px;border-radius:50%}
+  .mwin.w1{top:18px;left:10px;width:56%;height:150px}
+  .mwin.w1 .row{display:flex;gap:6px;padding:9px 10px}
+  .mwin.w1 .col-a{width:34%}
+  .mwin.w1 .ln{height:5px;background:#E4E7EC;border-radius:2px;margin-bottom:5px}
+  .mwin.w1 .ln.s{width:60%}
+  .mwin.w2{top:70px;right:8px;width:42%;height:190px;z-index:3}
+  .mwin.w2 .chip{display:inline-block;font-family:var(--mono);font-size:7px;font-weight:700;color:#fff;
+    background:var(--crit);border-radius:3px;padding:2px 5px;margin:8px 8px 0}
+  .mwin.w2 .ln{height:5px;background:#E4E7EC;border-radius:2px;margin:6px 8px}
+  .mwin.w2 .btn{margin:10px 8px 0;height:16px;width:64px;background:var(--brand);border-radius:3px}
+  .mwin.w3{bottom:14px;left:36px;width:44%;height:64px;z-index:2}
+  .mwin.w3 .bubble{display:flex;gap:6px;padding:8px 9px}
+  .mwin.w3 .av{width:14px;height:14px;border-radius:50%;background:var(--brand);flex:0 0 auto}
+  .mwin.w3 .ln{height:5px;background:#E4E7EC;border-radius:2px;margin-bottom:4px}
+  .mwin.w3 .ln.s{width:70%}
+  .mock-taskbar{height:34px;background:var(--taskbar);display:flex;align-items:center;gap:10px;padding:0 12px}
+  .mock-taskbar .m{width:20px;height:20px;border:1px solid rgba(255,255,255,.3);border-radius:5px;
+    display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff}
+  .mock-taskbar .apps{display:flex;gap:8px;font-size:13px}
+  .mock-taskbar .clock{margin-left:auto;font-family:var(--mono);font-size:10px;color:#8791A0}
+  @media(max-width:900px){.hero-inner{grid-template-columns:1fr;padding-top:44px}.mock{margin-top:8px}}
+
+  /* ── sections ───────────────────────────────────────────────────── */
+  section{padding:76px 0}
+  .kicker{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--brand)}
+  h2{font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.02em;margin-top:12px;
+    max-width:34ch;text-wrap:balance}
+  .sec-lede{font-size:15px;color:var(--text-2);line-height:1.65;margin-top:14px;max-width:56ch}
+
+  /* why different */
+  .why{background:var(--surface)}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
+    border:1px solid var(--border);margin-top:40px}
+  .why-card{background:var(--surface);padding:28px 26px}
+  .why-card .ic{width:38px;height:38px;border-radius:8px;background:var(--brand-bg);color:var(--brand);
+    display:grid;place-items:center;font-size:18px}
+  .why-card h3{font-size:16.5px;font-weight:700;margin-top:16px;letter-spacing:-.01em}
+  .why-card p{font-size:13.5px;color:var(--text-2);line-height:1.6;margin-top:9px}
+  @media(max-width:860px){.why-grid{grid-template-columns:1fr}}
+
+  /* the path */
+  .path{background:var(--surface-2)}
+  .path-list{margin-top:44px;display:flex;flex-direction:column;gap:1px;background:var(--border);
+    border:1px solid var(--border)}
+  .path-row{background:var(--surface);display:grid;grid-template-columns:64px 1fr auto;gap:20px;
+    align-items:center;padding:22px 26px;transition:background 140ms var(--ease)}
+  .path-row:hover{background:var(--surface-2)}
+  .path-num{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--text-3)}
+  .path-row.on .path-num{color:var(--brand)}
+  .path-nm{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
+  .path-tag{font-size:13px;color:var(--text-2);line-height:1.55;margin-top:5px;max-width:60ch}
+  .path-badge{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;padding:5px 10px;border-radius:20px;white-space:nowrap}
+  .path-badge.live{background:var(--ok-bg);color:var(--ok)}
+  .path-badge.soon{background:var(--surface-3);color:var(--text-3)}
+  .path-lock{margin-top:16px;font-size:12.5px;color:var(--text-3);display:flex;align-items:center;gap:7px}
+  @media(max-width:640px){.path-row{grid-template-columns:40px 1fr;padding:18px}.path-badge{grid-column:2;justify-self:start;margin-top:8px}}
+
+  /* progression */
+  .prog{background:var(--surface)}
+  .prog-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:40px}
+  .rank-ladder{display:flex;flex-direction:column;border-left:2px solid var(--border);padding-left:22px;
+    gap:20px}
+  .rank-step{position:relative}
+  .rank-step::before{content:'';position:absolute;left:-28px;top:4px;width:9px;height:9px;border-radius:50%;
+    background:var(--surface);border:2px solid var(--border-strong)}
+  .rank-step.hi::before{border-color:var(--violet);background:var(--violet)}
+  .rank-step .n{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.03em}
+  .rank-step .d{font-size:12.5px;color:var(--text-2);margin-top:3px}
+  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .skill-chip{border:1px solid var(--border);border-radius:8px;padding:12px 10px;text-align:center}
+  .skill-chip .e{font-size:19px}
+  .skill-chip .t{font-size:10.5px;font-weight:600;color:var(--text-2);margin-top:6px;line-height:1.3}
+  .prog-foot{margin-top:26px;display:flex;gap:22px;flex-wrap:wrap}
+  .prog-foot .f{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2)}
+  .prog-foot .f b{color:var(--text)}
+  @media(max-width:860px){.prog-top{grid-template-columns:1fr}}
+
+  /* alex */
+  .alex{background:var(--surface-2)}
+  .alex-card{margin-top:36px;background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:32px 34px;display:flex;gap:22px;align-items:flex-start;max-width:760px}
+  .alex-av{width:46px;height:46px;border-radius:50%;background:var(--brand);color:#fff;flex:0 0 auto;
+    display:grid;place-items:center;font-weight:700;font-size:15px}
+  .alex-card blockquote{font-size:17px;line-height:1.55;color:var(--text);letter-spacing:-.005em}
+  .alex-card .who{margin-top:14px;font-size:12.5px;color:var(--text-3)}
+  .alex-card .who b{color:var(--text-2)}
+
+  /* closing cta */
+  .close-cta{background:linear-gradient(165deg,var(--wallpaper),var(--wallpaper-2) 75%);color:#fff;
+    text-align:center}
+  .close-cta h2{color:#fff;margin:0 auto;max-width:26ch}
+  .close-cta .sec-lede{color:#C3CBD6;margin-left:auto;margin-right:auto}
+  .close-cta .hero-ctas{justify-content:center;margin-top:32px}
+
+  footer{border-top:1px solid var(--border);padding:26px 0;font-size:11.5px;color:var(--text-3);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--text-2)}
+  footer a:hover{color:var(--brand)}
 </style>
 </head>
 <body>
 
-<div class="pad">
-  <div class="kick">PATH</div>
-  <h1 id="hd">Become an analyst, <em>by doing the work</em>.</h1>
-  <div class="lede" id="lede">Five modules, in the order the job teaches them. Each takes fifteen
-    to thirty minutes, and each produces a measurable result.</div>
-
-  <div class="prog">
-    <div class="rank"><div class="n" id="pRank">—</div><div class="l">RANK</div></div>
-    <div class="xp"><div class="n" id="pXp">0</div><div class="l">TOTAL XP</div></div>
-    <div><div class="n" id="pMods">0/5</div><div class="l">MODULES STARTED</div></div>
-    <div><div class="n" id="pNext">—</div><div class="l">NEXT RANK</div></div>
+<div class="topbar"><div class="topbar-inner">
+  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Belgium &amp; EU</span></div>
+  <nav class="nav">
+    <a href="index.html">Signal</a>
+    <a href="law.html">Read the Law</a>
+    <a href="country-risk.html">Country Risk</a>
+    <a href="obligations.html">Obligations</a>
+    <a href="extractor.html">Extractor</a>
+    <a href="ubo.html">UBO</a>
+    <a href="academy.html" class="active">Academy</a>
+  </nav>
+  <div class="topbar-right">
+    <a class="tb-cta" href="workstation.html">Start demo <span class="l">→</span></a>
   </div>
+</div></div>
 
-  <div class="path" id="path"></div>
-
-  <div class="foot">
-    <span>All data is fictional. Training environment only.</span>
-    <span class="sp"></span>
-    <button onclick="wipe()">Reset my progress</button>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kick">REGRADAR ACADEMY · AML TRAINING SIMULATOR</div>
+      <h1>Meet Meridiaan Bank.<br>You start <em>Monday</em>.</h1>
+      <div class="lede">A full analyst workstation, not a course — inbox, browser, case files, and a
+        senior colleague on Teams. You learn to investigate money laundering the way the job actually
+        teaches it: by working the desk.</div>
+      <div class="hero-ctas">
+        <a class="cta-main" href="workstation.html">Start the demo <span class="arrow">→</span></a>
+        <a class="cta-ghost" href="#how">See how it works ↓</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="n">3</div><div class="l">Modules live</div></div>
+        <div><div class="n">9</div><div class="l">Skills tracked</div></div>
+        <div><div class="n">10</div><div class="l">Real cases</div></div>
+        <div><div class="n">0€</div><div class="l">Cost, always fictional data</div></div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock-frame">
+        <div class="mock-bar"><i></i><i></i><i></i></div>
+        <div class="mock-body">
+          <div class="mwin w1">
+            <div class="mt"><i style="background:#B3392C"></i><i style="background:#9A6B1F"></i><i style="background:#1E7145"></i>Meridiaan CIF</div>
+            <div class="row"><div class="col-a"><div class="ln"></div><div class="ln s"></div><div class="ln"></div></div>
+              <div style="flex:1"><div class="ln"></div><div class="ln"></div><div class="ln s"></div></div></div>
+          </div>
+          <div class="mwin w2">
+            <div class="mt">AML Investigation</div>
+            <span class="chip">EDD FLAG</span>
+            <div class="ln" style="margin-top:12px"></div><div class="ln"></div><div class="ln" style="width:80%"></div>
+            <div class="btn"></div>
+          </div>
+          <div class="mwin w3">
+            <div class="mt">Teams — Alex</div>
+            <div class="bubble"><div class="av"></div><div style="flex:1"><div class="ln"></div><div class="ln s"></div></div></div>
+          </div>
+        </div>
+        <div class="mock-taskbar">
+          <div class="m">M</div>
+          <div class="apps">✉️ 🌐 🗄️ 🛡️ 🧭 💬</div>
+          <div class="clock">14:07</div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
+
+<section class="why" id="how">
+  <div class="wrap">
+    <div class="kicker">HOW IT'S DIFFERENT</div>
+    <h2>Not slides. A desk.</h2>
+    <div class="sec-lede">Everything else teaches AML by describing it. This puts you in front of an
+      inbox that gets mail, a browser with a real customer file open in it, and a queue that doesn't
+      wait for you to finish reading.</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="ic">🖥️</div>
+        <h3>A real environment</h3>
+        <p>Draggable windows, a taskbar, an inbox, a Chrome-style browser with the customer profile and
+          company registry open in tabs, a File Explorer with the actual KYC folder. You navigate it,
+          nobody hands you the answer on a slide.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic">💬</div>
+        <h3>A mentor, not a manual</h3>
+        <p>Alex — senior on the desk — reacts to what you actually do: a catch, a wrong call, a file
+          that comes back to bite you. He talks more when you're new, and steadily less as you rank up.
+          That's the point.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic">🔒</div>
+        <h3>A path, not a menu</h3>
+        <p>Laundromat, then Ownership, then the Desk — locked in that order, because you can't
+          recognise a pattern you've never produced. Each module opens once the one before it is done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="path">
+  <div class="wrap">
+    <div class="kicker">THE PATH</div>
+    <h2>Three modules, in the order the job teaches them.</h2>
+    <div class="sec-lede">Every module is scored, every module writes to the same progress — rank up
+      once, and it carries across all three.</div>
+    <div class="path-list">
+      <div class="path-row on">
+        <div class="path-num">01</div>
+        <div><div class="path-nm">The Laundromat</div>
+          <div class="path-tag">Play the adversary first: thirteen typologies, eight jurisdictions,
+            €10 million to move before the net closes. You can't spot a pattern you've never produced.</div></div>
+        <div class="path-badge live">Live</div>
+      </div>
+      <div class="path-row on">
+        <div class="path-num">02</div>
+        <div><div class="path-nm">Ownership structures</div>
+          <div class="path-tag">Read a real ownership chart — holding companies, nominees, trusts —
+            and designate the beneficial owners. Some cases are traps. One of them can't be solved at all,
+            and knowing that is the answer.</div></div>
+        <div class="path-badge live">Live</div>
+      </div>
+      <div class="path-row on">
+        <div class="path-num">03</div>
+        <div><div class="path-nm">The Desk</div>
+          <div class="path-tag">A journal of days: onboarding queues, alert triage, an hour budget
+            that runs out before the queue does. What you close wrongly doesn't disappear — it comes
+            back later in the week.</div></div>
+        <div class="path-badge live">Live</div>
+      </div>
+      <div class="path-row">
+        <div class="path-num">04</div>
+        <div><div class="path-nm">Filing</div>
+          <div class="path-tag">Drafting the STR — what the FIU actually receives, and the least-taught
+            skill in the job.</div></div>
+        <div class="path-badge soon">In development</div>
+      </div>
+      <div class="path-row">
+        <div class="path-num">05</div>
+        <div><div class="path-nm">Inspection</div>
+          <div class="path-tag">A supervisor goes back through your own decisions and asks why.</div></div>
+        <div class="path-badge soon">In development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prog">
+  <div class="wrap">
+    <div class="kicker">PROGRESSION</div>
+    <h2>XP for the work, not a score.</h2>
+    <div class="sec-lede">Global rank tracks how far along the path you are. A nine-skill tree tracks
+      at what, specifically — each one earned by the actions that actually exercise it.</div>
+    <div class="prog-top">
+      <div>
+        <div class="rank-ladder">
+          <div class="rank-step"><div class="n">JUNIOR</div><div class="d">An access badge and a queue.</div></div>
+          <div class="rank-step"><div class="n">ANALYST</div><div class="d">Tells a documented purchase from a structured deposit.</div></div>
+          <div class="rank-step"><div class="n">SENIOR ANALYST</div><div class="d">Closes cleanly, escalates deliberately.</div></div>
+          <div class="rank-step"><div class="n">INVESTIGATOR</div><div class="d">Reads the counterparty before the amount.</div></div>
+          <div class="rank-step hi"><div class="n">AML EXPERT</div><div class="d">Consistent, calibrated, economical.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-grid">
+          <div class="skill-chip"><div class="e">🪪</div><div class="t">KYC / CDD</div></div>
+          <div class="skill-chip"><div class="e">🔍</div><div class="t">Transaction Monitoring</div></div>
+          <div class="skill-chip"><div class="e">🌍</div><div class="t">Sanctions &amp; PEP</div></div>
+          <div class="skill-chip"><div class="e">📰</div><div class="t">Adverse Media</div></div>
+          <div class="skill-chip"><div class="e">🏢</div><div class="t">UBO / KYB</div></div>
+          <div class="skill-chip"><div class="e">⚠️</div><div class="t">Risk Assessment</div></div>
+          <div class="skill-chip"><div class="e">📋</div><div class="t">STR/SAR &amp; Escalation</div></div>
+          <div class="skill-chip"><div class="e">⚖️</div><div class="t">AML Regulation</div></div>
+          <div class="skill-chip"><div class="e">🧠</div><div class="t">Investigation &amp; Judgement</div></div>
+        </div>
+        <div class="prog-foot">
+          <div class="f">🔥 <span><b>Streak</b> — a daily case to keep you moving</span></div>
+          <div class="f">⚔️ <span><b>Boss cases</b> — the hardest files, tagged</span></div>
+          <div class="f">🏆 <span><b>Badges</b> — First Investigation, UBO Detective…</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alex">
+  <div class="wrap">
+    <div class="kicker">YOUR MENTOR</div>
+    <h2>Alex is senior on the desk this week.</h2>
+    <div class="alex-card">
+      <div class="alex-av">AD</div>
+      <div>
+        <blockquote>"Caught on 'structuring below the threshold' — that's the flag a real desk would
+          have raised too. Worth reading the AMLR note, it's not boilerplate."</blockquote>
+        <div class="who"><b>Alex Devereux</b> · Senior AML Analyst — reacting to a Laundromat catch, live</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close-cta">
+  <div class="wrap">
+    <div class="kicker" style="color:#8FB4D6">READY WHEN YOU ARE</div>
+    <h2>Your desk is already set up.</h2>
+    <div class="sec-lede">No account, no install. All data is fictional — a training environment,
+      not a real bank.</div>
+    <div class="hero-ctas">
+      <a class="cta-main" href="workstation.html">Start the demo <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>RegRadar Academy · fictional data, training environment only</span>
+    <span><a href="index.html">← Back to RegRadar</a></span>
+  </footer>
 </div>
 
-<script>
-AcademyShell.mount('');
-
-const S=AcademyShell;
-const P=S.progress;
-
-function paint(){
-  const r=S.rank, mods=S.modules;
-  const done=mods.filter(m=>(P.modules[m.id]||{}).done>0).length;
-  const started=mods.filter(m=>(P.modules[m.id]||{}).started).length;
-
-  document.getElementById('pRank').textContent=r.n;
-  document.getElementById('pXp').textContent=S.xp.toLocaleString('en-US');
-  document.getElementById('pMods').textContent=`${started}/${mods.length}`;
-  /* The next threshold comes from the shell: duplicating the scale here
-     would just guarantee the two drift apart one day. */
-  const nx=[600,1600,3200,5500].find(x=>x>S.xp);
-  document.getElementById('pNext').textContent = nx? (nx-S.xp).toLocaleString('en-US')+' XP' : 'max rank';
-
-  if(S.xp>0){
-    document.getElementById('hd').innerHTML=`Rank reached: <em>${r.n}</em>.`;
-    document.getElementById('lede').textContent=
-      'The path follows the order in which the job is learned. Pick up where you left off, '
-      + 'or revisit a module — the cases don’t repeat identically.';
-  }
-
-  /* The path makes visible what the tabs can't say: what's done, what's
-     next, and why in this order. */
-  const WHY={
-   laundromat:'You can’t recognise a pattern you’ve never produced. Play the adversary first.',
-   ownership:'Without knowing who actually owns a company, no alert on it makes sense.',
-   desk:'The job itself: triage, investigate, and live with what each choice costs.',
-   filing:'What the FIU actually receives — and the least-taught skill in the job.',
-   inspection:'A supervisor goes back through your own decisions and asks why.',
-  };
-  let nextFound=false;
-  document.getElementById('path').innerHTML=mods.map(m=>{
-    const rec=P.modules[m.id]||{};
-    const open=!!m.file && done>=m.needs;
-    let cls, st;
-    if(rec.done>0){ cls='done open'; st='DONE'; }
-    else if(open && !nextFound){ cls='now open'; st='UP NEXT'; nextFound=true; }
-    else if(open){ cls='open'; st='AVAILABLE'; }
-    else { cls='soon'; st=m.file?'LOCKED':'IN DEVELOPMENT'; }
-    const mark=rec.done>0?'✓':m.no;
-    return `<div class="node ${cls}">
-      <div class="mark"><span>${mark}</span></div>
-      <div class="card" ${open?`onclick="location.href='${m.file}'"`:''}>
-        <div class="top"><span class="nm">${m.label}</span><span class="st">${st}</span></div>
-        <div class="sub">MODULE ${m.no}${rec.done?` · ${rec.done} completed`:''}</div>
-        <div class="tag">${m.tag}</div>
-        <div class="why">${WHY[m.id]||''}</div>
-        ${open?`<span class="go">${rec.done?'RESUME':'START'} →</span>`:''}
-      </div></div>`;
-  }).join('');
-}
-
-function wipe(){
-  if(confirm('Clear all progress saved in this browser?')) S.reset();
-}
-paint();
-</script>
 </body>
 </html>
