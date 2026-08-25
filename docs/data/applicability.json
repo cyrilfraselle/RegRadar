@@ -1,0 +1,248 @@
+{
+  "_meta": {
+    "purpose": "Deterministic applicability matrix: entity type + activities -> which EU regulations apply. No AI, no inference — every verdict is a stated rule with a reason a compliance officer can check against the text.",
+    "scope": "Belgium / EU financial services. Covers the 15 regulations held in full article text under data/laws/.",
+    "status_values": {
+      "direct": "Directly applicable to this entity type.",
+      "conditional": "Applies only if you carry out the relevant activity — check the condition.",
+      "na": "Not applicable to this entity type on its own."
+    },
+    "disclaimer": "Indicative mapping to orient a compliance officer, not legal advice. Always verify against the instrument and any Belgian transposition.",
+    "last_reviewed": "2026-08-25"
+  },
+
+  "entities": [
+    {"id": "bank",    "label": "Bank",               "icon": "🏦", "desc": "Credit institution"},
+    {"id": "pi",      "label": "Payment institution","icon": "💳", "desc": "Authorised under PSD2"},
+    {"id": "emi",     "label": "E-money institution","icon": "🪙", "desc": "Issues electronic money"},
+    {"id": "casp",    "label": "Crypto / CASP",      "icon": "₿",  "desc": "Crypto-asset service provider"},
+    {"id": "invfirm", "label": "Investment firm",    "icon": "📈", "desc": "MiFID investment services"},
+    {"id": "fund",    "label": "Fund manager",       "icon": "📊", "desc": "UCITS ManCo or AIFM"},
+    {"id": "insurer", "label": "Insurer",            "icon": "☂️", "desc": "Insurance undertaking"},
+    {"id": "other",   "label": "Other obliged entity","icon": "⚖️", "desc": "Accountant, lawyer, estate agent, trust or company service provider"}
+  ],
+
+  "activities": [
+    {"id": "crypto",     "label": "Crypto-asset services", "icon": "₿"},
+    {"id": "payments",   "label": "Payment services",      "icon": "💳"},
+    {"id": "investment", "label": "Investment services",   "icon": "📈"},
+    {"id": "ict",        "label": "ICT outsourcing",       "icon": "🖥️"},
+    {"id": "lifeins",    "label": "Life insurance",        "icon": "☂️"},
+    {"id": "crossborder","label": "Cross-border EU",       "icon": "🌍"}
+  ],
+
+  "regulations": [
+    {
+      "id": "AMLR", "celex": "32024R1624", "name": "AMLR",
+      "full_name": "Anti-Money Laundering Regulation", "topic": "AML/CFT",
+      "instrument": "Regulation", "applies_from": "2027-07-10",
+      "applies": {
+        "bank": "direct", "pi": "direct", "emi": "direct", "casp": "direct",
+        "invfirm": "direct", "fund": "direct", "insurer": "conditional", "other": "direct"
+      },
+      "notes": {
+        "insurer": "Life insurance and other investment-related insurance only — non-life insurers are not obliged entities on this basis.",
+        "other": "Obliged-entity status depends on your specific profession and the thresholds in Art. 3."
+      },
+      "activity_raises": {"lifeins": ["insurer"]},
+      "why": "Single rulebook for customer due diligence, beneficial ownership and internal controls. Directly applicable — no national transposition."
+    },
+    {
+      "id": "AMLD6", "celex": "32024L1640", "name": "AMLD6",
+      "full_name": "6th Anti-Money Laundering Directive", "topic": "AML/CFT",
+      "instrument": "Directive", "applies_from": "2027-07-10",
+      "applies": {
+        "bank": "direct", "pi": "direct", "emi": "direct", "casp": "direct",
+        "invfirm": "direct", "fund": "direct", "insurer": "conditional", "other": "direct"
+      },
+      "notes": {
+        "bank": "Binds you through Belgian transposition, not directly — watch for stricter Belgian requirements.",
+        "insurer": "Life insurance only, mirroring AMLR scope."
+      },
+      "why": "Covers supervision, FIUs and beneficial-ownership registers. Reaches you via Belgian law, so the national text is what governs."
+    },
+    {
+      "id": "AMLAR", "celex": "32024R1620", "name": "AMLA Regulation",
+      "full_name": "Anti-Money Laundering Authority Regulation", "topic": "AML/CFT",
+      "instrument": "Regulation", "applies_from": "2025-07-01",
+      "applies": {
+        "bank": "conditional", "pi": "conditional", "emi": "conditional", "casp": "conditional",
+        "invfirm": "conditional", "fund": "conditional", "insurer": "conditional", "other": "conditional"
+      },
+      "notes": {
+        "bank": "Direct AMLA supervision applies only to selected obliged entities operating cross-border at scale. Otherwise AMLA sets the standards and the NBB or FSMA applies them to you."
+      },
+      "activity_raises": {"crossborder": ["bank", "pi", "emi", "casp"]},
+      "why": "Establishes the EU AML authority. For most firms the effect is indirect — through the standards your national supervisor then enforces."
+    },
+    {
+      "id": "TFR", "celex": "32023R1113", "name": "TFR",
+      "full_name": "Transfer of Funds Regulation (recast)", "topic": "AML/CFT",
+      "instrument": "Regulation", "applies_from": "2024-12-30",
+      "applies": {
+        "bank": "direct", "pi": "direct", "emi": "direct", "casp": "direct",
+        "invfirm": "na", "fund": "na", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "casp": "Extends the travel rule to crypto-asset transfers — originator and beneficiary information must accompany every transfer."
+      },
+      "activity_raises": {"crypto": ["invfirm", "fund"], "payments": ["invfirm", "fund", "other"]},
+      "why": "The travel rule: information that must accompany transfers of funds and crypto-assets. Applies to payment service providers and CASPs."
+    },
+    {
+      "id": "DORA", "celex": "32022R2554", "name": "DORA",
+      "full_name": "Digital Operational Resilience Act", "topic": "Operational Resilience",
+      "instrument": "Regulation", "applies_from": "2025-01-17",
+      "applies": {
+        "bank": "direct", "pi": "direct", "emi": "direct", "casp": "direct",
+        "invfirm": "direct", "fund": "direct", "insurer": "direct", "other": "na"
+      },
+      "notes": {
+        "other": "DORA lists financial entities specifically — most non-financial obliged entities fall outside it."
+      },
+      "why": "ICT risk management, incident reporting, resilience testing and third-party oversight. Its list of 'financial entities' is deliberately broad."
+    },
+    {
+      "id": "NIS2", "celex": "32022L2555", "name": "NIS2",
+      "full_name": "NIS2 Directive", "topic": "Operational Resilience",
+      "instrument": "Directive", "applies_from": "2024-10-17",
+      "applies": {
+        "bank": "conditional", "pi": "conditional", "emi": "conditional", "casp": "conditional",
+        "invfirm": "conditional", "fund": "conditional", "insurer": "conditional", "other": "conditional"
+      },
+      "notes": {
+        "bank": "DORA is lex specialis for ICT risk in financial entities — where DORA covers a requirement, it displaces the NIS2 equivalent. Belgian transposition still matters for anything DORA leaves open."
+      },
+      "why": "Baseline EU cybersecurity regime. For financial entities it largely gives way to DORA, but does not disappear entirely."
+    },
+    {
+      "id": "MiCA", "celex": "32023R1114", "name": "MiCA",
+      "full_name": "Markets in Crypto-Assets Regulation", "topic": "Crypto",
+      "instrument": "Regulation", "applies_from": "2024-12-30",
+      "applies": {
+        "bank": "conditional", "pi": "conditional", "emi": "conditional", "casp": "direct",
+        "invfirm": "conditional", "fund": "conditional", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "casp": "Full authorisation, conduct, custody and governance regime.",
+        "bank": "Credit institutions may provide crypto-asset services under their existing licence, subject to notification — the conduct rules still bind.",
+        "emi": "Issuing an e-money token brings you squarely into MiCA Title IV."
+      },
+      "activity_raises": {"crypto": ["bank", "pi", "emi", "invfirm", "fund"]},
+      "why": "Authorisation and conduct regime for crypto-asset issuers and service providers."
+    },
+    {
+      "id": "MiFID II", "celex": "32014L0065", "name": "MiFID II",
+      "full_name": "Markets in Financial Instruments Directive II", "topic": "Markets",
+      "instrument": "Directive", "applies_from": "2018-01-03",
+      "applies": {
+        "bank": "conditional", "pi": "na", "emi": "na", "casp": "na",
+        "invfirm": "direct", "fund": "conditional", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "bank": "Applies when you provide investment services — suitability, product governance, best execution.",
+        "fund": "Applies to MiFID 'top-up' services such as individual portfolio management.",
+        "casp": "Crypto-assets outside MiFID's definition of financial instruments fall under MiCA instead."
+      },
+      "activity_raises": {"investment": ["bank", "fund", "casp"]},
+      "why": "Investor protection and conduct-of-business rules for investment services."
+    },
+    {
+      "id": "MiFIR", "celex": "32014R0600", "name": "MiFIR",
+      "full_name": "Markets in Financial Instruments Regulation", "topic": "Markets",
+      "instrument": "Regulation", "applies_from": "2018-01-03",
+      "applies": {
+        "bank": "conditional", "pi": "na", "emi": "na", "casp": "na",
+        "invfirm": "direct", "fund": "conditional", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "invfirm": "Transaction reporting, transparency and trading obligations."
+      },
+      "activity_raises": {"investment": ["bank", "fund"]},
+      "why": "Market transparency and transaction reporting. Directly applicable — the regulation half of the MiFID package."
+    },
+    {
+      "id": "MAR", "celex": "32014R0596", "name": "MAR",
+      "full_name": "Market Abuse Regulation", "topic": "Markets",
+      "instrument": "Regulation", "applies_from": "2016-07-03",
+      "applies": {
+        "bank": "conditional", "pi": "na", "emi": "na", "casp": "na",
+        "invfirm": "direct", "fund": "conditional", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "invfirm": "Includes the obligation to detect and report suspicious orders and transactions (STORs).",
+        "casp": "MiCA carries its own market-abuse title for crypto-assets — MAR does not extend to them."
+      },
+      "activity_raises": {"investment": ["bank", "fund"]},
+      "why": "Insider dealing and market manipulation, including suspicious transaction and order reporting."
+    },
+    {
+      "id": "CRR", "celex": "32013R0575", "name": "CRR",
+      "full_name": "Capital Requirements Regulation", "topic": "Capital",
+      "instrument": "Regulation", "applies_from": "2014-01-01",
+      "applies": {
+        "bank": "direct", "pi": "na", "emi": "na", "casp": "na",
+        "invfirm": "conditional", "fund": "na", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "invfirm": "Only the largest, bank-like investment firms remain in CRR. Most are under IFR/IFD instead."
+      },
+      "why": "Own funds, liquidity, leverage and large exposures for credit institutions."
+    },
+    {
+      "id": "CRD IV", "celex": "32013L0036", "name": "CRD IV",
+      "full_name": "Capital Requirements Directive IV", "topic": "Capital",
+      "instrument": "Directive", "applies_from": "2014-01-01",
+      "applies": {
+        "bank": "direct", "pi": "na", "emi": "na", "casp": "na",
+        "invfirm": "conditional", "fund": "na", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "bank": "Authorisation, governance, remuneration and the SREP — reaches you via Belgian banking law."
+      },
+      "why": "Authorisation and prudential supervision of credit institutions."
+    },
+    {
+      "id": "PSD2", "celex": "32015L2366", "name": "PSD2",
+      "full_name": "Payment Services Directive 2", "topic": "Payments",
+      "instrument": "Directive", "applies_from": "2018-01-13",
+      "applies": {
+        "bank": "conditional", "pi": "direct", "emi": "direct", "casp": "conditional",
+        "invfirm": "na", "fund": "na", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "bank": "Applies to your payment services — strong customer authentication, access to accounts, conduct.",
+        "pi": "Your core authorisation regime. PSD3 and the PSR are in the legislative pipeline."
+      },
+      "activity_raises": {"payments": ["bank", "casp", "invfirm", "other"]},
+      "why": "Authorisation and conduct for payment services, including strong customer authentication."
+    },
+    {
+      "id": "EMD2", "celex": "32009L0110", "name": "EMD2",
+      "full_name": "E-Money Directive 2", "topic": "Payments",
+      "instrument": "Directive", "applies_from": "2011-04-30",
+      "applies": {
+        "bank": "conditional", "pi": "na", "emi": "direct", "casp": "conditional",
+        "invfirm": "na", "fund": "na", "insurer": "na", "other": "na"
+      },
+      "notes": {
+        "casp": "Issuing an e-money token engages both EMD2 and MiCA Title IV."
+      },
+      "activity_raises": {"payments": ["bank"], "crypto": ["casp"]},
+      "why": "Issuance and redeemability of electronic money, and safeguarding of funds."
+    },
+    {
+      "id": "GDPR", "celex": "32016R0679", "name": "GDPR",
+      "full_name": "General Data Protection Regulation", "topic": "Data Protection",
+      "instrument": "Regulation", "applies_from": "2018-05-25",
+      "applies": {
+        "bank": "direct", "pi": "direct", "emi": "direct", "casp": "direct",
+        "invfirm": "direct", "fund": "direct", "insurer": "direct", "other": "direct"
+      },
+      "notes": {
+        "bank": "Note the tension between AML record-keeping duties and data-minimisation and erasure rights — document how you reconcile them."
+      },
+      "why": "Applies to anyone processing personal data. In practice that is every regulated firm, and it interacts directly with your KYC records."
+    }
+  ]
+}

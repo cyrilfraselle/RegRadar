@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRadar — What applies to me</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
+<style>
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F4F5F6; --surface-3:#EDEEF0; --border:#E3E5E8; --border-strong:#0A0A0A;
+    --text:#0A0A0A; --text-2:#5B6069; --text-3:#8B9099;
+    --accent:#0039A6; --accent-bg:#E7EDFB;
+    --crit:#C8320F; --crit-bg:#FBEDEB; --imp:#9A6B00; --imp-bg:#FBF3E5; --ok:#0F7B4F; --ok-bg:#EAF5EE;
+    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"IBM Plex Mono",Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.2,0,0,1);
+  }
+  html[data-theme="dark"]{
+    --bg:#08090B; --surface:#0E1013; --surface-2:#14171B; --surface-3:#1A1E24; --border:#20242A; --border-strong:#F2F2F2;
+    --text:#F2F4F6; --text-2:#98A0AA; --text-3:#666E78;
+    --accent:#4D8DFF; --accent-bg:#14213D;
+    --crit:#FF5C3D; --crit-bg:#2A1518; --imp:#FFB93D; --imp-bg:#2A2008; --ok:#2DD48F; --ok-bg:#0F2018;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.5;
+    letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
+  .topbar-inner{display:flex;align-items:center;gap:20px;height:60px;max-width:1180px;margin:0 auto;padding:0 24px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+  .logo-mark{width:30px;height:30px;background:var(--accent);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:17px}
+  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
+  .nav{display:flex;margin-left:16px;min-width:0;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{padding:8px 14px;font-size:13px;font-weight:500;color:var(--text-2);white-space:nowrap;flex:0 0 auto;
+    border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 140ms var(--ease),border-color 140ms var(--ease)}
+  .nav a:hover:not(.active){color:var(--text)}
+  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
+  .topbar-right{margin-left:auto;flex:0 0 auto}
+  .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;color:var(--text-2);
+    cursor:pointer;font-size:15px}
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+  @media(max-width:760px){.nav{margin-left:0}.logo-sub{display:none}}
+
+  .hero{padding:34px 0 4px}
+  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+  h1{font-size:clamp(26px,3.6vw,38px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-top:12px;text-wrap:balance}
+  .lede{font-size:15px;color:var(--text-2);line-height:1.6;margin-top:12px;max-width:64ch}
+
+  .sec{padding:26px 0;border-top:2px solid var(--border-strong);margin-top:26px}
+  .sec:first-of-type{border-top:none;margin-top:0}
+  .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3)}
+  .sd{font-size:12.5px;color:var(--text-3);margin-top:4px}
+
+  /* the one control that matters */
+  .picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:1px;
+    background:var(--border);border:1px solid var(--border);margin-top:16px}
+  .ent{background:var(--surface);padding:15px 14px;cursor:pointer;text-align:left;
+    transition:background 120ms var(--ease);border:none;color:inherit;font-family:inherit}
+  .ent:hover{background:var(--surface-2)}
+  .ent.on{background:var(--accent);color:#fff}
+  .ent .ic{font-size:20px;line-height:1}
+  .ent .nm{font-size:13.5px;font-weight:700;margin-top:9px;letter-spacing:-.01em}
+  .ent .ds{font-size:11px;color:var(--text-3);margin-top:3px;line-height:1.35}
+  .ent.on .ds{color:rgba(255,255,255,.8)}
+
+  .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .act{font-size:12.5px;font-weight:600;padding:7px 13px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text-2);cursor:pointer;font-family:inherit;
+    transition:all 120ms var(--ease)}
+  .act:hover{border-color:var(--text-3);color:var(--text)}
+  .act.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .verdict-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .tally{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
+  .tally b{font-size:17px;font-weight:700}
+  .tally .d b{color:var(--crit)} .tally .c b{color:var(--imp)} .tally .n b{color:var(--text-3)}
+
+  .matrix{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:16px}
+  .row{background:var(--surface);display:grid;grid-template-columns:132px 1fr 120px;gap:16px;
+    align-items:start;padding:14px 16px;transition:background 120ms var(--ease)}
+  .row:hover{background:var(--surface-2)}
+  .row.na{opacity:.45}
+  .row .rn{font-weight:700;font-size:14px;letter-spacing:-.01em}
+  .row .rmeta{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+  .row .rw{font-size:12.5px;color:var(--text-2);line-height:1.55}
+  .row .rnote{font-size:12.5px;color:var(--text);line-height:1.55;margin-top:7px;
+    border-left:2px solid var(--imp);padding-left:11px}
+  .row .rdate{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:7px}
+  .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    padding:4px 9px;text-align:center;white-space:nowrap;justify-self:end}
+  .badge.direct{background:var(--crit-bg);color:var(--crit);border:1px solid var(--crit)}
+  .badge.conditional{background:var(--imp-bg);color:var(--imp);border:1px solid var(--imp)}
+  .badge.na{background:var(--surface-2);color:var(--text-3);border:1px solid var(--border)}
+  @media(max-width:700px){
+    .row{grid-template-columns:1fr auto;gap:10px}
+    .row .rw,.row .rnote,.row .rdate{grid-column:1/-1}
+  }
+
+  .empty{padding:40px 20px;text-align:center;color:var(--text-3);font-size:14px;
+    background:var(--surface);border:1px dashed var(--border);margin-top:16px}
+
+  .disclaimer{margin-top:16px;font-size:11.5px;color:var(--text-3);line-height:1.6;
+    border-left:2px solid var(--border);padding-left:12px;max-width:78ch}
+  footer{border-top:2px solid var(--border-strong);margin-top:30px;padding:20px 0 50px;
+    font-size:10px;color:var(--text-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Belgium &amp; EU</span></div>
+  <nav class="nav">
+    <a href="index.html">RegWatch</a>
+    <a href="regwatch.html" class="active">What applies to me</a>
+    <a href="law.html">Read the Law</a>
+    <a href="country-risk.html">Country Risk</a>
+    <a href="obligations.html">Obligations</a>
+    <a href="extractor.html">Extractor</a>
+    <a href="ubo.html">UBO</a>
+    <a href="academy.html">Academy</a>
+  </nav>
+  <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button></div>
+</div></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Regulatory applicability · Belgium &amp; EU</div>
+    <h1 id="headline">What applies to me?</h1>
+    <div class="lede" id="lede">Pick what you are. That's it — no form, no sign-up. You'll get a
+      live applicability matrix over the fifteen EU regulations held here in full text.</div>
+  </section>
+
+  <section class="sec">
+    <div class="sl">I am a…</div>
+    <div class="sd">Pick one. Your choice stays on this device.</div>
+    <div class="picker" id="picker"></div>
+
+    <div class="sl" style="margin-top:22px">And I also do… <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-3)">(optional — sharpens the answer)</span></div>
+    <div class="acts" id="acts"></div>
+  </section>
+
+  <section class="sec" id="resultSec">
+    <div class="verdict-head">
+      <div><div class="sl">Your regulatory perimeter</div><div class="sd" id="verdictSub">—</div></div>
+      <div class="tally" id="tally"></div>
+    </div>
+    <div id="matrix"></div>
+    <div class="disclaimer" id="disc"></div>
+  </section>
+
+  <footer>
+    <span>RegRadar · regulatory applicability</span>
+    <span id="stamp">—</span>
+  </footer>
+</div>
+
+<script>
+const KEY='regradar-profile';
+let DATA=null, ENTITY='', ACTS=new Set();
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
+  h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}}
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({entity:ENTITY, acts:[...ACTS]})); }catch(e){} }
+function load(){ try{ const p=JSON.parse(localStorage.getItem(KEY)||'null');
+  if(p){ ENTITY=p.entity||''; ACTS=new Set(p.acts||[]); } }catch(e){} }
+
+/* The whole engine. An activity can only ever raise a verdict, never
+   lower one — doing more things cannot make a regulation stop applying. */
+function verdictFor(reg, entity, acts){
+  let status = reg.applies[entity] || 'na';
+  const raises = reg.activity_raises || {};
+  for(const a of acts){
+    const targets = raises[a];
+    if(targets && targets.includes(entity)){
+      status = status==='na' ? 'conditional' : 'direct';
+    }
+  }
+  return status;
+}
+
+const ORDER={direct:0, conditional:1, na:2};
+
+/* "Directly applicable" is a term of art: a regulation binds you as-is,
+   a directive only through national transposition. Saying a directive is
+   "directly applicable" next to a note explaining that it isn't would
+   undermine exactly the audience this is for. */
+function badgeLabel(status, instrument){
+  if(status==='conditional') return 'Conditional';
+  if(status==='na') return 'Not applicable';
+  return instrument==='Directive' ? 'Applies · via BE law' : 'Directly applicable';
+}
+
+function render(){
+  // entity buttons
+  document.getElementById('picker').innerHTML = DATA.entities.map(e=>`
+    <button class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}">
+      <div class="ic">${e.icon}</div>
+      <div class="nm">${esc(e.label)}</div>
+      <div class="ds">${esc(e.desc)}</div>
+    </button>`).join('');
+  document.querySelectorAll('.ent').forEach(b=>b.addEventListener('click',()=>{
+    ENTITY = ENTITY===b.dataset.e ? '' : b.dataset.e; save(); render();
+  }));
+
+  // activity chips
+  document.getElementById('acts').innerHTML = DATA.activities.map(a=>`
+    <button class="act ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('');
+  document.querySelectorAll('.act').forEach(b=>b.addEventListener('click',()=>{
+    ACTS.has(b.dataset.a)?ACTS.delete(b.dataset.a):ACTS.add(b.dataset.a); save(); render();
+  }));
+
+  const box=document.getElementById('matrix');
+  const disc=document.getElementById('disc');
+  if(!ENTITY){
+    document.getElementById('verdictSub').textContent='Pick what you are above to see your perimeter.';
+    document.getElementById('tally').innerHTML='';
+    box.innerHTML='<div class="empty">Nothing selected yet — choose an entity type above.</div>';
+    disc.textContent='';
+    document.getElementById('headline').textContent='What applies to me?';
+    return;
+  }
+
+  const ent=DATA.entities.find(e=>e.id===ENTITY);
+  const rows=DATA.regulations
+    .map(r=>({r, v:verdictFor(r, ENTITY, ACTS)}))
+    .sort((a,b)=> ORDER[a.v]-ORDER[b.v] || a.r.name.localeCompare(b.r.name));
+
+  const n={direct:0,conditional:0,na:0};
+  rows.forEach(x=>n[x.v]++);
+
+  document.getElementById('headline').textContent=`${ent.icon} ${ent.label}`;
+  document.getElementById('verdictSub').textContent =
+    ACTS.size ? `${ent.desc} · also: ${[...ACTS].map(a=>DATA.activities.find(x=>x.id===a).label.toLowerCase()).join(', ')}`
+              : ent.desc;
+  document.getElementById('tally').innerHTML=
+    `<span class="d"><b>${n.direct}</b> in scope</span>
+     <span class="c"><b>${n.conditional}</b> conditional</span>
+     <span class="n"><b>${n.na}</b> not applicable</span>`;
+
+  box.className='matrix';
+  box.innerHTML = rows.map(({r,v})=>{
+    const note = (r.notes||{})[ENTITY];
+    const showDate = v!=='na' && r.applies_from;
+    return `<div class="row ${v}">
+      <div>
+        <div class="rn">${esc(r.name)}</div>
+        <div class="rmeta">${esc(r.instrument)} · ${esc(r.topic)}</div>
+      </div>
+      <div>
+        <div class="rw">${esc(r.why)}</div>
+        ${note && v!=='na' ? `<div class="rnote">${esc(note)}</div>` : ''}
+        ${showDate ? `<div class="rdate">Applies from ${esc(r.applies_from)}</div>` : ''}
+      </div>
+      <span class="badge ${v}">${badgeLabel(v, r.instrument)}</span>
+    </div>`;
+  }).join('');
+
+  disc.textContent = DATA._meta.disclaimer;
+}
+
+async function boot(){
+  load();
+  try{
+    DATA = await fetch('data/applicability.json').then(r=>r.json());
+  }catch(e){
+    document.getElementById('matrix').innerHTML='<div class="empty">Could not load the applicability data.</div>';
+    return;
+  }
+  document.getElementById('stamp').textContent='Mapping reviewed '+DATA._meta.last_reviewed;
+  render();
+}
+boot();
+</script>
+</body>
+</html>
