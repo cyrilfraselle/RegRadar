@@ -6,6 +6,7 @@
 <title>THE LAUNDROMAT — RegRadar Academy</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="academy.css">
+<script src="academy-shell.js"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════════════
    THE LAUNDROMAT — module 01. You play the launderer.
@@ -765,6 +766,10 @@ function finish(){
   acSave(st);
   logEvent({module:'laundromat', at:Date.now(), score:Math.round(sc), verdict:S.verdict,
     catches:S.catches, weeks:S.week});
+  if(window.AcademyShell){
+    AcademyShell.complete('laundromat', 1);
+    AcademyShell.award('laundromat', 100 + Math.round(sc*2));
+  }
 
   const caught=S.log.filter(e=>e.kind==='caught');
   const [vh,vb]=VERDICTS[S.verdict]||VERDICTS.done;
@@ -796,7 +801,7 @@ function finish(){
       unfocused play ≈24%, maximum-size speed runs ≈19%. Craft beats appetite by a factor of about 2.7.</p>
     <div class="row">
       <button class="go-big" onclick="startRun()">RUN IT AGAIN</button>
-      <a class="ghost" href="ownership.html">MODULE 02 — DÉTENTION</a>
+      <a class="ghost" href="ownership.html">MODULE 02 — OWNERSHIP</a>
       <a class="ghost" href="workstation.html">BACK TO THE ACADEMY</a>
     </div>`;
   show('vEnd'); hud();

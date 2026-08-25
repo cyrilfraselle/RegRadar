@@ -385,6 +385,96 @@ table.dt td b{color:var(--text);font-weight:600}
 .inv-locked{padding:40px 20px;text-align:center;color:var(--text-3)}
 .inv-locked .lk{font-size:32px;margin-bottom:10px}
 
+/* ── laundromat (module 01) ──────────────────────────────────────── */
+.lb-rules{border:1px solid var(--border);border-radius:8px;margin-top:16px}
+.lb-rules .rh{padding:10px 16px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-3);font-weight:700;border-bottom:1px solid var(--border)}
+.lb-rules .rr{display:flex;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:12.5px;
+  line-height:1.55;color:var(--text-2)}
+.lb-rules .rr:last-child{border-bottom:none}
+.lb-rules .rr .i{font-family:var(--mono);color:var(--crit);font-weight:700;flex:0 0 auto}
+.lb-rules .rr b{color:var(--text)}
+.lb-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);margin-bottom:16px}
+.lb-stats div{background:var(--surface);padding:10px 13px}
+.lb-stats .n{font-family:var(--mono);font-size:16px;font-weight:700}
+.lb-stats .l{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.lb-heatrow{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.lb-heatbar{flex:1;height:8px;background:var(--surface-3);border-radius:4px;overflow:hidden}
+.lb-heatbar i{display:block;height:100%;background:linear-gradient(90deg,var(--warn),var(--crit));
+  transition:width .3s}
+.lb-strikes{display:flex;gap:5px}
+.lb-strikes span{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--border-strong)}
+.lb-strikes span.hit{background:var(--crit);border-color:var(--crit)}
+.lb-stageh{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--text-2);margin:16px 0 8px}
+.lb-stageh .amt{font-weight:400;color:var(--text-3);text-transform:none;letter-spacing:0}
+.lb-ops{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.lb-op{border:1px solid var(--border);border-radius:8px;padding:11px 13px;text-align:left;
+  background:var(--surface);cursor:pointer;position:relative;font-family:var(--sans)}
+.lb-op:hover:not(:disabled){border-color:var(--brand)}
+.lb-op.sel{border-color:var(--brand);background:rgba(31,92,139,.05)}
+.lb-op:disabled{opacity:.4;cursor:not-allowed}
+.lb-op .on2{font-size:12.5px;font-weight:600}
+.lb-op .od{font-size:11px;color:var(--text-2);margin-top:4px;line-height:1.4}
+.lb-op .om{font-size:9.5px;color:var(--text-3);margin-top:7px;font-family:var(--mono);letter-spacing:.02em}
+.lb-op .used{position:absolute;top:9px;right:11px;font-size:10px;font-family:var(--mono);color:var(--warn)}
+.lb-cfg{border:1px solid var(--brand);border-radius:8px;padding:16px 18px;margin-top:14px;background:rgba(31,92,139,.03)}
+.lb-cfg .ch b{font-size:13.5px}
+.lb-cfg .ch .sub2{display:block;font-size:11.5px;color:var(--text-2);margin-top:3px}
+.lb-sec{margin-top:14px}
+.lb-sl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);font-weight:700;margin-bottom:7px}
+.lb-chips{display:flex;flex-wrap:wrap;gap:6px}
+.lb-chip{border:1px solid var(--border-strong);border-radius:6px;padding:7px 12px;font-size:11.5px;
+  background:var(--surface);cursor:pointer;font-family:var(--sans)}
+.lb-chip.sel{border-color:var(--brand);background:var(--brand);color:#fff}
+.lb-jnote{font-size:11px;color:var(--text-3);margin-top:8px;line-height:1.5}
+.lb-expo{margin-top:16px;display:flex;gap:18px;align-items:flex-start}
+.lb-exrows{flex:1;display:grid;gap:5px}
+.lb-exr{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;font-size:10px;color:var(--text-3)}
+.lb-exb{height:5px;background:var(--surface-3);border-radius:3px;overflow:hidden}
+.lb-exb i{display:block;height:100%;background:var(--ok)}
+.lb-exr.hot .exb i, .lb-exr.hot i{background:var(--warn)}
+.lb-exr.crit i{background:var(--crit)}
+.lb-verdict2{flex:0 0 120px;text-align:center;border-left:1px solid var(--border);padding-left:16px}
+.lb-verdict2 .vt{font-size:12px;font-weight:700;letter-spacing:.04em}
+.lb-verdict2 .vs{font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4}
+.lb-op-btn{margin-top:14px;width:100%;background:var(--crit);color:#fff;border:none;border-radius:6px;
+  padding:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--sans)}
+.lb-waitrow{display:flex;align-items:center;gap:9px;margin-top:16px;flex-wrap:wrap}
+.lb-waitrow .wl{font-size:10px;color:var(--text-3);font-weight:700}
+.lb-ghost{border:1px solid var(--border-strong);background:var(--surface);color:var(--text-2);
+  border-radius:6px;padding:9px 14px;font-size:11.5px;cursor:pointer;font-family:var(--sans)}
+.lb-feed{border:1px solid var(--border);border-radius:8px;margin-top:18px;max-height:180px;overflow-y:auto}
+.lb-fe{padding:9px 14px;border-bottom:1px solid var(--border);font-size:11.5px}
+.lb-fe:last-child{border-bottom:none}
+.lb-fe .fw{font-family:var(--mono);font-size:9.5px;color:var(--text-3);letter-spacing:.04em}
+.lb-fe.caught{background:var(--crit-bg)}
+.lb-fe.caught .ft{color:var(--crit);font-weight:600}
+.lb-fe.ok .ft{color:var(--ok);font-weight:600}
+.lb-fe .fs{color:var(--text-3);font-size:10.5px;margin-top:2px}
+.lb-overlay{position:fixed;inset:0;background:rgba(10,10,10,.5);z-index:900;display:none;
+  align-items:center;justify-content:center;padding:20px}
+.lb-overlay.on{display:flex}
+.lb-card{background:var(--surface);border-radius:10px;max-width:520px;width:100%;max-height:80vh;
+  overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.lb-card .kh{padding:16px 20px;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;
+  letter-spacing:.06em;color:var(--crit)}
+.lb-card.okc .kh{color:var(--ok)}
+.lb-card .kb{padding:18px 20px}
+.lb-card .flag{font-size:15px;font-weight:600}
+.lb-card .kmeta{font-size:10.5px;color:var(--text-3);margin-top:6px;font-family:var(--mono)}
+.lb-card .ktext{font-size:12.5px;color:var(--text-2);line-height:1.6;margin-top:12px}
+.lb-card .kfoot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
+.lb-endscore{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);margin:16px 0}
+.lb-endscore div{background:var(--surface);padding:12px 10px;text-align:center}
+.lb-endscore .n{font-family:var(--mono);font-size:16px;font-weight:700}
+.lb-endscore .l{font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:4px}
+.lb-flagrow{border-top:1px solid var(--border);padding:10px 0;font-size:11.5px}
+.lb-flagrow b{display:block;color:var(--crit)}
+.lb-flagrow .fa2{color:var(--brand-ink);font-size:10.5px;margin-top:2px}
+.lb-flagrow .fd2{color:var(--text-2);margin-top:3px;line-height:1.5}
+
 /* ── training path panel ─────────────────────────────────────────── */
 .path-prog{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
   border:1px solid var(--border);margin-bottom:22px}
@@ -651,11 +741,13 @@ table.dt td b{color:var(--text);font-weight:600}
     <div class="tapp"><span class="tico" style="background:#1F5C8B"></span>AML Investigation — <span id="inv-case-title">Ownership structures</span></div>
   </div>
   <div class="inv-tabs">
-    <div class="inv-tab on" data-view="primer">Principles</div>
-    <div class="inv-tab" data-view="case">Case workbench</div>
+    <div class="inv-tab on" data-view="laundromat">01 · Laundromat</div>
+    <div class="inv-tab" data-view="primer">02 · Principles</div>
+    <div class="inv-tab" data-view="case">02 · Case workbench</div>
   </div>
   <div class="inv-body">
-    <div class="inv-view on" id="inv-primer"></div>
+    <div class="inv-view on" id="inv-laundromat"></div>
+    <div class="inv-view" id="inv-primer"></div>
     <div class="inv-view" id="inv-case"></div>
   </div>
   <div class="resize-handle"></div>
@@ -1352,6 +1444,7 @@ const INV = (function(){
 
   function switchView(v){
     document.querySelectorAll('.inv-tab').forEach(t=>t.classList.toggle('on', t.dataset.view===v));
+    document.getElementById('inv-laundromat').classList.toggle('on', v==='laundromat');
     document.getElementById('inv-primer').classList.toggle('on', v==='primer');
     document.getElementById('inv-case').classList.toggle('on', v==='case');
   }
@@ -1368,7 +1461,7 @@ const INV = (function(){
     return `<div class="inv-locked"><div class="lk">🔒</div>
       <div style="font-weight:600;color:var(--text-2);margin-bottom:6px">This module is locked</div>
       Finish The Laundromat first — the path is sequential.
-      <div style="margin-top:14px"><button class="inv-submit" style="width:auto;padding:10px 18px" onclick="window.open('laundromat.html','_blank')">Open The Laundromat</button></div>
+      <div style="margin-top:14px"><button class="inv-submit" style="width:auto;padding:10px 18px" onclick="document.querySelector('.inv-tab[data-view=laundromat]').click()">Open The Laundromat</button></div>
       </div>`;
   }
   function renderPrimer(){
@@ -1550,14 +1643,14 @@ const PATH = (function(){
         <div><div class="n">${esc(r.n)}</div><div class="l">Rank</div></div>
         <div><div class="n">${AcademyShell.xp.toLocaleString('en-US')}</div><div class="l">XP</div></div>
         <div><div class="n">${doneCount}/${mods.length}</div><div class="l">Completed</div></div>
-        <div><div class="n">3</div><div class="l">Live modules</div></div>
+        <div><div class="n">2</div><div class="l">In workstation</div></div>
       </div>
       ${mods.map(m=>{
         const rec = P.modules[m.id]||{};
         const unlocked = m.file && doneCount>=m.needs;
         const done = rec.done>0;
         const cls = done?'done':unlocked?'now':'locked';
-        const where = m.id==='ownership' ? 'IN YOUR WORKSTATION' : 'CLASSIC PAGE';
+        const where = (m.id==='ownership'||m.id==='laundromat') ? 'IN YOUR WORKSTATION' : 'CLASSIC PAGE';
         const st = done?'DONE':unlocked?where:(m.file?'LOCKED':'IN DEVELOPMENT');
         return `<div class="path-mod ${cls}" data-mid="${m.id}" ${unlocked?'':'style="cursor:default"'}>
           <div class="num">${done?'✓':m.no}</div>
@@ -1572,11 +1665,417 @@ const PATH = (function(){
         const unlocked = m.file && doneCount>=m.needs;
         if(!unlocked) return;
         if(id==='ownership'){ WM.open('invest'); }
+        else if(id==='laundromat'){ WM.open('invest'); document.querySelector('.inv-tab[data-view="laundromat"]')?.click(); }
         else { window.open(m.file, '_blank'); notify('↗️','#5B6472','Opening classic page', m.label+' is not migrated into the workstation yet.'); }
       });
     });
   }
   return {render};
+})();
+
+/* ═══════════════════════════════════════════════════════════════════
+   LAUNDROMAT (module 01) — engine ported verbatim from laundromat.html
+   (same TYPOLOGIES/JURISDICTIONS/risk model/scoring), new UI layer
+   matching the workstation's light design system instead of the
+   classic page's dark console.
+   ═══════════════════════════════════════════════════════════════════ */
+const LM = (function(){
+  const TOTAL = 10000000, MAX_WEEKS = 104, MAX_CATCHES = 3, HEAT_FATAL = 100;
+
+  const JURISDICTIONS = [
+   {id:'be', n:'Belgium',      risk:0.06, scrutiny:0.90, note:'Home turf. Nothing rings country-risk alarms — but the net here is competent.'},
+   {id:'lu', n:'Luxembourg',   risk:0.10, scrutiny:0.85, note:'Dense financial centre, comfortable with holding structures. Watched accordingly.'},
+   {id:'ch', n:'Switzerland',  risk:0.14, scrutiny:0.80, note:'Discretion by tradition, cooperation by treaty. Old reputation, modern reporting.'},
+   {id:'hk', n:'Hong Kong',    risk:0.22, scrutiny:0.62, note:'Trade hub. Paper moves as fast as money — invoices are hard to verify at volume.'},
+   {id:'ee', n:'Estonia',      risk:0.20, scrutiny:0.58, note:'Digital-first banking and a crypto-licensing past it is still living down.'},
+   {id:'ae', n:'UAE',          risk:0.34, scrutiny:0.45, note:'Gold, property, free zones. Recently delisted, still on every screening matrix.'},
+   {id:'pa', n:'Panama',       risk:0.44, scrutiny:0.35, note:'Corporate services on demand. Any EU counterparty applies enhanced diligence — Art. 34.'},
+   {id:'ky', n:'Cayman Is.',   risk:0.38, scrutiny:0.40, note:'Zero-tax vehicles. The structure is legal; the questions about it are mandatory.'},
+  ];
+
+  const TYPOLOGIES = [
+   {id:'structuring', stage:'placement', n:'Structured deposits', cap:2000000, fee:0.02, base:0.0153, amp:0.9, weeks:2,
+    juris:['be','lu','ch','ee'], d:'Teams of runners deposit cash below the identification threshold, many branches, many days.',
+    flag:'Structuring below the threshold', art:'Art. 19 & 26', artTitle:'Application of CDD / Ongoing monitoring',
+    detects:'Thresholds are not a blind spot — linked transactions are aggregated. A pattern of deposits sitting just under the limit is itself the alarm, and Art. 26 obliges the bank to monitor for exactly that.'},
+   {id:'front', stage:'placement', n:'Cash-intensive front', cap:2500000, fee:0.06, base:0.0136, amp:0.7, weeks:2,
+    juris:['be','lu','ae','hk'], d:'A launderette, a car wash, a restaurant. Dirty cash rides in on top of real takings.',
+    flag:'Turnover inconsistent with business profile', art:'Art. 25 & 26', artTitle:'Purpose and nature of the relationship / Ongoing monitoring',
+    detects:'At onboarding the bank recorded what a business of this size and sector should turn over. Art. 26 obliges it to keep comparing. A café banking like a supermarket is a one-line query.'},
+   {id:'casino', stage:'placement', n:'Casino chips', cap:1000000, fee:0.08, base:0.0153, amp:1.0, weeks:1,
+    juris:['be','ae','hk','ky'], d:'Buy chips in cash, play the minimum, cash out as documented winnings.',
+    flag:'Minimal play against high buy-in', art:'Art. 3 & 19', artTitle:'Obliged entities / Application of CDD',
+    detects:'Casinos are obliged entities under Art. 3 — the cage applies CDD on collection of winnings. Buy-in with no gambling pattern behind the cash-out is a standing red flag in every casino AML programme.'},
+   {id:'smuggle', stage:'placement', n:'Bulk cash movement', cap:4000000, fee:0.09, base:0.0213, amp:1.45, weeks:2,
+    juris:['ae','pa','ky','hk'], d:'Vacuum-packed notes in freight or luggage, placed with a bank where questions are softer.',
+    flag:'Undeclared cash at the border', art:'Reg. (EU) 2018/1672', artTitle:'Cash entering or leaving the Union',
+    detects:'€10,000 or more in cash crossing the EU border must be declared — controls run both directions, and detection dogs do not read declarations. Seizure first, explanation later.'},
+   {id:'tbml', stage:'layering', n:'Trade over-invoicing', cap:3500000, fee:0.07, base:0.0170, amp:0.8, weeks:2,
+    juris:['hk','ae','pa','ee'], d:'Goods ship at one value, invoices say another. The difference crosses the border as trade.',
+    flag:'Invoice value far from market price', art:'Art. 25 & 26', artTitle:'Purpose and nature / Ongoing monitoring',
+    detects:'Trade finance desks screen unit prices against market ranges. A container of phone cases invoiced like a container of phones is the oldest pattern in the TBML typology library.'},
+   {id:'shells', stage:'layering', n:'Shell company loop', cap:4000000, fee:0.05, base:0.0153, amp:0.85, weeks:2,
+    juris:['pa','ky','lu','ch'], d:'Funds tour a ring of companies that exist as filing-cabinet folders, then come home as "intercompany".',
+    flag:'No identifiable beneficial owner behind the chain', art:'Art. 51 & 52', artTitle:'Identification of beneficial owners',
+    detects:'Every EU counterparty must resolve the chain to a natural person — ownership through layers is computed through the layers, per Art. 52. A loop that resolves to nobody is not private, it is reportable.'},
+   {id:'mules', stage:'layering', n:'Money mule network', cap:1800000, fee:0.12, base:0.0195, amp:1.05, weeks:1,
+    juris:['be','ee','hk'], d:'Dozens of recruited accounts each pass a small slice along, fast.',
+    flag:'Fan-out / fan-in velocity pattern', art:'Art. 26 & 69', artTitle:'Monitoring of transactions / Reporting of suspicions',
+    detects:'Mule patterns are the best-trained detection models in retail banking: new accounts, immediate onward transfers, shared devices. One mule flagged unravels the network — and Art. 69 puts the report on the FIU\'s desk the same week.'},
+   {id:'crypto', stage:'layering', n:'Crypto chain-hop', cap:2500000, fee:0.06, base:0.0170, amp:0.95, weeks:1,
+    juris:['ee','ch','hk','ae'], d:'Fiat in at an exchange, hop across chains and mixers, fiat out at another.',
+    flag:'Mixer exposure on chain analytics', art:'Art. 40', artTitle:'Transactions with self-hosted addresses',
+    detects:'CASPs are obliged entities; Art. 40 imposes specific measures on self-hosted address flows. Chain analytics tag mixer contact permanently — the blockchain forgets nothing, which is the opposite of what you needed.'},
+   {id:'loanback', stage:'layering', n:'Loan-back scheme', cap:3000000, fee:0.05, base:0.0145, amp:0.7, weeks:3,
+    juris:['lu','ch','pa','ky'], d:'Your offshore company "lends" you your own money. Repayments even make it look responsible.',
+    flag:'Loan with no commercial logic', art:'Art. 25 & 53', artTitle:'Purpose and nature / Beneficial ownership through control',
+    detects:'A loan needs a lender with an origin of funds and a reason to lend. When the borrower controls the lender — Art. 53 control test — the "loan" is a mirror, and mirrors get questions.'},
+   {id:'invoices', stage:'layering', n:'Phantom services', cap:2200000, fee:0.08, base:0.0153, amp:0.8, weeks:2,
+    juris:['be','lu','hk','pa'], d:'Consulting, marketing, "management fees" — invoices for work nobody can point to.',
+    flag:'Services with no observable delivery', art:'Art. 26 & 69', artTitle:'Ongoing monitoring / Reporting of suspicions',
+    detects:'Service invoices leave no customs trail, which auditors know as well as you do. Round amounts, generic descriptions, counterparties two weeks old — the monitoring rule for this is standard-issue.'},
+   {id:'realestate', stage:'integration', n:'Real estate', cap:5000000, fee:0.10, base:0.0153, amp:0.85, weeks:3,
+    juris:['be','ae','pa','ky'], d:'Property bought through a company, rented out. Clean rent, appreciating asset.',
+    flag:'Opaque buyer behind a property vehicle', art:'Art. 3 & 20', artTitle:'Obliged entities / Customer due diligence',
+    detects:'Estate agents and notaries are obliged entities under Art. 3 — the deed does not pass without CDD on the buyer and the buyer behind the buyer. Property is where laundering is looked for first.'},
+   {id:'luxury', stage:'integration', n:'Luxury assets', cap:1800000, fee:0.13, base:0.0170, amp:0.9, weeks:1,
+    juris:['ae','ch','hk'], d:'Art, watches, cars. Portable value with an auction receipt.',
+    flag:'High-value goods bought against no known income', art:'Art. 74 & 80', artTitle:'Threshold-based reports on high-value goods / Cash limits',
+    detects:'Dealers in high-value goods file threshold-based reports under Art. 74, and Art. 80 caps what cash can buy at €10,000. The receipt you wanted as cover is itself a report.'},
+   {id:'business', stage:'integration', n:'Business acquisition', cap:4500000, fee:0.08, base:0.0136, amp:0.75, weeks:4,
+    juris:['be','lu','ee','hk'], d:'Buy a real company, run it, pay yourself dividends. The slowest and the cleanest.',
+    flag:'Acquisition funds from an unverifiable origin', art:'Art. 20 & 51', artTitle:'Customer due diligence / Beneficial owners',
+    detects:'The seller\'s bank, the notary and the target\'s bank each run CDD on where the purchase price originates. Source-of-funds is the question the whole scheme exists to avoid — asked three times.'},
+  ];
+
+  const SIZES = [
+   {id:'small',  n:'Discreet', f:0.35},
+   {id:'medium', n:'Standard', f:0.65},
+   {id:'large',  n:'Aggressive', f:1.00},
+  ];
+
+  function newGame(seed){
+    return {seed: seed>>>0 || 1, week:1, heat:0, catches:0,
+      pools:{dirty:TOTAL, placed:0, layered:0, clean:0, frozen:0},
+      fees:0, useCount:{}, jUse:{}, recent:[], log:[], over:false, verdict:null};
+  }
+  function rng(S){ S.seed|=0; S.seed=S.seed+0x6D2B79F5|0;
+    let t=Math.imul(S.seed^S.seed>>>15,1|S.seed);
+    t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }
+  const SRC={placement:'dirty',layering:'placed',integration:'layered'};
+  const DST={placement:'placed',layering:'layered',integration:'clean'};
+  function velocity(S){ const w=S.week; return S.recent.filter(x=>w-x<5).length; }
+  function opRisk(S,t,j,sizeF,amount){
+    const amt=amount/t.cap;
+    let p=t.base + t.amp*0.20*amt*amt*amt + j.risk*0.15*(0.3+amt) + j.scrutiny*0.010
+      + Math.pow(S.heat/100,2.2)*0.20 + Math.max(0,velocity(S)-1)*0.10
+      + Math.max(0,(S.useCount[t.id]||0)-1)*0.030 + Math.max(0,(S.jUse[j.id]||0)-2)*0.018;
+    return Math.min(0.92,p);
+  }
+  function footprint(t,j,amount){ const a=amount/t.cap; return 0.9+3.0*Math.pow(a,1.6)+j.risk*2.5; }
+  function doOp(S,tid,jid,sizeId){
+    const t=TYPOLOGIES.find(x=>x.id===tid), j=JURISDICTIONS.find(x=>x.id===jid), size=SIZES.find(x=>x.id===sizeId);
+    if(!t||!j||!size||S.over) return null;
+    if(!t.juris.includes(j.id)) return null;
+    const src=SRC[t.stage];
+    const amount=Math.min(S.pools[src], Math.round(t.cap*size.f));
+    if(amount<25000) return null;
+    const p=opRisk(S,t,j,size.f,amount);
+    const roll=rng(S);
+    S.week+=t.weeks; S.recent.push(S.week);
+    S.useCount[t.id]=(S.useCount[t.id]||0)+1; S.jUse[j.id]=(S.jUse[j.id]||0)+1;
+    let ev;
+    if(roll<p){
+      S.pools[src]-=amount; S.pools.frozen+=amount; S.catches+=1;
+      S.heat=Math.min(100,S.heat+15+j.risk*10);
+      ev={kind:'caught',week:S.week,t,j,amount,p};
+    } else {
+      const fee=Math.round(amount*t.fee);
+      S.pools[src]-=amount; S.pools[DST[t.stage]]+=amount-fee; S.fees+=fee;
+      S.heat=Math.min(100,S.heat+footprint(t,j,amount));
+      ev={kind:'ok',week:S.week,t,j,amount,fee,p};
+    }
+    S.log.push(ev); endCheck(S); return ev;
+  }
+  function layLow(S,weeks){ if(S.over) return null; S.week+=weeks;
+    const ev={kind:'wait',week:S.week,weeks}; S.log.push(ev); endCheck(S); return ev; }
+  function walkAway(S){ if(S.over) return; S.over=true; S.verdict='walked'; }
+  function endCheck(S){
+    if(S.catches>=MAX_CATCHES){ S.over=true; S.verdict='investigation'; return; }
+    if(S.heat>=HEAT_FATAL){ S.over=true; S.verdict='heat'; return; }
+    if(S.week>MAX_WEEKS){ S.over=true; S.verdict='time'; return; }
+    const movable=S.pools.dirty+S.pools.placed+S.pools.layered;
+    if(movable<25000){ S.over=true; S.verdict='done'; }
+  }
+  function score(S){ return S.pools.clean/TOTAL*100; }
+
+  return {TOTAL,MAX_WEEKS,MAX_CATCHES,HEAT_FATAL,JURISDICTIONS,TYPOLOGIES,SIZES,SRC,DST,
+    newGame,doOp,layLow,walkAway,opRisk,velocity,score};
+})();
+
+const LB = (function(){
+  const esc = s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const eur = n=>'€'+Math.round(n).toLocaleString('en-IE');
+  const eurM = n=> n>=1e6? '€'+(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M' : n>=1e3? '€'+Math.round(n/1e3)+'k' : eur(n);
+  let S = null;
+  let sel = {tid:null, jid:null, size:'small'};
+
+  function root(){ return document.getElementById('inv-laundromat'); }
+
+  function acState(){ try{ return JSON.parse(localStorage.getItem('regradar-academy')||'{}'); }catch(e){ return {}; } }
+  function acSave(st){ try{ localStorage.setItem('regradar-academy', JSON.stringify(st)); }catch(e){} }
+
+  function renderIntro(){
+    const st = acState();
+    const best = (st.laundromat && st.laundromat.best) ? st.laundromat.best.toFixed(1)+'% laundered' : 'no runs yet';
+    root().innerHTML = `
+      <div class="kicker">MODULE 01 · PLAY THE ADVERSARY</div>
+      <h1 class="pt">You have €10,000,000 and it is all dirty.</h1>
+      <div class="sub">Get as much of it as you can into the legitimate economy before the compliance
+        function closes the net. Every euro must survive three stages — placement, layering, integration.
+        Every operation leaves a trace. The heat you accumulate never goes away.</div>
+      <div class="lb-rules">
+        <div class="rh">House rules</div>
+        <div class="rr"><span class="i">01</span><span><b>Three strikes.</b> Each frozen tranche brings the investigation closer. The third opens a file with your name on it — run over.</span></div>
+        <div class="rr"><span class="i">02</span><span><b>Heat only rises.</b> Successful operations leave footprints too. Lying low slows your visible tempo, but the record does not shrink.</span></div>
+        <div class="rr"><span class="i">03</span><span><b>Size rings bells.</b> Maxing a channel is exponentially louder than using it discreetly. Speed, repetition and risky jurisdictions all compound.</span></div>
+        <div class="rr"><span class="i">04</span><span><b>Every catch teaches.</b> When you are caught, you see the red flag that tripped you and the AMLR article that put that control there.</span></div>
+        <div class="rr"><span class="i">05</span><span><b>You can walk away.</b> Banking what is already clean is a decision real launderers get wrong. So do analysts.</span></div>
+      </div>
+      <button class="inv-submit" style="width:auto;padding:12px 24px;margin-top:16px;background:var(--crit)" id="lb-start">Open for business</button>
+      <div style="font-size:11px;color:var(--text-3);margin-top:12px">Best score so far: <b style="color:var(--text-2)">${best}</b></div>`;
+    document.getElementById('lb-start').addEventListener('click', startRun);
+  }
+
+  function startRun(){
+    S = LM.newGame(Date.now() & 0xffffffff);
+    sel = {tid:null, jid:null, size:'small'};
+    renderBoard();
+  }
+
+  function statsRow(){
+    return `<div class="lb-stats">
+      <div><div class="n">${S.week} / ${LM.MAX_WEEKS}</div><div class="l">Week</div></div>
+      <div><div class="n">${eurM(S.pools.dirty)}</div><div class="l">Dirty</div></div>
+      <div><div class="n">${eurM(S.pools.placed+S.pools.layered)}</div><div class="l">In play</div></div>
+      <div><div class="n" style="color:var(--ok)">${eurM(S.pools.clean)}</div><div class="l">Clean</div></div>
+    </div>
+    <div class="lb-heatrow">
+      <div class="lb-heatbar"><i style="width:${S.heat}%"></i></div>
+      <div style="font-size:10.5px;color:var(--text-3);font-family:var(--mono)">HEAT ${Math.round(S.heat)}</div>
+      <div class="lb-strikes">${[1,2,3].map(i=>`<span class="${S.catches>=i?'hit':''}"></span>`).join('')}</div>
+    </div>`;
+  }
+
+  const STAGES=[['placement','Placement — get cash into the system','dirty'],
+    ['layering','Layering — break the trail','placed'],
+    ['integration','Integration — make it yours again','layered']];
+
+  function renderBoard(){
+    let h = statsRow();
+    for(const [stage,label,pool] of STAGES){
+      const avail = S.pools[pool];
+      h += `<div class="lb-stageh">${label} <span class="amt">· ${eurM(avail)} available</span></div><div class="lb-ops">`;
+      for(const t of LM.TYPOLOGIES.filter(x=>x.stage===stage)){
+        const can = avail>=25000 && !S.over;
+        const used = S.useCount[t.id]||0;
+        h += `<button class="lb-op ${sel.tid===t.id?'sel':''}" ${can?'':'disabled'} data-tid="${t.id}">
+          ${used?`<span class="used">×${used}</span>`:''}
+          <div class="on2">${esc(t.n)}</div><div class="od">${esc(t.d)}</div>
+          <div class="om">UP TO ${eurM(t.cap)} · ${t.weeks}WK · FEE ${(t.fee*100).toFixed(0)}%</div>
+        </button>`;
+      }
+      h += '</div>';
+    }
+    h += `<div id="lb-cfg-mount"></div>
+      <div class="lb-waitrow">
+        <span class="wl">OR</span>
+        <button class="lb-ghost" id="lb-wait2">Lay low · 2 wk</button>
+        <button class="lb-ghost" id="lb-wait4">Lay low · 4 wk</button>
+        <button class="lb-ghost" id="lb-walk">Walk away — bank ${eurM(S.pools.clean)}</button>
+      </div>
+      <div class="lb-feed" id="lb-feed"></div>
+      <div class="lb-overlay" id="lb-overlay"><div class="lb-card" id="lb-card"></div></div>`;
+    root().innerHTML = h;
+    wireBoard(); renderCfg(); renderFeed();
+  }
+
+  function wireBoard(){
+    root().querySelectorAll('.lb-op').forEach(b=>b.addEventListener('click', ()=>{
+      sel.tid = b.dataset.tid;
+      const t = LM.TYPOLOGIES.find(x=>x.id===sel.tid);
+      if(!t.juris.includes(sel.jid)) sel.jid = t.juris[0];
+      renderBoard();
+      document.getElementById('lb-cfg-mount').scrollIntoView({behavior:'smooth', block:'nearest'});
+    }));
+    const w2=document.getElementById('lb-wait2'), w4=document.getElementById('lb-wait4'), wk=document.getElementById('lb-walk');
+    if(w2) w2.addEventListener('click', ()=>{ LM.layLow(S,2); afterMove(); });
+    if(w4) w4.addEventListener('click', ()=>{ LM.layLow(S,4); afterMove(); });
+    if(wk) wk.addEventListener('click', confirmWalk);
+  }
+
+  function bucket(p){
+    if(p<0.07) return ['QUIET','','Below the noise floor of the monitoring.'];
+    if(p<0.13) return ['ELEVATED','hot','Visible if anyone is already looking.'];
+    if(p<0.22) return ['LOUD','hot','This is the kind of blip that gets a case opened.'];
+    return ['RECKLESS','crit','You are asking to be caught.'];
+  }
+
+  function renderCfg(){
+    const m = document.getElementById('lb-cfg-mount'); if(!m) return;
+    if(!sel.tid){ m.innerHTML=''; return; }
+    const t = LM.TYPOLOGIES.find(x=>x.id===sel.tid);
+    const pool = S.pools[LM.SRC[t.stage]];
+    const j = LM.JURISDICTIONS.find(x=>x.id===sel.jid);
+    const size = LM.SIZES.find(x=>x.id===sel.size);
+    const amount = Math.min(pool, Math.round(t.cap*size.f));
+    const p = LM.opRisk(S,t,j,size.f,amount);
+    const [vt,vc,vs] = bucket(p);
+    const amt = amount/t.cap;
+    const parts = [
+      ['SIZE', t.amp*0.20*amt*amt*amt, 0.25],
+      ['COUNTRY', j.risk*0.15*(0.3+amt)+j.scrutiny*0.010, 0.12],
+      ['HEAT', Math.pow(S.heat/100,2.2)*0.20, 0.20],
+      ['SPEED', Math.max(0,LM.velocity(S)-1)*0.10, 0.20],
+      ['REPETITION', Math.max(0,(S.useCount[t.id]||0)-1)*0.030, 0.12],
+    ];
+    const rows = parts.map(([n,v,max])=>{
+      const w = Math.min(100, v/max*100);
+      const cls = w>66?'crit':w>33?'hot':'';
+      return `<div class="lb-exr ${cls}"><span>${n}</span><div class="lb-exb"><i style="width:${w}%"></i></div></div>`;
+    }).join('');
+    m.innerHTML = `<div class="lb-cfg">
+      <div class="ch"><b>${esc(t.n)}</b><span class="sub2">${esc(t.d)}</span></div>
+      <div class="lb-sec"><div class="lb-sl">Jurisdiction</div>
+        <div class="lb-chips">${t.juris.map(jid=>{
+          const jj = LM.JURISDICTIONS.find(x=>x.id===jid);
+          const stars='•'.repeat(Math.max(1,Math.round(jj.risk*10)));
+          return `<button class="lb-chip ${sel.jid===jid?'sel':''}" data-jid="${jid}">${esc(jj.n)} <span style="opacity:.7">${stars}</span></button>`;
+        }).join('')}</div>
+        <div class="lb-jnote">${esc(j.note)}</div></div>
+      <div class="lb-sec"><div class="lb-sl">Tranche</div>
+        <div class="lb-chips">${LM.SIZES.map(sz=>{
+          const a = Math.min(pool, Math.round(t.cap*sz.f));
+          return `<button class="lb-chip ${sel.size===sz.id?'sel':''}" data-sid="${sz.id}">${sz.n} <span style="opacity:.7">${eurM(a)}</span></button>`;
+        }).join('')}</div></div>
+      <div class="lb-expo">
+        <div class="lb-exrows">${rows}</div>
+        <div class="lb-verdict2"><div class="vt">${vt}</div><div class="vs">${vs}</div></div>
+      </div>
+      <button class="lb-op-btn" id="lb-exec">Execute — ${eurM(amount)} · ${t.weeks} wk</button>
+    </div>`;
+    m.querySelectorAll('[data-jid]').forEach(b=>b.addEventListener('click', ()=>{ sel.jid=b.dataset.jid; renderCfg(); }));
+    m.querySelectorAll('[data-sid]').forEach(b=>b.addEventListener('click', ()=>{ sel.size=b.dataset.sid; renderCfg(); }));
+    document.getElementById('lb-exec').addEventListener('click', exec);
+  }
+
+  function renderFeed(){
+    const el = document.getElementById('lb-feed'); if(!el) return;
+    el.innerHTML = S.log.slice().reverse().map(e=>{
+      if(e.kind==='wait') return `<div class="lb-fe"><div class="fw">WK ${e.week}</div>Lay low — ${e.weeks} week${e.weeks>1?'s':''} of silence.</div>`;
+      if(e.kind==='caught') return `<div class="lb-fe caught"><div class="fw">WK ${e.week} · ${esc(e.j.n).toUpperCase()}</div>
+        <div class="ft">FROZEN ${eurM(e.amount)}</div><div class="fs">${esc(e.t.n)} — ${esc(e.t.flag)}</div></div>`;
+      return `<div class="lb-fe ok"><div class="fw">WK ${e.week} · ${esc(e.j.n).toUpperCase()}</div>
+        <div class="ft">${eurM(e.amount)} through</div><div class="fs">${esc(e.t.n)} · fee ${eurM(e.fee)}</div></div>`;
+    }).join('') || '<div class="lb-fe">No operations yet.</div>';
+  }
+
+  function exec(){
+    const ev = LM.doOp(S, sel.tid, sel.jid, sel.size);
+    if(!ev) return;
+    renderStatsInPlace(); renderFeed();
+    if(ev.kind==='caught') showCatch(ev); else showOk(ev);
+  }
+  function renderStatsInPlace(){
+    // simplest correct approach: re-render the whole board (keeps stats/ops/cfg in sync)
+    renderBoard();
+  }
+  function afterMove(){ if(S.over) finish(); else renderBoard(); }
+
+  function openOverlay(cls, html){
+    const ov = document.getElementById('lb-overlay'); if(!ov) return;
+    document.getElementById('lb-card').className = 'lb-card '+cls;
+    document.getElementById('lb-card').innerHTML = html;
+    ov.classList.add('on');
+  }
+  function closeOv(){
+    const ov = document.getElementById('lb-overlay'); if(ov) ov.classList.remove('on');
+    afterMove();
+  }
+  window.LB_closeOv = closeOv;
+
+  function showCatch(ev){
+    openOverlay('', `<div class="kh">■ TRANCHE FROZEN — STRIKE ${S.catches} OF ${LM.MAX_CATCHES}</div>
+      <div class="kb"><div class="flag">${esc(ev.t.flag)}</div>
+      <div class="kmeta">WK ${ev.week} · ${esc(ev.t.n).toUpperCase()} · ${esc(ev.j.n).toUpperCase()} · ${eurM(ev.amount)} SEIZED</div>
+      <div class="ktext">${esc(ev.t.detects)}</div>
+      <div style="margin-top:12px;padding:10px 12px;border-left:2px solid var(--brand);font-size:11.5px">
+        <b>AMLR — ${esc(ev.t.art)}</b><br>${esc(ev.t.artTitle)}</div></div>
+      <div class="kfoot"><button class="lb-op-btn" style="width:auto" onclick="LB_closeOv()">Understood</button></div>`);
+  }
+  function showOk(ev){
+    if(ev.p<0.13){ afterMove(); return; }
+    openOverlay('okc', `<div class="kh">THROUGH — BARELY</div><div class="kb">
+      <div class="flag">${eurM(ev.amount)} made it.</div>
+      <div class="ktext">That operation was loud — the kind of pattern that survives on luck, not craft. The footprint it left is permanent.</div></div>
+      <div class="kfoot"><button class="lb-ghost" onclick="LB_closeOv()">Move on</button></div>`);
+  }
+  function confirmWalk(){
+    openOverlay('okc', `<div class="kh">WALK AWAY?</div><div class="kb">
+      <div class="flag">Bank ${eurM(S.pools.clean)} and disappear.</div>
+      <div class="ktext">Everything not yet integrated — ${eurM(S.pools.dirty+S.pools.placed+S.pools.layered)} — stays where it is, radioactive. The run ends.</div></div>
+      <div class="kfoot"><button class="lb-ghost" onclick="LB_closeOv()">Keep working</button>
+      <button class="lb-op-btn" style="width:auto" onclick="LB_doWalk()">Walk away</button></div>`);
+  }
+  window.LB_doWalk = ()=>{ document.getElementById('lb-overlay').classList.remove('on'); LM.walkAway(S); finish(); };
+
+  const VERDICTS = {
+    investigation:['THE FILE IS OPEN.','Three frozen tranches was all it took. The investigation now owns everything you did not integrate — and a timeline of everything you did.'],
+    heat:['THE NET CLOSED.','No single operation gave you away. All of them did, together. Accumulated heat is how patient monitoring beats patient laundering.'],
+    time:['THE TRAIL WENT COLD — FOR THEM AND FOR YOU.','Two years is as long as the network would hold. What was not integrated stays dirty.'],
+    walked:['YOU WALKED.','You banked what was clean and left the rest. In the typology literature this is the ending nobody writes about, because the ones who manage it are not in the case files.'],
+    done:['NOTHING LEFT TO MOVE.','Every euro is either clean or frozen. The ledger is the verdict.'],
+  };
+
+  function finish(){
+    const sc = LM.score(S);
+    const st = acState();
+    const prev = (st.laundromat && st.laundromat.best) || 0;
+    st.laundromat = {best:Math.max(prev,sc), last:sc, runs:((st.laundromat&&st.laundromat.runs)||0)+1, verdict:S.verdict, at:Date.now()};
+    acSave(st);
+    if(typeof AcademyShell!=='undefined'){
+      AcademyShell.complete('laundromat', 1);
+      AcademyShell.award('laundromat', 100+Math.round(sc*2));
+      if(typeof PATH!=='undefined') PATH.render();
+    }
+    const caught = S.log.filter(e=>e.kind==='caught');
+    const [vh,vb] = VERDICTS[S.verdict] || VERDICTS.done;
+    root().innerHTML = `
+      <div class="kicker">RUN COMPLETE · ${S.week} WEEKS</div>
+      <h1 class="pt">${vh}</h1>
+      <div class="sub">${vb}</div>
+      <div class="lb-endscore">
+        <div><div class="n" style="color:var(--ok)">${sc.toFixed(1)}%</div><div class="l">Laundered</div></div>
+        <div><div class="n">${eurM(S.pools.clean)}</div><div class="l">Clean</div></div>
+        <div><div class="n" style="color:var(--crit)">${eurM(S.pools.frozen)}</div><div class="l">Frozen</div></div>
+        <div><div class="n">${eurM(S.fees)}</div><div class="l">Fees paid</div></div>
+        <div><div class="n" style="color:var(--brand)">${st.laundromat.best.toFixed(1)}%</div><div class="l">Best</div></div>
+      </div>
+      ${caught.length ? `<div class="kicker" style="margin-top:6px">Every flag you tripped — and the article that put it there</div>
+        ${caught.map(e=>`<div class="lb-flagrow"><b>${esc(e.t.flag)}</b><div class="fa2">AMLR ${esc(e.t.art)} — ${esc(e.t.artTitle)}</div><div class="fd2">${esc(e.t.detects)}</div></div>`).join('')}`
+        : `<div class="sub" style="color:var(--ok)">You tripped nothing. Whatever you take from this module, take the discipline that produced that.</div>`}
+      <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+        <button class="inv-submit" style="width:auto;padding:11px 20px;background:var(--crit)" id="lb-again">Run it again</button>
+        <button class="lb-ghost" id="lb-toownership">Module 02 — Ownership →</button>
+      </div>`;
+    document.getElementById('lb-again').addEventListener('click', startRun);
+    document.getElementById('lb-toownership').addEventListener('click', ()=>{ switchView('primer'); });
+    notify(S.verdict==='investigation'||S.verdict==='heat' ? '⚠️':'✅', S.verdict==='investigation'||S.verdict==='heat' ? '#B3392C':'#1E7145',
+      'Laundromat run complete', sc.toFixed(1)+'% laundered · '+VERDICTS[S.verdict][0]);
+  }
+
+  function boot(){ renderIntro(); }
+  return {boot};
 })();
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1780,6 +2279,7 @@ if(!localStorage.getItem('meridiaan-wm-v1')){
   WM.open('mail'); WM.open('browser');
 }
 renderTmSide(); renderTmHead(); renderTmThread();
+LB.boot();
 loadCaseData();
 
 /* scripted notifications — a living, not static, desk */
