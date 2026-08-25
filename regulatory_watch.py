@@ -41,6 +41,7 @@ from classification_v3 import (
     classify_article,
     REFINED_GNEWS_SOURCES,
     OFFICIAL_REGULATOR_SOURCES,
+    GOOGLE_NEWS_SOURCES,
     compute_counts,
     build_subject,
 )
@@ -772,6 +773,13 @@ def est_pertinent(article: dict) -> bool:
     return any(terme.lower() in texte for terme in tous_termes)
  
  
+# Official regulator feeds publish a handful of times a week; a Google
+# News keyword search returns dozens of hits every run. Nothing upstream
+# balances that, so left uncapped GNews items bury the archive under
+# their own volume alone regardless of relevance. This bounds it.
+MAX_GNEWS_PER_SOURCE_PER_RUN = 15
+
+
 def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
     """Filtre les articles nouveaux, pertinents, et calcule leur score."""
     resultats = []
@@ -806,7 +814,19 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
  
     # Tri : impact décroissant, puis date décroissante
     resultats.sort(key=lambda x: (-x["impact"], -x["date"].timestamp()))
-    return resultats
+
+    # Cap GNews volume per source per run (official regulator sources are
+    # never capped — there's no risk of them flooding anything).
+    gnews_counts: dict[str, int] = {}
+    plafonnes = []
+    for art in resultats:
+        sid = art["source_id"]
+        if sid in GOOGLE_NEWS_SOURCES:
+            gnews_counts[sid] = gnews_counts.get(sid, 0) + 1
+            if gnews_counts[sid] > MAX_GNEWS_PER_SOURCE_PER_RUN:
+                continue
+        plafonnes.append(art)
+    return plafonnes
  
 # ═══════════════════════════════════════════════════════════════
 #  RÉSUMÉS VIA CLAUDE API (optionnel)

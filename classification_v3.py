@@ -80,6 +80,18 @@ SERIOUS_CRIME = [
     "criminal", "market manipulation", "market abuse", "aml", "cft",
 ]
 
+# A generic enforcement word ("probe", "investigated", "charged"...) is not
+# on its own evidence of a financial-sector story — a major-FI name can
+# collide with an unrelated outlet's byline or a coincidental mention (see
+# "KBC Digital" reporting on an unrelated police matter, matching "KBC").
+# Require this context too before enforcement language alone earns weight.
+FINANCE_CONTEXT = [
+    "bank", "banking", "financial institution", "fintech", "payment",
+    "insurer", "insurance", "asset manager", "broker", "investment firm",
+    "crypto", "exchange", "lender", "credit institution", "regulator",
+    "supervisory", "compliance", "money laundering",
+]
+
 # Major financial institutions to watch by name.
 # NOTE: matched with word boundaries (see _contains_fi) to avoid
 # false positives like "ing" inside "reporting" or "n26" inside text.
@@ -104,15 +116,47 @@ NOISE_TERMS = [
     "gdp", "inflation rate", "unemployment", "beats estimates", "beats expectations",
 ]
 
+# Off-topic content that shares a keyword with a regulator's name/acronym
+# by coincidence (arts, entertainment, sport, lifestyle) — a Google News
+# search on "ESMA" or "EBA" will occasionally surface these; unlike
+# NOISE_TERMS above, a real regulatory story essentially never carries
+# both an enforcement signal AND one of these, so this filter applies
+# unconditionally rather than yielding to has_enforcement.
+OFF_TOPIC_TERMS = [
+    "thriller", "novel", "film review", "movie review", "box office",
+    "album", "concert", "tour dates", "tv series", "tv show", "episode recap",
+    "video game", "recipe", "horoscope", "fashion week", "runway show",
+    "football match", "premier league", "champions league", "world cup",
+    "celebrity", "red carpet", "streaming service", "documentary",
+]
 
-def _contains_fi(text: str) -> bool:
-    """Word-boundary match for FI names to avoid 'ing' in 'reporting' etc."""
-    import re
-    for fi in MAJOR_FI:
-        # Use word boundaries; escape for names with spaces/punctuation
-        if re.search(r"\b" + re.escape(fi) + r"\b", text):
+# Short acronyms (esma, eba, ecb, aml…) are prone to matching inside an
+# unrelated word or an off-topic phrase — check them as whole words, not
+# bare substrings.
+import re as _re
+
+
+def _contains_word(text: str, terms: list[str]) -> bool:
+    """Word-boundary match — avoids 'eba' inside an unrelated word, or
+    'aml' hitting a false positive the way a bare substring check would."""
+    for t in terms:
+        if _re.search(r"\b" + _re.escape(t) + r"\b", text):
             return True
     return False
+
+
+def _strip_byline(text: str) -> str:
+    """Google News titles end 'Headline text - Outlet Name'. An outlet's
+    own name can itself collide with a tracked FI (KBC Digital, ING
+    News...) without the story being about that institution — strip the
+    trailing byline before checking who the story is actually about."""
+    return text.rsplit(" - ", 1)[0] if " - " in text else text
+
+
+def _contains_fi(text: str) -> bool:
+    """Word-boundary match for FI names to avoid 'ing' in 'reporting' etc.,
+    and against the byline, to avoid an outlet's own name."""
+    return _contains_word(_strip_byline(text), MAJOR_FI)
 
 
 def classify_article(title: str, summary: str, source_id: str) -> int:
@@ -127,6 +171,13 @@ def classify_article(title: str, summary: str, source_id: str) -> int:
     carries a strong enforcement signal on a serious-crime topic.
     """
     text = (title + " " + (summary or "")).lower()
+
+    # ── Off-topic filter — unconditional. A regulator's name/acronym
+    #    colliding with an unrelated arts/entertainment/sport story isn't
+    #    saved by an enforcement signal; that combination doesn't happen
+    #    in a real regulatory piece, so this runs before anything else. ──
+    if any(t in text for t in OFF_TOPIC_TERMS):
+        return 0
 
     has_enforcement = any(e in text for e in ENFORCEMENT_STRONG)
     has_serious_crime = any(c in text for c in SERIOUS_CRIME)
@@ -152,9 +203,14 @@ def classify_article(title: str, summary: str, source_id: str) -> int:
         # Serious crime but smaller/unnamed entity → important
         return 2
 
-    # ── Enforcement without serious-crime tag → important ──
+    # ── Enforcement without serious-crime tag → important, but only if
+    #    there's actual financial-sector context — a named major FI, or a
+    #    generic finance term. (has_major_fi already excludes the trailing
+    #    "- Outlet Name" byline, see _strip_byline.) ──
     if has_enforcement:
-        return 2
+        if has_major_fi or any(c in text for c in FINANCE_CONTEXT):
+            return 2
+        return 0
 
     # ── Google News mentioning regulator output → important (commentary) ──
     if any(s in text for s in REGULATOR_OUTPUT_SIGNALS) or \
@@ -165,10 +221,14 @@ def classify_article(title: str, summary: str, source_id: str) -> int:
     # (but only if it didn't already trip the noise filter as pure market news)
     if any(n in text for n in NOISE_TERMS):
         return 0
+    # Word-boundary matched: bare-substring checks let short acronyms like
+    # "eba" or "aml" fire inside unrelated words or phrases — this is the
+    # loosest path in the whole function, so it's the one most worth
+    # tightening.
     framework_terms = ["dora", "mica", "sfdr", "mifid", "csrd", "crr", "crd",
                        "aml", "amla", "psd", "esma", "eba", "eiopa", "ecb",
                        "fsma", "compliance", "prudential", "supervision"]
-    if any(f in text for f in framework_terms):
+    if _contains_word(text, framework_terms):
         return 1
 
     return 0
