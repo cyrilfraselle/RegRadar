@@ -259,8 +259,18 @@ def is_supervisory(title: str, summary: str = "") -> bool:
 
 
 def is_eu_relevant(title: str, summary: str = "") -> bool:
-    """True if the item plausibly touches the Belgium/EU perimeter."""
-    text = (title + " " + (summary or "")).lower()
+    """True if the item plausibly touches the Belgium/EU perimeter.
+
+    Deliberately tests the TITLE only. The summary field may hold
+    AI-generated commentary written for a Belgian/EU audience, so it
+    almost always contains "EU" or "Belgian" regardless of what the
+    story is about — testing it let an Indian asset-seizure case
+    through on the strength of its own generated blurb. The title comes
+    from the source and says what the story actually is.
+
+    `summary` is accepted and ignored so callers need not change.
+    """
+    text = (title or "").lower()
     return any(_re.search(r"\b" + _re.escape(k) + r"\b", text)
                for k in EU_BE_MARKERS)
 

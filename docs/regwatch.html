@@ -1,285 +1,660 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RegRadar — What applies to me</title>
+<title>RegWatch — Regulatory Intelligence</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
-(function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>
 <style>
-  :root{
-    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F4F5F6; --surface-3:#EDEEF0; --border:#E3E5E8; --border-strong:#0A0A0A;
-    --text:#0A0A0A; --text-2:#5B6069; --text-3:#8B9099;
-    --accent:#0039A6; --accent-bg:#E7EDFB;
-    --crit:#C8320F; --crit-bg:#FBEDEB; --imp:#9A6B00; --imp-bg:#FBF3E5; --ok:#0F7B4F; --ok-bg:#EAF5EE;
-    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
-    --mono:"SF Mono",ui-monospace,"IBM Plex Mono",Menlo,Consolas,monospace;
-    --ease:cubic-bezier(.2,0,0,1);
-  }
-  html[data-theme="dark"]{
-    --bg:#08090B; --surface:#0E1013; --surface-2:#14171B; --surface-3:#1A1E24; --border:#20242A; --border-strong:#F2F2F2;
-    --text:#F2F4F6; --text-2:#98A0AA; --text-3:#666E78;
-    --accent:#4D8DFF; --accent-bg:#14213D;
-    --crit:#FF5C3D; --crit-bg:#2A1518; --imp:#FFB93D; --imp-bg:#2A2008; --ok:#2DD48F; --ok-bg:#0F2018;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.5;
-    letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  ::selection{background:var(--accent);color:#fff}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+/* ═══════════════════════════════════════════════════════════════
+   RegWatch — regulatory intelligence workspace
+   Light-first: compliance work happens in daylight, in long
+   sessions, next to legal texts. Dark is supported, not assumed.
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F9FAFB; --surface-3:#F2F4F7;
+  --border:#E4E7EC; --border-2:#D0D5DD;
+  --text:#101828; --text-2:#475467; --text-3:#98A1B2;
+  --accent:#1750C4; --accent-2:#2E6BE6; --accent-bg:#EFF4FF; --accent-br:#B9CEFB;
+  --crit:#B42318; --crit-bg:#FEF3F2; --crit-br:#FDA29B;
+  --warn:#B54708; --warn-bg:#FFFAEB; --warn-br:#FEC84B;
+  --ok:#067647;   --ok-bg:#ECFDF3;   --ok-br:#ABEFC6;
+  --sidebar:#FFFFFF;
+  --shadow:0 1px 2px rgba(16,24,40,.05);
+  --shadow-md:0 4px 12px -2px rgba(16,24,40,.10);
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --r:8px; --r-sm:6px;
+  --ease:cubic-bezier(.2,0,0,1);
+}
+html[data-theme="dark"]{
+  --bg:#0C0E12; --surface:#14171F; --surface-2:#181C25; --surface-3:#1F242F;
+  --border:#1F242F; --border-2:#333741;
+  --text:#F5F6F7; --text-2:#94979C; --text-3:#61656C;
+  --accent:#6E9BFF; --accent-2:#8AB0FF; --accent-bg:#141E33; --accent-br:#2A3E63;
+  --crit:#F97066; --crit-bg:#2B1512; --crit-br:#5B2019;
+  --warn:#FDB022; --warn-bg:#2A1C08; --warn-br:#5A3B10;
+  --ok:#47CD89;   --ok-bg:#0C1F16;   --ok-br:#17452F;
+  --sidebar:#14171F;
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 4px 12px -2px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::selection{background:var(--accent);color:#fff}
 
-  .topbar{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:2px solid var(--border-strong)}
-  .topbar-inner{display:flex;align-items:center;gap:20px;height:60px;max-width:1180px;margin:0 auto;padding:0 24px}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
-  .logo-mark{width:30px;height:30px;background:var(--accent);color:#fff;display:flex;align-items:center;
-    justify-content:center;font-weight:700;font-size:17px}
-  .logo-sub{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.10em;font-weight:500}
-  .nav{display:flex;margin-left:16px;min-width:0;overflow-x:auto;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{padding:8px 14px;font-size:13px;font-weight:500;color:var(--text-2);white-space:nowrap;flex:0 0 auto;
-    border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 140ms var(--ease),border-color 140ms var(--ease)}
-  .nav a:hover:not(.active){color:var(--text)}
-  .nav a.active{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
-  .topbar-right{margin-left:auto;flex:0 0 auto}
-  .icon-btn{width:32px;height:32px;border:1px solid var(--border);background:transparent;color:var(--text-2);
-    cursor:pointer;font-size:15px}
-  .icon-btn:hover{border-color:var(--accent);color:var(--accent)}
-  @media(max-width:760px){.nav{margin-left:0}.logo-sub{display:none}}
+/* ── app shell ─────────────────────────────────────────────────── */
+.app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+.side{background:var(--sidebar);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:20px 18px 18px;font-weight:700;
+  letter-spacing:-.02em;font-size:15px}
+.brand .mk{width:28px;height:28px;border-radius:var(--r-sm);background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-weight:700;font-size:15px;flex:0 0 auto}
+.brand small{display:block;font-size:10.5px;font-weight:500;color:var(--text-3);letter-spacing:.02em}
 
-  .hero{padding:34px 0 4px}
-  .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
-  h1{font-size:clamp(26px,3.6vw,38px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-top:12px;text-wrap:balance}
-  .lede{font-size:15px;color:var(--text-2);line-height:1.6;margin-top:12px;max-width:64ch}
+.navgrp{padding:6px 10px}
+.navgrp .lbl{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--text-3);padding:12px 8px 6px}
+.nv{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:var(--r-sm);
+  font-size:13.5px;font-weight:500;color:var(--text-2);transition:background 120ms var(--ease),color 120ms var(--ease)}
+.nv:hover{background:var(--surface-3);color:var(--text)}
+.nv.on{background:var(--accent-bg);color:var(--accent);font-weight:600}
+.nv .ic{width:18px;text-align:center;font-size:14px;flex:0 0 auto}
+.nv .ct{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-3);font-weight:500}
+.nv.on .ct{color:var(--accent)}
 
-  .sec{padding:26px 0;border-top:2px solid var(--border-strong);margin-top:26px}
-  .sec:first-of-type{border-top:none;margin-top:0}
-  .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3)}
-  .sd{font-size:12.5px;color:var(--text-3);margin-top:4px}
+.side-foot{margin-top:auto;padding:12px 14px 16px;border-top:1px solid var(--border)}
+.who{display:flex;align-items:center;gap:9px;padding:8px;border-radius:var(--r-sm);
+  background:var(--surface-3);cursor:pointer}
+.who:hover{background:var(--border)}
+.who .av{width:26px;height:26px;border-radius:var(--r-sm);background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+.who .t{min-width:0;flex:1}
+.who .t b{display:block;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.who .t span{display:block;font-size:10.5px;color:var(--text-3)}
+.themebtn{width:100%;margin-top:8px;padding:7px;border-radius:var(--r-sm);font-size:12px;
+  color:var(--text-3);border:1px solid var(--border)}
+.themebtn:hover{color:var(--text);border-color:var(--border-2)}
 
-  /* the one control that matters */
-  .picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:1px;
-    background:var(--border);border:1px solid var(--border);margin-top:16px}
-  .ent{background:var(--surface);padding:15px 14px;cursor:pointer;text-align:left;
-    transition:background 120ms var(--ease);border:none;color:inherit;font-family:inherit}
-  .ent:hover{background:var(--surface-2)}
-  .ent.on{background:var(--accent);color:#fff}
-  .ent .ic{font-size:20px;line-height:1}
-  .ent .nm{font-size:13.5px;font-weight:700;margin-top:9px;letter-spacing:-.01em}
-  .ent .ds{font-size:11px;color:var(--text-3);margin-top:3px;line-height:1.35}
-  .ent.on .ds{color:rgba(255,255,255,.8)}
+.main{min-width:0;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);
+  padding:0 28px;height:60px;display:flex;align-items:center;gap:16px}
+.topbar h1{font-size:17px;font-weight:600;letter-spacing:-.02em}
+.topbar .sub{font-size:12.5px;color:var(--text-3)}
+.topbar .right{margin-left:auto;display:flex;align-items:center;gap:9px}
+.tools{display:flex;align-items:center;gap:2px;font-size:12.5px}
+.tools a{padding:6px 9px;border-radius:var(--r-sm);color:var(--text-3)}
+.tools a:hover{background:var(--surface-3);color:var(--text)}
+.body{padding:24px 28px 60px;max-width:1180px}
+@media(max-width:900px){
+  .app{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;align-items:center;overflow-x:auto;
+    border-right:none;border-bottom:1px solid var(--border);padding:0 8px}
+  .brand{padding:12px 10px}.brand .txt{display:none}
+  .navgrp{display:flex;padding:0}.navgrp .lbl{display:none}
+  .nv{white-space:nowrap}.nv .ct{display:none}
+  .side-foot{margin-top:0;border-top:none;padding:0 8px;display:flex;gap:6px}
+  .themebtn{margin-top:0;width:auto;padding:7px 10px}
+  .who .t{display:none}
+  /* height:60px is a desktop assumption — on narrow screens the title
+     and the tool links wrap to two rows and a fixed height makes them
+     collide. Let it grow, and drop the subtitle, which is the least
+     load-bearing thing here. */
+  .topbar{padding:10px 16px;height:auto;min-height:56px;flex-wrap:wrap;gap:8px}
+  .topbar .sub{display:none}
+  .tools{overflow-x:auto;scrollbar-width:none}
+  .tools::-webkit-scrollbar{display:none}
+  .body{padding:18px 16px 50px}
+}
 
-  .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .act{font-size:12.5px;font-weight:600;padding:7px 13px;border:1px solid var(--border);
-    background:var(--surface);color:var(--text-2);cursor:pointer;font-family:inherit;
-    transition:all 120ms var(--ease)}
-  .act:hover{border-color:var(--text-3);color:var(--text)}
-  .act.on{background:var(--accent);border-color:var(--accent);color:#fff}
+/* ── primitives ────────────────────────────────────────────────── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
+.sec-t{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3)}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin:26px 0 12px}
+.sec-h:first-child{margin-top:0}
+.sec-h .d{font-size:12.5px;color:var(--text-3)}
+.lnk{font-size:12.5px;font-weight:600;color:var(--accent)}
+.lnk:hover{text-decoration:underline}
 
-  .verdict-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
-  .tally{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
-  .tally b{font-size:17px;font-weight:700}
-  .tally .d b{color:var(--crit)} .tally .c b{color:var(--imp)} .tally .n b{color:var(--text-3)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;
+  padding:2px 8px;border-radius:20px;border:1px solid var(--border);color:var(--text-3);white-space:nowrap}
+.pill.crit{background:var(--crit-bg);color:var(--crit);border-color:var(--crit-br)}
+.pill.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-br)}
+.pill.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-br)}
+.pill.acc{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-br)}
 
-  .matrix{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:16px}
-  .row{background:var(--surface);display:grid;grid-template-columns:132px 1fr 120px;gap:16px;
-    align-items:start;padding:14px 16px;transition:background 120ms var(--ease)}
-  .row:hover{background:var(--surface-2)}
-  .row.na{opacity:.45}
-  .row .rn{font-weight:700;font-size:14px;letter-spacing:-.01em}
-  .row .rmeta{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
-  .row .rw{font-size:12.5px;color:var(--text-2);line-height:1.55}
-  .row .rnote{font-size:12.5px;color:var(--text);line-height:1.55;margin-top:7px;
-    border-left:2px solid var(--imp);padding-left:11px}
-  .row .rdate{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:7px}
-  .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-    padding:4px 9px;text-align:center;white-space:nowrap;justify-self:end}
-  .badge.direct{background:var(--crit-bg);color:var(--crit);border:1px solid var(--crit)}
-  .badge.conditional{background:var(--imp-bg);color:var(--imp);border:1px solid var(--imp)}
-  .badge.na{background:var(--surface-2);color:var(--text-3);border:1px solid var(--border)}
-  @media(max-width:700px){
-    .row{grid-template-columns:1fr auto;gap:10px}
-    .row .rw,.row .rnote,.row .rdate{grid-column:1/-1}
-  }
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow)}
+.stat .n{font-size:26px;font-weight:600;font-family:var(--mono);letter-spacing:-.02em;line-height:1.1}
+.stat .l{font-size:12px;color:var(--text-3);margin-top:5px}
+.stat.crit .n{color:var(--crit)} .stat.warn .n{color:var(--warn)} .stat.acc .n{color:var(--accent)}
 
-  .empty{padding:40px 20px;text-align:center;color:var(--text-3);font-size:14px;
-    background:var(--surface);border:1px dashed var(--border);margin-top:16px}
+/* ── item rows ─────────────────────────────────────────────────── */
+.rows{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;box-shadow:var(--shadow)}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
+  padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background 120ms var(--ease)}
+.row:last-child{border-bottom:none}
+.row:hover{background:var(--surface-2)}
+.row .dot{width:7px;height:7px;border-radius:50%;margin-top:7px;flex:0 0 auto;background:var(--text-3)}
+.row .dot.i3{background:var(--crit)} .row .dot.i2{background:var(--warn)} .row .dot.i1{background:var(--accent)}
+.row .ttl{font-size:14px;font-weight:550;line-height:1.45;letter-spacing:-.006em}
+.row .snip{font-size:12.5px;color:var(--text-2);margin-top:4px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.row .meta{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;align-items:center}
+.row .src{font-family:var(--mono);font-size:10.5px;color:var(--text-3);font-weight:500}
+.row .when{font-family:var(--mono);font-size:11px;color:var(--text-3);white-space:nowrap;text-align:right}
+.row.rel{background:linear-gradient(90deg,var(--accent-bg) 0 3px,transparent 3px)}
+.row.rel:hover{background:linear-gradient(90deg,var(--accent-bg) 0 3px,var(--surface-2) 3px)}
 
-  .disclaimer{margin-top:16px;font-size:11.5px;color:var(--text-3);line-height:1.6;
-    border-left:2px solid var(--border);padding-left:12px;max-width:78ch}
-  footer{border-top:2px solid var(--border-strong);margin-top:30px;padding:20px 0 50px;
-    font-size:10px;color:var(--text-3);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    text-transform:uppercase;letter-spacing:.08em;font-weight:700}
-  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+.empty{padding:44px 24px;text-align:center;color:var(--text-3);font-size:13.5px}
+.empty b{display:block;color:var(--text-2);font-size:14.5px;font-weight:600;margin-bottom:6px}
+
+/* ── filter bar ────────────────────────────────────────────────── */
+.filters{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.chip{font-size:12.5px;font-weight:500;padding:6px 11px;border-radius:20px;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+  transition:all 120ms var(--ease);white-space:nowrap}
+.chip:hover{border-color:var(--border-2);color:var(--text)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:4px}
+.searchbox{flex:1;min-width:180px;position:relative}
+.searchbox input{width:100%;padding:8px 12px 8px 32px;border-radius:var(--r-sm);
+  border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;
+  font-family:inherit;outline:none;transition:border-color 120ms}
+.searchbox input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.searchbox .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px}
+
+/* ── profile picker ────────────────────────────────────────────── */
+.ents{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
+.ent{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px;text-align:left;transition:all 120ms var(--ease);box-shadow:var(--shadow)}
+.ent:hover{border-color:var(--accent-br);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.ent.on{border-color:var(--accent);background:var(--accent-bg);box-shadow:0 0 0 3px var(--accent-bg)}
+.ent .ic{font-size:19px;line-height:1}
+.ent .nm{font-size:13.5px;font-weight:600;margin-top:9px;letter-spacing:-.01em}
+.ent.on .nm{color:var(--accent)}
+.ent .ds{font-size:11.5px;color:var(--text-3);margin-top:2px;line-height:1.4}
+
+.mrow{display:grid;grid-template-columns:150px 1fr 132px;gap:16px;align-items:start;
+  padding:15px 16px;border-bottom:1px solid var(--border)}
+.mrow:last-child{border-bottom:none}
+.mrow.na{opacity:.5}
+.mrow .rn{font-size:14px;font-weight:650;letter-spacing:-.01em}
+.mrow .rm{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:3px;
+  text-transform:uppercase;letter-spacing:.04em}
+.mrow .rw{font-size:12.5px;color:var(--text-2);line-height:1.55}
+.mrow .rnote{font-size:12.5px;color:var(--text);line-height:1.5;margin-top:8px;
+  background:var(--warn-bg);border:1px solid var(--warn-br);border-radius:var(--r-sm);padding:8px 11px}
+.mrow .rd{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:8px}
+.mrow .bdg{justify-self:end;text-align:center}
+@media(max-width:760px){
+  .mrow{grid-template-columns:1fr auto;gap:10px}
+  .mrow .rw,.mrow .rnote,.mrow .rd{grid-column:1/-1}
+}
+
+/* ── deadlines ─────────────────────────────────────────────────── */
+.dl{display:grid;grid-template-columns:104px 1fr auto;gap:16px;align-items:center;
+  padding:14px 16px;border-bottom:1px solid var(--border)}
+.dl:last-child{border-bottom:none}
+.dl .dt{font-family:var(--mono);font-size:12.5px;font-weight:600}
+.dl .dd{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:2px}
+.dl .de{font-size:13.5px}
+.dl.soon .dt{color:var(--crit)}
+
+/* ── drawer ────────────────────────────────────────────────────── */
+.ov{position:fixed;inset:0;background:rgba(16,24,40,.45);opacity:0;pointer-events:none;
+  transition:opacity 160ms;z-index:100;backdrop-filter:blur(2px)}
+.ov.on{opacity:1;pointer-events:auto}
+.dw{position:fixed;top:0;right:0;height:100%;width:min(560px,96vw);background:var(--surface);
+  border-left:1px solid var(--border);transform:translateX(101%);
+  transition:transform 220ms var(--ease);z-index:101;overflow-y:auto;box-shadow:var(--shadow-md)}
+.dw.on{transform:none}
+.dw-in{padding:22px 26px 60px}
+.dw .x{position:absolute;top:16px;right:18px;font-size:20px;color:var(--text-3);
+  width:30px;height:30px;border-radius:var(--r-sm)}
+.dw .x:hover{background:var(--surface-3);color:var(--text)}
+.dw h2{font-size:19px;font-weight:650;letter-spacing:-.02em;line-height:1.3;margin:12px 0 14px;padding-right:36px}
+.dsec{margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+.dsec .dl2{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text-3);margin-bottom:7px}
+.dsec p{font-size:13.5px;line-height:1.65;color:var(--text-2)}
+.dbtn{display:inline-flex;align-items:center;gap:7px;margin-top:20px;padding:9px 15px;
+  border-radius:var(--r-sm);background:var(--accent);color:#fff;font-size:13px;font-weight:600}
+.dbtn:hover{background:var(--accent-2)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 
-<div class="topbar"><div class="topbar-inner">
-  <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Belgium &amp; EU</span></div>
-  <nav class="nav">
-    <a href="index.html">RegWatch</a>
-    <a href="regwatch.html" class="active">What applies to me</a>
-    <a href="law.html">Read the Law</a>
-    <a href="country-risk.html">Country Risk</a>
-    <a href="obligations.html">Obligations</a>
-    <a href="extractor.html">Extractor</a>
-    <a href="ubo.html">UBO</a>
-    <a href="academy.html">Academy</a>
-  </nav>
-  <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()" title="Theme">◐</button></div>
-</div></div>
-
-<div class="wrap">
-  <section class="hero">
-    <div class="eyebrow">Regulatory applicability · Belgium &amp; EU</div>
-    <h1 id="headline">What applies to me?</h1>
-    <div class="lede" id="lede">Pick what you are. That's it — no form, no sign-up. You'll get a
-      live applicability matrix over the fifteen EU regulations held here in full text.</div>
-  </section>
-
-  <section class="sec">
-    <div class="sl">I am a…</div>
-    <div class="sd">Pick one. Your choice stays on this device.</div>
-    <div class="picker" id="picker"></div>
-
-    <div class="sl" style="margin-top:22px">And I also do… <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-3)">(optional — sharpens the answer)</span></div>
-    <div class="acts" id="acts"></div>
-  </section>
-
-  <section class="sec" id="resultSec">
-    <div class="verdict-head">
-      <div><div class="sl">Your regulatory perimeter</div><div class="sd" id="verdictSub">—</div></div>
-      <div class="tally" id="tally"></div>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <span class="mk">R</span>
+      <span class="txt">RegWatch<small>Belgium &amp; EU</small></span>
     </div>
-    <div id="matrix"></div>
-    <div class="disclaimer" id="disc"></div>
-  </section>
 
-  <footer>
-    <span>RegRadar · regulatory applicability</span>
-    <span id="stamp">—</span>
-  </footer>
+    <nav class="navgrp">
+      <div class="lbl">Workspace</div>
+      <button class="nv on" data-v="home"><span class="ic">◎</span>Home</button>
+      <button class="nv" data-v="radar"><span class="ic">◈</span>My Radar<span class="ct" id="ctRadar"></span></button>
+      <button class="nv" data-v="apply"><span class="ic">⊞</span>What applies to me</button>
+      <button class="nv" data-v="dates"><span class="ic">◷</span>Deadlines<span class="ct" id="ctDates"></span></button>
+      <button class="nv" data-v="library"><span class="ic">▤</span>Library<span class="ct" id="ctLib"></span></button>
+    </nav>
+
+    <div class="side-foot">
+      <div class="who" id="whoBtn" title="Change your profile">
+        <span class="av" id="whoAv">?</span>
+        <span class="t"><b id="whoName">No profile set</b><span id="whoSub">Tap to choose</span></span>
+      </div>
+      <button class="themebtn" onclick="toggleTheme()">◐ Theme</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h1 id="vTitle">Home</h1><div class="sub" id="vSub">—</div></div>
+      <div class="right">
+        <nav class="tools">
+          <a href="index.html">Feed</a>
+          <a href="law.html">Law</a>
+          <a href="country-risk.html">Country Risk</a>
+          <a href="ubo.html">UBO</a>
+          <a href="academy.html">Academy</a>
+        </nav>
+      </div>
+    </header>
+    <div class="body" id="view"></div>
+  </main>
 </div>
 
+<div class="ov" id="ov" onclick="closeDrawer()"></div>
+<div class="dw" id="dw"><div class="dw-in" id="dwBody"></div></div>
+
 <script>
-const KEY='regradar-profile';
-let DATA=null, ENTITY='', ACTS=new Set();
+const PKEY='regradar-profile';
+let ITEMS=[], META={}, APP=null, VIEW='home';
+let ENTITY='', ACTS=new Set();
+let fTopic='', fWeight='', fQuery='';
 
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const hoursAgo=d=>Math.max(0,(Date.now()-new Date(d).getTime())/36e5);
+function ago(h){ if(h<1)return'now'; if(h<24)return Math.round(h)+'h'; if(h<720) return Math.round(h/24)+'d'; return Math.round(h/720)+'mo'; }
+function fmt(d){ try{return new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return d||'';} }
 function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
   h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}}
 
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify({entity:ENTITY, acts:[...ACTS]})); }catch(e){} }
-function load(){ try{ const p=JSON.parse(localStorage.getItem(KEY)||'null');
+function saveP(){ try{ localStorage.setItem(PKEY,JSON.stringify({entity:ENTITY,acts:[...ACTS]})); }catch(e){} }
+function loadP(){ try{ const p=JSON.parse(localStorage.getItem(PKEY)||'null');
   if(p){ ENTITY=p.entity||''; ACTS=new Set(p.acts||[]); } }catch(e){} }
 
-/* The whole engine. An activity can only ever raise a verdict, never
-   lower one — doing more things cannot make a regulation stop applying. */
-function verdictFor(reg, entity, acts){
-  let status = reg.applies[entity] || 'na';
+/* ── applicability engine (shared with the profile view) ───────── */
+function verdictFor(reg,entity,acts){
+  let s = reg.applies[entity] || 'na';
   const raises = reg.activity_raises || {};
   for(const a of acts){
-    const targets = raises[a];
-    if(targets && targets.includes(entity)){
-      status = status==='na' ? 'conditional' : 'direct';
-    }
+    const t = raises[a];
+    if(t && t.includes(entity)) s = s==='na' ? 'conditional' : 'direct';
   }
-  return status;
+  return s;
 }
-
-const ORDER={direct:0, conditional:1, na:2};
-
-/* "Directly applicable" is a term of art: a regulation binds you as-is,
-   a directive only through national transposition. Saying a directive is
-   "directly applicable" next to a note explaining that it isn't would
-   undermine exactly the audience this is for. */
-function badgeLabel(status, instrument){
+function badgeLabel(status,instrument){
   if(status==='conditional') return 'Conditional';
   if(status==='na') return 'Not applicable';
   return instrument==='Directive' ? 'Applies · via BE law' : 'Directly applicable';
 }
+function inScopeRegs(){
+  if(!APP||!ENTITY) return [];
+  return APP.regulations.filter(r=>verdictFor(r,ENTITY,ACTS)!=='na');
+}
+
+/* A regulation's topic and a feed item's theme are different
+   vocabularies — this is the join between them. Kept explicit rather
+   than fuzzy-matched, so a wrong "relevant to you" flag is traceable. */
+/* NB: "Enforcement/Fines" is deliberately not mapped to any topic.
+   It is cross-cutting — every fine anywhere carries it — so mapping it
+   under AML/CFT flagged unrelated global enforcement stories as
+   "relevant to you". Relevance has to come from subject matter. */
+const TOPIC_THEMES={
+  'AML/CFT':['AML/CFT','Sanctions'],
+  'Operational Resilience':['DORA'],
+  'Crypto':['MiCA/Crypto'],
+  'Markets':['MiFID/MiFIR','Market Infrastructure'],
+  'Capital':['Capital/CRR'],
+  'Payments':['Payments'],
+  'Data Protection':['Data Protection'],
+};
+function myThemes(){
+  const s=new Set();
+  inScopeRegs().forEach(r=>(TOPIC_THEMES[r.topic]||[]).forEach(t=>s.add(t)));
+  return s;
+}
+function isRelevant(it,themes){
+  if(!themes.size) return false;
+  return (it.themes||[]).some(t=>themes.has(t));
+}
+
+/* ── shared row renderer ───────────────────────────────────────── */
+function itemRow(it,themes){
+  const rel=isRelevant(it,themes);
+  const doc = it.doc_label && it.doc_type!=='news'
+    ? `<span class="pill ${(it.legal_weight||1)>=7?'crit':(it.legal_weight||1)>=4?'warn':''}">${esc(it.doc_label)}</span>` : '';
+  const life = it.lifecycle_label?`<span class="pill">${esc(it.lifecycle_label)}</span>`:'';
+  const tag = (it.themes||[]).slice(0,2).map(t=>`<span class="pill">${esc(t)}</span>`).join('');
+  return `<div class="row ${rel?'rel':''}" data-id="${esc(it.id)}">
+    <span class="dot i${it.impact||1}"></span>
+    <div>
+      <div class="ttl">${esc(it.title)}</div>
+      ${it.so_what||it.summary?`<div class="snip">${esc(it.so_what||it.summary)}</div>`:''}
+      <div class="meta">
+        <span class="src">${esc(it.source)}</span>
+        ${rel?'<span class="pill acc">● Relevant to you</span>':''}
+        ${doc}${life}${tag}
+      </div>
+    </div>
+    <span class="when">${ago(hoursAgo(it.date))}</span>
+  </div>`;
+}
+function wireRows(){
+  document.querySelectorAll('.row[data-id]').forEach(r=>
+    r.addEventListener('click',()=>openDrawer(r.dataset.id)));
+}
+
+/* ── views ─────────────────────────────────────────────────────── */
+function vHome(){
+  const themes=myThemes();
+  const mine=ITEMS.filter(i=>isRelevant(i,themes));
+  const pool=themes.size?mine:ITEMS;
+  const attention=pool.filter(i=>(i.legal_weight||1)>=4||i.impact===3)
+    .sort((a,b)=>(b.legal_weight||1)-(a.legal_weight||1)||new Date(b.date)-new Date(a.date)).slice(0,5);
+  const recent=pool.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,6);
+  const dates=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,4);
+  const hr=new Date().getHours();
+  const greet=hr<12?'Good morning':hr<18?'Good afternoon':'Good evening';
+
+  return `
+  <div class="sec-h"><div>
+    <div style="font-size:22px;font-weight:650;letter-spacing:-.025em">${greet}.</div>
+    <div class="d" style="margin-top:4px">${ENTITY
+      ? `Filtered to your perimeter — ${esc(APP.entities.find(e=>e.id===ENTITY).label)}. ${mine.length} of ${ITEMS.length} signals touch it.`
+      : 'Set your profile to filter this to what actually applies to you.'}</div>
+  </div>${ENTITY?'':'<button class="lnk" data-go="apply">Set profile →</button>'}</div>
+
+  <div class="stats">
+    <div class="stat crit"><div class="n">${pool.filter(i=>(i.legal_weight||1)>=7).length}</div><div class="l">Binding in scope</div></div>
+    <div class="stat warn"><div class="n">${pool.filter(i=>(i.legal_weight||1)>=4&&(i.legal_weight||1)<7).length}</div><div class="l">Consultations &amp; guidance</div></div>
+    <div class="stat acc"><div class="n">${dates.length}</div><div class="l">Upcoming deadlines</div></div>
+    <div class="stat"><div class="n">${pool.length}</div><div class="l">${themes.size?'In your perimeter':'Total signals'}</div></div>
+  </div>
+
+  <div class="sec-h"><div><span class="sec-t">Needs attention</span>
+    <div class="d">Binding instruments and consultations, most authoritative first.</div></div>
+    <button class="lnk" data-go="radar">All signals →</button></div>
+  <div class="rows">${attention.length?attention.map(i=>itemRow(i,themes)).join(''):
+    '<div class="empty"><b>Nothing pressing</b>No binding instruments or consultations in range.</div>'}</div>
+
+  <div class="sec-h"><div><span class="sec-t">Upcoming deadlines</span></div>
+    <button class="lnk" data-go="dates">Calendar →</button></div>
+  <div class="rows">${dates.length?dates.map(d=>{
+    const soon=(d.days_away||999)<45;
+    return `<div class="dl ${soon?'soon':''}">
+      <div><div class="dt">${fmt(d.date)}</div><div class="dd">${d.days_away!=null?d.days_away+' days':''}</div></div>
+      <div class="de">${esc(d.event)}</div>
+      <span class="pill ${soon?'crit':''}">${esc(d.theme||'')}</span></div>`;
+  }).join(''):'<div class="empty"><b>No dated deadlines</b>Nothing in the current horizon.</div>'}</div>
+
+  <div class="sec-h"><div><span class="sec-t">Latest</span></div></div>
+  <div class="rows">${recent.map(i=>itemRow(i,themes)).join('')}</div>`;
+}
+
+function vRadar(){
+  const themes=myThemes();
+  let list=ITEMS.slice();
+  if(fTopic) list=list.filter(i=>(i.themes||[]).includes(fTopic));
+  if(fWeight==='binding') list=list.filter(i=>(i.legal_weight||1)>=7);
+  else if(fWeight==='soft') list=list.filter(i=>{const w=i.legal_weight||1;return w>=4&&w<7});
+  else if(fWeight==='mine') list=list.filter(i=>isRelevant(i,themes));
+  if(fQuery){const q=fQuery.toLowerCase();
+    list=list.filter(i=>(i.title+' '+i.source+' '+(i.themes||[]).join(' ')).toLowerCase().includes(q));}
+  list.sort((a,b)=>{
+    const ra=isRelevant(a,themes)?1:0, rb=isRelevant(b,themes)?1:0;
+    if(themes.size && ra!==rb) return rb-ra;
+    const wa=(a.legal_weight||1)>=7?2:(a.legal_weight||1)>=4?1:0;
+    const wb=(b.legal_weight||1)>=7?2:(b.legal_weight||1)>=4?1:0;
+    return wb-wa || new Date(b.date)-new Date(a.date);
+  });
+
+  const topics={}; ITEMS.forEach(i=>(i.themes||[]).forEach(t=>topics[t]=(topics[t]||0)+1));
+  const tks=Object.keys(topics).sort((a,b)=>topics[b]-topics[a]);
+
+  return `
+  <div class="filters">
+    <div class="searchbox"><span class="si">⌕</span>
+      <input id="q" placeholder="Search signals…" value="${esc(fQuery)}"></div>
+    ${themes.size?`<button class="chip ${fWeight==='mine'?'on':''}" data-w="mine">● My perimeter<span class="n">${ITEMS.filter(i=>isRelevant(i,themes)).length}</span></button>`:''}
+    <button class="chip ${fWeight==='binding'?'on':''}" data-w="binding">Binding<span class="n">${ITEMS.filter(i=>(i.legal_weight||1)>=7).length}</span></button>
+    <button class="chip ${fWeight==='soft'?'on':''}" data-w="soft">Consultations<span class="n">${ITEMS.filter(i=>{const w=i.legal_weight||1;return w>=4&&w<7}).length}</span></button>
+  </div>
+  <div class="filters">
+    ${tks.map(t=>`<button class="chip ${fTopic===t?'on':''}" data-t="${esc(t)}">${esc(t)}<span class="n">${topics[t]}</span></button>`).join('')}
+  </div>
+  <div class="sec-h"><div class="d">${list.length} of ${ITEMS.length} signals${
+    themes.size?' · yours listed first':''}</div>
+    ${(fTopic||fWeight||fQuery)?'<button class="lnk" id="clr">Clear filters ×</button>':''}</div>
+  <div class="rows">${list.length?list.map(i=>itemRow(i,themes)).join(''):
+    '<div class="empty"><b>No matches</b>Try clearing a filter.</div>'}</div>`;
+}
+
+function vApply(){
+  if(!APP) return '<div class="empty">Applicability data unavailable.</div>';
+  const rows=ENTITY?APP.regulations.map(r=>({r,v:verdictFor(r,ENTITY,ACTS)}))
+    .sort((a,b)=>({direct:0,conditional:1,na:2})[a.v]-({direct:0,conditional:1,na:2})[b.v]
+      ||a.r.name.localeCompare(b.r.name)):[];
+  const n={direct:0,conditional:0,na:0}; rows.forEach(x=>n[x.v]++);
+
+  return `
+  <div class="sec-h"><div><span class="sec-t">I am a…</span>
+    <div class="d">Pick one. Stored on this device only — no account, no form.</div></div>
+    ${ENTITY?'<button class="lnk" id="clrProf">Clear ×</button>':''}</div>
+  <div class="ents">${APP.entities.map(e=>`
+    <button class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}">
+      <div class="ic">${e.icon}</div><div class="nm">${esc(e.label)}</div>
+      <div class="ds">${esc(e.desc)}</div></button>`).join('')}</div>
+
+  <div class="sec-h"><div><span class="sec-t">And I also do…</span>
+    <div class="d">Optional. Sharpens the result — never removes an obligation.</div></div></div>
+  <div class="filters">${APP.activities.map(a=>`
+    <button class="chip ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('')}</div>
+
+  ${!ENTITY?'<div class="rows"><div class="empty"><b>Nothing selected yet</b>Choose an entity type above to see your perimeter.</div></div>':`
+  <div class="sec-h"><div><span class="sec-t">Your regulatory perimeter</span>
+    <div class="d">${n.direct} in scope · ${n.conditional} conditional · ${n.na} not applicable</div></div></div>
+  <div class="rows">${rows.map(({r,v})=>{
+    const note=(r.notes||{})[ENTITY];
+    return `<div class="mrow ${v}">
+      <div><div class="rn">${esc(r.name)}</div><div class="rm">${esc(r.instrument)} · ${esc(r.topic)}</div></div>
+      <div><div class="rw">${esc(r.why)}</div>
+        ${note&&v!=='na'?`<div class="rnote">${esc(note)}</div>`:''}
+        ${v!=='na'&&r.applies_from?`<div class="rd">Applies from ${esc(r.applies_from)}</div>`:''}</div>
+      <span class="pill bdg ${v==='direct'?'crit':v==='conditional'?'warn':''}">${badgeLabel(v,r.instrument)}</span>
+    </div>`;}).join('')}</div>
+  <div class="d" style="margin-top:14px;max-width:80ch;line-height:1.6">${esc(APP._meta.disclaimer)}</div>`}`;
+}
+
+function vDates(){
+  const ds=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  return `<div class="sec-h"><div><span class="sec-t">Regulatory calendar</span>
+    <div class="d">Application dates, reporting windows and consultation closes — nearest first.</div></div></div>
+    <div class="rows">${ds.length?ds.map(d=>{
+      const soon=(d.days_away||999)<45;
+      return `<div class="dl ${soon?'soon':''}">
+        <div><div class="dt">${fmt(d.date)}</div><div class="dd">${d.days_away!=null?d.days_away+' days':''}</div></div>
+        <div class="de">${esc(d.event)}</div>
+        <span class="pill ${soon?'crit':''}">${esc(d.theme||'')}</span></div>`;
+    }).join(''):'<div class="empty"><b>No dated deadlines</b>The pipeline extracts these from regulatory documents as they arrive.</div>'}</div>`;
+}
+
+function vLibrary(){
+  if(!APP) return '<div class="empty">Library unavailable.</div>';
+  const regs=APP.regulations.slice().sort((a,b)=>a.topic.localeCompare(b.topic)||a.name.localeCompare(b.name));
+  return `<div class="sec-h"><div><span class="sec-t">Regulatory library</span>
+    <div class="d">${regs.length} EU instruments held here in full article text${ENTITY?' — your perimeter marked':''}.</div></div></div>
+    <div class="rows">${regs.map(r=>{
+      const v=ENTITY?verdictFor(r,ENTITY,ACTS):null;
+      return `<div class="mrow ${v==='na'?'na':''}">
+        <div><div class="rn">${esc(r.name)}</div><div class="rm">${esc(r.instrument)} · ${esc(r.topic)}</div></div>
+        <div><div class="rw">${esc(r.full_name)}</div>
+          <div class="rd">CELEX ${esc(r.celex)}${r.applies_from?` · applies from ${esc(r.applies_from)}`:''}</div></div>
+        ${v?`<span class="pill bdg ${v==='direct'?'crit':v==='conditional'?'warn':''}">${badgeLabel(v,r.instrument)}</span>`
+           :'<span class="pill bdg">—</span>'}
+      </div>`;}).join('')}</div>
+    <div class="d" style="margin-top:14px">Full text browsable in <a class="lnk" href="law.html">Read the Law</a>.</div>`;
+}
+
+/* ── drawer ────────────────────────────────────────────────────── */
+const LEGAL_TEXT={
+  'binding':'Directly binding — applies without national transposition.',
+  'binding-transposed':'Binding once transposed into national law.',
+  'supervisory-binding':'Issued by your supervisor — binding in practice.',
+  'comply-or-explain':'Comply-or-explain: deviation must be justified to the supervisor.',
+  'interpretive':'Interpretive — clarifies how an existing rule applies.',
+  'supervisory-expectation':'Supervisory expectation — not law, but examined against.',
+  'enforcement':'Enforcement outcome — precedent for supervisory tolerance.',
+  'not-yet-binding':'Not yet binding — in consultation or proposal stage.',
+  'non-binding':'Non-binding — background and context.',
+  'informational':'Informational — no direct obligation.',
+};
+function openDrawer(id){
+  const it=ITEMS.find(x=>x.id===id); if(!it)return;
+  const themes=myThemes(), rel=isRelevant(it,themes);
+  const w=it.legal_weight||1;
+  const mine=rel?inScopeRegs().filter(r=>(TOPIC_THEMES[r.topic]||[]).some(t=>(it.themes||[]).includes(t))):[];
+  document.getElementById('dwBody').innerHTML=`
+    <button class="x" onclick="closeDrawer()">×</button>
+    <div class="filters" style="margin:0">
+      <span class="pill ${it.impact===3?'crit':it.impact===2?'warn':''}">${it.impact===3?'Critical':it.impact===2?'Important':'Info'}</span>
+      <span class="pill">${esc(it.source)}</span>
+      <span class="pill">${fmt(it.date)}</span>
+      ${rel?'<span class="pill acc">● Relevant to you</span>':''}
+    </div>
+    <h2>${esc(it.title)}</h2>
+    ${it.doc_label&&it.doc_type!=='news'?`<div class="dsec"><div class="dl2">Instrument &amp; legal weight</div>
+      <div class="filters" style="margin-bottom:8px">
+        <span class="pill ${w>=7?'crit':w>=4?'warn':''}">${esc(it.doc_label)}</span>
+        ${it.lifecycle_label?`<span class="pill">${esc(it.lifecycle_label)}</span>`:''}
+      </div>
+      <p>${esc(LEGAL_TEXT[it.legal_status]||it.legal_status||'')}</p></div>`:''}
+    ${mine.length?`<div class="dsec"><div class="dl2">Why this reaches you</div>
+      <p>Touches ${mine.length===1?'a regulation':'regulations'} in your perimeter:
+      ${mine.map(r=>esc(r.name)).join(', ')}.</p></div>`:''}
+    ${it.summary?`<div class="dsec"><div class="dl2">What happened</div><p>${esc(it.summary)}</p></div>`:''}
+    ${it.so_what?`<div class="dsec"><div class="dl2">So what</div><p>${esc(it.so_what)}</p></div>`:''}
+    ${it.action?`<div class="dsec"><div class="dl2">Action</div><p>${esc(it.action)}</p></div>`:''}
+    <div class="dsec"><div class="dl2">Scope</div><div class="filters">
+      ${(it.themes||[]).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}
+      ${it.jurisdiction?`<span class="pill">${esc(it.jurisdiction)}</span>`:''}
+    </div></div>
+    ${it.url?`<a class="dbtn" href="${esc(it.url)}" target="_blank" rel="noopener">Open primary source ↗</a>`:''}`;
+  document.getElementById('dw').classList.add('on');
+  document.getElementById('ov').classList.add('on');
+}
+function closeDrawer(){document.getElementById('dw').classList.remove('on');
+  document.getElementById('ov').classList.remove('on');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+/* ── router ────────────────────────────────────────────────────── */
+const TITLES={home:['Home','Your regulatory position today'],
+  radar:['My Radar','Everything the watch picked up'],
+  apply:['What applies to me','Entity type → regulatory perimeter'],
+  dates:['Deadlines','Dated obligations ahead'],
+  library:['Library','EU instruments held in full text']};
 
 function render(){
-  // entity buttons
-  document.getElementById('picker').innerHTML = DATA.entities.map(e=>`
-    <button class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}">
-      <div class="ic">${e.icon}</div>
-      <div class="nm">${esc(e.label)}</div>
-      <div class="ds">${esc(e.desc)}</div>
-    </button>`).join('');
-  document.querySelectorAll('.ent').forEach(b=>b.addEventListener('click',()=>{
-    ENTITY = ENTITY===b.dataset.e ? '' : b.dataset.e; save(); render();
+  const [t,s]=TITLES[VIEW]||TITLES.home;
+  document.getElementById('vTitle').textContent=t;
+  document.getElementById('vSub').textContent=s;
+  document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.v===VIEW));
+
+  const v=document.getElementById('view');
+  v.innerHTML = VIEW==='radar'?vRadar():VIEW==='apply'?vApply():
+                VIEW==='dates'?vDates():VIEW==='library'?vLibrary():vHome();
+  wireRows();
+
+  // profile controls (apply view)
+  v.querySelectorAll('.ent').forEach(b=>b.addEventListener('click',()=>{
+    ENTITY = ENTITY===b.dataset.e?'':b.dataset.e; saveP(); paintWho(); render();
   }));
-
-  // activity chips
-  document.getElementById('acts').innerHTML = DATA.activities.map(a=>`
-    <button class="act ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('');
-  document.querySelectorAll('.act').forEach(b=>b.addEventListener('click',()=>{
-    ACTS.has(b.dataset.a)?ACTS.delete(b.dataset.a):ACTS.add(b.dataset.a); save(); render();
+  v.querySelectorAll('.chip[data-a]').forEach(b=>b.addEventListener('click',()=>{
+    ACTS.has(b.dataset.a)?ACTS.delete(b.dataset.a):ACTS.add(b.dataset.a); saveP(); paintWho(); render();
   }));
+  const cp=v.querySelector('#clrProf');
+  if(cp) cp.addEventListener('click',()=>{ENTITY='';ACTS.clear();saveP();paintWho();render();});
 
-  const box=document.getElementById('matrix');
-  const disc=document.getElementById('disc');
-  if(!ENTITY){
-    document.getElementById('verdictSub').textContent='Pick what you are above to see your perimeter.';
-    document.getElementById('tally').innerHTML='';
-    box.innerHTML='<div class="empty">Nothing selected yet — choose an entity type above.</div>';
-    disc.textContent='';
-    document.getElementById('headline').textContent='What applies to me?';
-    return;
-  }
+  // radar filters
+  v.querySelectorAll('.chip[data-t]').forEach(b=>b.addEventListener('click',()=>{
+    fTopic = fTopic===b.dataset.t?'':b.dataset.t; render();
+  }));
+  v.querySelectorAll('.chip[data-w]').forEach(b=>b.addEventListener('click',()=>{
+    fWeight = fWeight===b.dataset.w?'':b.dataset.w; render();
+  }));
+  const clr=v.querySelector('#clr');
+  if(clr) clr.addEventListener('click',()=>{fTopic='';fWeight='';fQuery='';render();});
+  const q=v.querySelector('#q');
+  if(q) q.addEventListener('input',()=>{
+    fQuery=q.value; const at=document.activeElement===q;
+    render(); if(at){const n=document.getElementById('q'); if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length);} }
+  });
 
-  const ent=DATA.entities.find(e=>e.id===ENTITY);
-  const rows=DATA.regulations
-    .map(r=>({r, v:verdictFor(r, ENTITY, ACTS)}))
-    .sort((a,b)=> ORDER[a.v]-ORDER[b.v] || a.r.name.localeCompare(b.r.name));
+  // cross-view links
+  v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+}
+function go(view){ VIEW=view; render(); window.scrollTo(0,0); }
 
-  const n={direct:0,conditional:0,na:0};
-  rows.forEach(x=>n[x.v]++);
-
-  document.getElementById('headline').textContent=`${ent.icon} ${ent.label}`;
-  document.getElementById('verdictSub').textContent =
-    ACTS.size ? `${ent.desc} · also: ${[...ACTS].map(a=>DATA.activities.find(x=>x.id===a).label.toLowerCase()).join(', ')}`
-              : ent.desc;
-  document.getElementById('tally').innerHTML=
-    `<span class="d"><b>${n.direct}</b> in scope</span>
-     <span class="c"><b>${n.conditional}</b> conditional</span>
-     <span class="n"><b>${n.na}</b> not applicable</span>`;
-
-  box.className='matrix';
-  box.innerHTML = rows.map(({r,v})=>{
-    const note = (r.notes||{})[ENTITY];
-    const showDate = v!=='na' && r.applies_from;
-    return `<div class="row ${v}">
-      <div>
-        <div class="rn">${esc(r.name)}</div>
-        <div class="rmeta">${esc(r.instrument)} · ${esc(r.topic)}</div>
-      </div>
-      <div>
-        <div class="rw">${esc(r.why)}</div>
-        ${note && v!=='na' ? `<div class="rnote">${esc(note)}</div>` : ''}
-        ${showDate ? `<div class="rdate">Applies from ${esc(r.applies_from)}</div>` : ''}
-      </div>
-      <span class="badge ${v}">${badgeLabel(v, r.instrument)}</span>
-    </div>`;
-  }).join('');
-
-  disc.textContent = DATA._meta.disclaimer;
+function paintWho(){
+  const e=APP&&ENTITY?APP.entities.find(x=>x.id===ENTITY):null;
+  document.getElementById('whoAv').textContent=e?e.icon:'?';
+  document.getElementById('whoName').textContent=e?e.label:'No profile set';
+  document.getElementById('whoSub').textContent=e
+    ? (ACTS.size?`+${ACTS.size} activit${ACTS.size>1?'ies':'y'}`:'Tap to change')
+    : 'Tap to choose';
+  const themes=myThemes();
+  document.getElementById('ctRadar').textContent=themes.size
+    ? ITEMS.filter(i=>isRelevant(i,themes)).length : ITEMS.length;
+  document.getElementById('ctDates').textContent=(META.timeline||[]).length||'';
+  document.getElementById('ctLib').textContent=APP?APP.regulations.length:'';
 }
 
 async function boot(){
-  load();
+  loadP();
+  document.querySelectorAll('.nv').forEach(b=>b.addEventListener('click',()=>go(b.dataset.v)));
+  document.getElementById('whoBtn').addEventListener('click',()=>go('apply'));
   try{
-    DATA = await fetch('data/applicability.json').then(r=>r.json());
-  }catch(e){
-    document.getElementById('matrix').innerHTML='<div class="empty">Could not load the applicability data.</div>';
-    return;
-  }
-  document.getElementById('stamp').textContent='Mapping reviewed '+DATA._meta.last_reviewed;
-  render();
+    // no-store: the pipeline rewrites these on a schedule, and a cached
+    // copy would quietly show yesterday's regulatory position.
+    const opt={cache:'no-store'};
+    const [items,meta,app]=await Promise.all([
+      fetch('data/items.json',opt).then(r=>r.json()).catch(()=>[]),
+      fetch('data/meta.json',opt).then(r=>r.json()).catch(()=>({})),
+      fetch('data/applicability.json',opt).then(r=>r.json()).catch(()=>null),
+    ]);
+    ITEMS=Array.isArray(items)?items:(items.items||[]); META=meta||{}; APP=app;
+  }catch(e){}
+  ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  paintWho(); render();
 }
 boot();
 </script>
