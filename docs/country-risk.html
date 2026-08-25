@@ -102,6 +102,7 @@
   .tier{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;white-space:nowrap}
   .t-low{background:var(--ok-bg);color:var(--ok)}.t-med{background:var(--imp-bg);color:var(--imp)}
   .t-high{background:var(--crit-bg);color:var(--crit)}.t-prohib{background:var(--prohib-bg);color:var(--prohib);border:1px solid var(--prohib)}
+  .t-nodata{background:var(--surface-2);color:var(--text-3);border:1px dashed var(--border-strong)}
   .flag{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:600;white-space:nowrap;margin-right:3px;display:inline-block}
   .f-black{background:var(--crit);color:#fff}.f-grey{background:var(--imp-bg);color:var(--imp);border:1px solid var(--imp)}
   .f-eu{background:var(--accent-bg);color:var(--accent)}.f-sanc{background:var(--crit-bg);color:var(--crit)}
@@ -263,7 +264,19 @@ function risk(c,k){
   if(k==="human_trafficking") return i.human_trafficking==null?null:i.human_trafficking;
   return null;
 }
-function score(c){let n=0,d=0;IND.forEach(x=>{const v=risk(c,x.k),w=W[x.k]||0;if(v!=null&&w>0){n+=v*w;d+=w;}});return d?n/d:0;}
+/* fatf and eu_hrtc always yield a number (0 = "not listed"), so on their
+   own they make a country look fully assessed when nothing substantive
+   is known about it. Require at least one measured indicator before a
+   composite score means anything — otherwise an unknown country scores 0
+   and paints bright green, i.e. safer than Belgium. In a country-risk
+   tool that is the most dangerous possible default. */
+const SUBSTANTIVE=["cpi","sanctions","secrecy","criminality","resilience","human_trafficking"];
+function hasData(c){const i=c.indicators||{};return SUBSTANTIVE.some(k=>i[k]!=null);}
+function score(c){
+  if(!hasData(c))return null;
+  let n=0,d=0;IND.forEach(x=>{const v=risk(c,x.k),w=W[x.k]||0;if(v!=null&&w>0){n+=v*w;d+=w;}});
+  return d?n/d:null;
+}
 function contributions(c){
   const tot=IND.reduce((a,x)=>a+((risk(c,x.k)!=null&&(W[x.k]||0)>0)?W[x.k]:0),0);
   return IND.filter(x=>(W[x.k]||0)>0&&risk(c,x.k)!=null).map(x=>{
@@ -281,8 +294,13 @@ function prohibited(c){
 }
 function tierOf(c){
   const p=prohibited(c);
+  /* A listing is knowledge in itself — if a country is on the FATF
+     blacklist or the EU list we can say "prohibited" even with no
+     other indicators. */
   if(p.length)return{tier:"prohib",label:"Prohibited",reasons:p};
-  const s=score(c),lo=+document.getElementById('thrLow').value,hi=+document.getElementById('thrHigh').value;
+  const s=score(c);
+  if(s==null)return{tier:"nodata",label:"No data",reasons:[]};
+  const lo=+document.getElementById('thrLow').value,hi=+document.getElementById('thrHigh').value;
   return{tier:s<lo?"low":s<hi?"med":"high",label:s<lo?"Low":s<hi?"Medium":"High",reasons:[]};
 }
 function divergence(c){
@@ -337,13 +355,13 @@ function sortBy(k){if(sortKey===k){sortDir*=-1;}else{sortKey=k;sortDir=k==="name
 function toggleDiv(){onlyDiv=!onlyDiv;document.getElementById('chipDiv').classList.toggle('on',onlyDiv);render();}
 function toggleProhib(){onlyProhib=!onlyProhib;document.getElementById('chipProhib').classList.toggle('on',onlyProhib);render();}
 
-const TIER={low:['t-low','Low'],med:['t-med','Medium'],high:['t-high','High'],prohib:['t-prohib','Prohibited']};
+const TIER={low:['t-low','Low'],med:['t-med','Medium'],high:['t-high','High'],prohib:['t-prohib','Prohibited'],nodata:['t-nodata','No data']};
 function render(){
   sumW();
   const cnt={low:0,med:0,high:0,prohib:0};
-  DATA.countries.forEach(c=>cnt[tierOf(c).tier]++);
+  DATA.countries.forEach(c=>{const t=tierOf(c).tier;cnt[t]=(cnt[t]||0)+1;});
   const T=DATA.countries.length;
-  document.getElementById('dist').innerHTML=[['low','var(--ok)'],['med','var(--imp)'],['high','var(--crit)'],['prohib','var(--prohib)']]
+  document.getElementById('dist').innerHTML=[['low','var(--ok)'],['med','var(--imp)'],['high','var(--crit)'],['prohib','var(--prohib)'],['nodata','#6B7280']]
     .map(([k,col])=>cnt[k]?`<div style="width:${cnt[k]/T*100}%;background:${col}">${cnt[k]}</div>`:'').join('');
 
   const r=rows();
@@ -358,7 +376,7 @@ function render(){
     return `<tr onclick="openCountry('${x.c.iso3||x.c.code}')">
       <td class="c-rank">${i+1}</td>
       <td><div class="c-name">${esc(x.c.name)}</div><div class="c-region">${esc(x.c.region)}</div></td>
-      <td class="c-score" style="color:${col}">${x.s.toFixed(2)}</td>
+      <td class="c-score" style="color:${col}">${x.s==null?'\u2014':x.s.toFixed(2)}</td>
       <td><span class="tier ${tc}">${tl}</span></td>
       <td>${f.join('')||'<span style="color:var(--text-3);font-size:11px">\u2014</span>'}${x.d?'<span class="diverge">\u26a0 divergence</span>':''}</td>
       <td style="font-family:var(--mono);font-size:12px">${ind.criminality!=null?ind.criminality.toFixed(1):'\u2014'}</td>
@@ -422,13 +440,17 @@ function paintMap(){
   d3.select("#map").selectAll("path").attr("fill",d=>{
     const c=byFeature(d);if(!c)return NODATA;
     if(layer==="rating"){const t=tierOf(c);
-      return t.tier==="prohib"?PROHIB:t.tier==="low"?"#2EBD85":t.tier==="med"?"#E3A008":"#F0616D";}
+      // nodata must be tested explicitly — falling through to the final
+      // branch painted unassessed countries red, which is as wrong as
+      // painting them green, just in the other direction.
+      return t.tier==="prohib"?PROHIB:t.tier==="nodata"?NODATA
+        :t.tier==="low"?"#2EBD85":t.tier==="med"?"#E3A008":"#F0616D";}
     if(layer==="listing"){const i=c.indicators;
       return i.fatf==="black"?PROHIB:i.fatf==="grey"?"#E3A008":i.eu_hrtc?"#E3701A":"#2EBD85";}
     const v=risk(c,layer);return v==null?NODATA:sc(v);
   }).select("title").text(d=>{
     const c=byFeature(d);
-    return c?`${c.name} \u2014 ${tierOf(c).label} (${score(c).toFixed(2)})`:d.properties.name;
+    if(!c)return d.properties.name;const _s=score(c);return `${c.name} \u2014 ${tierOf(c).label}${_s==null?'':` (${_s.toFixed(2)})`}`;
   });
   const L=document.getElementById("legend");
   if(layer==="rating")
@@ -452,7 +474,7 @@ function openCountry(code){
     verdict=`<b style="color:${col}">Prohibited</b> \u2014 triggered by your appetite rules:<br>${t.reasons.map(r=>'\u00b7 '+r).join('<br>')}`;
   }else{
     const top=cb.slice(0,3).map(x=>`${x.label} (${x.value.toFixed(1)} \u00d7 ${x.weight}% = ${x.points.toFixed(2)})`).join('<br>\u00b7 ');
-    verdict=`<b style="color:${col}">${t.label}</b> \u2014 score <b>${s.toFixed(2)}</b>. Largest drivers:<br>\u00b7 ${top}`;
+    verdict=s==null?`<b style="color:${col}">No data</b> \u2014 no measured indicator for this country yet. It is shown for completeness and excluded from scoring.`:`<b style="color:${col}">${t.label}</b> \u2014 score <b>${s.toFixed(2)}</b>. Largest drivers:<br>\u00b7 ${top}`;
   }
   const reg=c.regulator||{};
   document.getElementById('drawerBody').innerHTML=`
@@ -464,7 +486,7 @@ function openCountry(code){
       ${cb.map(x=>`<div class="contrib">
         <div class="ctop"><span>${x.label}</span><span style="font-family:var(--mono);color:var(--text-2)">${x.value.toFixed(1)} \u00d7 ${x.weight}% = <b style="color:var(--accent)">${x.points.toFixed(2)}</b></span></div>
         <div class="cbar"><i style="width:${s?Math.min(100,x.points/s*100):0}%"></i></div></div>`).join('')}
-      <div class="kv" style="margin-top:8px;border-top:1px solid var(--border-strong);padding-top:8px"><span>Total score</span><span style="color:${col};font-family:var(--mono)">${s.toFixed(2)}</span></div>
+      <div class="kv" style="margin-top:8px;border-top:1px solid var(--border-strong);padding-top:8px"><span>Total score</span><span style="color:${col};font-family:var(--mono)">${s==null?'\u2014':s.toFixed(2)}</span></div>
     </div>
     <div class="dsec"><h4>Regulatory &amp; AML</h4>
       <div class="kv"><span>FATF status</span><span>${i.fatf==='black'?'High-risk (blacklist)':i.fatf==='grey'?'Increased monitoring':'Not listed'}</span></div>
@@ -489,7 +511,7 @@ function closeDrawer(){document.getElementById('drawer').classList.remove('open'
 
 function expRows(){
   return rows().map(x=>({
-    Country:x.c.name,Region:x.c.region,Score:+x.s.toFixed(2),Rating:x.t.label,
+    Country:x.c.name,Region:x.c.region,Score:x.s==null?null:+x.s.toFixed(2),Rating:x.t.label,
     "Prohibition trigger":x.t.reasons.join('; '),
     FATF:x.c.indicators.fatf==='black'?'Blacklist':x.c.indicators.fatf==='grey'?'Greylist':'Not listed',
     "EU high-risk":x.c.indicators.eu_hrtc?'Yes':'No',
@@ -523,7 +545,7 @@ function exportExcel(){
 function exportMethodology(){
   const tot=IND.reduce((a,i)=>a+(W[i.k]||0),0);
   const cnt={low:0,med:0,high:0,prohib:0};
-  DATA.countries.forEach(c=>cnt[tierOf(c).tier]++);
+  DATA.countries.forEach(c=>{const t=tierOf(c).tier;cnt[t]=(cnt[t]||0)+1;});
   const lo=document.getElementById('thrLow').value,hi=document.getElementById('thrHigh').value;
   const today=new Date().toISOString().slice(0,10);
   const indRows=IND.map(i=>`<tr><td>${i.label}</td><td style="text-align:center">${W[i.k]||0}%</td><td style="text-align:center">${tot?((W[i.k]||0)/tot*100).toFixed(1):0}%</td><td>${i.rule}</td></tr>`).join('');

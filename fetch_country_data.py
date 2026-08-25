@@ -151,6 +151,146 @@ def fetch_eu_hrtc():
         return None
 
 
+# ═══════════════════════════════════════════════════════════════════
+#  AUTOMATION HELPERS (stdlib only, so CI needs no extra wheels)
+# ═══════════════════════════════════════════════════════════════════
+
+COUNTRY_CODES_CSV = ("https://raw.githubusercontent.com/datasets/country-codes/"
+                     "master/data/country-codes.csv")
+# Pinned to the published year rather than "latest": CPI 2025 is not out
+# yet (403), and a silently-wrong year is worse than a known-old one.
+CPI_XLSX_URL = "https://images.transparencycdn.org/images/CPI2024-Results-and-trends.xlsx"
+CPI_YEAR = 2024
+
+
+def _xlsx_rows(blob: bytes):
+    """Minimal .xlsx reader: yields rows as lists of strings.
+
+    Deliberately stdlib — pandas + openpyxl are heavy for CI and this
+    only needs a flat sheet. Handles shared strings and inline strings,
+    and honours cell references so blank cells don't shift columns.
+    """
+    import zipfile, io, re as _r
+    from xml.etree import ElementTree as ET
+
+    def ns_of(root):
+        """Take the namespace from the document instead of assuming it.
+        Office writes either the transitional schema
+        (schemas.openxmlformats.org/...) or the strict one
+        (purl.oclc.org/ooxml/...). Transparency International's CPI
+        workbook uses strict, so a hardcoded transitional namespace
+        silently matched nothing and parsed zero rows."""
+        m = _r.match(r"\{([^}]+)\}", root.tag)
+        return "{%s}" % m.group(1) if m else ""
+
+    z = zipfile.ZipFile(io.BytesIO(blob))
+    shared = []
+    if "xl/sharedStrings.xml" in z.namelist():
+        root = ET.fromstring(z.read("xl/sharedStrings.xml"))
+        SNS = ns_of(root)
+        for si in root.findall(f"{SNS}si"):
+            shared.append("".join(t.text or "" for t in si.iter(f"{SNS}t")))
+    # Workbooks put the data wherever they like — CPI's first sheet is a
+    # cover page. Walk every sheet; the caller decides what it recognises.
+    # Exclude xl/worksheets/_rels/*.xml, which also match the prefix.
+    sheets = sorted(n for n in z.namelist()
+                    if _r.match(r"xl/worksheets/sheet\d+\.xml$", n))
+    for sheet in sheets:
+      sroot = ET.fromstring(z.read(sheet))
+      NS = ns_of(sroot)
+      for row in sroot.iter(f"{NS}row"):
+        cells, maxcol = {}, 0
+        for c in row.findall(f"{NS}c"):
+            ref = c.get("r") or ""
+            m = _r.match(r"([A-Z]+)", ref)
+            idx = 0
+            for ch in (m.group(1) if m else "A"):
+                idx = idx * 26 + (ord(ch) - 64)
+            idx -= 1
+            v = c.find(f"{NS}v")
+            if c.get("t") == "s" and v is not None:
+                try:
+                    val = shared[int(v.text)]
+                except (ValueError, IndexError):
+                    val = ""
+            elif c.get("t") == "inlineStr":
+                val = "".join(t.text or "" for t in c.iter(f"{NS}t"))
+            else:
+                val = (v.text if v is not None else "") or ""
+            cells[idx] = val.strip()
+            maxcol = max(maxcol, idx)
+        yield [cells.get(i, "") for i in range(maxcol + 1)]
+
+
+def fetch_country_list():
+    """Every ISO 3166-1 country, so coverage is not capped by whatever
+    happened to be seeded by hand. Returns [{code, iso3, name, region}]."""
+    print("→ ISO 3166-1 country list…")
+    try:
+        import csv, io
+        r = requests.get(COUNTRY_CODES_CSV, headers=UA, timeout=45)
+        r.raise_for_status()
+        rows = list(csv.DictReader(io.StringIO(r.text)))
+        out = []
+        for x in rows:
+            a2 = (x.get("ISO3166-1-Alpha-2") or "").strip()
+            a3 = (x.get("ISO3166-1-Alpha-3") or "").strip()
+            name = ((x.get("UNTERM English Short") or "").strip()
+                    or (x.get("official_name_en") or "").strip()
+                    or (x.get("CLDR display name") or "").strip())
+            region = (x.get("Region Name") or "").strip()
+            if len(a2) == 2 and len(a3) == 3 and name:
+                out.append({"code": a2, "iso3": a3, "name": name,
+                            "region": region or "—"})
+        print(f"  {len(out)} countries")
+        return out or None
+    except Exception as e:
+        print(f"  ! country list failed: {type(e).__name__}: {str(e)[:80]}")
+        return None
+
+
+def fetch_cpi_auto():
+    """CPI without a manual download. The spreadsheet is served publicly
+    and, unlike FATF, is reachable from a datacenter IP — so this is the
+    one heavyweight indicator that genuinely automates."""
+    print(f"→ Transparency International CPI {CPI_YEAR} (auto)…")
+    try:
+        r = requests.get(CPI_XLSX_URL, headers=UA, timeout=90)
+        r.raise_for_status()
+        if not r.content[:2] == b"PK":
+            print("  ! not an xlsx (soft-404?) — keeping previous values")
+            return None
+        rows = list(_xlsx_rows(r.content))
+        hdr_i = next((i for i, row in enumerate(rows)
+                      if any(c.strip().upper() == "ISO3" for c in row)), None)
+        if hdr_i is None:
+            print("  ! no ISO3 header found — keeping previous values")
+            return None
+        hdr = [c.strip().lower() for c in rows[hdr_i]]
+        iso_c = next(i for i, c in enumerate(hdr) if c == "iso3")
+        score_c = next((i for i, c in enumerate(hdr)
+                        if "score" in c and "rank" not in c), None)
+        if score_c is None:
+            print("  ! no score column — keeping previous values")
+            return None
+        out = {}
+        for row in rows[hdr_i + 1:]:
+            if len(row) <= max(iso_c, score_c):
+                continue
+            code = row[iso_c].strip().upper()
+            try:
+                sc = float(row[score_c])
+            except (TypeError, ValueError):
+                continue
+            if len(code) == 3 and 0 <= sc <= 100:
+                out[code] = round(sc)
+        print(f"  {len(out)} country score(s)")
+        return out or None
+    except Exception as e:
+        print(f"  ! CPI auto-fetch failed: {type(e).__name__}: {str(e)[:80]}")
+        return None
+
+
 def fetch_cpi(path=None):
     """
     Returns {iso3: 0-100} or None.
@@ -280,13 +420,53 @@ def main():
 
     print(f"\nRefreshing country risk data — {TODAY}\n" + "=" * 52)
     fatf, eu = fetch_fatf(), fetch_eu_hrtc()
-    cpi, oc = fetch_cpi(cpi_path), fetch_ocindex(oc_path)
+    # Prefer a manually supplied file (lets you use a newer CPI than the
+    # pinned one); otherwise fetch it ourselves.
+    cpi = fetch_cpi(cpi_path) if cpi_path else fetch_cpi_auto()
+    oc = fetch_ocindex(oc_path)
 
     stale = [k for k, v in (("fatf", fatf), ("eu_hrtc", eu),
                             ("cpi", cpi), ("ocindex", oc)) if v is None]
 
-    new_countries = []
+    # ── Country universe ────────────────────────────────────────────
+    # Previously this iterated `prev_countries`, so the file could only
+    # ever contain whatever was seeded by hand — 90 countries, with no
+    # way to grow. Start from the full ISO 3166-1 list and merge the
+    # existing records onto it, so coverage is a property of the data
+    # rather than of what someone typed once.
+    universe = fetch_country_list()
+    prev_by = {}
     for c in prev_countries:
+        k = c.get("iso3") or iso3(c["name"])
+        if k:
+            prev_by[k] = c
+
+    if universe:
+        base = []
+        for u in universe:
+            old = prev_by.get(u["iso3"])
+            if old:
+                rec = dict(old)
+                rec.setdefault("region", u["region"])
+                base.append(rec)
+            else:
+                base.append({"code": u["code"], "name": u["name"],
+                             "region": u["region"], "iso3": u["iso3"],
+                             "indicators": {},
+                             "regulator": {"supervisor": "—", "fiu": "—",
+                                           "egmont": False}})
+        added = len(base) - len(prev_by)
+        print(f"  · country universe: {len(base)} "
+              f"({added:+d} vs previous {len(prev_countries)})")
+    else:
+        # Country list unavailable: keep exactly what we had rather than
+        # dropping countries. Same principle as the indicators.
+        print("  · country list unavailable — keeping previous set")
+        base = list(prev_countries)
+        stale.append("country_list")
+
+    new_countries = []
+    for c in base:
         code = c.get("iso3") or iso3(c["name"])
         ind = dict(c.get("indicators", {}))
         if fatf is not None:
