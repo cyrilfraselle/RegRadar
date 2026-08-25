@@ -33,6 +33,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta
 import hashlib
+import re
 import schedule
 import time
 import logging
@@ -186,11 +187,14 @@ SOURCES = [
     #  If you see 403/404 errors, these will be covered by Google News fallbacks below
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     {
+        # Stale URL — the old /fr/rss.xml path 404s. Verified working
+        # 2026-08-25 by fetching it directly and checking real content
+        # (a news item on AML/CFT expertise for insurance intermediaries).
         "id": "fsma_rss",
         "nom": "FSMA",
         "pays": "BE",
         "type": "rss",
-        "url": "https://www.fsma.be/fr/rss.xml",
+        "url": "https://www.fsma.be/en/news-articles/rss.xml",
         "couleur": "#185FA5",
     },
     {
@@ -514,19 +518,29 @@ MOTS_CLES = {
     },
  
     # ── Themes for tagging ────────────────────────────────────────
+    # Multi-label: an item can and often should carry more than one
+    # (an enforcement action against a bank for AML failings tags both
+    # "AML/CFT" and "Enforcement/Fines"). Each list is deliberately wider
+    # than the launch set — a compliance-officer audience of this feed
+    # cares about the full BE/EU regulatory perimeter, not just AML.
     "themes": {
-        "DORA": ["DORA", "Digital Operational Resilience", "ICT risk", "operational resilience", "TLPT", "third-party ICT"],
-        "SFDR/ESG": ["SFDR", "Sustainable Finance Disclosure", "PAI", "Principal Adverse", "CSRD", "ESG", "taxonomy", "taxonomie", "sustainability"],
-        "MiFID/MiFIR": ["MiFID", "MiFIR", "investment firm", "best execution", "suitability"],
-        "AML/CFT": ["AML", "AMLR", "money laundering", "blanchiment", "AMLA", "CFT", "terrorist financing", "sanctions", "KYC", "due diligence"],
-        "Capital/CRR": ["CRR", "CRD", "Basel", "Bâle", "capital", "own funds", "SREP", "CRR3", "CRD6", "leverage ratio", "liquidity"],
-        "MiCA/Crypto": ["MiCA", "crypto", "digital assets", "stablecoin", "crypto-asset", "DLT", "digital euro"],
-        "FIDA/OpenFinance": ["FIDA", "open finance", "financial data", "PSD2", "PSD3", "open banking"],
-        "Retail Investment": ["Retail Investment", "PRIIPs", "KID", "KIID", "retail investor", "suitability"],
-        "Solvency/Insurance": ["Solvency", "Omnibus", "insurance", "assurance", "EIOPA", "reinsurance"],
-        "Enforcement/Fines": ["fine", "penalty", "enforcement", "sanction", "investigation", "AML violation", "fraud"],
-        "Stress Test": ["stress test", "climate stress", "SREP", "resilience", "scenario analysis"],
-        "Market Infrastructure": ["CSDR", "EMIR", "CCP", "central counterparty", "settlement", "securities financing"],
+        "DORA": ["DORA", "Digital Operational Resilience", "ICT risk", "operational resilience", "TLPT", "third-party ICT", "incident reporting", "cyber resilience", "cyber incident"],
+        "SFDR/ESG": ["SFDR", "Sustainable Finance Disclosure", "PAI", "Principal Adverse", "CSRD", "ESG", "taxonomy", "taxonomie", "sustainability", "sustainable finance", "greenwashing", "climate risk", "biodiversity"],
+        "MiFID/MiFIR": ["MiFID", "MiFIR", "investment firm", "best execution", "suitability", "product governance", "investor protection"],
+        "AML/CFT": ["AML", "AMLR", "money laundering", "blanchiment", "AMLA", "CFT", "terrorist financing", "KYC", "due diligence", "beneficial owner", "UBO", "suspicious transaction", "STR", "SAR"],
+        "Sanctions": ["sanctions", "sanction regime", "asset freeze", "sanctions list", "OFAC", "restrictive measures", "export control", "sanctions evasion", "sanctions breach", "sanctions violation"],
+        "Capital/CRR": ["CRR", "CRD", "Basel", "Bâle", "capital", "own funds", "SREP", "CRR3", "CRD6", "leverage ratio", "liquidity", "risk weight", "prudential"],
+        "MiCA/Crypto": ["MiCA", "crypto", "digital assets", "stablecoin", "crypto-asset", "DLT", "digital euro", "virtual asset", "CASP"],
+        "Payments": ["PSD2", "PSD3", "payment institution", "e-money", "open banking", "instant payment", "payment services", "acquirer", "payment initiation"],
+        "FIDA/OpenFinance": ["FIDA", "open finance", "financial data access", "data sharing"],
+        "Retail Investment": ["Retail Investment", "PRIIPs", "KID", "KIID", "retail investor"],
+        "Solvency/Insurance": ["Solvency", "Omnibus", "insurance", "assurance", "EIOPA", "reinsurance", "insurer"],
+        "Enforcement/Fines": ["fine", "fined", "penalty", "penalised", "penalized", "enforcement", "investigation", "investigated", "probe", "probed", "AML violation", "fraud", "charged", "prosecuted", "settlement", "consent order", "detained", "raided"],
+        "Stress Test": ["stress test", "climate stress", "scenario analysis"],
+        "Market Infrastructure": ["CSDR", "EMIR", "CCP", "central counterparty", "clearing house", "settlement", "securities financing", "third-country", "trading venue", "market abuse", "MAR", "insider dealing"],
+        "Data Protection": ["GDPR", "data protection", "personal data", "data breach", "data subject", "privacy", "EDPB", "DPA fine"],
+        "Consumer Protection": ["consumer protection", "unfair terms", "mis-selling", "consumer credit", "complaint handling", "vulnerable customer", "financial inclusion"],
+        "Tax Transparency": ["DAC6", "DAC7", "DAC8", "CRS", "FATCA", "automatic exchange", "tax transparency", "beneficial ownership register"],
     },
 }
  
@@ -572,6 +586,19 @@ def generer_id(url: str, titre: str) -> str:
     """Génère un identifiant unique pour un article."""
     contenu = f"{url}|{titre}"
     return hashlib.md5(contenu.encode()).hexdigest()
+
+def generer_id_titre(titre: str) -> str:
+    """A second, title-only id for dedup. Google News mints a fresh
+    redirect URL for the same underlying story every time it resurfaces
+    in a search — sometimes even within the same run across two
+    different query categories — so the URL-based id alone lets the
+    identical headline back in repeatedly. Strip the trailing
+    ' - Outlet Name' suffix before hashing, since that's the one part
+    of the title that legitimately varies per outlet for the same wire
+    story."""
+    t = titre.rsplit(" - ", 1)[0] if " - " in titre else titre
+    t = re.sub(r"[^a-z0-9]+", "", t.lower())
+    return "titre:" + hashlib.md5(t.encode()).hexdigest()
  
 # ═══════════════════════════════════════════════════════════════
 #  COLLECTE DES DONNÉES
@@ -788,29 +815,31 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
     for art in articles:
         # Filtre — déjà vu ET traité ?
         art_id = generer_id(art["lien"], art["titre"])
-        if art_id in vus:
+        titre_id = generer_id_titre(art["titre"])
+        if art_id in vus or titre_id in vus:
             continue
- 
+
         # Filtre — trop ancien ?
         if art["date"] < limite_date:
             vus.add(art_id)  # marquer comme vu pour ne plus traiter
             continue
- 
+
         # Scoring (avant le filtre pertinence, pour pouvoir logger)
         impact = classify_article(art["titre"], art.get("resume", ""), art["source_id"])
         themes = detecter_themes(art["titre"] + " " + art.get("resume", ""))
- 
+
         # Filtre — non pertinent (impact 0 = aucun mot-clé trouvé)
         if impact == 0:
             # NE PAS ajouter dans vus — si les mots-clés changent, il sera rescané
             log.debug(f"Non pertinent (ignoré) : {art['titre'][:60]}")
             continue
- 
+
         art["impact"] = impact
-        art["themes"] = themes
+        art["themes"] = themes if themes else ["General"]
         art["id"] = art_id
         resultats.append(art)
         vus.add(art_id)  # marquer comme traité seulement si pertinent
+        vus.add(titre_id)
  
     # Tri : impact décroissant, puis date décroissante
     resultats.sort(key=lambda x: (-x["impact"], -x["date"].timestamp()))

@@ -40,6 +40,8 @@ GOOGLE_NEWS_SOURCES = {
     "gnews_eu_regulations", "gnews_ecb_supervision", "gnews_fintech_licensing",
     "gnews_aml_financialcrime", "gnews_fraud",
     "gnews_enforcement_be", "gnews_enforcement_majorFI", "gnews_global_enforcement",
+    "gnews_sanctions", "gnews_data_protection", "gnews_consumer_protection",
+    "gnews_tax_transparency",
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -128,6 +130,8 @@ OFF_TOPIC_TERMS = [
     "video game", "recipe", "horoscope", "fashion week", "runway show",
     "football match", "premier league", "champions league", "world cup",
     "celebrity", "red carpet", "streaming service", "documentary",
+    "school complaint", "student protest", "district-wise", "school district",
+    "baseball", "basketball", "nba", "nfl", "mlb", "cricket match",
 ]
 
 # Short acronyms (esma, eba, ecb, aml…) are prone to matching inside an
@@ -308,6 +312,34 @@ REFINED_GNEWS_SOURCES = [
         "id": "gnews_global_enforcement", "nom": "GNews — Major Global", "pays": "GLOBAL", "type": "rss",
         "url": 'https://news.google.com/rss/search?q=("record+fine"+OR+billion+OR+major)+(bank+OR+financial)+("money+laundering"+OR+"sanctions+violation"+OR+fraud)&hl=en&gl=US&ceid=US:en',
         "couleur": "#A32D2D",
+    },
+    # — Sanctions (was folded into AML/CFT keyword-only; now a distinct
+    #   theme, so it needs its own source or it stays near-empty) —
+    {
+        "id": "gnews_sanctions", "nom": "GNews — Sanctions", "pays": "EU", "type": "rss",
+        "url": 'https://news.google.com/rss/search?q=("EU+sanctions"+OR+"restrictive+measures"+OR+"asset+freeze"+OR+"sanctions+list")+(bank+OR+financial+OR+compliance+OR+EU+OR+Belgium)&hl=en&gl=EU&ceid=EU:en',
+        "couleur": "#A32D2D",
+    },
+    # — Data protection (GDPR intersecting financial services — breach
+    #   notifications, DPA fines against banks/fintechs) —
+    {
+        "id": "gnews_data_protection", "nom": "GNews — Data Protection", "pays": "EU", "type": "rss",
+        "url": 'https://news.google.com/rss/search?q=(GDPR+OR+"data+protection")+(bank+OR+financial+OR+fintech+OR+insurer)+(fine+OR+breach+OR+EDPB+OR+guideline)&hl=en&gl=EU&ceid=EU:en',
+        "couleur": "#0F6E56",
+    },
+    # — Consumer protection (mis-selling, unfair terms, vulnerable
+    #   customers — a standing compliance-officer beat, previously
+    #   untracked entirely) —
+    {
+        "id": "gnews_consumer_protection", "nom": "GNews — Consumer Protection", "pays": "EU", "type": "rss",
+        "url": 'https://news.google.com/rss/search?q=("consumer+protection"+OR+"mis-selling"+OR+"unfair+terms"+OR+"vulnerable+customer")+(bank+OR+financial+OR+insurer+OR+EU)&hl=en&gl=EU&ceid=EU:en',
+        "couleur": "#0F6E56",
+    },
+    # — Tax transparency (DAC6/7/8, CRS, beneficial-ownership registers) —
+    {
+        "id": "gnews_tax_transparency", "nom": "GNews — Tax Transparency", "pays": "EU", "type": "rss",
+        "url": 'https://news.google.com/rss/search?q=(DAC6+OR+DAC7+OR+DAC8+OR+CRS+OR+FATCA+OR+"automatic+exchange"+OR+"beneficial+ownership+register")+(EU+OR+Belgium+OR+tax)&hl=en&gl=EU&ceid=EU:en',
+        "couleur": "#0F6E56",
     },
 ]
 
