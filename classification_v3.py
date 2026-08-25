@@ -30,7 +30,157 @@ OFFICIAL_REGULATOR_SOURCES = {
     "fsma_rss", "fsma_circulaires", "bnb_rss", "bnb_circulaires",
     "esma_rss", "esma_qa", "eba_rss", "ecb_rss", "ecb_supervision_rss",
     "eurlex_finance", "eiopa_rss", "amla_rss", "esrb_rss",
+    "srb_rss", "fsb_rss", "ec_presscorner",
 }
+
+# ═══════════════════════════════════════════════════════════════
+#  DOCUMENT TYPE & LEGAL WEIGHT
+#  A compliance officer's first question about any publication is
+#  "is this binding on me?". A regulation and a speech are both
+#  "news" to an RSS reader and are worlds apart in practice, so
+#  classify the instrument and carry its legal weight explicitly.
+#  Ordered most-binding first — the first pattern to match wins.
+# ═══════════════════════════════════════════════════════════════
+
+DOC_TYPES = [
+    ("regulation", "Regulation", "binding", [
+        "regulation (eu)", "delegated regulation", "implementing regulation",
+        "official journal", "règlement délégué",
+    ]),
+    ("directive", "Directive", "binding-transposed", [
+        "directive (eu)", "directive 20", "transposition",
+    ]),
+    ("rts_its", "RTS / ITS", "binding", [
+        "regulatory technical standard", "implementing technical standard",
+        "draft rts", "draft its", "final draft rts", "final draft its",
+        " rts ", " its ", "binding technical standard",
+    ]),
+    ("national_law", "National law", "binding", [
+        "moniteur belge", "belgisch staatsblad", "loi du", "arrêté royal",
+        "koninklijk besluit", "wet van",
+    ]),
+    ("circular", "Circular", "supervisory-binding", [
+        "circular", "circulaire", "nbb_20", "fsma_20",
+    ]),
+    ("guideline", "Guideline", "comply-or-explain", [
+        "guidelines", "orientations", "richtsnoeren", "final report on guidelines",
+        "guidance on", "operational guidance", "guidance note",
+    ]),
+    ("qa", "Q&A", "interpretive", [
+        "q&a", "question and answer", "questions and answers", "single rulebook q&a",
+    ]),
+    ("supervisory", "Supervisory statement", "supervisory-expectation", [
+        "supervisory statement", "supervisory expectations", "dear ceo",
+        "public statement", "warns the public", "warning notice", "opinion of the",
+        "supervisory briefing",
+    ]),
+    ("enforcement", "Enforcement decision", "enforcement", [
+        "fined", "fine of", "penalty", "sanctioned", "enforcement action",
+        "cease and desist", "consent order", "prosecuted", "settlement with",
+        "administrative fine", "imposes a fine", "imposes administrative",
+        "sanction decision", "withdrawal of authorisation", "licence withdrawn",
+    ]),
+    ("consultation", "Consultation", "not-yet-binding", [
+        "consultation paper", "consults on", "call for evidence", "call for input",
+        "discussion paper", "public consultation", "call for advice",
+    ]),
+    ("proposal", "Legislative proposal", "not-yet-binding", [
+        "proposal for a regulation", "proposal for a directive", "legislative proposal",
+        "commission proposes", "political agreement", "provisional agreement",
+    ]),
+    ("report", "Report", "non-binding", [
+        "annual report", "final report", "thematic review", "peer review",
+        "monitoring report", "risk dashboard", "stress test results", "assessment report",
+    ]),
+    ("speech", "Speech", "non-binding", [
+        "speech by", "keynote", "remarks by", "interview with", "blog post",
+        "panel remarks", "statement by",
+    ]),
+]
+
+# How much weight a compliance officer should give each, 0-10.
+# Drives ranking so that a binding instrument outranks commentary
+# even when the commentary is louder.
+LEGAL_WEIGHT = {
+    "regulation": 10, "national_law": 10, "rts_its": 9, "directive": 9,
+    "circular": 8, "guideline": 7, "qa": 6, "supervisory": 6,
+    "enforcement": 5, "proposal": 4, "consultation": 4,
+    "report": 3, "speech": 1,
+    # Third-party coverage never outranks the instrument it describes.
+    "news_enforcement": 2, "news": 1, "publication": 1,
+}
+
+
+def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
+    """Return (type_id, human_label, legal_status).
+
+    Source tier constrains the answer. A press article *about* an RTS is
+    not an RTS — only the issuing authority's own feed carries the
+    instrument itself. Labelling third-party coverage as "directly
+    binding" would put a compliance officer's trust in exactly the wrong
+    place, so news sources can never claim a binding instrument type;
+    they get "News: <topic>" at commentary weight instead.
+    """
+    text = (title + " " + (summary or "")).lower()
+    is_primary = source_id in OFFICIAL_REGULATOR_SOURCES
+
+    for tid, label, status, patterns in DOC_TYPES:
+        if any(p in text for p in patterns):
+            if is_primary:
+                return tid, label, status
+            # Third-party coverage: keep the subject, drop the authority.
+            if tid == "enforcement":
+                # Enforcement reporting is genuinely useful from the press
+                # (supervisors rarely publish these promptly) — keep it,
+                # but as reporting, not as a decision served on you.
+                return "news_enforcement", "Reported enforcement", "informational"
+            return "news", f"News: {label.lower()}", "informational"
+
+    if is_primary:
+        return "publication", "Publication", "informational"
+    return "news", "News coverage", "informational"
+
+
+# ═══════════════════════════════════════════════════════════════
+#  REGULATORY LIFECYCLE STAGE
+#  Idea → Consultation → Proposal → Adoption → Publication →
+#  Entry into force → Application → Level 2 → Guidance →
+#  Supervision → Enforcement → Amendment
+#  Knowing the stage is what separates "prepare" from "comply now".
+# ═══════════════════════════════════════════════════════════════
+
+LIFECYCLE_STAGES = [
+    ("consultation", "Consultation", ["consultation", "consults on",
+        "call for evidence", "call for input", "discussion paper", "call for advice"]),
+    ("proposal", "Proposal", ["proposal for", "commission proposes", "propose amendments",
+        "legislative proposal", "political agreement", "provisional agreement"]),
+    ("adopted", "Adopted", ["adopted", "adoption of", "council adopts",
+        "parliament adopts", "endorsed"]),
+    ("published", "Published", ["published in the official journal",
+        "official journal", "publishes"]),
+    ("in_force", "In force", ["entry into force", "enters into force",
+        "entered into force"]),
+    ("applies", "Applies", ["applies from", "application date", "shall apply from",
+        "start of application"]),
+    ("level2", "Level 2", ["regulatory technical standard",
+        "implementing technical standard", "draft rts", "draft its", "delegated"]),
+    ("guidance", "Guidance", ["guidelines", "q&a", "questions and answers",
+        "supervisory statement", "opinion", "recommendation"]),
+    ("enforcement", "Enforcement", ["fined", "penalty", "enforcement action",
+        "sanctioned", "cease and desist"]),
+    ("amendment", "Amendment", ["amending", "amendment to", "revised", "review of"]),
+]
+
+
+def classify_lifecycle(title: str, summary: str = "") -> tuple:
+    """Return (stage_id, label) for where in the regulatory lifecycle this
+    item sits. Returns ('', '') when nothing matches rather than guessing —
+    a wrong stage is worse than no stage."""
+    text = (title + " " + (summary or "")).lower()
+    for sid, label, patterns in LIFECYCLE_STAGES:
+        if any(p in text for p in patterns):
+            return sid, label
+    return "", ""
 
 # Tier 2 — Google News. Commentary caps at IMPORTANT unless strong
 # enforcement signal on a major FI.

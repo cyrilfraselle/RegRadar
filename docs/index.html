@@ -136,6 +136,14 @@
   .tg{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;
     border:1px solid var(--border);color:var(--text-3)}
   .tg.due{border-color:var(--crit);color:var(--crit)}
+  /* Instrument badge — colour encodes how binding it is, so "must
+     comply" reads differently from "someone wrote about it". */
+  .tg.doc{border-color:var(--text-3);color:var(--text-2)}
+  .tg.doc.binding{border-color:var(--crit);color:var(--crit)}
+  .tg.doc.soft{border-color:var(--imp);color:var(--imp)}
+  .tg.doc.info{border-color:var(--border);color:var(--text-3)}
+  .lifecycle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    padding:2px 7px;border:1px dashed var(--border);color:var(--text-3)}
   .arrow{font-family:var(--mono);color:var(--accent);opacity:0;transform:translateX(-4px);
     transition:all 140ms var(--ease);position:relative;top:2px}
   .empty{padding:44px 0;text-align:center;color:var(--text-3);font-size:14px}
@@ -243,6 +251,14 @@
   </section>
 
   <section class="sec">
+    <div class="sec-head">
+      <div><div class="sl">Legal weight</div><div class="sd">What kind of instrument, and how binding — a regulation and a speech are both "news" to a feed reader and worlds apart in practice.</div></div>
+      <span class="clear-filters" id="clearWeight" style="display:none" onclick="ACTIVE_W='';render()">Clear ×</span>
+    </div>
+    <div class="sources" id="weights"></div>
+  </section>
+
+  <section class="sec">
     <div class="sec-head bar">
       <div class="sl">Feed</div>
       <span class="fcount" id="fcount"></span>
@@ -267,7 +283,7 @@
 </div>
 
 <script>
-let ITEMS=[], META={}, ACTIVE=new Set(), ACTIVE_SRC=new Set(), SEL=0;
+let ITEMS=[], META={}, ACTIVE=new Set(), ACTIVE_SRC=new Set(), ACTIVE_W='', SEL=0;
 
 /* One icon per topic — cosmetic, but it's what makes a sixteen-item
    grid scannable instead of a wall of labels. */
@@ -279,6 +295,21 @@ const TOPIC_ICONS={
   'Tax Transparency':'🧾','Enforcement/Fines':'⚖️','General':'📰',
 };
 const IMPACT={3:{c:'var(--crit)',n:'Critical'},2:{c:'var(--imp)',n:'Important'},1:{c:'var(--info)',n:'Info'}};
+
+/* Plain-English legal weight. "Is this binding on me?" is the first
+   question about any publication, and the answer is rarely yes/no. */
+const LEGAL_STATUS_TEXT={
+  'binding':'Directly binding — applies without national transposition.',
+  'binding-transposed':'Binding once transposed into national law.',
+  'supervisory-binding':'Issued by your supervisor — treated as binding in practice.',
+  'comply-or-explain':'Comply-or-explain: deviation must be justified to the supervisor.',
+  'interpretive':'Interpretive — clarifies how an existing rule is applied.',
+  'supervisory-expectation':'Supervisory expectation — not law, but examined against.',
+  'enforcement':'Enforcement outcome — precedent for supervisory tolerance.',
+  'not-yet-binding':'Not yet binding — in consultation or proposal stage.',
+  'non-binding':'Non-binding — background and context.',
+  'informational':'Informational — no direct obligation.',
+};
 
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const hoursAgo=d=>Math.max(0,(Date.now()-new Date(d).getTime())/36e5);
@@ -306,12 +337,31 @@ function regulatorGroup(sourceId){
 }
 const REG_ORDER=['FSMA','BNB / NBB','ESMA','EBA','ECB','EIOPA','AMLA','ESRB','EUR-Lex','Other','News coverage'];
 
+const WEIGHT_BANDS=[
+  {id:'binding', label:'Binding', desc:'Regulation · RTS/ITS · Directive · Circular · Guideline', test:i=>(i.legal_weight||1)>=7},
+  {id:'soft', label:'Interpretive / pending', desc:'Q&A · supervisory statement · consultation · proposal', test:i=>(i.legal_weight||1)>=4&&(i.legal_weight||1)<7},
+  {id:'info', label:'Commentary', desc:'Reports, speeches, press coverage', test:i=>(i.legal_weight||1)<4},
+];
+
 function visible(){
+  const band=WEIGHT_BANDS.find(b=>b.id===ACTIVE_W);
   return ITEMS.filter(i=>{
     if(ACTIVE.size && !(i.themes||[]).some(t=>ACTIVE.has(t))) return false;
     if(ACTIVE_SRC.size && !ACTIVE_SRC.has(regulatorGroup(i.source_id))) return false;
+    if(band && !band.test(i)) return false;
     return true;
   });
+}
+
+function buildWeights(){
+  document.getElementById('weights').innerHTML = WEIGHT_BANDS.map(b=>{
+    const n=ITEMS.filter(b.test).length;
+    return `<button class="src-chip ${ACTIVE_W===b.id?'on':''}" data-w="${b.id}" title="${esc(b.desc)}">
+      ${esc(b.label)}<span class="sc-n">${n}</span></button>`;
+  }).join('');
+  document.querySelectorAll('#weights .src-chip').forEach(el=>el.addEventListener('click',()=>{
+    ACTIVE_W = ACTIVE_W===el.dataset.w ? '' : el.dataset.w; render();
+  }));
 }
 
 function buildTopics(){
@@ -362,11 +412,22 @@ function buildSources(){
   }));
 }
 
+/* Legal weight → visual band. 7+ is something you must actually do
+   (regulation, RTS/ITS, directive, circular, guideline); 4-6 is
+   interpretive or not-yet-binding; below that is commentary. */
+function weightBand(w){ return w>=7?'binding':w>=4?'soft':'info'; }
+
+function docBadge(it){
+  if(!it.doc_label || it.doc_type==='news') return '';
+  return `<span class="tg doc ${weightBand(it.legal_weight||1)}">${esc(it.doc_label)}</span>`;
+}
+
 function sigRow(it){
   const im=IMPACT[it.impact]||IMPACT[1];
   const due=it.deadline?`<span class="tg due">Due ${fmtDate(it.deadline)}</span>`:'';
+  const doc=docBadge(it);
+  const life=it.lifecycle_label?`<span class="lifecycle">${esc(it.lifecycle_label)}</span>`:'';
   const tags=(it.themes||[]).slice(0,2).map(t=>`<span class="tg">${esc(t)}</span>`).join('');
-  const ent=(it.entities||[]).slice(0,2).map(e=>`<span class="tg">${esc(e)}</span>`).join('');
   return `<div class="sig" onclick="openDrawer('${it.id}')">
     <span class="lamp" style="background:${im.c}"></span>
     <span class="src">${esc(it.source)}</span>
@@ -374,7 +435,7 @@ function sigRow(it){
     <div class="body">
       <h3>${esc(it.title)}</h3>
       <p>${esc(it.so_what||it.summary||'')}</p>
-      <div class="meta">${due}${tags}${ent}</div>
+      <div class="meta">${doc}${life}${due}${tags}</div>
     </div>
     <span class="arrow">→</span>
   </div>`;
@@ -387,8 +448,10 @@ function render(){
   document.getElementById('fcount').textContent=`${v.length} / ${ITEMS.length}`;
   document.getElementById('clearTopics').style.display = ACTIVE.size ? '' : 'none';
   document.getElementById('clearSrc').style.display = ACTIVE_SRC.size ? '' : 'none';
+  document.getElementById('clearWeight').style.display = ACTIVE_W ? '' : 'none';
   document.querySelectorAll('.topic').forEach(c=>c.classList.toggle('on',ACTIVE.has(c.dataset.t)));
-  document.querySelectorAll('.src-chip').forEach(c=>c.classList.toggle('on',ACTIVE_SRC.has(c.dataset.g)));
+  document.querySelectorAll('#sources .src-chip').forEach(c=>c.classList.toggle('on',ACTIVE_SRC.has(c.dataset.g)));
+  document.querySelectorAll('#weights .src-chip').forEach(c=>c.classList.toggle('on',ACTIVE_W===c.dataset.w));
 }
 
 function countUp(el,to){
@@ -409,6 +472,13 @@ function openDrawer(id){
       <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:${im.c}">${im.n}</span>
     </div>
     <h2>${esc(it.title)}</h2>
+    ${it.doc_label&&it.doc_type!=='news'?`<div class="dsec"><div class="dl">Instrument &amp; legal weight</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+        <span class="tg doc ${weightBand(it.legal_weight||1)}">${esc(it.doc_label)}</span>
+        <span style="font-size:12.5px;color:var(--text-2)">${esc(LEGAL_STATUS_TEXT[it.legal_status]||it.legal_status||'')}</span>
+      </div>
+      ${it.lifecycle_label?`<p style="margin-top:9px;font-size:12.5px">Lifecycle stage: <b>${esc(it.lifecycle_label)}</b></p>`:''}
+    </div>`:''}
     ${it.summary?`<div class="dsec"><div class="dl">What happened</div><p>${esc(it.summary)}</p></div>`:''}
     ${it.so_what?`<div class="dsec"><div class="dl">So what</div><p>${esc(it.so_what)}</p></div>`:''}
     ${it.action?`<div class="dsec act"><div class="dl">Action</div><p>${esc(it.action)}</p></div>`:''}
@@ -486,7 +556,7 @@ async function load(){
   document.getElementById('footStamp').textContent=`Last sweep ${lu}`;
   document.getElementById('briefText').textContent=META.exec_summary||'No briefing generated for this run.';
 
-  buildTopics(); buildDeadlines(); buildSources(); render();
+  buildTopics(); buildDeadlines(); buildSources(); buildWeights(); render();
 }
 load();
 </script>

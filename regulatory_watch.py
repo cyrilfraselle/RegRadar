@@ -40,6 +40,9 @@ import logging
 from pathlib import Path
 from classification_v3 import (
     classify_article,
+    classify_doc_type,
+    classify_lifecycle,
+    LEGAL_WEIGHT,
     REFINED_GNEWS_SOURCES,
     OFFICIAL_REGULATOR_SOURCES,
     GOOGLE_NEWS_SOURCES,
@@ -234,11 +237,15 @@ SOURCES = [
     #  EU REGULATORS — direct feeds
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     {
+        # Stale URL — /press-news/esma-news/rss.xml returns a page, not a
+        # feed, which is why ESMA only ever landed 2 items in the archive.
+        # Verified 2026-08-25: this endpoint returns real supervisory
+        # output (consultations, RTS, joint ESA statements).
         "id": "esma_rss",
         "nom": "ESMA",
         "pays": "EU",
         "type": "rss",
-        "url": "https://www.esma.europa.eu/press-news/esma-news/rss.xml",
+        "url": "https://www.esma.europa.eu/rss.xml",
         "couleur": "#0F6E56",
     },
     {
@@ -307,11 +314,48 @@ SOURCES = [
         "couleur": "#6B2D8B",
     },
     {
+        # NOTE: has never returned an item in the archive. Left in place
+        # (it may be network-restricted rather than dead) but treated as
+        # a known gap, not a working source.
         "id": "esrb_rss",
         "nom": "ESRB",
         "pays": "EU",
         "type": "rss",
         "url": "https://www.esrb.europa.eu/home/rss/html/index.en.rss",
+        "couleur": "#0F6E56",
+    },
+    {
+        # Single Resolution Board — verified 2026-08-25 (10 items,
+        # resolvability assessments, operational guidance).
+        "id": "srb_rss",
+        "nom": "SRB",
+        "pays": "EU",
+        "type": "rss",
+        "url": "https://www.srb.europa.eu/en/rss",
+        "couleur": "#0F6E56",
+    },
+    {
+        # Financial Stability Board — verified 2026-08-25 (10 items).
+        # Global standard-setter: not binding in the EU, but its
+        # consultations reliably precede EU-level action.
+        "id": "fsb_rss",
+        "nom": "FSB",
+        "pays": "GLOBAL",
+        "type": "rss",
+        "url": "https://www.fsb.org/feed/",
+        "couleur": "#5B6472",
+    },
+    {
+        # European Commission press corner — verified 2026-08-25. High
+        # volume and mostly non-financial (agriculture, foreign affairs,
+        # speeches in every EU language), so it leans hard on the
+        # relevance classifier downstream; kept because Level 1
+        # legislative proposals surface here first.
+        "id": "ec_presscorner",
+        "nom": "European Commission",
+        "pays": "EU",
+        "type": "rss",
+        "url": "https://ec.europa.eu/commission/presscorner/api/rss?language=en",
         "couleur": "#0F6E56",
     },
  
@@ -837,6 +881,23 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
         art["impact"] = impact
         art["themes"] = themes if themes else ["General"]
         art["id"] = art_id
+
+        # What kind of instrument is this, and how binding? A compliance
+        # officer's first question about any publication.
+        resume = art.get("resume", "")
+        doc_id, doc_label, legal_status = classify_doc_type(
+            art["titre"], resume, art["source_id"])
+        art["doc_type"] = doc_id
+        art["doc_label"] = doc_label
+        art["legal_status"] = legal_status
+        art["legal_weight"] = LEGAL_WEIGHT.get(doc_id, 1)
+
+        # Where in the regulatory lifecycle it sits — the difference
+        # between "prepare" and "comply now".
+        stage_id, stage_label = classify_lifecycle(art["titre"], resume)
+        art["lifecycle"] = stage_id
+        art["lifecycle_label"] = stage_label
+
         resultats.append(art)
         vus.add(art_id)  # marquer comme traité seulement si pertinent
         vus.add(titre_id)

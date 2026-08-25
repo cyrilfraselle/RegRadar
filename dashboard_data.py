@@ -69,6 +69,15 @@ def _article_to_record(art: dict) -> dict:
         "color": art.get("couleur", "#888"),
         "impact": art.get("impact", 0),
         "themes": art.get("themes", []),
+        # Instrument type + legal weight: what kind of thing this is and
+        # how binding it is. Drives "is this actually mandatory for me?".
+        "doc_type": art.get("doc_type", "news"),
+        "doc_label": art.get("doc_label", "News coverage"),
+        "legal_status": art.get("legal_status", "informational"),
+        "legal_weight": art.get("legal_weight", 1),
+        # Where in the regulatory lifecycle this sits.
+        "lifecycle": art.get("lifecycle", ""),
+        "lifecycle_label": art.get("lifecycle_label", ""),
         # AI-enriched fields (may be empty if Groq is off)
         "summary": art.get("ai_summary", art.get("resume", "")),
         "so_what": art.get("ai_so_what", ""),
