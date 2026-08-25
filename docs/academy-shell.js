@@ -87,7 +87,7 @@ function build(active){
       <span class="sep"></span>
       <span class="sim">AML TRAINING SIMULATOR</span>
       <span class="rr">
-        <a href="academy.html">Path</a>
+        <a href="workstation.html">Path</a>
         <a href="index.html">← RegRadar</a>
       </span>
     </div>
