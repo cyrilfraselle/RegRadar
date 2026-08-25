@@ -103,7 +103,8 @@ def _load_existing_archive() -> list[dict]:
 def export_dashboard_data(articles: list[dict],
                           exec_summary: str = "",
                           timeline: list[dict] = None,
-                          trends: list[dict] = None):
+                          trends: list[dict] = None,
+                          source_health: dict = None):
     """
     Merge this run's articles into the persistent archive and write the
     JSON files the website reads.
@@ -152,6 +153,11 @@ def export_dashboard_data(articles: list[dict],
         "exec_summary": exec_summary or "",
         "timeline": timeline or [],
         "trends": trends or [],
+        # Per-source outcome for this run. Lets the site state what was
+        # actually checked, so an empty section can be distinguished
+        # from an unchecked one.
+        "sources": sorted((source_health or {}).values(),
+                          key=lambda s: (s.get("kind") != "primary", s.get("name", ""))),
     }
     with open(META_FILE, "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)

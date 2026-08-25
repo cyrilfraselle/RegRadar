@@ -29,7 +29,7 @@ from datetime import datetime
 OFFICIAL_REGULATOR_SOURCES = {
     "fsma_rss", "fsma_circulaires", "bnb_rss", "bnb_circulaires",
     "esma_rss", "esma_qa", "eba_rss", "ecb_rss", "ecb_supervision_rss",
-    "eurlex_finance", "eiopa_rss", "amla_rss", "esrb_rss",
+    "eurlex_ojl", "eurlex_proposals", "eiopa_rss", "amla_rss", "esrb_rss",
     "srb_rss", "fsb_rss", "ec_presscorner",
 }
 
@@ -146,6 +146,18 @@ def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
             return "consultation", "Consultation", "not-yet-binding"
         return "news", "News: consultation", "informational"
 
+    # Same trap one step earlier in the lifecycle: "Proposal for a
+    # REGULATION ..." is the Commission asking for a regulation, not a
+    # regulation. EUR-Lex's proposals feed is full of these, and scoring
+    # them as binding law would put horizon-scanning material at the top
+    # of a compliance officer's queue as though it were in force.
+    _PROPOSAL = ("proposal for", "proposal of", "commission proposes",
+                 "draft proposal", "legislative proposal")
+    if any(p in text for p in _PROPOSAL):
+        if is_primary:
+            return "proposal", "Legislative proposal", "not-yet-binding"
+        return "news", "News: proposal", "informational"
+
     for tid, label, status, patterns in DOC_TYPES:
         if any(p in text for p in patterns):
             if is_primary:
@@ -249,6 +261,48 @@ NON_SUPERVISORY_TERMS = [
     "e-mail alert", "email alert", "newsletter of", "annual accounts",
     "meeting of ", "agenda of", "minutes of",
 ]
+
+
+# ═══════════════════════════════════════════════════════════════
+#  SUBJECT SCOPE — for whole-corpus sources
+#  EUR-Lex OJ L carries every act the Union adopts: fishing quotas,
+#  anti-dumping duties, plant health, and — somewhere in there — the
+#  delegated regulations that actually bind a financial firm. Same for
+#  the Commission press corner. These sources are indispensable and
+#  unusable raw, so they get a subject test the narrower supervisory
+#  feeds don't need.
+# ═══════════════════════════════════════════════════════════════
+
+SUBJECT_SCOPE_TERMS = [
+    # Sector
+    "financial", "credit institution", "payment", "e-money", "electronic money",
+    "bank", "banking", "investment firm", "insurance", "insurer", "reinsurance",
+    "fund", "ucits", "aifm", "securities", "market infrastructure", "clearing",
+    # Financial crime
+    "money laundering", "anti-money", "terrorist financing", " aml", " cft",
+    "sanction", "restrictive measure", "asset freeze", "beneficial owner",
+    # Frameworks
+    "mica", "crypto", "crypto-asset", "dora", "operational resilience",
+    "mifid", "mifir", "emir", "csdr", "benchmark", "psd2", "psd3", "gdpr",
+    "solvency", "capital requirement", "own funds", "prudential", "basel",
+    # Cross-cutting compliance
+    "data protection", "personal data", "supervis", "reporting requirement",
+    "transparency", "governance", "outsourcing", "ict risk", "audit",
+    # Authorities
+    "esma", "eba", "eiopa", "amla", "european central bank", "srb",
+]
+
+
+def is_in_subject_scope(title: str, summary: str = "") -> bool:
+    """True if the item is plausibly about financial services, financial
+    crime or data — used only for whole-corpus sources."""
+    text = ((title or "") + " " + (summary or "")).lower()
+    return any(t in text for t in SUBJECT_SCOPE_TERMS)
+
+
+# Sources that publish across every policy area and therefore need the
+# subject test above applied.
+WHOLE_CORPUS_SOURCES = {"eurlex_ojl", "eurlex_proposals", "ec_presscorner"}
 
 
 def is_supervisory(title: str, summary: str = "") -> bool:

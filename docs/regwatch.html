@@ -254,6 +254,8 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
       <button class="nv" data-v="apply"><span class="ic">⊞</span>What applies to me</button>
       <button class="nv" data-v="dates"><span class="ic">◷</span>Deadlines<span class="ct" id="ctDates"></span></button>
       <button class="nv" data-v="library"><span class="ic">▤</span>Library<span class="ct" id="ctLib"></span></button>
+      <div class="lbl">Trust</div>
+      <button class="nv" data-v="sources"><span class="ic">◉</span>Coverage<span class="ct" id="ctSrc"></span></button>
     </nav>
 
     <div class="side-foot">
@@ -525,6 +527,42 @@ function vLibrary(){
     <div class="d" style="margin-top:14px">Full text browsable in <a class="lnk" href="law.html">Read the Law</a>.</div>`;
 }
 
+/* Coverage: what was actually checked, and when. An empty section means
+   "nothing was published"; it must never be confused with "we could not
+   look" — the failure mode that makes a regulatory watch untrustworthy. */
+function vSources(){
+  const s=(META.sources||[]);
+  if(!s.length) return `<div class="rows"><div class="empty"><b>No coverage report yet</b>
+    The pipeline records per-source results on its next run.</div></div>`;
+  const prim=s.filter(x=>x.kind==='primary'), news=s.filter(x=>x.kind!=='primary');
+  const ok=prim.filter(x=>x.status==='ok').length;
+  const badge=x=>x.status==='ok'?'<span class="pill ok">Live</span>'
+    :x.status==='error'?'<span class="pill crit">Not reached</span>'
+    :'<span class="pill warn">Nothing published</span>';
+  const age=x=>{ if(!x.newest) return '—';
+    const d=Math.floor((Date.now()-new Date(x.newest))/864e5);
+    return d<=0?'today':d===1?'yesterday':d+'d ago'; };
+  const tbl=list=>`<div class="rows">${list.map(x=>`
+    <div class="dl"><div><div class="dt">${esc(x.name)}</div>
+      <div class="dd">${esc(x.country||'')} · ${x.fetched||0} fetched${x.kept!=null?` · ${x.kept} kept`:''}</div></div>
+      <div class="de" style="font-family:var(--mono);font-size:12px;color:var(--text-3)">newest ${age(x)}</div>
+      ${badge(x)}</div>`).join('')}</div>`;
+  return `
+  <div class="sec-h"><div><span class="sec-t">Primary sources</span>
+    <div class="d">${ok} of ${prim.length} returned content on the last run. These are the regulators themselves.</div></div></div>
+  ${tbl(prim)}
+  ${news.length?`<div class="sec-h"><div><span class="sec-t">News coverage</span>
+    <div class="d">Secondary. Filtered to the Belgium/EU perimeter and capped per source so it cannot outweigh the regulators.</div></div></div>${tbl(news)}`:''}
+  <div class="sec-h"><div><span class="sec-t">Known gaps</span>
+    <div class="d">Stated openly rather than left to look like silence.</div></div></div>
+  <div class="rows"><div style="padding:15px 16px;font-size:13px;color:var(--text-2);line-height:1.65">
+    No public machine-readable feed was found for <b>NBB/BNB</b> (its pages are JavaScript-rendered),
+    <b>EIOPA</b>, <b>EDPB</b>, <b>EDPS</b>, <b>ENISA</b>, <b>FATF</b>, <b>BIS</b>, <b>IOSCO</b> or the
+    <b>Council</b>. Each was probed at its documented and discovered endpoints. Until those are
+    covered, anything appearing only through those bodies will not surface here.
+  </div></div>`;
+}
+
 /* ── drawer ────────────────────────────────────────────────────── */
 const LEGAL_TEXT={
   'binding':'Directly binding — applies without national transposition.',
@@ -581,7 +619,8 @@ const TITLES={home:['Home','Your regulatory position today'],
   radar:['My Radar','Everything the watch picked up'],
   apply:['What applies to me','Entity type → regulatory perimeter'],
   dates:['Deadlines','Dated obligations ahead'],
-  library:['Library','EU instruments held in full text']};
+  library:['Library','EU instruments held in full text'],
+  sources:['Coverage','What is monitored, and what is not']};
 
 function render(){
   const [t,s]=TITLES[VIEW]||TITLES.home;
@@ -591,7 +630,8 @@ function render(){
 
   const v=document.getElementById('view');
   v.innerHTML = VIEW==='radar'?vRadar():VIEW==='apply'?vApply():
-                VIEW==='dates'?vDates():VIEW==='library'?vLibrary():vHome();
+                VIEW==='dates'?vDates():VIEW==='library'?vLibrary():
+                VIEW==='sources'?vSources():vHome();
   wireRows();
 
   // profile controls (apply view)
@@ -636,6 +676,8 @@ function paintWho(){
     ? ITEMS.filter(i=>isRelevant(i,themes)).length : ITEMS.length;
   document.getElementById('ctDates').textContent=(META.timeline||[]).length||'';
   document.getElementById('ctLib').textContent=APP?APP.regulations.length:'';
+  const sh=(META.sources||[]).filter(x=>x.kind==='primary');
+  document.getElementById('ctSrc').textContent=sh.length?`${sh.filter(x=>x.status==='ok').length}/${sh.length}`:'';
 }
 
 async function boot(){

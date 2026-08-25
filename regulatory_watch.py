@@ -44,6 +44,8 @@ from classification_v3 import (
     classify_lifecycle,
     is_eu_relevant,
     is_supervisory,
+    is_in_subject_scope,
+    WHOLE_CORPUS_SOURCES,
     LEGAL_WEIGHT,
     REFINED_GNEWS_SOURCES,
     OFFICIAL_REGULATOR_SOURCES,
@@ -287,12 +289,29 @@ SOURCES = [
         "couleur": "#0F6E56",
     },
     {
-        "id": "eurlex_finance",
-        "nom": "EUR-Lex — Official Journal",
+        # ── The single most important source in the whole watch ──
+        # OJ L is adopted, binding EU law. The previous URL
+        # (RSSOJ-L_EN.xml) has never returned an item; EUR-Lex serves
+        # its predefined feeds from display-feed.rss?rssId=N instead.
+        # Verified 2026-08-25: 100 items, same-day.
+        # Carries every policy area, so WHOLE_CORPUS_SOURCES applies a
+        # subject test downstream (~16% is financial/AML/data).
+        "id": "eurlex_ojl",
+        "nom": "EUR-Lex — Official Journal L",
         "pays": "EU",
         "type": "rss",
-        "url": "https://eur-lex.europa.eu/RSSOJ-L_EN.xml",
-        "couleur": "#0F6E56",
+        "url": "https://eur-lex.europa.eu/EN/display-feed.rss?rssId=222",
+        "couleur": "#1750C4",
+    },
+    {
+        # Legislative proposals (COM documents) — horizon scanning:
+        # what is coming, long before it binds. Verified 2026-08-25.
+        "id": "eurlex_proposals",
+        "nom": "EUR-Lex — Legislative proposals",
+        "pays": "EU",
+        "type": "rss",
+        "url": "https://eur-lex.europa.eu/EN/display-feed.rss?rssId=161",
+        "couleur": "#1750C4",
     },
     {
         "id": "eiopa_rss",
@@ -664,15 +683,65 @@ HEADERS_RSS = {
     "Accept-Language": "fr-BE,fr;q=0.9,en;q=0.8",
 }
  
+# Set when a fetch raised (network, HTTP error, or the soft-failure
+# detection below). Distinguishes "we could not look" from "nothing to
+# report", which must never render the same way.
+FETCH_FAILED: dict = {}
+
+_THROTTLE_MARKERS = (
+    "temporarily not available",
+    "service unavailable",
+    "temporarily unavailable",
+    "try again later",
+    "too many requests",
+)
+
+
+def _looks_throttled(body: str) -> bool:
+    """True when a 200 response is really a rate-limit or outage notice.
+    Checked only on feeds that returned no entries, so a genuine article
+    about an outage cannot trip it."""
+    return any(m in (body or "")[:2000].lower() for m in _THROTTLE_MARKERS)
+
+
 def lire_flux_rss(source: dict) -> list[dict]:
     """Lit un flux RSS et retourne une liste d'articles normalisés."""
     articles = []
     try:
         log.info(f"RSS    → {source['nom']}")
-        # Télécharger d'abord avec les headers navigateur, puis parser
-        r = requests.get(source["url"], headers=HEADERS_RSS, timeout=15, allow_redirects=True)
-        r.raise_for_status()
-        feed = feedparser.parse(r.text)
+        # Télécharger d'abord avec les headers navigateur, puis parser.
+        # 15s was too short for EUR-Lex, whose OJ-L feed is ~70 KB and
+        # regularly takes 20s+ — it was timing out rather than failing,
+        # which reads as "no new law today" instead of "not checked".
+        # EUR-Lex is also intermittently slow, so retry rather than lose
+        # a day of binding legislation to one bad response.
+        r = None
+        last_err = None
+        feed = None
+        for attempt in range(4):
+            try:
+                r = requests.get(source["url"], headers=HEADERS_RSS,
+                                 timeout=45, allow_redirects=True)
+                r.raise_for_status()
+                feed = feedparser.parse(r.text)
+                # ── Soft failure ──────────────────────────────────
+                # EUR-Lex throttles by returning HTTP 200 with a valid
+                # RSS document containing zero items and the text
+                # "Service temporarily not available". raise_for_status
+                # passes and feedparser parses it happily, so a
+                # throttled fetch is indistinguishable from "no new law
+                # today" — the single most dangerous failure mode in a
+                # regulatory watch. Detect it and retry.
+                if not feed.entries and _looks_throttled(r.text):
+                    raise RuntimeError("soft failure: source reported temporarily unavailable")
+                break
+            except Exception as e:
+                last_err = e
+                r, feed = None, None
+                if attempt < 3:
+                    time.sleep(3 * (attempt + 1))
+        if feed is None:
+            raise last_err
  
         for entry in feed.entries:
             titre = entry.get("title", "").strip()
@@ -707,7 +776,8 @@ def lire_flux_rss(source: dict) -> list[dict]:
  
     except Exception as e:
         log.error(f"Erreur RSS {source['nom']}: {e}")
- 
+        FETCH_FAILED[source["id"]] = True
+
     return articles
  
  
@@ -771,9 +841,18 @@ def scraper_page(source: dict) -> list[dict]:
     return articles
  
  
+# Per-run record of what each source actually returned. A regulatory
+# watch that silently loses a feed is worse than one with a known gap —
+# an empty section reads as "nothing happened" when it means "we did not
+# look". This is what the Sources view reports from.
+SOURCE_HEALTH: dict = {}
+
+
 def collecter_toutes_sources() -> list[dict]:
     """Collecte les articles de toutes les sources configurées."""
     tous = []
+    SOURCE_HEALTH.clear()
+    FETCH_FAILED.clear()
     for source in SOURCES:
         if source["type"] == "rss":
             articles = lire_flux_rss(source)
@@ -781,8 +860,31 @@ def collecter_toutes_sources() -> list[dict]:
             articles = scraper_page(source)
         else:
             continue
+
+        newest = None
+        for a in articles:
+            d = a.get("date")
+            if isinstance(d, datetime) and (newest is None or d > newest):
+                newest = d
+        SOURCE_HEALTH[source["id"]] = {
+            "id": source["id"],
+            "name": source["nom"],
+            "country": source.get("pays", ""),
+            "kind": "news" if source["id"] in GOOGLE_NEWS_SOURCES else "primary",
+            "fetched": len(articles),
+            "newest": newest.isoformat() if newest else None,
+            # "empty" is a real answer (a quiet regulator), "error" is
+            # not — the site must be able to tell them apart rather than
+            # rendering both as silence.
+            "status": "ok" if articles else ("error" if FETCH_FAILED.pop(source["id"], False) else "empty"),
+        }
         tous.extend(articles)
         log.info(f"  → {len(articles)} articles collectés")
+
+    dead = [s["name"] for s in SOURCE_HEALTH.values()
+            if s["status"] == "empty" and s["kind"] == "primary"]
+    if dead:
+        log.warning(f"Sources primaires muettes ce run : {', '.join(dead)}")
     return tous
  
 # ═══════════════════════════════════════════════════════════════
@@ -902,6 +1004,14 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
         # institutional housekeeping, which create no obligation.
         elif not is_supervisory(art["titre"], resume_txt):
             log.debug(f"Non prudentiel (régulateur) : {art['titre'][:60]}")
+            continue
+
+        # Whole-corpus sources (EUR-Lex, Commission) publish across every
+        # policy area. Without a subject test the feed fills with fishing
+        # quotas and anti-dumping duties.
+        if art["source_id"] in WHOLE_CORPUS_SOURCES and \
+                not is_in_subject_scope(art["titre"], resume_txt):
+            log.debug(f"Hors matière (corpus large) : {art['titre'][:60]}")
             continue
 
         art["impact"] = impact
@@ -1517,6 +1627,7 @@ def executer_veille():
         exec_summary=exec_summary,
         timeline=upcoming_dates,
         trends=trend_results,
+        source_health=SOURCE_HEALTH,
     )
  
     # 7. Email
