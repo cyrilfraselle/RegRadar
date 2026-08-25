@@ -258,6 +258,19 @@ table.dt td b{color:var(--text);font-weight:600}
 .ntf .nt{font-size:12px;font-weight:600;color:var(--text)}
 .ntf .nd{font-size:11px;color:var(--text-2);margin-top:2px;line-height:1.4}
 
+/* ── Alex bubble — a colleague reacting, not a system toast ────────── */
+.alex-bubble-stack{position:absolute;left:20px;bottom:60px;z-index:200;
+  display:flex;flex-direction:column;gap:8px;width:270px;pointer-events:none}
+.alex-bubble{background:#fff;border-radius:14px 14px 14px 3px;
+  box-shadow:0 10px 26px rgba(0,0,0,.32);padding:10px 13px;display:flex;gap:9px;
+  align-items:flex-start;cursor:pointer;opacity:0;transform:translateY(8px) scale(.98);
+  transition:opacity .22s var(--ease),transform .22s var(--ease);pointer-events:auto}
+.alex-bubble.in{opacity:1;transform:none}
+.alex-bubble.out{opacity:0;transform:translateY(6px) scale(.98)}
+.alex-bubble .av{width:26px;height:26px;border-radius:50%;flex:0 0 auto;display:grid;
+  place-items:center;font-size:10.5px;font-weight:700;color:#fff}
+.alex-bubble .txt{font-size:12px;line-height:1.45;color:var(--text-2);padding-top:2px}
+
 /* ── taskbar ─────────────────────────────────────────────────────── */
 .taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;
   background:rgba(18,22,29,.92);backdrop-filter:blur(14px);
@@ -888,6 +901,7 @@ table.dt td b{color:var(--text);font-weight:600}
 
 <!-- ═══════════════════ NOTIFICATIONS ═══════════════════ -->
 <div class="ntf-stack" id="ntf-stack"></div>
+<div class="alex-bubble-stack" id="alex-bubble-stack"></div>
 
 <!-- ═══════════════════ TASKBAR ═══════════════════ -->
 <div class="taskbar">
@@ -1722,6 +1736,8 @@ const INV = (function(){
     awardSkillXP('judgement', correct?25:8);
     markLawSeen(c.law);
     checkBadges();
+    if(correct && (c.id==='OWN-04'||c.id==='OWN-06')) alexSay('ownBoss');
+    else if(!correct) alexSay('ownWrong');
     PATH.render();
 
     const noms = {}; c.entities.forEach(e=>noms[e.id]=e.name);
@@ -2267,6 +2283,7 @@ const LB = (function(){
       try{ localStorage.setItem('regradar-lb-stats', JSON.stringify(st)); }catch(e){}
       markLawSeen('Art. '+ev.t.art);
       awardSkillXP('risk', 8);
+      alexSay('lbCatch', ev.t.flag);
       checkBadges();
       showCatch(ev);
     } else showOk(ev);
@@ -2654,6 +2671,7 @@ const DK = (function(){
       checkBadges();
     }
     RUN.results.push({c, choice, verdict, xp, foundN, decisiveTotal:decisive.length});
+    if(verdict==='harm' && !RUN.tutorial) alexSay('deskHarm');
     if(verdict==='harm' && !RUN.tutorial){
       const later=DAYS.find(d=>d.d>S.day && !S.done.includes(d.d));
       if(later) S.harm.push({surfaceOn:later.d, caseId:c.id, headline:`Follow-up: ${c.title}`,
@@ -2915,6 +2933,68 @@ const ALEX_SCRIPT = [
   {text:["That's the tour. From here it's yours — dig through what's there, cross-check the numbers, and ping me if you get stuck. I mean that."],
    action:{label:"I'm stuck — give me a hint", run:()=>askAlexHint(), keepAction:true}},
 ];
+
+/* ═══════════ ALEX — ambient reactions ═══════════════════════════════
+   The script above is the one scripted onboarding tour, shown once.
+   Everything after that is this: short bubbles reacting to real
+   moments (a catch, a wrong call, harm done) — a colleague noticing
+   your work, not a chatbot you open. Wording fades with rank: verbose
+   early, terse mid-path, mostly quiet by AML Expert. Reuses the same
+   rank signal the Progression window shows, so it can't drift out of
+   sync with it. */
+const ALEX_POOLS = {
+  lbCatch: {
+    verbose: flag=>`Caught on "${flag}" — that's the flag a real desk would have raised too. Worth reading the AMLR note, it's not boilerplate.`,
+    terse:   flag=>`"${flag}" — the one that gets everyone the first time.`,
+  },
+  ownWrong: {
+    verbose: ()=>"Not quite. Before you re-pick, separate what you verified from what you assumed.",
+    terse:   ()=>"Worth a second look before you resubmit.",
+  },
+  ownBoss: {
+    verbose: ()=>"That one trips most people. Clean read.",
+    terse:   ()=>"Nice read on a hard one.",
+  },
+  deskHarm: {
+    verbose: ()=>"That file will resurface — closing it wasn't free, it was deferred.",
+    terse:   ()=>"That one comes back.",
+  },
+};
+let alexBubbleQueue = [], alexBubbleBusy = false;
+function alexBand(){
+  if(typeof AcademyShell==='undefined') return 'verbose';
+  const idx = AcademyShell.ranks.findIndex(r=>r.n===AcademyShell.rank.n);
+  return idx<=1 ? 'verbose' : idx<=3 ? 'terse' : 'rare';
+}
+function alexSay(poolKey, arg){
+  const pool = ALEX_POOLS[poolKey]; if(!pool) return;
+  const band = alexBand();
+  if(band==='rare' && Math.random()>0.15) return; /* mostly quiet at AML Expert */
+  const fn = pool[band==='rare'?'terse':band];
+  const text = fn ? fn(arg) : null;
+  if(!text) return;
+  alexBubbleQueue.push(text);
+  pumpAlexBubble();
+}
+function pumpAlexBubble(){
+  if(alexBubbleBusy || !alexBubbleQueue.length) return;
+  const stack = document.getElementById('alex-bubble-stack'); if(!stack) return;
+  alexBubbleBusy = true;
+  const text = alexBubbleQueue.shift();
+  const n = document.createElement('div');
+  n.className = 'alex-bubble';
+  n.innerHTML = `<span class="av" style="background:${TM_PEOPLE.alex.color}">${TM_PEOPLE.alex.initials}</span><div class="txt"></div>`;
+  n.querySelector('.txt').textContent = text;
+  n.addEventListener('click', ()=>{ WM.open('teams'); tmSelect('alex'); dismissAlexBubble(n); });
+  stack.appendChild(n);
+  requestAnimationFrame(()=>n.classList.add('in'));
+  setTimeout(()=>dismissAlexBubble(n), 6500);
+}
+function dismissAlexBubble(n){
+  if(!n.parentElement) return;
+  n.classList.add('out');
+  setTimeout(()=>{ n.remove(); alexBubbleBusy=false; pumpAlexBubble(); }, 220);
+}
 
 function highlightWin(id){
   const el = document.getElementById('win-'+id);
