@@ -1,4 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Meridiaan Workstation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -627,7 +631,43 @@ table.dt td b{color:var(--text);font-weight:600}
 @media(max-width:900px){
   .dicon{display:none}
 }
+
+/* ── mobile gate — this is a draggable-window desktop, not a
+   responsive layout; below the breakpoint it isn't degraded, it's
+   replaced by an honest message rather than a broken small desktop ── */
+.mobile-gate{display:none}
+@media(max-width:820px), (max-height:480px){
+  /* Normal document flow, not position:fixed — this is the one thing
+     shown, so it doesn't need to float above anything. Everything else
+     the desktop is built from is hidden outright rather than covered. */
+  .desktop-mark,.dicon,.win,.taskbar,.ntf-stack,.alex-bubble-stack{display:none !important}
+  html,body{height:auto;overflow:auto}
+  .mobile-gate{display:flex;min-height:100vh;width:100%;
+    background:linear-gradient(165deg,var(--wallpaper),var(--wallpaper-2) 75%);
+    align-items:center;justify-content:center;padding:32px;color:#F2F4F7;text-align:center}
+  .mg-card{max-width:360px}
+  .mg-card .ic{font-size:34px}
+  .mg-card h1{font-family:var(--sans);font-size:21px;font-weight:700;letter-spacing:-.02em;
+    margin-top:16px;line-height:1.25}
+  .mg-card p{font-size:13.5px;line-height:1.6;color:#C3CBD6;margin-top:12px}
+  .mg-card a{display:inline-flex;align-items:center;gap:7px;margin-top:24px;background:#fff;
+    color:var(--wallpaper);font-size:13px;font-weight:700;padding:12px 20px;border-radius:8px}
+}
 </style>
+
+</head>
+<body>
+
+<div class="mobile-gate" id="mobile-gate">
+  <div class="mg-card">
+    <div class="ic">🖥️</div>
+    <h1>This one's built for a bigger screen.</h1>
+    <p>The workstation is a full simulated desktop — draggable windows, an inbox, a browser and
+      case files open side by side. That doesn't fit a phone yet, and case work like this deserves
+      the room. Open it on a laptop or desktop instead.</p>
+    <a href="academy.html">← Back to the Academy</a>
+  </div>
+</div>
 
 <div class="desktop-mark"><span class="sq">M</span> MERIDIAAN BANK &middot; ANALYST WORKSTATION</div>
 
@@ -693,7 +733,7 @@ table.dt td b{color:var(--text);font-weight:600}
       <div class="pad">
         <div class="kicker" id="cif-kicker">Corporate client · CIF-BE-0741</div>
         <h1 class="pt" id="cif-title">Kortrijk Textiles NV</h1>
-        <div class="sub">Customer since 2019 &middot; Relationship manager: Nadia Verlinden &middot; Branch: Kortrijk</div>
+        <div class="sub">Customer since 2019 &middot; Relationship manager: Nadia &middot; Branch: Kortrijk</div>
         <span class="chip warn">EDD — periodic review due</span>
         <span class="chip ok" style="margin-left:6px">Risk rating: Medium</span>
 
@@ -1080,9 +1120,9 @@ const WM = (function(){
 
 /* ═══════════════════ MAIL DATA + RENDER ═══════════════════ */
 const MAIL = [
- {id:'m1', from:'S. Okonkwo (Compliance)', time:'09:14', subj:'RE: Kortrijk Textiles — EDD documentation',
+ {id:'m1', from:'Sanmi (Compliance)', time:'09:14', subj:'RE: Kortrijk Textiles — EDD documentation',
   snip:"Following up on the shareholder pact question you raised —", unread:true,
-  fromFull:'Sanmi Okonkwo &lt;s.okonkwo@meridiaanbank.eu&gt;',
+  fromFull:'Sanmi &lt;sanmi@meridiaanbank.eu&gt;',
   body:[
    'Morning —',
    "Following up on the shareholder-pact question for Kortrijk Textiles NV. I pulled the KvK extract for KT Holding BV this morning — Mina and Bram Vanhoutte are listed at 70/30, no pact on file as of the last filing.",
@@ -1090,9 +1130,9 @@ const MAIL = [
    "Let me know if you want me to request the pact directly from the client's counsel — happy to send that today if it's useful.",
    'Sanmi'],
   attach:['KT_Holding_KvK_extract.pdf']},
- {id:'m2', from:'Nadia Verlinden (RM)', time:'08:47', subj:'Re: Why the wire to Gulf Machinery FZE',
+ {id:'m2', from:'Nadia (RM)', time:'08:47', subj:'Re: Why the wire to Gulf Machinery FZE',
   snip:"Spoke to the client this morning, here's the context —", unread:true,
-  fromFull:'Nadia Verlinden &lt;n.verlinden@meridiaanbank.eu&gt;',
+  fromFull:'Nadia &lt;nadia@meridiaanbank.eu&gt;',
   body:[
    'Hi —',
    "Spoke to the client this morning. Mina says Gulf Machinery is a new supplier they found at a Dubai trade fair — parts for a new production line, first four shipments landed on time. She says pricing is 'about right for rush orders' but couldn't point me to a comparable quote.",
@@ -1106,9 +1146,9 @@ const MAIL = [
   snip:'A new alert has been routed to your queue —', unread:false,
   fromFull:'tm-system@meridiaanbank.eu',
   body:['Alert A-4471 has been assigned to your queue.', 'Customer: Kortrijk Textiles NV · Rule triggered: Jurisdiction — high-risk nexus · SLA: 4 hours.'], attach:[]},
- {id:'m5', from:'T. Haverbeke (Team Lead)', time:'', subj:'Case deadline — A-4402 due Friday',
+ {id:'m5', from:'Tom (Team Lead)', time:'', subj:'Case deadline — A-4402 due Friday',
   snip:'Checking in on where this one stands —', unread:false,
-  fromFull:'t.haverbeke@meridiaanbank.eu',
+  fromFull:'tom@meridiaanbank.eu',
   body:["Checking in on A-4402 — it's due Friday and I don't see an update yet. Let me know if you're blocked on anything."], attach:[]},
 ];
 
@@ -1358,7 +1398,7 @@ const FE = (function(){
         <div class="row"><b>Sector</b>Textile manufacturing (NACE 13.20)</div>
         <div class="row"><b>Customer since</b>2019</div>
         <div class="row"><b>Expected turnover</b>€4.1M / year</div>
-        <div class="row"><b>Relationship manager</b>Nadia Verlinden</div></div>`;
+        <div class="row"><b>Relationship manager</b>Nadia</div></div>`;
     } else if(name === 'Statement_Feb-Mar_2026.xlsx'){
       body = `<table class="dt" style="background:var(--surface);border:1px solid var(--border)">
         <tr><th style="padding-left:12px">Date</th><th>Counterparty</th><th>Country</th><th style="padding-right:12px">Amount</th></tr>
@@ -2890,9 +2930,9 @@ const DK = (function(){
    senior-analyst mentor that opens/highlights real UI as it talks.
    ═══════════════════════════════════════════════════════════════════ */
 const TM_PEOPLE = {
-  alex:  {name:'Alex Devereux',  role:'Senior AML Analyst', color:'#1F5C8B', initials:'AD'},
-  nadia: {name:'Nadia Verlinden',role:'Relationship Manager', color:'#9A6B1F', initials:'NV'},
-  sanmi: {name:'Sanmi Okonkwo',  role:'Compliance', color:'#1E7145', initials:'SO'},
+  alex:  {name:'Alex',  role:'Senior AML Analyst', color:'#1F5C8B', initials:'A'},
+  nadia: {name:'Nadia', role:'Relationship Manager', color:'#9A6B1F', initials:'N'},
+  sanmi: {name:'Sanmi', role:'Compliance', color:'#1E7145', initials:'S'},
 };
 const TM_CHANNELS = [
   {id:'alex', kind:'dm'}, {id:'nadia', kind:'dm'}, {id:'sanmi', kind:'dm'},
@@ -3159,8 +3199,10 @@ setTimeout(()=>{
   notify('💬', '#1F5C8B', 'New message from Alex', "Hey — I'm Alex, senior on the desk this week. Good to have you.",
     ()=>{ WM.open('teams'); tmSelect('alex'); });
 }, 2500);
-setTimeout(()=>notify('✉️', '#1F5C8B', 'New email received', 'Nadia Verlinden — Re: Why the wire to Gulf Machinery FZE',
+setTimeout(()=>notify('✉️', '#1F5C8B', 'New email received', 'Nadia — Re: Why the wire to Gulf Machinery FZE',
   ()=>{ WM.open('mail'); renderMailRead('m2'); document.querySelectorAll('.mitem').forEach(x=>x.classList.toggle('on', x.dataset.mid==='m2')); }), 6000);
 setTimeout(()=>notify('📄', '#1E7145', 'Document added to case file', 'A new document was added to the KYC folder',
   ()=>{ WM.open('explorer'); FE.gotoFolder('kyc'); }), 13000);
 </script>
+</body>
+</html>
