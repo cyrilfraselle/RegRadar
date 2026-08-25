@@ -50,10 +50,16 @@ DOC_TYPES = [
     ("directive", "Directive", "binding-transposed", [
         "directive (eu)", "directive 20", "transposition",
     ]),
+    # NB: no bare " its " here. It was matching the English possessive
+    # pronoun in ordinary prose and labelling speeches and consultations
+    # as binding technical standards — the worst possible direction for
+    # a classification error to go. Short tokens are matched as whole
+    # words via _WORD_PATTERNS below; "rts" is safe that way, "its" is
+    # not safe at all and only appears in explicit phrases.
     ("rts_its", "RTS / ITS", "binding", [
         "regulatory technical standard", "implementing technical standard",
         "draft rts", "draft its", "final draft rts", "final draft its",
-        " rts ", " its ", "binding technical standard",
+        "rts on", "its on prudential", "binding technical standard",
     ]),
     ("national_law", "National law", "binding", [
         "moniteur belge", "belgisch staatsblad", "loi du", "arrêté royal",
@@ -121,8 +127,24 @@ def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
     place, so news sources can never claim a binding instrument type;
     they get "News: <topic>" at commentary weight instead.
     """
-    text = (title + " " + (summary or "")).lower()
+    # Match on the title only. A publication's title reliably states what
+    # it is; summaries are often digests that mention several instruments
+    # (an "EBA E-mail alert" listing that week's RTS and guidelines would
+    # otherwise be classified as an RTS itself).
+    text = title.lower()
     is_primary = source_id in OFFICIAL_REGULATOR_SOURCES
+
+    # A consultation *about* an instrument is not that instrument. This
+    # has to be checked ahead of the binding types, or "consults on the
+    # draft RTS" reads as a binding RTS that is in fact still open for
+    # comment — flagging work that isn't due yet as work that is.
+    _CONSULT = ("consults on", "consultation paper", "call for evidence",
+                "call for input", "call for advice", "discussion paper",
+                "public consultation", "seeks views", "seeks feedback")
+    if any(p in text for p in _CONSULT):
+        if is_primary:
+            return "consultation", "Consultation", "not-yet-binding"
+        return "news", "News: consultation", "informational"
 
     for tid, label, status, patterns in DOC_TYPES:
         if any(p in text for p in patterns):
@@ -170,6 +192,77 @@ LIFECYCLE_STAGES = [
         "sanctioned", "cease and desist"]),
     ("amendment", "Amendment", ["amending", "amendment to", "revised", "review of"]),
 ]
+
+
+# ═══════════════════════════════════════════════════════════════
+#  JURISDICTIONAL RELEVANCE
+#  RegWatch's scope is Belgium + EU. A money-laundering prosecution
+#  in Thailand or a US licence refusal is real news and creates no
+#  obligation for a Belgian compliance officer — it is, precisely,
+#  noise. Google News queries pull these in constantly (one UAE story
+#  arrived eight times from eight outlets), so scope has to be
+#  enforced here rather than hoped for in the query string.
+#  Applies to news sources only: a regulator's own feed is in scope
+#  by definition, whatever it happens to be about.
+# ═══════════════════════════════════════════════════════════════
+
+EU_BE_MARKERS = [
+    # Union / country
+    "eu", "europe", "european", "belgium", "belgian", "brussels",
+    "euro area", "eurozone", "member state", "single market",
+    # EU + Belgian authorities
+    "esma", "eba", "eiopa", "ecb", "amla", "srb", "esrb", "fsma", "nbb",
+    "ctif", "cfi", "european commission", "european parliament",
+    # EU frameworks — a story about one is EU-relevant by construction
+    "amlr", "amld", "dora", "mica", "micar", "psd2", "psd3", "mifid", "mifir",
+    "sfdr", "csrd", "crr", "crd", "gdpr", "nis2", "emir", "csdr", "priips",
+    "ucits", "aifmd", "eltif", "ai act", "fida",
+    # Member states
+    "netherlands", "dutch", "france", "french", "germany", "german", "spain",
+    "spanish", "italy", "italian", "ireland", "irish", "luxembourg", "portugal",
+    "austria", "austrian", "poland", "polish", "finland", "sweden", "denmark",
+    "greece", "cyprus", "cysec", "malta", "estonia", "latvia", "lithuania",
+    "slovakia", "slovenia", "croatia", "romania", "bulgaria", "hungary", "czech",
+]
+
+
+# ═══════════════════════════════════════════════════════════════
+#  NON-SUPERVISORY REGULATOR OUTPUT
+#  A regulator's feed is not uniformly supervisory. The ECB press
+#  feed carries monetary policy, macro surveys, banknote design and
+#  staff appointments alongside actual supervision; the EBA emits
+#  content-free "E-mail alert <date>" wrappers. None of that creates
+#  a compliance obligation, so being a primary source is not on its
+#  own enough to earn a place in the feed.
+# ═══════════════════════════════════════════════════════════════
+
+NON_SUPERVISORY_TERMS = [
+    # Monetary policy & macro
+    "consumer expectations survey", "survey of professional forecasters",
+    "bank lending survey", "wage tracker", "access to finance of enterprises",
+    "economic bulletin", "monetary policy decision", "monetary policy meeting",
+    "governing council", "euro short-term rate", "€str", "target balances",
+    "balance of payments", "economic forecast", "projections for the euro area",
+    # Housekeeping / institutional
+    "banknote", "appoints", "appointment of", "reappoint", "vacancy",
+    "call for applications", "public procurement", "catering services",
+    "e-mail alert", "email alert", "newsletter of", "annual accounts",
+    "meeting of ", "agenda of", "minutes of",
+]
+
+
+def is_supervisory(title: str, summary: str = "") -> bool:
+    """False for regulator output that creates no compliance obligation —
+    monetary policy, macro statistics, institutional housekeeping."""
+    text = (title + " " + (summary or "")).lower()
+    return not any(t in text for t in NON_SUPERVISORY_TERMS)
+
+
+def is_eu_relevant(title: str, summary: str = "") -> bool:
+    """True if the item plausibly touches the Belgium/EU perimeter."""
+    text = (title + " " + (summary or "")).lower()
+    return any(_re.search(r"\b" + _re.escape(k) + r"\b", text)
+               for k in EU_BE_MARKERS)
 
 
 def classify_lifecycle(title: str, summary: str = "") -> tuple:

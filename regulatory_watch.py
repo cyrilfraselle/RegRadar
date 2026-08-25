@@ -42,6 +42,8 @@ from classification_v3 import (
     classify_article,
     classify_doc_type,
     classify_lifecycle,
+    is_eu_relevant,
+    is_supervisory,
     LEGAL_WEIGHT,
     REFINED_GNEWS_SOURCES,
     OFFICIAL_REGULATOR_SOURCES,
@@ -848,7 +850,10 @@ def est_pertinent(article: dict) -> bool:
 # News keyword search returns dozens of hits every run. Nothing upstream
 # balances that, so left uncapped GNews items bury the archive under
 # their own volume alone regardless of relevance. This bounds it.
-MAX_GNEWS_PER_SOURCE_PER_RUN = 15
+# Lowered 15 → 8: with 18 news queries configured, 15 each still let
+# press coverage outnumber every regulator combined by an order of
+# magnitude. Regulator feeds are never capped.
+MAX_GNEWS_PER_SOURCE_PER_RUN = 8
 
 
 def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
@@ -876,6 +881,27 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
         if impact == 0:
             # NE PAS ajouter dans vus — si les mots-clés changent, il sera rescané
             log.debug(f"Non pertinent (ignoré) : {art['titre'][:60]}")
+            continue
+
+        # ── Noise gates ────────────────────────────────────────────
+        resume_txt = art.get("resume", "")
+
+        # Press coverage has to earn its place: it must touch the
+        # Belgium/EU perimeter, and carry more than background interest.
+        # Without this, Google News volume alone drowns the regulators
+        # (it was supplying 75% of the archive).
+        if art["source_id"] in GOOGLE_NEWS_SOURCES:
+            if not is_eu_relevant(art["titre"], resume_txt):
+                log.debug(f"Hors périmètre UE/BE : {art['titre'][:60]}")
+                continue
+            if impact < 2:
+                log.debug(f"Bruit (impact 1, presse) : {art['titre'][:60]}")
+                continue
+        # Regulator feeds are in scope by origin, but not uniformly
+        # supervisory — drop monetary policy, macro statistics and
+        # institutional housekeeping, which create no obligation.
+        elif not is_supervisory(art["titre"], resume_txt):
+            log.debug(f"Non prudentiel (régulateur) : {art['titre'][:60]}")
             continue
 
         art["impact"] = impact

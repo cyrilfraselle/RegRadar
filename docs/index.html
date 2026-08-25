@@ -539,7 +539,12 @@ async function load(){
     document.getElementById('feed').innerHTML='<div class="empty">Run the daily watch to populate RegWatch.</div>';
     return;
   }
-  ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  /* Recency alone buries a binding RTS under a week of press coverage.
+     Rank by legal weight first, then date — so what you must act on
+     leads, and commentary sits behind it. Within a weight band it's
+     still newest-first. */
+  const band=i=>{const w=i.legal_weight||1; return w>=7?2:w>=4?1:0;};
+  ITEMS.sort((a,b)=> band(b)-band(a) || new Date(b.date)-new Date(a.date));
 
   const crit=ITEMS.filter(i=>i.impact===3).length;
   const imp =ITEMS.filter(i=>i.impact===2).length;
