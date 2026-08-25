@@ -38,13 +38,69 @@ const MODULES=[
 ];
 
 const RANKS=[
- {xp:0,    n:'TRAINEE',    art:'·', blurb:'An access badge and a queue. Everything else is earned.'},
- {xp:600,  n:'ANALYST I',  art:'▹', blurb:'You can tell a documented property purchase from a structured deposit. That’s further than it sounds.'},
- {xp:1500, n:'ANALYST II', art:'▸', blurb:'You close cleanly and you escalate deliberately. The investigators have noticed.'},
- {xp:2800, n:'SENIOR',     art:'◆', blurb:'You read the counterparty before the amount. That’s what separates an analyst from an alert-clearer.'},
- {xp:4500, n:'LEAD',       art:'◈', blurb:'You could calibrate a team — the point where this stops being training.'},
- {xp:6800, n:'MLRO',       art:'★', blurb:'Consistent across typologies, calibrated, economical. There’s no higher score.'},
+ {xp:0,    n:'JUNIOR',         art:'·', blurb:'An access badge and a queue. Everything else is earned.'},
+ {xp:600,  n:'ANALYST',        art:'▹', blurb:'You can tell a documented property purchase from a structured deposit. That’s further than it sounds.'},
+ {xp:1600, n:'SENIOR ANALYST', art:'▸', blurb:'You close cleanly and you escalate deliberately. The investigators have noticed.'},
+ {xp:3200, n:'INVESTIGATOR',   art:'◆', blurb:'You read the counterparty before the amount. That’s what separates an analyst from an alert-clearer.'},
+ {xp:5500, n:'AML EXPERT',     art:'★', blurb:'Consistent across typologies, calibrated, economical. There’s no higher rank on this desk.'},
 ];
+
+/* ── skill tree ──────────────────────────────────────────────────
+   Global XP/rank says how far along the path you are. The skill
+   tree says at what, specifically — nine subjects, each earned by
+   the actions that actually exercise it, not by finishing a module. */
+const SKILLS=[
+ {id:'kyc',        icon:'🪪', n:'KYC / CDD'},
+ {id:'tm',         icon:'🔍', n:'Transaction Monitoring'},
+ {id:'sanctions',  icon:'🌍', n:'Sanctions & PEP'},
+ {id:'media',      icon:'📰', n:'Adverse Media'},
+ {id:'ubo',        icon:'🏢', n:'UBO / KYB'},
+ {id:'risk',       icon:'⚠️', n:'Risk Assessment'},
+ {id:'str',        icon:'📋', n:'STR/SAR & Escalation'},
+ {id:'reg',        icon:'⚖️', n:'AML Regulation'},
+ {id:'judgement',  icon:'🧠', n:'Investigation & Judgement'},
+];
+const MASTERY=[
+ {n:'Introduced', xp:0},
+ {n:'Basic',      xp:80},
+ {n:'Proficient', xp:220},
+ {n:'Advanced',   xp:450},
+ {n:'Expert',     xp:800},
+];
+const BADGES=[
+ {id:'first-case',      icon:'🎯', n:'First Investigation', d:'Close your first case on the desk.'},
+ {id:'ubo-detective',   icon:'🏢', n:'UBO Detective',        d:'Solve all six ownership structures correctly.'},
+ {id:'clean-sweep',     icon:'🧼', n:'Clean Sweep',          d:'Run a scheme from setup to walk-away with zero catches.'},
+ {id:'red-flag',        icon:'🚩', n:'Red Flag Master',      d:'Get caught five times across runs — and learn what tripped it.'},
+ {id:'sanctions-hunter',icon:'🌍', n:'Sanctions Hunter',     d:'Run three sanctions & PEP screenings.'},
+ {id:'media-watcher',   icon:'📰', n:'Media Watcher',        d:'Pull adverse media three times during an investigation.'},
+ {id:'by-the-book',     icon:'⚖️', n:'By The Book',          d:'Cite ten distinct AMLR articles across your case decisions.'},
+ {id:'reporter',        icon:'📋', n:'The Reporter',         d:'File three STR/SAR reports.'},
+ {id:'on-a-roll',       icon:'🔥', n:'On A Roll',            d:'Three days in a row on the desk.'},
+ {id:'week-one',        icon:'🏆', n:'Week One',             d:'Complete all seven days of the desk journal.'},
+];
+const SKEY='regradar-skills-progress';
+let SK={skills:{}, badges:[], streak:{count:0,last:null}, daily:{date:null,done:false}, seenLaw:[]};
+function loadSK(){
+  try{ const s=JSON.parse(localStorage.getItem(SKEY)||'null'); if(s) SK={...SK,...s}; }catch(e){}
+}
+function saveSK(){ try{ localStorage.setItem(SKEY,JSON.stringify(SK)); }catch(e){} }
+function masteryOf(xp){
+  let idx=0; MASTERY.forEach((t,i)=>{ if(xp>=t.xp) idx=i; });
+  const cur=MASTERY[idx], nx=MASTERY[idx+1];
+  const pct=nx? Math.round((xp-cur.xp)/(nx.xp-cur.xp)*100) : 100;
+  return {tier:idx, name:cur.n, xp, next:nx? nx.xp-xp : 0, pct};
+}
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function bumpStreak(){
+  loadSK();
+  const t=todayStr();
+  if(SK.streak.last===t) return SK.streak.count;
+  const y=new Date(Date.now()-864e5).toISOString().slice(0,10);
+  SK.streak.count = SK.streak.last===y ? SK.streak.count+1 : 1;
+  SK.streak.last=t; saveSK();
+  return SK.streak.count;
+}
 
 let P={xp:0, modules:{}, user:'analyst'};
 
@@ -69,6 +125,13 @@ function load(){
   }
 }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(P)); }catch(e){} }
+/* mount() used to be the only entry point that called load() — fine for
+   the classic pages, but the workstation never calls mount() and was
+   silently reading P at its in-memory default (xp 0, no modules) on
+   every fresh page load. Every read/write below goes through this
+   instead, so progress survives a reload with or without mount(). */
+let loaded=false;
+function ensureLoad(){ if(!loaded){ loaded=true; load(); } }
 
 const rankOf=xp=>{let r=RANKS[0];RANKS.forEach(x=>{if(xp>=x.xp)r=x});return r};
 const nextRank=xp=>RANKS.find(x=>x.xp>xp)||null;
@@ -136,7 +199,7 @@ function paintStatus(extra){
 const Shell={
   /* Mounts the shell and renders the page's existing content into the screen. */
   mount(moduleId){
-    load();
+    ensureLoad();
     const kids=Array.from(document.body.children);
     const outer=build(moduleId);
     document.body.appendChild(outer);
@@ -155,17 +218,21 @@ const Shell={
   },
   /* XP: a single counter for the whole path. Returns true on promotion. */
   award(moduleId, xp){
+    ensureLoad();
     const before=rankOf(P.xp).n;
     P.xp+=xp;
     const rec=P.modules[moduleId]||{done:0,started:true};
     rec.started=true; P.modules[moduleId]=rec;
     save();
+    bumpStreak();
+    loadSK(); SK.daily={date:todayStr(), done:true}; saveSK();
     const after=rankOf(P.xp);
     paintStatus(document.getElementById('acMod')?.innerHTML||'');
     if(after.n!==before){ Shell.promote(after); return true; }
     return false;
   },
   complete(moduleId, n){
+    ensureLoad();
     const rec=P.modules[moduleId]||{done:0};
     rec.done=Math.max(rec.done||0, n||((rec.done||0)+1));
     rec.started=true; P.modules[moduleId]=rec; save();
@@ -184,11 +251,55 @@ const Shell={
     const t=document.createElement('div'); t.className='ac-toast'; t.textContent=msg;
     s.appendChild(t); setTimeout(()=>t.remove(),2700);
   },
-  get xp(){ return P.xp; },
-  get rank(){ return rankOf(P.xp); },
+  get xp(){ ensureLoad(); return P.xp; },
+  get rank(){ ensureLoad(); return rankOf(P.xp); },
+  get ranks(){ return RANKS; },
   get modules(){ return MODULES; },
-  get progress(){ return P; },
-  reset(){ P={xp:0,modules:{},user:'analyst',migrated:true}; save(); location.reload(); },
+  get progress(){ ensureLoad(); return P; },
+  reset(){ P={xp:0,modules:{},user:'analyst',migrated:true}; save();
+    SK={skills:{},badges:[],streak:{count:0,last:null},daily:{date:null,done:false},seenLaw:[]}; saveSK();
+    location.reload(); },
+
+  /* ── skill tree ── */
+  get skillDefs(){ return SKILLS; },
+  get skills(){
+    loadSK();
+    return SKILLS.map(s=>({...s, ...masteryOf(SK.skills[s.id]||0)}));
+  },
+  awardSkill(id, xp){
+    loadSK();
+    const before=masteryOf(SK.skills[id]||0).tier;
+    SK.skills[id]=(SK.skills[id]||0)+xp;
+    saveSK();
+    const after=masteryOf(SK.skills[id]).tier;
+    return after>before ? masteryOf(SK.skills[id]) : null; /* returns tier-up info, else null */
+  },
+  markLawSeen(article){
+    if(!article) return false;
+    loadSK();
+    if(SK.seenLaw.includes(article)) return false;
+    SK.seenLaw.push(article); saveSK();
+    return SK.seenLaw.length;
+  },
+  get lawSeenCount(){ loadSK(); return SK.seenLaw.length; },
+
+  /* ── badges ── */
+  get badgeDefs(){ return BADGES; },
+  get badges(){ loadSK(); return BADGES.map(b=>({...b, earned:SK.badges.includes(b.id)})); },
+  awardBadge(id){
+    loadSK();
+    if(SK.badges.includes(id)) return false;
+    SK.badges.push(id); saveSK();
+    return BADGES.find(b=>b.id===id) || true;
+  },
+
+  /* ── streak & daily case ── */
+  bumpStreak,
+  get streak(){ loadSK(); return SK.streak.count; },
+  get dailyDone(){ loadSK(); return SK.daily.date===todayStr() && SK.daily.done; },
+  markDailyDone(key){
+    loadSK(); SK.daily={date:todayStr(), key, done:true}; saveSK();
+  },
 };
 
 window.AcademyShell=Shell;

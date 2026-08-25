@@ -114,7 +114,7 @@ function paint(){
   document.getElementById('pMods').textContent=`${started}/${mods.length}`;
   /* The next threshold comes from the shell: duplicating the scale here
      would just guarantee the two drift apart one day. */
-  const nx=[600,1500,2800,4500,6800].find(x=>x>S.xp);
+  const nx=[600,1600,3200,5500].find(x=>x>S.xp);
   document.getElementById('pNext').textContent = nx? (nx-S.xp).toLocaleString('en-US')+' XP' : 'max rank';
 
   if(S.xp>0){

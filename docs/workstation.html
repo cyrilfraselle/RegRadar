@@ -49,6 +49,7 @@ body{
   text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .dicon.i1{top:100px;left:40px} .dicon.i2{top:210px;left:40px}
 .dicon.i3{top:320px;left:40px} .dicon.i4{top:430px;left:40px}
+.dicon.i5{top:540px;left:40px}
 
 /* ── windows ─────────────────────────────────────────────────────── */
 .win{position:absolute;background:var(--surface);border-radius:8px;
@@ -570,6 +571,41 @@ table.dt td b{color:var(--text);font-weight:600}
 .path-mod .st.now{background:var(--brand);color:#fff}
 .path-mod .st.locked{background:var(--surface-2);color:var(--text-3)}
 
+/* ── progression / skill tree ────────────────────────────────────── */
+.streak-pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;
+  color:var(--warn);background:var(--warn-bg);padding:5px 11px;border-radius:20px}
+.daily-card{border:1px solid var(--brand);border-radius:8px;padding:14px 16px;
+  background:rgba(31,92,139,.05);margin:14px 0 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.daily-card .body{flex:1;min-width:180px}
+.daily-card .k{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
+.daily-card .nm{font-size:14px;font-weight:600;margin-top:5px}
+.daily-card .d{font-size:11.5px;color:var(--text-2);margin-top:3px;line-height:1.5}
+.daily-card .go{flex:0 0 auto;border:1px solid var(--brand);color:#fff;background:var(--brand);
+  padding:9px 16px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:pointer}
+.daily-card.done{border-color:var(--ok);background:var(--ok-bg)}
+.daily-card.done .k{color:var(--ok)}
+.stage-legend{font-size:11px;color:var(--text-3);line-height:1.6;margin:2px 0 18px;
+  border-left:2px solid var(--border);padding-left:12px}
+.skl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.skl-card{border:1px solid var(--border);border-radius:8px;padding:12px 13px}
+.skl-card .hd{display:flex;align-items:center;gap:8px}
+.skl-card .ic{font-size:17px}
+.skl-card .nm{font-size:12px;font-weight:600;line-height:1.25}
+.skl-card .tier{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--brand-ink);margin-top:9px}
+.skl-bar{height:5px;border-radius:3px;background:var(--surface-2);margin-top:6px;overflow:hidden}
+.skl-bar i{display:block;height:100%;background:var(--brand)}
+.skl-card .xpl{font-size:9.5px;color:var(--text-3);margin-top:5px;font-family:var(--mono)}
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.badge-card{border:1px solid var(--border);border-radius:8px;padding:10px 12px;
+  display:flex;gap:10px;align-items:flex-start;opacity:.42}
+.badge-card.earned{opacity:1;border-color:var(--ok);background:var(--ok-bg)}
+.badge-card .ic{font-size:19px;line-height:1}
+.badge-card .nm{font-size:11.5px;font-weight:700}
+.badge-card .d{font-size:10.5px;color:var(--text-3);margin-top:2px;line-height:1.4}
+.boss-chip{background:var(--crit);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;
+  padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle}
+
 /* ── highlight pulse (Alex points at something) ──────────────────── */
 .hl-pulse{outline:3px solid var(--brand) !important;outline-offset:2px;
   animation:hlPulse 1.4s ease-in-out 3;box-shadow:0 0 0 6px rgba(31,92,139,.25) !important}
@@ -586,6 +622,7 @@ table.dt td b{color:var(--text);font-weight:600}
 <div class="dicon i2" data-open="invest"><div class="ico" style="background:#1F5C8B">🛡️</div><div class="lbl">AML Investigation</div></div>
 <div class="dicon i3" data-open="path"><div class="ico" style="background:#6E3FBF">🎯</div><div class="lbl">Training Path</div></div>
 <div class="dicon i4" data-open="soon" data-soon="Transaction Monitoring"><div class="ico" style="background:#4A5568">📈</div><div class="lbl">Transaction Monitoring</div></div>
+<div class="dicon i5" data-open="skills"><div class="ico" style="background:#9A6B1F">🧭</div><div class="lbl">Progression</div></div>
 
 <!-- ═══════════════════ OUTLOOK WINDOW ═══════════════════ -->
 <div class="win" id="win-mail" style="top:70px;left:96px;width:640px;height:520px">
@@ -839,6 +876,16 @@ table.dt td b{color:var(--text);font-weight:600}
   <div class="resize-handle"></div>
 </div>
 
+<!-- ═══════════════════ PROGRESSION / SKILLS WINDOW ═══════════════════ -->
+<div class="win" id="win-skills" style="top:64px;left:250px;width:760px;height:600px">
+  <div class="titlebar">
+    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tapp"><span class="tico" style="background:#9A6B1F"></span>Progression</div>
+  </div>
+  <div class="pad" id="skills-body" style="overflow-y:auto"></div>
+  <div class="resize-handle"></div>
+</div>
+
 <!-- ═══════════════════ NOTIFICATIONS ═══════════════════ -->
 <div class="ntf-stack" id="ntf-stack"></div>
 
@@ -851,6 +898,7 @@ table.dt td b{color:var(--text);font-weight:600}
   <div class="tb-app" id="tb-explorer" title="File Explorer">🗄️</div>
   <div class="tb-app" id="tb-invest" title="AML Investigation">🛡️</div>
   <div class="tb-app" id="tb-path" title="Training Path">🎯</div>
+  <div class="tb-app" id="tb-skills" title="Progression">🧭</div>
   <div class="tb-app" id="tb-teams" title="Teams">💬</div>
   <div class="tb-flag" id="tb-flag"><i></i>Alert A-4471 — 3h 40m remaining</div>
   <div class="tb-right">
@@ -1097,13 +1145,23 @@ let history = ['cif'], histPos = 0;
 
 function openTab(key){
   if(!document.getElementById('page-'+key)) return;
-  if(!document.querySelector(`.tab[data-tab="${key}"]`)){
+  const isNew = !document.querySelector(`.tab[data-tab="${key}"]`);
+  if(isNew){
     const strip = document.getElementById('tabstrip');
     const t = document.createElement('div');
     t.className = 'tab'; t.dataset.tab = key;
     t.innerHTML = `<span class="dot"></span>${TAB_TITLES[key]}<span class="x" data-close-tab="${key}">×</span>`;
     strip.appendChild(t);
     wireTab(t);
+  }
+  if(isNew && (key==='sanc'||key==='news')){
+    let ts={sanc:0,news:0}; try{ ts=JSON.parse(localStorage.getItem('regradar-tab-stats')||'null')||ts; }catch(e){}
+    ts[key]=(ts[key]||0)+1;
+    try{ localStorage.setItem('regradar-tab-stats', JSON.stringify(ts)); }catch(e){}
+    if(typeof awardSkillXP==='function'){
+      if(ts[key]<=5) awardSkillXP(key==='sanc'?'sanctions':'media', 15);
+      if(typeof checkBadges==='function') checkBadges();
+    }
   }
   goToTab(key, true);
 }
@@ -1418,6 +1476,7 @@ async function loadCaseData(){
   }
   INV.boot();
   PATH.render();
+  if(typeof SKILLS_UI!=='undefined') SKILLS_UI.render();
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1659,6 +1718,10 @@ const INV = (function(){
     const ok = Object.values(doneMap).filter(x=>x==='right').length;
     AcademyShell.complete('ownership', ok);
     AcademyShell.award('ownership', correct?200:40);
+    awardSkillXP('ubo', correct?90:15);
+    awardSkillXP('judgement', correct?25:8);
+    markLawSeen(c.law);
+    checkBadges();
     PATH.render();
 
     const noms = {}; c.entities.forEach(e=>noms[e.id]=e.name);
@@ -1697,7 +1760,7 @@ const INV = (function(){
   }
   function boot(){ renderPrimer(); renderWorkbench(); }
 
-  return {answerPrimer, boot, onCaseSwitch, renderWorkbench};
+  return {answerPrimer, boot, onCaseSwitch, renderWorkbench, renderPrimer};
 })();
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1751,6 +1814,141 @@ const PATH = (function(){
   }
   return {render};
 })();
+
+/* ═══════════════════════════════════════════════════════════════════
+   PROGRESSION — Duolingo-style layer on top of AcademyShell's XP/rank.
+   Global XP already exists; what's new here is WHAT it was earned at:
+   nine skills, each fed by the actions that actually exercise it
+   (see awardSkillXP/checkBadges below, called from INV/LB/DK), plus
+   badges, a login streak, and a daily suggested case. Boss cases reuse
+   existing hard content rather than inventing new — see BOSS map.
+   ═══════════════════════════════════════════════════════════════════ */
+const SKILLS_UI = (function(){
+  const esc = s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const BOSS = {'OWN-04':'Control-chain test', 'OWN-06':'Cannot-determine case'};
+
+  function dailyTarget(){
+    const S = AcademyShell;
+    const laundromatDone = (S.progress.modules.laundromat||{}).done>0;
+    if(!laundromatDone) return {key:'laundromat', label:'Run the Laundromat',
+      desc:'You have not finished a laundering run yet — the path starts there.',
+      open:()=>{ WM.open('invest'); document.querySelector('.inv-tab[data-view="laundromat"]')?.click(); }};
+    let ownDone={}; try{ ownDone=(JSON.parse(localStorage.getItem('regradar-ownership')||'null')||{}).done||{}; }catch(e){}
+    const nextOwn = (CASE.ownershipCases||[]).find(c=>ownDone[c.id]!=='right');
+    if(nextOwn) return {key:'own-'+nextOwn.id, label:'Solve '+nextOwn.id, boss:BOSS[nextOwn.id],
+      desc:(nextOwn.brief||nextOwn.title||'').slice(0,150),
+      open:()=>{ activateOwnershipCase(nextOwn); WM.open('invest'); document.querySelector('.inv-tab[data-view="case"]')?.click(); }};
+    let desk={done:[]}; try{ desk=JSON.parse(localStorage.getItem('regradar-desk')||'null')||{done:[]}; }catch(e){}
+    if((desk.done||[]).length<7) return {key:'desk', label:'Continue the Desk',
+      desc:'The journal picks up exactly where you left it — six days in, one to go, or fewer.',
+      open:()=>{ WM.open('invest'); document.querySelector('.inv-tab[data-view="desk"]')?.click(); }};
+    return {key:'replay', label:'Replay the Laundromat',
+      desc:'Every module is complete for now — go back and run a cleaner scheme.',
+      open:()=>{ WM.open('invest'); document.querySelector('.inv-tab[data-view="laundromat"]')?.click(); }};
+  }
+
+  function render(){
+    const el = document.getElementById('skills-body');
+    if(!el || typeof AcademyShell==='undefined') return;
+    const S = AcademyShell;
+    const r = S.rank, ranks = S.ranks, xp = S.xp;
+    const nx = ranks.find(x=>x.xp>xp);
+    const streak = S.streak, done = S.dailyDone, dt = dailyTarget();
+
+    const skillCards = S.skills.map(s=>`
+      <div class="skl-card">
+        <div class="hd"><span class="ic">${s.icon}</span><span class="nm">${esc(s.n)}</span></div>
+        <div class="tier">${esc(s.name)}</div>
+        <div class="skl-bar"><i style="width:${s.pct}%"></i></div>
+        <div class="xpl">${s.xp} XP${s.next?` · ${s.next} to next tier`:' · MAX TIER'}</div>
+      </div>`).join('');
+
+    const badgeCards = S.badges.map(b=>`
+      <div class="badge-card ${b.earned?'earned':''}">
+        <span class="ic">${b.icon}</span>
+        <div><div class="nm">${esc(b.n)}</div><div class="d">${esc(b.d)}</div></div>
+      </div>`).join('');
+
+    el.innerHTML = `
+      <div class="kicker">PROGRESSION</div>
+      <h1 class="pt">${esc(r.n)}${streak>1?` <span class="streak-pill">🔥 ${streak}-day streak</span>`:''}</h1>
+      <div class="stage-legend">Learn the concept → practice it → investigate a real case → master it. Rank is what the whole path adds up to; the skill tree below is what it's made of.</div>
+      <div class="path-prog">
+        <div><div class="n">${esc(r.n)}</div><div class="l">Rank</div></div>
+        <div><div class="n">${xp.toLocaleString('en-US')}</div><div class="l">Total XP</div></div>
+        <div><div class="n">${nx? (nx.xp-xp).toLocaleString('en-US') : '—'}</div><div class="l">${nx?'To '+esc(nx.n):'Max rank'}</div></div>
+        <div><div class="n">${streak}</div><div class="l">Day streak</div></div>
+      </div>
+
+      <div class="daily-card ${done?'done':''}">
+        <div class="body">
+          <div class="k">${done?'✓ DAILY CASE DONE':'DAILY CASE'}</div>
+          <div class="nm">${esc(dt.label)}${dt.boss?`<span class="boss-chip">⚔ BOSS CASE</span>`:''}</div>
+          <div class="d">${esc(dt.desc)}</div>
+        </div>
+        ${done?'':`<button class="go" id="daily-go">Start →</button>`}
+      </div>
+
+      <div class="kicker">SKILL TREE</div>
+      <div class="skl-grid">${skillCards}</div>
+
+      <div class="kicker" style="margin-top:22px">BADGES</div>
+      <div class="badge-grid">${badgeCards}</div>
+    `;
+    const go = document.getElementById('daily-go');
+    if(go) go.addEventListener('click', dt.open);
+  }
+
+  return {render, dailyTarget};
+})();
+
+/* Skill-XP + badge awarding, called from INV/LB/DK at the moments that
+   actually exercise each skill. Kept as free functions (hoisted) so
+   the game modules below can call them regardless of source order. */
+function awardSkillXP(id, xp){
+  if(typeof AcademyShell==='undefined' || !xp) return;
+  const tierUp = AcademyShell.awardSkill(id, xp);
+  if(typeof SKILLS_UI!=='undefined') SKILLS_UI.render();
+  if(tierUp){
+    const def = AcademyShell.skillDefs.find(s=>s.id===id);
+    notify(def?def.icon:'⭐', '#9A6B1F', 'Skill tier up', `${def?def.n:id} → ${tierUp.name}`);
+  }
+}
+function markLawSeen(lawText){
+  if(typeof AcademyShell==='undefined' || !lawText) return;
+  const m = String(lawText).match(/Art(?:icle)?\.?\s*[\dIVXLC]+(?:\([\da-z]+\))*/i);
+  if(m) AcademyShell.markLawSeen(m[0].replace(/\s+/g,' '));
+}
+function checkBadges(){
+  if(typeof AcademyShell==='undefined') return;
+  const S = AcademyShell;
+  const newly = [];
+  const give = id=>{ const b = S.awardBadge(id); if(b) newly.push(b); };
+
+  let own=null, desk=null, lb=null, lbStats=null, deskStats=null, tabStats=null;
+  try{ own=JSON.parse(localStorage.getItem('regradar-ownership')||'null'); }catch(e){}
+  try{ desk=JSON.parse(localStorage.getItem('regradar-desk')||'null'); }catch(e){}
+  try{ lb=JSON.parse(localStorage.getItem('regradar-academy')||'null'); }catch(e){}
+  try{ lbStats=JSON.parse(localStorage.getItem('regradar-lb-stats')||'null'); }catch(e){}
+  try{ deskStats=JSON.parse(localStorage.getItem('regradar-desk-stats')||'null'); }catch(e){}
+  try{ tabStats=JSON.parse(localStorage.getItem('regradar-tab-stats')||'null'); }catch(e){}
+
+  const ownOk = own&&own.done ? Object.values(own.done).filter(x=>x==='right').length : 0;
+  const deskSeen = desk&&desk.seen ? Object.keys(desk.seen).length : 0;
+  if(ownOk>0 || deskSeen>0 || (lb&&lb.laundromat&&lb.laundromat.runs)) give('first-case');
+  if(ownOk>=6) give('ubo-detective');
+  if(desk&&desk.done&&desk.done.length>=7) give('week-one');
+  if(S.lawSeenCount>=10) give('by-the-book');
+  if(streakGate()>=3) give('on-a-roll');
+  if(lbStats&&lbStats.catches>=5) give('red-flag');
+  if(lbStats&&lbStats.cleanRuns>=1) give('clean-sweep');
+  if(deskStats&&deskStats.sar>=3) give('reporter');
+  if(tabStats&&tabStats.sanc>=3) give('sanctions-hunter');
+  if(tabStats&&tabStats.news>=3) give('media-watcher');
+  if(typeof SKILLS_UI!=='undefined') SKILLS_UI.render();
+  newly.forEach(b=>notify(b.icon, '#1E7145', 'Badge earned', b.n+' — '+b.d));
+}
+function streakGate(){ return (typeof AcademyShell!=='undefined') ? AcademyShell.streak : 0; }
 
 /* ═══════════════════════════════════════════════════════════════════
    LAUNDROMAT (module 01) — engine ported verbatim from laundromat.html
@@ -2063,7 +2261,15 @@ const LB = (function(){
     const ev = LM.doOp(S, sel.tid, sel.jid, sel.size);
     if(!ev) return;
     renderStatsInPlace(); renderFeed();
-    if(ev.kind==='caught') showCatch(ev); else showOk(ev);
+    if(ev.kind==='caught'){
+      let st={catches:0}; try{ st=JSON.parse(localStorage.getItem('regradar-lb-stats')||'null')||{catches:0}; }catch(e){}
+      st.catches=(st.catches||0)+1;
+      try{ localStorage.setItem('regradar-lb-stats', JSON.stringify(st)); }catch(e){}
+      markLawSeen('Art. '+ev.t.art);
+      awardSkillXP('risk', 8);
+      checkBadges();
+      showCatch(ev);
+    } else showOk(ev);
   }
   function renderStatsInPlace(){
     // simplest correct approach: re-render the whole board (keeps stats/ops/cfg in sync)
@@ -2122,12 +2328,21 @@ const LB = (function(){
     const prev = (st.laundromat && st.laundromat.best) || 0;
     st.laundromat = {best:Math.max(prev,sc), last:sc, runs:((st.laundromat&&st.laundromat.runs)||0)+1, verdict:S.verdict, at:Date.now()};
     acSave(st);
+    const caught = S.log.filter(e=>e.kind==='caught');
     if(typeof AcademyShell!=='undefined'){
       AcademyShell.complete('laundromat', 1);
       AcademyShell.award('laundromat', 100+Math.round(sc*2));
+      awardSkillXP('judgement', 20+Math.round(sc/4));
+      awardSkillXP('risk', 15+Math.round(sc/6));
+      if(!caught.length){
+        let lst={catches:0,cleanRuns:0}; try{ lst=JSON.parse(localStorage.getItem('regradar-lb-stats')||'null')||lst; }catch(e){}
+        lst.cleanRuns=(lst.cleanRuns||0)+1;
+        try{ localStorage.setItem('regradar-lb-stats', JSON.stringify(lst)); }catch(e){}
+      }
+      checkBadges();
       if(typeof PATH!=='undefined') PATH.render();
+      if(typeof INV!=='undefined'){ INV.renderPrimer(); INV.renderWorkbench(); }
     }
-    const caught = S.log.filter(e=>e.kind==='caught');
     const [vh,vb] = VERDICTS[S.verdict] || VERDICTS.done;
     root().innerHTML = `
       <div class="kicker">RUN COMPLETE · ${S.week} WEEKS</div>
@@ -2426,6 +2641,18 @@ const DK = (function(){
     if(RUN.tutorial) xp=0;
     S.seen[c.id]=verdict; save();
     award(xp);
+    if(xp>0){
+      awardSkillXP('tm', Math.round(xp/6));
+      awardSkillXP('judgement', Math.round(xp/8));
+      if(choice==='escalate'||choice==='sar') awardSkillXP('str', Math.round(xp/3));
+      if(choice==='sar'){
+        let dst={sar:0}; try{ dst=JSON.parse(localStorage.getItem('regradar-desk-stats')||'null')||dst; }catch(e){}
+        dst.sar=(dst.sar||0)+1;
+        try{ localStorage.setItem('regradar-desk-stats', JSON.stringify(dst)); }catch(e){}
+      }
+      markLawSeen(c.law);
+      checkBadges();
+    }
     RUN.results.push({c, choice, verdict, xp, foundN, decisiveTotal:decisive.length});
     if(verdict==='harm' && !RUN.tutorial){
       const later=DAYS.find(d=>d.d>S.day && !S.done.includes(d.d));
@@ -2513,6 +2740,9 @@ const DK = (function(){
     let xp=right?220:verdict==='part'?70:20;
     S.seen[c.id]=verdict; save();
     award(xp);
+    awardSkillXP('kyc', Math.round(xp/3));
+    markLawSeen(c.law);
+    checkBadges();
     RUN.results.push({c,choice,verdict,xp});
     const col=right?'var(--ok)':verdict==='part'?'var(--warn)':'var(--crit)';
     const label=right?'CORRECT':verdict==='part'?'OVER-APPLIED':'WRONG CALL';
@@ -2542,7 +2772,11 @@ const DK = (function(){
     const xp=res.reduce((s,r)=>s+r.xp,0);
     const hoursUsed=RUN.budget!=null?(RUN.budget-RUN.hours):null;
     if(!S.done.includes(d.d)) S.done.push(d.d);
-    if(typeof AcademyShell!=='undefined'){ AcademyShell.complete('desk', S.done.length); if(typeof PATH!=='undefined') PATH.render(); }
+    if(typeof AcademyShell!=='undefined'){
+      AcademyShell.complete('desk', S.done.length);
+      checkBadges();
+      if(typeof PATH!=='undefined') PATH.render();
+    }
     S.seen['day'+d.d] = harm?'HARM':good===res.length?'CLEAN':'MIXED';
     if(RUN.tutorial) S.tutorialDone=true;
     save();
@@ -2815,6 +3049,7 @@ document.querySelectorAll('.dicon').forEach(ic=>{
       return;
     }
     if(key==='path') PATH.render();
+    if(key==='skills') SKILLS_UI.render();
     WM.open(key);
   });
 });
@@ -2829,7 +3064,7 @@ function tickClock(){
 tickClock(); setInterval(tickClock, 30000);
 
 /* ═══════════════════ BOOT ═══════════════════ */
-WM.init(['mail','browser','explorer','teams','invest','path']);
+WM.init(['mail','browser','explorer','teams','invest','path','skills']);
 if(!localStorage.getItem('meridiaan-wm-v1')){
   WM.open('mail'); WM.open('browser');
 }
