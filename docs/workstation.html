@@ -7,7 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="academy-engine.css">
 <script src="academy-shell.js"></script>
+<script src="academy-engine.js"></script>
 <style>
 :root{
   --wallpaper:#1B2430; --wallpaper-2:#222E3D; --taskbar:#12161D;
@@ -23,6 +25,13 @@
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   --radius:4px;
   --ease:cubic-bezier(.2,.7,.3,1);
+  /* AcademyEngine's shared chart/document/request chrome (academy-engine.css)
+     reads these token names — same contract ownership.html defines
+     directly, aliased here onto this page's own palette. */
+  --grid:var(--border); --console:var(--surface); --raised:var(--surface-2);
+  --phos:var(--ok); --amber:var(--warn); --alarm:var(--crit); --ice:var(--brand);
+  --violet:#6E3FBF;
+  --ink:var(--text); --ink-2:var(--text-2); --ink-3:var(--text-3);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;height:100%}
@@ -365,9 +374,7 @@ table.dt td b{color:var(--text);font-weight:600}
 .inv-reveal .pr{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);color:var(--text)}
 .inv-chart{border:1px solid var(--border);border-radius:8px;background:var(--surface-2);margin-top:14px;position:relative}
 .inv-chart svg{display:block;width:100%;height:auto}
-.inv-legend{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);padding:8px 12px;
-  font-size:10.5px;color:var(--text-3);font-weight:600}
-.inv-legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:2px}
+.inv-brief{font-size:13px;color:var(--text-2);line-height:1.55;margin-top:10px;max-width:70ch}
 .inv-work{display:grid;grid-template-columns:1fr 300px;gap:22px;margin-top:6px}
 .inv-pick{display:grid;gap:7px;margin-top:10px}
 .inv-pk{border:1px solid var(--border-strong);border-radius:6px;padding:10px 12px;display:flex;
@@ -1535,101 +1542,21 @@ async function loadCaseData(){
 
 /* ═══════════════════════════════════════════════════════════════════
    AML INVESTIGATION — the scored task itself: the four-principle
-   primer and the case workbench, ported from ownership.html's exact
-   solve()/layout()/drawChart() and submit() logic so this teaches the
-   same skill, not a simplified stand-in. Progress is written to the
-   same regradar-ownership + regradar-academy-progress keys the
-   classic page used, so nothing is lost either direction.
+   primer and the case workbench. The solver, chart, documents/requests
+   and scoring live in AcademyEngine.Ownership (docs/academy-engine.js) —
+   shared with ownership.html, so the two can't drift the way they used
+   to. This window owns only the desktop-simulator chrome (tabs, the
+   file-explorer case picker, the locked-module message) around that
+   shared core — including the documents/requests/hours-budget panel
+   and chart zoom/pan the embedded version didn't have until now.
    ═══════════════════════════════════════════════════════════════════ */
 const INV = (function(){
-  const esc = s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  let picked = new Set(), nd = false;
+  const esc = AcademyEngine.esc;
+  const AE = AcademyEngine.Ownership;
+  let CS = null;     // current case session: {hours, seen, spent, picked, nd}
+  let zoomCtl = null;
   let doneMap = {};
   try{ const p = JSON.parse(localStorage.getItem('regradar-ownership')||'null'); if(p && p.done) doneMap = p.done; }catch(e){}
-
-  function solve(entities, edges, root){
-    const persons = new Set(entities.filter(e=>e.type==='person').map(e=>e.id));
-    const res = {};
-    (function walk(n,f,path){
-      edges.forEach(e=>{
-        if(e.to!==n || path.includes(e.from)) return;
-        if(e.kind==='trustee') return;
-        const nf = f*(e.pct/100);
-        if(persons.has(e.from)){
-          if(!res[e.from]) res[e.from] = {pct:0};
-          res[e.from].pct += nf*100;
-        } else walk(e.from, nf, [...path, e.from]);
-      });
-    })(root, 1, [root]);
-    return res;
-  }
-
-  function layout(entities, edges, root, W, H){
-    const tier = {}; tier[root] = 0;
-    (function walk(cur, d, path){
-      edges.forEach(e=>{
-        if(e.to!==cur || path.includes(e.from)) return;
-        if(tier[e.from]===undefined || tier[e.from]<d+1) tier[e.from] = d+1;
-        walk(e.from, d+1, [...path, e.from]);
-      });
-    })(root, 0, [root]);
-    entities.forEach(e=>{ if(tier[e.id]===undefined) tier[e.id]=1; });
-    const maxT = Math.max(...Object.values(tier));
-    const rows = {};
-    entities.forEach(e=>{ (rows[tier[e.id]]=rows[tier[e.id]]||[]).push(e); });
-    const pos = {};
-    const top=40, bottom=H-40;
-    for(let t=0;t<=maxT;t++){
-      const r = rows[t]||[];
-      const y = maxT===0? bottom : bottom-(bottom-top)*(t/maxT);
-      const slot = W/(r.length+1);
-      r.forEach((e,i)=>{ pos[e.id] = {x:Math.round(slot*(i+1)), y:Math.round(y)}; });
-    }
-    return pos;
-  }
-
-  function drawChart(entities, edges, root, opts){
-    opts = opts||{};
-    const W = 720;
-    const depth = (()=>{ const t={}; t[root]=0;
-      (function w(c,d,p){ edges.forEach(e=>{ if(e.to!==c||p.includes(e.from)) return;
-        t[e.from]=Math.max(t[e.from]||0,d+1); w(e.from,d+1,[...p,e.from]); }); })(root,0,[root]);
-      return Math.max(1, ...Object.values(t)); })();
-    const H = Math.max(190, 110+depth*90);
-    const pos = layout(entities, edges, root, W, H);
-    const NW = opts.small?100:124, NH = opts.small?32:38;
-    let svg='';
-    edges.forEach(e=>{
-      const a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
-      const back = a.y>=b.y;
-      const col = e.kind==='trustee' ? '#8B93A0' : back ? '#9A6B00' : '#8B93A0';
-      const dash = e.kind==='trustee' ? '5 4' : back ? '6 4' : '';
-      const off = back? 40:0;
-      const my = (a.y+b.y)/2;
-      const d = `M${a.x},${a.y-NH/2} C${a.x+off},${my} ${b.x+off},${my} ${b.x},${b.y+NH/2}`;
-      svg += `<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4" stroke-dasharray="${dash}" opacity=".7"/>`;
-      const mx = (a.x+b.x)/2+off*.7;
-      const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'benef.' : e.pct+'%';
-      svg += `<g><rect x="${mx-24}" y="${my-9}" width="48" height="18" fill="#fff" stroke="${col}" stroke-width=".8"/>
-        <text x="${mx}" y="${my+4}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9.5" font-weight="700" fill="${col}">${lbl}</text></g>`;
-    });
-    entities.forEach(e=>{
-      const p = pos[e.id]; if(!p) return;
-      const isC = e.id===root, isP = e.type==='person';
-      const dashed = e.type==='trust'||e.type==='nominee';
-      const stroke = isC?'#B3392C' : isP?'#6E3FBF' : dashed?'#9A6B00':'#8B93A0';
-      const fill = isC?'#B3392C' : (opts.picked&&opts.picked.has(e.id))?'#6E3FBF':'#fff';
-      const txt = (isC||(opts.picked&&opts.picked.has(e.id)))?'#fff':'#1A1F27';
-      const nm = e.name.length>16? e.name.slice(0,15)+'…' : e.name;
-      svg += `<g class="inv-nod" data-n="${esc(e.id)}" style="cursor:${isP?'pointer':'default'}">
-        <rect x="${p.x-NW/2}" y="${p.y-NH/2}" width="${NW}" height="${NH}" rx="4" fill="${fill}"
-          stroke="${stroke}" stroke-width="${isP?2:1.3}" stroke-dasharray="${dashed?'4 3':''}"/>
-        <text x="${p.x}" y="${p.y-1}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="700" fill="${txt}">${esc(nm)}</text>
-        <text x="${p.x}" y="${p.y+11}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7.5" fill="${txt}" opacity=".75">${esc(e.juris)} · ${isP?'PERSON':e.type.toUpperCase()}</text>
-      </g>`;
-    });
-    return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ownership chart">${svg}</svg>`;
-  }
 
   function switchView(v){
     document.querySelectorAll('.inv-tab').forEach(t=>t.classList.toggle('on', t.dataset.view===v));
@@ -1669,7 +1596,7 @@ const INV = (function(){
         <div class="sn">PRINCIPLE ${i+1} / ${primer.length}</div>
         <h3>${esc(p.title)}</h3>
         ${p.note?`<div class="note">${esc(p.note)}</div>`:''}
-        <div class="inv-mini">${drawChart(p.entities, p.edges, 'cible', {small:true})}</div>
+        <div class="inv-mini">${AE.drawChart(p.entities, p.edges, 'cible', {small:true})}</div>
         <div class="inv-q">${esc(p.question)}</div>
         <div class="inv-opts">${p.options.map(o=>`<button class="inv-opt" data-o="${esc(o.id)}" onclick="INV.answerPrimer(${i},'${esc(o.id)}')">${esc(o.label)}</button>`).join('')}</div>
         <div class="inv-reveal" id="pr${i}"><b>Why</b>${esc(p.explain)}<div class="pr">${esc(p.principle)}</div></div>
@@ -1686,12 +1613,6 @@ const INV = (function(){
     document.getElementById('pr'+i).classList.add('on');
   }
 
-  const legendHtml = `<div class="inv-legend">
-      <span><i style="background:#B3392C"></i>Client</span>
-      <span><i style="border:1.5px solid #6E3FBF;background:none"></i>Natural person</span>
-      <span><i style="border:1.5px dashed #9A6B00;background:none"></i>Trust / nominee</span>
-    </div>`;
-
   function renderWorkbench(){
     const el = document.getElementById('inv-case');
     const c = CASE.active;
@@ -1699,110 +1620,114 @@ const INV = (function(){
     if(titleEl) titleEl.textContent = c ? c.id : 'Ownership structures';
     if(!isUnlocked()){ el.innerHTML = lockedMsg(); return; }
     if(!c){ el.innerHTML = '<div class="inv-locked"><div class="lk">⏳</div>Loading case…</div>'; return; }
-    picked = new Set(); nd = false;
-    const root = c.entities.find(e=>e.customer).id;
+    CS = AE.openCase(c);
     const solved = doneMap[c.id]==='right';
     el.innerHTML = `
       <div class="kicker">${esc(c.id)} · ${esc((c.tier_name||'').toUpperCase())}${solved?' · ALREADY RESOLVED':''}</div>
       <h1 class="pt">${esc(c.title)}</h1>
       <div class="sub">${esc(c.subject||'')}</div>
+      ${c.brief?`<div class="inv-brief">${esc(c.brief)}</div>`:''}
       <div class="inv-work">
-        <div><div class="inv-chart" id="inv-chartbox">${drawChart(c.entities, c.edges, root, {picked})}${legendHtml}</div></div>
+        <div>
+          <div class="inv-chart" id="inv-chartbox"></div>
+          <div id="inv-docsreqs"></div>
+        </div>
         <div id="inv-side"></div>
       </div>`;
-    renderSide(); wireChart();
+    renderChart(); renderDocsReqs(); renderSide();
   }
+
+  /* Chart, documents/requests and the picker refresh independently —
+     requesting a document shouldn't reset the chart's zoom/pan, and
+     toggling an owner shouldn't re-render (and re-fetch) documents. */
+  function renderChart(){
+    const c = CASE.active;
+    const root = c.entities.find(e=>e.customer).id;
+    const wrap = document.getElementById('inv-chartbox');
+    wrap.innerHTML = AE.drawChart(c.entities, c.edges, root, {picked:CS.picked}) + AE.chartTools() + AE.legend();
+    zoomCtl = AE.wireChart(wrap, {
+      onNodeClick(id){
+        const e = c.entities.find(x=>x.id===id);
+        if(e && e.type==='person') toggleOwner(id);
+      },
+      onEdgeClick(f,t){
+        const edge = c.edges.find(x=>x.from===f&&x.to===t);
+        if(edge&&edge.doc&&CS.seen.includes(edge.doc)){
+          const d=document.getElementById('ae-doc_'+edge.doc);
+          if(d){d.classList.add('ae-new');d.scrollIntoView({behavior:'smooth',block:'center'});
+            setTimeout(()=>d.classList.remove('ae-new'),1400)}
+        } else if(edge&&edge.doc) notify('📄','#5B6472','Not obtained yet','That document has not been requested.');
+      },
+    });
+    AE.wireChartTools(wrap, zoomCtl);
+  }
+  function renderDocsReqs(){
+    const c = CASE.active;
+    document.getElementById('inv-docsreqs').innerHTML = AE.renderDocs(c,CS) + AE.renderRequests(c,CS);
+    document.querySelectorAll('[data-ae-req]').forEach(b=>b.addEventListener('click', ()=>doRequest(b.dataset.aeReq)));
+  }
+  function doRequest(rid){
+    const c = CASE.active;
+    const out = AE.request(c, CS, rid);
+    if(!out.ok) return;
+    renderDocsReqs();
+    if(out.revealed){
+      AE.sfx.find();
+      const d=document.getElementById('ae-doc_'+out.revealed);
+      if(d) d.classList.add('ae-new');
+    }
+  }
+
   function renderSide(){
     const c = CASE.active;
     const persons = c.entities.filter(e=>e.type==='person');
     document.getElementById('inv-side').innerHTML = `
       <div class="kicker" style="margin-bottom:0">Who is a beneficial owner?</div>
       <div class="inv-pick">${persons.map(p=>`
-        <button class="inv-pk ${picked.has(p.id)?'on':''}" data-pid="${esc(p.id)}">
-          <span class="box">${picked.has(p.id)?'✓':''}</span><span style="flex:1">${esc(p.name)}</span>
+        <button class="inv-pk ${CS.picked.has(p.id)?'on':''}" data-pid="${esc(p.id)}">
+          <span class="box">${CS.picked.has(p.id)?'✓':''}</span><span style="flex:1">${esc(p.name)}</span>
           <span style="font-size:10px;color:var(--text-3)">${esc(p.juris)}</span>
         </button>`).join('')}</div>
-      <button class="inv-nd ${nd?'on':''}" id="inv-nd-btn">${nd?'✓ ':''}Cannot be determined</button>
-      <button class="inv-submit" id="inv-submit-btn" ${(!picked.size&&!nd)?'disabled':''}>Submit designation</button>
+      <button class="inv-nd ${CS.nd?'on':''}" id="inv-nd-btn">${CS.nd?'✓ ':''}Cannot be determined</button>
+      <button class="inv-submit" id="inv-submit-btn" ${(!CS.picked.size&&!CS.nd)?'disabled':''}>Submit designation</button>
       <div style="font-size:11.5px;color:var(--text-3);margin-top:10px;line-height:1.5">
         Select the natural persons who cross the threshold, or who exercise control by other means.</div>`;
-    document.querySelectorAll('.inv-pk').forEach(b=>b.addEventListener('click', ()=>{
-      if(nd) return;
-      const id = b.dataset.pid;
-      picked.has(id)?picked.delete(id):picked.add(id);
-      refreshChartAndSide();
-    }));
-    document.getElementById('inv-nd-btn').addEventListener('click', ()=>{
-      nd = !nd; if(nd) picked.clear();
-      refreshChartAndSide();
-    });
+    document.querySelectorAll('.inv-pk').forEach(b=>b.addEventListener('click', ()=>toggleOwner(b.dataset.pid)));
+    document.getElementById('inv-nd-btn').addEventListener('click', toggleND);
     document.getElementById('inv-submit-btn').addEventListener('click', submit);
   }
-  function refreshChartAndSide(){
-    const c = CASE.active;
-    const root = c.entities.find(e=>e.customer).id;
-    document.getElementById('inv-chartbox').innerHTML = drawChart(c.entities, c.edges, root, {picked}) + legendHtml;
-    wireChart();
-    renderSide();
-  }
-  function wireChart(){
-    document.querySelectorAll('.inv-nod').forEach(el=>el.addEventListener('click', ev=>{
-      ev.stopPropagation();
-      const c = CASE.active;
-      const e = c.entities.find(x=>x.id===el.dataset.n);
-      if(e && e.type==='person' && !nd){
-        picked.has(e.id)?picked.delete(e.id):picked.add(e.id);
-        refreshChartAndSide();
-      }
-    }));
-  }
+  function toggleOwner(id){ AE.toggleOwner(CS,id); AE.sfx.tick(); renderChart(); renderSide(); }
+  function toggleND(){ AE.toggleND(CS); AE.sfx.tick(); renderChart(); renderSide(); }
 
   function submit(){
     const c = CASE.active;
-    const root = c.entities.find(e=>e.customer).id;
-    const res = solve(c.entities, c.edges, root);
-    const expected = new Set(c.answer.ubos);
-    const correct = c.answer.cannot_determine
-      ? (nd && !picked.size)
-      : (!nd && picked.size===expected.size && [...picked].every(x=>expected.has(x)));
-    const missed = [...expected].filter(x=>!picked.has(x));
-
-    doneMap[c.id] = correct ? 'right' : 'wrong';
-    try{ localStorage.setItem('regradar-ownership', JSON.stringify({done:doneMap})); }catch(e){}
-    const ok = Object.values(doneMap).filter(x=>x==='right').length;
-    AcademyShell.complete('ownership', ok);
-    AcademyShell.award('ownership', correct?200:40);
-    awardSkillXP('ubo', correct?90:15);
-    awardSkillXP('judgement', correct?25:8);
-    markLawSeen(c.law);
-    checkBadges();
-    if(correct && (c.id==='OWN-04'||c.id==='OWN-06')) alexSay('ownBoss');
-    else if(!correct) alexSay('ownWrong');
+    const result = AE.computeVerdict(c, CS);
+    AE.applyReward(c, result);   /* writes regradar-ownership; also calls this page's
+                                     awardSkillXP/markLawSeen/checkBadges globals, which
+                                     already own their own notify()/SKILLS_UI.render() */
+    try{ const p = JSON.parse(localStorage.getItem('regradar-ownership')||'null'); if(p&&p.done) doneMap=p.done; }catch(e){}
+    if(result.correct && (c.id==='OWN-04'||c.id==='OWN-06')) alexSay('ownBoss');
+    else if(!result.correct) alexSay('ownWrong');
     PATH.render();
 
-    const noms = {}; c.entities.forEach(e=>noms[e.id]=e.name);
-    const lines = c.entities.filter(e=>e.type==='person').map(e=>{
-      const pct = (res[e.id]||{}).pct||0;
-      const should = expected.has(e.id), did = picked.has(e.id);
-      const cls = should&&did?'right':should&&!did?'miss':!should&&did?'extra':'';
-      const verdict = should&&did?'CORRECT':should&&!did?'MISSED':!should&&did?'WRONGLY':'—';
-      return `<div class="cr ${cls}"><span>${esc(noms[e.id])}</span><span class="pc">${pct.toFixed(2)}%</span><span>${verdict}</span></div>`;
-    }).join('');
+    const clsOf = {ok:'right', miss:'miss', extra:'extra', neutral:''};
+    const lines = result.lines.map(l=>
+      `<div class="cr ${clsOf[l.kind]}"><span>${esc(l.name)}</span><span class="pc">${l.pct.toFixed(2)}%</span><span>${l.verdict}</span></div>`).join('');
 
     document.getElementById('inv-side').innerHTML = `
       <div class="inv-verdict">
-        <span class="stamp ${correct?'ok':'bad'}">${correct?'CORRECT':missed.length?'BENEFICIAL OWNER MISSED':'OVER-DESIGNATION'}</span>
-        <h3 style="font-size:15px;margin:0 0 6px">${correct?'Structure read correctly':'Not quite'}</h3>
-        <div style="font-size:12.5px;color:var(--text-2);line-height:1.55">${esc(c.why)}</div>
+        <span class="stamp ${result.correct?'ok':'bad'}">${result.stamp}</span>
+        <h3 style="font-size:15px;margin:0 0 6px">${result.correct?'Structure read correctly':'Not quite'}</h3>
+        <div style="font-size:12.5px;color:var(--text-2);line-height:1.55">${esc(result.why)}</div>
         <div class="inv-calc">${lines}</div>
-        ${c.trap?`<div class="inv-note ${correct?'':'crit'}"><b>${correct?'The trap avoided':'The trap'}</b>${esc(c.trap)}</div>`:''}
-        <div class="inv-law">${esc(c.law)}</div>
-        <div class="inv-note"><b>What this teaches</b>${esc(c.lesson)}</div>
+        ${result.trap?`<div class="inv-note ${result.correct?'':'crit'}"><b>${result.correct?'The trap avoided':'The trap'}</b>${esc(result.trap)}</div>`:''}
+        <div class="inv-law">${esc(result.law)}</div>
+        <div class="inv-note"><b>What this teaches</b>${esc(result.lesson)}</div>
         <button class="inv-submit" id="inv-next-btn" style="margin-top:14px">Continue</button>
       </div>`;
     document.getElementById('inv-next-btn').addEventListener('click', goNextCase);
-    notify(correct?'✅':'⚠️', correct?'#1E7145':'#B3392C',
-      correct?'Case resolved':'Case needs another look', c.id+' — '+(correct?'+200 XP':'+40 XP'));
+    notify(result.correct?'✅':'⚠️', result.correct?'#1E7145':'#B3392C',
+      result.correct?'Case resolved':'Case needs another look', c.id+' — '+(result.correct?'+200 XP':'+40 XP'));
   }
   function goNextCase(){
     const idx = CASE.ownershipCases.findIndex(x=>x.id===CASE.active.id);
