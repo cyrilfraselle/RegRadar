@@ -392,10 +392,10 @@ function toast(msg){
 }
 
 async function load(){
-  for(const u of ['data/academy/investigations.json','investigations.json']){
-    try{const r=await fetch(u,{cache:'no-store'}); if(!r.ok)continue;
-      const d=await r.json(); CASES=d.cases||[]; if(CASES.length) return true}catch(e){}
-  }
+  try{
+    const r=await fetch('data/academy/investigations.json',{cache:'no-store'});
+    if(r.ok){const d=await r.json(); CASES=d.cases||[]; if(CASES.length) return true}
+  }catch(e){}
   return false;
 }
 
@@ -652,7 +652,7 @@ document.addEventListener('keydown',e=>{
     document.getElementById('shHome').innerHTML=
       `<div class="wrap"><div class="kick" style="color:var(--alarm)">NO CASE LIBRARY</div>
        <h2>The desk is empty.</h2>
-       <p class="body">This page needs <b>investigations.json</b> beside it, or in
+       <p class="body">This page needs <b>investigations.json</b> in
        <b>data/academy/</b>. If you opened the file straight from disk, serve it over http —
        browsers block local file reads.</p></div>`;
     return;

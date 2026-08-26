@@ -927,19 +927,15 @@ document.addEventListener('keydown',e=>{
 /* ═══════════ BOOT ═══════════ */
 (async function(){
   load();
-  for(const u of ['data/academy/casebook.json','casebook.json']){
-    try{const r=await fetch(u,{cache:'no-store'}); if(r.ok){BOOK=(await r.json()).cases||[]; break}}catch(e){}
-  }
-  for(const u of ['data/academy/onboarding.json','onboarding.json']){
-    try{const r=await fetch(u,{cache:'no-store'}); if(r.ok){const d=await r.json();
-      ONB=d.cases||[]; PROFILES=d.profiles||[]; break}}catch(e){}
-  }
+  try{const r=await fetch('data/academy/casebook.json',{cache:'no-store'}); if(r.ok){BOOK=(await r.json()).cases||[]}}catch(e){}
+  try{const r=await fetch('data/academy/onboarding.json',{cache:'no-store'}); if(r.ok){const d=await r.json();
+    ONB=d.cases||[]; PROFILES=d.profiles||[]}}catch(e){}
   if(!BOOK.length||!ONB.length){
     document.getElementById('tlEntries').innerHTML=
       `<div class="entry"><div class="when"><b>—</b></div><div class="what">
        <div class="et" style="color:var(--alarm)">The casebook did not load</div>
-       <div class="eb">This page needs <b>casebook.json</b> and <b>onboarding.json</b>, either beside
-       it or in <b>data/academy/</b>. If you opened the file from disk, serve it over http instead —
+       <div class="eb">This page needs <b>casebook.json</b> and <b>onboarding.json</b> in
+       <b>data/academy/</b>. If you opened the file from disk, serve it over http instead —
        browsers block local file reads.</div></div></div>`;
     return;
   }
