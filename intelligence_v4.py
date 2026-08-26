@@ -14,6 +14,7 @@
 
 import json
 import re
+import time
 import logging
 from datetime import datetime, date
 from collections import defaultdict
@@ -70,8 +71,11 @@ def _parse_json(raw: str) -> dict:
 
 
 def _groq_chat(api_key: str, system: str, user: str,
-               max_tokens: int = 700, temperature: float = 0.2) -> str:
-    """Raw Groq chat call. Returns text content or '' on failure."""
+               max_tokens: int = 700, temperature: float = 0.2,
+               _retry: bool = True) -> str:
+    """Raw Groq chat call. Returns text content or '' on failure.
+    On a 429 rate-limit, backs off and retries once (same policy as
+    enrichment_v3.py::_call_groq)."""
     payload = {
         "model": GROQ_MODEL,
         "temperature": temperature,
@@ -87,6 +91,19 @@ def _groq_chat(api_key: str, system: str, user: str,
         if r.status_code == 401:
             log.error("Groq 401 Unauthorized — the API key is invalid. "
                       "Check it's a real Groq key from console.groq.com.")
+            return ""
+        if r.status_code == 429:
+            wait = 6
+            try:
+                wait = int(float(r.headers.get("retry-after", wait)))
+            except (ValueError, TypeError):
+                pass
+            wait = min(wait, 15)
+            if _retry:
+                log.warning(f"Groq rate limit (429). Waiting {wait}s and retrying once.")
+                time.sleep(wait)
+                return _groq_chat(api_key, system, user, max_tokens, temperature, _retry=False)
+            log.warning("Groq rate limit (429) again — skipping this call.")
             return ""
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
