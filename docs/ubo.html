@@ -7,31 +7,26 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <!-- pdf.js is vendored rather than loaded from a CDN: a page handling
      shareholder registers should not be making third-party requests, and this
-     way it keeps working with the network off.
-
-     The loader tries several locations because uploading through GitHub's web
-     interface does not preserve folders — the files often land beside this
-     page instead of inside vendor/. Rather than fail on that, it looks. -->
+     way it keeps working with the network off. -->
 <script>
-window.__PDF_PATHS__ = ['vendor/pdf.min.js', 'pdf.min.js', 'lib/pdf.min.js', 'assets/pdf.min.js'];
+window.__PDF_PATHS__ = ['vendor/pdf.min.js'];
 window.__pdfLoad = (async function(){
-  for(const src of window.__PDF_PATHS__){
-    try{
-      const head = await fetch(src, {method:'HEAD'});
-      if(!head.ok) continue;
-      await new Promise((res, rej)=>{
-        const s=document.createElement('script');
-        s.src=src; s.onload=res; s.onerror=rej;
-        document.head.appendChild(s);
-      });
-      if(window.pdfjsLib){
-        const worker = src.replace('pdf.min.js','pdf.worker.min.js');
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc = worker;
-        window.__PDF_SRC__ = src;
-        return true;
-      }
-    }catch(e){ /* try the next location */ }
-  }
+  const src = window.__PDF_PATHS__[0];
+  try{
+    const head = await fetch(src, {method:'HEAD'});
+    if(!head.ok) return false;
+    await new Promise((res, rej)=>{
+      const s=document.createElement('script');
+      s.src=src; s.onload=res; s.onerror=rej;
+      document.head.appendChild(s);
+    });
+    if(window.pdfjsLib){
+      const worker = src.replace('pdf.min.js','pdf.worker.min.js');
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = worker;
+      window.__PDF_SRC__ = src;
+      return true;
+    }
+  }catch(e){ /* fall through */ }
   return false;
 })();
 </script>
@@ -1916,7 +1911,7 @@ async function selfCheck(force){
     const tried=(window.__PDF_PATHS__||[]).map(s=>`<code>${s}</code>`).join(', ');
     add('bad','PDF reader',
       `Not found. Looked in: ${tried}. Upload <b>pdf.min.js</b> and <b>pdf.worker.min.js</b> `
-      +`into the same folder as this page, or a <code>vendor</code> folder beside it. `
+      +`into the <code>vendor</code> folder beside this page. `
       +`If they are there and still 404, add an empty <code>.nojekyll</code> file — GitHub Pages `
       +`silently drops any folder named <code>vendor</code>.`);
   }
