@@ -107,52 +107,9 @@ h1 em{font-style:normal;color:var(--violet)}
   padding:20px 18px 40px;min-height:0}
 @media(max-width:1000px){.wside{border-left:none;border-top:1px solid var(--grid)}}
 
-.chart{border:1px solid var(--grid);background:var(--raised);margin-top:16px;position:relative}
-.chart svg{display:block;width:100%;height:auto;cursor:grab}
-.chart svg.drag{cursor:grabbing}
-.ctools{position:absolute;top:8px;right:8px;display:flex;gap:5px}
-.ct-b{width:26px;height:26px;border:1px solid var(--grid);background:var(--console);
-  color:var(--ink-3);font-family:var(--mono);font-size:12px}
-.ct-b:hover{border-color:var(--ice);color:var(--ice)}
-.legend{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--grid);padding:8px 12px;
-  font-size:9.5px;color:var(--ink-3);letter-spacing:.08em;font-weight:700}
-.legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
-
-.blk{margin-top:20px;border-top:1px solid var(--grid);padding-top:12px}
-.blk .bl{font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:10px;
-  display:flex;justify-content:space-between;align-items:baseline}
-.blk .bl b{color:var(--ink-2);letter-spacing:.08em}
-.doc{border:1px solid var(--grid);padding:11px 13px;margin-bottom:8px}
-.doc .dn{font-size:12px;font-weight:700}
-.doc .db{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:6px}
-.doc.new{border-color:var(--phos);animation:slide .4s var(--ease)}
-
-.req{border:1px solid var(--grid);padding:11px 13px;margin-bottom:8px;transition:all .16s;
-  display:block;width:100%;position:relative}
-.req:hover:not(:disabled){border-color:var(--ice);transform:translateY(-2px)}
-.req:disabled{opacity:.35;cursor:not-allowed}
-.req .rn{font-size:12px;font-weight:700;padding-right:34px}
-.req .rc{position:absolute;top:10px;right:12px;font-size:10px;color:var(--amber);font-weight:700}
-
-.pick{display:grid;gap:7px;margin-top:10px}
-.pk{border:1px solid var(--grid);padding:10px 12px;display:flex;align-items:center;gap:10px;
-  transition:all .16s;font-size:13px}
-.pk:hover{border-color:var(--ink-2)}
-.pk.on{border-color:var(--violet);background:rgba(110,63,191,.08);color:var(--violet)}
-.pk .box{width:15px;height:15px;border:1px solid currentColor;flex:0 0 auto;display:grid;
-  place-items:center;font-size:10px}
-.pk .who{flex:1}
-.pk .juris{font-size:10px;color:var(--ink-3);letter-spacing:.06em}
-.nd{border:1px solid var(--amber);color:var(--amber);padding:11px 13px;margin-top:10px;
-  font-size:12.5px;display:flex;align-items:center;gap:10px;transition:all .16s;width:100%}
-.nd:hover{background:rgba(154,107,0,.08)}
-.nd.on{background:var(--amber);color:var(--void)}
-.submit{margin-top:14px;border:1px solid var(--phos);color:var(--phos);padding:13px;width:100%;
-  font-size:11px;font-weight:700;letter-spacing:.15em;text-align:center;
-  background:rgba(15,123,79,.06);transition:all .18s}
-.submit:hover:not(:disabled){background:var(--phos);color:var(--void)}
-.submit:disabled{opacity:.35;cursor:not-allowed}
-.hint{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.55;margin-top:12px}
+/* Chart tools, documents, requests and the owner-picker now live in
+   academy-engine.css (shared with workstation.html's embedded window) —
+   see the .ae-* classes it defines. */
 
 /* ── verdict ── */
 .vhead{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
@@ -193,7 +150,9 @@ h1 em{font-style:normal;color:var(--violet)}
 }
 </style>
 <link rel="stylesheet" href="academy.css">
+<link rel="stylesheet" href="academy-engine.css">
 <script src="academy-shell.js"></script>
+<script src="academy-engine.js"></script>
 </head>
 <body>
 
@@ -261,125 +220,23 @@ AcademyShell.mount("ownership");
    The calculation engine is here to CHECK, not to answer on the
    user's behalf. That's the whole difference with the UBO Discovery
    tool: there the machine calculates, here it verifies.
+
+   The solver, chart, documents/requests and scoring all live in
+   AcademyEngine.Ownership now — shared with workstation.html's
+   embedded ownership window, so the two stop being able to drift.
+   This page owns only its own navigation chrome (home splash, file
+   list, the full-page verdict view) around that shared core.
    ═══════════════════════════════════════════════════════════════════ */
+const AE=AcademyEngine.Ownership;
+const esc=AcademyEngine.esc;
 const KEY='regradar-ownership';
 let D=null, C=null, S={done:{}, primer:0};
-let hours=0, seen=[], picked=new Set(), nd=false, spent=[];
+let CS=null;   // current case session: {hours, seen, spent, picked, nd}
+let zoomCtl=null;
 
-const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 function load(){try{const p=JSON.parse(localStorage.getItem(KEY)||'null');if(p)S={...S,...p}}catch(e){}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
-
-let AC=null,SND=true;
-try{SND=localStorage.getItem('regradar-snd')!=='off'}catch(e){}
-function tone(f,d,t='sine',g=.05,dl=0){if(!SND)return;
-  try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
-    const s=AC.currentTime+dl,o=AC.createOscillator(),v=AC.createGain();
-    o.type=t;o.frequency.setValueAtTime(f,s);v.gain.setValueAtTime(0,s);
-    v.gain.linearRampToValueAtTime(g,s+.012);v.gain.exponentialRampToValueAtTime(.0001,s+d);
-    o.connect(v);v.connect(AC.destination);o.start(s);o.stop(s+d+.02)}catch(e){}}
-const sfx={good:()=>{tone(587,.13,'sine',.06);tone(880,.22,'sine',.05,.08)},
-  bad:()=>{tone(150,.3,'square',.05);tone(100,.35,'square',.04,.06)},
-  find:()=>{tone(660,.1,'sine',.05);tone(990,.15,'sine',.03,.07)},
-  tick:()=>tone(880,.05,'square',.02)};
 function toast(m){ AcademyShell.toast(m); }
-
-/* ── solver: multiply along paths, add across them, stop on loop,
-      trustee ignored (legal title, no economic interest) ── */
-function solve(entities, edges, root){
-  const persons=new Set(entities.filter(e=>e.type==='person').map(e=>e.id));
-  const res={};
-  (function walk(n,f,path){
-    edges.forEach(e=>{
-      if(e.to!==n || path.includes(e.from)) return;
-      if(e.kind==='trustee') return;
-      const nf=f*(e.pct/100);
-      if(persons.has(e.from)){
-        if(!res[e.from]) res[e.from]={pct:0,paths:[]};
-        res[e.from].pct+=nf*100;
-        res[e.from].paths.push({chain:[...path,e.from], pct:nf*100});
-      } else walk(e.from,nf,[...path,e.from]);
-    });
-  })(root,1,[root]);
-  return res;
-}
-
-/* ── chart layout: tiers by longest path from the target ── */
-function layout(entities, edges, root, W, H){
-  const tier={}; tier[root]=0;
-  (function walk(cur,d,path){
-    edges.forEach(e=>{
-      if(e.to!==cur || path.includes(e.from)) return;
-      if(tier[e.from]===undefined || tier[e.from]<d+1) tier[e.from]=d+1;
-      walk(e.from,d+1,[...path,e.from]);
-    });
-  })(root,0,[root]);
-  entities.forEach(e=>{ if(tier[e.id]===undefined) tier[e.id]=1; });
-  const maxT=Math.max(...Object.values(tier));
-  const rows={};
-  entities.forEach(e=>{ (rows[tier[e.id]]=rows[tier[e.id]]||[]).push(e); });
-  const pos={};
-  const top=44, bottom=H-44;
-  for(let t=0;t<=maxT;t++){
-    const r=rows[t]||[];
-    const y = maxT===0? bottom : bottom-(bottom-top)*(t/maxT);
-    const slot=W/(r.length+1);
-    r.forEach((e,i)=>{ pos[e.id]={x:Math.round(slot*(i+1)), y:Math.round(y)}; });
-  }
-  return pos;
-}
-
-function drawChart(entities, edges, root, opts){
-  opts=opts||{};
-  const W=760, maxT=6;
-  const depth=(()=>{const t={};t[root]=0;
-    (function w(c,d,p){edges.forEach(e=>{if(e.to!==c||p.includes(e.from))return;
-      t[e.from]=Math.max(t[e.from]||0,d+1);w(e.from,d+1,[...p,e.from])})})(root,0,[root]);
-    return Math.max(1,...Object.values(t))})();
-  const H=Math.max(210, 120+depth*95);
-  const pos=layout(entities,edges,root,W,H);
-  const NW=opts.small?110:132, NH=opts.small?34:40;
-
-  let svg='';
-  edges.forEach(e=>{
-    const a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
-    const back = a.y>=b.y;                       // upward edge = loop
-    const col = e.kind==='trustee'?'var(--ink-3)' : back?'var(--amber)':'var(--ink-3)';
-    const dash = e.kind==='trustee'?'5 4' : back?'6 4':'';
-    const off = back?46:0;
-    const my=(a.y+b.y)/2;
-    const d=`M${a.x},${a.y-NH/2} C${a.x+off},${my} ${b.x+off},${my} ${b.x},${b.y+NH/2}`;
-    svg+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4"
-            stroke-dasharray="${dash}" opacity=".65"/>`;
-    const mx=(a.x+b.x)/2+off*.72;
-    const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'benef.' : e.pct+' %';
-    svg+=`<g class="edg" data-e="${esc(e.from)}>${esc(e.to)}" style="cursor:${e.doc?'pointer':'default'}">
-      <rect x="${mx-26}" y="${my-9}" width="52" height="18" fill="var(--console)"
-        stroke="${col}" stroke-width=".8" opacity=".95"/>
-      <text x="${mx}" y="${my+4}" text-anchor="middle" font-family="var(--mono)"
-        font-size="10" font-weight="700" fill="${col}">${lbl}</text></g>`;
-  });
-
-  entities.forEach(e=>{
-    const p=pos[e.id]; if(!p) return;
-    const isC=e.id===root, isP=e.type==='person';
-    const dashed = e.type==='trust'||e.type==='nominee';
-    const stroke = isC?'var(--alarm)' : isP?'var(--violet)' : dashed?'var(--amber)':'var(--ink-3)';
-    const fill = isC?'var(--alarm)' : (opts.picked&&opts.picked.has(e.id))?'var(--violet)':'var(--console)';
-    const txt = (isC||(opts.picked&&opts.picked.has(e.id)))?'var(--void)':'var(--ink)';
-    const nm = e.name.length>17? e.name.slice(0,16)+'…' : e.name;
-    svg+=`<g class="nod" data-n="${esc(e.id)}" style="cursor:pointer">
-      <rect x="${p.x-NW/2}" y="${p.y-NH/2}" width="${NW}" height="${NH}" fill="${fill}"
-        stroke="${stroke}" stroke-width="${isP?2:1.3}" stroke-dasharray="${dashed?'4 3':''}"/>
-      <text x="${p.x}" y="${p.y-2}" text-anchor="middle" font-family="var(--mono)"
-        font-size="10.5" font-weight="700" fill="${txt}">${esc(nm)}</text>
-      <text x="${p.x}" y="${p.y+11}" text-anchor="middle" font-family="var(--mono)"
-        font-size="8" fill="${txt}" opacity=".7">${esc(e.juris)} · ${isP?'PERSON':e.type.toUpperCase()}</text>
-    </g>`;
-  });
-  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
-    aria-label="Ownership chart"><g id="oz">${svg}</g></svg>`;
-}
 
 /* ═══════════ HOME ═══════════ */
 function pushStatus(){
@@ -390,8 +247,8 @@ function pushStatus(){
   items.push({k:'RESOLVED', v:`${ok}/${(D&&D.cases||[]).length}`});
   if(C){
     items.push({k:'THRESHOLD', v:(C.threshold||25)+' %'});
-    if((C.requests||[]).length)
-      items.push({k:'HOURS', v:hours+' h', s:hours<=0?'bad':hours<=1?'warn':''});
+    if((C.requests||[]).length && CS)
+      items.push({k:'HOURS', v:CS.hours+' h', s:CS.hours<=0?'bad':CS.hours<=1?'warn':''});
   }
   AcademyShell.status(items);
 }
@@ -411,7 +268,7 @@ function startPrimer(){
       <div class="sn">PRINCIPLE ${i+1} / ${D.primer.length}</div>
       <h3>${esc(p.title)}</h3>
       ${p.note?`<div class="note">${esc(p.note)}</div>`:''}
-      <div class="mini">${drawChart(p.entities,p.edges,'cible',{small:true})}</div>
+      <div class="mini">${AE.drawChart(p.entities,p.edges,'cible',{small:true})}</div>
       <div class="q">${esc(p.question)}</div>
       <div class="opts">${p.options.map(o=>
         `<button class="opt" data-o="${esc(o.id)}" onclick="answerPrimer(${i},'${esc(o.id)}')">
@@ -429,7 +286,7 @@ function answerPrimer(i,oid){
     else if(b.dataset.o===oid) b.classList.add('wrong');
   });
   document.getElementById('rv'+i).classList.add('on');
-  (oid===p.answer?sfx.good:sfx.bad)();
+  (oid===p.answer?AE.sfx.good:AE.sfx.bad)();
   S.primer=Math.max(S.primer,i+1); save();
   if(i===D.primer.length-1) document.getElementById('primerEnd').style.display='';
 }
@@ -454,11 +311,7 @@ function toCases(){
 /* ═══════════ WORKBENCH ═══════════ */
 function open_(id){
   C=D.cases.find(x=>x.id===id); if(!C) return;
-  hours=C.budget||0; seen=[]; picked=new Set(); nd=false; spent=[];
-  // documents with no associated request are provided upfront
-  const gated=new Set((C.requests||[]).map(r=>r.reveals).filter(Boolean));
-  C.documents.forEach(d=>{ if(!gated.has(d.id)) seen.push(d.id); });
-  pushStatus();
+  CS=AE.openCase(C);
   show('vWork'); renderWork();
 }
 
@@ -469,171 +322,100 @@ function renderWork(){
     <h1 style="font-size:24px;margin-top:10px">${esc(C.title)}</h1>
     <div style="font-size:11.5px;color:var(--ink-2);margin-top:6px">${esc(C.subject)}</div>
     <div class="body" style="font-size:14px;margin-top:12px">${esc(C.brief)}</div>
-    <div class="chart">
-      ${drawChart(C.entities,C.edges,root,{picked})}
-      <div class="ctools">
-        <button class="ct-b" onclick="zoom(1.2)">+</button>
-        <button class="ct-b" onclick="zoom(.85)">−</button>
-        <button class="ct-b" onclick="rz()">⤾</button></div>
-      <div class="legend">
-        <span><i style="background:var(--alarm)"></i>Client</span>
-        <span><i style="border:1.5px solid var(--violet)"></i>Natural person</span>
-        <span><i style="border:1.5px dashed var(--amber)"></i>Trust / nominee</span>
-        <span><i style="border-top:2px dashed var(--amber);width:16px;height:0"></i>Loop</span>
-      </div>
-    </div>
-    <div class="blk"><div class="bl"><span>DOCUMENTS ON FILE</span>
-      <b>${seen.length} / ${C.documents.length}</b></div>
-      <div id="docs"></div></div>
-    ${(C.requests||[]).length?`<div class="blk"><div class="bl"><span>AVAILABLE REQUESTS</span>
-      <b id="hb">${hours} h remaining</b></div><div id="reqs"></div></div>`:''}`;
-  paintDocs(); paintReqs(); paintSide(); wireChart();
-  document.getElementById('wMain').scrollTop=0;
-}
-
-function paintDocs(){
-  const el=document.getElementById('docs'); if(!el) return;
-  el.innerHTML=C.documents.filter(d=>seen.includes(d.id)).map(d=>
-    `<div class="doc" id="doc_${esc(d.id)}"><div class="dn">${esc(d.name)}</div>
-      <div class="db">${esc(d.body)}</div></div>`).join('')
-    || '<div class="hint">No documents available yet.</div>';
-}
-function paintReqs(){
-  const el=document.getElementById('reqs'); if(!el) return;
-  el.innerHTML=(C.requests||[]).map(r=>{
-    const done=spent.includes(r.id);
-    return `<button class="req" ${done||hours<r.cost?'disabled':''} onclick="request('${esc(r.id)}')">
-      <span class="rc">${done?'✓':r.cost+' h'}</span>
-      <span class="rn">${esc(r.name)}</span></button>`}).join('');
-  const hb=document.getElementById('hb'); if(hb) hb.textContent=hours+' h remaining';
-  pushStatus();
-}
-
-function request(rid){
-  const r=(C.requests||[]).find(x=>x.id===rid);
-  if(!r||spent.includes(rid)||hours<r.cost) return;
-  hours-=r.cost; spent.push(rid);
-  if(r.reveals){
-    seen.push(r.reveals); sfx.find(); paintDocs();
-    const d=document.getElementById('doc_'+r.reveals);
-    if(d){d.classList.add('new'); d.scrollIntoView({behavior:'smooth',block:'center'})}
-    toast('DOCUMENT OBTAINED');
-  } else {
-    toast('NO RESULT');
-    const el=document.getElementById('docs');
-    if(el) el.insertAdjacentHTML('beforeend',
-      `<div class="doc" style="border-color:var(--ink-3);opacity:.7">
-        <div class="dn">${esc(r.name)}</div>
-        <div class="db">${esc(r.empty||'The search returns nothing.')}</div></div>`);
-  }
-  paintReqs();
-}
-
-function paintSide(){
-  const persons=C.entities.filter(e=>e.type==='person');
+    <div class="ae-chart" id="wChart"></div>
+    <div id="wDocsReqs"></div>`;
   document.getElementById('wSide').innerHTML=`
     <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
       WHO IS A BENEFICIAL OWNER?</div>
-    <div class="pick">${persons.map(p=>
-      `<button class="pk ${picked.has(p.id)?'on':''}" onclick="toggle('${esc(p.id)}')">
-        <span class="box">${picked.has(p.id)?'✓':''}</span>
-        <span class="who">${esc(p.name)}</span>
-        <span class="juris">${esc(p.juris)}</span></button>`).join('')}</div>
-    <button class="nd ${nd?'on':''}" onclick="toggleND()">
-      <span class="box" style="width:15px;height:15px;border:1px solid currentColor;display:grid;place-items:center;font-size:10px">${nd?'✓':''}</span>
-      <span>Cannot be determined</span></button>
-    <button class="submit" id="sub" ${(!picked.size&&!nd)?'disabled':''} onclick="submit()">
-      SUBMIT FILE</button>
-    <div class="hint">Select the natural persons who cross the threshold, or who exercise control
-      by other means. If the documents don't allow a conclusion, say so — that's a valid answer,
-      and sometimes the only correct one.</div>`;
+    <div id="wPicker"></div>`;
+  renderChart(); renderDocsReqs(); renderPickerBlock();
+  pushStatus();
+  document.getElementById('wMain').scrollTop=0;
 }
-function toggle(id){ if(nd) return; picked.has(id)?picked.delete(id):picked.add(id);
-  sfx.tick(); renderWork(); }
-function toggleND(){ nd=!nd; if(nd) picked.clear(); sfx.tick(); renderWork(); }
 
-/* zoom / pan */
-let ZS=1,ZX=0,ZY=0;
-function az(){const g=document.getElementById('oz');
-  if(g) g.setAttribute('transform',`translate(${ZX},${ZY}) scale(${ZS})`)}
-function zoom(f){ZS=Math.max(.5,Math.min(3,ZS*f));az()}
-function rz(){ZS=1;ZX=0;ZY=0;az()}
-function wireChart(){
-  document.querySelectorAll('.nod').forEach(el=>el.addEventListener('click',ev=>{
-    ev.stopPropagation();
-    const e=C.entities.find(x=>x.id===el.dataset.n);
-    if(e&&e.type==='person') toggle(e.id);
-  }));
-  document.querySelectorAll('.edg').forEach(el=>el.addEventListener('click',ev=>{
-    ev.stopPropagation();
-    const [f,t]=el.dataset.e.split('>');
-    const edge=C.edges.find(x=>x.from===f&&x.to===t);
-    if(edge&&edge.doc&&seen.includes(edge.doc)){
-      const d=document.getElementById('doc_'+edge.doc);
-      if(d){d.classList.add('new');d.scrollIntoView({behavior:'smooth',block:'center'});
-        setTimeout(()=>d.classList.remove('new'),1400)}
-    } else if(edge&&edge.doc) toast('DOCUMENT NOT YET OBTAINED');
-  }));
-  const svg=document.querySelector('.chart svg'); if(!svg) return;
-  let drag=false,sx=0,sy=0;
-  svg.addEventListener('mousedown',e=>{if(e.target.closest('.nod,.edg'))return;
-    drag=true;sx=e.clientX-ZX;sy=e.clientY-ZY;svg.classList.add('drag')});
-  window.addEventListener('mouseup',()=>{drag=false;svg.classList.remove('drag')});
-  window.addEventListener('mousemove',e=>{if(!drag)return;ZX=e.clientX-sx;ZY=e.clientY-sy;az()});
+/* Chart, documents/requests and the picker refresh independently —
+   requesting a document shouldn't reset the chart's zoom/pan, and
+   toggling an owner shouldn't re-render (and re-fetch) the documents. */
+function renderChart(){
+  const root=C.entities.find(e=>e.customer).id;
+  const chartWrap=document.getElementById('wChart');
+  chartWrap.innerHTML=AE.drawChart(C.entities,C.edges,root,{picked:CS.picked})+AE.chartTools()+AE.legend();
+  zoomCtl=AE.wireChart(chartWrap, {
+    onNodeClick(id){
+      const e=C.entities.find(x=>x.id===id);
+      if(e&&e.type==='person') toggleOwner(id);
+    },
+    onEdgeClick(f,t){
+      const edge=C.edges.find(x=>x.from===f&&x.to===t);
+      if(edge&&edge.doc&&CS.seen.includes(edge.doc)){
+        const d=document.getElementById('ae-doc_'+edge.doc);
+        if(d){d.classList.add('ae-new');d.scrollIntoView({behavior:'smooth',block:'center'});
+          setTimeout(()=>d.classList.remove('ae-new'),1400)}
+      } else if(edge&&edge.doc) toast('DOCUMENT NOT YET OBTAINED');
+    },
+  });
+  AE.wireChartTools(chartWrap, zoomCtl);
 }
+function renderDocsReqs(){
+  document.getElementById('wDocsReqs').innerHTML=AE.renderDocs(C,CS)+AE.renderRequests(C,CS);
+  document.querySelectorAll('[data-ae-req]').forEach(b=>b.addEventListener('click',()=>doRequest(b.dataset.aeReq)));
+}
+function renderPickerBlock(){
+  document.getElementById('wPicker').innerHTML=AE.renderPicker(C,CS);
+  document.querySelectorAll('[data-ae-pick]').forEach(b=>b.addEventListener('click',()=>toggleOwner(b.dataset.aePick)));
+  const ndBtn=document.querySelector('[data-ae-nd]'); if(ndBtn) ndBtn.addEventListener('click',toggleND);
+  const subBtn=document.querySelector('[data-ae-submit]'); if(subBtn) subBtn.addEventListener('click',submit);
+}
+
+function doRequest(rid){
+  const out=AE.request(C, CS, rid);
+  if(!out.ok) return;
+  renderDocsReqs();
+  if(out.revealed){
+    AE.sfx.find();
+    const d=document.getElementById('ae-doc_'+out.revealed);
+    if(d){d.classList.add('ae-new'); d.scrollIntoView({behavior:'smooth',block:'center'})}
+    toast('DOCUMENT OBTAINED');
+  } else {
+    toast('NO RESULT');
+  }
+  pushStatus();
+}
+function toggleOwner(id){ AE.toggleOwner(CS,id); AE.sfx.tick(); renderChart(); renderPickerBlock(); }
+function toggleND(){ AE.toggleND(CS); AE.sfx.tick(); renderChart(); renderPickerBlock(); }
 
 /* ═══════════ VERDICT ═══════════ */
 function submit(){
-  const root=C.entities.find(e=>e.customer).id;
-  const seuil=C.threshold||25;
-  const res=solve(C.entities,C.edges,root);
-  const attendu=new Set(C.answer.ubos);
-  const juste = C.answer.cannot_determine
-    ? (nd && !picked.size)
-    : (!nd && picked.size===attendu.size && [...picked].every(x=>attendu.has(x)));
-
-  const manques=[...attendu].filter(x=>!picked.has(x));
-  const superflus=[...picked].filter(x=>!attendu.has(x));
-  S.done[C.id]=juste?'right':'wrong'; save();
-  const ok=Object.values(S.done).filter(x=>x==='right').length;
-  AcademyShell.complete('ownership', ok);
-  AcademyShell.award('ownership', juste?200:40);
-  pushStatus();          /* after saving, otherwise the counter lags one file behind */
-  (juste?sfx.good:sfx.bad)();
+  const result=AE.computeVerdict(C, CS);
+  const reward=AE.applyReward(C, result);   /* writes regradar-ownership itself */
+  load();                                    /* refresh this page's in-memory S (primer incl.) */
+  pushStatus();
+  (result.correct?AE.sfx.good:AE.sfx.bad)();
+  if(reward.tierUps) reward.tierUps.forEach(t=>toast('SKILL TIER UP — '+t.name));
+  if(reward.badges) reward.badges.forEach(b=>toast('BADGE EARNED — '+b.n));
 
   const st=document.getElementById('oStamp');
-  st.textContent = juste?'CORRECT' : manques.length?'BENEFICIAL OWNER MISSED':'OVER-DESIGNATION';
-  st.style.color = juste?'var(--phos)':'var(--alarm)';
-  document.getElementById('oTitle').textContent =
-    C.answer.cannot_determine && juste ? 'You recognised the gap'
-    : juste ? 'Structure read correctly'
-    : nd ? 'The file could be concluded'
-    : manques.length ? `${manques.length} beneficial owner(s) not designated`
-    : 'People designated incorrectly';
-  document.getElementById('oWhy').textContent=C.why;
+  st.textContent=result.stamp;
+  st.style.color = result.correct?'var(--phos)':'var(--alarm)';
+  document.getElementById('oTitle').textContent=result.title;
+  document.getElementById('oWhy').textContent=result.why;
 
-  const noms={}; C.entities.forEach(e=>noms[e.id]=e.name);
-  const lignes=C.entities.filter(e=>e.type==='person').map(e=>{
-    const pct=(res[e.id]||{}).pct||0;
-    const doit=attendu.has(e.id), a=picked.has(e.id);
-    let cls = doit&&a?'isubo' : doit&&!a?'miss' : !doit&&a?'extra':'sous';
-    let verdict = doit&&a?'CORRECT' : doit&&!a?'MISSED' : !doit&&a?'WRONGLY':'—';
-    const ctrl = doit && pct<seuil ? ' (control)' : '';
-    return `<div class="cr ${cls}"><span>${esc(noms[e.id])}${ctrl}</span>
-      <span class="pc">${pct.toFixed(2)} %</span><span class="vd">${verdict}</span></div>`;
-  }).join('');
+  const clsOf={ok:'isubo', miss:'miss', extra:'extra', neutral:'sous'};
+  const lignes=result.lines.map(l=>
+    `<div class="cr ${clsOf[l.kind]}"><span>${esc(l.name)}${l.ctrl}</span>
+      <span class="pc">${l.pct.toFixed(2)} %</span><span class="vd">${l.verdict}</span></div>`).join('');
   document.getElementById('oCalc').innerHTML=
-    `<div class="ch">CALCULATED OWNERSHIP · THRESHOLD ${seuil} %</div>${lignes}`;
+    `<div class="ch">CALCULATED OWNERSHIP · THRESHOLD ${result.threshold} %</div>${lignes}`;
 
   const trap=document.getElementById('oTrap');
-  if(C.trap && !juste){ trap.style.display=''; document.getElementById('oTrapT').textContent=C.trap; }
-  else if(C.trap){ trap.style.display=''; trap.className='note';
+  if(result.trap && !result.correct){ trap.style.display=''; document.getElementById('oTrapT').textContent=result.trap; }
+  else if(result.trap){ trap.style.display=''; trap.className='note';
     trap.querySelector('.nl').textContent='THE TRAP AVOIDED';
-    document.getElementById('oTrapT').textContent=C.trap; }
+    document.getElementById('oTrapT').textContent=result.trap; }
   else trap.style.display='none';
 
-  document.getElementById('oLaw').textContent=C.law;
-  document.getElementById('oLesson').textContent=C.lesson;
+  document.getElementById('oLaw').textContent=result.law;
+  document.getElementById('oLesson').textContent=result.lesson;
 
   const idx=D.cases.findIndex(x=>x.id===C.id);
   const nxt=D.cases[idx+1];
@@ -647,15 +429,15 @@ function replay(){ if(C) open_(C.id); }
 /* ═══════════ STARTUP ═══════════ */
 (async function(){
   load();
-  for(const u of ['data/academy/ownership.json','ownership.json']){
-    try{const r=await fetch(u,{cache:'no-store'});
-      if(r.ok){D=await r.json(); break}}catch(e){}
-  }
+  try{
+    const r=await fetch('data/academy/ownership.json',{cache:'no-store'});
+    if(r.ok) D=await r.json();
+  }catch(e){}
   if(!D||!D.cases){
     document.getElementById('vHome').innerHTML=
       `<div class="pad"><div class="kick" style="color:var(--alarm)">DATA MISSING</div>
        <h1>The module cannot start.</h1>
-       <div class="body"><p>It expects <b>ownership.json</b>, next to this page or in
+       <div class="body"><p>It expects <b>ownership.json</b> in
        <b>data/academy/</b>. If you opened the file from disk, serve it over http —
        browsers block local file reads.</p></div></div>`;
     return;

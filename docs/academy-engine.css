@@ -1,0 +1,60 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ACADEMY ENGINE — shared chrome for AcademyEngine.Ownership's markup
+   (chart tools, documents, requests, owner-picker). Consumed by both
+   ownership.html and workstation.html's embedded ownership window, so
+   the two skins stay behind the SAME color tokens ownership.html
+   already defined (--ink, --grid, --phos, --amber, --alarm, --ice,
+   --violet, --console, --raised, --mono) — workstation.html aliases
+   its own palette onto these names rather than redefining the rules.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.ae-chart{border:1px solid var(--grid);background:var(--raised);margin-top:16px;position:relative}
+.ae-chart svg{display:block;width:100%;height:auto;cursor:grab}
+.ae-chart svg.ae-drag{cursor:grabbing}
+.ae-ctools{position:absolute;top:8px;right:8px;display:flex;gap:5px}
+.ae-ct-b{width:26px;height:26px;border:1px solid var(--grid);background:var(--console);
+  color:var(--ink-3);font-family:var(--mono);font-size:12px}
+.ae-ct-b:hover{border-color:var(--ice);color:var(--ice)}
+.ae-legend{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--grid);padding:8px 12px;
+  font-size:9.5px;color:var(--ink-3);letter-spacing:.08em;font-weight:700}
+.ae-legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+
+.ae-blk{margin-top:20px;border-top:1px solid var(--grid);padding-top:12px}
+.ae-blk .ae-bl{font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:10px;
+  display:flex;justify-content:space-between;align-items:baseline}
+.ae-blk .ae-bl b{color:var(--ink-2);letter-spacing:.08em}
+.ae-doc{border:1px solid var(--grid);padding:11px 13px;margin-bottom:8px}
+.ae-doc .ae-dn{font-size:12px;font-weight:700;color:var(--ink)}
+.ae-doc .ae-db{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:6px}
+.ae-doc.ae-new{border-color:var(--phos);animation:ae-slide .4s var(--ease,ease)}
+@keyframes ae-slide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.ae-req{border:1px solid var(--grid);padding:11px 13px;margin-bottom:8px;transition:all .16s;
+  display:block;width:100%;position:relative;background:none;font:inherit;color:inherit;
+  text-align:left;cursor:pointer}
+.ae-req:hover:not(:disabled){border-color:var(--ice);transform:translateY(-2px)}
+.ae-req:disabled{opacity:.35;cursor:not-allowed}
+.ae-req .ae-rn{font-size:12px;font-weight:700;padding-right:34px;color:var(--ink)}
+.ae-req .ae-rc{position:absolute;top:10px;right:12px;font-size:10px;color:var(--amber);font-weight:700}
+
+.ae-pick{display:grid;gap:7px;margin-top:10px}
+.ae-pk{border:1px solid var(--grid);padding:10px 12px;display:flex;align-items:center;gap:10px;
+  transition:all .16s;font-size:13px;background:none;font:inherit;color:var(--ink);
+  text-align:left;cursor:pointer;width:100%}
+.ae-pk:hover{border-color:var(--ink-2)}
+.ae-pk.ae-on{border-color:var(--violet);background:rgba(110,63,191,.08);color:var(--violet)}
+.ae-pk .ae-box{width:15px;height:15px;border:1px solid currentColor;flex:0 0 auto;display:grid;
+  place-items:center;font-size:10px}
+.ae-pk .ae-who{flex:1}
+.ae-pk .ae-juris{font-size:10px;color:var(--ink-3);letter-spacing:.06em}
+.ae-nd{border:1px solid var(--amber);color:var(--amber);padding:11px 13px;margin-top:10px;
+  font-size:12.5px;display:flex;align-items:center;gap:10px;transition:all .16s;width:100%;
+  background:none;font:inherit;cursor:pointer;text-align:left}
+.ae-nd:hover{background:rgba(154,107,0,.08)}
+.ae-nd.ae-on{background:var(--amber);color:var(--console)}
+.ae-submit{margin-top:14px;border:1px solid var(--phos);color:var(--phos);padding:13px;width:100%;
+  font-size:11px;font-weight:700;letter-spacing:.15em;text-align:center;
+  background:rgba(15,123,79,.06);transition:all .18s;cursor:pointer;font-family:inherit}
+.ae-submit:hover:not(:disabled){background:var(--phos);color:var(--console)}
+.ae-submit:disabled{opacity:.35;cursor:not-allowed}
+.ae-hint{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.55;margin-top:12px}
