@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RegRadar — RegWatch</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script>
 (function(){try{var t=localStorage.getItem('regradar-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
@@ -191,10 +191,10 @@
   <div class="logo"><span class="logo-mark">R</span>RegRadar<span class="logo-sub">Belgium &amp; EU</span></div>
 
     <nav class="nav">
-    <a href="regwatch.html">RegWatch</a>
-<a href="law.html">Read the Law</a>
-    <a href="country-risk.html">Country Risk</a>
-<a href="academy.html">Academy</a>
+    <a href="../regwatch.html">RegWatch</a>
+<a href="../law.html">Read the Law</a>
+    <a href="../country-risk.html">Country Risk</a>
+<a href="../academy.html">Academy</a>
   </nav>
 
   <div class="topbar-right">
@@ -528,9 +528,9 @@ document.addEventListener('keydown',e=>{
 
 async function load(){
   try{
-    let raw = window.__EMBEDDED_ITEMS__ || await fetch('data/items.json').then(r=>r.json());
+    let raw = window.__EMBEDDED_ITEMS__ || await fetch('../data/items.json').then(r=>r.json());
     ITEMS = Array.isArray(raw)? raw : (raw.items||[]);
-    META  = window.__EMBEDDED_META__ || await fetch('data/meta.json').then(r=>r.json()).catch(()=>({}));
+    META  = window.__EMBEDDED_META__ || await fetch('../data/meta.json').then(r=>r.json()).catch(()=>({}));
   }catch(e){
     document.getElementById('headline').textContent='No signal data yet.';
     document.getElementById('feed').innerHTML='<div class="empty">Run the daily watch to populate RegWatch.</div>';
