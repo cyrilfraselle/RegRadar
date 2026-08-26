@@ -1972,35 +1972,11 @@ function awardSkillXP(id, xp){
 }
 function markLawSeen(lawText){
   if(typeof AcademyShell==='undefined' || !lawText) return;
-  const m = String(lawText).match(/Art(?:icle)?\.?\s*[\dIVXLC]+(?:\([\da-z]+\))*/i);
-  if(m) AcademyShell.markLawSeen(m[0].replace(/\s+/g,' '));
+  AcademyShell.markLawSeenFromText(lawText);
 }
 function checkBadges(){
   if(typeof AcademyShell==='undefined') return;
-  const S = AcademyShell;
-  const newly = [];
-  const give = id=>{ const b = S.awardBadge(id); if(b) newly.push(b); };
-
-  let own=null, desk=null, lb=null, lbStats=null, deskStats=null, tabStats=null;
-  try{ own=JSON.parse(localStorage.getItem('regradar-ownership')||'null'); }catch(e){}
-  try{ desk=JSON.parse(localStorage.getItem('regradar-desk')||'null'); }catch(e){}
-  try{ lb=JSON.parse(localStorage.getItem('regradar-academy')||'null'); }catch(e){}
-  try{ lbStats=JSON.parse(localStorage.getItem('regradar-lb-stats')||'null'); }catch(e){}
-  try{ deskStats=JSON.parse(localStorage.getItem('regradar-desk-stats')||'null'); }catch(e){}
-  try{ tabStats=JSON.parse(localStorage.getItem('regradar-tab-stats')||'null'); }catch(e){}
-
-  const ownOk = own&&own.done ? Object.values(own.done).filter(x=>x==='right').length : 0;
-  const deskSeen = desk&&desk.seen ? Object.keys(desk.seen).length : 0;
-  if(ownOk>0 || deskSeen>0 || (lb&&lb.laundromat&&lb.laundromat.runs)) give('first-case');
-  if(ownOk>=6) give('ubo-detective');
-  if(desk&&desk.done&&desk.done.length>=7) give('week-one');
-  if(S.lawSeenCount>=10) give('by-the-book');
-  if(streakGate()>=3) give('on-a-roll');
-  if(lbStats&&lbStats.catches>=5) give('red-flag');
-  if(lbStats&&lbStats.cleanRuns>=1) give('clean-sweep');
-  if(deskStats&&deskStats.sar>=3) give('reporter');
-  if(tabStats&&tabStats.sanc>=3) give('sanctions-hunter');
-  if(tabStats&&tabStats.news>=3) give('media-watcher');
+  const newly = AcademyShell.checkBadges();
   if(typeof SKILLS_UI!=='undefined') SKILLS_UI.render();
   newly.forEach(b=>notify(b.icon, '#1E7145', 'Badge earned', b.n+' — '+b.d));
 }

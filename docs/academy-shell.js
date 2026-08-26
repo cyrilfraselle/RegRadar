@@ -281,6 +281,16 @@ const Shell={
     SK.seenLaw.push(article); saveSK();
     return SK.seenLaw.length;
   },
+  /* Same extraction workstation.html's markLawSeen() wrapper used to do
+     inline — a case's `law` field is a full citation sentence, not a
+     bare article number. Kept here so every module (and the shared
+     engine) can call one thing instead of repeating the regex. */
+  markLawSeenFromText(text){
+    if(!text) return false;
+    const m=String(text).match(/Art(?:icle)?\.?\s*[\dIVXLC]+(?:\([\da-z]+\))*/i);
+    if(!m) return false;
+    return Shell.markLawSeen(m[0].replace(/\s+/g,' '));
+  },
   get lawSeenCount(){ loadSK(); return SK.seenLaw.length; },
 
   /* ── badges ── */
@@ -291,6 +301,38 @@ const Shell={
     if(SK.badges.includes(id)) return false;
     SK.badges.push(id); saveSK();
     return BADGES.find(b=>b.id===id) || true;
+  },
+  /* Evaluates all 10 badge conditions against current progress and
+     returns the newly-earned ones. Pure — no toast/notify here, since
+     not every host page has the same popup system; the caller decides
+     how to announce them (workstation.html's checkBadges() wrapper
+     already does, via notify()). Moved out of workstation.html so
+     ownership.html (and any future module) can call the same
+     evaluation instead of only the module that happened to define it. */
+  checkBadges(){
+    ensureLoad();
+    const newly=[];
+    const give=id=>{ const b=Shell.awardBadge(id); if(b) newly.push(b); };
+    let own=null, desk=null, lb=null, lbStats=null, deskStats=null, tabStats=null;
+    try{ own=JSON.parse(localStorage.getItem('regradar-ownership')||'null'); }catch(e){}
+    try{ desk=JSON.parse(localStorage.getItem('regradar-desk')||'null'); }catch(e){}
+    try{ lb=JSON.parse(localStorage.getItem('regradar-academy')||'null'); }catch(e){}
+    try{ lbStats=JSON.parse(localStorage.getItem('regradar-lb-stats')||'null'); }catch(e){}
+    try{ deskStats=JSON.parse(localStorage.getItem('regradar-desk-stats')||'null'); }catch(e){}
+    try{ tabStats=JSON.parse(localStorage.getItem('regradar-tab-stats')||'null'); }catch(e){}
+    const ownOk = own&&own.done ? Object.values(own.done).filter(x=>x==='right').length : 0;
+    const deskSeen = desk&&desk.seen ? Object.keys(desk.seen).length : 0;
+    if(ownOk>0 || deskSeen>0 || (lb&&lb.laundromat&&lb.laundromat.runs)) give('first-case');
+    if(ownOk>=6) give('ubo-detective');
+    if(desk&&desk.done&&desk.done.length>=7) give('week-one');
+    if(Shell.lawSeenCount>=10) give('by-the-book');
+    if(Shell.streak>=3) give('on-a-roll');
+    if(lbStats&&lbStats.catches>=5) give('red-flag');
+    if(lbStats&&lbStats.cleanRuns>=1) give('clean-sweep');
+    if(deskStats&&deskStats.sar>=3) give('reporter');
+    if(tabStats&&tabStats.sanc>=3) give('sanctions-hunter');
+    if(tabStats&&tabStats.news>=3) give('media-watcher');
+    return newly;
   },
 
   /* ── streak & daily case ── */
