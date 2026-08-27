@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-08-26T06:43:21.165070",
+  "last_updated": "2026-08-27T17:20:21.745888",
   "last_run_counts": {
-    "total": 26,
-    "critical": 19,
-    "important": 7,
+    "total": 3,
+    "critical": 2,
+    "important": 1,
     "info": 0
   },
-  "archive_size": 174,
+  "archive_size": 177,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,35 +14,35 @@
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 22
+      "days_away": 21
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 127
+      "days_away": 126
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 128
+      "days_away": 127
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 137
+      "days_away": 136
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 307
+      "days_away": 306
     }
   ],
   "trends": [
@@ -162,15 +162,15 @@
     },
     {
       "theme": "General",
-      "this_week": 6,
-      "avg": 6.0,
+      "this_week": 1,
+      "avg": 1.0,
       "pct": 0,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
       "spark": "▁",
       "values": [
-        6
+        1
       ],
       "weeks": 1
     },
@@ -343,7 +343,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-08-25T15:00:03",
+      "newest": "2026-08-27T15:00:02",
       "status": "ok"
     },
     {
@@ -352,7 +352,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-08-24T06:00:00",
+      "newest": "2026-08-27T11:30:00",
       "status": "ok"
     },
     {
@@ -379,7 +379,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-08-26T06:41:03.371698",
+      "newest": "2026-08-27T17:16:27.344181",
       "status": "ok"
     },
     {
@@ -405,9 +405,9 @@
       "name": "EUR-Lex — Legislative proposals",
       "country": "EU",
       "kind": "primary",
-      "fetched": 100,
-      "newest": "2026-08-26T06:42:01.380326",
-      "status": "ok"
+      "fetched": 0,
+      "newest": null,
+      "status": "error"
     },
     {
       "id": "eurlex_ojl",
@@ -415,7 +415,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-08-25T22:00:00",
+      "newest": "2026-08-26T22:00:00",
       "status": "ok"
     },
     {
@@ -424,7 +424,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-08-25T14:47:18",
+      "newest": "2026-08-27T09:18:14",
       "status": "ok"
     },
     {
@@ -469,7 +469,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-21T12:20:34",
+      "newest": "2026-08-27T12:40:00",
       "status": "ok"
     },
     {
@@ -478,7 +478,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-15T07:00:00",
+      "newest": "2026-08-26T15:47:22",
       "status": "ok"
     },
     {
@@ -487,7 +487,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-26T05:22:16",
+      "newest": "2026-08-27T16:16:24",
       "status": "ok"
     },
     {
@@ -495,7 +495,7 @@
       "name": "GNews — Data Protection",
       "country": "EU",
       "kind": "news",
-      "fetched": 77,
+      "fetched": 78,
       "newest": "2026-08-21T14:25:42",
       "status": "ok"
     },
@@ -504,8 +504,8 @@
       "name": "GNews — EBA",
       "country": "EU",
       "kind": "news",
-      "fetched": 19,
-      "newest": "2026-08-25T05:15:00",
+      "fetched": 100,
+      "newest": "2026-08-07T07:00:00",
       "status": "ok"
     },
     {
@@ -513,8 +513,8 @@
       "name": "GNews — EIOPA",
       "country": "EU",
       "kind": "news",
-      "fetched": 82,
-      "newest": "2026-07-11T07:00:00",
+      "fetched": 83,
+      "newest": "2026-07-10T07:00:00",
       "status": "ok"
     },
     {
@@ -532,7 +532,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-24T11:15:40",
+      "newest": "2026-08-26T20:34:54",
       "status": "ok"
     },
     {
@@ -540,7 +540,7 @@
       "name": "GNews — Enforcement BE",
       "country": "BE",
       "kind": "news",
-      "fetched": 74,
+      "fetched": 75,
       "newest": "2026-07-29T07:00:00",
       "status": "ok"
     },
@@ -549,7 +549,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 52,
+      "fetched": 53,
       "newest": "2026-07-24T07:00:00",
       "status": "ok"
     },
@@ -568,7 +568,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-17T14:35:40",
+      "newest": "2026-08-27T09:00:00",
       "status": "ok"
     },
     {
@@ -586,7 +586,7 @@
       "country": "GLOBAL",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-25T10:27:09",
+      "newest": "2026-08-26T11:55:00",
       "status": "ok"
     },
     {
@@ -595,7 +595,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-26T04:00:25",
+      "newest": "2026-08-27T15:41:09",
       "status": "ok"
     },
     {
@@ -604,7 +604,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-25T23:12:43",
+      "newest": "2026-08-25T14:04:29",
       "status": "ok"
     }
   ]
