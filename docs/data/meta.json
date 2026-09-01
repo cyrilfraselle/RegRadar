@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-08-31T12:35:37.861423",
+  "last_updated": "2026-09-01T11:02:54.463905",
   "last_run_counts": {
-    "total": 5,
-    "critical": 2,
-    "important": 3,
+    "total": 2,
+    "critical": 1,
+    "important": 1,
     "info": 0
   },
   "archive_size": 184,
@@ -14,53 +14,38 @@
       "event": "DORA — first ICT major-incident reporting review window",
       "theme": "DORA",
       "type": "report",
-      "days_away": 17
+      "days_away": 16
     },
     {
       "date": "2026-12-31",
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 122
+      "days_away": 121
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 123
+      "days_away": 122
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 132
+      "days_away": 131
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 302
+      "days_away": 301
     }
   ],
   "trends": [
-    {
-      "theme": "General",
-      "this_week": 4,
-      "avg": 1.0,
-      "pct": 300,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▁█",
-      "values": [
-        1,
-        4
-      ],
-      "weeks": 2
-    },
     {
       "theme": "Market Infrastructure",
       "this_week": 1,
@@ -79,6 +64,42 @@
         1
       ],
       "weeks": 6
+    },
+    {
+      "theme": "General",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁",
+      "values": [
+        1,
+        1
+      ],
+      "weeks": 2
+    },
+    {
+      "theme": "Solvency/Insurance",
+      "this_week": 1,
+      "avg": 1.6,
+      "pct": -36,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁▃▁▁█▁",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        4,
+        1
+      ],
+      "weeks": 8
     },
     {
       "theme": "Capital/CRR",
@@ -192,26 +213,6 @@
         1
       ],
       "weeks": 2
-    },
-    {
-      "theme": "Solvency/Insurance",
-      "this_week": 0,
-      "avg": 1.2,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁▃▁▁█",
-      "values": [
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        4
-      ],
-      "weeks": 7
     },
     {
       "theme": "DORA",
@@ -381,7 +382,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-08-31T12:34:10.877460",
+      "newest": "2026-09-01T11:01:28.799539",
       "status": "ok"
     },
     {
@@ -408,7 +409,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-08-31T12:34:34.603558",
+      "newest": "2026-09-01T11:01:53.996922",
       "status": "ok"
     },
     {
@@ -417,7 +418,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-08-30T22:00:00",
+      "newest": "2026-08-31T22:00:00",
       "status": "ok"
     },
     {
@@ -426,7 +427,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-08-31T10:01:15",
+      "newest": "2026-09-01T10:41:08",
       "status": "ok"
     },
     {
@@ -471,7 +472,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-30T23:35:00",
+      "newest": "2026-08-31T21:19:38",
       "status": "ok"
     },
     {
@@ -497,8 +498,8 @@
       "name": "GNews — Data Protection",
       "country": "EU",
       "kind": "news",
-      "fetched": 75,
-      "newest": "2026-08-21T07:00:00",
+      "fetched": 32,
+      "newest": "2026-08-29T01:04:51",
       "status": "ok"
     },
     {
@@ -515,7 +516,7 @@
       "name": "GNews — EIOPA",
       "country": "EU",
       "kind": "news",
-      "fetched": 86,
+      "fetched": 84,
       "newest": "2026-07-10T07:00:00",
       "status": "ok"
     },
@@ -525,7 +526,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-24T10:41:34",
+      "newest": "2026-08-24T08:59:45",
       "status": "ok"
     },
     {
@@ -551,7 +552,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 51,
+      "fetched": 52,
       "newest": "2026-07-24T07:00:00",
       "status": "ok"
     },
@@ -570,7 +571,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-27T09:04:50",
+      "newest": "2026-08-17T14:35:40",
       "status": "ok"
     },
     {
@@ -579,7 +580,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-27T18:21:45",
+      "newest": "2026-09-01T03:34:45",
       "status": "ok"
     },
     {
@@ -588,7 +589,7 @@
       "country": "GLOBAL",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-31T03:00:00",
+      "newest": "2026-09-01T08:30:34",
       "status": "ok"
     },
     {
@@ -597,7 +598,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-29T19:40:28",
+      "newest": "2026-08-31T12:19:01",
       "status": "ok"
     },
     {
@@ -606,7 +607,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-27T07:00:00",
+      "newest": "2026-08-26T07:00:00",
       "status": "ok"
     }
   ]
