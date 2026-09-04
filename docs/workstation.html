@@ -2877,17 +2877,27 @@ function renderAlexThread(el){
   if(btn) btn.addEventListener('click', onAlexAction);
   el.scrollTop = el.scrollHeight;
 }
+function alexThreadVisible(){
+  const win = document.getElementById('win-teams');
+  return !!win && win.classList.contains('show') && tmActiveChannel==='alex';
+}
 function revealNextAlexStep(){
   if(alexRevealed >= ALEX_SCRIPT.length) return;
   alexRevealed++;
+  saveAlexOnboard();
   if(tmActiveChannel==='alex') renderAlexThread(document.getElementById('tm-thread'));
-  if(alexRevealed===1) TM_UNREAD.alex = tmActiveChannel==='alex'?0:1;
-  if(tmActiveChannel!=='alex') renderTmSide();
+  /* Only exempt from the unread badge if the trainee is actually looking
+     at the Alex thread right now — tmActiveChannel defaults to 'alex'
+     even before Teams has ever been opened, so that alone doesn't mean
+     the message was seen. */
+  TM_UNREAD.alex = alexThreadVisible() ? 0 : 1;
+  renderTmSide();
 }
 function onAlexAction(){
   const step = ALEX_SCRIPT[alexRevealed-1];
   if(!step) return;
   step.done = true; step.pickedLabel = step.action.label;
+  saveAlexOnboard();
   if(step.action.run) step.action.run();
   if(!step.action.keepAction){
     renderAlexThread(document.getElementById('tm-thread'));
@@ -2898,7 +2908,31 @@ function onAlexAction(){
 }
 function askAlexHint(){
   alexHints++;
+  saveAlexOnboard();
   renderAlexThread(document.getElementById('tm-thread'));
+}
+
+/* Persists the scripted onboarding tour so it plays once, not on every
+   page load — previously revealNextAlexStep() fired unconditionally
+   2.5s after boot with no localStorage gate, unlike the window-layout
+   restore right next to it in BOOT below. */
+const ALEX_ONBOARD_KEY = 'meridiaan-alex-onboard-v1';
+function loadAlexOnboard(){
+  try{
+    const p = JSON.parse(localStorage.getItem(ALEX_ONBOARD_KEY)||'null');
+    if(!p) return;
+    alexRevealed = p.revealed||0;
+    alexHints = p.hints||0;
+    (p.picked||[]).forEach((label,i)=>{
+      if(ALEX_SCRIPT[i]){ ALEX_SCRIPT[i].done=true; ALEX_SCRIPT[i].pickedLabel=label; }
+    });
+  }catch(e){}
+}
+function saveAlexOnboard(){
+  try{
+    const picked = ALEX_SCRIPT.filter(s=>s.done).map(s=>s.pickedLabel);
+    localStorage.setItem(ALEX_ONBOARD_KEY, JSON.stringify({revealed:alexRevealed, hints:alexHints, picked}));
+  }catch(e){}
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
@@ -2944,17 +2978,23 @@ WM.init(['mail','browser','explorer','teams','invest','path','skills']);
 if(!localStorage.getItem('meridiaan-wm-v1')){
   WM.open('mail'); WM.open('browser');
 }
+loadAlexOnboard();
+const alexOnboardStarted = alexRevealed > 0;
 renderTmSide(); renderTmHead(); renderTmThread();
 LB.boot();
 DK.boot();
 loadCaseData();
 
-/* scripted notifications — a living, not static, desk */
-setTimeout(()=>{
-  revealNextAlexStep();
-  notify('💬', '#1F5C8B', 'New message from Alex', "Hey — I'm Alex, senior on the desk this week. Good to have you.",
-    ()=>{ WM.open('teams'); tmSelect('alex'); });
-}, 2500);
+/* scripted notifications — a living, not static, desk.
+   The intro only fires for a trainee who has never started the tour —
+   previously this replayed "Hey, I'm Alex" on every single page load. */
+if(!alexOnboardStarted){
+  setTimeout(()=>{
+    revealNextAlexStep();
+    notify('💬', '#1F5C8B', 'New message from Alex', "Hey — I'm Alex, senior on the desk this week. Good to have you.",
+      ()=>{ WM.open('teams'); tmSelect('alex'); });
+  }, 2500);
+}
 setTimeout(()=>notify('✉️', '#1F5C8B', 'New email received', 'Nadia — Re: Why the wire to Gulf Machinery FZE',
   ()=>{ WM.open('mail'); renderMailRead('m2'); document.querySelectorAll('.mitem').forEach(x=>x.classList.toggle('on', x.dataset.mid==='m2')); }), 6000);
 setTimeout(()=>notify('📄', '#1E7145', 'Document added to case file', 'A new document was added to the KYC folder',
