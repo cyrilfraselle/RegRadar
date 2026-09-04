@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AML/KYC Glossary — RegRadar Academy</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="glossary.js"></script>
+<style>
+:root{
+  --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
+  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
+  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:48px 24px 90px}
+.kick{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--ink-3)}
+h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;margin-top:10px}
+.sub{font-size:14.5px;color:var(--ink-2);margin-top:12px;max-width:60ch}
+.back{display:inline-block;margin-top:18px;font-size:12.5px;color:var(--ice);text-decoration:none;
+  border-bottom:1px solid var(--grid)}
+.back:hover{border-bottom-color:var(--ice)}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:26px}
+.jump a{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink-2);text-decoration:none;
+  border:1px solid var(--grid);padding:5px 9px;border-radius:4px}
+.jump a:hover{border-color:var(--ice);color:var(--ice)}
+.list{margin-top:30px;border-top:1px solid var(--grid)}
+.term{padding:22px 0;border-bottom:1px solid var(--grid);scroll-margin-top:20px}
+.term:target{background:rgba(0,57,166,.05);margin:0 -16px;padding:22px 16px;border-radius:6px}
+.term .t{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ice)}
+.term h2{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-top:6px}
+.term p{font-size:14px;color:var(--ink-2);margin-top:8px;max-width:62ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">REGRADAR ACADEMY</div>
+  <h1>AML/KYC Glossary</h1>
+  <p class="sub">The technical terms used across every case, chart, and file in the Academy —
+    plain-English definitions, no textbook required. Any underlined term inside a case links here.</p>
+  <a class="back" href="workstation.html">← Back to the Academy</a>
+
+  <div class="jump" id="jump"></div>
+  <div class="list" id="list"></div>
+</div>
+<script>
+const terms = Glossary.terms.slice().sort((a,b)=>a.t.localeCompare(b.t));
+document.getElementById('jump').innerHTML = terms.map(t=>`<a href="#${t.id}">${t.id.toUpperCase()}</a>`).join('');
+document.getElementById('list').innerHTML = terms.map(t=>`
+  <div class="term" id="${t.id}">
+    <div class="t">GLOSSARY</div>
+    <h2>${t.t}</h2>
+    <p>${t.d}</p>
+  </div>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════════════════════════════════
+   GLOSSARY — term spans + tooltip card. Rides the shared --ink/--grid/
+   --console/--mono token contract (see academy-engine.css) so one
+   stylesheet renders correctly on every Academy page's own palette.
+   ═══════════════════════════════════════════════════════════════════ */
+.gl-term{
+  border-bottom:1.5px dotted var(--ice, #0039A6);
+  cursor:help;
+  outline:none;
+}
+.gl-term:hover, .gl-term.gl-on, .gl-term:focus-visible{
+  background:rgba(0,57,166,.08);
+  border-bottom-style:solid;
+}
+
+.gl-tip{
+  position:fixed;
+  z-index:9999;
+  width:280px;
+  max-width:calc(100vw - 16px);
+  background:var(--console, #FFFFFF);
+  border:1px solid var(--grid, #E3E5E8);
+  border-radius:6px;
+  box-shadow:0 8px 28px rgba(10,10,10,.18);
+  padding:12px 14px;
+  font-family:var(--sans, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  opacity:0;
+  transform:translateY(4px);
+  transition:opacity .13s ease, transform .13s ease;
+  pointer-events:none;
+  display:none;
+}
+.gl-tip.on{ opacity:1; transform:translateY(0); pointer-events:auto; }
+.gl-tip .gl-t{
+  font-family:var(--mono, ui-monospace, monospace);
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.04em;
+  color:var(--ice, #0039A6);
+  margin-bottom:6px;
+}
+.gl-tip .gl-d{
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--ink-2, #5B6069);
+}
+.gl-tip .gl-more{
+  display:inline-block;
+  margin-top:8px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--ice, #0039A6);
+  text-decoration:none;
+}
+.gl-tip .gl-more:hover{ text-decoration:underline; }
+
+@media (prefers-reduced-motion:reduce){
+  .gl-tip{ transition:none; }
+}
