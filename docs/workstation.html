@@ -2324,9 +2324,26 @@ const DK = (function(){
     if(tutorial) setTimeout(()=>coach(0),500);
   }
 
+  /* Discovery — the trainee's first case touching a given topic gets a
+     short Alex bubble before they read the file, not a reaction after
+     a decision. Keyed on `typologies` (not the narrower `family`
+     field) so it correctly recognises e.g. A-4479, a pre-existing PEP
+     case, as "already seen" even though INV-401 is a different family. */
+  const DISCOVER_TOPICS = {pep:'discoverPep', sanctions:'discoverSanctions', 'sow-sof':'discoverSowSof'};
+  function firstOfFamily(c){
+    const topic = (c.typologies||[]).find(t=>DISCOVER_TOPICS[t]);
+    if(!topic) return;
+    const already = Object.keys(S.seen).some(id=>{
+      const seenCase = BOOK.find(x=>x.id===id);
+      return seenCase && (seenCase.typologies||[]).includes(topic);
+    });
+    if(!already) alexSay(DISCOVER_TOPICS[topic]);
+  }
+
   function renderAlert(){
     const c=RUN.alerts[RUN.i];
     if(!c) return endDay();
+    if(!RUN.tutorial) firstOfFamily(c);
     RUN.opened=false; RUN.spent=[]; RUN.gathered=[]; RUN.nadia=0;
     const deep=(c.actions||[]).length>0;
     root().innerHTML = `${statsRow()}
@@ -2756,6 +2773,22 @@ const ALEX_POOLS = {
   deskHarm: {
     verbose: ()=>"That file will resurface — closing it wasn't free, it was deferred.",
     terse:   ()=>"That one comes back.",
+  },
+  /* Discovery — fired once, the first time a case from that family is
+     opened (see firstOfFamily() in the Desk module below). Not a
+     reaction to a decision, so it shows before the trainee reads the
+     file, not after. */
+  discoverPep: {
+    verbose: ()=>"Ah — looks like you've just come across your first PEP. Worth knowing before you read on: it's a status, not an accusation. Hover the term if you want the short version.",
+    terse:   ()=>"First PEP case. Status, not an accusation — read the file before you decide anything.",
+  },
+  discoverSanctions: {
+    verbose: ()=>"Sanctions hit. The screening system did its job just by surfacing it — your job is to resolve whether it's actually the listed person, not to react to the alert.",
+    terse:   ()=>"Sanctions hit — resolve it on the evidence before you act on it.",
+  },
+  discoverSowSof: {
+    verbose: ()=>"Source of wealth and source of funds sound interchangeable. They're not — one explains the person, the other explains this transaction. Worth keeping separate here.",
+    terse:   ()=>"SoW explains the person, SoF explains this transaction — don't let one answer for the other.",
   },
 };
 let alexBubbleQueue = [], alexBubbleBusy = false;
