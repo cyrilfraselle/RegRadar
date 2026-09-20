@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-09-19T10:15:56.747360",
+  "last_updated": "2026-09-20T10:34:31.487261",
   "last_run_counts": {
-    "total": 9,
-    "critical": 2,
-    "important": 7,
+    "total": 8,
+    "critical": 0,
+    "important": 8,
     "info": 0
   },
-  "archive_size": 366,
+  "archive_size": 371,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,77 +14,40 @@
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 103
+      "days_away": 102
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 104
+      "days_away": 103
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 113
+      "days_away": 112
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 283
+      "days_away": 282
     }
   ],
   "trends": [
     {
-      "theme": "Sanctions",
-      "this_week": 2,
-      "avg": 1.0,
-      "pct": 100,
+      "theme": "MiCA/Crypto",
+      "this_week": 5,
+      "avg": 1.9,
+      "pct": 169,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁█",
-      "values": [
-        1,
-        1,
-        2
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 2,
-      "avg": 1.6,
-      "pct": 27,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▄▄█▁▁▁▄",
-      "values": [
-        1,
-        2,
-        2,
-        3,
-        1,
-        1,
-        1,
-        2
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 2,
-      "avg": 1.9,
-      "pct": 8,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "█▅▁▁▁▁▃▃",
+      "spark": "▆▄▁▁▁▁▂█",
       "values": [
         4,
         3,
@@ -93,7 +56,7 @@
         1,
         1,
         2,
-        2
+        5
       ],
       "weeks": 8
     },
@@ -172,6 +135,22 @@
       "weeks": 2
     },
     {
+      "theme": "Sanctions",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁",
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "weeks": 3
+    },
+    {
       "theme": "Payments",
       "this_week": 1,
       "avg": 1.0,
@@ -184,6 +163,27 @@
         1
       ],
       "weeks": 1
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.6,
+      "pct": -36,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▄▄█▁▁▁▁",
+      "values": [
+        1,
+        2,
+        2,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 8
     },
     {
       "theme": "Solvency/Insurance",
@@ -417,7 +417,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-09-19T10:14:09.811199",
+      "newest": "2026-09-20T10:32:45.754347",
       "status": "ok"
     },
     {
@@ -462,7 +462,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-09-18T11:42:54",
+      "newest": "2026-09-18T22:00:00",
       "status": "ok"
     },
     {
@@ -516,7 +516,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-15T15:43:07",
+      "newest": "2026-09-10T05:07:20",
       "status": "ok"
     },
     {
@@ -533,8 +533,8 @@
       "name": "GNews — Data Protection",
       "country": "EU",
       "kind": "news",
-      "fetched": 76,
-      "newest": "2026-08-12T18:27:41",
+      "fetched": 77,
+      "newest": "2026-08-21T07:00:00",
       "status": "ok"
     },
     {
@@ -551,7 +551,7 @@
       "name": "GNews — EIOPA",
       "country": "EU",
       "kind": "news",
-      "fetched": 88,
+      "fetched": 92,
       "newest": "2026-07-30T07:00:00",
       "status": "ok"
     },
@@ -570,7 +570,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-18T15:23:00",
+      "newest": "2026-09-19T15:11:16",
       "status": "ok"
     },
     {
@@ -578,7 +578,7 @@
       "name": "GNews — Enforcement BE",
       "country": "BE",
       "kind": "news",
-      "fetched": 76,
+      "fetched": 74,
       "newest": "2026-07-29T07:00:00",
       "status": "ok"
     },
@@ -587,7 +587,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 53,
+      "fetched": 50,
       "newest": "2026-07-24T07:00:00",
       "status": "ok"
     },
@@ -597,7 +597,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-08-10T07:00:00",
+      "newest": "2026-09-19T13:01:44",
       "status": "ok"
     },
     {
@@ -606,7 +606,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-06T04:32:10",
+      "newest": "2026-09-10T07:00:00",
       "status": "ok"
     },
     {
@@ -615,7 +615,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-19T04:12:16",
+      "newest": "2026-09-20T08:00:21",
       "status": "ok"
     },
     {
@@ -624,7 +624,7 @@
       "country": "GLOBAL",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-19T08:09:06",
+      "newest": "2026-09-19T14:15:01",
       "status": "ok"
     },
     {
@@ -633,7 +633,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-19T00:32:53",
+      "newest": "2026-09-19T22:15:03",
       "status": "ok"
     },
     {
@@ -642,7 +642,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-09-17T18:35:00",
+      "newest": "2026-09-15T13:01:51",
       "status": "ok"
     }
   ]
