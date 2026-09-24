@@ -18,6 +18,7 @@ HOW TO INTEGRATE:
   the versions below. Each section is labelled with what it replaces.
 """
 
+import re as _re
 from datetime import datetime
 
 # ═══════════════════════════════════════════════════════════════
@@ -280,7 +281,9 @@ SUBJECT_SCOPE_TERMS = [
     # Sector
     "financial", "credit institution", "payment", "e-money", "electronic money",
     "bank", "banking", "investment firm", "insurance", "insurer", "reinsurance",
-    "fund", "ucits", "aifm", "securities", "market infrastructure", "clearing",
+    # not bare "fund": it reads as cohesion/defence/globalisation funding
+    "investment fund", "pension fund", "money market fund", "ucits", "aifm",
+    "securities", "market infrastructure", "clearing",
     # Financial crime
     "money laundering", "anti-money", "terrorist financing", " aml", " cft",
     "sanction", "restrictive measure", "asset freeze", "beneficial owner",
@@ -295,12 +298,45 @@ SUBJECT_SCOPE_TERMS = [
     "esma", "eba", "eiopa", "amla", "european central bank", "srb",
 ]
 
+# Matched at the start of a word, not anywhere inside one. Substring
+# matching let "eba" hit "Corynebacterium" (a feed-additive authorisation
+# then ranked as an EBA act), "fund" hit "refund" and "audit" hit
+# "auditorium". Word-start keeps stems working ("supervis" → supervisory).
+# Short tokens (acronyms, "bank") must also END the word — "dora" is not
+# "Dorado" — allowing only a plural s.
+def _subject_pattern(t):
+    t = t.strip()
+    return _re.escape(t) + (r"s?(?![a-z0-9])" if len(t) <= 5 else "")
+_SUBJECT_RE = _re.compile(
+    r"(?<![a-z0-9])(?:" + "|".join(_subject_pattern(t) for t in SUBJECT_SCOPE_TERMS) + ")")
+
+# Acts that use the vocabulary without being about financial services:
+# the Parliament's budget discharge (dozens a year, every one says
+# "financial year"), agricultural and defence funding, EEA housekeeping,
+# EU institutions' internal staffing. Checked on the title first — a
+# title match rules the act out whatever else it mentions.
+SUBJECT_EXCLUDE_TERMS = [
+    "discharge in respect of", "closure of the accounts", "financial year",
+    "financial assistance", "multiannual financial framework",
+    "financial contribution", "eea joint committee",
+    "agricultur", "agricultural guarantee fund", "vineyard", "wine",
+    "fisher", "fishing", "feed additive", "plant protection", "veterinary",
+    "anti-dumping", "countervailing duty", "customs tariff",
+    "defence products", "european political parties",
+    "nominating heads of work unit", "appointing", "appointment of",
+    "west bank", "payment request", "nextgenerationeu", "cohesion",
+    "globalisation adjustment fund", "defence funding",
+    "greenhouse gas", "2003/87/ec",
+]
+
 
 def is_in_subject_scope(title: str, summary: str = "") -> bool:
     """True if the item is plausibly about financial services, financial
     crime or data — used only for whole-corpus sources."""
-    text = ((title or "") + " " + (summary or "")).lower()
-    return any(t in text for t in SUBJECT_SCOPE_TERMS)
+    t = (title or "").lower()
+    if any(x in t for x in SUBJECT_EXCLUDE_TERMS):
+        return False
+    return bool(_SUBJECT_RE.search(t + " " + (summary or "").lower()))
 
 
 # Sources that publish across every policy area and therefore need the
