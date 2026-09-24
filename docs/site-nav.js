@@ -20,11 +20,9 @@
   var MENU = [
     // One page: a plain link, no dropdown.
     { id: "regwatch", label: "RegWatch", href: "regwatch.html" },
-    { id: "reference", label: "Reference", items: [
-      { href: "law.html",          t: "Read the Law",      d: "AMLR, DORA, MiCA, CRR and more" },
-      { href: "country-risk.html", t: "Country Risk",      d: "Your weights, your ratings" },
-      { href: "glossary.html",     t: "AML/KYC Glossary",  d: "Terms explained plainly" },
-    ]},
+    // Standalone tools: plain links.
+    { id: "law", label: "Read the Law", href: "law.html" },
+    { id: "country", label: "Country Risk", href: "country-risk.html" },
     { id: "academy", label: "Academy", items: [
       { href: "academy.html",     t: "Overview",            d: "How the training works" },
       { href: "workstation.html", t: "Analyst workstation", d: "The full simulation" },
@@ -32,12 +30,14 @@
       { href: "laundromat.html",  t: "01 · Laundromat",     d: "Spot the red flags" },
       { href: "ownership.html",   t: "02 · Ownership",      d: "Find the beneficial owner" },
       { href: "desk.html",        t: "03 · The Desk",       d: "Work an alert queue" },
+      { sep: "Reference" },
+      { href: "glossary.html",    t: "AML/KYC Glossary",    d: "Terms explained plainly" },
     ]},
   ];
 
   var GROUP_OF = {
     "regwatch.html": "regwatch", "index.html": "regwatch", "": "regwatch",
-    "law.html": "reference", "country-risk.html": "reference", "glossary.html": "reference",
+    "law.html": "law", "country-risk.html": "country", "glossary.html": "academy",
     "academy.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
     "ownership.html": "academy", "desk.html": "academy", "shift.html": "academy",
     "triage.html": "academy", "casefile.html": "academy",
