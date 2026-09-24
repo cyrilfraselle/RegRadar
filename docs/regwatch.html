@@ -239,12 +239,12 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
 </style>
 </head>
 <body>
+<script src="site-nav.js"></script>
 
 <div class="app">
   <aside class="side">
     <div class="brand">
-      <span class="mk">R</span>
-      <span class="txt">RegWatch<small>Belgium &amp; EU</small></span>
+      <span class="txt">RegWatch<small>Regulatory watch</small></span>
     </div>
 
     <nav class="navgrp">
@@ -263,20 +263,12 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
         <span class="av" id="whoAv">?</span>
         <span class="t"><b id="whoName">No profile set</b><span id="whoSub">Tap to choose</span></span>
       </div>
-      <button class="themebtn" onclick="toggleTheme()">◐ Theme</button>
     </div>
   </aside>
 
   <main class="main">
     <header class="topbar">
       <div><h1 id="vTitle">Home</h1><div class="sub" id="vSub">—</div></div>
-      <div class="right">
-        <nav class="tools">
-<a href="law.html">Law</a>
-          <a href="country-risk.html">Country Risk</a>
-<a href="academy.html">Academy</a>
-        </nav>
-      </div>
     </header>
     <div class="body" id="view"></div>
   </main>
@@ -660,7 +652,15 @@ function render(){
   // cross-view links
   v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
 }
-function go(view){ VIEW=view; render(); window.scrollTo(0,0); }
+const VIEWS=['home','radar','apply','dates','library','sources'];
+// The site menu links straight to a view (regwatch.html#deadlines-style),
+// so the view lives in the URL hash: shareable, and Back works.
+function go(view){
+  VIEW=VIEWS.includes(view)?view:'home';
+  if(location.hash!=='#'+VIEW) history.replaceState(null,'','#'+VIEW);
+  render(); window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',()=>go(location.hash.slice(1)));
 
 function paintWho(){
   const e=APP&&ENTITY?APP.entities.find(x=>x.id===ENTITY):null;
@@ -694,7 +694,7 @@ async function boot(){
     ITEMS=Array.isArray(items)?items:(items.items||[]); META=meta||{}; APP=app;
   }catch(e){}
   ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  paintWho(); render();
+  paintWho(); go(location.hash.slice(1)||'home');
 }
 boot();
 </script>
