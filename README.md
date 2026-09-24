@@ -1,23 +1,35 @@
 # RegRadar — EU & Belgian Regulatory Intelligence
 
-Automated regulatory watch for financial-services compliance teams (Belgium + EU).
-Collects regulator publications and news, scores them by impact, enriches them with
-AI summaries, and publishes a daily dashboard.
+**Live site: https://cyrilfraselle.github.io/RegRadar/** · prototype, not legal advice.
+
+Tools for financial-services compliance teams in Belgium and the EU:
+
+- **RegWatch** — a daily regulatory watch. Collects publications from the
+  NBB, FSMA, EBA, ECB (incl. Banking Supervision), ESMA, EIOPA, AMLA, SRB,
+  FSB, the European Commission and EUR-Lex, reads each publication's own
+  page or PDF, classifies it (instrument type, legal weight, topic) and
+  adds an AI summary. A profile ("I am a bank…") filters it to what applies.
+- **Read the Law** — key EU regulations (AMLR, DORA, MiCA, CRR…) in a clean reader.
+- **Country Risk** — a configurable country-risk model.
+- **Academy** — AML/KYC training in a simulated bank (CF Bank, fictional):
+  a full analyst workstation plus practice modules (Laundromat, Ownership, The Desk).
 
 ## Structure
 
 ```
 RegRadar/
-├── regulatory_watch.py     ← main engine (run this)
-├── classification_v3.py    ← scoring + source classification
+├── regulatory_watch.py     ← main engine (run daily by GitHub Actions)
+├── classification_v3.py    ← relevance, instrument type, legal weight
+├── page_reader.py          ← reads each publication's page or PDF
 ├── enrichment_v3.py        ← Groq AI summaries + trends
 ├── intelligence_v4.py      ← thematic briefing + key-dates timeline
 ├── dashboard_data.py       ← exports JSON for the website
 ├── requirements.txt        ← Python dependencies
-├── docs/                   ← the website (served by GitHub Pages)
-│   ├── index.html          ← the dashboard
-│   └── data/               ← items.json + meta.json (the data layer)
-└── .gitignore              ← keeps secrets & local files off GitHub
+├── .github/workflows/      ← daily watch (06:00 UTC) + law parsing
+└── docs/                   ← the website (GitHub Pages)
+    ├── regwatch.html, law.html, country-risk.html, academy.html, …
+    ├── site-nav.js         ← the shared menu + footer, used by every page
+    └── data/               ← items.json + meta.json (the data layer)
 ```
 
 ## Run the engine locally
@@ -28,7 +40,7 @@ python regulatory_watch.py --maintenant
 ```
 
 This refreshes `docs/data/items.json` and `docs/data/meta.json`,
-which the dashboard reads.
+which RegWatch reads.
 
 ## Notes
 - Secrets (credentials.json, config.py, API keys) are git-ignored — never committed.

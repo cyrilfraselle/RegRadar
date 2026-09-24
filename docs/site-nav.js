@@ -89,7 +89,10 @@
     ".rrn.mob .rrn-grp{display:block;flex:1 0 100%;border-top:1px solid var(--rrn-line);order:2}" +
     ".rrn.mob .rrn-btn{height:44px;width:100%}.rrn.mob .rrn-grp.on .rrn-btn{border-bottom-color:transparent}" +
     ".rrn.mob .rrn-dd{position:static;display:block;box-shadow:none;border:0;background:transparent;padding:0 0 8px}" +
-    ".rrn.mob .rrn-car{display:none}}";
+    ".rrn.mob .rrn-car{display:none}}" +
+    ".rrf{margin-top:48px;padding:22px 16px 28px;border-top:1px solid rgba(128,128,128,.25);" +
+    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:#8B929C;text-align:center}" +
+    ".rrf p{max-width:760px;margin:0 auto}.rrf b{font-weight:600}";
 
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -203,5 +206,22 @@
     outer.insertBefore(bar, outer.firstChild);
   }
   document.addEventListener("DOMContentLoaded", dockInAcademyShell);
+
+  // Footer disclaimer, on every page that carries the menu. Full-screen
+  // Academy modules (fixed frame) cover it; they show their own
+  // "simulated environment · fictional data" notice instead.
+  document.addEventListener("DOMContentLoaded", function () {
+    var academy = activeGroup === "academy";
+    var f = el("footer", "rrf",
+      "<p><b>RegRadar is a prototype.</b> It is not legal advice: always check the " +
+      "official source before acting." +
+      (academy
+        ? " Academy cases, people and banks (including CF Bank) are fictional."
+        : " Collected daily from the NBB, FSMA, EBA, ECB, ESMA, EIOPA, AMLA, SRB, FSB, " +
+          "the European Commission and EUR-Lex; summaries are AI-assisted.") +
+      "</p>");
+    f.setAttribute("data-no-glossary", "");
+    document.body.appendChild(f);
+  });
   window.addEventListener("load", dockInAcademyShell);
 })();

@@ -119,6 +119,13 @@ LEGAL_WEIGHT = {
 }
 
 
+def _has(text: str, patterns) -> bool:
+    """True if any pattern occurs at the START of a word in text.
+    Plain substring matching read "reports on" as "rts on" (an ECB
+    report labelled a binding technical standard)."""
+    return any(_re.search(r"(?<![a-z0-9])" + _re.escape(p), text) for p in patterns)
+
+
 def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
     """Return (type_id, human_label, legal_status).
 
@@ -145,7 +152,7 @@ def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
                 "public consultation", "seeks views", "seeks feedback",
                 # AMLA's own titles: "Consultation on the draft RTS on …"
                 "consultation on")
-    if any(p in text for p in _CONSULT):
+    if _has(text, _CONSULT):
         if is_primary:
             return "consultation", "Consultation", "not-yet-binding"
         return "news", "News: consultation", "informational"
@@ -157,13 +164,13 @@ def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
     # of a compliance officer's queue as though it were in force.
     _PROPOSAL = ("proposal for", "proposal of", "commission proposes",
                  "draft proposal", "legislative proposal")
-    if any(p in text for p in _PROPOSAL):
+    if _has(text, _PROPOSAL):
         if is_primary:
             return "proposal", "Legislative proposal", "not-yet-binding"
         return "news", "News: proposal", "informational"
 
     for tid, label, status, patterns in DOC_TYPES:
-        if any(p in text for p in patterns):
+        if _has(text, patterns):
             if is_primary:
                 return tid, label, status
             # Third-party coverage: keep the subject, drop the authority.
@@ -239,6 +246,13 @@ EU_BE_MARKERS = [
     "austria", "austrian", "poland", "polish", "finland", "sweden", "denmark",
     "greece", "cyprus", "cysec", "malta", "estonia", "latvia", "lithuania",
     "slovakia", "slovenia", "croatia", "romania", "bulgaria", "hungary", "czech",
+]
+
+
+UK_MARKERS = [
+    "uk", "united kingdom", "britain", "british", "fca", "pra",
+    "hm treasury", "bank of england", "fsma 2000",
+    "financial services and markets act",
 ]
 
 
@@ -364,6 +378,12 @@ def is_eu_relevant(title: str, summary: str = "") -> bool:
     `summary` is accepted and ignored so callers need not change.
     """
     text = (title or "").lower()
+    # "FSMA" is also the UK's Financial Services and Markets Act (FSMA
+    # 2000), and UK stories mention EU bodies in passing. A clearly UK
+    # story only counts if it names Belgium or the Union itself.
+    if any(_re.search(r"\b" + _re.escape(k) + r"\b", text) for k in UK_MARKERS):
+        return any(_re.search(r"\b" + _re.escape(k) + r"\b", text)
+                   for k in ("belgium", "belgian", "brussels", "eu", "european union", "euro area"))
     return any(_re.search(r"\b" + _re.escape(k) + r"\b", text)
                for k in EU_BE_MARKERS)
 
@@ -374,7 +394,7 @@ def classify_lifecycle(title: str, summary: str = "") -> tuple:
     a wrong stage is worse than no stage."""
     text = (title + " " + (summary or "")).lower()
     for sid, label, patterns in LIFECYCLE_STAGES:
-        if any(p in text for p in patterns):
+        if _has(text, patterns):
             return sid, label
     return "", ""
 

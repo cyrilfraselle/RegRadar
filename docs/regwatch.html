@@ -288,7 +288,12 @@ function isRelevant(it,themes){
 
 // EBA digest items carry their section label ("News & Press") in the
 // summary field; a label is not a summary.
-function snip(it){ const t=it.so_what||it.summary||''; return t.length>=40?t:''; }
+// Google News "summaries" are the headline again plus the outlet name.
+function snip(it){
+  const t=it.so_what||it.summary||'';
+  const head=title(it).slice(0,40).toLowerCase();
+  return t.length>=40 && !t.toLowerCase().startsWith(head) ? t : '';
+}
 /* ── shared row renderer ───────────────────────────────────────── */
 function itemRow(it,themes){
   const rel=isRelevant(it,themes);
