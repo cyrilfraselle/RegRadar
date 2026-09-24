@@ -18,14 +18,8 @@
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   var MENU = [
-    { id: "regwatch", label: "RegWatch", items: [
-      { href: "regwatch.html#home",    t: "Home",               d: "Today's regulatory position" },
-      { href: "regwatch.html#radar",   t: "My Radar",           d: "Everything in your scope" },
-      { href: "regwatch.html#apply",   t: "What applies to me", d: "Set your profile and activities" },
-      { href: "regwatch.html#dates",   t: "Deadlines",          d: "Application dates and consultations" },
-      { href: "regwatch.html#library", t: "Library",            d: "Regulations by theme" },
-      { href: "regwatch.html#sources", t: "Source coverage",    d: "Which regulators are live" },
-    ]},
+    // One page: a plain link, no dropdown.
+    { id: "regwatch", label: "RegWatch", href: "regwatch.html" },
     { id: "reference", label: "Reference", items: [
       { href: "law.html",          t: "Read the Law",      d: "AMLR, DORA, MiCA, CRR and more" },
       { href: "country-risk.html", t: "Country Risk",      d: "Your weights, your ratings" },
@@ -123,6 +117,14 @@
   var groups = [];
   MENU.forEach(function (g, gi) {
     var wrap = el("div", "rrn-grp" + (g.id === activeGroup ? " on" : ""));
+    if (g.href) {
+      var link = el("a", "rrn-btn", esc(g.label));
+      link.href = g.href;
+      if (g.id === activeGroup) link.setAttribute("aria-current", "page");
+      wrap.appendChild(link);
+      inner.appendChild(wrap);
+      return;
+    }
     var btn = el("button", "rrn-btn", esc(g.label) + '<span class="rrn-car" aria-hidden="true"></span>');
     btn.type = "button";
     btn.setAttribute("aria-expanded", "false");
@@ -166,7 +168,8 @@
   function closeAll() {
     groups.forEach(function (w) {
       w.classList.remove("open");
-      w.querySelector(".rrn-btn").setAttribute("aria-expanded", "false");
+      var b = w.querySelector("button.rrn-btn");
+      if (b) b.setAttribute("aria-expanded", "false");
     });
   }
   document.addEventListener("click", function (e) { if (!bar.contains(e.target)) closeAll(); });

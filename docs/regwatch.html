@@ -52,69 +52,35 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:none;cursor:pointer}
 ::selection{background:var(--accent);color:#fff}
 
-/* ── app shell ─────────────────────────────────────────────────── */
-.app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
-.side{background:var(--sidebar);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
-.brand{display:flex;align-items:center;gap:10px;padding:20px 18px 18px;font-weight:700;
-  letter-spacing:-.02em;font-size:15px}
-.brand .mk{width:28px;height:28px;border-radius:var(--r-sm);background:var(--accent);color:#fff;
-  display:grid;place-items:center;font-weight:700;font-size:15px;flex:0 0 auto}
-.brand small{display:block;font-size:10.5px;font-weight:500;color:var(--text-3);letter-spacing:.02em}
-
-.navgrp{padding:6px 10px}
-.navgrp .lbl{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;
-  color:var(--text-3);padding:12px 8px 6px}
-.nv{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:var(--r-sm);
-  font-size:13.5px;font-weight:500;color:var(--text-2);transition:background 120ms var(--ease),color 120ms var(--ease)}
-.nv:hover{background:var(--surface-3);color:var(--text)}
-.nv.on{background:var(--accent-bg);color:var(--accent);font-weight:600}
-.nv .ic{width:18px;text-align:center;font-size:14px;flex:0 0 auto}
-.nv .ct{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-3);font-weight:500}
-.nv.on .ct{color:var(--accent)}
-
-.side-foot{margin-top:auto;padding:12px 14px 16px;border-top:1px solid var(--border)}
-.who{display:flex;align-items:center;gap:9px;padding:8px;border-radius:var(--r-sm);
-  background:var(--surface-3);cursor:pointer}
-.who:hover{background:var(--border)}
-.who .av{width:26px;height:26px;border-radius:var(--r-sm);background:var(--accent);color:#fff;
+/* ── page ─────────────────────────────────────────────────────────
+   One page, read top to bottom: what needs attention, everything else
+   (searchable), and the dates ahead in a side column. The profile —
+   "what applies to me" — lives in a side panel, not a page of its own. */
+.wrap{max-width:1180px;margin:0 auto;padding:28px 28px 64px}
+.pg-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.pg-h h1{font-size:24px;font-weight:650;letter-spacing:-.025em}
+.pg-h .sub{font-size:13px;color:var(--text-3);margin-top:3px}
+.prof{display:flex;align-items:center;gap:9px;padding:7px 12px 7px 8px;border-radius:var(--r);
+  border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);text-align:left}
+.prof:hover{border-color:var(--accent-br)}
+.prof .av{width:26px;height:26px;border-radius:var(--r-sm);background:var(--accent);color:#fff;
   display:grid;place-items:center;font-size:13px;flex:0 0 auto}
-.who .t{min-width:0;flex:1}
-.who .t b{display:block;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.who .t span{display:block;font-size:10.5px;color:var(--text-3)}
-.themebtn{width:100%;margin-top:8px;padding:7px;border-radius:var(--r-sm);font-size:12px;
-  color:var(--text-3);border:1px solid var(--border)}
-.themebtn:hover{color:var(--text);border-color:var(--border-2)}
-
-.main{min-width:0;display:flex;flex-direction:column}
-.topbar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);
-  padding:0 28px;height:60px;display:flex;align-items:center;gap:16px}
-.topbar h1{font-size:17px;font-weight:600;letter-spacing:-.02em}
-.topbar .sub{font-size:12.5px;color:var(--text-3)}
-.topbar .right{margin-left:auto;display:flex;align-items:center;gap:9px}
-.tools{display:flex;align-items:center;gap:2px;font-size:12.5px}
-.tools a{padding:6px 9px;border-radius:var(--r-sm);color:var(--text-3)}
-.tools a:hover{background:var(--surface-3);color:var(--text)}
-.body{padding:24px 28px 60px;max-width:1180px}
+.prof b{display:block;font-size:12.5px;font-weight:600}
+.prof span.s{display:block;font-size:11px;color:var(--text-3)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.side-col{position:sticky;top:16px}
+.side-col .dl{grid-template-columns:1fr;gap:4px;padding:12px 14px}
+.side-col .dl .dt{display:flex;justify-content:space-between;gap:8px}
+.side-col .dl .de{font-size:13px;line-height:1.45}
+.more{display:block;width:100%;padding:12px;font-size:13px;font-weight:600;color:var(--accent);
+  border-top:1px solid var(--border)}
+.more:hover{background:var(--surface-2)}
+select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface);
+  color:var(--text-2);font:500 12.5px var(--sans)}
 @media(max-width:900px){
-  .app{grid-template-columns:1fr}
-  .side{position:static;height:auto;flex-direction:row;align-items:center;overflow-x:auto;
-    border-right:none;border-bottom:1px solid var(--border);padding:0 8px}
-  .brand{padding:12px 10px}.brand .txt{display:none}
-  .navgrp{display:flex;padding:0}.navgrp .lbl{display:none}
-  .nv{white-space:nowrap}.nv .ct{display:none}
-  .side-foot{margin-top:0;border-top:none;padding:0 8px;display:flex;gap:6px}
-  .themebtn{margin-top:0;width:auto;padding:7px 10px}
-  .who .t{display:none}
-  /* height:60px is a desktop assumption — on narrow screens the title
-     and the tool links wrap to two rows and a fixed height makes them
-     collide. Let it grow, and drop the subtitle, which is the least
-     load-bearing thing here. */
-  .topbar{padding:10px 16px;height:auto;min-height:56px;flex-wrap:wrap;gap:8px}
-  .topbar .sub{display:none}
-  .tools{overflow-x:auto;scrollbar-width:none}
-  .tools::-webkit-scrollbar{display:none}
-  .body{padding:18px 16px 50px}
+  .wrap{padding:18px 16px 50px}
+  .layout{grid-template-columns:1fr}
+  .side-col{position:static}
 }
 
 /* ── primitives ────────────────────────────────────────────────── */
@@ -133,12 +99,6 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
 .pill.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-br)}
 .pill.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-br)}
 .pill.acc{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-br)}
-
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow)}
-.stat .n{font-size:26px;font-weight:600;font-family:var(--mono);letter-spacing:-.02em;line-height:1.1}
-.stat .l{font-size:12px;color:var(--text-3);margin-top:5px}
-.stat.crit .n{color:var(--crit)} .stat.warn .n{color:var(--warn)} .stat.acc .n{color:var(--accent)}
 
 /* ── item rows ─────────────────────────────────────────────────── */
 .rows{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
@@ -178,7 +138,7 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
 .searchbox .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px}
 
 /* ── profile picker ────────────────────────────────────────────── */
-.ents{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
+.ents{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .ent{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
   padding:14px;text-align:left;transition:all 120ms var(--ease);box-shadow:var(--shadow)}
 .ent:hover{border-color:var(--accent-br);box-shadow:var(--shadow-md);transform:translateY(-1px)}
@@ -216,11 +176,11 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
 
 /* ── drawer ────────────────────────────────────────────────────── */
 .ov{position:fixed;inset:0;background:rgba(16,24,40,.45);opacity:0;pointer-events:none;
-  transition:opacity 160ms;z-index:100;backdrop-filter:blur(2px)}
+  transition:opacity 160ms;z-index:1100;backdrop-filter:blur(2px)}
 .ov.on{opacity:1;pointer-events:auto}
 .dw{position:fixed;top:0;right:0;height:100%;width:min(560px,96vw);background:var(--surface);
   border-left:1px solid var(--border);transform:translateX(101%);
-  transition:transform 220ms var(--ease);z-index:101;overflow-y:auto;box-shadow:var(--shadow-md)}
+  transition:transform 220ms var(--ease);z-index:1101;overflow-y:auto;box-shadow:var(--shadow-md)}
 .dw.on{transform:none}
 .dw-in{padding:22px 26px 60px}
 .dw .x{position:absolute;top:16px;right:18px;font-size:20px;color:var(--text-3);
@@ -241,48 +201,29 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
 <body>
 <script src="site-nav.js"></script>
 
-<div class="app">
-  <aside class="side">
-    <div class="brand">
-      <span class="txt">RegWatch<small>Regulatory watch</small></span>
-    </div>
-
-    <nav class="navgrp">
-      <div class="lbl">Workspace</div>
-      <button class="nv on" data-v="home"><span class="ic">◎</span>Home</button>
-      <button class="nv" data-v="radar"><span class="ic">◈</span>My Radar<span class="ct" id="ctRadar"></span></button>
-      <button class="nv" data-v="apply"><span class="ic">⊞</span>What applies to me</button>
-      <button class="nv" data-v="dates"><span class="ic">◷</span>Deadlines<span class="ct" id="ctDates"></span></button>
-      <button class="nv" data-v="library"><span class="ic">▤</span>Library<span class="ct" id="ctLib"></span></button>
-      <div class="lbl">Trust</div>
-      <button class="nv" data-v="sources"><span class="ic">◉</span>Coverage<span class="ct" id="ctSrc"></span></button>
-    </nav>
-
-    <div class="side-foot">
-      <div class="who" id="whoBtn" title="Change your profile">
-        <span class="av" id="whoAv">?</span>
-        <span class="t"><b id="whoName">No profile set</b><span id="whoSub">Tap to choose</span></span>
-      </div>
-    </div>
-  </aside>
-
-  <main class="main">
-    <header class="topbar">
-      <div><h1 id="vTitle">Home</h1><div class="sub" id="vSub">—</div></div>
-    </header>
-    <div class="body" id="view"></div>
-  </main>
-</div>
+<main class="wrap">
+  <header class="pg-h">
+    <div><h1>RegWatch</h1><div class="sub" id="upd">Belgian &amp; EU regulators, checked daily</div></div>
+    <button class="prof" id="whoBtn" title="What applies to me">
+      <span class="av" id="whoAv">?</span>
+      <span><b id="whoName">Set your profile</b><span class="s" id="whoSub">See what applies to you</span></span>
+    </button>
+  </header>
+  <div id="view"></div>
+</main>
 
 <div class="ov" id="ov" onclick="closeDrawer()"></div>
 <div class="dw" id="dw"><div class="dw-in" id="dwBody"></div></div>
 
 <script>
 const PKEY='regradar-profile';
-let ITEMS=[], META={}, APP=null, VIEW='home';
+let ITEMS=[], META={}, APP=null, SHOWN=20;
 let ENTITY='', ACTS=new Set();
 let fTopic='', fWeight='', fQuery='';
 
+// EUR-Lex titles start with their CELEX number ("CELEX:32026R2138: …") —
+// an identifier, not something to read.
+const title=it=>(it.title||'').replace(/^CELEX:\S+:\s*/,'');
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const hoursAgo=d=>Math.max(0,(Date.now()-new Date(d).getTime())/36e5);
 function ago(h){ if(h<1)return'now'; if(h<24)return Math.round(h)+'h'; if(h<720) return Math.round(h/24)+'d'; return Math.round(h/720)+'mo'; }
@@ -340,6 +281,9 @@ function isRelevant(it,themes){
   return (it.themes||[]).some(t=>themes.has(t));
 }
 
+// EBA digest items carry their section label ("News & Press") in the
+// summary field; a label is not a summary.
+function snip(it){ const t=it.so_what||it.summary||''; return t.length>=40?t:''; }
 /* ── shared row renderer ───────────────────────────────────────── */
 function itemRow(it,themes){
   const rel=isRelevant(it,themes);
@@ -350,8 +294,8 @@ function itemRow(it,themes){
   return `<div class="row ${rel?'rel':''}" data-id="${esc(it.id)}">
     <span class="dot i${it.impact||1}"></span>
     <div>
-      <div class="ttl">${esc(it.title)}</div>
-      ${it.so_what||it.summary?`<div class="snip">${esc(it.so_what||it.summary)}</div>`:''}
+      <div class="ttl">${esc(title(it))}</div>
+      ${snip(it)?`<div class="snip">${esc(snip(it))}</div>`:''}
       <div class="meta">
         <span class="src">${esc(it.source)}</span>
         ${rel?'<span class="pill acc">● Relevant to you</span>':''}
@@ -366,55 +310,21 @@ function wireRows(){
     r.addEventListener('click',()=>openDrawer(r.dataset.id)));
 }
 
-/* ── views ─────────────────────────────────────────────────────── */
-function vHome(){
-  const themes=myThemes();
-  const mine=ITEMS.filter(i=>isRelevant(i,themes));
-  const pool=themes.size?mine:ITEMS;
-  const attention=pool.filter(i=>(i.legal_weight||1)>=4||i.impact===3)
-    .sort((a,b)=>(b.legal_weight||1)-(a.legal_weight||1)||new Date(b.date)-new Date(a.date)).slice(0,5);
-  const recent=pool.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,6);
-  const dates=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,4);
-  const hr=new Date().getHours();
-  const greet=hr<12?'Good morning':hr<18?'Good afternoon':'Good evening';
-
-  return `
-  <div class="sec-h"><div>
-    <div style="font-size:22px;font-weight:650;letter-spacing:-.025em">${greet}.</div>
-    <div class="d" style="margin-top:4px">${ENTITY
-      ? `Filtered to your perimeter — ${esc(APP.entities.find(e=>e.id===ENTITY).label)}. ${mine.length} of ${ITEMS.length} signals touch it.`
-      : 'Set your profile to filter this to what actually applies to you.'}</div>
-  </div>${ENTITY?'':'<button class="lnk" data-go="apply">Set profile →</button>'}</div>
-
-  <div class="stats">
-    <div class="stat crit"><div class="n">${pool.filter(i=>(i.legal_weight||1)>=7).length}</div><div class="l">Binding in scope</div></div>
-    <div class="stat warn"><div class="n">${pool.filter(i=>(i.legal_weight||1)>=4&&(i.legal_weight||1)<7).length}</div><div class="l">Consultations &amp; guidance</div></div>
-    <div class="stat acc"><div class="n">${dates.length}</div><div class="l">Upcoming deadlines</div></div>
-    <div class="stat"><div class="n">${pool.length}</div><div class="l">${themes.size?'In your perimeter':'Total signals'}</div></div>
-  </div>
-
-  <div class="sec-h"><div><span class="sec-t">Needs attention</span>
-    <div class="d">Binding instruments and consultations, most authoritative first.</div></div>
-    <button class="lnk" data-go="radar">All signals →</button></div>
-  <div class="rows">${attention.length?attention.map(i=>itemRow(i,themes)).join(''):
-    '<div class="empty"><b>Nothing pressing</b>No binding instruments or consultations in range.</div>'}</div>
-
-  <div class="sec-h"><div><span class="sec-t">Upcoming deadlines</span></div>
-    <button class="lnk" data-go="dates">Calendar →</button></div>
-  <div class="rows">${dates.length?dates.map(d=>{
-    const soon=(d.days_away||999)<45;
-    return `<div class="dl ${soon?'soon':''}">
-      <div><div class="dt">${fmt(d.date)}</div><div class="dd">${d.days_away!=null?d.days_away+' days':''}</div></div>
-      <div class="de">${esc(d.event)}</div>
-      <span class="pill ${soon?'crit':''}">${esc(d.theme||'')}</span></div>`;
-  }).join(''):'<div class="empty"><b>No dated deadlines</b>Nothing in the current horizon.</div>'}</div>
-
-  <div class="sec-h"><div><span class="sec-t">Latest</span></div></div>
-  <div class="rows">${recent.map(i=>itemRow(i,themes)).join('')}</div>`;
+/* ── page ──────────────────────────────────────────────────────── */
+const PAGE=20;
+// At most two per source: the Official Journal alone publishes several
+// sanctions updates a week and would otherwise fill all five slots,
+// hiding an EBA guideline or an NBB decision underneath.
+function attentionList(pool){
+  const per={}, out=[];
+  // Fresh only: a months-old item is history, not something to act on
+  // today — it stays findable in All signals.
+  pool.filter(i=>((i.legal_weight||1)>=4||i.impact===3) && hoursAgo(i.date)<=30*24)
+    .sort((a,b)=>(b.legal_weight||1)-(a.legal_weight||1)||new Date(b.date)-new Date(a.date))
+    .forEach(i=>{ if(out.length<5 && (per[i.source_id]=(per[i.source_id]||0)+1)<=2) out.push(i); });
+  return out;
 }
-
-function vRadar(){
-  const themes=myThemes();
+function filtered(themes){
   let list=ITEMS.slice();
   if(fTopic) list=list.filter(i=>(i.themes||[]).includes(fTopic));
   if(fWeight==='binding') list=list.filter(i=>(i.legal_weight||1)>=7);
@@ -422,135 +332,111 @@ function vRadar(){
   else if(fWeight==='mine') list=list.filter(i=>isRelevant(i,themes));
   if(fQuery){const q=fQuery.toLowerCase();
     list=list.filter(i=>(i.title+' '+i.source+' '+(i.themes||[]).join(' ')).toLowerCase().includes(q));}
-  list.sort((a,b)=>{
-    const ra=isRelevant(a,themes)?1:0, rb=isRelevant(b,themes)?1:0;
-    if(themes.size && ra!==rb) return rb-ra;
-    const wa=(a.legal_weight||1)>=7?2:(a.legal_weight||1)>=4?1:0;
-    const wb=(b.legal_weight||1)>=7?2:(b.legal_weight||1)>=4?1:0;
-    return wb-wa || new Date(b.date)-new Date(a.date);
-  });
-
-  const topics={}; ITEMS.forEach(i=>(i.themes||[]).forEach(t=>topics[t]=(topics[t]||0)+1));
-  const tks=Object.keys(topics).sort((a,b)=>topics[b]-topics[a]);
-
-  return `
-  <div class="filters">
-    <div class="searchbox"><span class="si">⌕</span>
-      <input id="q" placeholder="Search signals…" value="${esc(fQuery)}"></div>
-    ${themes.size?`<button class="chip ${fWeight==='mine'?'on':''}" data-w="mine">● My perimeter<span class="n">${ITEMS.filter(i=>isRelevant(i,themes)).length}</span></button>`:''}
-    <button class="chip ${fWeight==='binding'?'on':''}" data-w="binding">Binding<span class="n">${ITEMS.filter(i=>(i.legal_weight||1)>=7).length}</span></button>
-    <button class="chip ${fWeight==='soft'?'on':''}" data-w="soft">Consultations<span class="n">${ITEMS.filter(i=>{const w=i.legal_weight||1;return w>=4&&w<7}).length}</span></button>
-  </div>
-  <div class="filters">
-    ${tks.map(t=>`<button class="chip ${fTopic===t?'on':''}" data-t="${esc(t)}">${esc(t)}<span class="n">${topics[t]}</span></button>`).join('')}
-  </div>
-  <div class="sec-h"><div class="d">${list.length} of ${ITEMS.length} signals${
-    themes.size?' · yours listed first':''}</div>
-    ${(fTopic||fWeight||fQuery)?'<button class="lnk" id="clr">Clear filters ×</button>':''}</div>
-  <div class="rows">${list.length?list.map(i=>itemRow(i,themes)).join(''):
-    '<div class="empty"><b>No matches</b>Try clearing a filter.</div>'}</div>`;
+  // Newest first: this is the running log. Ranking by weight is what
+  // "Needs attention" above is for.
+  return list.sort((a,b)=>new Date(b.date)-new Date(a.date));
+}
+function deadlineRow(d){
+  const soon=(d.days_away||999)<45;
+  return `<div class="dl ${soon?'soon':''}">
+    <div class="dt"><span>${fmt(d.date)}</span><span class="dd">${d.days_away!=null?d.days_away+' days':''}</span></div>
+    <div class="de">${esc(d.event)}</div></div>`;
 }
 
-function vApply(){
+function vPage(){
+  const themes=myThemes();
+  const mine=ITEMS.filter(i=>isRelevant(i,themes));
+  const attention=attentionList(themes.size?mine:ITEMS);
+  const list=filtered(themes);
+  const dates=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const topics={}; ITEMS.forEach(i=>(i.themes||[]).forEach(t=>topics[t]=(topics[t]||0)+1));
+  const tks=Object.keys(topics).sort((a,b)=>a.localeCompare(b));
+  const cnt=f=>ITEMS.filter(f).length;
+
+  return `<div class="layout"><section>
+    <div class="sec-h"><div><span class="sec-t">Needs attention</span>
+      <div class="d">${themes.size?'Binding rules and consultations in your perimeter from the last 30 days, most authoritative first.'
+        :'Binding rules and consultations from the last 30 days, most authoritative first.'}</div></div></div>
+    <div class="rows">${attention.length?attention.map(i=>itemRow(i,themes)).join(''):
+      '<div class="empty"><b>Nothing pressing</b>No binding instruments or consultations in range.</div>'}</div>
+
+    <div class="sec-h"><div><span class="sec-t">All signals</span></div>
+      ${(fTopic||fWeight||fQuery)?'<button class="lnk" id="clr">Clear filters ×</button>':''}</div>
+    <div class="filters">
+      <div class="searchbox"><span class="si">⌕</span>
+        <input id="q" placeholder="Search…" value="${esc(fQuery)}"></div>
+      <select class="topic" id="topic" aria-label="Topic">
+        <option value="">All topics</option>
+        ${tks.map(t=>`<option value="${esc(t)}" ${fTopic===t?'selected':''}>${esc(t)} (${topics[t]})</option>`).join('')}
+      </select>
+    </div>
+    <div class="filters">
+      <button class="chip ${!fWeight?'on':''}" data-w="">All<span class="n">${ITEMS.length}</span></button>
+      ${themes.size?`<button class="chip ${fWeight==='mine'?'on':''}" data-w="mine">● For me<span class="n">${mine.length}</span></button>`:''}
+      <button class="chip ${fWeight==='binding'?'on':''}" data-w="binding">Binding<span class="n">${cnt(i=>(i.legal_weight||1)>=7)}</span></button>
+      <button class="chip ${fWeight==='soft'?'on':''}" data-w="soft">Consultations &amp; guidance<span class="n">${cnt(i=>{const w=i.legal_weight||1;return w>=4&&w<7})}</span></button>
+    </div>
+    <div class="rows">${list.length?list.slice(0,SHOWN).map(i=>itemRow(i,themes)).join(''):
+      '<div class="empty"><b>No matches</b>Try clearing a filter.</div>'}
+      ${list.length>SHOWN?`<button class="more" id="more">Show more · ${list.length-SHOWN} left</button>`:''}</div>
+  </section>
+
+  <aside class="side-col">
+    <div class="sec-h"><div><span class="sec-t">Coming up</span></div></div>
+    <div class="rows">${dates.length?dates.map(deadlineRow).join(''):
+      '<div class="empty"><b>No dated deadlines</b></div>'}</div>
+  </aside></div>`;
+}
+
+/* "What applies to me": entity + activities → perimeter. Opens in the
+   side panel so it never takes the reader away from the feed. */
+function profilePanel(){
   if(!APP) return '<div class="empty">Applicability data unavailable.</div>';
   const rows=ENTITY?APP.regulations.map(r=>({r,v:verdictFor(r,ENTITY,ACTS)}))
     .sort((a,b)=>({direct:0,conditional:1,na:2})[a.v]-({direct:0,conditional:1,na:2})[b.v]
       ||a.r.name.localeCompare(b.r.name)):[];
   const n={direct:0,conditional:0,na:0}; rows.forEach(x=>n[x.v]++);
-
   return `
+  <button class="x" onclick="closeDrawer()">×</button>
+  <h2>What applies to me</h2>
   <div class="sec-h"><div><span class="sec-t">I am a…</span>
-    <div class="d">Pick one. Stored on this device only — no account, no form.</div></div>
+    <div class="d">Stored on this device only.</div></div>
     ${ENTITY?'<button class="lnk" id="clrProf">Clear ×</button>':''}</div>
   <div class="ents">${APP.entities.map(e=>`
     <button class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}">
       <div class="ic">${e.icon}</div><div class="nm">${esc(e.label)}</div>
       <div class="ds">${esc(e.desc)}</div></button>`).join('')}</div>
-
   <div class="sec-h"><div><span class="sec-t">And I also do…</span>
-    <div class="d">Optional. Sharpens the result — never removes an obligation.</div></div></div>
+    <div class="d">Optional. Never removes an obligation.</div></div></div>
   <div class="filters">${APP.activities.map(a=>`
     <button class="chip ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('')}</div>
-
-  ${!ENTITY?'<div class="rows"><div class="empty"><b>Nothing selected yet</b>Choose an entity type above to see your perimeter.</div></div>':`
-  <div class="sec-h"><div><span class="sec-t">Your regulatory perimeter</span>
+  ${ENTITY?`
+  <div class="sec-h"><div><span class="sec-t">Your perimeter</span>
     <div class="d">${n.direct} in scope · ${n.conditional} conditional · ${n.na} not applicable</div></div></div>
-  <div class="rows">${rows.map(({r,v})=>{
+  <div class="rows">${rows.filter(x=>x.v!=='na').map(({r,v})=>{
     const note=(r.notes||{})[ENTITY];
     return `<div class="mrow ${v}">
       <div><div class="rn">${esc(r.name)}</div><div class="rm">${esc(r.instrument)} · ${esc(r.topic)}</div></div>
       <div><div class="rw">${esc(r.why)}</div>
-        ${note&&v!=='na'?`<div class="rnote">${esc(note)}</div>`:''}
-        ${v!=='na'&&r.applies_from?`<div class="rd">Applies from ${esc(r.applies_from)}</div>`:''}</div>
-      <span class="pill bdg ${v==='direct'?'crit':v==='conditional'?'warn':''}">${badgeLabel(v,r.instrument)}</span>
+        ${note?`<div class="rnote">${esc(note)}</div>`:''}
+        ${r.applies_from?`<div class="rd">Applies from ${esc(r.applies_from)}</div>`:''}</div>
+      <span class="pill bdg ${v==='direct'?'crit':'warn'}">${badgeLabel(v,r.instrument)}</span>
     </div>`;}).join('')}</div>
-  <div class="d" style="margin-top:14px;max-width:80ch;line-height:1.6">${esc(APP._meta.disclaimer)}</div>`}`;
+  <div class="d" style="margin-top:14px;font-size:12px;color:var(--text-3);line-height:1.6">${esc(APP._meta.disclaimer)}</div>`:''}`;
 }
-
-function vDates(){
-  const ds=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
-  return `<div class="sec-h"><div><span class="sec-t">Regulatory calendar</span>
-    <div class="d">Application dates, reporting windows and consultation closes — nearest first.</div></div></div>
-    <div class="rows">${ds.length?ds.map(d=>{
-      const soon=(d.days_away||999)<45;
-      return `<div class="dl ${soon?'soon':''}">
-        <div><div class="dt">${fmt(d.date)}</div><div class="dd">${d.days_away!=null?d.days_away+' days':''}</div></div>
-        <div class="de">${esc(d.event)}</div>
-        <span class="pill ${soon?'crit':''}">${esc(d.theme||'')}</span></div>`;
-    }).join(''):'<div class="empty"><b>No dated deadlines</b>The pipeline extracts these from regulatory documents as they arrive.</div>'}</div>`;
-}
-
-function vLibrary(){
-  if(!APP) return '<div class="empty">Library unavailable.</div>';
-  const regs=APP.regulations.slice().sort((a,b)=>a.topic.localeCompare(b.topic)||a.name.localeCompare(b.name));
-  return `<div class="sec-h"><div><span class="sec-t">Regulatory library</span>
-    <div class="d">${regs.length} EU instruments held here in full article text${ENTITY?' — your perimeter marked':''}.</div></div></div>
-    <div class="rows">${regs.map(r=>{
-      const v=ENTITY?verdictFor(r,ENTITY,ACTS):null;
-      return `<div class="mrow ${v==='na'?'na':''}">
-        <div><div class="rn">${esc(r.name)}</div><div class="rm">${esc(r.instrument)} · ${esc(r.topic)}</div></div>
-        <div><div class="rw">${esc(r.full_name)}</div>
-          <div class="rd">CELEX ${esc(r.celex)}${r.applies_from?` · applies from ${esc(r.applies_from)}`:''}</div></div>
-        ${v?`<span class="pill bdg ${v==='direct'?'crit':v==='conditional'?'warn':''}">${badgeLabel(v,r.instrument)}</span>`
-           :'<span class="pill bdg">—</span>'}
-      </div>`;}).join('')}</div>
-    <div class="d" style="margin-top:14px">Full text browsable in <a class="lnk" href="law.html">Read the Law</a>.</div>`;
-}
-
-/* Coverage: what was actually checked, and when. An empty section means
-   "nothing was published"; it must never be confused with "we could not
-   look" — the failure mode that makes a regulatory watch untrustworthy. */
-function vSources(){
-  const s=(META.sources||[]);
-  if(!s.length) return `<div class="rows"><div class="empty"><b>No coverage report yet</b>
-    The pipeline records per-source results on its next run.</div></div>`;
-  const prim=s.filter(x=>x.kind==='primary'), news=s.filter(x=>x.kind!=='primary');
-  const ok=prim.filter(x=>x.status==='ok').length;
-  const badge=x=>x.status==='ok'?'<span class="pill ok">Live</span>'
-    :x.status==='error'?'<span class="pill crit">Not reached</span>'
-    :'<span class="pill warn">Nothing published</span>';
-  const age=x=>{ if(!x.newest) return '—';
-    const d=Math.floor((Date.now()-new Date(x.newest))/864e5);
-    return d<=0?'today':d===1?'yesterday':d+'d ago'; };
-  const tbl=list=>`<div class="rows">${list.map(x=>`
-    <div class="dl"><div><div class="dt">${esc(x.name)}</div>
-      <div class="dd">${esc(x.country||'')} · ${x.fetched||0} fetched${x.kept!=null?` · ${x.kept} kept`:''}</div></div>
-      <div class="de" style="font-family:var(--mono);font-size:12px;color:var(--text-3)">newest ${age(x)}</div>
-      ${badge(x)}</div>`).join('')}</div>`;
-  return `
-  <div class="sec-h"><div><span class="sec-t">Primary sources</span>
-    <div class="d">${ok} of ${prim.length} returned content on the last run. These are the regulators themselves.</div></div></div>
-  ${tbl(prim)}
-  ${news.length?`<div class="sec-h"><div><span class="sec-t">News coverage</span>
-    <div class="d">Secondary. Filtered to the Belgium/EU perimeter and capped per source so it cannot outweigh the regulators.</div></div></div>${tbl(news)}`:''}
-  <div class="sec-h"><div><span class="sec-t">Known gaps</span>
-    <div class="d">Stated openly rather than left to look like silence.</div></div></div>
-  <div class="rows"><div style="padding:15px 16px;font-size:13px;color:var(--text-2);line-height:1.65">
-    No public machine-readable feed was found for <b>NBB/BNB</b> (its pages are JavaScript-rendered),
-    <b>EIOPA</b>, <b>EDPB</b>, <b>EDPS</b>, <b>ENISA</b>, <b>FATF</b>, <b>BIS</b>, <b>IOSCO</b> or the
-    <b>Council</b>. Each was probed at its documented and discovered endpoints. Until those are
-    covered, anything appearing only through those bodies will not surface here.
-  </div></div>`;
+function openProfile(){
+  const body=document.getElementById('dwBody');
+  body.innerHTML=profilePanel();
+  body.querySelectorAll('[data-e]').forEach(b=>b.addEventListener('click',()=>{
+    ENTITY = ENTITY===b.dataset.e?'':b.dataset.e; saveP(); paintWho(); render(); openProfile();
+  }));
+  body.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>{
+    ACTS.has(b.dataset.a)?ACTS.delete(b.dataset.a):ACTS.add(b.dataset.a); saveP(); paintWho(); render(); openProfile();
+  }));
+  const cp=body.querySelector('#clrProf');
+  if(cp) cp.addEventListener('click',()=>{ENTITY='';ACTS.clear();saveP();paintWho();render();openProfile();});
+  document.getElementById('dw').classList.add('on');
+  document.getElementById('ov').classList.add('on');
 }
 
 /* ── drawer ────────────────────────────────────────────────────── */
@@ -579,7 +465,7 @@ function openDrawer(id){
       <span class="pill">${fmt(it.date)}</span>
       ${rel?'<span class="pill acc">● Relevant to you</span>':''}
     </div>
-    <h2>${esc(it.title)}</h2>
+    <h2>${esc(title(it))}</h2>
     ${it.doc_label&&it.doc_type!=='news'?`<div class="dsec"><div class="dl2">Instrument &amp; legal weight</div>
       <div class="filters" style="margin-bottom:8px">
         <span class="pill ${w>=7?'crit':w>=4?'warn':''}">${esc(it.doc_label)}</span>
@@ -604,84 +490,38 @@ function closeDrawer(){document.getElementById('dw').classList.remove('on');
   document.getElementById('ov').classList.remove('on');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
 
-/* ── router ────────────────────────────────────────────────────── */
-const TITLES={home:['Home','Your regulatory position today'],
-  radar:['My Radar','Everything the watch picked up'],
-  apply:['What applies to me','Entity type → regulatory perimeter'],
-  dates:['Deadlines','Dated obligations ahead'],
-  library:['Library','EU instruments held in full text'],
-  sources:['Coverage','What is monitored, and what is not']};
-
+/* ── render ────────────────────────────────────────────────────── */
 function render(){
-  const [t,s]=TITLES[VIEW]||TITLES.home;
-  document.getElementById('vTitle').textContent=t;
-  document.getElementById('vSub').textContent=s;
-  document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.v===VIEW));
-
   const v=document.getElementById('view');
-  v.innerHTML = VIEW==='radar'?vRadar():VIEW==='apply'?vApply():
-                VIEW==='dates'?vDates():VIEW==='library'?vLibrary():
-                VIEW==='sources'?vSources():vHome();
+  v.innerHTML=vPage();
   wireRows();
-
-  // profile controls (apply view)
-  v.querySelectorAll('.ent').forEach(b=>b.addEventListener('click',()=>{
-    ENTITY = ENTITY===b.dataset.e?'':b.dataset.e; saveP(); paintWho(); render();
-  }));
-  v.querySelectorAll('.chip[data-a]').forEach(b=>b.addEventListener('click',()=>{
-    ACTS.has(b.dataset.a)?ACTS.delete(b.dataset.a):ACTS.add(b.dataset.a); saveP(); paintWho(); render();
-  }));
-  const cp=v.querySelector('#clrProf');
-  if(cp) cp.addEventListener('click',()=>{ENTITY='';ACTS.clear();saveP();paintWho();render();});
-
-  // radar filters
-  v.querySelectorAll('.chip[data-t]').forEach(b=>b.addEventListener('click',()=>{
-    fTopic = fTopic===b.dataset.t?'':b.dataset.t; render();
-  }));
-  v.querySelectorAll('.chip[data-w]').forEach(b=>b.addEventListener('click',()=>{
-    fWeight = fWeight===b.dataset.w?'':b.dataset.w; render();
-  }));
-  const clr=v.querySelector('#clr');
-  if(clr) clr.addEventListener('click',()=>{fTopic='';fWeight='';fQuery='';render();});
-  const q=v.querySelector('#q');
+  v.querySelectorAll('[data-w]').forEach(b=>b.addEventListener('click',()=>{
+    fWeight=b.dataset.w; SHOWN=PAGE; render(); }));
+  const tp=document.getElementById('topic');
+  if(tp) tp.addEventListener('change',()=>{ fTopic=tp.value; SHOWN=PAGE; render(); });
+  const clr=document.getElementById('clr');
+  if(clr) clr.addEventListener('click',()=>{fTopic='';fWeight='';fQuery='';SHOWN=PAGE;render();});
+  const more=document.getElementById('more');
+  if(more) more.addEventListener('click',()=>{ SHOWN+=PAGE; render(); });
+  const q=document.getElementById('q');
   if(q) q.addEventListener('input',()=>{
-    fQuery=q.value; const at=document.activeElement===q;
+    fQuery=q.value; SHOWN=PAGE; const at=document.activeElement===q;
     render(); if(at){const n=document.getElementById('q'); if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length);} }
   });
-
-  // cross-view links
-  v.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
 }
-const VIEWS=['home','radar','apply','dates','library','sources'];
-// The site menu links straight to a view (regwatch.html#deadlines-style),
-// so the view lives in the URL hash: shareable, and Back works.
-function go(view){
-  VIEW=VIEWS.includes(view)?view:'home';
-  if(location.hash!=='#'+VIEW) history.replaceState(null,'','#'+VIEW);
-  render(); window.scrollTo(0,0);
-}
-window.addEventListener('hashchange',()=>go(location.hash.slice(1)));
 
 function paintWho(){
   const e=APP&&ENTITY?APP.entities.find(x=>x.id===ENTITY):null;
   document.getElementById('whoAv').textContent=e?e.icon:'?';
-  document.getElementById('whoName').textContent=e?e.label:'No profile set';
+  document.getElementById('whoName').textContent=e?e.label:'Set your profile';
   document.getElementById('whoSub').textContent=e
-    ? (ACTS.size?`+${ACTS.size} activit${ACTS.size>1?'ies':'y'}`:'Tap to change')
-    : 'Tap to choose';
-  const themes=myThemes();
-  document.getElementById('ctRadar').textContent=themes.size
-    ? ITEMS.filter(i=>isRelevant(i,themes)).length : ITEMS.length;
-  document.getElementById('ctDates').textContent=(META.timeline||[]).length||'';
-  document.getElementById('ctLib').textContent=APP?APP.regulations.length:'';
-  const sh=(META.sources||[]).filter(x=>x.kind==='primary');
-  document.getElementById('ctSrc').textContent=sh.length?`${sh.filter(x=>x.status==='ok').length}/${sh.length}`:'';
+    ? (ACTS.size?`+${ACTS.size} activit${ACTS.size>1?'ies':'y'} · change`:'What applies to me · change')
+    : 'See what applies to you';
 }
 
 async function boot(){
   loadP();
-  document.querySelectorAll('.nv').forEach(b=>b.addEventListener('click',()=>go(b.dataset.v)));
-  document.getElementById('whoBtn').addEventListener('click',()=>go('apply'));
+  document.getElementById('whoBtn').addEventListener('click',openProfile);
   try{
     // no-store: the pipeline rewrites these on a schedule, and a cached
     // copy would quietly show yesterday's regulatory position.
@@ -694,7 +534,15 @@ async function boot(){
     ITEMS=Array.isArray(items)?items:(items.items||[]); META=meta||{}; APP=app;
   }catch(e){}
   ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  paintWho(); go(location.hash.slice(1)||'home');
+  if(META.last_updated){
+    const d=new Date(META.last_updated);
+    document.getElementById('upd').textContent=
+      `Belgian & EU regulators · updated ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}, ${d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`;
+  }
+  // Old links (regwatch.html#apply) open the profile panel; the other
+  // former views are all on this page now.
+  paintWho(); render();
+  if(location.hash==='#apply') openProfile();
 }
 boot();
 </script>
