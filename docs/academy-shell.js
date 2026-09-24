@@ -1,113 +1,56 @@
 /* ═══════════════════════════════════════════════════════════════════
-   ACADEMY SHELL — the shell, in one place
+   ACADEMY SHELL — la coque, en un seul endroit
    ───────────────────────────────────────────────────────────────────
-   Each module used to draw its own HUD. Result: three different bars,
-   three ways of showing XP, and no way to see where you stood in the
-   learning path.
+   Chaque module se contentait auparavant de dessiner son propre HUD.
+   Résultat : trois barres différentes, trois façons d'afficher l'XP, et
+   aucun moyen de voir où l'on en est dans le parcours.
 
-   Here the shell is unique and the modules know nothing about it: they
-   declare their id, and push their own indicators (hours remaining,
-   current alert) via Shell.status().
+   Ici la coque est unique et les modules n'en connaissent rien : ils
+   déclarent leur identifiant, et poussent leurs indicateurs propres
+   (heures restantes, alerte en cours) via Shell.status().
 
-   Progress is also unified. Each module used to write its XP to its
-   own storage key; now a single key is authoritative, and the old ones
-   are migrated on first load so nothing is lost.
+   La progression est également unifiée. Chaque module écrivait son XP
+   dans sa propre clé de stockage ; désormais une seule clé fait foi, et
+   les anciennes sont reprises au premier chargement pour ne rien perdre.
    ═══════════════════════════════════════════════════════════════════ */
 (function(){
 'use strict';
 
 const KEY='regradar-academy-progress';
 
-/* The path. The order IS the pedagogy: you can't recognise a pattern
-   you've never produced, so offence precedes defence. The path is
-   locked: each module requires the ones before it. */
+/* Le parcours. L'ordre est la pédagogie : on ne reconnaît pas un schéma
+   qu'on n'a jamais produit, donc l'offensive précède la défensive. */
 const MODULES=[
  {id:'laundromat', n:'Laundromat', no:'01', file:'laundromat.html',
-  label:'The launderer', needs:0,
-  tag:'Play the adversary: thirteen typologies, eight jurisdictions.'},
- {id:'ownership',  n:'Ownership', no:'02', file:'ownership.html',
-  label:'Ownership structures', needs:1,
-  tag:'Read an ownership chart and designate the beneficial owners.'},
- {id:'desk',       n:'The Desk', no:'03', file:'desk.html',
-  label:'Alerts and investigations', needs:2,
-  tag:'One day: alerts, and hours you don’t get back.'},
- {id:'filing',     n:'Filing', no:'04', file:null,
-  label:'Drafting the STR', needs:2, tag:'In development.'},
+  label:'Le blanchisseur', needs:0,
+  tag:'Jouer l\u2019adversaire : treize typologies, huit juridictions.'},
+ {id:'ownership',  n:'Détention', no:'02', file:'ownership.html',
+  label:'Structures de détention', needs:0,
+  tag:'Lire un organigramme et désigner les bénéficiaires effectifs.'},
+ {id:'desk',       n:'Le bureau', no:'03', file:'desk.html',
+  label:'Alertes et enquêtes', needs:0,
+  tag:'Une journée : des alertes, et des heures qu\u2019on ne récupère pas.'},
+ {id:'filing',     n:'Déclaration', no:'04', file:null,
+  label:'Rédiger la déclaration', needs:2, tag:'En conception.'},
  {id:'inspection', n:'Inspection', no:'05', file:null,
-  label:'Defending your decisions', needs:3, tag:'In development.'},
+  label:'Défendre ses décisions', needs:3, tag:'En conception.'},
 ];
 
 const RANKS=[
- {xp:0,    n:'JUNIOR',         art:'·', blurb:'An access badge and a queue. Everything else is earned.'},
- {xp:600,  n:'ANALYST',        art:'▹', blurb:'You can tell a documented property purchase from a structured deposit. That’s further than it sounds.'},
- {xp:1600, n:'SENIOR ANALYST', art:'▸', blurb:'You close cleanly and you escalate deliberately. The investigators have noticed.'},
- {xp:3200, n:'INVESTIGATOR',   art:'◆', blurb:'You read the counterparty before the amount. That’s what separates an analyst from an alert-clearer.'},
- {xp:5500, n:'AML EXPERT',     art:'★', blurb:'Consistent across typologies, calibrated, economical. There’s no higher rank on this desk.'},
+ {xp:0,    n:'STAGIAIRE',  art:'·', blurb:'Un accès et une file d\u2019attente. Tout le reste se gagne.'},
+ {xp:600,  n:'ANALYSTE I', art:'▹', blurb:'Tu distingues un achat immobilier documenté d\u2019un dépôt structuré. C\u2019est plus loin qu\u2019il n\u2019y paraît.'},
+ {xp:1500, n:'ANALYSTE II',art:'▸', blurb:'Tu clôtures proprement et tu escalades délibérément. Les enquêteurs l\u2019ont remarqué.'},
+ {xp:2800, n:'SENIOR',     art:'◆', blurb:'Tu lis la contrepartie avant le montant. C\u2019est ce qui sépare un analyste d\u2019un vide-alertes.'},
+ {xp:4500, n:'RESPONSABLE',art:'◈', blurb:'Tu pourrais calibrer une équipe — le moment où ceci cesse d\u2019être une formation.'},
+ {xp:6800, n:'MLRO',       art:'★', blurb:'Constant d\u2019une typologie à l\u2019autre, calibré, économe. Il n\u2019y a pas de meilleur score.'},
 ];
 
-/* ── skill tree ──────────────────────────────────────────────────
-   Global XP/rank says how far along the path you are. The skill
-   tree says at what, specifically — nine subjects, each earned by
-   the actions that actually exercise it, not by finishing a module. */
-const SKILLS=[
- {id:'kyc',        icon:'🪪', n:'KYC / CDD'},
- {id:'tm',         icon:'🔍', n:'Transaction Monitoring'},
- {id:'sanctions',  icon:'🌍', n:'Sanctions & PEP'},
- {id:'media',      icon:'📰', n:'Adverse Media'},
- {id:'ubo',        icon:'🏢', n:'UBO / KYB'},
- {id:'risk',       icon:'⚠️', n:'Risk Assessment'},
- {id:'str',        icon:'📋', n:'STR/SAR & Escalation'},
- {id:'reg',        icon:'⚖️', n:'AML Regulation'},
- {id:'judgement',  icon:'🧠', n:'Investigation & Judgement'},
-];
-const MASTERY=[
- {n:'Introduced', xp:0},
- {n:'Basic',      xp:80},
- {n:'Proficient', xp:220},
- {n:'Advanced',   xp:450},
- {n:'Expert',     xp:800},
-];
-const BADGES=[
- {id:'first-case',      icon:'🎯', n:'First Investigation', d:'Close your first case on the desk.'},
- {id:'ubo-detective',   icon:'🏢', n:'UBO Detective',        d:'Solve all six ownership structures correctly.'},
- {id:'clean-sweep',     icon:'🧼', n:'Clean Sweep',          d:'Run a scheme from setup to walk-away with zero catches.'},
- {id:'red-flag',        icon:'🚩', n:'Red Flag Master',      d:'Get caught five times across runs — and learn what tripped it.'},
- {id:'sanctions-hunter',icon:'🌍', n:'Sanctions Hunter',     d:'Run three sanctions & PEP screenings.'},
- {id:'media-watcher',   icon:'📰', n:'Media Watcher',        d:'Pull adverse media three times during an investigation.'},
- {id:'by-the-book',     icon:'⚖️', n:'By The Book',          d:'Cite ten distinct AMLR articles across your case decisions.'},
- {id:'reporter',        icon:'📋', n:'The Reporter',         d:'File three STR/SAR reports.'},
- {id:'on-a-roll',       icon:'🔥', n:'On A Roll',            d:'Three days in a row on the desk.'},
- {id:'week-one',        icon:'🏆', n:'Week One',             d:'Complete all seven days of the desk journal.'},
-];
-const SKEY='regradar-skills-progress';
-let SK={skills:{}, badges:[], streak:{count:0,last:null}, daily:{date:null,done:false}, seenLaw:[]};
-function loadSK(){
-  try{ const s=JSON.parse(localStorage.getItem(SKEY)||'null'); if(s) SK={...SK,...s}; }catch(e){}
-}
-function saveSK(){ try{ localStorage.setItem(SKEY,JSON.stringify(SK)); }catch(e){} }
-function masteryOf(xp){
-  let idx=0; MASTERY.forEach((t,i)=>{ if(xp>=t.xp) idx=i; });
-  const cur=MASTERY[idx], nx=MASTERY[idx+1];
-  const pct=nx? Math.round((xp-cur.xp)/(nx.xp-cur.xp)*100) : 100;
-  return {tier:idx, name:cur.n, xp, next:nx? nx.xp-xp : 0, pct};
-}
-function todayStr(){ return new Date().toISOString().slice(0,10); }
-function bumpStreak(){
-  loadSK();
-  const t=todayStr();
-  if(SK.streak.last===t) return SK.streak.count;
-  const y=new Date(Date.now()-864e5).toISOString().slice(0,10);
-  SK.streak.count = SK.streak.last===y ? SK.streak.count+1 : 1;
-  SK.streak.last=t; saveSK();
-  return SK.streak.count;
-}
-
-let P={xp:0, modules:{}, user:'analyst'};
+let P={xp:0, modules:{}, user:'analyste'};
 
 function load(){
   try{ const p=JSON.parse(localStorage.getItem(KEY)||'null'); if(p) P={...P,...p}; }catch(e){}
-  /* Migrate old keys: progress already earned shouldn't disappear just
-     because storage got reorganised. */
+  /* Reprise des anciennes clés : la progression déjà acquise ne doit pas
+     disparaître parce qu'on a réorganisé le stockage. */
   if(!P.migrated){
     try{
       const old=JSON.parse(localStorage.getItem('regradar-progress')||'null');
@@ -125,13 +68,6 @@ function load(){
   }
 }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(P)); }catch(e){} }
-/* mount() used to be the only entry point that called load() — fine for
-   the classic pages, but the workstation never calls mount() and was
-   silently reading P at its in-memory default (xp 0, no modules) on
-   every fresh page load. Every read/write below goes through this
-   instead, so progress survives a reload with or without mount(). */
-let loaded=false;
-function ensureLoad(){ if(!loaded){ loaded=true; load(); } }
 
 const rankOf=xp=>{let r=RANKS[0];RANKS.forEach(x=>{if(xp>=x.xp)r=x});return r};
 const nextRank=xp=>RANKS.find(x=>x.xp>xp)||null;
@@ -140,7 +76,7 @@ const doneCount=()=>MODULES.filter(m=>(P.modules[m.id]||{}).done>0).length;
 
 function unlocked(m){ return m.file && doneCount()>=m.needs; }
 
-/* ── shell construction ─────────────────────────────────────────── */
+/* ── construction de la coque ───────────────────────────────────── */
 function build(active){
   const outer=document.createElement('div');
   outer.className='ac-outer';
@@ -148,17 +84,17 @@ function build(active){
     <div class="ac-brand">
       <span class="mk"><i>A</i>REGRADAR ACADEMY</span>
       <span class="sep"></span>
-      <span class="sim">AML TRAINING SIMULATOR</span>
+      <span class="sim">SIMULATEUR DE FORMATION AML</span>
       <span class="rr">
-        <a href="workstation.html">Path</a>
+        <a href="academy.html">Parcours</a>
         <a href="index.html">← RegRadar</a>
       </span>
     </div>
     <div class="ac-machine">
       <div class="ac-title">
         <span class="dots"><i></i><i></i><i></i></span>
-        <span class="ac-sys"><b>MERIDIAAN</b><span>COMPLIANCE DESK · v4.2</span></span>
-        <span class="env"><i></i>SIMULATED ENVIRONMENT<span> · FICTIONAL DATA</span></span>
+        <span class="ac-sys"><b>MERIDIAAN</b><span>POSTE CONFORMITÉ · v4.2</span></span>
+        <span class="env"><i></i>ENVIRONNEMENT SIMULÉ<span> · DONNÉES FICTIVES</span></span>
       </div>
       <nav class="ac-tabs" id="acTabs"></nav>
       <div class="ac-screen" id="acScreen"></div>
@@ -176,7 +112,7 @@ function paintTabs(active){
     const cls=[m.id===active?'on':'', open?'':'locked'].filter(Boolean).join(' ');
     const tick=rec.done>0?'<span class="tick">✓</span>':'';
     const attr = open&&m.id!==active ? `onclick="location.href='${m.file}'"`
-               : !open ? `title="Requires ${m.needs} module(s) started"` : '';
+               : !open ? `title="Requiert ${m.needs} module(s) entamé(s)"` : '';
     return `<button class="ac-tab ${cls}" ${attr}>
       <span class="n">${m.no}</span>${esc(m.n)}${tick}</button>`;
   }).join('')+'<span class="ac-tab grow"></span>';
@@ -189,17 +125,17 @@ function paintStatus(extra){
   el.innerHTML=`
     <span class="who">${esc(P.user)}@meridiaan</span>
     <span class="rk">${esc(r.n)}</span>
-    <span class="xp">${P.xp.toLocaleString('en-US')} XP</span>
+    <span class="xp">${P.xp.toLocaleString('fr-BE')} XP</span>
     <span class="bar"><i style="width:${pct}%"></i></span>
-    <span class="nxt">${nx? `${(nx.xp-P.xp).toLocaleString('en-US')} XP → ${esc(nx.n)}` : 'max rank'}</span>
+    <span class="nxt">${nx? `${(nx.xp-P.xp).toLocaleString('fr-BE')} XP → ${esc(nx.n)}` : 'rang maximal'}</span>
     <span class="mod" id="acMod">${extra||''}</span>`;
 }
 
-/* ── API exposed to modules ─────────────────────────────────────── */
+/* ── API exposée aux modules ────────────────────────────────────── */
 const Shell={
-  /* Mounts the shell and renders the page's existing content into the screen. */
+  /* Monte la coque et rend le contenu existant de la page dans l'écran. */
   mount(moduleId){
-    ensureLoad();
+    load();
     const kids=Array.from(document.body.children);
     const outer=build(moduleId);
     document.body.appendChild(outer);
@@ -208,31 +144,27 @@ const Shell={
     paintTabs(moduleId); paintStatus('');
     return screen;
   },
-  /* Module-specific indicators, on the right of the status bar.
-     Example: Shell.status([{k:'Hours',v:'4 h',s:'warn'}]) */
+  /* Indicateurs propres au module, à droite de la barre d'état.
+     Exemple : Shell.status([{k:'Heures',v:'4 h',s:'warn'}]) */
   status(items){
     const el=document.getElementById('acMod'); if(!el) return;
     el.innerHTML=(items||[]).map(i=>
       `<span><span class="k">${esc(i.k)}</span> <span class="v ${i.s||''}">${esc(i.v)}</span></span>`
     ).join('');
   },
-  /* XP: a single counter for the whole path. Returns true on promotion. */
+  /* XP : un seul compteur pour tout le parcours. Retourne true si promotion. */
   award(moduleId, xp){
-    ensureLoad();
     const before=rankOf(P.xp).n;
     P.xp+=xp;
     const rec=P.modules[moduleId]||{done:0,started:true};
     rec.started=true; P.modules[moduleId]=rec;
     save();
-    bumpStreak();
-    loadSK(); SK.daily={date:todayStr(), done:true}; saveSK();
     const after=rankOf(P.xp);
     paintStatus(document.getElementById('acMod')?.innerHTML||'');
     if(after.n!==before){ Shell.promote(after); return true; }
     return false;
   },
   complete(moduleId, n){
-    ensureLoad();
     const rec=P.modules[moduleId]||{done:0};
     rec.done=Math.max(rec.done||0, n||((rec.done||0)+1));
     rec.started=true; P.modules[moduleId]=rec; save();
@@ -242,7 +174,7 @@ const Shell={
     const el=document.getElementById('acRank'); if(!el) return;
     el.innerHTML=`<div class="k">PROMOTION</div><div class="art">${r.art}</div>
       <h2>${esc(r.n)}</h2><p>${esc(r.blurb)}</p>
-      <button onclick="AcademyShell.closeRank()">CONTINUE</button>`;
+      <button onclick="AcademyShell.closeRank()">CONTINUER</button>`;
     el.classList.add('on');
   },
   closeRank(){ const el=document.getElementById('acRank'); if(el) el.classList.remove('on'); },
@@ -251,97 +183,11 @@ const Shell={
     const t=document.createElement('div'); t.className='ac-toast'; t.textContent=msg;
     s.appendChild(t); setTimeout(()=>t.remove(),2700);
   },
-  get xp(){ ensureLoad(); return P.xp; },
-  get rank(){ ensureLoad(); return rankOf(P.xp); },
-  get ranks(){ return RANKS; },
+  get xp(){ return P.xp; },
+  get rank(){ return rankOf(P.xp); },
   get modules(){ return MODULES; },
-  get progress(){ ensureLoad(); return P; },
-  reset(){ P={xp:0,modules:{},user:'analyst',migrated:true}; save();
-    SK={skills:{},badges:[],streak:{count:0,last:null},daily:{date:null,done:false},seenLaw:[]}; saveSK();
-    location.reload(); },
-
-  /* ── skill tree ── */
-  get skillDefs(){ return SKILLS; },
-  get skills(){
-    loadSK();
-    return SKILLS.map(s=>({...s, ...masteryOf(SK.skills[s.id]||0)}));
-  },
-  awardSkill(id, xp){
-    loadSK();
-    const before=masteryOf(SK.skills[id]||0).tier;
-    SK.skills[id]=(SK.skills[id]||0)+xp;
-    saveSK();
-    const after=masteryOf(SK.skills[id]).tier;
-    return after>before ? masteryOf(SK.skills[id]) : null; /* returns tier-up info, else null */
-  },
-  markLawSeen(article){
-    if(!article) return false;
-    loadSK();
-    if(SK.seenLaw.includes(article)) return false;
-    SK.seenLaw.push(article); saveSK();
-    return SK.seenLaw.length;
-  },
-  /* Same extraction workstation.html's markLawSeen() wrapper used to do
-     inline — a case's `law` field is a full citation sentence, not a
-     bare article number. Kept here so every module (and the shared
-     engine) can call one thing instead of repeating the regex. */
-  markLawSeenFromText(text){
-    if(!text) return false;
-    const m=String(text).match(/Art(?:icle)?\.?\s*[\dIVXLC]+(?:\([\da-z]+\))*/i);
-    if(!m) return false;
-    return Shell.markLawSeen(m[0].replace(/\s+/g,' '));
-  },
-  get lawSeenCount(){ loadSK(); return SK.seenLaw.length; },
-
-  /* ── badges ── */
-  get badgeDefs(){ return BADGES; },
-  get badges(){ loadSK(); return BADGES.map(b=>({...b, earned:SK.badges.includes(b.id)})); },
-  awardBadge(id){
-    loadSK();
-    if(SK.badges.includes(id)) return false;
-    SK.badges.push(id); saveSK();
-    return BADGES.find(b=>b.id===id) || true;
-  },
-  /* Evaluates all 10 badge conditions against current progress and
-     returns the newly-earned ones. Pure — no toast/notify here, since
-     not every host page has the same popup system; the caller decides
-     how to announce them (workstation.html's checkBadges() wrapper
-     already does, via notify()). Moved out of workstation.html so
-     ownership.html (and any future module) can call the same
-     evaluation instead of only the module that happened to define it. */
-  checkBadges(){
-    ensureLoad();
-    const newly=[];
-    const give=id=>{ const b=Shell.awardBadge(id); if(b) newly.push(b); };
-    let own=null, desk=null, lb=null, lbStats=null, deskStats=null, tabStats=null;
-    try{ own=JSON.parse(localStorage.getItem('regradar-ownership')||'null'); }catch(e){}
-    try{ desk=JSON.parse(localStorage.getItem('regradar-desk')||'null'); }catch(e){}
-    try{ lb=JSON.parse(localStorage.getItem('regradar-academy')||'null'); }catch(e){}
-    try{ lbStats=JSON.parse(localStorage.getItem('regradar-lb-stats')||'null'); }catch(e){}
-    try{ deskStats=JSON.parse(localStorage.getItem('regradar-desk-stats')||'null'); }catch(e){}
-    try{ tabStats=JSON.parse(localStorage.getItem('regradar-tab-stats')||'null'); }catch(e){}
-    const ownOk = own&&own.done ? Object.values(own.done).filter(x=>x==='right').length : 0;
-    const deskSeen = desk&&desk.seen ? Object.keys(desk.seen).length : 0;
-    if(ownOk>0 || deskSeen>0 || (lb&&lb.laundromat&&lb.laundromat.runs)) give('first-case');
-    if(ownOk>=6) give('ubo-detective');
-    if(desk&&desk.done&&desk.done.length>=7) give('week-one');
-    if(Shell.lawSeenCount>=10) give('by-the-book');
-    if(Shell.streak>=3) give('on-a-roll');
-    if(lbStats&&lbStats.catches>=5) give('red-flag');
-    if(lbStats&&lbStats.cleanRuns>=1) give('clean-sweep');
-    if(deskStats&&deskStats.sar>=3) give('reporter');
-    if(tabStats&&tabStats.sanc>=3) give('sanctions-hunter');
-    if(tabStats&&tabStats.news>=3) give('media-watcher');
-    return newly;
-  },
-
-  /* ── streak & daily case ── */
-  bumpStreak,
-  get streak(){ loadSK(); return SK.streak.count; },
-  get dailyDone(){ loadSK(); return SK.daily.date===todayStr() && SK.daily.done; },
-  markDailyDone(key){
-    loadSK(); SK.daily={date:todayStr(), key, done:true}; saveSK();
-  },
+  get progress(){ return P; },
+  reset(){ P={xp:0,modules:{},user:'analyste',migrated:true}; save(); location.reload(); },
 };
 
 window.AcademyShell=Shell;
