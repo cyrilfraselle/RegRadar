@@ -227,6 +227,11 @@ const title=it=>(it.title||'').replace(/^CELEX:\S+:\s*/,'');
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const hoursAgo=d=>Math.max(0,(Date.now()-new Date(d).getTime())/36e5);
 function ago(h){ if(h<1)return'now'; if(h<24)return Math.round(h)+'h'; if(h<720) return Math.round(h/24)+'d'; return Math.round(h/720)+'mo'; }
+// Publication date, not "3h ago": a compliance reader cites and files by
+// date. The year is shown only when it is not the current one.
+function pubDate(d){ try{ const x=new Date(d), y=x.getFullYear()!==new Date().getFullYear();
+  return x.toLocaleDateString('en-GB',y?{day:'numeric',month:'short',year:'numeric'}:{day:'numeric',month:'short'});
+}catch(e){return '';} }
 function fmt(d){ try{return new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return d||'';} }
 function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
   h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}}
@@ -302,7 +307,7 @@ function itemRow(it,themes){
         ${doc}${life}${tag}
       </div>
     </div>
-    <span class="when">${ago(hoursAgo(it.date))}</span>
+    <span class="when" title="${esc(fmt(it.date))}">${pubDate(it.date)}</span>
   </div>`;
 }
 function wireRows(){
