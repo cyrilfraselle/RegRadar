@@ -106,7 +106,9 @@ function collectTextNodes(root){
       let p = node.parentElement;
       if(!p) return NodeFilter.FILTER_REJECT;
       if(SKIP_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
-      if(p.closest('.gl-term, .gl-tip')) return NodeFilter.FILTER_REJECT;
+      // [data-no-glossary] opts a whole region out (e.g. the site menu,
+      // where "AML/KYC Glossary" must stay a plain label).
+      if(p.closest('.gl-term, .gl-tip, [data-no-glossary]')) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT;
     }
   });
