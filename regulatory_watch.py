@@ -47,6 +47,7 @@ from classification_v3 import (
     is_in_subject_scope,
     WHOLE_CORPUS_SOURCES,
     LEGAL_WEIGHT,
+    DOC_TYPES,
     REFINED_GNEWS_SOURCES,
     OFFICIAL_REGULATOR_SOURCES,
     GOOGLE_NEWS_SOURCES,
@@ -204,36 +205,55 @@ SOURCES = [
         "url": "https://www.fsma.be/en/news-articles/rss.xml",
         "couleur": "#185FA5",
     },
+    # fsma_circulaires removed 2026-09-24: /fr/circulaires 404s and the
+    # FSMA site no longer has a circulars listing page. FSMA announces
+    # each new circular in its news feed (fsma_rss), so they still land.
     {
-        "id": "fsma_circulaires",
-        "nom": "FSMA — Circulaires",
-        "pays": "BE",
-        "type": "scraping",
-        "url": "https://www.fsma.be/fr/circulaires",
-        "selecteur_articles": "article, div.node--type-circular, div.views-row, li.views-row",
-        "selecteur_titre": "h2 a, h3 a, span.field-content a, a.node__title",
-        "selecteur_date": "time, span.date-display-single, div.field--name-field-date",
-        "selecteur_lien": "h2 a, h3 a, a.node__title, a",
-        "couleur": "#185FA5",
-    },
-    {
+        # The old /fr/rss/communiques-de-presse path 404s since the NBB
+        # site rebuild. Verified 2026-09-24: 20 items, same-week.
         "id": "bnb_rss",
         "nom": "BNB / NBB",
         "pays": "BE",
         "type": "rss",
-        "url": "https://www.nbb.be/fr/rss/communiques-de-presse",
+        "url": "https://www.nbb.be/en/news_rss.xml",
         "couleur": "#185FA5",
     },
     {
+        "id": "bnb_publications",
+        "nom": "BNB / NBB — Publications",
+        "pays": "BE",
+        "type": "rss",
+        "url": "https://www.nbb.be/en/publication_rss.xml",
+        "couleur": "#185FA5",
+    },
+    {
+        # The single most useful Belgian page: every supervisory output
+        # in one list — circulars, communications, decisions (e.g. AML
+        # sanctions under Art. 93 of the Law of 18 Sept 2017), newly
+        # published Belgian laws and public notices. No RSS exists, so
+        # it is scraped; the category label goes into the summary so the
+        # classifier sees "Circulars and communications" / "Decisions".
+        # Verified 2026-09-24.
         "id": "bnb_circulaires",
-        "nom": "BNB — Circulaires",
+        "nom": "BNB — Supervision (circulars, decisions)",
         "pays": "BE",
         "type": "scraping",
-        "url": "https://www.nbb.be/fr/supervision-financiere/surveillance-prudentielle/circulaires-et-communications",
-        "selecteur_articles": "tr, div.item-list li, article",
-        "selecteur_titre": "td a, li a, h3 a",
-        "selecteur_date": "td:first-child, time",
+        "url": "https://www.nbb.be/en/financial-supervision/news",
+        "selecteur_articles": "div.views-row",
+        "selecteur_titre": ".node-supervision-update-teaser__label",
+        "selecteur_date": "time",
         "selecteur_lien": "a",
+        "selecteur_resume": ".node-supervision-update-teaser__top-type",
+        # The NBB's own category is more reliable than guessing from the
+        # title ("Loi du 22 juillet 2026 … transposition de la directive"
+        # is a Belgian law, not a directive).
+        "types_par_categorie": {
+            "Circulars and communications": "circular",
+            "Belgian laws": "national_law",
+        },
+        # Publishes a few times a month; a 7-day window would mark a
+        # decision seen-and-skipped whenever a run is missed.
+        "lookback_jours": 45,
         "couleur": "#185FA5",
     },
  
@@ -252,23 +272,21 @@ SOURCES = [
         "url": "https://www.esma.europa.eu/rss.xml",
         "couleur": "#0F6E56",
     },
+    # esma_qa removed 2026-09-24: the document-library URL 404s. ESMA
+    # announces new Q&As in its main feed (esma_rss).
     {
-        "id": "esma_qa",
-        "nom": "ESMA — Q&A",
-        "pays": "EU",
-        "type": "scraping",
-        "url": "https://www.esma.europa.eu/document-library/questions-and-answers",
-        "selecteur_articles": "article, div.views-row, li.document-list__item",
-        "selecteur_titre": "h3 a, h2 a, span.field-content a, a.document-title",
-        "selecteur_date": "time, span.date-display-single",
-        "selecteur_lien": "h3 a, h2 a, a",
-        "couleur": "#0F6E56",
-    },
-    {
+        # EBA's feed is not a list of publications: each entry is a daily
+        # "EBA E-mail alert" bundling several (press releases, final Q&As,
+        # consultations). As single entries they read as noise and were
+        # dropped — which is how the final Guidelines on third-party risk
+        # (18 Sept 2026) never surfaced. "digest" splits each alert into
+        # its individual publications.
         "id": "eba_rss",
         "nom": "EBA",
         "pays": "EU",
         "type": "rss",
+        "digest": True,
+        "lookback_jours": 14,
         "url": "https://www.eba.europa.eu/rss.xml",
         "couleur": "#0F6E56",
     },
@@ -281,11 +299,20 @@ SOURCES = [
         "couleur": "#0F6E56",
     },
     {
+        # Old news.en.rss path 404s. Verified 2026-09-24: 15 items each.
         "id": "ecb_supervision_rss",
         "nom": "ECB — Banking Supervision",
         "pays": "EU",
         "type": "rss",
-        "url": "https://www.bankingsupervision.europa.eu/rss/news.en.rss",
+        "url": "https://www.bankingsupervision.europa.eu/rss/press.html",
+        "couleur": "#0F6E56",
+    },
+    {
+        "id": "ecb_supervision_pub",
+        "nom": "ECB — Banking Supervision publications",
+        "pays": "EU",
+        "type": "rss",
+        "url": "https://www.bankingsupervision.europa.eu/rss/pub.html",
         "couleur": "#0F6E56",
     },
     {
@@ -314,24 +341,52 @@ SOURCES = [
         "couleur": "#1750C4",
     },
     {
+        # EU agency sites (europa.eu "ewcms") expose one RSS per listing
+        # page at /node/<id>/rss_en; the old /rss_en path 404s.
+        # Verified 2026-09-24: 30 items each.
         "id": "eiopa_rss",
         "nom": "EIOPA",
         "pays": "EU",
         "type": "rss",
-        "url": "https://www.eiopa.europa.eu/rss_en",
+        "url": "https://www.eiopa.europa.eu/node/4816/rss_en",
         "couleur": "#0F6E56",
     },
+    # eiopa_publications (/node/3/rss_en) deliberately not used: on
+    # 2026-09-22 EIOPA re-dated dozens of old documents (e.g. "Opinion on
+    # the 2020 review of Solvency II") in bulk, so the feed cannot tell
+    # new from old. EIOPA's press releases (above) announce what matters.
     {
+        # AMLA restructured its site: /publications is now an empty
+        # language-selection shell, which is why the scraper found
+        # nothing. Same ewcms per-listing feeds as EIOPA.
+        # Verified 2026-09-24.
         "id": "amla_rss",
         "nom": "AMLA",
         "pays": "EU",
-        "type": "scraping",
-        # AMLA is new (est. 2024) — scraping their publications page
-        "url": "https://www.amla.europa.eu/publications",
-        "selecteur_articles": "article, div.publication, li.publication-item, div.views-row",
-        "selecteur_titre": "h2 a, h3 a, a.publication-title",
-        "selecteur_date": "time, span.date",
-        "selecteur_lien": "a",
+        "type": "rss",
+        "url": "https://www.amla.europa.eu/node/19/rss_en",
+        "couleur": "#6B2D8B",
+    },
+    {
+        # Open consultations on draft RTS/ITS — the AMLR single rulebook
+        # being written. Each carries a response deadline and stays open
+        # ~3 months, so its publication date alone would age it out of
+        # the default 7-day window while it is still actionable.
+        "id": "amla_consultations",
+        "nom": "AMLA — Consultations",
+        "lookback_jours": 90,
+        "pays": "EU",
+        "type": "rss",
+        "url": "https://www.amla.europa.eu/node/8/rss_en",
+        "couleur": "#6B2D8B",
+    },
+    {
+        # Thematic notes and reports (e.g. ML in the real estate sector).
+        "id": "amla_reports",
+        "nom": "AMLA — Reports & notes",
+        "pays": "EU",
+        "type": "rss",
+        "url": "https://www.amla.europa.eu/node/267/rss_en",
         "couleur": "#6B2D8B",
     },
     {
@@ -673,7 +728,11 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "fr-BE,fr;q=0.9,en;q=0.8",
-    "Accept-Encoding": "gzip, deflate, br",
+    # No "br": requests only decodes Brotli when the optional brotli
+    # package is installed. Advertising it made the NBB (and any other
+    # Brotli-capable site) answer in bytes BeautifulSoup could not read,
+    # so scraped sources returned zero items with no error.
+    "Accept-Encoding": "gzip, deflate",
     "Connection": "keep-alive",
 }
  
@@ -743,11 +802,14 @@ def lire_flux_rss(source: dict) -> list[dict]:
         if feed is None:
             raise last_err
  
+        if source.get("digest"):
+            return _exploser_digest(source, feed)
+
         for entry in feed.entries:
             titre = entry.get("title", "").strip()
             lien = entry.get("link", "")
             resume = entry.get("summary", entry.get("description", ""))
- 
+
             # Nettoyage HTML dans le résumé
             if resume:
                 soup = BeautifulSoup(resume, "html.parser")
@@ -779,14 +841,52 @@ def lire_flux_rss(source: dict) -> list[dict]:
         FETCH_FAILED[source["id"]] = True
 
     return articles
- 
- 
+
+
+def _exploser_digest(source: dict, feed) -> list[dict]:
+    """Splits digest entries (one entry = one day's bundle of links, each
+    under a section heading such as "News & Press" or "Consultations")
+    into one article per link. The section heading becomes the summary,
+    so the classifier sees "Consultations" / "Final Q&As"."""
+    articles = []
+    vus_liens = set()
+    for entry in feed.entries:
+        date_pub = None
+        if getattr(entry, "published_parsed", None):
+            date_pub = datetime(*entry.published_parsed[:6])
+        else:
+            date_pub = datetime.now()
+        soup = BeautifulSoup(entry.get("summary", ""), "html.parser")
+        for champ in soup.select("div.field"):
+            label = champ.select_one(".field__label")
+            section = label.get_text(strip=True) if label else ""
+            for a in champ.select("a[href]"):
+                # The same press release is often repeated across the
+                # News & Press and Consultations sections of one alert.
+                lien = a["href"]
+                titre = a.get_text(" ", strip=True).lstrip("​")
+                if not titre or lien in vus_liens:
+                    continue
+                vus_liens.add(lien)
+                articles.append({
+                    "titre": titre,
+                    "lien": lien,
+                    "resume": section,
+                    "date": date_pub,
+                    "source_id": source["id"],
+                    "source_nom": source["nom"],
+                    "pays": source["pays"],
+                    "couleur": source.get("couleur", "#333"),
+                })
+    return articles
+
+
 def scraper_page(source: dict) -> list[dict]:
     """Scrape une page HTML et retourne une liste d'articles normalisés."""
     articles = []
     try:
         log.info(f"SCRAPE → {source['nom']}")
-        resp = requests.get(source["url"], headers=HEADERS, timeout=15)
+        resp = requests.get(source["url"], headers=HEADERS, timeout=45)
         resp.raise_for_status()
         soup = BeautifulSoup(resp.text, "html.parser")
  
@@ -823,11 +923,18 @@ def scraper_page(source: dict) -> list[dict]:
                     except Exception:
                         continue
  
+            # Optional category label (e.g. NBB "Circulars and communications")
+            resume = ""
+            if source.get("selecteur_resume"):
+                el_resume = bloc.select_one(source["selecteur_resume"])
+                if el_resume:
+                    resume = el_resume.get_text(" ", strip=True)
+
             if titre:
                 articles.append({
                     "titre": titre,
                     "lien": lien,
-                    "resume": "",
+                    "resume": resume,
                     "date": date_pub,
                     "source_id": source["id"],
                     "source_nom": source["nom"],
@@ -837,7 +944,8 @@ def scraper_page(source: dict) -> list[dict]:
  
     except Exception as e:
         log.error(f"Erreur scraping {source['nom']}: {e}")
- 
+        FETCH_FAILED[source["id"]] = True
+
     return articles
  
  
@@ -963,6 +1071,12 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
     resultats = []
     limite_date = datetime.now() - timedelta(days=CONFIG["lookback_jours"])
  
+    lookback_source = {s["id"]: s["lookback_jours"] for s in SOURCES
+                       if "lookback_jours" in s}
+    types_categorie = {s["id"]: s["types_par_categorie"] for s in SOURCES
+                       if "types_par_categorie" in s}
+    labels_types = {d[0]: (d[1], d[2]) for d in DOC_TYPES}
+
     for art in articles:
         # Filtre — déjà vu ET traité ?
         art_id = generer_id(art["lien"], art["titre"])
@@ -971,7 +1085,10 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
             continue
 
         # Filtre — trop ancien ?
-        if art["date"] < limite_date:
+        limite = limite_date
+        if art["source_id"] in lookback_source:
+            limite = datetime.now() - timedelta(days=lookback_source[art["source_id"]])
+        if art["date"] < limite:
             vus.add(art_id)  # marquer comme vu pour ne plus traiter
             continue
 
@@ -1023,6 +1140,10 @@ def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
         resume = art.get("resume", "")
         doc_id, doc_label, legal_status = classify_doc_type(
             art["titre"], resume, art["source_id"])
+        force = types_categorie.get(art["source_id"], {}).get(resume)
+        if force in labels_types:
+            doc_id = force
+            doc_label, legal_status = labels_types[force]
         art["doc_type"] = doc_id
         art["doc_label"] = doc_label
         art["legal_status"] = legal_status

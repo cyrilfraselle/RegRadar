@@ -27,10 +27,11 @@ from datetime import datetime
 
 # Tier 1 — Official regulator feeds. These CAN be marked critical.
 OFFICIAL_REGULATOR_SOURCES = {
-    "fsma_rss", "fsma_circulaires", "bnb_rss", "bnb_circulaires",
-    "esma_rss", "esma_qa", "eba_rss", "ecb_rss", "ecb_supervision_rss",
-    "eurlex_ojl", "eurlex_proposals", "eiopa_rss", "amla_rss", "esrb_rss",
-    "srb_rss", "fsb_rss", "ec_presscorner",
+    "fsma_rss", "bnb_rss", "bnb_publications", "bnb_circulaires",
+    "esma_rss", "eba_rss", "ecb_rss", "ecb_supervision_rss",
+    "ecb_supervision_pub", "eurlex_ojl", "eurlex_proposals",
+    "eiopa_rss", "amla_rss", "amla_consultations",
+    "amla_reports", "esrb_rss", "srb_rss", "fsb_rss", "ec_presscorner",
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -140,7 +141,9 @@ def classify_doc_type(title: str, summary: str = "", source_id: str = ""):
     # comment — flagging work that isn't due yet as work that is.
     _CONSULT = ("consults on", "consultation paper", "call for evidence",
                 "call for input", "call for advice", "discussion paper",
-                "public consultation", "seeks views", "seeks feedback")
+                "public consultation", "seeks views", "seeks feedback",
+                # AMLA's own titles: "Consultation on the draft RTS on …"
+                "consultation on")
     if any(p in text for p in _CONSULT):
         if is_primary:
             return "consultation", "Consultation", "not-yet-binding"
