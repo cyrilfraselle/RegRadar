@@ -38,7 +38,13 @@ jobs:
           EMAIL_RECIPIENTS:   ${{ secrets.EMAIL_RECIPIENTS }}
         run: python regulatory_watch.py --maintenant
 
-      # 5. Pousse les données mises à jour sur le repo (le site se rafraîchit alors tout seul)
+      # 5. Vérifie les données avant de les publier : un fichier tronqué
+      #    (timeout Groq, flux mort) ferait échouer ce pas et bloquerait le
+      #    commit, au lieu de casser le site.
+      - name: Validate data
+        run: python validate_data.py
+
+      # 6. Pousse les données mises à jour sur le repo (le site se rafraîchit alors tout seul)
       - name: Commit updated data
         run: |
           git config user.name  "regradar-bot"

@@ -56,33 +56,6 @@
     "relevance": ""
   },
   {
-    "id": "95be5c1b9eff35c11ee7540254abd50b",
-    "title": "Cryptoasssets regulation: Draft amendments to FSMA 2000 (Cryptoassets) Regulations 2026 - Norton Rose Fulbright",
-    "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQdlhfSWJBZXRTcExhSGt6ZkNpVDhHV0xsbU1uRVZXd0xJSUxPYWo4N2dZRG9PSVdyN2NkVXRaZ2dwSDdyclJTZnkyb0FqbFBLeDY1aUpKSS1EOGt1VElaOGpKbTFmNkdTNFhoOU9VVHFFamV6WlQwb0Q3T09KQXJ1Z2dBcmkzQ2hablhPb0xZblVOakFvZExDYUJzMFpJU0lrLS1rUmRaaWxBYTY1OGJZcl95NFhPU2lKSEVvaFNmWXcwNFFwYmlNdlBqUElqRDRJRWRBM09uUWRuUmdUR2tyd0RSZHBTZw?oc=5",
-    "date": "2026-09-23T20:14:26",
-    "source": "GNews — FSMA / BNB",
-    "source_id": "gnews_fsma_bnb",
-    "country": "BE",
-    "color": "#185FA5",
-    "impact": 2,
-    "themes": [
-      "MiCA/Crypto"
-    ],
-    "doc_type": "news",
-    "doc_label": "News coverage",
-    "legal_status": "informational",
-    "legal_weight": 1,
-    "lifecycle": "",
-    "lifecycle_label": "",
-    "summary": "Cryptoasssets regulation: Draft amendments to FSMA 2000 (Cryptoassets) Regulations 2026 Norton Rose Fulbright",
-    "so_what": "",
-    "action": "",
-    "deadline": "",
-    "jurisdiction": "",
-    "entities": [],
-    "relevance": ""
-  },
-  {
     "id": "e2809dd267abde729e2dd641dcc4d5ab",
     "title": "Philip R. Lane: The Outlook for the Euro Area Economy",
     "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260923_1~ac21bf46e3.en.pdf",
@@ -538,7 +511,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "I’m delighted to be taking part in this edition of the Bank Resolution Academy . Let me begin by thanking the Florence School of Banking and Finance for the invitation, and for their continued investment in something too easily taken for granted: building a community of practitioners with a common understanding of supervision and resolution. Today, I can offer you a point of view, shaped by my own particular experiences in this field. I spent five years at the Single Resolution Board, responsible for resolution planning and decision-making, and – since last year – I’ve served as a member of European banking supervision’s Supervisory Board.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -565,7 +538,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "Banking is, in essence, about processing information and making predictions – about the future liquidity needs of depositors, the ability of borrowers to repay loans, the quality of collateral. Some of the necessary information is measurable, while some is rather “soft” and comes from repeated interaction with customers. Traditionally, banks have had a key competitive advantage over other financial institutions: by providing different financial services under one roof, they obtain valuable information to make predictions. Digital innovation may thus change banks’ competitive advantages – it can hinder or boost their business models.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -700,7 +673,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -839,7 +812,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -866,7 +839,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1252,7 +1225,7 @@
     "legal_weight": 7,
     "lifecycle": "published",
     "lifecycle_label": "Published",
-    "summary": "News & Press",
+    "summary": "As part of the European Banking Authority’s (EBA) ongoing efforts to simplify its regulatory framework, the Guidelines focus on third-party arrangements supporting critical or important functions (CIFs) namely the disruption of which would materially impair the performance of a financial entity. By concentrating on these higher-risk arrangements, the Guidelines reduce unnecessary operational and supervisory burdens for less material ones while maintaining sound risk management.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1273,13 +1246,13 @@
     "themes": [
       "General"
     ],
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
+    "doc_type": "qa",
+    "doc_label": "Q&A",
+    "legal_status": "interpretive",
+    "legal_weight": 6,
     "lifecycle": "guidance",
     "lifecycle_label": "Guidance",
-    "summary": "Final Q&As",
+    "summary": "How a negative amount of fair value changes of hedged items should be reported in template Z02.00? Due to interest rates increase, the fair value changes of some hedged financial liabilities (e.g., sight accounts, term accounts and saving bonds) to be reported in template Z02.00 can become negative. Please note that in this case, the fair value changes of these liabilities is reported as negative amount in FINREP (F01.02 r0160).",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1300,13 +1273,13 @@
     "themes": [
       "Market Infrastructure"
     ],
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
+    "doc_type": "qa",
+    "doc_label": "Q&A",
+    "legal_status": "interpretive",
+    "legal_weight": 6,
     "lifecycle": "guidance",
     "lifecycle_label": "Guidance",
-    "summary": "Final Q&As",
+    "summary": "How cash collateral received as variation margin for intragroup Repo trades be reported in Z11.00 and Z02.00 when the underlying Repo has already matured? What should be the insolvency ranking (c0030) of this balance intragroup variation margin in Z11.00? We want to confirm how balance of cash collateral received as variation margin for intra group Repurchase Agreements have to be reported in Z11.00 and Z02.00 when the underlying Repo has already matured. We would also like to confirm the insolvency class of this balance intragroup variation margin received for Repo.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1327,13 +1300,13 @@
     "themes": [
       "General"
     ],
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
+    "doc_type": "qa",
+    "doc_label": "Q&A",
+    "legal_status": "interpretive",
+    "legal_weight": 6,
     "lifecycle": "guidance",
     "lifecycle_label": "Guidance",
-    "summary": "Final Q&As",
+    "summary": "Where a reporting entity receives services from an affiliated entity and relies on applications that are owned, managed and operated by that affiliated service provider, should those applications be reported in template Z08.02 by the receiving entity? Alternatively, should template Z08.02 be limited to operational assets that are owned, managed or directly controlled by the reporting entity, with dependencies on affiliate-owned applications being reflected through the relevant service provider and outsourcing/inter-affiliate reporting templates? Template Z08.02 requires the reporting of operational assets supporting critical functions and core business lines, including applications and…",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1354,13 +1327,13 @@
     "themes": [
       "General"
     ],
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
+    "doc_type": "qa",
+    "doc_label": "Q&A",
+    "legal_status": "interpretive",
+    "legal_weight": 6,
     "lifecycle": "guidance",
     "lifecycle_label": "Guidance",
-    "summary": "Final Q&As",
+    "summary": "In Z_08.02, are we expected to map operational assets to external services or only to intra-entity services? If we are expected to map operational assets to external services, for external services which relate to support we receive on IT systems, should columns 0030, 0080, 0040 and 0050 be populated with data related to the respective IT system or should they be left blank? Additionally, if we report a service related to physical transportation of cash, should columns 0030, 0080, 0040 and 0050 be left blank considering that we don't need any asset to receive the service from the external provider? The guidelines on populating the Z_08.02 template do not specify how columns 0030, 0080, 0040…",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1632,7 +1605,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -1852,7 +1825,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "News & Press",
+    "summary": "​Following a plenary vote in the European Parliament, Thomas Gstädtner has been confirmed as the new Executive Director of the European Banking Authority (EBA). Thomas Gstädtner, who will serve a five-year renewable term, was selected by the EBA Board of Supervisors from a shortlist of candidates following an open selection procedure.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -2205,7 +2178,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -2232,7 +2205,7 @@
     "legal_weight": 1,
     "lifecycle": "published",
     "lifecycle_label": "Published",
-    "summary": "News & Press",
+    "summary": "The European Banking Authority (EBA) issued today an updated list of validation rules defined in its reporting frameworks, as part of its regular quarterly review process. The revised package identifies rules that (i) have been deactivated due to inaccuracies or IT-related issues, or (ii) have been reactivated.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -2367,7 +2340,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -2394,7 +2367,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -2803,7 +2776,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -2830,7 +2803,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -3375,7 +3348,7 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": "",
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4165,7 +4138,7 @@
     "themes": [
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4327,7 +4300,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "We are deeply saddened by the tragic gas incident that occurred at the Single Resolution Board's Treurenberg premises in Brussels on Friday afternoon, 14 August. All SRB staff had been safely evacuated from the building before the explosions occurred. Our thoughts are with everyone affected. We extend our sincere condolences to the family and colleagues of the firefighter who lost his life, and to those who were injured. The SRB remains in close contact with the Belgian authorities and emergency services as they continue to establish the circumstances surrounding the incident. We are grateful to the emergency services for their response and continued work.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4463,7 +4436,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4601,7 +4574,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "In his role as FSB Regional Engagement Chair, Ayman M. Al-Sayari, Governor of the Saudi Central Bank (SAMA), will advise the FSB Chair and Plenary on how to enhance the Regional Consultative Groups’…",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4628,7 +4601,7 @@
     "themes": [
       "Enforcement/Fines"
     ],
-    "summary": "",
+    "summary": "The FSMA wishes to draw the attention of the public to fake information sites that steal the identity of Belgian media to promote fraudulent trading platforms. These fake websites fraudulently use the visual identity and name of well-known Belgian or international media outlets (Le Soir, La Libre, HLN, Euronews, etc.) to lend credibility to the investment offers they promote. The FSMA therefore urges consumers to be particularly vigilant.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4736,7 +4709,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) warns the public against the activities of Levels Socials, which irregularly offers investment services in Belgium.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -4932,17 +4905,17 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Consultation responses to ‘Sound Practices for Responsible Adoption of Artificial Intelligence (AI): Consultation report‘.",
     "so_what": "",
     "action": "",
     "deadline": "",
     "jurisdiction": "",
     "entities": [],
     "relevance": "",
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
+    "doc_type": "consultation",
+    "doc_label": "Consultation",
+    "legal_status": "not-yet-binding",
+    "legal_weight": 4,
     "lifecycle": "consultation",
     "lifecycle_label": "Consultation"
   },
@@ -4959,7 +4932,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) warns the public against the activities of unauthorized lenders who offer consumers fake credit.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5178,7 +5151,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Single Resolution Board (SRB) publishes its fourth assessment of banks’ resolvability across the Banking Union. The Single Resolution Board (SRB) publishes its fourth assessment of banks’ resolvability across the Banking Union. Banks have made progress across all resolvability dimensions, but further work remains in certain areas. Banks have made progress across all resolvability dimensions, but further work remains in certain areas. The SRB is transitioning towards a testing-focused approach to assess banks’ operational readiness and crisis preparedness. The SRB is transitioning towards a testing-focused approach to assess banks’ operational readiness and crisis preparedness.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5205,7 +5178,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "SRB publishes Operational Guidance for banks on Business Reorganisation Plan Analysis Reports and quantitative template in response to an industry request The guidance follows the public consultation from 3 February to 30 March 2026 The Single Resolution Board (SRB) today publishes its Operational Guidance for banks on Business Reorganisation Plan Analysis Reports alongside a complementary quantitative template . The documents provide banks with a consolidated, transparent framework to strengthen their crisis preparedness and resolvability, without introducing new requirements.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5232,7 +5205,7 @@
     "themes": [
       "MiCA/Crypto"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5313,7 +5286,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "In this speech, John Schindler, FSB Secretary General, addresses the importance of international organisations in a shifting geopolitical landscape.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5396,7 +5369,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The FSMA warns the Belgian public against the activities of Cédric Bergans in the area of financial products and services.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5423,7 +5396,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Trading in the financial instruments of IEP INVEST, ISIN BE0003748622, on Euronext Brussels is suspended on the request of the company from 24/07/2026 at 16:40 CET until the publication of a press release.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5504,7 +5477,7 @@
     "themes": [
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5531,7 +5504,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5639,7 +5612,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) has published a new edition of its quarterly dashboard of Belgian public open-ended investment funds, generally referred to as investment funds. The overview presented in this dashboard covers the first quarter of the year 2026.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5693,7 +5666,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Average MREL target was 27.8% of Total Risk Exposure Amount (TREA) Average MREL target was 27.8% of Total Risk Exposure Amount (TREA) The SRB today publishes its MREL Dashboard for H2 2025 which shows that banks continue to meet their MREL targets. MREL aims to ensure that a bank maintains sufficient loss-absorbing capacity to ensure that in resolution its shareholders and creditors would absorb the costs of any failure of the bank. The MREL dashboard tracks the evolution of these targets and shortfalls for external and internal MREL, as well as the level and composition of MREL instruments.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5720,7 +5693,7 @@
     "themes": [
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "From a crisis management perspective, the SRB appreciates the report's comprehensive approach, blending simplification with measures to foster market integration, from deposit insurance to liquidity in resolution. This aligns with the SRB view that competitiveness is best fostered not only by simpler, fewer rules, but also by completing the Banking Union to reap the benefits of a true Single Market. The SRB recommends to pursue the development of these first ideas while finding the right balance between flexibility and predictability.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5855,7 +5828,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Bank of Mauritius hosts FSB Sub-Saharan Africa group in Mauritius.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5909,7 +5882,7 @@
     "themes": [
       "Enforcement/Fines"
     ],
-    "summary": "",
+    "summary": "One of the tasks entrusted to the Financial Services and Markets Authority (FSMA) is to combat unlawful activities in the area of financial investments. The FSMA publishes a dashboard that provides statistics as well as an overview of the main trends regarding investment fraud. The dashboard for the first half of 2026 is now available.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5963,7 +5936,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Good afternoon, Madam Chair, Honourable Members, ladies and gentlemen. Let me start with a brief update on the SRB's work before moving on to simplification, competitiveness and the international dimension of resolution. A few days ago, we published our 2025 Annual Report . I will not dwell on it today, as I have kept this Committee regularly informed throughout the year. Let me simply highlight four points. First, we continued strengthening banks' resolvability through testing, crisis exercises and on-site inspections. Second, following the entry into force of the Crisis Management and Deposit Insurance review, we started working on its implementation.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -5990,7 +5963,7 @@
     "themes": [
       "MiCA/Crypto"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6003,33 +5976,6 @@
     "legal_weight": 1,
     "lifecycle": "",
     "lifecycle_label": ""
-  },
-  {
-    "id": "6bf5f91e1fd5b4414a12acc99e996344",
-    "title": "FCA: EIOPA guidelines on outsourcing to cloud service providers - CMS.law",
-    "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPdzd1cUNlMEM0b3V2dDB4YVJxTENxZVZ4MTZWYjdZSmFOZ0oySk9JTm83TE5UbVVmTy1uMVlFT2wxUTF2aGJkQmVnM2hhV3ZpcGFBYnFKUmN2T2wtc3I1dEp0bHlDMkE4aWJURHRXOTFnR3lFQWV3RzRFX1VpMGNsQU50N1BrR1A1cTBiV0NkUkpiWXJPY2JhTnhQdVUtQ2JNWUlN?oc=5",
-    "date": "2026-07-14T07:51:28",
-    "source": "GNews — EIOPA",
-    "source_id": "gnews_eiopa",
-    "country": "EU",
-    "color": "#0F6E56",
-    "impact": 2,
-    "themes": [
-      "Solvency/Insurance"
-    ],
-    "summary": "FCA: EIOPA guidelines on outsourcing to cloud service providers CMS.law",
-    "so_what": "",
-    "action": "",
-    "deadline": "",
-    "jurisdiction": "",
-    "entities": [],
-    "relevance": "",
-    "doc_type": "news",
-    "doc_label": "News: guideline",
-    "legal_status": "informational",
-    "legal_weight": 1,
-    "lifecycle": "guidance",
-    "lifecycle_label": "Guidance"
   },
   {
     "id": "2d05247bc60f3479abe3964666ac72ac",
@@ -6098,7 +6044,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Starting on 10 July 2026, listed companies will have to file their regulated information with the FSMA via a new portal leading to an updated eCorporate platform. These developments were introduced in order to ensure that the FSMA is ready to provide the information flows needed for the launch of the European Single Access Point (ESAP).",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6125,7 +6071,7 @@
     "themes": [
       "AML/CFT"
     ],
-    "summary": "",
+    "summary": "As part of its supervisory tasks in respect of AML/CFT, the FSMA has deleted the registration of insurance intermediaries who failed to comply with their legal obligation to complete the questionnaire on prevention of money laundering and the financing of terrorism.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6181,7 +6127,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "In this speech, FSB Secretary General, John Schindler highlights the importance of resolve in resolution planning, emphasising collaboration, preparedness, in maintaining financial system resilience.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6235,7 +6181,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "It is a real pleasure to welcome you all today at this Financial Stability Board (FSB) ReSolve event. I am particularly delighted that this event has finally become a reality. In fact, one of my priorities as the Chair of the Resolution Steering Group (ReSG) was to create more opportunities for the different Cross-Border Crisis Management (CBCMs) groups to come together, exchange experiences and learn from one another across sectors. Too often, we work within our own communities, despite facing many of the same challenges.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6262,7 +6208,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The ‘FSMA Portal’ will be available from 10 July 2026. This new digital platform will serve as the single point of access for the secure transmission of information to the FSMA by the entities under its supervision.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6289,7 +6235,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "At the virtual event, hosted by OMFIF, FSB Deputy Secretary General calls for a debate on the next steps for cross-border payments beyond 2027.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6316,7 +6262,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Trading in the financial instruments of QRF, ISIN BE0974272040 on Euronext Brussels will re-open on 08/07/2026 at 15:30 CET.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6343,7 +6289,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Trading in the financial instruments of QRF, ISIN BE0974272040, on Euronext Brussels is suspended from 8/07/2026 at 9:00 CET until the publication of a press release.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6370,7 +6316,7 @@
     "themes": [
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "In this speech, Dominique Laboureix, Chair of the FSB Resolution Steering Group, discusses the importance of cross-border, cross-sectoral crisis preparedness.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6452,7 +6398,7 @@
     "themes": [
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "In her remarks, Michelle W. Bowman, Chair of the FSB Standing Committee on Supervisory and Regulatory Cooperation (SRC), discusses the FSB’s Consultation Report on the Sound Practices for Responsible…",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6588,7 +6534,7 @@
     "themes": [
       "MiCA/Crypto"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) warns the public against companies in Belgium that are offering crypto-asset services without an authorization.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6696,7 +6642,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Trading in the financial instruments of MAZARO, ISIN BE0974404361, on Euronext Brussels is suspended on the request of the company from 03/07/2026 at 11:30 CET until the publication of a press release.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6723,7 +6669,7 @@
     "themes": [
       "Enforcement/Fines"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) warns the public against several companies that offer alternative investments in the wine, energy and real estate sectors.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6750,7 +6696,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6863,7 +6809,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Single Resolution Board is planning to award Multiple Framework Service Contracts in cascade for service provision in Time and Means for development, consultancy and support in the field of Information Systems, with the following 3 Lots: Lot 1 - Consultancy services related to the conception, development and implementation of information systems (IS) : the maximum amount of the contract is EUR 35 000 000. The SRB intends to award the contract to maximum 15 economic operators. Lot 1 - Consultancy services related to the conception, development and implementation of information systems (IS) : the maximum amount of the contract is EUR 35 000 000.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6890,7 +6836,7 @@
     "themes": [
       "Solvency/Insurance"
     ],
-    "summary": "",
+    "summary": "The FSMA has published ‘Insurance products in the spotlight’, an overview of the insurance products offered on the Belgian market. The document contains key figures about the insurance sector, such as the number of providers and the types of insurance contracts, and also shows developments over time. In addition, it gives clear insight into the way the premiums collected are allocated and the sometimes significant differences among insurers in that regard.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6944,7 +6890,7 @@
     "themes": [
       "Enforcement/Fines"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) is once again drawing the public’s attention to the dangers posed by fraudulent trading platforms. These platforms lure investors online with promises of quick and easy earnings. Their offers look attractive, but they are nothing more than advanced scams that can lead to significant financial losses.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -6971,7 +6917,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) warns the public against an entity that is unlawfully active within Belgium.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7045,37 +6991,6 @@
     "lifecycle_label": "Published"
   },
   {
-    "id": "a1",
-    "title": "AMLA advisory note on money-laundering risks as MiCAR transitional period ends",
-    "url": "https://www.amla.europa.eu/advisory-note",
-    "date": "2026-06-30T06:34:59.848909",
-    "source": "AMLA",
-    "source_id": "amla_rss",
-    "country": "EU",
-    "color": "#6B2D8B",
-    "impact": 3,
-    "themes": [
-      "AML/CFT",
-      "MiCA/Crypto"
-    ],
-    "summary": "AMLA published its first advisory note on ML/TF risks tied to the end of the MiCAR transitional period on 1 July 2026.",
-    "so_what": "CASPs must demonstrate robust AML controls before the transition deadline.",
-    "action": "Review crypto onboarding and transaction monitoring before 1 July 2026.",
-    "deadline": "2026-07-01",
-    "jurisdiction": "EU",
-    "entities": [
-      "CASPs",
-      "Payment Institutions"
-    ],
-    "relevance": "high",
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
-    "lifecycle": "",
-    "lifecycle_label": ""
-  },
-  {
     "id": "986049de5d0dfb8bd5da5d2c4514eee2",
     "title": "Christine Lagarde: Back to basics in an uncertain environment",
     "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260629~cb5a2e2168.en.html",
@@ -7107,35 +7022,6 @@
     "lifecycle_label": ""
   },
   {
-    "id": "e2",
-    "title": "EBA publishes final draft RTS on liquidity reporting under CRR3",
-    "url": "https://www.eba.europa.eu/rts",
-    "date": "2026-06-29T13:34:59.848909",
-    "source": "EBA",
-    "source_id": "eba_rss",
-    "country": "EU",
-    "color": "#0F6E56",
-    "impact": 3,
-    "themes": [
-      "Capital/CRR"
-    ],
-    "summary": "EBA finalised the RTS on liquidity reporting templates under CRR3.",
-    "so_what": "Banks must update COREP reporting pipelines to the new templates.",
-    "action": "Map new templates to internal reporting systems by Q4 2026.",
-    "deadline": "",
-    "jurisdiction": "EU",
-    "entities": [
-      "Banks"
-    ],
-    "relevance": "high",
-    "doc_type": "rts_its",
-    "doc_label": "RTS / ITS",
-    "legal_status": "binding",
-    "legal_weight": 9,
-    "lifecycle": "published",
-    "lifecycle_label": "Published"
-  },
-  {
     "id": "7a231b759d4eb629d63053f7c3769c0d",
     "title": "Virtual outreach event on FSB sound practices for financial institutions’ responsible adoption of artificial intelligence",
     "url": "https://www.fsb.org/2026/06/virtual-outreach-event-on-fsb-sound-practices-for-financial-institutions-responsible-adoption-of-artificial-intelligence/",
@@ -7148,7 +7034,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "On 7 July 2026 the FSB hosted a virtual event as part of the consultation process for its proposed sound practices for financial institutions’ responsible adoption of AI. On 10 June 2026, the Financial Stability Board published a consultation report on Sound Practices for Responsible Adoption of Artificial Intelligence (AI) to help financial institutions responsibly navigate AI adoption in a rapidly evolving technological landscape. As part of its consultation, the FSB hosted a virtual outreach event on Tuesday 7 July 2026. The event aimed to inform stakeholders about the consultation and to gather preliminary perspectives on the topics covered in the consultation report.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7175,7 +7061,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "The Financial Services and Markets Authority (FSMA) has published its 2025 annual report. The report describes how the FSMA has fulfilled its mission over the past year to contribute to a financial system that is worthy of its users’ trust. On the occasion of this publication, the FSMA also outlined some pathways for the reform and strengthening of third-pillar pensions.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7218,65 +7104,6 @@
     "lifecycle_label": ""
   },
   {
-    "id": "s4",
-    "title": "ESMA issues guidelines on MiCA stablecoin reserve requirements",
-    "url": "https://www.esma.europa.eu/g",
-    "date": "2026-06-29T07:34:59.848909",
-    "source": "ESMA",
-    "source_id": "esma_rss",
-    "country": "EU",
-    "color": "#0F6E56",
-    "impact": 3,
-    "themes": [
-      "MiCA/Crypto"
-    ],
-    "summary": "ESMA clarified reserve composition and segregation rules for stablecoin issuers under MiCA.",
-    "so_what": "Stablecoin issuers must align reserve management with the clarified expectations.",
-    "action": "Review reserve attestation processes against the new guidance.",
-    "deadline": "",
-    "jurisdiction": "EU",
-    "entities": [
-      "CASPs"
-    ],
-    "relevance": "high",
-    "doc_type": "guideline",
-    "doc_label": "Guideline",
-    "legal_status": "comply-or-explain",
-    "legal_weight": 7,
-    "lifecycle": "guidance",
-    "lifecycle_label": "Guidance"
-  },
-  {
-    "id": "f5",
-    "title": "FSMA consults on updated MiFID II suitability circular",
-    "url": "https://www.fsma.be/c",
-    "date": "2026-06-29T03:34:59.848909",
-    "source": "FSMA",
-    "source_id": "fsma_rss",
-    "country": "BE",
-    "color": "#185FA5",
-    "impact": 3,
-    "themes": [
-      "MiFID/MiFIR"
-    ],
-    "summary": "FSMA opened a consultation on its updated suitability assessment circular for Belgian investment firms.",
-    "so_what": "Belgian investment firms should prepare to respond and adapt suitability processes.",
-    "action": "Submit consultation feedback before the closing date.",
-    "deadline": "2026-09-15",
-    "jurisdiction": "Belgium",
-    "entities": [
-      "Investment Firms",
-      "Asset & Wealth Managers"
-    ],
-    "relevance": "high",
-    "doc_type": "consultation",
-    "doc_label": "Consultation",
-    "legal_status": "not-yet-binding",
-    "legal_weight": 4,
-    "lifecycle": "consultation",
-    "lifecycle_label": "Consultation"
-  },
-  {
     "id": "1faf0714592fd7dba5a1d26309b1099e",
     "title": "EU watchdog proposes MiCA crypto penalty framework - grafa.com",
     "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNaHVhNDhzZ3ZJcEZRQUFxVV9uS1JpTTdRU25EUWNOUkw3SFg4cUY3LVMybzU1VXY0OUFRSWJxMG5yUFgtNnEySkRSV0ZJWGd1QWhsaUZpVEs1dC1BZlNmeG44b1NDYmJ1WGsxNmZCQnlObjBmdFZ2djVjb09nQjFCTkF1U1ZvcmMtOGlr?oc=5",
@@ -7311,96 +7138,6 @@
     "lifecycle_label": "Enforcement"
   },
   {
-    "id": "d6",
-    "title": "ECB Banking Supervision sets 2026 SREP priorities on ICT and operational resilience",
-    "url": "https://www.bankingsupervision.europa.eu",
-    "date": "2026-06-28T09:34:59.848909",
-    "source": "ECB — Banking Supervision",
-    "source_id": "ecb_supervision_rss",
-    "country": "EU",
-    "color": "#0F6E56",
-    "impact": 2,
-    "themes": [
-      "DORA",
-      "Capital/CRR"
-    ],
-    "summary": "The ECB flagged ICT risk and operational resilience as 2026 SREP focus areas.",
-    "so_what": "Banks should expect deeper DORA-related supervisory questions in 2026.",
-    "action": "Pre-empt SREP by reviewing DORA implementation gaps.",
-    "deadline": "",
-    "jurisdiction": "EU",
-    "entities": [
-      "Banks",
-      "Critical ICT Providers"
-    ],
-    "relevance": "medium",
-    "doc_type": "publication",
-    "doc_label": "Publication",
-    "legal_status": "informational",
-    "legal_weight": 1,
-    "lifecycle": "",
-    "lifecycle_label": ""
-  },
-  {
-    "id": "c7",
-    "title": "EIOPA consults on Solvency II review reporting templates",
-    "url": "https://www.eiopa.europa.eu",
-    "date": "2026-06-28T04:34:59.848909",
-    "source": "EIOPA",
-    "source_id": "eiopa_rss",
-    "country": "EU",
-    "color": "#0F6E56",
-    "impact": 3,
-    "themes": [
-      "Solvency/Insurance"
-    ],
-    "summary": "EIOPA opened a consultation on revised reporting templates under the Solvency II review.",
-    "so_what": "Insurers must prepare for revised quantitative reporting.",
-    "action": "Assess template changes against current reporting capability.",
-    "deadline": "2026-10-31",
-    "jurisdiction": "EU",
-    "entities": [
-      "Insurance Undertakings"
-    ],
-    "relevance": "medium",
-    "doc_type": "consultation",
-    "doc_label": "Consultation",
-    "legal_status": "not-yet-binding",
-    "legal_weight": 4,
-    "lifecycle": "consultation",
-    "lifecycle_label": "Consultation"
-  },
-  {
-    "id": "m8",
-    "title": "ESMA updates EMIR Refit Q&A on reporting fields",
-    "url": "https://www.esma.europa.eu/emir",
-    "date": "2026-06-27T09:34:59.848909",
-    "source": "ESMA",
-    "source_id": "esma_rss",
-    "country": "EU",
-    "color": "#0F6E56",
-    "impact": 3,
-    "themes": [
-      "Market Infrastructure"
-    ],
-    "summary": "ESMA clarified several EMIR Refit reporting fields in an updated Q&A.",
-    "so_what": "Informational — minor reporting clarifications.",
-    "action": "No action required.",
-    "deadline": "",
-    "jurisdiction": "EU",
-    "entities": [
-      "Market Infrastructure",
-      "Investment Firms"
-    ],
-    "relevance": "medium",
-    "doc_type": "qa",
-    "doc_label": "Q&A",
-    "legal_status": "interpretive",
-    "legal_weight": 6,
-    "lifecycle": "guidance",
-    "lifecycle_label": "Guidance"
-  },
-  {
     "id": "a3216942b46b4c99fe33e854cb81eb3b",
     "title": "Agreed settlement with Banque Degroof Petercam",
     "url": "http://www.fsma.be/en/news/agreed-settlement-banque-degroof-petercam",
@@ -7414,7 +7151,7 @@
       "Enforcement/Fines",
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "The agreed settlement provides for the payment of a sum of 1,000,000 euros, a commitment to transparency and a publication, with names, on the website of the Financial Services and Markets Authority (FSMA).",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7441,7 +7178,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Trading in the financial instruments of Nyrstar, ISIN BE0974294267, on Euronext Brussels will re-open on 26/06/2026 at 12:30 CET.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7526,7 +7263,7 @@
     "themes": [
       "General"
     ],
-    "summary": "",
+    "summary": "Trading in the financial instruments of Nyrstar, ISIN BE0974294267, on Euronext Brussels is suspended on the request of the company from 26/06/2026 at 09:00 CET until the publication of a press release.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7553,7 +7290,7 @@
     "themes": [
       "MiCA/Crypto"
     ],
-    "summary": "",
+    "summary": "Crypto-asset service providers (CASP) must, as of 1 July 2026, hold an authorisation as a CASP. Without such authorisation, they must cease offering these services in Europe. The European Securities and Markets Authority (ESMA) has already issued a statement on 17 April 2026 and reiterates its expectations by publishing the following communication on the matter.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7638,7 +7375,7 @@
       "Sanctions",
       "Market Infrastructure"
     ],
-    "summary": "",
+    "summary": "By a decision taken on 24 June 2026, the Sanctions Committee of the FSMA imposed an administrative fine of 350,000 euros on EXMAR NV for two infringements of Article 17 of the Market Abuse Regulation. The company had failed to publish as soon as possible the inside information that was available to it on 19 May 2020 and 18 June 2020.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7675,10 +7412,10 @@
       "Investment Firms"
     ],
     "relevance": "medium",
-    "doc_type": "rts_its",
-    "doc_label": "RTS / ITS",
-    "legal_status": "binding",
-    "legal_weight": 9,
+    "doc_type": "publication",
+    "doc_label": "Publication",
+    "legal_status": "informational",
+    "legal_weight": 1,
     "lifecycle": "adopted",
     "lifecycle_label": "Adopted"
   },
@@ -7695,7 +7432,7 @@
     "themes": [
       "Payments"
     ],
-    "summary": "",
+    "summary": "The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.",
     "so_what": "",
     "action": "",
     "deadline": "",
@@ -7722,7 +7459,7 @@
     "themes": [
       "AML/CFT"
     ],
-    "summary": "",
+    "summary": "Roundtable hosted by the Bank of Spain discusses external audit.",
     "so_what": "",
     "action": "",
     "deadline": "",

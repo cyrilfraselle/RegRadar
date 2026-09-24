@@ -113,7 +113,7 @@ def _call_groq(api_key: str, title: str, source: str, summary: str,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": USER_PROMPT_TEMPLATE.format(
-                title=title, source=source, summary=(summary or "")[:800]
+                title=title, source=source, summary=(summary or "")[:1500]
             )},
         ],
     }
@@ -162,9 +162,16 @@ def _groq_ready(api_key: str) -> bool:
     return True
 
 
+# Groq's free tier for llama-3.3-70b allows ~12K tokens a minute and
+# ~100K a day. One call is ~1.4K tokens, so 5s between calls keeps under
+# the per-minute limit, and the daily caps in regulatory_watch.py (new
+# items + backlog) keep under the daily one.
+SLEEP_BETWEEN = 5.0
+
+
 def enrich_with_groq(articles: list[dict], api_key: str,
                      min_impact: int = 2, max_calls: int = 40,
-                     sleep_between: float = 1.5) -> list[dict]:
+                     sleep_between: float = SLEEP_BETWEEN) -> list[dict]:
     """
     Add AI summaries to articles at or above `min_impact`.
 
@@ -180,6 +187,8 @@ def enrich_with_groq(articles: list[dict], api_key: str,
         return articles
 
     eligible = [a for a in articles if a.get("impact", 0) >= min_impact]
+    # Most binding first, so a quota cut-off drops commentary, not law.
+    eligible.sort(key=lambda a: (-a.get("legal_weight", 1), -a.get("impact", 0)))
     eligible = eligible[:max_calls]
     log.info(f"Groq enrichment → {len(eligible)} article(s) (impact >= {min_impact})")
 
@@ -189,7 +198,9 @@ def enrich_with_groq(articles: list[dict], api_key: str,
             api_key,
             art.get("titre", ""),
             art.get("source_nom", ""),
-            art.get("resume", ""),
+            # The publication's own text (page or PDF) when it was read;
+            # the feed teaser otherwise.
+            art.get("texte_source") or art.get("resume", ""),
         )
         if result.get("_auth_error"):
             log.error("Stopping Groq enrichment — fix the API key.")
@@ -207,6 +218,50 @@ def enrich_with_groq(articles: list[dict], api_key: str,
 
     log.info(f"Groq enrichment → {enriched_count} article(s) summarised")
     return articles
+
+
+def enrich_backlog(records: list[dict], api_key: str, max_calls: int = 15,
+                   sleep_between: float = SLEEP_BETWEEN, read_text=None) -> int:
+    """Summarise archived website records that never got an AI summary.
+
+    Items collected before summaries were broadened (or on a day the quota
+    ran out) would otherwise stay title-only forever. A few are done each
+    run, most binding first, so the archive fills in over a few weeks
+    without exceeding the free tier. Works on the website record format
+    (title / source / summary) and updates records in place.
+    `read_text(url, title)` optionally supplies the publication's text.
+    Returns the number of records summarised.
+    """
+    if not _groq_ready(api_key):
+        return 0
+    todo = [r for r in records if not r.get("so_what") and not r.get("ai_skipped")]
+    todo.sort(key=lambda r: r.get("date", ""), reverse=True)        # newest first…
+    todo.sort(key=lambda r: -r.get("legal_weight", 1))              # …within most binding first
+    todo = todo[:max_calls]
+    done = 0
+    for rec in todo:
+        text = ""
+        if read_text:
+            text = read_text(rec.get("url", ""), rec.get("title", "")) or ""
+        result = _call_groq(api_key, rec.get("title", ""), rec.get("source", ""),
+                            text or rec.get("summary", ""))
+        if result.get("_auth_error"):
+            break
+        if result:
+            rec["summary"] = result.get("summary") or rec.get("summary", "")
+            rec["so_what"] = result.get("so_what", "")
+            rec["action"] = result.get("action", "")
+            rec["deadline"] = result.get("deadline") or ""
+            rec["jurisdiction"] = result.get("jurisdiction", "")
+            rec["entities"] = result.get("entities", [])
+            rec["relevance"] = result.get("relevance", "")
+            done += 1
+        else:
+            # Don't retry the same failing item every day.
+            rec["ai_skipped"] = True
+        time.sleep(sleep_between)
+    log.info(f"Groq backlog → {done} archived item(s) summarised")
+    return done
 
 
 def build_exec_summary(articles: list[dict], api_key: str) -> str:

@@ -266,7 +266,7 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 <div class="view on" id="vTimeline"><div class="pad">
   <div class="tl-head">
     <div class="kick">REGRADAR ACADEMY</div>
-    <h1 id="tlTitle">Your first week at <em>Meridiaan Bank</em>.</h1>
+    <h1 id="tlTitle">Your first week at <em>CF Bank</em>.</h1>
     <div class="sub" id="tlSub">This is a journal, not a syllabus. Days accumulate behind you.
       What you decide on one of them can come back on another.</div>
   </div>
@@ -388,7 +388,7 @@ function toTimeline(){
   const nextDay=DAYS.find(d=>!S.done.includes(d.d));
   document.getElementById('tlTitle').innerHTML = S.done.length
     ? `Day <em>${S.done[S.done.length-1]}</em> and counting.`
-    : `Your first week at <em>Meridiaan Bank</em>.`;
+    : `Your first week at <em>CF Bank</em>.`;
   document.getElementById('tlSub').textContent = S.done.length
     ? 'A journal, not a syllabus. It grows behind you — and what you decided on one day can '
       + 'come back on another.'

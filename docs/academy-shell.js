@@ -157,7 +157,7 @@ function build(active){
     <div class="ac-machine">
       <div class="ac-title">
         <span class="dots"><i></i><i></i><i></i></span>
-        <span class="ac-sys"><b>MERIDIAAN</b><span>COMPLIANCE DESK · v4.2</span></span>
+        <span class="ac-sys"><b>CF BANK</b><span>COMPLIANCE DESK · v4.2</span></span>
         <span class="env"><i></i>SIMULATED ENVIRONMENT<span> · FICTIONAL DATA</span></span>
       </div>
       <nav class="ac-tabs" id="acTabs"></nav>
@@ -187,7 +187,7 @@ function paintStatus(extra){
   const r=rankOf(P.xp), nx=nextRank(P.xp);
   const pct=nx? Math.round((P.xp-r.xp)/(nx.xp-r.xp)*100) : 100;
   el.innerHTML=`
-    <span class="who">${esc(P.user)}@meridiaan</span>
+    <span class="who">${esc(P.user)}@cfbank</span>
     <span class="rk">${esc(r.n)}</span>
     <span class="xp">${P.xp.toLocaleString('en-US')} XP</span>
     <span class="bar"><i style="width:${pct}%"></i></span>

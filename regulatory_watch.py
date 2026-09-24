@@ -54,7 +54,9 @@ from classification_v3 import (
     compute_counts,
     build_subject,
 )
+from page_reader import read_page
 from enrichment_v3 import (
+    enrich_backlog,
     enrich_with_groq,
     build_exec_summary,
     record_week,
@@ -68,7 +70,7 @@ from intelligence_v4 import (
     build_key_dates_timeline,
     get_upcoming_dates,
 )
-from dashboard_data import export_dashboard_data
+from dashboard_data import export_dashboard_data, ITEMS_FILE
 
 # ── Optionnel : résumés automatiques via Claude API ──────────────
 try:
@@ -168,8 +170,12 @@ CONFIG = {
     "groq": {
         "actif": bool(_get("GROQ_API_KEY", "")),
         "api_key": _get("GROQ_API_KEY", ""),
-        "min_impact": 3,         # ne résumer QUE les articles critiques (économise le quota)
-        "max_calls": 12,         # plafond bas pour rester sous le rate-limit Groq gratuit
+        # Important + critical, most binding first. With 5s between calls
+        # (enrichment_v3.SLEEP_BETWEEN) 30 new + 15 backlog calls stay
+        # inside the free tier's ~100K tokens/day.
+        "min_impact": 2,
+        "max_calls": 30,
+        "backlog_calls": 15,     # archived items still without a summary
         "exec_summary": True,
     },
 
@@ -287,6 +293,11 @@ SOURCES = [
         "type": "rss",
         "digest": True,
         "lookback_jours": 14,
+        # The digest's own section headings say what each item is.
+        "types_par_categorie": {
+            "Final Q&As": "qa",
+            "Consultations": "consultation",
+        },
         "url": "https://www.eba.europa.eu/rss.xml",
         "couleur": "#0F6E56",
     },
@@ -389,17 +400,9 @@ SOURCES = [
         "url": "https://www.amla.europa.eu/node/267/rss_en",
         "couleur": "#6B2D8B",
     },
-    {
-        # NOTE: has never returned an item in the archive. Left in place
-        # (it may be network-restricted rather than dead) but treated as
-        # a known gap, not a working source.
-        "id": "esrb_rss",
-        "nom": "ESRB",
-        "pays": "EU",
-        "type": "rss",
-        "url": "https://www.esrb.europa.eu/home/rss/html/index.en.rss",
-        "couleur": "#0F6E56",
-    },
+    # esrb_rss removed 2026-09-24: its RSS URL 404s and the ESRB site
+    # (ECB platform) no longer lists a feed. Macroprudential output that
+    # matters to banks also comes through the ECB and EBA feeds.
     {
         # Single Resolution Board — verified 2026-08-25 (10 items,
         # resolvability assessments, operational guidance).
@@ -1066,6 +1069,23 @@ def est_pertinent(article: dict) -> bool:
 MAX_GNEWS_PER_SOURCE_PER_RUN = 8
 
 
+def _texte_publication(url: str, titre: str) -> str:
+    return read_page(url, titre).get("text", "")
+
+
+def lire_publications(articles: list[dict]):
+    lus = 0
+    for art in articles:
+        r = read_page(art.get("lien", ""), art.get("titre", ""))
+        if not r["text"]:
+            continue
+        lus += 1
+        art["texte_source"] = r["text"]
+        if r["kind"] == "page" and len(r["text"]) > len(art.get("resume", "")):
+            art["resume"] = r["text"]
+    log.info(f"  → {lus}/{len(articles)} publications lues")
+
+
 def filtrer_et_scorer(articles: list[dict], vus: set) -> list[dict]:
     """Filtre les articles nouveaux, pertinents, et calcule leur score."""
     resultats = []
@@ -1677,6 +1697,12 @@ def executer_veille():
     # 3. Filtrer et scorer
     log.info("─── Filtrage et scoring ───")
     nouveaux = filtrer_et_scorer(tous_articles, vus)
+
+    # Read each kept publication's own page (or PDF): the feed usually
+    # gives a title and a teaser at most. A clean page description becomes
+    # the item's summary; either kind is what the AI summary works from.
+    log.info("─── Lecture des publications ───")
+    lire_publications(nouveaux)
     log.info(f"Nouveaux articles pertinents : {len(nouveaux)}")
  
     if not nouveaux:
@@ -1750,6 +1776,18 @@ def executer_veille():
         trends=trend_results,
         source_health=SOURCE_HEALTH,
     )
+
+    # 6c. Archive backlog: a few older items summarised per run.
+    if groq_on and CONFIG["groq"].get("backlog_calls"):
+        log.info("─── Groq backlog ───")
+        try:
+            records = json.loads(ITEMS_FILE.read_text(encoding="utf-8"))
+            if enrich_backlog(records, groq_key, CONFIG["groq"]["backlog_calls"],
+                              read_text=_texte_publication):
+                ITEMS_FILE.write_text(json.dumps(records, ensure_ascii=False, indent=2),
+                                      encoding="utf-8")
+        except Exception as e:
+            log.warning(f"Backlog enrichment skipped: {e}")
  
     # 7. Email
     log.info("─── Envoi email ───")
