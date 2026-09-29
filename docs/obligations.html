@@ -86,6 +86,38 @@
 .ob-expand{font-size:11.5px;color:var(--accent);cursor:pointer;margin-top:6px;display:inline-block}
 .ob-expand:hover{text-decoration:underline}
 .disclaimer{font-size:11px;color:var(--text-3);text-align:center;margin:24px 0 40px;line-height:1.6}
+
+/* ── profile / personalization ── */
+.profile-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 4px;padding:11px 14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.profile-row .lbl{font-size:12px;color:var(--text-3)}
+.who-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--accent);
+  background:var(--accent-bg);border:1px solid var(--accent);border-radius:20px;padding:4px 11px 4px 8px;cursor:pointer}
+.who-pill:hover{opacity:.85}
+.pick-ent{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface-2);
+  color:var(--text-2);cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.pick-ent:hover{border-color:var(--accent);color:var(--accent)}
+.myreg-toggle{margin-left:auto;font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none}
+.myreg-toggle input{accent-color:var(--accent)}
+.reg-note{font-size:12px;color:var(--imp);background:var(--imp-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:9px 12px;margin:0 0 14px}
+
+.ent-pill.mine{background:var(--accent-bg);color:var(--accent);border-color:var(--accent);font-weight:700}
+.ob.dismissed{opacity:.5}
+.ob.pinned{border-left:3px solid var(--purple)}
+.ob-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.ob-act{font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface-2);
+  color:var(--text-2);cursor:pointer}
+.ob-act:hover{border-color:var(--border-strong);color:var(--text)}
+.ob-act.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.ob-act.warn.on{background:var(--crit-bg);border-color:var(--crit);color:var(--crit)}
+.ob-note-box{margin-top:8px}
+.ob-note-box textarea{width:100%;min-height:52px;padding:8px 10px;font-size:12.5px;font-family:inherit;
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);resize:vertical}
+.ob-note-view{font-size:12.5px;color:var(--text);background:var(--ok-bg);border-left:2px solid var(--ok);
+  padding:7px 10px;margin-top:8px;border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.ob-note-view b{color:var(--ok);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px}
+.dismiss-note{font-size:12px;color:var(--text-3);margin-top:6px}
 </style>
 
   <link rel="stylesheet" href="regradar.css">
@@ -100,6 +132,8 @@
   </div>
 
   <div class="stats" id="stats"></div>
+  <div class="profile-row" id="profileRow"></div>
+  <div id="regNote"></div>
 
   <div class="toolbar">
     <input class="search" id="search" placeholder="Search obligations…" oninput="render()">
@@ -119,8 +153,52 @@
 <div class="toast" id="toast"></div>
 
 <script>
-let OBS=[], META=null, ENTITY_LABEL={}, filters={status:null, entity:null, topic:null, priority:null}, openId=null;
+let OBS=[], META=null, APP=null, ENTITY_LABEL={}, filters={status:null, entity:null, topic:null, priority:null}, openId=null;
 const STATUS_ORDER={imminent:0,upcoming:1,scheduled:2,ongoing:3,passed:4};
+
+/* ── shared profile: same localStorage key regwatch.html's "What
+   applies to me" writes to, so setting it once personalizes both
+   pages. Not owned by this page — read/write in the same shape. ── */
+const PKEY='regradar-profile';
+let ENTITY='', ACTS=new Set();
+function loadProfile(){
+  try{ const p=JSON.parse(localStorage.getItem(PKEY)||'null');
+    if(p){ ENTITY=p.entity||''; ACTS=new Set(p.acts||[]); } }catch(e){}
+}
+function saveProfile(){ try{ localStorage.setItem(PKEY,JSON.stringify({entity:ENTITY,acts:[...ACTS]})); }catch(e){} }
+
+/* ── this page's own workspace: dismissed/pinned/notes, per obligation
+   id. Device-local only, same as the rest of the site's personalization. ── */
+const MYKEY='regradar-obligations-mine';
+let MINE={dismissed:{}, pinned:[], notes:{}};
+function loadMine(){
+  try{ const m=JSON.parse(localStorage.getItem(MYKEY)||'null'); if(m) MINE={...MINE, ...m}; }catch(e){}
+}
+function saveMine(){ try{ localStorage.setItem(MYKEY,JSON.stringify(MINE)); }catch(e){} }
+
+let myRegOnly=true, pickerOpen=false;
+
+/* Same applicability logic as regwatch.html's "What applies to me" —
+   kept here rather than shared, it's nine lines. */
+function verdictFor(reg,entity,acts){
+  let s = reg.applies[entity] || 'na';
+  const raises = reg.activity_raises || {};
+  for(const a of acts){
+    const t = raises[a];
+    if(t && t.includes(entity)) s = s==='na' ? 'conditional' : 'direct';
+  }
+  return s;
+}
+function regOf(o){
+  if(!APP) return null;
+  const name=(o.legal_basis||'').split(' ')[0];
+  return APP.regulations.find(r=>r.name===name) || null;
+}
+function verdictOf(o){
+  if(!ENTITY) return null;
+  const reg=regOf(o); if(!reg) return null;
+  return verdictFor(reg, ENTITY, ACTS);
+}
 
 async function load(){
   try{
@@ -130,14 +208,51 @@ async function load(){
     ]);
     OBS = obData.obligations || obData;
     META = obData._meta || null;
+    APP = appData;
     if(appData) (appData.entities||[]).forEach(e=>ENTITY_LABEL[e.id]={label:e.label, icon:e.icon});
-    renderMeta(); renderStats(); buildFilters(); render();
+    loadProfile(); loadMine();
+    renderMeta(); renderProfileRow(); renderStats(); buildFilters(); render();
   }catch(e){
     document.getElementById('list').innerHTML='<div class="empty">No obligations yet. Run the engine to extract them.</div>';
   }
 }
 
 function entityLabel(id){ return (ENTITY_LABEL[id]||{}).label || id; }
+function entityIcon(id){ return (ENTITY_LABEL[id]||{}).icon || ''; }
+
+/* ── profile row: pick/change entity, and the regulation-level
+   conditional/n.a. banner once a profile is set ── */
+function renderProfileRow(){
+  const el=document.getElementById('profileRow');
+  if(!ENTITY){
+    el.innerHTML = `<span class="lbl">Personalize this register —</span>
+      ${(APP&&APP.entities||[]).map(e=>`<button class="pick-ent" data-e="${esc(e.id)}">${e.icon} ${esc(e.label)}</button>`).join('')}`;
+    el.querySelectorAll('[data-e]').forEach(b=>b.addEventListener('click',()=>{
+      ENTITY=b.dataset.e; saveProfile(); myRegOnly=true;
+      renderProfileRow(); renderRegNote(); renderStats(); render();
+    }));
+  } else {
+    el.innerHTML = `<span class="lbl">Personalized for</span>
+      <span class="who-pill" id="whoPill">${entityIcon(ENTITY)} ${esc(entityLabel(ENTITY))} · change</span>
+      <label class="myreg-toggle"><input type="checkbox" id="myRegChk" ${myRegOnly?'checked':''}> My register only</label>`;
+    document.getElementById('whoPill').addEventListener('click',()=>{ ENTITY=''; ACTS.clear(); saveProfile();
+      renderProfileRow(); renderRegNote(); renderStats(); render(); });
+    document.getElementById('myRegChk').addEventListener('change',e=>{ myRegOnly=e.target.checked; render(); });
+  }
+  renderRegNote();
+}
+function renderRegNote(){
+  const el=document.getElementById('regNote');
+  if(!ENTITY || !APP){ el.innerHTML=''; return; }
+  const regs=[...new Set(OBS.map(regOf).filter(Boolean))];
+  const notes=[];
+  regs.forEach(reg=>{
+    const v=verdictFor(reg,ENTITY,ACTS);
+    if(v==='na') notes.push(`${reg.name} does not apply to ${entityLabel(ENTITY)} — ${esc(reg.why||'')}`);
+    else if(v==='conditional') notes.push(`${reg.name} applies to ${entityLabel(ENTITY)} conditionally — ${esc((reg.notes||{})[ENTITY]||reg.why||'')}`);
+  });
+  el.innerHTML = notes.map(n=>`<div class="reg-note">${n}</div>`).join('');
+}
 
 function renderMeta(){
   if(!META) return;
@@ -180,22 +295,35 @@ function getFiltered(){
   if(filters.priority) list=list.filter(o=>o.priority===filters.priority);
   if(filters.entity) list=list.filter(o=>(o.who||[]).includes(filters.entity));
   if(filters.topic) list=list.filter(o=>o.topic===filters.topic);
+  if(myRegOnly){
+    list=list.filter(o=>!MINE.dismissed[o.id]);
+    if(ENTITY) list=list.filter(o=>verdictOf(o)!=='na');
+  }
   const sort=document.getElementById('sortBy').value;
   if(sort==='deadline') list.sort((a,b)=> (STATUS_ORDER[a.status]-STATUS_ORDER[b.status]) || ((a.deadline||'9999')<(b.deadline||'9999')?-1:1));
   else if(sort==='priority') list.sort((a,b)=> (a.priority==='high'?0:1)-(b.priority==='high'?0:1));
   else list.sort((a,b)=> (b.detected||'').localeCompare(a.detected||''));
+  list.sort((a,b)=> (MINE.pinned.includes(b.id)?1:0)-(MINE.pinned.includes(a.id)?1:0));
   return list;
 }
 
+let editingNote=null;
+
 function render(){
   const list=getFiltered();
-  if(!list.length){ document.getElementById('list').innerHTML='<div class="empty">No obligations match these filters.</div>'; return; }
+  if(!list.length){
+    const msg = myRegOnly && OBS.length ? 'Nothing in your register yet — turn off "My register only" to see everything, or your profile marks all obligations as not applicable.' : 'No obligations match these filters.';
+    document.getElementById('list').innerHTML=`<div class="empty">${msg}</div>`; return;
+  }
   document.getElementById('list').innerHTML=list.map(o=>{
     const da=daysAway(o.deadline);
     const dlText = o.deadline ? (da<0?`${Math.abs(da)}d ago`:`applies in ${da}d`) : 'ongoing';
-    const who=(o.who||[]).map(w=>`<span class="ent-pill">${esc(entityLabel(w))}</span>`).join('');
+    const who=(o.who||[]).map(w=>`<span class="ent-pill ${w===ENTITY?'mine':''}">${esc(entityLabel(w))}</span>`).join('');
     const hasDetail = o.verbatim || (o.sub_requirements||[]).length || (o.academy_cases||[]).length;
-    return `<div class="ob ${o.status}" data-id="${esc(o.id)}">
+    const dismissed = !!MINE.dismissed[o.id];
+    const pinned = MINE.pinned.includes(o.id);
+    const note = MINE.notes[o.id];
+    return `<div class="ob ${o.status} ${dismissed?'dismissed':''} ${pinned?'pinned':''}" data-id="${esc(o.id)}">
       <div class="ob-main">
         <div class="ob-what"><span class="prio-dot prio-${o.priority}"></span>${esc(o.what)}</div>
         <div class="ob-who">${who}</div>
@@ -207,6 +335,17 @@ function render(){
           ${hasDetail?`<span class="ob-expand" onclick="toggleDetail('${esc(o.id)}')">${openId===o.id?'hide detail ▲':'show detail ▼'}</span>`:''}
         </div>
         ${openId===o.id?renderDetail(o):''}
+        <div class="ob-actions">
+          <button class="ob-act ${pinned?'on':''}" onclick="togglePin('${esc(o.id)}')">${pinned?'★ Watching':'☆ Watch'}</button>
+          <button class="ob-act warn ${dismissed?'on':''}" onclick="toggleDismiss('${esc(o.id)}')">${dismissed?'↺ Restore':'✕ Not applicable to us'}</button>
+          <button class="ob-act" onclick="toggleNoteEdit('${esc(o.id)}')">✎ ${note?'Edit note':'Add note'}</button>
+        </div>
+        ${editingNote===o.id?`<div class="ob-note-box">
+            <textarea id="noteInput">${esc(note||'')}</textarea>
+            <div class="ob-actions"><button class="ob-act on" onclick="saveNote('${esc(o.id)}')">Save</button>
+              <button class="ob-act" onclick="editingNote=null;render()">Cancel</button></div>
+          </div>`
+          : note?`<div class="ob-note-view"><b>Your note</b>${esc(note)}</div>`:''}
       </div>
       <div class="ob-right">
         <div class="ob-deadline dl-${o.status}">${fmtDate(o.deadline)}</div>
@@ -215,6 +354,24 @@ function render(){
       </div>
     </div>`;
   }).join('');
+}
+
+function togglePin(id){
+  const i=MINE.pinned.indexOf(id);
+  if(i>=0) MINE.pinned.splice(i,1); else MINE.pinned.push(id);
+  saveMine(); render();
+}
+function toggleDismiss(id){
+  if(MINE.dismissed[id]) delete MINE.dismissed[id]; else MINE.dismissed[id]=true;
+  saveMine(); render(); renderStats();
+}
+function toggleNoteEdit(id){ editingNote = editingNote===id ? null : id; render();
+  if(editingNote){ const ta=document.getElementById('noteInput'); if(ta) ta.focus(); } }
+function saveNote(id){
+  const ta=document.getElementById('noteInput');
+  const v=(ta?ta.value:'').trim();
+  if(v) MINE.notes[id]=v; else delete MINE.notes[id];
+  saveMine(); editingNote=null; render();
 }
 
 function renderDetail(o){
