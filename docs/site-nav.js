@@ -14,7 +14,7 @@
    reads as the site's frame on all of them.
 
    Pages deliberately left out of the menu (still load if visited):
-   obligations, extractor (broken on GitHub Pages), ubo (on hold).
+   extractor (broken on GitHub Pages), ubo (on hold).
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   var MENU = [
@@ -22,6 +22,7 @@
     { id: "regwatch", label: "RegWatch", href: "regwatch.html" },
     // Standalone tools: plain links.
     { id: "law", label: "Read the Law", href: "law.html" },
+    { id: "obligations", label: "Obligations", href: "obligations.html" },
     { id: "country", label: "Country Risk", href: "country-risk.html" },
     { id: "academy", label: "Academy", items: [
       { href: "academy.html",     t: "Overview",            d: "How the training works" },
@@ -37,7 +38,7 @@
 
   var GROUP_OF = {
     "regwatch.html": "regwatch", "index.html": "regwatch", "": "regwatch",
-    "law.html": "law", "country-risk.html": "country", "glossary.html": "academy",
+    "law.html": "law", "obligations.html": "obligations", "country-risk.html": "country", "glossary.html": "academy",
     "academy.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
     "ownership.html": "academy", "desk.html": "academy", "shift.html": "academy",
     "triage.html": "academy", "casefile.html": "academy",

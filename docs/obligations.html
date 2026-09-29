@@ -26,17 +26,6 @@
   a { color:inherit; text-decoration:none; }
   .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
 
-  .topbar { position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:1px solid var(--border); }
-  .topbar-inner { display:flex; align-items:center; gap:16px; height:56px; }
-  .logo { display:flex; align-items:center; gap:9px; font-weight:700; font-size:15px; }
-  .logo-mark { width:28px; height:28px; border-radius:8px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; }
-  .logo-sub { font-size:11px; color:var(--text-3); font-weight:400; }
-  .nav { display:flex; gap:2px; margin-left:8px; }
-  .nav a { padding:6px 13px; border-radius:var(--radius-sm); font-size:13px; color:var(--text-2); font-weight:500; }
-  .nav a.active { background:var(--accent-bg); color:var(--accent); }
-  .nav a:hover:not(.active) { background:var(--surface-2); }
-  .topbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
-  .icon-btn { width:32px; height:32px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text-2); cursor:pointer; font-size:15px; }
 
   .head { padding:26px 0 6px; }
   .head h1 { font-size:22px; font-weight:700; }
@@ -87,35 +76,27 @@
   .export-btn:hover { border-color:var(--accent); color:var(--accent); }
   .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--border-strong); border-radius:8px; padding:10px 16px; font-size:13px; display:none; z-index:100; }
 
-.topbar .topbar-inner{max-width:1280px;}
-.wip-banner{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--surface-2);border-bottom:1px solid var(--border);border-left:3px solid var(--imp);color:var(--text-2);font-size:12.5px;padding:9px 20px;text-align:center;}
-.wip-banner b{color:var(--imp);}
+.ob-detail{margin-top:10px;padding-top:12px;border-top:1px solid var(--border)}
+.ob-verbatim{font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--text-2);background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;margin-bottom:10px}
+.ob-subreq{font-size:12.5px;color:var(--text-2);margin:0 0 10px 18px;line-height:1.7}
+.ob-cases{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.ob-cases .lbl{font-size:11px;color:var(--text-3);margin-right:2px}
+.case-pill{font-size:10.5px;padding:2px 8px;border-radius:4px;background:var(--accent-bg);color:var(--accent);border:1px solid var(--border);font-family:var(--mono)}
+.ob-note{font-size:12px;color:var(--text-3);font-style:italic;margin-bottom:8px}
+.ob-expand{font-size:11.5px;color:var(--accent);cursor:pointer;margin-top:6px;display:inline-block}
+.ob-expand:hover{text-decoration:underline}
+.disclaimer{font-size:11px;color:var(--text-3);text-align:center;margin:24px 0 40px;line-height:1.6}
 </style>
 
   <link rel="stylesheet" href="regradar.css">
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="logo"><span class="logo-mark">R</span> RegRadar <span class="logo-sub">· Belgium &amp; EU</span></div>
-    <nav class="nav">
-      <a href="regwatch.html">RegWatch</a>
-      <a href="law.html">Read the Law</a>
-      <a href="country-risk.html">Country Risk</a>
-      <a class="active" href="#">Obligations</a>
-<a href="academy.html">Academy</a>
-    </nav>
-    <div class="topbar-right"><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
-  </div>
-</div>
-
-<div class="wip-banner"><b>Under construction.</b> This page isn't reading real data yet — it's the shell for RegRadar's planned obligations register.</div>
+<script src="site-nav.js"></script>
 
 <div class="wrap">
   <div class="head">
     <h1>Obligations register</h1>
-    <p class="sub">Who must do what, by when — extracted from tracked regulatory developments.</p>
+    <p class="sub">Who must do what, by when — mapped article by article from the actual regulatory text, not a summary of it.</p>
   </div>
 
   <div class="stats" id="stats"></div>
@@ -132,21 +113,36 @@
 
   <div class="filters" id="filters"></div>
   <div class="ob-list" id="list"><div class="empty">Loading obligations…</div></div>
+  <p class="disclaimer">Indicative compliance register, not legal advice. Always verify against the current text and any Belgian transposition or supervisory guidance.</p>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-let OBS=[], filters={status:null, entity:null, topic:null, priority:null};
+let OBS=[], META=null, ENTITY_LABEL={}, filters={status:null, entity:null, topic:null, priority:null}, openId=null;
 const STATUS_ORDER={imminent:0,upcoming:1,scheduled:2,ongoing:3,passed:4};
 
 async function load(){
   try{
-    OBS = window.__EMBEDDED_OBLIGATIONS__ || await fetch('data/obligations.json').then(r=>r.json());
-    renderStats(); buildFilters(); render();
+    const [obData, appData] = await Promise.all([
+      window.__EMBEDDED_OBLIGATIONS__ ? Promise.resolve({obligations:window.__EMBEDDED_OBLIGATIONS__}) : fetch('data/obligations.json',{cache:'no-store'}).then(r=>r.json()),
+      fetch('data/applicability.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null),
+    ]);
+    OBS = obData.obligations || obData;
+    META = obData._meta || null;
+    if(appData) (appData.entities||[]).forEach(e=>ENTITY_LABEL[e.id]={label:e.label, icon:e.icon});
+    renderMeta(); renderStats(); buildFilters(); render();
   }catch(e){
     document.getElementById('list').innerHTML='<div class="empty">No obligations yet. Run the engine to extract them.</div>';
   }
+}
+
+function entityLabel(id){ return (ENTITY_LABEL[id]||{}).label || id; }
+
+function renderMeta(){
+  if(!META) return;
+  const el=document.querySelector('.head .sub');
+  if(el) el.textContent = `${META.scope||''}`.trim() || el.textContent;
 }
 
 function fmtDate(iso){ if(!iso) return 'ongoing'; return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
@@ -168,7 +164,7 @@ function buildFilters(){
   h+='<span class="filter-sep"></span><span class="filter-label">Priority</span>';
   [['high','High'],['medium','Medium']].forEach(([v,l])=>h+=chip('priority',v,l));
   h+='<span class="filter-sep"></span><span class="filter-label">Impacted</span>';
-  entities.forEach(e=>h+=chip('entity',e,e));
+  entities.forEach(e=>h+=chip('entity',e,entityLabel(e)));
   h+='<span class="filter-sep"></span><span class="filter-label">Topic</span>';
   topics.forEach(t=>h+=chip('topic',t,t));
   document.getElementById('filters').innerHTML=h;
@@ -179,7 +175,7 @@ function toggleFilter(type,val){ filters[type]=String(filters[type])===String(va
 function getFiltered(){
   let list=[...OBS];
   const q=document.getElementById('search').value.toLowerCase().trim();
-  if(q) list=list.filter(o=>(o.what+o.legal_basis+o.source_title+(o.who||[]).join(' ')+o.topic).toLowerCase().includes(q));
+  if(q) list=list.filter(o=>(o.what+' '+o.legal_basis+' '+(o.who||[]).map(entityLabel).join(' ')+' '+o.topic+' '+(o.verbatim||'')).toLowerCase().includes(q));
   if(filters.status) list=list.filter(o=>o.status===filters.status);
   if(filters.priority) list=list.filter(o=>o.priority===filters.priority);
   if(filters.entity) list=list.filter(o=>(o.who||[]).includes(filters.entity));
@@ -196,17 +192,21 @@ function render(){
   if(!list.length){ document.getElementById('list').innerHTML='<div class="empty">No obligations match these filters.</div>'; return; }
   document.getElementById('list').innerHTML=list.map(o=>{
     const da=daysAway(o.deadline);
-    const dlText = o.deadline ? (da<0?`${Math.abs(da)}d ago`:`in ${da}d`) : 'ongoing';
-    const who=(o.who||[]).map(w=>`<span class="ent-pill">${esc(w)}</span>`).join('');
-    return `<div class="ob ${o.status}">
+    const dlText = o.deadline ? (da<0?`${Math.abs(da)}d ago`:`applies in ${da}d`) : 'ongoing';
+    const who=(o.who||[]).map(w=>`<span class="ent-pill">${esc(entityLabel(w))}</span>`).join('');
+    const hasDetail = o.verbatim || (o.sub_requirements||[]).length || (o.academy_cases||[]).length;
+    return `<div class="ob ${o.status}" data-id="${esc(o.id)}">
       <div class="ob-main">
         <div class="ob-what"><span class="prio-dot prio-${o.priority}"></span>${esc(o.what)}</div>
         <div class="ob-who">${who}</div>
+        ${o.who_note?`<div class="ob-note">${esc(o.who_note)}</div>`:''}
         <div class="ob-meta">
           <span class="ob-basis">§ ${esc(o.legal_basis||'—')}</span>
           <span class="ob-topic">${esc(o.topic||'')}</span>
-          ${o.source_url?`<span class="ob-src" onclick="window.open('${o.source_url}','_blank')">source ↗</span>`:''}
+          ${o.source_url?`<span class="ob-src" onclick="window.open('${o.source_url}','_blank')">read the article ↗</span>`:''}
+          ${hasDetail?`<span class="ob-expand" onclick="toggleDetail('${esc(o.id)}')">${openId===o.id?'hide detail ▲':'show detail ▼'}</span>`:''}
         </div>
+        ${openId===o.id?renderDetail(o):''}
       </div>
       <div class="ob-right">
         <div class="ob-deadline dl-${o.status}">${fmtDate(o.deadline)}</div>
@@ -217,10 +217,22 @@ function render(){
   }).join('');
 }
 
+function renderDetail(o){
+  const subs=(o.sub_requirements||[]).map(s=>`<li>${esc(s)}</li>`).join('');
+  const cases=(o.academy_cases||[]).map(c=>`<span class="case-pill">${esc(c)}</span>`).join('');
+  return `<div class="ob-detail on">
+    ${o.verbatim?`<div class="ob-verbatim">“${esc(o.verbatim)}”</div>`:''}
+    ${subs?`<ul class="ob-subreq">${subs}</ul>`:''}
+    ${cases?`<div class="ob-cases"><span class="lbl">Trained in Academy:</span>${cases}</div>`:''}
+  </div>`;
+}
+
+function toggleDetail(id){ openId = openId===id ? null : id; render(); }
+
 function exportCsv(){
   const list=getFiltered();
   const rows=[['Who','What','Deadline','Status','Legal basis','Topic','Priority','Source']];
-  list.forEach(o=>rows.push([(o.who||[]).join('; '),o.what,o.deadline||'ongoing',o.status,o.legal_basis||'',o.topic||'',o.priority,o.source_url||'']));
+  list.forEach(o=>rows.push([(o.who||[]).map(entityLabel).join('; '),o.what,o.deadline||'ongoing',o.status,o.legal_basis||'',o.topic||'',o.priority,o.source_url||'']));
   const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
   const blob=new Blob([csv],{type:'text/csv'}); const url=URL.createObjectURL(blob);
   const a=document.createElement('a'); a.href=url; a.download='regradar_obligations.csv'; a.click();
