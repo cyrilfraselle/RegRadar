@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar — Controls library</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="regradar.css">
+<style>
+  :root {
+    --bg:#0E1117; --surface:#151A21; --surface-2:#1A2029; --border:#232B36; --border-strong:#2E3845;
+    --text:#E6EDF3; --text-2:#9AA7B4; --text-3:#5E6B79; --accent:#4D8DFF; --accent-bg:#14213D;
+    --crit:#F0616D; --crit-bg:#2A1518; --imp:#E3A008; --imp-bg:#2A2008; --info:#5DA9E9; --ok:#2EBD85; --ok-bg:#0F2018; --purple:#9D7BD8;
+    --radius:10px; --radius-sm:6px;
+    --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif; --mono:'SF Mono',ui-monospace,Menlo,monospace;
+  }
+  html[data-theme="light"] {
+    --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F8FAFC; --border:#E6E9EF; --border-strong:#D5DAE2;
+    --text:#16202C; --text-2:#5A6675; --text-3:#94A0AE; --accent:#0039A6; --accent-bg:#E7EDFB;
+    --crit:#C13515; --crit-bg:#FCEEE9; --imp:#B25E09; --imp-bg:#FBF1E2; --info:#1E6FB8; --ok:#0F8A5F; --ok-bg:#E7F5EE; --purple:#6B2D8B;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+
+  .head { padding:26px 0 6px; display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .head h1 { font-size:22px; font-weight:700; }
+  .head .sub { color:var(--text-2); font-size:14px; margin-top:4px; }
+  .new-btn { font-size:13px; font-weight:600; padding:9px 15px; border-radius:var(--radius-sm); border:none; background:var(--accent); color:#fff; cursor:pointer; white-space:nowrap; }
+  .new-btn:hover { opacity:.9; }
+
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0; }
+  .stat { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:13px 15px; }
+  .stat .n { font-size:24px; font-weight:700; font-family:var(--mono); }
+  .stat .l { font-size:11px; color:var(--text-3); margin-top:4px; }
+
+  .ctl-table { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:14px; }
+  .ctl-row { display:grid; grid-template-columns:2.2fr 1fr 0.9fr 0.9fr 0.9fr 1fr 1fr 1.6fr; gap:10px; align-items:center; padding:13px 16px; border-bottom:1px solid var(--border); }
+  .ctl-row:last-child { border-bottom:none; }
+  .ctl-head { background:var(--surface-2); font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--text-3); }
+  .ctl-name { font-size:13px; font-weight:600; }
+  .ctl-name .local-tag { font-size:9.5px; font-weight:600; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:1px 6px; margin-left:6px; vertical-align:1px; }
+  .ctl-cell { font-size:12.5px; color:var(--text-2); }
+  .ctl-cell.mono { font-family:var(--mono); }
+  .pill { font-size:11px; font-weight:600; padding:3px 10px; border-radius:12px; display:inline-block; white-space:nowrap; }
+  .pill.approved { background:var(--ok-bg); color:var(--ok); }
+  .pill.pending_review { background:var(--imp-bg); color:var(--imp); }
+  .pill.draft { background:var(--surface-2); color:var(--text-3); border:1px solid var(--border); }
+  .pill.overdue { background:var(--crit-bg); color:var(--crit); }
+  .ob-tags { display:flex; flex-wrap:wrap; gap:4px; }
+  .ob-tag { font-size:10.5px; font-family:var(--mono); background:var(--accent-bg); color:var(--accent); border-radius:4px; padding:2px 7px; cursor:pointer; }
+  .ob-tag:hover { text-decoration:underline; }
+  .ob-tag.gap { background:var(--crit-bg); color:var(--crit); cursor:default; }
+  .empty { text-align:center; padding:40px; color:var(--text-3); }
+
+  .new-form { background:var(--surface); border:1px solid var(--border-strong); border-radius:var(--radius); padding:16px 18px; margin-bottom:16px; }
+  .new-form h3 { font-size:13px; margin-bottom:12px; }
+  .new-form .row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+  .new-form input, .new-form select { flex:1; min-width:150px; padding:9px 11px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; font-family:inherit; }
+  .new-form .actions { display:flex; gap:8px; }
+  .btn { font-size:12.5px; padding:8px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text); cursor:pointer; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn.primary:hover { opacity:.9; }
+  .btn:hover { border-color:var(--accent); color:var(--accent); }
+
+  .disclaimer { font-size:11px; color:var(--text-3); text-align:center; margin:24px 0 40px; line-height:1.6; }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--border-strong); border-radius:8px; padding:10px 16px; font-size:13px; display:none; z-index:100; }
+
+  @media (max-width:900px) {
+    .ctl-row { grid-template-columns:1fr; gap:4px; }
+    .ctl-head { display:none; }
+    .ctl-row > div::before { content: attr(data-l); display:block; font-size:10px; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; }
+  }
+</style>
+</head>
+<body>
+<script src="site-nav.js"></script>
+
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>Controls library</h1>
+      <p class="sub">Who runs which control, how often, and which obligations it covers.</p>
+    </div>
+    <button class="new-btn" onclick="toggleNewForm()">+ New control</button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+  <div id="newFormHost"></div>
+  <div class="ctl-table" id="table"><div class="empty">Loading controls…</div></div>
+  <p class="disclaimer">Demo data for a fictional org (CF Bank). In a real deployment this library is owned and edited by the organization, synced from wherever their controls already live (Confluence, GitHub, a GRC tool) rather than typed here.</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="controls-data.js"></script>
+<script>
+let CONTROLS=[], OBS_BY_ID={}, formOpen=false;
+
+async function load(){
+  try{
+    const [cd, obData] = await Promise.all([
+      ControlsData.load(),
+      fetch('data/obligations.json',{cache:'no-store'}).then(r=>r.json()),
+    ]);
+    CONTROLS = cd.controls;
+    (obData.obligations||[]).forEach(o=>OBS_BY_ID[o.id]=o);
+    renderStats(); render();
+  }catch(e){
+    document.getElementById('table').innerHTML='<div class="empty">Could not load the controls library.</div>';
+  }
+}
+
+function statusOf(c){
+  const today=new Date();
+  if(c.status==='approved' && ControlsData.isOverdue(c, today)) return 'overdue';
+  return c.status;
+}
+function statusLabel(s){
+  return {approved:'Approved', pending_review:'Pending 2LOD review', draft:'Draft', overdue:'Overdue retest'}[s] || s;
+}
+
+function renderStats(){
+  const total=CONTROLS.length;
+  const effective=CONTROLS.filter(c=>statusOf(c)==='approved').length;
+  const overdue=CONTROLS.filter(c=>statusOf(c)==='overdue').length;
+  const pending=CONTROLS.filter(c=>c.status==='pending_review').length;
+  const cards=[['Total controls',total,'var(--accent)'],['Effective',effective,'var(--ok)'],['Overdue retest',overdue,'var(--crit)'],['Pending 2LOD review',pending,'var(--imp)']];
+  document.getElementById('stats').innerHTML=cards.map(([l,n,c])=>`<div class="stat"><div class="n" style="color:${c}">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+
+function render(){
+  const rows=CONTROLS.map(c=>{
+    const s=statusOf(c);
+    const obTags=(c.obligation_ids||[]).length
+      ? c.obligation_ids.map(id=>{
+          const o=OBS_BY_ID[id];
+          return `<span class="ob-tag" title="${esc(o?o.what:id)}" onclick="location.href='obligations.html'">${esc(o?o.legal_basis:id)}</span>`;
+        }).join('')
+      : `<span class="ob-tag gap">unmapped</span>`;
+    return `<div class="ctl-row">
+      <div class="ctl-name" data-l="Control">${esc(c.name)}${c.source==='local'?'<span class="local-tag">yours</span>':''}</div>
+      <div class="ctl-cell" data-l="Owner">${esc(c.owner)}</div>
+      <div class="ctl-cell" data-l="Frequency">${esc(c.frequency)}</div>
+      <div class="ctl-cell" data-l="Type">${esc(c.type)}</div>
+      <div class="ctl-cell mono" data-l="Last tested">${c.last_tested?esc(c.last_tested):'—'}</div>
+      <div data-l="Status"><span class="pill ${s}">${statusLabel(s)}</span></div>
+      <div class="ob-tags" data-l="Obligations">${obTags}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('table').innerHTML = `
+    <div class="ctl-row ctl-head">
+      <div>Control</div><div>Owner</div><div>Frequency</div><div>Type</div><div>Last tested</div><div>Status</div><div>Obligations</div>
+    </div>${rows || '<div class="empty">No controls yet.</div>'}`;
+}
+
+function toggleNewForm(){
+  formOpen=!formOpen;
+  const host=document.getElementById('newFormHost');
+  if(!formOpen){ host.innerHTML=''; return; }
+  host.innerHTML=`<div class="new-form">
+    <h3>New control</h3>
+    <div class="row">
+      <input id="ncName" placeholder="Control name, e.g. “Sanctions list screening”">
+      <input id="ncOwner" placeholder="Owner, e.g. “M. Van Damme”">
+    </div>
+    <div class="row">
+      <select id="ncFreq">
+        <option>Monthly</option><option>Quarterly</option><option>Annual</option><option>Per event</option>
+      </select>
+      <select id="ncType"><option>Preventive</option><option>Detective</option></select>
+    </div>
+    <div class="actions">
+      <button class="btn primary" onclick="saveNewControl()">Add control</button>
+      <button class="btn" onclick="toggleNewForm()">Cancel</button>
+    </div>
+  </div>`;
+  document.getElementById('ncName').focus();
+}
+
+function saveNewControl(){
+  const name=document.getElementById('ncName').value.trim();
+  if(!name){ showToast('Give the control a name first'); return; }
+  const owner=document.getElementById('ncOwner').value.trim()||'Unassigned';
+  const frequency=document.getElementById('ncFreq').value;
+  const type=document.getElementById('ncType').value;
+  const control={ id:'local-'+Date.now().toString(36), name, owner, frequency, type,
+    status:'draft', last_tested:null, effectiveness:'not_tested', obligation_ids:[] };
+  ControlsData.addControl(control);
+  CONTROLS.push(Object.assign({},control,{source:'local'}));
+  formOpen=false; document.getElementById('newFormHost').innerHTML='';
+  renderStats(); render();
+  showToast('Control added — status: draft, pending 2LOD review');
+}
+
+let toastT;
+function showToast(m){ const t=document.getElementById('toast'); t.textContent=m; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',2000); }
+function toggleTheme(){ const h=document.documentElement; const t=h.dataset.theme==='dark'?'light':'dark'; h.dataset.theme=t; try{localStorage.setItem('regradar-theme',t);}catch(e){} }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+load();
+</script>
+</body>
+</html>
