@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-10-11T12:02:12.360731",
+  "last_updated": "2026-10-12T14:20:21.801728",
   "last_run_counts": {
-    "total": 5,
-    "critical": 3,
-    "important": 2,
+    "total": 25,
+    "critical": 14,
+    "important": 11,
     "info": 0
   },
-  "archive_size": 469,
+  "archive_size": 491,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,81 +14,185 @@
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 81
+      "days_away": 80
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 82
+      "days_away": 81
     },
     {
       "date": "2027-01-10",
       "event": "AMLR / AMLD6 application date",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 91
+      "days_away": 90
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 261
+      "days_away": 260
     }
   ],
   "trends": [
     {
-      "theme": "SFDR/ESG",
-      "this_week": 2,
-      "avg": 1.1,
-      "pct": 75,
+      "theme": "Sanctions",
+      "this_week": 14,
+      "avg": 1.0,
+      "pct": 1300,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁▁▁▁▁██",
+      "spark": "▁▁▁▁▁▁█",
       "values": [
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        14
+      ],
+      "weeks": 7
+    },
+    {
+      "theme": "AML/CFT",
+      "this_week": 14,
+      "avg": 1.4,
+      "pct": 880,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▁▁▂▁▁█",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        2,
+        14
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "MiCA/Crypto",
+      "this_week": 5,
+      "avg": 2.0,
+      "pct": 150,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▂█▁▂▂█",
+      "values": [
+        1,
+        1,
+        2,
+        5,
+        1,
+        2,
+        2,
+        5
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Market Infrastructure",
+      "this_week": 3,
+      "avg": 1.9,
+      "pct": 62,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█▂▁▁▁▁▃",
+      "values": [
+        1,
+        6,
+        2,
+        1,
+        1,
+        1,
+        1,
+        3
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "SFDR/ESG",
+      "this_week": 2,
+      "avg": 1.3,
+      "pct": 56,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▁▁▁███",
+      "values": [
         1,
         1,
         1,
         1,
         1,
         2,
+        2,
         2
       ],
       "weeks": 8
     },
     {
-      "theme": "AML/CFT",
-      "this_week": 2,
-      "avg": 1.6,
-      "pct": 27,
+      "theme": "General",
+      "this_week": 4,
+      "avg": 2.9,
+      "pct": 40,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁█▁▃▂▁▃",
+      "values": [
+        1,
+        1,
+        9,
+        1,
+        4,
+        3,
+        1,
+        4
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.1,
+      "pct": -12,
       "arrow": "▬",
       "label": "STABLE",
       "color": "#6B7280",
-      "spark": "█▁▁▁▁█▁▄",
+      "spark": "▁▁▁▁█▁▁▁",
       "values": [
-        3,
         1,
         1,
         1,
         1,
-        3,
+        2,
         1,
-        2
+        1,
+        1
       ],
       "weeks": 8
     },
     {
       "theme": "Capital/CRR",
-      "this_week": 2,
+      "this_week": 0,
       "avg": 1.9,
-      "pct": 8,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
       "spark": "▄▁▁█▁█▄▄",
       "values": [
         2,
@@ -101,202 +205,6 @@
         2
       ],
       "weeks": 8
-    },
-    {
-      "theme": "MiCA/Crypto",
-      "this_week": 2,
-      "avg": 1.9,
-      "pct": 8,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁▂█▁▂▂",
-      "values": [
-        1,
-        1,
-        1,
-        2,
-        5,
-        1,
-        2,
-        2
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "Solvency/Insurance",
-      "this_week": 2,
-      "avg": 1.9,
-      "pct": 8,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁█▁▃▁▁▅▃",
-      "values": [
-        1,
-        4,
-        1,
-        2,
-        1,
-        1,
-        3,
-        2
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "DORA",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁▁▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "MiFID/MiFIR",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 5
-    },
-    {
-      "theme": "Sanctions",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 6
-    },
-    {
-      "theme": "Payments",
-      "this_week": 1,
-      "avg": 1.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁",
-      "values": [
-        1,
-        1,
-        1
-      ],
-      "weeks": 3
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 1,
-      "avg": 1.4,
-      "pct": -30,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "█▁▁▁▁▄▁▁",
-      "values": [
-        3,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "Tax Transparency",
-      "this_week": 1,
-      "avg": 1.5,
-      "pct": -33,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "█▁▁▁▁",
-      "values": [
-        3,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 5
-    },
-    {
-      "theme": "Market Infrastructure",
-      "this_week": 1,
-      "avg": 1.9,
-      "pct": -46,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁█▂▁▁▁▁",
-      "values": [
-        1,
-        1,
-        6,
-        2,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "General",
-      "this_week": 1,
-      "avg": 3.2,
-      "pct": -68,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁█▁▃▂▁",
-      "values": [
-        1,
-        1,
-        9,
-        1,
-        4,
-        3,
-        1
-      ],
-      "weeks": 7
     },
     {
       "theme": "Stress Test",
@@ -331,6 +239,66 @@
       "weeks": 4
     },
     {
+      "theme": "Solvency/Insurance",
+      "this_week": 0,
+      "avg": 1.9,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁█▁▃▁▁▅▃",
+      "values": [
+        1,
+        4,
+        1,
+        2,
+        1,
+        1,
+        3,
+        2
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "DORA",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁▁▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "MiFID/MiFIR",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 5
+    },
+    {
       "theme": "Data Protection",
       "this_week": 0,
       "avg": 1.0,
@@ -347,6 +315,24 @@
       "weeks": 3
     },
     {
+      "theme": "Tax Transparency",
+      "this_week": 0,
+      "avg": 1.5,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "█▁▁▁▁",
+      "values": [
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 5
+    },
+    {
       "theme": "Consumer Protection",
       "this_week": 0,
       "avg": 1.0,
@@ -359,6 +345,22 @@
         1
       ],
       "weeks": 1
+    },
+    {
+      "theme": "Payments",
+      "this_week": 0,
+      "avg": 1.0,
+      "pct": -100,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁▁▁",
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "weeks": 3
     }
   ],
   "sources": [
@@ -467,7 +469,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-10-11T12:01:24.601153",
+      "newest": "2026-10-12T14:17:45.817077",
       "status": "ok"
     },
     {
@@ -476,7 +478,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-10-11T12:01:27.328169",
+      "newest": "2026-10-12T14:17:48.727122",
       "status": "ok"
     },
     {
@@ -485,7 +487,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-10-08T22:00:00",
+      "newest": "2026-10-11T22:00:00",
       "status": "ok"
     },
     {
@@ -494,7 +496,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-10-09T15:09:05",
+      "newest": "2026-10-12T13:47:21",
       "status": "ok"
     },
     {
@@ -503,7 +505,7 @@
       "country": "GLOBAL",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-10-09T06:00:01",
+      "newest": "2026-10-12T06:00:00",
       "status": "ok"
     },
     {
@@ -512,7 +514,7 @@
       "country": "BE",
       "kind": "primary",
       "fetched": 30,
-      "newest": "2026-10-05T07:00:00",
+      "newest": "2026-10-12T12:00:00",
       "status": "ok"
     },
     {
@@ -530,7 +532,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-09T18:25:42",
+      "newest": "2026-10-11T15:06:10",
       "status": "ok"
     },
     {
@@ -548,7 +550,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-09T07:26:35",
+      "newest": "2026-10-12T13:40:15",
       "status": "ok"
     },
     {
@@ -566,7 +568,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-01T15:42:05",
+      "newest": "2026-10-12T11:56:06",
       "status": "ok"
     },
     {
@@ -575,7 +577,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-06T12:38:09",
+      "newest": "2026-10-08T14:57:38",
       "status": "ok"
     },
     {
@@ -584,7 +586,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-10T17:52:18",
+      "newest": "2026-10-12T08:24:40",
       "status": "ok"
     },
     {
@@ -593,7 +595,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-09T17:42:19",
+      "newest": "2026-10-11T18:42:34",
       "status": "ok"
     },
     {
@@ -610,7 +612,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 51,
+      "fetched": 52,
       "newest": "2026-10-08T00:00:00",
       "status": "ok"
     },
@@ -638,7 +640,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-10T09:30:08",
+      "newest": "2026-10-12T04:15:00",
       "status": "ok"
     },
     {
@@ -647,7 +649,7 @@
       "country": "GLOBAL",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-08T23:33:38",
+      "newest": "2026-10-12T08:28:46",
       "status": "ok"
     },
     {
@@ -656,7 +658,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-09T16:34:56",
+      "newest": "2026-10-12T14:09:32",
       "status": "ok"
     },
     {
@@ -665,7 +667,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-06T22:01:06",
+      "newest": "2026-10-09T07:00:00",
       "status": "ok"
     }
   ]
