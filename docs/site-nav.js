@@ -39,7 +39,7 @@
   ];
 
   var GROUP_OF = {
-    "regwatch.html": "regwatch", "index.html": "regwatch", "": "regwatch",
+    "regwatch.html": "regwatch",
     "law.html": "law", "obligations.html": "obligations", "controls.html": "controls", "dashboard.html": "dashboard",
     "country-risk.html": "country", "glossary.html": "academy",
     "academy.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
@@ -119,7 +119,7 @@
 
   inner.appendChild(el("a", "rrn-brand",
     '<span class="rrn-mk">R</span>RegRadar<span class="rrn-sub">Belgium &amp; EU</span>'));
-  inner.lastChild.href = "regwatch.html";
+  inner.lastChild.href = "index.html";
 
   var groups = [];
   MENU.forEach(function (g, gi) {
