@@ -211,10 +211,58 @@ footer p{max-width:70ch;margin:0 auto}
 @keyframes ping{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.18);opacity:0}}
 .layer.dim{filter:saturate(.5)}
 
+
+/* v4: tool rail, bridge, academy desk */
+.links a{position:relative;padding:6px 2px;transition:color .3s}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:1px;background:var(--td);transform:scaleX(0);transition:transform .5s var(--ease)}
+.links a.on{color:var(--td)} .links a.on::after{transform:scaleX(1)}
+.bridge{height:clamp(220px,34vh,340px);background:linear-gradient(to bottom,#05070C 0%,#080C16 14%,#151B2A 30%,#3A4152 47%,#8A91A1 64%,#CDD1DA 80%,#F5F5F7 100%)}
+.acad.pin{height:340vh}
+.acad-copy{display:flex;flex-direction:column}
+.acad-copy h2{font-size:clamp(44px,6.4vw,84px);line-height:1.02}
+.acad-copy p{margin-top:14px;font-size:clamp(20px,2vw,26px);color:var(--td2);font-weight:500}
+.acad-steps{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:34px}
+.acad-steps li{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:600;color:#5E687A;transition:color .4s}
+.acad-steps li::before{content:"";width:10px;height:10px;border-radius:50%;border:2px solid currentColor;transition:background .4s}
+.acad-steps li.on{color:var(--td)} .acad-steps li.on::before{background:var(--ctl);border-color:var(--ctl)}
+.acad-stage{perspective:1700px;display:flex;justify-content:center;align-items:center;height:100%}
+.ws{--ap:0;width:min(640px,88vw);border-radius:20px;background:#0F1626;border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px rgba(0,0,0,.6);
+  transform:rotateX(calc(16deg - 12deg * var(--ap))) rotateY(calc(-16deg + 11deg * var(--ap)));transform-style:preserve-3d;overflow:hidden}
+.ws-top{display:flex;align-items:center;gap:7px;padding:12px 16px;background:#0A101D;border-bottom:1px solid rgba(255,255,255,.08)}
+.ws-top span{width:10px;height:10px;border-radius:50%;background:#2A3347}
+.ws-top b{margin-left:10px;font-size:13px;color:var(--td2);font-weight:600}
+.ws-body{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0;min-height:400px}
+.ws-col{padding:16px;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;gap:10px}
+.ws-col.wide{border-right:0}
+.ws-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#7C879B}
+.ws [style*="--s"]:not(.typing){--e:clamp(0, calc((var(--ap) - var(--s)) / .1), 1);opacity:var(--e);transform:translateY(calc((1 - var(--e)) * 16px)) scale(calc(.97 + var(--e) * .03))}
+.mail{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+.mail i{width:8px;height:8px;border-radius:50%;background:var(--obl);flex:0 0 auto}
+.mail b{display:block;font-size:14px;color:var(--td)} .mail small{font-size:12px;color:#8C97AB}
+.file{border-radius:14px;background:rgba(255,255,255,.05);padding:6px 14px}
+.frow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:14px}
+.frow:last-child{border-bottom:0} .frow span{color:#8C97AB} .frow b{color:var(--td);font-weight:600;text-align:right}
+.frow b.hi{color:#FFB454} .frow b.miss{color:#FF8A94}
+.chat{position:relative;min-height:86px}
+.typing{--e:clamp(0, calc((var(--ap) - var(--s)) / .1), 1);position:absolute;left:0;top:0;display:flex;gap:5px;padding:12px 14px;border-radius:14px;background:rgba(91,140,255,.2);width:max-content;opacity:calc(var(--e,0) * (1 - clamp(0, calc((var(--ap) - .55) / .04), 1)))}
+.typing u{width:7px;height:7px;border-radius:50%;background:#9DBAFF;animation:dot 1s infinite}
+.typing u:nth-child(2){animation-delay:.15s}.typing u:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,100%{opacity:.35}50%{opacity:1}}
+.bub{position:absolute;left:0;top:0;padding:10px 14px;border-radius:14px;background:rgba(91,140,255,.22);color:var(--td);font-size:14px;line-height:1.4;max-width:30ch}
+.bub small{display:block;font-size:11px;color:#9DBAFF;font-weight:700;margin-bottom:2px}
+.decide{display:flex;gap:10px}
+.decide span{flex:1;text-align:center;padding:11px;border-radius:12px;font-weight:700;font-size:15px;background:rgba(255,255,255,.07);color:var(--td2);transition:background .3s,color .3s}
+.decide .d2{background:rgba(61,220,167,calc(.1 + clamp(0, calc((var(--ap) - .82) / .06), 1) * .9));color:var(--td)}
+.result{padding:11px 14px;border-radius:12px;background:rgba(61,220,167,.16);color:#7FF0C6;font-weight:700;font-size:15px}
+@media(max-width:860px){.acad.pin{height:auto}.acad .pin-inner{padding-bottom:64px}.acad-stage{height:auto}.ws-body{grid-template-columns:1fr}.ws-col{border-right:0}}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   [data-tilt],[data-rise] > *,.hero-copy,[data-tilt] .row,[data-tilt] .gap,[data-tilt] .msg,[data-tilt] .chip,[data-tilt] .tiers div{transform:none!important;opacity:1!important}
   .bar::after{display:none}
+  .ws{transform:none!important}
+  .ws [style*="--s"]{opacity:1!important;transform:none!important}
+  .typing{display:none}
   .hero-stage .layer,.hero-glow,.flowline::after,.ringbox::after,.hero-h .w > span,.hero .sub,.hero .btns{animation:none!important}
   .split .w > span{transform:none!important}
   [data-tilt]{translate:none;scale:1}
@@ -228,13 +276,13 @@ footer p{max-width:70ch;margin:0 auto}
 <header class="bar">
   <a class="brand" href="index.html"><span class="mk">R</span>RegRadar</a>
   <nav class="links" aria-label="Tools">
-    <a href="obligations.html">Obligations</a>
-    <a href="controls.html">Controls</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="regwatch.html">RegWatch</a>
-    <a href="law.html">Read the law</a>
-    <a href="country-risk.html">Country risk</a>
-    <a href="academy.html">Academy</a>
+    <a href="#academy" data-nav="academy">Academy</a>
+    <a href="#stack" data-nav="stack">Obligations</a>
+    <a href="#dashboard" data-nav="dashboard">Dashboard</a>
+    <a href="#law" data-nav="law">Read the law</a>
+    <a href="#controls" data-nav="controls">Controls</a>
+    <a href="#regwatch" data-nav="regwatch">RegWatch</a>
+    <a href="#country" data-nav="country">Country risk</a>
   </nav>
 </header>
 
@@ -243,11 +291,8 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="hero dark" id="hero" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="dark">
   <div class="hero-copy" id="heroCopy">
     <h1 class="split hero-h">Compliance made easy.</h1>
-    <p class="sub">Law. Obligations. Controls. Coverage.</p>
-    <div class="btns">
-      <a class="btn" href="dashboard.html">Try the prototype</a>
-      <a class="textlink" href="#stack">See how it works</a>
-    </div>
+    <p class="sub">Seven tools. One place.</p>
+    <div class="btns"><a class="btn" href="dashboard.html">Try the prototype</a></div>
   </div>
   <div class="hero-stage" aria-hidden="true">
     <div class="hero-glow"></div>
@@ -256,6 +301,51 @@ footer p{max-width:70ch;margin:0 auto}
       <div class="layer l1"><b>THE DUTY</b><span>Senior approval</span></div>
       <div class="layer l2"><b>YOUR CONTROL</b><span>Four-eyes check</span></div>
       <div class="layer l3"><b>THE COUNT</b><span>8 of 12 covered</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pin acad dark" id="academy" data-cta-name="Academy" data-cta-label="Start the Academy demo" data-cta-href="academy.html" data-cta-theme="dark">
+  <div class="pin-inner">
+    <div class="acad-copy">
+      <h2 class="split">Train at the desk.</h2>
+      <p>Fictional bank. Real skills.</p>
+      <ol class="acad-steps" aria-hidden="true">
+        <li data-s="0">Alert arrives</li>
+        <li data-s="1">Open the file</li>
+        <li data-s="2">Ask a colleague</li>
+        <li data-s="3">Make the call</li>
+      </ol>
+    </div>
+    <div class="acad-stage" aria-hidden="true">
+      <div class="ws" id="ws">
+        <div class="ws-top"><span></span><span></span><span></span><b>CF Bank · Analyst desk</b></div>
+        <div class="ws-body">
+          <div class="ws-col">
+            <div class="ws-h">Inbox</div>
+            <div class="mail m1" style="--s:.02"><i></i><div><b>PEP match overnight</b><small>Meridiaan Ventures NV</small></div></div>
+            <div class="mail m2" style="--s:.1"><div><b>Review request</b><small>Compliance</small></div></div>
+            <div class="mail m3" style="--s:.16"><div><b>Quarterly training</b><small>HR</small></div></div>
+          </div>
+          <div class="ws-col wide">
+            <div class="ws-h">Case file</div>
+            <div class="file" style="--s:.26">
+              <div class="frow"><span>Customer</span><b>Meridiaan Ventures NV</b></div>
+              <div class="frow"><span>Risk</span><b class="hi">High</b></div>
+              <div class="frow"><span>PEP match</span><b class="hi">Director</b></div>
+              <div class="frow"><span>Source of wealth</span><b class="miss">Missing</b></div>
+            </div>
+            <div class="chat">
+              <div class="typing" style="--s:.5"><u></u><u></u><u></u></div>
+              <div class="bub" style="--s:.56"><small>Alex</small>Source of wealth is missing. Escalate?</div>
+            </div>
+            <div class="decide" style="--s:.72">
+              <span class="d1">Clear</span><span class="d2">Escalate</span>
+            </div>
+            <div class="result" style="--s:.88">Correct. Skill up: PEP screening</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -279,30 +369,11 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="tool light" id="controls" data-cta-name="Controls library" data-cta-label="Open the Controls library" data-cta-href="controls.html" data-cta-theme="light">
-  <div class="wrap">
-    <div class="copy" data-rise>
-      <h2 class="split">Your controls, mapped.</h2>
-      <p>Owner. Frequency. Status.</p>
-      <a class="more" href="controls.html">Open Controls →</a>
-    </div>
-    <div class="plane" data-tilt>
-      <div class="rows">
-        <div class="row"><div><b>CDD at onboarding</b><small>Art. 19 to 23 · monthly</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>UBO register check</b><small>Art. 24 · quarterly</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>Transaction monitoring</b><small>Art. 26 · monthly</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>PEP monitoring</b><small>Not yet mapped</small></div><span class="pill p-wait">In review</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="tool dark" id="dashboard" data-cta-name="Compliance dashboard" data-cta-label="Open the Dashboard" data-cta-href="dashboard.html" data-cta-theme="dark">
   <div class="wrap">
     <div class="copy" data-rise>
       <h2 class="split">See what is open.</h2>
       <p>8 of 12 covered.</p>
-      <a class="more" href="dashboard.html">Open Dashboard →</a>
     </div>
     <div class="plane" data-tilt id="ringPlane">
       <div class="num">
@@ -324,12 +395,47 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
+<section class="tool dark" id="law" data-cta-name="Read the Law" data-cta-label="Read the law" data-cta-href="law.html" data-cta-theme="dark">
+  <div class="wrap">
+    <div class="copy" data-rise>
+      <h2 class="split">Read the law.</h2>
+      <p>15 EU texts. EN, FR, NL.</p>
+    </div>
+    <div class="plane reader" data-tilt>
+      <div class="langs"><span class="chip on">EN</span><span class="chip">FR</span><span class="chip">NL</span></div>
+      <div class="art">AMLR · Article 42</div>
+      <h3>Politically exposed persons</h3>
+      <p>(a) <mark>obtain senior management approval</mark> [...]</p>
+      <p>(b) <mark>take adequate measures to establish the source of wealth and source of funds</mark> [...]</p>
+      <p>(c) <mark>conduct enhanced, ongoing monitoring</mark> [...]</p>
+    </div>
+  </div>
+</section>
+
+<div class="bridge" aria-hidden="true"></div>
+
+<section class="tool light" id="controls" data-cta-name="Controls library" data-cta-label="Open the Controls library" data-cta-href="controls.html" data-cta-theme="light">
+  <div class="wrap">
+    <div class="copy" data-rise>
+      <h2 class="split">Your controls, mapped.</h2>
+      <p>Owner. Frequency. Status.</p>
+    </div>
+    <div class="plane" data-tilt>
+      <div class="rows">
+        <div class="row"><div><b>CDD at onboarding</b><small>Art. 19 to 23 · monthly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>UBO register check</b><small>Art. 24 · quarterly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>Transaction monitoring</b><small>Art. 26 · monthly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>PEP monitoring</b><small>Not yet mapped</small></div><span class="pill p-wait">In review</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="tool light flip" id="regwatch" data-cta-name="RegWatch" data-cta-label="Try RegWatch" data-cta-href="regwatch.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
       <h2 class="split">Every regulator. One feed.</h2>
       <p>Filtered to your firm.</p>
-      <a class="more" href="regwatch.html">Open RegWatch →</a>
     </div>
     <div class="plane" data-tilt>
       <div class="chips">
@@ -343,30 +449,11 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="tool dark" id="law" data-cta-name="Read the Law" data-cta-label="Read the law" data-cta-href="law.html" data-cta-theme="dark">
-  <div class="wrap">
-    <div class="copy" data-rise>
-      <h2 class="split">Read the law.</h2>
-      <p>15 EU texts. EN, FR, NL.</p>
-      <a class="more" href="law.html">Open the library →</a>
-    </div>
-    <div class="plane reader" data-tilt>
-      <div class="langs"><span class="chip on">EN</span><span class="chip">FR</span><span class="chip">NL</span></div>
-      <div class="art">AMLR · Article 42</div>
-      <h3>Politically exposed persons</h3>
-      <p>(a) <mark>obtain senior management approval</mark> [...]</p>
-      <p>(b) <mark>take adequate measures to establish the source of wealth and source of funds</mark> [...]</p>
-      <p>(c) <mark>conduct enhanced, ongoing monitoring</mark> [...]</p>
-    </div>
-  </div>
-</section>
-
-<section class="tool light flip" id="country" data-cta-name="Country Risk" data-cta-label="Try Country Risk" data-cta-href="country-risk.html" data-cta-theme="light">
+<section class="tool light" id="country" data-cta-name="Country Risk" data-cta-label="Try Country Risk" data-cta-href="country-risk.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
       <h2 class="split">Your risk model.</h2>
       <p>Your weights. Your thresholds.</p>
-      <a class="more" href="country-risk.html">Open Country Risk →</a>
     </div>
     <div class="plane" data-tilt>
       <div class="slider"><label><span>FATF and EU listing</span></label><div class="track"><div class="fill" style="--w:82%;--d:.15"></div><div class="knob" style="--w:82%;--d:.15"></div></div></div>
@@ -377,33 +464,10 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="tool dark" id="academy" data-cta-name="Academy" data-cta-label="Start the Academy demo" data-cta-href="academy.html" data-cta-theme="dark">
-  <div class="wrap">
-    <div class="copy" data-rise>
-      <h2 class="split">Train at the desk.</h2>
-      <p>Fictional bank. Real skills.</p>
-      <a class="more" href="academy.html">Start the demo →</a>
-    </div>
-    <div class="plane" data-tilt>
-      <div class="desk">
-        <div class="side"><b>CF Bank</b><span>Inbox</span><span>Case file</span><span>Teams</span></div>
-        <div class="main">
-          <div class="cap">Teams · Alex</div>
-          <div class="msg">PEP alert overnight. Can you take it?</div>
-          <div class="msg me">On it.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="close light" id="close" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="light">
+<section class="close light" id="close" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="light" data-cta-hide>
   <h2 class="split">Try it.</h2>
   <p>Runs in your browser.</p>
-  <div class="btns">
-    <a class="btn dk" href="dashboard.html">Open the Dashboard</a>
-    <a class="textlink lt" href="law.html">Read the law</a>
-  </div>
+  <div class="btns"><a class="btn dk" href="dashboard.html">Try the prototype</a></div>
 </section>
 </main>
 
@@ -444,6 +508,9 @@ footer p{max-width:70ch;margin:0 auto}
     h.innerHTML = words.map(function(w,i){ return '<span class="w" aria-hidden="true" style="--wi:'+i+'"><span>'+w+'</span></span>'; }).join(' ');
   });
   var closeH = document.querySelector('.close h2');
+  var acad = document.getElementById('academy'), ws = document.getElementById('ws');
+  var navLinks = [].slice.call(document.querySelectorAll('[data-nav]'));
+  var acadSteps = [].slice.call(document.querySelectorAll('.acad-steps li'));
 
   function setActive(i){
     if (i === active) return; active = i;
@@ -473,6 +540,12 @@ footer p{max-width:70ch;margin:0 auto}
       var cr = closeH.getBoundingClientRect();
       closeH.style.setProperty('--ct', clamp((vh * 0.92 - cr.top) / (vh * 0.4)).toFixed(3));
     }
+    var ar = acad.getBoundingClientRect();
+    var ap = (reduce || !wide) ? 1 : clamp(-ar.top / Math.max(1, ar.height - vh));
+    ws.style.setProperty('--ap', ap.toFixed(3));
+    var si = ap < .24 ? 0 : ap < .48 ? 1 : ap < .7 ? 2 : 3;
+    if (reduce || !wide) si = 3;
+    acadSteps.forEach(function(li,k){ li.classList.toggle('on', k <= si); });
     var pr = pin.getBoundingClientRect();
     var p = (reduce || !wide) ? 0.9 : clamp(-pr.top / Math.max(1, pr.height - vh));
     big.style.setProperty('--p', (reduce || !wide ? 1 : clamp(p * 2.6)).toFixed(3));
@@ -495,8 +568,9 @@ footer p{max-width:70ch;margin:0 auto}
       if (ctaLink.textContent !== label) ctaLink.textContent = label;
       if (ctaWhere.textContent !== name) ctaWhere.textContent = name;
       cta.classList.toggle('on-light', cur.getAttribute('data-cta-theme') === 'light');
+      navLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-nav') === cur.id); });
     }
-    cta.classList.toggle('show', scrollY > vh * 0.6);
+    cta.classList.toggle('show', scrollY > vh * 0.6 && !(cur && cur.hasAttribute('data-cta-hide')));
   }
   function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
   addEventListener('scroll', onScroll, {passive:true});
