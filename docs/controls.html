@@ -31,29 +31,29 @@
   .head { padding:26px 0 6px; display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; }
   .head h1 { font-size:22px; font-weight:700; }
   .head .sub { color:var(--text-2); font-size:14px; margin-top:4px; }
-  .new-btn { font-size:13px; font-weight:600; padding:9px 15px; border-radius:var(--radius-sm); border:none; background:var(--accent); color:#fff; cursor:pointer; white-space:nowrap; }
+  .new-btn { font-size:13px; font-weight:600; padding:9px 15px; border-radius:var(--radius-sm); border:none; background:var(--accent); color:var(--bg); cursor:pointer; white-space:nowrap; }
   .new-btn:hover { opacity:.9; }
 
   .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0; }
   .stat { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:13px 15px; }
   .stat .n { font-size:24px; font-weight:700; font-family:var(--mono); }
-  .stat .l { font-size:11px; color:var(--text-3); margin-top:4px; }
+  .stat .l { font-size:12px; color:var(--text-3); margin-top:4px; }
 
   .ctl-table { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:14px; }
   .ctl-row { display:grid; grid-template-columns:2.2fr 1fr 0.9fr 0.9fr 0.9fr 1fr 1fr 1.6fr; gap:10px; align-items:center; padding:13px 16px; border-bottom:1px solid var(--border); }
   .ctl-row:last-child { border-bottom:none; }
-  .ctl-head { background:var(--surface-2); font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--text-3); }
+  .ctl-head { background:var(--surface-2); font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--text-3); }
   .ctl-name { font-size:13px; font-weight:600; }
-  .ctl-name .local-tag { font-size:9.5px; font-weight:600; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:1px 6px; margin-left:6px; vertical-align:1px; }
+  .ctl-name .local-tag { font-size:12px; font-weight:600; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:1px 6px; margin-left:6px; vertical-align:1px; }
   .ctl-cell { font-size:12.5px; color:var(--text-2); }
   .ctl-cell.mono { font-family:var(--mono); }
-  .pill { font-size:11px; font-weight:600; padding:3px 10px; border-radius:12px; display:inline-block; white-space:nowrap; }
+  .pill { font-size:12px; font-weight:600; padding:3px 10px; border-radius:12px; display:inline-block; white-space:nowrap; }
   .pill.approved { background:var(--ok-bg); color:var(--ok); }
   .pill.pending_review { background:var(--imp-bg); color:var(--imp); }
   .pill.draft { background:var(--surface-2); color:var(--text-3); border:1px solid var(--border); }
   .pill.overdue { background:var(--crit-bg); color:var(--crit); }
   .ob-tags { display:flex; flex-wrap:wrap; gap:4px; }
-  .ob-tag { font-size:10.5px; font-family:var(--mono); background:var(--accent-bg); color:var(--accent); border-radius:4px; padding:2px 7px; cursor:pointer; }
+  .ob-tag { font-size:12px; text-decoration:none; font-family:var(--mono); background:var(--accent-bg); color:var(--accent); border-radius:4px; padding:2px 7px; cursor:pointer; }
   .ob-tag:hover { text-decoration:underline; }
   .ob-tag.gap { background:var(--crit-bg); color:var(--crit); cursor:default; }
   .empty { text-align:center; padding:40px; color:var(--text-3); }
@@ -64,17 +64,17 @@
   .new-form input, .new-form select { flex:1; min-width:150px; padding:9px 11px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-size:13px; font-family:inherit; }
   .new-form .actions { display:flex; gap:8px; }
   .btn { font-size:12.5px; padding:8px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text); cursor:pointer; }
-  .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:var(--bg); }
   .btn.primary:hover { opacity:.9; }
   .btn:hover { border-color:var(--accent); color:var(--accent); }
 
-  .disclaimer { font-size:11px; color:var(--text-3); text-align:center; margin:24px 0 40px; line-height:1.6; }
+  .disclaimer { font-size:12px; color:var(--text-3); text-align:center; margin:24px 0 40px; line-height:1.6; }
   .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--border-strong); border-radius:8px; padding:10px 16px; font-size:13px; display:none; z-index:100; }
 
   @media (max-width:900px) {
     .ctl-row { grid-template-columns:1fr; gap:4px; }
     .ctl-head { display:none; }
-    .ctl-row > div::before { content: attr(data-l); display:block; font-size:10px; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; }
+    .ctl-row > div::before { content: attr(data-l); display:block; font-size:12px; color:var(--text-3); text-transform:uppercase; letter-spacing:.05em; }
   }
 </style>
 </head>
@@ -140,7 +140,7 @@ function render(){
     const obTags=(c.obligation_ids||[]).length
       ? c.obligation_ids.map(id=>{
           const o=OBS_BY_ID[id];
-          return `<span class="ob-tag" title="${esc(o?o.what:id)}" onclick="location.href='obligations.html'">${esc(o?o.legal_basis:id)}</span>`;
+          return `<a class="ob-tag" title="${esc(o?o.what:id)}" href="obligations.html?open=${encodeURIComponent(id)}">${esc(o?o.legal_basis:id)}</a>`;
         }).join('')
       : `<span class="ob-tag gap">unmapped</span>`;
     return `<div class="ctl-row">
