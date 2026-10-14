@@ -165,9 +165,30 @@ footer p{max-width:70ch;margin:0 auto}
 .cta a:hover{filter:brightness(1.1)}
 @media(max-width:520px){.cta .where{display:none}.cta{padding:8px}}
 
+
+/* scroll-linked motion: --t is set per element from its position in the viewport */
+.bar{--sp:0}
+.bar::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:calc(var(--sp) * 100%);background:linear-gradient(90deg,var(--obl),var(--ctl),var(--cnt))}
+[data-rise]{--t:1}
+[data-rise] > *{--e:clamp(0, calc((var(--t) - var(--d,0)) / (1 - var(--d,0))), 1);opacity:var(--e);transform:translateY(calc((1 - var(--e)) * 40px))}
+[data-rise] > :nth-child(2){--d:.14} [data-rise] > :nth-child(3){--d:.28}
+.hero-copy{display:flex;flex-direction:column;align-items:center;--hp:0;
+  transform:translateY(calc(var(--hp) * -70px)) scale(calc(1 - var(--hp) * .08));opacity:calc(1 - var(--hp) * 1.25);transform-origin:50% 0;will-change:transform}
+.hero-stage .stack3d{transform:translateY(calc(var(--hp,0) * -140px)) rotateX(calc(58deg - 48deg * var(--p))) rotateZ(calc(-30deg + 26deg * var(--p)))}
+[data-tilt] .row,[data-tilt] .gap,[data-tilt] .msg,[data-tilt] .chip,[data-tilt] .fill,[data-tilt] .knob,[data-tilt] .tiers div,[data-tilt] mark{
+  --e:clamp(0, calc((var(--t) - var(--d,0)) / (1 - var(--d,0))), 1)}
+[data-tilt] .row,[data-tilt] .gap{opacity:var(--e);transform:translateX(calc((1 - var(--e)) * -36px))}
+[data-tilt] .msg{opacity:var(--e);transform:translateY(calc((1 - var(--e)) * 24px))}
+[data-tilt] .chip{opacity:calc(.2 + var(--e) * .8);transform:scale(calc(.82 + var(--e) * .18))}
+[data-tilt] .fill{width:calc(var(--w) * var(--e))}
+[data-tilt] .knob{left:calc(var(--w) * var(--e))}
+[data-tilt] .tiers div{opacity:var(--e);transform:scaleY(calc(.4 + var(--e) * .6));transform-origin:50% 100%}
+[data-tilt] mark{background:linear-gradient(rgba(91,140,255,.34),rgba(91,140,255,.34)) no-repeat 0 100% / calc(var(--e) * 100%) 100%;border-bottom-color:rgba(91,140,255,calc(var(--e)))}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  [data-tilt]{transform:none!important;opacity:1!important}
+  [data-tilt],[data-rise] > *,.hero-copy,[data-tilt] .row,[data-tilt] .gap,[data-tilt] .msg,[data-tilt] .chip,[data-tilt] .tiers div{transform:none!important;opacity:1!important}
+  .bar::after{display:none}
   .pin-step,.cta,.layer,.btn,.more{transition:none}
 }
 </style>
@@ -191,15 +212,17 @@ footer p{max-width:70ch;margin:0 auto}
 <main id="main">
 
 <section class="hero dark" id="hero" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="dark">
+  <div class="hero-copy" id="heroCopy">
   <h1>Compliance made easy.</h1>
   <p class="sub">Read the law, map obligations to your controls, follow regulators, assess country risk and train your team, in one place.</p>
   <div class="btns">
     <a class="btn" href="dashboard.html">Try the prototype</a>
     <a class="textlink" href="#stack">See how it works</a>
   </div>
+  </div>
   <div class="hero-stage" aria-hidden="true">
     <div class="hero-glow"></div>
-    <div class="stack3d" style="--p:.62">
+    <div class="stack3d" id="heroStack" style="--p:.62">
       <div class="layer l0"><b>THE LAW</b><span>Article 42, AMLR</span></div>
       <div class="layer l1"><b>THE OBLIGATION</b><span>Senior management approval</span></div>
       <div class="layer l2"><b>YOUR CONTROL</b><span>Four-eyes approval</span></div>
@@ -241,7 +264,7 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="tool light" id="controls" data-cta-name="Controls library" data-cta-label="Open the Controls library" data-cta-href="controls.html" data-cta-theme="light">
   <div class="wrap">
-    <div class="copy">
+    <div class="copy" data-rise>
       <h2>Your controls, next to the law.</h2>
       <p>A library your team can actually keep: owner, frequency, type, status, and the obligations each control covers. Drafts are marked as waiting for second-line review.</p>
       <a class="more" href="controls.html">Open the Controls library →</a>
@@ -259,7 +282,7 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="tool dark" id="dashboard" data-cta-name="Compliance dashboard" data-cta-label="Open the Dashboard" data-cta-href="dashboard.html" data-cta-theme="dark">
   <div class="wrap">
-    <div class="copy">
+    <div class="copy" data-rise>
       <h2>Coverage you can defend.</h2>
       <p>Eight of twelve obligations have a control. Four do not, and the page names them, highest criticality first.</p>
       <a class="more" href="dashboard.html">Open the Dashboard →</a>
@@ -286,7 +309,7 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="tool light flip" id="regwatch" data-cta-name="RegWatch" data-cta-label="Try RegWatch" data-cta-href="regwatch.html" data-cta-theme="light">
   <div class="wrap">
-    <div class="copy">
+    <div class="copy" data-rise>
       <h2>Every regulator, one feed.</h2>
       <p>Belgian and EU regulators are collected daily, then filtered to what applies to your kind of firm. Summaries are AI-assisted; the source link is always one click away.</p>
       <a class="more" href="regwatch.html">Open RegWatch →</a>
@@ -306,7 +329,7 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="tool dark" id="law" data-cta-name="Read the Law" data-cta-label="Read the law" data-cta-href="law.html" data-cta-theme="dark">
   <div class="wrap">
-    <div class="copy">
+    <div class="copy" data-rise>
       <h2>Read the law, not a summary.</h2>
       <p>Fifteen EU financial and AML instruments, parsed article by article in English, French and Dutch. Every obligation deep-links to the exact article.</p>
       <a class="more" href="law.html">Open the library →</a>
@@ -322,16 +345,16 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="tool light flip" id="country" data-cta-name="Country Risk" data-cta-label="Try Country Risk" data-cta-href="country-risk.html" data-cta-theme="light">
   <div class="wrap">
-    <div class="copy">
+    <div class="copy" data-rise>
       <h2>A country risk model that is yours.</h2>
       <p>Set your weights, your risk appetite and your tier thresholds. Every rating shows its reasoning, and the scores and methodology export to Excel.</p>
       <a class="more" href="country-risk.html">Open Country Risk →</a>
     </div>
     <div class="plane" data-tilt>
       <div class="cap">Your weights</div>
-      <div class="slider"><label><span>FATF and EU listing status</span></label><div class="track"><div class="fill" style="width:82%"></div><div class="knob" style="left:82%"></div></div></div>
-      <div class="slider"><label><span>Corruption (CPI)</span></label><div class="track"><div class="fill" style="width:48%"></div><div class="knob" style="left:48%"></div></div></div>
-      <div class="slider"><label><span>Organised crime (OC Index)</span></label><div class="track"><div class="fill" style="width:63%"></div><div class="knob" style="left:63%"></div></div></div>
+      <div class="slider"><label><span>FATF and EU listing status</span></label><div class="track"><div class="fill" style="--w:82%;--d:.15"></div><div class="knob" style="--w:82%;--d:.15"></div></div></div>
+      <div class="slider"><label><span>Corruption (CPI)</span></label><div class="track"><div class="fill" style="--w:48%;--d:.3"></div><div class="knob" style="--w:48%;--d:.3"></div></div></div>
+      <div class="slider"><label><span>Organised crime (OC Index)</span></label><div class="track"><div class="fill" style="--w:63%;--d:.45"></div><div class="knob" style="--w:63%;--d:.45"></div></div></div>
       <div class="cap" style="margin-top:28px">Your tier thresholds</div>
       <div class="tiers"><div style="background:#E3F4EC;color:var(--ctl-l)">Low</div><div style="background:#FBEFD9;color:var(--cnt-l)">Medium</div><div style="background:#FBE4E1;color:var(--crit-l)">High</div></div>
     </div>
@@ -340,7 +363,7 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="tool dark" id="academy" data-cta-name="Academy" data-cta-label="Start the Academy demo" data-cta-href="academy.html" data-cta-theme="dark">
   <div class="wrap">
-    <div class="copy">
+    <div class="copy" data-rise>
       <h2>Learn the job at the desk of CF Bank.</h2>
       <p>A simulated analyst workstation: an inbox that gets mail, a customer file, a senior colleague on Teams. Fictional bank, fictional data, three practice modules.</p>
       <a class="more" href="academy.html">Start the demo →</a>
@@ -381,7 +404,15 @@ footer p{max-width:70ch;margin:0 auto}
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clamp = function(v){ return Math.min(1, Math.max(0, v)); };
-  var tilts = [].slice.call(document.querySelectorAll('[data-tilt]'));
+  var tilts = [].slice.call(document.querySelectorAll('[data-tilt],[data-rise]'));
+  var bar = document.querySelector('.bar'), heroCopy = document.getElementById('heroCopy'), heroStack = document.getElementById('heroStack'), heroStage = heroStack.parentNode;
+  var pctEl = document.querySelector('#ringPlane .v');
+  [].slice.call(document.querySelectorAll('[data-tilt]')).forEach(function(pl){
+    [].slice.call(pl.querySelectorAll('.row,.gap,.msg,.chip,.tiers div')).forEach(function(el,i){
+      el.style.setProperty('--d', Math.min(.6, .06 + i * .055).toFixed(3));
+    });
+    [].slice.call(pl.querySelectorAll('mark')).forEach(function(el,i){ el.style.setProperty('--d', (.25 + i * .18).toFixed(3)); });
+  });
   var pin = document.getElementById('stack');
   var big = document.getElementById('bigstack');
   var steps = [].slice.call(document.querySelectorAll('.pin-step'));
@@ -407,6 +438,14 @@ footer p{max-width:70ch;margin:0 auto}
         el.style.setProperty('--t', clamp((vh * 0.96 - r.top) / (vh * 0.5)).toFixed(3));
       });
     }
+    if (!reduce){
+      var hp = clamp(scrollY / (vh * 0.9));
+      heroCopy.style.setProperty('--hp', hp.toFixed(3));
+      heroStage.style.setProperty('--hp', hp.toFixed(3));
+      heroStack.style.setProperty('--p', (0.62 + hp * 0.38).toFixed(3));
+      var doc = document.documentElement.scrollHeight - vh;
+      bar.style.setProperty('--sp', (doc > 0 ? clamp(scrollY / doc) : 0).toFixed(4));
+    }
     var pr = pin.getBoundingClientRect();
     var p = (reduce || !wide) ? 0.9 : clamp(-pr.top / Math.max(1, pr.height - vh));
     big.style.setProperty('--p', (reduce || !wide ? 1 : clamp(p * 2.6)).toFixed(3));
@@ -416,6 +455,7 @@ footer p{max-width:70ch;margin:0 auto}
     var rr = ringPlane.getBoundingClientRect();
     var rp = reduce ? 1 : clamp((vh * 0.85 - rr.top) / (vh * 0.5));
     arc.style.strokeDashoffset = (C * (1 - TARGET * rp)).toFixed(1);
+    if (pctEl && !reduce) pctEl.textContent = Math.round(67 * rp) + '%';
 
     var mid = vh * 0.5, cur = null;
     sections.forEach(function(s){
