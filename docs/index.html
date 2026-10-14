@@ -37,7 +37,7 @@ a{color:inherit;text-decoration:none}
 .links a:hover{color:var(--td)}
 @media(max-width:900px){.links{display:none}}
 
-section{position:relative}
+section{position:relative;overflow-x:clip}
 .dark{background:var(--ink);color:var(--td)}
 .light{background:var(--paper);color:var(--tl)}
 .tool{padding:clamp(88px,12vw,160px) 0}
@@ -154,7 +154,7 @@ footer{padding:28px 20px 120px;text-align:center;font-size:13px;line-height:1.6;
 footer p{max-width:70ch;margin:0 auto}
 
 .cta{position:fixed;left:50%;bottom:22px;z-index:60;transform:translate(-50%,24px);opacity:0;pointer-events:none;
-  display:flex;align-items:center;gap:14px;padding:8px 8px 8px 22px;border-radius:32px;background:rgba(245,247,251,.94);color:var(--ink);
+  display:flex;align-items:center;padding:6px;border-radius:32px;background:rgba(245,247,251,.94);color:var(--ink);
   box-shadow:0 10px 30px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   transition:transform .6s var(--ease),opacity .4s,background .4s,color .4s;max-width:calc(100vw - 24px)}
 .cta.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
@@ -256,6 +256,44 @@ footer p{max-width:70ch;margin:0 auto}
 .result{padding:11px 14px;border-radius:12px;background:rgba(61,220,167,.16);color:#7FF0C6;font-weight:700;font-size:15px}
 @media(max-width:860px){.acad.pin{height:auto}.acad .pin-inner{padding-bottom:64px}.acad-stage{height:auto}.ws-body{grid-template-columns:1fr}.ws-col{border-right:0}}
 
+
+/* academy v2: cursor, typed reply, meter */
+.ws-body{position:relative}
+.cursor{position:absolute;left:0;top:0;z-index:6;width:26px;height:26px;pointer-events:none;will-change:transform;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5));--ck:0}
+.cursor::after{content:"";position:absolute;left:-10px;top:-10px;width:34px;height:34px;border-radius:50%;border:2px solid var(--obl);opacity:var(--ck);transform:scale(calc(.4 + var(--ck) * 1.1))}
+.mail{transition:background .35s,box-shadow .35s}
+.mail.open{background:rgba(91,140,255,.22);box-shadow:inset 0 0 0 1px rgba(91,140,255,.55)}
+.mail.open i{opacity:0}
+.frow{transition:background .35s}
+.frow.flag{background:rgba(255,138,148,.14);margin:0 -10px;padding-left:10px;padding-right:10px;border-radius:8px}
+.decide .d2{transform:scale(calc(1 - clamp(0, calc((var(--ap) - .78) / .03), 1) * .06 + clamp(0, calc((var(--ap) - .81) / .04), 1) * .06))}
+.meter{margin-top:8px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#BFF7E0}
+.meter i{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden;display:block}
+.meter u{display:block;height:100%;border-radius:4px;background:var(--ctl);width:calc(30% + clamp(0, calc((var(--ap) - .9) / .09), 1) * 45%);text-decoration:none}
+@media(max-width:860px){.cursor{display:none}}
+@media (prefers-reduced-motion:reduce){.cursor{display:none}}
+
+
+/* v5: overview list, tool titles, dark controls */
+.overview{padding:clamp(72px,10vw,140px) 0}
+.overview-in{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.overview h2{font-size:clamp(44px,6.4vw,84px)}
+.tool-list{list-style:none;margin-top:clamp(28px,5vw,56px);border-top:1px solid rgba(255,255,255,.14)}
+.tool-list li{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:clamp(14px,2vw,24px) 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.tool-list b{font-size:clamp(30px,5vw,64px);letter-spacing:-.035em;font-weight:700}
+.tool-list span{font-size:clamp(16px,1.8vw,24px);color:var(--td2);font-weight:500;text-align:right}
+.pin-copy{display:flex;flex-direction:column;gap:clamp(18px,3vh,34px);min-height:0}
+.tool-title{font-size:clamp(34px,4.4vw,58px);line-height:1.04}
+.pin-steps{position:relative;min-height:190px}
+.pin-step h3{font-size:clamp(28px,3.4vw,44px);font-weight:700;letter-spacing:-.035em;line-height:1.05;color:var(--td)}
+.pin-step p{margin-top:10px}
+.dark .row{border-color:rgba(255,255,255,.1)}
+.dark .row small{color:var(--td2)}
+.dark .row b{color:var(--td)}
+.dark .p-ok{background:rgba(61,220,167,.16);color:#7FF0C6}
+.dark .p-wait{background:rgba(255,180,84,.16);color:#FFC477}
+@media(max-width:860px){.pin-steps{min-height:0;display:grid;gap:22px}}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   [data-tilt],[data-rise] > *,.hero-copy,[data-tilt] .row,[data-tilt] .gap,[data-tilt] .msg,[data-tilt] .chip,[data-tilt] .tiers div{transform:none!important;opacity:1!important}
@@ -276,11 +314,10 @@ footer p{max-width:70ch;margin:0 auto}
 <header class="bar">
   <a class="brand" href="index.html"><span class="mk">R</span>RegRadar</a>
   <nav class="links" aria-label="Tools">
-    <a href="#academy" data-nav="academy">Academy</a>
     <a href="#stack" data-nav="stack">Obligations</a>
-    <a href="#dashboard" data-nav="dashboard">Dashboard</a>
-    <a href="#law" data-nav="law">Read the law</a>
     <a href="#controls" data-nav="controls">Controls</a>
+    <a href="#dashboard" data-nav="dashboard">Dashboard</a>
+    <a href="#academy" data-nav="academy">Academy</a>
     <a href="#regwatch" data-nav="regwatch">RegWatch</a>
     <a href="#country" data-nav="country">Country risk</a>
   </nav>
@@ -291,7 +328,7 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="hero dark" id="hero" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="dark">
   <div class="hero-copy" id="heroCopy">
     <h1 class="split hero-h">Compliance made easy.</h1>
-    <p class="sub">Seven tools. One place.</p>
+    <p class="sub">The whole compliance job, in one place.</p>
     <div class="btns"><a class="btn" href="dashboard.html">Try the prototype</a></div>
   </div>
   <div class="hero-stage" aria-hidden="true">
@@ -305,58 +342,30 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="pin acad dark" id="academy" data-cta-name="Academy" data-cta-label="Start the Academy demo" data-cta-href="academy.html" data-cta-theme="dark">
-  <div class="pin-inner">
-    <div class="acad-copy">
-      <h2 class="split">Train at the desk.</h2>
-      <p>Fictional bank. Real skills.</p>
-      <ol class="acad-steps" aria-hidden="true">
-        <li data-s="0">Alert arrives</li>
-        <li data-s="1">Open the file</li>
-        <li data-s="2">Ask a colleague</li>
-        <li data-s="3">Make the call</li>
-      </ol>
-    </div>
-    <div class="acad-stage" aria-hidden="true">
-      <div class="ws" id="ws">
-        <div class="ws-top"><span></span><span></span><span></span><b>CF Bank · Analyst desk</b></div>
-        <div class="ws-body">
-          <div class="ws-col">
-            <div class="ws-h">Inbox</div>
-            <div class="mail m1" style="--s:.02"><i></i><div><b>PEP match overnight</b><small>Meridiaan Ventures NV</small></div></div>
-            <div class="mail m2" style="--s:.1"><div><b>Review request</b><small>Compliance</small></div></div>
-            <div class="mail m3" style="--s:.16"><div><b>Quarterly training</b><small>HR</small></div></div>
-          </div>
-          <div class="ws-col wide">
-            <div class="ws-h">Case file</div>
-            <div class="file" style="--s:.26">
-              <div class="frow"><span>Customer</span><b>Meridiaan Ventures NV</b></div>
-              <div class="frow"><span>Risk</span><b class="hi">High</b></div>
-              <div class="frow"><span>PEP match</span><b class="hi">Director</b></div>
-              <div class="frow"><span>Source of wealth</span><b class="miss">Missing</b></div>
-            </div>
-            <div class="chat">
-              <div class="typing" style="--s:.5"><u></u><u></u><u></u></div>
-              <div class="bub" style="--s:.56"><small>Alex</small>Source of wealth is missing. Escalate?</div>
-            </div>
-            <div class="decide" style="--s:.72">
-              <span class="d1">Clear</span><span class="d2">Escalate</span>
-            </div>
-            <div class="result" style="--s:.88">Correct. Skill up: PEP screening</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<section class="overview dark" id="tools" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="dark">
+  <div class="overview-in">
+    <h2 class="split">Six tools.</h2>
+    <ol class="tool-list" data-rise>
+      <li style="--d:.04"><b>Obligations</b><span>Law to duty</span></li>
+      <li style="--d:.14"><b>Controls</b><span>Who runs what</span></li>
+      <li style="--d:.24"><b>Dashboard</b><span>What is open</span></li>
+      <li style="--d:.34"><b>Academy</b><span>Train at the desk</span></li>
+      <li style="--d:.44"><b>RegWatch</b><span>Every regulator</span></li>
+      <li style="--d:.54"><b>Country risk</b><span>Your risk model</span></li>
+    </ol>
   </div>
 </section>
 
-<section class="pin dark" id="stack" data-cta-name="Obligations register" data-cta-label="Open the Obligations register" data-cta-href="obligations.html" data-cta-theme="dark">
+<section class="pin dark" id="stack" data-cta-name="Obligations register" data-cta-label="Try Obligations" data-cta-href="obligations.html" data-cta-theme="dark">
   <div class="pin-inner">
     <div class="pin-copy">
-      <div class="pin-step on" data-step="0"><h2 class="split">The law.</h2><p>Word for word, from EU text.</p></div>
-      <div class="pin-step" data-step="1"><h2 class="split">The duty.</h2><p>Who, what, by when.</p></div>
-      <div class="pin-step" data-step="2"><h2 class="split">Your control.</h2><p>Owned by your team.</p></div>
-      <div class="pin-step" data-step="3"><h2 class="split">The count.</h2><p>Covered or open. Nothing hidden.</p></div>
+      <h2 class="split tool-title">Obligations. Law to count.</h2>
+      <div class="pin-steps">
+      <div class="pin-step on" data-step="0"><h3 class="split">The law.</h3><p>Word for word, from 15 EU texts.</p></div>
+      <div class="pin-step" data-step="1"><h3 class="split">The duty.</h3><p>Who, what, by when.</p></div>
+      <div class="pin-step" data-step="2"><h3 class="split">Your control.</h3><p>Owned by your team.</p></div>
+      <div class="pin-step" data-step="3"><h3 class="split">The count.</h3><p>Covered or open. Nothing hidden.</p></div>
+      </div>
     </div>
     <div class="pin-stage" aria-hidden="true">
       <div class="stack3d" id="bigstack">
@@ -369,10 +378,27 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="tool dark" id="dashboard" data-cta-name="Compliance dashboard" data-cta-label="Open the Dashboard" data-cta-href="dashboard.html" data-cta-theme="dark">
+<section class="tool dark" id="controls" data-cta-name="Controls library" data-cta-label="Try Controls" data-cta-href="controls.html" data-cta-theme="dark">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2 class="split">See what is open.</h2>
+      <h2 class="split">Controls. Who runs what.</h2>
+      <p>Owner. Frequency. Status.</p>
+    </div>
+    <div class="plane" data-tilt>
+      <div class="rows">
+        <div class="row"><div><b>CDD at onboarding</b><small>Art. 19 to 23 · monthly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>UBO register check</b><small>Art. 24 · quarterly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>Transaction monitoring</b><small>Art. 26 · monthly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>PEP monitoring</b><small>Not yet mapped</small></div><span class="pill p-wait">In review</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool dark" id="dashboard" data-cta-name="Compliance dashboard" data-cta-label="Try the Dashboard" data-cta-href="dashboard.html" data-cta-theme="dark">
+  <div class="wrap">
+    <div class="copy" data-rise>
+      <h2 class="split">Dashboard. See what is open.</h2>
       <p>8 of 12 covered.</p>
     </div>
     <div class="plane" data-tilt id="ringPlane">
@@ -395,47 +421,59 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="tool dark" id="law" data-cta-name="Read the Law" data-cta-label="Read the law" data-cta-href="law.html" data-cta-theme="dark">
-  <div class="wrap">
-    <div class="copy" data-rise>
-      <h2 class="split">Read the law.</h2>
-      <p>15 EU texts. EN, FR, NL.</p>
+<section class="pin acad dark" id="academy" data-cta-name="Academy" data-cta-label="Try the Academy" data-cta-href="academy.html" data-cta-theme="dark">
+  <div class="pin-inner">
+    <div class="acad-copy">
+      <h2 class="split">Academy. Train at the desk.</h2>
+      <p>Fictional bank. Real skills.</p>
+      <ol class="acad-steps" aria-hidden="true">
+        <li data-s="0">Alert arrives</li>
+        <li data-s="1">Open the file</li>
+        <li data-s="2">Ask a colleague</li>
+        <li data-s="3">Make the call</li>
+      </ol>
     </div>
-    <div class="plane reader" data-tilt>
-      <div class="langs"><span class="chip on">EN</span><span class="chip">FR</span><span class="chip">NL</span></div>
-      <div class="art">AMLR · Article 42</div>
-      <h3>Politically exposed persons</h3>
-      <p>(a) <mark>obtain senior management approval</mark> [...]</p>
-      <p>(b) <mark>take adequate measures to establish the source of wealth and source of funds</mark> [...]</p>
-      <p>(c) <mark>conduct enhanced, ongoing monitoring</mark> [...]</p>
+    <div class="acad-stage" aria-hidden="true">
+      <div class="ws" id="ws">
+        <div class="ws-top"><span></span><span></span><span></span><b>CF Bank · Analyst desk</b></div>
+        <div class="ws-body" id="wsBody">
+          <div class="cursor" id="cursor"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.6L9.5 19z" fill="#fff" stroke="#05070C" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+          <div class="ws-col">
+            <div class="ws-h">Inbox</div>
+            <div class="mail m1" style="--s:.02"><i></i><div><b>PEP match overnight</b><small>Meridiaan Ventures NV</small></div></div>
+            <div class="mail m2" style="--s:.1"><div><b>Review request</b><small>Compliance</small></div></div>
+            <div class="mail m3" style="--s:.16"><div><b>Quarterly training</b><small>HR</small></div></div>
+          </div>
+          <div class="ws-col wide">
+            <div class="ws-h">Case file</div>
+            <div class="file" style="--s:.26">
+              <div class="frow"><span>Customer</span><b>Meridiaan Ventures NV</b></div>
+              <div class="frow"><span>Risk</span><b class="hi">High</b></div>
+              <div class="frow"><span>PEP match</span><b class="hi">Director</b></div>
+              <div class="frow miss-row"><span>Source of wealth</span><b class="miss">Missing</b></div>
+            </div>
+            <div class="chat">
+              <div class="typing" style="--s:.5"><u></u><u></u><u></u></div>
+              <div class="bub" style="--s:.56"><small>Alex</small><span id="typed">Source of wealth is missing. Escalate?</span></div>
+            </div>
+            <div class="decide" style="--s:.72">
+              <span class="d1">Clear</span><span class="d2">Escalate</span>
+            </div>
+            <div class="result" style="--s:.88">Correct call.<div class="meter"><span>PEP screening</span><i><u></u></i></div></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="bridge" aria-hidden="true"></div>
 
-<section class="tool light" id="controls" data-cta-name="Controls library" data-cta-label="Open the Controls library" data-cta-href="controls.html" data-cta-theme="light">
-  <div class="wrap">
-    <div class="copy" data-rise>
-      <h2 class="split">Your controls, mapped.</h2>
-      <p>Owner. Frequency. Status.</p>
-    </div>
-    <div class="plane" data-tilt>
-      <div class="rows">
-        <div class="row"><div><b>CDD at onboarding</b><small>Art. 19 to 23 · monthly</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>UBO register check</b><small>Art. 24 · quarterly</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>Transaction monitoring</b><small>Art. 26 · monthly</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>PEP monitoring</b><small>Not yet mapped</small></div><span class="pill p-wait">In review</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="tool light flip" id="regwatch" data-cta-name="RegWatch" data-cta-label="Try RegWatch" data-cta-href="regwatch.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2 class="split">Every regulator. One feed.</h2>
-      <p>Filtered to your firm.</p>
+      <h2 class="split">RegWatch. Every regulator.</h2>
+      <p>One feed, filtered to your firm.</p>
     </div>
     <div class="plane" data-tilt>
       <div class="chips">
@@ -449,10 +487,10 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="tool light" id="country" data-cta-name="Country Risk" data-cta-label="Try Country Risk" data-cta-href="country-risk.html" data-cta-theme="light">
+<section class="tool light" id="country" data-cta-name="Country Risk" data-cta-label="Try Country risk" data-cta-href="country-risk.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2 class="split">Your risk model.</h2>
+      <h2 class="split">Country risk. Your model.</h2>
       <p>Your weights. Your thresholds.</p>
     </div>
     <div class="plane" data-tilt>
@@ -464,10 +502,10 @@ footer p{max-width:70ch;margin:0 auto}
   </div>
 </section>
 
-<section class="close light" id="close" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="light" data-cta-hide>
+<section class="close light" id="close" data-cta-name="RegRadar" data-cta-label="Open the dashboard" data-cta-href="dashboard.html" data-cta-theme="light" data-cta-hide>
   <h2 class="split">Try it.</h2>
   <p>Runs in your browser.</p>
-  <div class="btns"><a class="btn dk" href="dashboard.html">Try the prototype</a></div>
+  <div class="btns"><a class="btn dk" href="dashboard.html">Open the dashboard</a></div>
 </section>
 </main>
 
@@ -476,8 +514,7 @@ footer p{max-width:70ch;margin:0 auto}
 </footer>
 
 <aside class="cta" id="cta" aria-label="Open this tool">
-  <span class="where" id="ctaWhere" aria-live="polite">RegRadar</span>
-  <a id="ctaLink" href="dashboard.html">Try the prototype</a>
+  <a id="ctaLink" href="dashboard.html" aria-live="polite">Try the prototype</a>
 </aside>
 
 <script>
@@ -499,7 +536,7 @@ footer p{max-width:70ch;margin:0 auto}
   var layers = [].slice.call(big.querySelectorAll('.layer'));
   var arc = document.getElementById('ringArc');
   var ringPlane = document.getElementById('ringPlane');
-  var cta = document.getElementById('cta'), ctaWhere = document.getElementById('ctaWhere'), ctaLink = document.getElementById('ctaLink');
+  var cta = document.getElementById('cta'), ctaLink = document.getElementById('ctaLink');
   var sections = [].slice.call(document.querySelectorAll('[data-cta-href]'));
   var C = 326.7, TARGET = 0.67, active = -2, ticking = false;
   [].slice.call(document.querySelectorAll('.split')).forEach(function(h){
@@ -511,6 +548,28 @@ footer p{max-width:70ch;margin:0 auto}
   var acad = document.getElementById('academy'), ws = document.getElementById('ws');
   var navLinks = [].slice.call(document.querySelectorAll('[data-nav]'));
   var acadSteps = [].slice.call(document.querySelectorAll('.acad-steps li'));
+  var wsBody = document.getElementById('wsBody'), cursor = document.getElementById('cursor'), typed = document.getElementById('typed');
+  var FULL = typed.textContent, wpts = null, WT = [0, .12, .3, .44, .6, .8, 1], CLICKS = [.12, .3, .44, .8];
+  function offs(el){ var x = 0, y = 0, e = el; while (e && e !== wsBody){ x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; } return {x: x + el.offsetWidth * .5 - 6, y: y + el.offsetHeight * .5 - 4}; }
+  function measure(){
+    var q = function(s){ return ws.querySelector(s); };
+    wpts = [{x: wsBody.offsetWidth - 60, y: 18}, offs(q('.m1')), offs(q('.file')), offs(q('.miss-row')), offs(q('.bub')), offs(q('.d2')), offs(q('.d2'))];
+  }
+  function ease(t){ return t * t * (3 - 2 * t); }
+  function driveDesk(ap){
+    if (!wpts) measure();
+    var i = 0; while (i < WT.length - 2 && ap > WT[i + 1]) i++;
+    var u = ease(clamp((ap - WT[i]) / (WT[i + 1] - WT[i])));
+    var x = wpts[i].x + (wpts[i + 1].x - wpts[i].x) * u, y = wpts[i].y + (wpts[i + 1].y - wpts[i].y) * u;
+    cursor.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+    var ck = 0; CLICKS.forEach(function(c){ ck = Math.max(ck, clamp(1 - Math.abs(ap - c) / .035)); });
+    cursor.style.setProperty('--ck', ck.toFixed(2));
+    ws.querySelector('.m1').classList.toggle('open', ap > .13);
+    ws.querySelector('.miss-row').classList.toggle('flag', ap > .42 && ap < .66);
+    typed.textContent = FULL.slice(0, Math.ceil(FULL.length * clamp((ap - .56) / .16)));
+  }
+  addEventListener('resize', function(){ wpts = null; });
+
 
   function setActive(i){
     if (i === active) return; active = i;
@@ -543,6 +602,7 @@ footer p{max-width:70ch;margin:0 auto}
     var ar = acad.getBoundingClientRect();
     var ap = (reduce || !wide) ? 1 : clamp(-ar.top / Math.max(1, ar.height - vh));
     ws.style.setProperty('--ap', ap.toFixed(3));
+    if (!reduce && wide) driveDesk(ap);
     var si = ap < .24 ? 0 : ap < .48 ? 1 : ap < .7 ? 2 : 3;
     if (reduce || !wide) si = 3;
     acadSteps.forEach(function(li,k){ li.classList.toggle('on', k <= si); });
@@ -563,10 +623,9 @@ footer p{max-width:70ch;margin:0 auto}
       if (b.top <= mid && b.bottom > mid) cur = s;
     });
     if (cur){
-      var href = cur.getAttribute('data-cta-href'), label = cur.getAttribute('data-cta-label'), name = cur.getAttribute('data-cta-name');
+      var href = cur.getAttribute('data-cta-href'), label = cur.getAttribute('data-cta-label');
       if (ctaLink.getAttribute('href') !== href) ctaLink.setAttribute('href', href);
       if (ctaLink.textContent !== label) ctaLink.textContent = label;
-      if (ctaWhere.textContent !== name) ctaWhere.textContent = name;
       cta.classList.toggle('on-light', cur.getAttribute('data-cta-theme') === 'light');
       navLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-nav') === cur.id); });
     }
