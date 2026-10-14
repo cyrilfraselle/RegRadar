@@ -46,8 +46,8 @@ section{position:relative}
 .tool.flip .copy{order:2}
 @media(max-width:860px){.tool .wrap,.tool.flip .wrap{grid-template-columns:1fr}.tool.flip .copy{order:0}}
 h1,h2{font-weight:700;letter-spacing:-.04em;text-wrap:balance}
-h2{font-size:clamp(34px,4.6vw,60px);line-height:1.04}
-.copy p{font-size:clamp(17px,1.5vw,20px);line-height:1.55;margin-top:18px;max-width:46ch}
+h2{font-size:clamp(40px,6vw,76px);line-height:1.02}
+.copy p{font-size:clamp(20px,2vw,26px);line-height:1.35;margin-top:16px;max-width:30ch;font-weight:500}
 .dark .copy p{color:var(--td2)} .light .copy p{color:var(--tl2)}
 .more{display:inline-flex;align-items:center;gap:6px;margin-top:26px;font-weight:600;font-size:17px;border-bottom:1.5px solid currentColor;padding-bottom:2px;transition:gap .3s var(--ease)}
 .dark .more{color:#9DBAFF} .light .more{color:var(--obl-l)}
@@ -88,8 +88,8 @@ h2{font-size:clamp(34px,4.6vw,60px);line-height:1.04}
 .pin-copy{position:relative;min-height:300px}
 .pin-step{position:absolute;inset:0;opacity:0;transform:translateY(18px);transition:opacity .2s linear,transform .4s var(--ease);pointer-events:none}
 .pin-step.on{opacity:1;transform:none;pointer-events:auto;transition:opacity .5s var(--ease) .15s,transform .6s var(--ease) .15s}
-.pin-step h2{font-size:clamp(32px,4.2vw,54px)}
-.pin-step p{margin-top:16px;font-size:clamp(17px,1.5vw,20px);color:var(--td2);max-width:42ch;line-height:1.55}
+.pin-step h2{font-size:clamp(44px,6.4vw,84px)}
+.pin-step p{margin-top:14px;font-size:clamp(20px,2vw,26px);color:var(--td2);max-width:26ch;line-height:1.3;font-weight:500}
 .pin-stage{perspective:1700px;display:flex;justify-content:center;align-items:center;height:100%}
 .pin .layer.dim{opacity:.34}
 @media(max-width:860px){
@@ -126,7 +126,7 @@ h2{font-size:clamp(34px,4.6vw,60px);line-height:1.04}
 
 .reader h3{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);margin-top:4px;letter-spacing:-.01em}
 .reader .art{font-family:var(--serif);font-size:15px;color:var(--td2)}
-.reader p{font-family:var(--serif);font-size:clamp(15px,1.4vw,17.5px);line-height:1.65;color:#D5DCEA;margin-top:14px}
+.reader p{font-family:var(--serif);font-size:clamp(17px,1.7vw,21px);line-height:1.5;color:#D5DCEA;margin-top:16px}
 .reader mark{background:rgba(91,140,255,.28);color:#fff;padding:0 3px;border-bottom:2px solid var(--obl)}
 .langs{display:flex;gap:6px;margin-bottom:18px}
 
@@ -146,8 +146,8 @@ h2{font-size:clamp(34px,4.6vw,60px);line-height:1.04}
 .msg.me{margin-left:auto;background:rgba(91,140,255,.28)}
 
 .close{padding:clamp(96px,14vw,180px) 20px;text-align:center}
-.close h2{font-size:clamp(40px,6vw,76px);max-width:14ch;margin:0 auto}
-.close p{margin:20px auto 0;font-size:clamp(17px,1.6vw,21px);color:var(--tl2);max-width:44ch}
+.close h2{font-size:clamp(56px,9vw,120px);max-width:14ch;margin:0 auto}
+.close p{margin:16px auto 0;font-size:clamp(20px,2vw,26px);color:var(--tl2);max-width:30ch;font-weight:500}
 .btn.dk{background:var(--tl);color:#fff}
 .textlink.lt{color:var(--obl-l)}
 footer{padding:28px 20px 120px;text-align:center;font-size:13px;line-height:1.6;color:var(--tl2);background:var(--paper);border-top:1px solid #DADADF}
@@ -185,10 +185,39 @@ footer p{max-width:70ch;margin:0 auto}
 [data-tilt] .tiers div{opacity:var(--e);transform:scaleY(calc(.4 + var(--e) * .6));transform-origin:50% 100%}
 [data-tilt] mark{background:linear-gradient(rgba(91,140,255,.34),rgba(91,140,255,.34)) no-repeat 0 100% / calc(var(--e) * 100%) 100%;border-bottom-color:rgba(91,140,255,calc(var(--e)))}
 
+
+/* v3: words, idle life, depth */
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
+.split .w > span{display:inline-block}
+[data-rise] > .split .w > span{transform:translateY(calc((1 - clamp(0, calc(var(--e) * 1.7 - var(--wi) * .3), 1)) * 112%))}
+.pin-step .split .w > span{transform:translateY(112%);transition:transform .7s var(--ease) calc(var(--wi) * 90ms + .1s)}
+.pin-step.on .split .w > span{transform:none}
+.close .split .w > span{transform:translateY(calc((1 - clamp(0, calc(var(--ct,1) * 1.7 - var(--wi) * .3), 1)) * 112%))}
+.hero-h .w > span{animation:wordup 1s var(--ease) both;animation-delay:calc(var(--wi) * .12s + .1s)}
+@keyframes wordup{from{transform:translateY(112%)}to{transform:none}}
+.hero .sub,.hero .btns{animation:fadeup .9s var(--ease) both}
+.hero .sub{animation-delay:.55s}.hero .btns{animation-delay:.7s}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero-stage .layer{animation:float 6s ease-in-out infinite;animation-delay:calc(var(--i) * -1.1s)}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.hero-glow{animation:glow 7s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.75}50%{opacity:1}}
+[data-tilt]{translate:0 calc(var(--pr,0) * -34px);scale:calc(.93 + var(--t) * .07)}
+.flowline{height:46px;margin:6px 0;background:
+  linear-gradient(var(--tl),var(--tl)) 50% 0 / 2px 100% no-repeat;position:relative}
+.flowline::after{content:"";position:absolute;left:50%;top:0;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--obl-l);animation:drip 1.8s var(--ease) infinite}
+@keyframes drip{0%{top:-4px;opacity:0}20%{opacity:1}100%{top:40px;opacity:0}}
+.ringbox::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(255,180,84,.35);animation:ping 2.6s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.18);opacity:0}}
+.layer.dim{filter:saturate(.5)}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   [data-tilt],[data-rise] > *,.hero-copy,[data-tilt] .row,[data-tilt] .gap,[data-tilt] .msg,[data-tilt] .chip,[data-tilt] .tiers div{transform:none!important;opacity:1!important}
   .bar::after{display:none}
+  .hero-stage .layer,.hero-glow,.flowline::after,.ringbox::after,.hero-h .w > span,.hero .sub,.hero .btns{animation:none!important}
+  .split .w > span{transform:none!important}
+  [data-tilt]{translate:none;scale:1}
   .pin-step,.cta,.layer,.btn,.more{transition:none}
 }
 </style>
@@ -213,19 +242,19 @@ footer p{max-width:70ch;margin:0 auto}
 
 <section class="hero dark" id="hero" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="dark">
   <div class="hero-copy" id="heroCopy">
-  <h1>Compliance made easy.</h1>
-  <p class="sub">Read the law, map obligations to your controls, follow regulators, assess country risk and train your team, in one place.</p>
-  <div class="btns">
-    <a class="btn" href="dashboard.html">Try the prototype</a>
-    <a class="textlink" href="#stack">See how it works</a>
-  </div>
+    <h1 class="split hero-h">Compliance made easy.</h1>
+    <p class="sub">Law. Obligations. Controls. Coverage.</p>
+    <div class="btns">
+      <a class="btn" href="dashboard.html">Try the prototype</a>
+      <a class="textlink" href="#stack">See how it works</a>
+    </div>
   </div>
   <div class="hero-stage" aria-hidden="true">
     <div class="hero-glow"></div>
     <div class="stack3d" id="heroStack" style="--p:.62">
-      <div class="layer l0"><b>THE LAW</b><span>Article 42, AMLR</span></div>
-      <div class="layer l1"><b>THE OBLIGATION</b><span>Senior management approval</span></div>
-      <div class="layer l2"><b>YOUR CONTROL</b><span>Four-eyes approval</span></div>
+      <div class="layer l0"><b>THE LAW</b><span>Article 42</span></div>
+      <div class="layer l1"><b>THE DUTY</b><span>Senior approval</span></div>
+      <div class="layer l2"><b>YOUR CONTROL</b><span>Four-eyes check</span></div>
       <div class="layer l3"><b>THE COUNT</b><span>8 of 12 covered</span></div>
     </div>
   </div>
@@ -234,29 +263,17 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="pin dark" id="stack" data-cta-name="Obligations register" data-cta-label="Open the Obligations register" data-cta-href="obligations.html" data-cta-theme="dark">
   <div class="pin-inner">
     <div class="pin-copy">
-      <div class="pin-step on" data-step="0">
-        <h2>Start with the text itself.</h2>
-        <p>Every obligation is anchored to the article that creates it, quoted word for word and checked against the official EU legal text.</p>
-      </div>
-      <div class="pin-step" data-step="1">
-        <h2>Turn it into a duty.</h2>
-        <p>Who is bound, by when, how critical. Twelve AMLR obligations are verified so far, each linked back to its article.</p>
-      </div>
-      <div class="pin-step" data-step="2">
-        <h2>Meet the control that answers it.</h2>
-        <p>Your team's own controls, with an owner, a frequency and a review status. Map one to an obligation in a click.</p>
-      </div>
-      <div class="pin-step" data-step="3">
-        <h2>See what is left.</h2>
-        <p>Coverage is a count of mapped controls against verified obligations. Not a score from a model.</p>
-      </div>
+      <div class="pin-step on" data-step="0"><h2 class="split">The law.</h2><p>Word for word, from EU text.</p></div>
+      <div class="pin-step" data-step="1"><h2 class="split">The duty.</h2><p>Who, what, by when.</p></div>
+      <div class="pin-step" data-step="2"><h2 class="split">Your control.</h2><p>Owned by your team.</p></div>
+      <div class="pin-step" data-step="3"><h2 class="split">The count.</h2><p>Covered or open. Nothing hidden.</p></div>
     </div>
     <div class="pin-stage" aria-hidden="true">
       <div class="stack3d" id="bigstack">
-        <div class="layer l0"><b>THE LAW · AMLR ARTICLE 42</b><span class="law-q">"…obliged entities shall apply the following measures with respect to… politically exposed persons: (a) obtain senior management approval [...]"</span></div>
-        <div class="layer l1"><b>THE OBLIGATION</b><span>Senior management approval for PEP relationships</span><small>Bank · PI · EMI · CASP · applies 10 Jul 2027 · high</small></div>
-        <div class="layer l2"><b>YOUR CONTROL</b><span>Four-eyes approval on high-risk onboarding</span><small>Owner Sanmi O. · per event · pending 2LOD review</small></div>
-        <div class="layer l3"><b>THE COUNT</b><span>8 of 12 obligations covered</span><small>4 open: Art. 34, 42, 46, 69</small></div>
+        <div class="layer l0"><b>THE LAW · AMLR ART. 42</b><span class="law-q">"…obliged entities shall… obtain senior management approval [...]"</span></div>
+        <div class="layer l1"><b>THE DUTY</b><span>Senior management approval</span><small>Applies 10 Jul 2027 · High</small></div>
+        <div class="layer l2"><b>YOUR CONTROL</b><span>Four-eyes approval</span><small>Owner Sanmi O. · In review</small></div>
+        <div class="layer l3"><b>THE COUNT</b><span>8 of 12 covered</span><small>4 open</small></div>
       </div>
     </div>
   </div>
@@ -265,16 +282,16 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="tool light" id="controls" data-cta-name="Controls library" data-cta-label="Open the Controls library" data-cta-href="controls.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2>Your controls, next to the law.</h2>
-      <p>A library your team can actually keep: owner, frequency, type, status, and the obligations each control covers. Drafts are marked as waiting for second-line review.</p>
-      <a class="more" href="controls.html">Open the Controls library →</a>
+      <h2 class="split">Your controls, mapped.</h2>
+      <p>Owner. Frequency. Status.</p>
+      <a class="more" href="controls.html">Open Controls →</a>
     </div>
     <div class="plane" data-tilt>
       <div class="rows">
-        <div class="row"><div><b>CDD identification and verification at onboarding</b><small>T. Nguyen · monthly · covers Art. 19, 20, 22, 23</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>Beneficial-owner register reconciliation</b><small>M. Van Damme · quarterly · covers Art. 24</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>Transaction monitoring rule tuning</b><small>T. Nguyen · monthly · covers Art. 26</small></div><span class="pill p-ok">Approved</span></div>
-        <div class="row"><div><b>Enhanced ongoing monitoring, PEP book</b><small>M. Van Damme · quarterly · not yet mapped</small></div><span class="pill p-wait">Pending 2LOD review</span></div>
+        <div class="row"><div><b>CDD at onboarding</b><small>Art. 19 to 23 · monthly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>UBO register check</b><small>Art. 24 · quarterly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>Transaction monitoring</b><small>Art. 26 · monthly</small></div><span class="pill p-ok">Approved</span></div>
+        <div class="row"><div><b>PEP monitoring</b><small>Not yet mapped</small></div><span class="pill p-wait">In review</span></div>
       </div>
     </div>
   </div>
@@ -283,9 +300,9 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="tool dark" id="dashboard" data-cta-name="Compliance dashboard" data-cta-label="Open the Dashboard" data-cta-href="dashboard.html" data-cta-theme="dark">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2>Coverage you can defend.</h2>
-      <p>Eight of twelve obligations have a control. Four do not, and the page names them, highest criticality first.</p>
-      <a class="more" href="dashboard.html">Open the Dashboard →</a>
+      <h2 class="split">See what is open.</h2>
+      <p>8 of 12 covered.</p>
+      <a class="more" href="dashboard.html">Open Dashboard →</a>
     </div>
     <div class="plane" data-tilt id="ringPlane">
       <div class="num">
@@ -297,10 +314,10 @@ footer p{max-width:70ch;margin:0 auto}
           <div class="v mono" aria-hidden="true">67%</div>
         </div>
         <div class="gaps">
-          <div class="gap"><span class="a">ART. 34</span><span class="t">Enhanced due diligence wherever higher risk appears</span></div>
-          <div class="gap"><span class="a">ART. 42</span><span class="t">Senior approval and verified source of wealth for PEPs</span></div>
-          <div class="gap"><span class="a">ART. 46</span><span class="t">The same measures for family and close associates</span></div>
-          <div class="gap"><span class="a">ART. 69</span><span class="t">Report suspicions to the FIU, whatever the amount</span></div>
+          <div class="gap"><span class="a">ART. 34</span><span class="t">Enhanced due diligence</span></div>
+          <div class="gap"><span class="a">ART. 42</span><span class="t">PEP approval</span></div>
+          <div class="gap"><span class="a">ART. 46</span><span class="t">Family and associates</span></div>
+          <div class="gap"><span class="a">ART. 69</span><span class="t">Report to the FIU</span></div>
         </div>
       </div>
     </div>
@@ -310,18 +327,17 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="tool light flip" id="regwatch" data-cta-name="RegWatch" data-cta-label="Try RegWatch" data-cta-href="regwatch.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2>Every regulator, one feed.</h2>
-      <p>Belgian and EU regulators are collected daily, then filtered to what applies to your kind of firm. Summaries are AI-assisted; the source link is always one click away.</p>
+      <h2 class="split">Every regulator. One feed.</h2>
+      <p>Filtered to your firm.</p>
       <a class="more" href="regwatch.html">Open RegWatch →</a>
     </div>
     <div class="plane" data-tilt>
-      <div class="cap">Collected daily from</div>
-      <div class="chips" style="margin-top:12px">
-        <span class="chip">NBB</span><span class="chip">FSMA</span><span class="chip">EBA</span><span class="chip">ECB</span><span class="chip">ESMA</span><span class="chip">EIOPA</span><span class="chip">AMLA</span><span class="chip">SRB</span><span class="chip">FSB</span><span class="chip">European Commission</span><span class="chip">EUR-Lex</span>
+      <div class="chips">
+        <span class="chip">NBB</span><span class="chip">FSMA</span><span class="chip">EBA</span><span class="chip">ECB</span><span class="chip">ESMA</span><span class="chip">AMLA</span><span class="chip">EUR-Lex</span>
       </div>
-      <div class="cap" style="margin-top:26px">Then narrowed to what applies to</div>
-      <div class="chips" style="margin-top:12px">
-        <span class="chip">Bank</span><span class="chip on">Payment institution</span><span class="chip">E-money institution</span><span class="chip">Crypto / CASP</span><span class="chip">Investment firm</span><span class="chip">Fund manager</span><span class="chip">Insurer</span>
+      <div class="flowline" aria-hidden="true"></div>
+      <div class="chips">
+        <span class="chip">Bank</span><span class="chip on">Payment institution</span><span class="chip">E-money</span><span class="chip">Crypto</span>
       </div>
     </div>
   </div>
@@ -330,15 +346,17 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="tool dark" id="law" data-cta-name="Read the Law" data-cta-label="Read the law" data-cta-href="law.html" data-cta-theme="dark">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2>Read the law, not a summary.</h2>
-      <p>Fifteen EU financial and AML instruments, parsed article by article in English, French and Dutch. Every obligation deep-links to the exact article.</p>
+      <h2 class="split">Read the law.</h2>
+      <p>15 EU texts. EN, FR, NL.</p>
       <a class="more" href="law.html">Open the library →</a>
     </div>
     <div class="plane reader" data-tilt>
       <div class="langs"><span class="chip on">EN</span><span class="chip">FR</span><span class="chip">NL</span></div>
-      <div class="art">Regulation (EU) 2024/1624 · Article 42</div>
+      <div class="art">AMLR · Article 42</div>
       <h3>Politically exposed persons</h3>
-      <p>In addition to the customer due diligence measures laid down in Article 20, obliged entities shall apply the following measures with respect to occasional transactions or business relationships with politically exposed persons: (a) <mark>obtain senior management approval</mark> [...]; (b) <mark>take adequate measures to establish the source of wealth and source of funds</mark> [...]; (c) <mark>conduct enhanced, ongoing monitoring</mark> [...]</p>
+      <p>(a) <mark>obtain senior management approval</mark> [...]</p>
+      <p>(b) <mark>take adequate measures to establish the source of wealth and source of funds</mark> [...]</p>
+      <p>(c) <mark>conduct enhanced, ongoing monitoring</mark> [...]</p>
     </div>
   </div>
 </section>
@@ -346,16 +364,14 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="tool light flip" id="country" data-cta-name="Country Risk" data-cta-label="Try Country Risk" data-cta-href="country-risk.html" data-cta-theme="light">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2>A country risk model that is yours.</h2>
-      <p>Set your weights, your risk appetite and your tier thresholds. Every rating shows its reasoning, and the scores and methodology export to Excel.</p>
+      <h2 class="split">Your risk model.</h2>
+      <p>Your weights. Your thresholds.</p>
       <a class="more" href="country-risk.html">Open Country Risk →</a>
     </div>
     <div class="plane" data-tilt>
-      <div class="cap">Your weights</div>
-      <div class="slider"><label><span>FATF and EU listing status</span></label><div class="track"><div class="fill" style="--w:82%;--d:.15"></div><div class="knob" style="--w:82%;--d:.15"></div></div></div>
-      <div class="slider"><label><span>Corruption (CPI)</span></label><div class="track"><div class="fill" style="--w:48%;--d:.3"></div><div class="knob" style="--w:48%;--d:.3"></div></div></div>
-      <div class="slider"><label><span>Organised crime (OC Index)</span></label><div class="track"><div class="fill" style="--w:63%;--d:.45"></div><div class="knob" style="--w:63%;--d:.45"></div></div></div>
-      <div class="cap" style="margin-top:28px">Your tier thresholds</div>
+      <div class="slider"><label><span>FATF and EU listing</span></label><div class="track"><div class="fill" style="--w:82%;--d:.15"></div><div class="knob" style="--w:82%;--d:.15"></div></div></div>
+      <div class="slider"><label><span>Corruption</span></label><div class="track"><div class="fill" style="--w:48%;--d:.3"></div><div class="knob" style="--w:48%;--d:.3"></div></div></div>
+      <div class="slider"><label><span>Organised crime</span></label><div class="track"><div class="fill" style="--w:63%;--d:.45"></div><div class="knob" style="--w:63%;--d:.45"></div></div></div>
       <div class="tiers"><div style="background:#E3F4EC;color:var(--ctl-l)">Low</div><div style="background:#FBEFD9;color:var(--cnt-l)">Medium</div><div style="background:#FBE4E1;color:var(--crit-l)">High</div></div>
     </div>
   </div>
@@ -364,17 +380,17 @@ footer p{max-width:70ch;margin:0 auto}
 <section class="tool dark" id="academy" data-cta-name="Academy" data-cta-label="Start the Academy demo" data-cta-href="academy.html" data-cta-theme="dark">
   <div class="wrap">
     <div class="copy" data-rise>
-      <h2>Learn the job at the desk of CF Bank.</h2>
-      <p>A simulated analyst workstation: an inbox that gets mail, a customer file, a senior colleague on Teams. Fictional bank, fictional data, three practice modules.</p>
+      <h2 class="split">Train at the desk.</h2>
+      <p>Fictional bank. Real skills.</p>
       <a class="more" href="academy.html">Start the demo →</a>
     </div>
     <div class="plane" data-tilt>
       <div class="desk">
-        <div class="side"><b>CF Bank</b><span>Inbox</span><span>Case file</span><span>Browser</span><span>Teams</span></div>
+        <div class="side"><b>CF Bank</b><span>Inbox</span><span>Case file</span><span>Teams</span></div>
         <div class="main">
           <div class="cap">Teams · Alex</div>
-          <div class="msg">Morning. A PEP alert came in overnight. Can you take it before the 10:00 review?</div>
-          <div class="msg me">On it. Pulling the customer file now.</div>
+          <div class="msg">PEP alert overnight. Can you take it?</div>
+          <div class="msg me">On it.</div>
         </div>
       </div>
     </div>
@@ -382,8 +398,8 @@ footer p{max-width:70ch;margin:0 auto}
 </section>
 
 <section class="close light" id="close" data-cta-name="RegRadar" data-cta-label="Try the prototype" data-cta-href="dashboard.html" data-cta-theme="light">
-  <h2>Try the prototype.</h2>
-  <p>It runs in your browser. The demo data is fictional, and anything you add stays on your device.</p>
+  <h2 class="split">Try it.</h2>
+  <p>Runs in your browser.</p>
   <div class="btns">
     <a class="btn dk" href="dashboard.html">Open the Dashboard</a>
     <a class="textlink lt" href="law.html">Read the law</a>
@@ -422,6 +438,12 @@ footer p{max-width:70ch;margin:0 auto}
   var cta = document.getElementById('cta'), ctaWhere = document.getElementById('ctaWhere'), ctaLink = document.getElementById('ctaLink');
   var sections = [].slice.call(document.querySelectorAll('[data-cta-href]'));
   var C = 326.7, TARGET = 0.67, active = -2, ticking = false;
+  [].slice.call(document.querySelectorAll('.split')).forEach(function(h){
+    var words = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = words.map(function(w,i){ return '<span class="w" aria-hidden="true" style="--wi:'+i+'"><span>'+w+'</span></span>'; }).join(' ');
+  });
+  var closeH = document.querySelector('.close h2');
 
   function setActive(i){
     if (i === active) return; active = i;
@@ -436,6 +458,7 @@ footer p{max-width:70ch;margin:0 auto}
       tilts.forEach(function(el){
         var r = el.getBoundingClientRect();
         el.style.setProperty('--t', clamp((vh * 0.96 - r.top) / (vh * 0.5)).toFixed(3));
+        el.style.setProperty('--pr', Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh)).toFixed(3));
       });
     }
     if (!reduce){
@@ -445,6 +468,10 @@ footer p{max-width:70ch;margin:0 auto}
       heroStack.style.setProperty('--p', (0.62 + hp * 0.38).toFixed(3));
       var doc = document.documentElement.scrollHeight - vh;
       bar.style.setProperty('--sp', (doc > 0 ? clamp(scrollY / doc) : 0).toFixed(4));
+    }
+    if (!reduce && closeH){
+      var cr = closeH.getBoundingClientRect();
+      closeH.style.setProperty('--ct', clamp((vh * 0.92 - cr.top) / (vh * 0.4)).toFixed(3));
     }
     var pr = pin.getBoundingClientRect();
     var p = (reduce || !wide) ? 0.9 : clamp(-pr.top / Math.max(1, pr.height - vh));
