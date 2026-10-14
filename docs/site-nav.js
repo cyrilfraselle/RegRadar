@@ -14,7 +14,7 @@
    reads as the site's frame on all of them.
 
    Pages deliberately left out of the menu (still load if visited):
-   obligations, extractor (broken on GitHub Pages), ubo (on hold).
+   extractor (broken on GitHub Pages), ubo (on hold).
    ═══════════════════════════════════════════════════════════════ */
 (function () {
   var MENU = [
@@ -22,6 +22,9 @@
     { id: "regwatch", label: "RegWatch", href: "regwatch.html" },
     // Standalone tools: plain links.
     { id: "law", label: "Read the Law", href: "law.html" },
+    { id: "obligations", label: "Obligations", href: "obligations.html" },
+    { id: "controls", label: "Controls", href: "controls.html" },
+    { id: "dashboard", label: "Dashboard", href: "dashboard.html" },
     { id: "country", label: "Country Risk", href: "country-risk.html" },
     { id: "academy", label: "Academy", items: [
       { href: "academy.html",     t: "Overview",            d: "How the training works" },
@@ -36,8 +39,9 @@
   ];
 
   var GROUP_OF = {
-    "regwatch.html": "regwatch", "index.html": "regwatch", "": "regwatch",
-    "law.html": "law", "country-risk.html": "country", "glossary.html": "academy",
+    "regwatch.html": "regwatch",
+    "law.html": "law", "obligations.html": "obligations", "controls.html": "controls", "dashboard.html": "dashboard",
+    "country-risk.html": "country", "glossary.html": "academy",
     "academy.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
     "ownership.html": "academy", "desk.html": "academy", "shift.html": "academy",
     "triage.html": "academy", "casefile.html": "academy",
@@ -83,7 +87,7 @@
     ".rrn-ic:hover{background:#1E232A;color:var(--rrn-hi)}" +
     ".rrn-ic:focus-visible{outline:2px solid var(--rrn-acc)}" +
     ".rrn-right{display:flex}.rrn-menu{display:none}" +
-    "@media (max-width:760px){" +
+    "@media (max-width:900px){" +
     ".rrn-sub,.rrn-grp{display:none}.rrn-menu{display:grid}" +
     ".rrn.mob .rrn-in{flex-wrap:wrap;height:auto;min-height:48px}" +
     ".rrn.mob .rrn-grp{display:block;flex:1 0 100%;border-top:1px solid var(--rrn-line);order:2}" +
@@ -91,7 +95,7 @@
     ".rrn.mob .rrn-dd{position:static;display:block;box-shadow:none;border:0;background:transparent;padding:0 0 8px}" +
     ".rrn.mob .rrn-car{display:none}}" +
     ".rrf{margin-top:48px;padding:22px 16px 28px;border-top:1px solid rgba(128,128,128,.25);" +
-    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:#8B929C;text-align:center}" +
+    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--text-2,#8B929C);text-align:center}" +
     ".rrf p{max-width:760px;margin:0 auto}.rrf b{font-weight:600}";
 
   function el(tag, cls, html) {
@@ -115,7 +119,7 @@
 
   inner.appendChild(el("a", "rrn-brand",
     '<span class="rrn-mk">R</span>RegRadar<span class="rrn-sub">Belgium &amp; EU</span>'));
-  inner.lastChild.href = "regwatch.html";
+  inner.lastChild.href = "index.html";
 
   var groups = [];
   MENU.forEach(function (g, gi) {

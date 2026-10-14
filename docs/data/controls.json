@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "name": "Controls library",
+    "version": 1,
+    "count": 8,
+    "generated": "2026-09-29",
+    "org": "CF Bank (fictional)",
+    "scope": "Sample controls for the AMLR Chapter III obligations register — illustrative demo data, not a real bank's control set.",
+    "disclaimer": "Demo data. In production this library is owned and edited by the organization, not shipped by RegRadar."
+  },
+  "controls": [
+    {
+      "id": "ctl-01",
+      "name": "CDD identification & verification at onboarding",
+      "owner": "T. Nguyen",
+      "frequency": "Monthly",
+      "type": "Preventive",
+      "status": "approved",
+      "last_tested": "2026-09-02",
+      "effectiveness": "effective",
+      "source": "manual",
+      "obligation_ids": ["AMLR-art19", "AMLR-art20", "AMLR-art22", "AMLR-art23"]
+    },
+    {
+      "id": "ctl-02",
+      "name": "CDD failure handling — block & terminate relationship",
+      "owner": "Sanmi O.",
+      "frequency": "Per event",
+      "type": "Preventive",
+      "status": "approved",
+      "last_tested": "2026-08-10",
+      "effectiveness": "effective",
+      "source": "manual",
+      "obligation_ids": ["AMLR-art21"]
+    },
+    {
+      "id": "ctl-03",
+      "name": "Beneficial-owner register reconciliation",
+      "owner": "M. Van Damme",
+      "frequency": "Quarterly",
+      "type": "Detective",
+      "status": "approved",
+      "last_tested": "2026-08-30",
+      "effectiveness": "effective",
+      "source": "manual",
+      "obligation_ids": ["AMLR-art24"]
+    },
+    {
+      "id": "ctl-04",
+      "name": "Relationship purpose & economic rationale capture",
+      "owner": "T. Nguyen",
+      "frequency": "Monthly",
+      "type": "Preventive",
+      "status": "approved",
+      "last_tested": "2026-09-02",
+      "effectiveness": "effective",
+      "source": "manual",
+      "obligation_ids": ["AMLR-art25"]
+    },
+    {
+      "id": "ctl-05",
+      "name": "Transaction monitoring rule tuning & ongoing review",
+      "owner": "T. Nguyen",
+      "frequency": "Monthly",
+      "type": "Detective",
+      "status": "approved",
+      "last_tested": "2026-09-18",
+      "effectiveness": "effective",
+      "source": "manual",
+      "obligation_ids": ["AMLR-art26"]
+    },
+    {
+      "id": "ctl-06",
+      "name": "Four-eyes approval on high-risk onboarding",
+      "owner": "Sanmi O.",
+      "frequency": "Per event",
+      "type": "Preventive",
+      "status": "pending_review",
+      "last_tested": "2026-05-02",
+      "effectiveness": "not_tested",
+      "source": "manual",
+      "obligation_ids": []
+    },
+    {
+      "id": "ctl-07",
+      "name": "Enhanced ongoing monitoring — PEP book",
+      "owner": "M. Van Damme",
+      "frequency": "Quarterly",
+      "type": "Detective",
+      "status": "pending_review",
+      "last_tested": null,
+      "effectiveness": "not_tested",
+      "source": "manual",
+      "obligation_ids": []
+    },
+    {
+      "id": "ctl-08",
+      "name": "Adverse-media screening at onboarding",
+      "owner": "T. Nguyen",
+      "frequency": "Per event",
+      "type": "Preventive",
+      "status": "approved",
+      "last_tested": "2026-09-20",
+      "effectiveness": "effective",
+      "source": "manual",
+      "obligation_ids": []
+    }
+  ]
+}
