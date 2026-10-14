@@ -57,7 +57,7 @@
     ".rrn a{color:inherit;text-decoration:none}" +
     ".rrn-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14px;color:var(--rrn-hi);" +
     "margin-right:14px;letter-spacing:-.01em;white-space:nowrap}" +
-    ".rrn-mk{width:24px;height:24px;border-radius:6px;background:var(--rrn-acc);color:#fff;display:grid;" +
+    ".rrn-mk{width:24px;height:24px;border-radius:6px;background:var(--rrn-acc);color:#05070C;display:grid;" +
     "place-items:center;font-weight:800;font-size:13px}" +
     ".rrn-sub{font-weight:400;font-size:11px;color:var(--rrn-tx2)}" +
     ".rrn-grp{position:relative}" +
@@ -93,7 +93,7 @@
     ".rrn.mob .rrn-dd{position:static;display:block;box-shadow:none;border:0;background:transparent;padding:0 0 8px}" +
     ".rrn.mob .rrn-car{display:none}}" +
     ".rrf{margin-top:48px;padding:22px 16px 28px;border-top:1px solid rgba(128,128,128,.25);" +
-    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--text-2,#8B929C);text-align:center}" +
+    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:inherit;opacity:.82;text-align:center}" +
     ".rrf p{max-width:760px;margin:0 auto}.rrf b{font-weight:600}";
 
   function el(tag, cls, html) {
@@ -214,14 +214,21 @@
   // "simulated environment · fictional data" notice instead.
   document.addEventListener("DOMContentLoaded", function () {
     var academy = activeGroup === "academy";
+    var note;
+    if (academy) {
+      note = " Academy cases, people and banks (including CF Bank) are fictional.";
+    } else if (page === "country-risk.html") {
+      note = " Ratings combine FATF and EU listings, the Transparency International CPI and the OC Index; " +
+        "where a source could not be refreshed, the page says which values are last-known.";
+    } else if (activeGroup === "compliance") {
+      note = " Legal text is quoted verbatim from official EU sources (EUR-Lex); the firm, controls and test data shown are demo data stored on your device.";
+    } else {
+      note = " Collected daily from the NBB, FSMA, EBA, ECB, ESMA, EIOPA, AMLA, SRB, FSB, " +
+        "the European Commission and EUR-Lex; summaries are AI-assisted.";
+    }
     var f = el("footer", "rrf",
       "<p><b>RegRadar is a prototype.</b> It is not legal advice: always check the " +
-      "official source before acting." +
-      (academy
-        ? " Academy cases, people and banks (including CF Bank) are fictional."
-        : " Collected daily from the NBB, FSMA, EBA, ECB, ESMA, EIOPA, AMLA, SRB, FSB, " +
-          "the European Commission and EUR-Lex; summaries are AI-assisted.") +
-      "</p>");
+      "official source before acting." + note + "</p>");
     f.setAttribute("data-no-glossary", "");
     document.body.appendChild(f);
   });

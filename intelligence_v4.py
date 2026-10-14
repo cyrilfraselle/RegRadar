@@ -223,8 +223,8 @@ BASE_TIMELINE = [
     {"date": "2026-09-17", "event": "DORA — first ICT major-incident reporting review window", "theme": "DORA", "type": "report"},
     {"date": "2026-12-31", "event": "CSRD first-wave reporting (FY2025) due", "theme": "SFDR/ESG", "type": "report"},
     {"date": "2027-01-01", "event": "CRR3 phased own-funds provisions continue", "theme": "Capital/CRR", "type": "application"},
-    {"date": "2027-01-10", "event": "AMLR / AMLD6 application date", "theme": "AML/CFT", "type": "application"},
     {"date": "2027-06-29", "event": "MiCA — Commission full review", "theme": "MiCA/Crypto", "type": "report"},
+    {"date": "2027-07-10", "event": "AMLR applies; AMLD6 transposition deadline", "theme": "AML/CFT", "type": "application"},
 ]
 
 TYPE_ICON = {

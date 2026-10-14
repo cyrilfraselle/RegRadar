@@ -33,21 +33,23 @@
 .gl-tip.on{ opacity:1; transform:translateY(0); pointer-events:auto; }
 .gl-tip .gl-t{
   font-family:var(--mono, ui-monospace, monospace);
-  font-size:10.5px;
+  font-size:12px;
   font-weight:700;
   letter-spacing:.04em;
   color:var(--ice, #0039A6);
   margin-bottom:6px;
 }
 .gl-tip .gl-d{
-  font-size:12.5px;
+  font-size:13px;
   line-height:1.5;
   color:var(--ink-2, #5B6069);
 }
 .gl-tip .gl-more{
-  display:inline-block;
-  margin-top:8px;
-  font-size:11px;
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  margin-top:2px;
+  font-size:12.5px;
   font-weight:600;
   color:var(--ice, #0039A6);
   text-decoration:none;

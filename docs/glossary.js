@@ -116,13 +116,22 @@ function collectTextNodes(root){
   return nodes;
 }
 
+/* A page (or region) opts out with data-no-glossary on <html> or an
+   ancestor. glossary.html does this: it IS the glossary, so its own
+   headings and definitions must not be turned into tooltip triggers. */
+function isOptedOut(root){
+  if(document.documentElement.hasAttribute('data-no-glossary')) return true;
+  const el = root.nodeType===1 ? root : root.parentElement;
+  return !!(el && el.closest && el.closest('[data-no-glossary]'));
+}
+
 function wrapNode(node, seen){
   const text = node.nodeValue;
   MATCH_RE.lastIndex = 0;
   let m, cursor = 0, frag = null;
   while((m = MATCH_RE.exec(text))){
     const term = ALIAS_TO_TERM[m[0].toLowerCase()];
-    if(!term || seen.has(term.id)) continue;   // first mention per enhance() call only
+    if(!term || seen.has(term.id)) continue;   // first mention per root only (seen is seeded from existing spans)
     seen.add(term.id);
     if(!frag) frag = document.createDocumentFragment();
     frag.appendChild(document.createTextNode(text.slice(cursor, m.index)));
@@ -147,7 +156,14 @@ function wrapNode(node, seen){
    wrapped spans are skipped, not re-processed. */
 function enhance(root){
   if(!root) return;
+  if(isOptedOut(root)) return;
+  /* `seen` is seeded from the terms already wrapped under root, so the
+     "first mention only" rule holds across repeated calls: a DOM
+     mutation can never wrap a second mention of a term, and the number
+     of wrapped spans (and tab stops) is bounded by the number of terms.
+     Re-rendered content that dropped its spans is wrapped afresh. */
   const seen = new Set();
+  root.querySelectorAll('.gl-term[data-term]').forEach(el=>seen.add(el.dataset.term));
   collectTextNodes(root).forEach(n=>wrapNode(n, seen));
 }
 
@@ -247,6 +263,7 @@ function scheduleEnhance(){
   setTimeout(()=>{ pending=false; runEnhance(); }, 180);
 }
 function start(){
+  if(document.documentElement.hasAttribute('data-no-glossary')) return;   // no scan, no observer
   runEnhance();
   observer = new MutationObserver(scheduleEnhance);
   observer.observe(document.body, {childList:true, subtree:true});

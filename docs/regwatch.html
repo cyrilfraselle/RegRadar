@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RegWatch — Regulatory Intelligence</title>
+<meta name="description" content="RegWatch: daily monitoring of Belgian and EU financial regulators. See binding rules, consultations and deadlines, filtered to what applies to your firm.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +21,7 @@
 :root{
   --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F9FAFB; --surface-3:#F2F4F7;
   --border:#E4E7EC; --border-2:#D0D5DD;
-  --text:#101828; --text-2:#475467; --text-3:#98A1B2;
+  --text:#101828; --text-2:#475467; --text-3:#5F6B7A;--on-accent:#FFFFFF;
   --accent:#1750C4; --accent-2:#2E6BE6; --accent-bg:#EFF4FF; --accent-br:#B9CEFB;
   --crit:#B42318; --crit-bg:#FEF3F2; --crit-br:#FDA29B;
   --warn:#B54708; --warn-bg:#FFFAEB; --warn-br:#FEC84B;
@@ -36,7 +37,7 @@
 html[data-theme="dark"]{
   --bg:#0C0E12; --surface:#14171F; --surface-2:#181C25; --surface-3:#1F242F;
   --border:#1F242F; --border-2:#333741;
-  --text:#F5F6F7; --text-2:#94979C; --text-3:#61656C;
+  --text:#F5F6F7; --text-2:#94979C; --text-3:#9099A8;--on-accent:#0C0E12;
   --accent:#6E9BFF; --accent-2:#8AB0FF; --accent-bg:#141E33; --accent-br:#2A3E63;
   --crit:#F97066; --crit-bg:#2B1512; --crit-br:#5B2019;
   --warn:#FDB022; --warn-bg:#2A1C08; --warn-br:#5A3B10;
@@ -50,7 +51,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:none;cursor:pointer}
-::selection{background:var(--accent);color:#fff}
+::selection{background:var(--accent);color:var(--on-accent)}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);
+  clip-path:inset(50%);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[tabindex="-1"]:focus{outline:none}
 
 /* ── page ─────────────────────────────────────────────────────────
    One page, read top to bottom: what needs attention, everything else
@@ -60,40 +65,47 @@ button{font-family:inherit;font-size:inherit;color:inherit;background:none;borde
 .pg-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
 .pg-h h1{font-size:24px;font-weight:650;letter-spacing:-.025em}
 .pg-h .sub{font-size:13px;color:var(--text-3);margin-top:3px}
-.prof{display:flex;align-items:center;gap:9px;padding:7px 12px 7px 8px;border-radius:var(--r);
+.prof{display:flex;align-items:center;gap:9px;min-height:44px;padding:7px 12px 7px 8px;border-radius:var(--r);
   border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);text-align:left}
 .prof:hover{border-color:var(--accent-br)}
-.prof .av{width:26px;height:26px;border-radius:var(--r-sm);background:var(--accent);color:#fff;
+.prof .av{width:28px;height:28px;border-radius:var(--r-sm);background:var(--accent);color:var(--on-accent);
   display:grid;place-items:center;font-size:13px;flex:0 0 auto}
 .prof b{display:block;font-size:12.5px;font-weight:600}
-.prof span.s{display:block;font-size:11px;color:var(--text-3)}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
-.side-col{position:sticky;top:16px}
+.prof span.s{display:block;font-size:12px;color:var(--text-3)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:28px;align-items:start}
+.blk-att{grid-column:1;grid-row:1}
+.blk-feed{grid-column:1;grid-row:2;margin-top:26px}
+.side-col{grid-column:2;grid-row:1 / span 2;position:sticky;top:16px}
 .side-col .dl{grid-template-columns:1fr;gap:4px;padding:12px 14px}
 .side-col .dl .dt{display:flex;justify-content:space-between;gap:8px}
 .side-col .dl .de{font-size:13px;line-height:1.45}
-.more{display:block;width:100%;padding:12px;font-size:13px;font-weight:600;color:var(--accent);
+.more{display:block;width:100%;min-height:44px;padding:12px;font-size:13px;font-weight:600;color:var(--accent);
   border-top:1px solid var(--border)}
 .more:hover{background:var(--surface-2)}
-select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface);
+.more:focus-visible{outline-offset:-3px}
+select.topic{min-height:40px;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface);
   color:var(--text-2);font:500 12.5px var(--sans)}
 @media(max-width:900px){
   .wrap{padding:18px 16px 50px}
   .layout{grid-template-columns:1fr}
-  .side-col{position:static}
+  /* DOM order is attention → deadlines → feed, so on a phone the dates
+     come before the long log without any reordering trick. */
+  .blk-att,.blk-feed,.side-col{grid-column:1;grid-row:auto}
+  .side-col{position:static;margin-top:26px}
 }
 
 /* ── primitives ────────────────────────────────────────────────── */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
 .sec-t{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3)}
+h2.sec-t,h3.sec-t{display:block}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
   flex-wrap:wrap;margin:26px 0 12px}
 .sec-h:first-child{margin-top:0}
 .sec-h .d{font-size:12.5px;color:var(--text-3)}
-.lnk{font-size:12.5px;font-weight:600;color:var(--accent)}
+.lnk{font-size:12.5px;font-weight:600;color:var(--accent);min-height:32px;padding:0 6px;margin:-6px -6px}
 .lnk:hover{text-decoration:underline}
 
-.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;
   padding:2px 8px;border-radius:20px;border:1px solid var(--border);color:var(--text-3);white-space:nowrap}
 .pill.crit{background:var(--crit-bg);color:var(--crit);border-color:var(--crit-br)}
 .pill.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-br)}
@@ -104,8 +116,12 @@ select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);
 .rows{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
   overflow:hidden;box-shadow:var(--shadow)}
 .row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
+  width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;border-radius:0;
   padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;
   transition:background 120ms var(--ease)}
+.row:focus-visible{outline-offset:-3px}
+.row>*{display:block;min-width:0}
+.row .ttl{display:block}
 .row:last-child{border-bottom:none}
 .row:hover{background:var(--surface-2)}
 .row .dot{width:7px;height:7px;border-radius:50%;margin-top:7px;flex:0 0 auto;background:var(--text-3)}
@@ -114,8 +130,8 @@ select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);
 .row .snip{font-size:12.5px;color:var(--text-2);margin-top:4px;line-height:1.5;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .row .meta{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;align-items:center}
-.row .src{font-family:var(--mono);font-size:10.5px;color:var(--text-3);font-weight:500}
-.row .when{font-family:var(--mono);font-size:11px;color:var(--text-3);white-space:nowrap;text-align:right}
+.row .src{font-family:var(--mono);font-size:12px;color:var(--text-3);font-weight:500}
+.row .when{font-family:var(--mono);font-size:12px;color:var(--text-3);white-space:nowrap;text-align:right}
 .row.rel{background:linear-gradient(90deg,var(--accent-bg) 0 3px,transparent 3px)}
 .row.rel:hover{background:linear-gradient(90deg,var(--accent-bg) 0 3px,var(--surface-2) 3px)}
 
@@ -124,17 +140,18 @@ select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);
 
 /* ── filter bar ────────────────────────────────────────────────── */
 .filters{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.chip{font-size:12.5px;font-weight:500;padding:6px 11px;border-radius:20px;
+.chip{font-size:12.5px;font-weight:500;min-height:36px;padding:6px 13px;border-radius:20px;
   border:1px solid var(--border);background:var(--surface);color:var(--text-2);
   transition:all 120ms var(--ease);white-space:nowrap}
 .chip:hover{border-color:var(--border-2);color:var(--text)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.chip .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:4px}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chip .n{font-family:var(--mono);font-size:12px;opacity:.85;margin-left:4px}
 .searchbox{flex:1;min-width:180px;position:relative}
-.searchbox input{width:100%;padding:8px 12px 8px 32px;border-radius:var(--r-sm);
+.searchbox input{width:100%;min-height:44px;padding:8px 12px 8px 34px;border-radius:var(--r-sm);
   border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;
-  font-family:inherit;outline:none;transition:border-color 120ms}
-.searchbox input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+  font-family:inherit;-webkit-appearance:none;appearance:none;transition:border-color 120ms}
+.searchbox input::placeholder{color:var(--text-3);opacity:1}
+.searchbox input:focus-visible{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:1px}
 .searchbox .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px}
 
 /* ── profile picker ────────────────────────────────────────────── */
@@ -146,19 +163,19 @@ select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);
 .ent .ic{font-size:19px;line-height:1}
 .ent .nm{font-size:13.5px;font-weight:600;margin-top:9px;letter-spacing:-.01em}
 .ent.on .nm{color:var(--accent)}
-.ent .ds{font-size:11.5px;color:var(--text-3);margin-top:2px;line-height:1.4}
+.ent .ds{font-size:12px;color:var(--text-3);margin-top:2px;line-height:1.4}
 
 .mrow{display:grid;grid-template-columns:150px 1fr 132px;gap:16px;align-items:start;
   padding:15px 16px;border-bottom:1px solid var(--border)}
 .mrow:last-child{border-bottom:none}
 .mrow.na{opacity:.5}
 .mrow .rn{font-size:14px;font-weight:650;letter-spacing:-.01em}
-.mrow .rm{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:3px;
+.mrow .rm{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:3px;
   text-transform:uppercase;letter-spacing:.04em}
 .mrow .rw{font-size:12.5px;color:var(--text-2);line-height:1.55}
 .mrow .rnote{font-size:12.5px;color:var(--text);line-height:1.5;margin-top:8px;
   background:var(--warn-bg);border:1px solid var(--warn-br);border-radius:var(--r-sm);padding:8px 11px}
-.mrow .rd{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:8px}
+.mrow .rd{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:8px}
 .mrow .bdg{justify-self:end;text-align:center}
 @media(max-width:760px){
   .mrow{grid-template-columns:1fr auto;gap:10px}
@@ -170,7 +187,7 @@ select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);
   padding:14px 16px;border-bottom:1px solid var(--border)}
 .dl:last-child{border-bottom:none}
 .dl .dt{font-family:var(--mono);font-size:12.5px;font-weight:600}
-.dl .dd{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:2px}
+.dl .dd{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:2px}
 .dl .de{font-size:13.5px}
 .dl.soon .dt{color:var(--crit)}
 
@@ -180,46 +197,52 @@ select.topic{padding:6px 10px;border-radius:20px;border:1px solid var(--border);
 .ov.on{opacity:1;pointer-events:auto}
 .dw{position:fixed;top:0;right:0;height:100%;width:min(560px,96vw);background:var(--surface);
   border-left:1px solid var(--border);transform:translateX(101%);
-  transition:transform 220ms var(--ease);z-index:1101;overflow-y:auto;box-shadow:var(--shadow-md)}
-.dw.on{transform:none}
+  visibility:hidden;transition:transform 220ms var(--ease),visibility 0s linear 220ms;
+  z-index:1101;overflow-y:auto;box-shadow:var(--shadow-md)}
+.dw.on{transform:none;visibility:visible;transition:transform 220ms var(--ease),visibility 0s}
+.dw:focus{outline:none}
 .dw-in{padding:22px 26px 60px}
-.dw .x{position:absolute;top:16px;right:18px;font-size:20px;color:var(--text-3);
-  width:30px;height:30px;border-radius:var(--r-sm)}
+.dw .x{position:absolute;top:12px;right:14px;font-size:22px;line-height:1;color:var(--text-2);
+  width:44px;height:44px;border-radius:var(--r-sm)}
 .dw .x:hover{background:var(--surface-3);color:var(--text)}
-.dw h2{font-size:19px;font-weight:650;letter-spacing:-.02em;line-height:1.3;margin:12px 0 14px;padding-right:36px}
+.dw .dtitle{font-size:19px;font-weight:650;letter-spacing:-.02em;line-height:1.3;margin:12px 0 14px;padding-right:48px}
 .dsec{margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
-.dsec .dl2{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+.dsec .dl2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
   color:var(--text-3);margin-bottom:7px}
 .dsec p{font-size:13.5px;line-height:1.65;color:var(--text-2)}
 .dbtn{display:inline-flex;align-items:center;gap:7px;margin-top:20px;padding:9px 15px;
-  border-radius:var(--r-sm);background:var(--accent);color:#fff;font-size:13px;font-weight:600}
+  min-height:44px;border-radius:var(--r-sm);background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:600}
 .dbtn:hover{background:var(--accent-2)}
 
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+.stat-err{padding:32px 24px;text-align:center;color:var(--text-2);font-size:13.5px}
+.stat-err b{display:block;color:var(--text);font-size:14.5px;font-weight:600;margin-bottom:6px}
+.stat-err .dbtn{margin-top:14px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <script src="site-nav.js"></script>
 
-<main class="wrap">
+<main class="wrap" id="main">
   <header class="pg-h">
     <div><h1>RegWatch</h1><div class="sub" id="upd">Belgian &amp; EU regulators, checked daily</div></div>
-    <button class="prof" id="whoBtn" title="What applies to me">
+    <button class="prof" id="whoBtn" title="What applies to me" aria-haspopup="dialog">
       <span class="av" id="whoAv">?</span>
       <span><b id="whoName">Set your profile</b><span class="s" id="whoSub">See what applies to you</span></span>
     </button>
   </header>
-  <div id="view"></div>
+  <div id="view" aria-busy="true"><div class="rows"><div class="empty">Loading the latest items…</div></div></div>
+  <div class="sr" id="live" role="status" aria-live="polite"></div>
 </main>
 
-<div class="ov" id="ov" onclick="closeDrawer()"></div>
-<div class="dw" id="dw"><div class="dw-in" id="dwBody"></div></div>
+<div class="ov" id="ov" aria-hidden="true" onclick="closeDrawer()"></div>
+<div class="dw" id="dw" role="dialog" aria-modal="true" aria-labelledby="dwTitle" tabindex="-1" inert aria-hidden="true"><div class="dw-in" id="dwBody"></div></div>
 
 <script>
 const PKEY='regradar-profile';
-let ITEMS=[], META={}, APP=null, SHOWN=20;
+let ITEMS=[], META={}, APP=null, SHOWN=20, LOADFAIL=false;
 let ENTITY='', ACTS=new Set();
-let fTopic='', fWeight='', fQuery='';
+let fTopic='', fWeight='', fQuery='', LIVE_N=0, LASTFOCUS=null, OPENER_ID='';
 
 // EUR-Lex titles start with their CELEX number ("CELEX:32026R2138: …") —
 // an identifier, not something to read.
@@ -295,29 +318,32 @@ function snip(it){
   return t.length>=40 && !t.toLowerCase().startsWith(head) ? t : '';
 }
 /* ── shared row renderer ───────────────────────────────────────── */
+const impactLabel=it=>it.impact===3?'Critical':it.impact===2?'Important':'Info';
 function itemRow(it,themes){
   const rel=isRelevant(it,themes);
   const doc = it.doc_label && it.doc_type!=='news'
     ? `<span class="pill ${(it.legal_weight||1)>=7?'crit':(it.legal_weight||1)>=4?'warn':''}">${esc(it.doc_label)}</span>` : '';
   const life = it.lifecycle_label?`<span class="pill">${esc(it.lifecycle_label)}</span>`:'';
   const tag = (it.themes||[]).slice(0,2).map(t=>`<span class="pill">${esc(t)}</span>`).join('');
-  return `<div class="row ${rel?'rel':''}" data-id="${esc(it.id)}">
-    <span class="dot i${it.impact||1}"></span>
-    <div>
-      <div class="ttl">${esc(title(it))}</div>
-      ${snip(it)?`<div class="snip">${esc(snip(it))}</div>`:''}
-      <div class="meta">
+  const imp=impactLabel(it);
+  const label=[imp+' impact',title(it),it.source,pubDate(it.date),rel?'Relevant to you':''].filter(Boolean).join('. ');
+  return `<button type="button" class="row ${rel?'rel':''}" data-id="${esc(it.id)}" aria-haspopup="dialog" aria-label="${esc(label)}">
+    <span class="dot i${it.impact||1}" title="${imp} impact" aria-hidden="true"></span>
+    <span>
+      <span class="ttl">${esc(title(it))}</span>
+      ${snip(it)?`<span class="snip">${esc(snip(it))}</span>`:''}
+      <span class="meta">
         <span class="src">${esc(it.source)}</span>
         ${rel?'<span class="pill acc">● Relevant to you</span>':''}
         ${doc}${life}${tag}
-      </div>
-    </div>
+      </span>
+    </span>
     <span class="when" title="${esc(fmt(it.date))}">${pubDate(it.date)}</span>
-  </div>`;
+  </button>`;
 }
 function wireRows(){
   document.querySelectorAll('.row[data-id]').forEach(r=>
-    r.addEventListener('click',()=>openDrawer(r.dataset.id)));
+    r.addEventListener('click',()=>openDrawer(r.dataset.id,r)));
 }
 
 /* ── page ──────────────────────────────────────────────────────── */
@@ -358,70 +384,81 @@ function vPage(){
   const mine=ITEMS.filter(i=>isRelevant(i,themes));
   const attention=attentionList(themes.size?mine:ITEMS);
   const list=filtered(themes);
+  LIVE_N=list.length;
   const dates=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
   const topics={}; ITEMS.forEach(i=>(i.themes||[]).forEach(t=>topics[t]=(topics[t]||0)+1));
   const tks=Object.keys(topics).sort((a,b)=>a.localeCompare(b));
   const cnt=f=>ITEMS.filter(f).length;
 
-  return `<div class="layout"><section>
-    <div class="sec-h"><div><span class="sec-t">Needs attention</span>
+  // A failed load must never read as "all clear": say so and offer Retry.
+  const fail=`<div class="stat-err" role="alert"><b>Could not load the latest items</b>
+      Check your connection, then try again. Nothing here should be read as "no changes".
+      <div><button type="button" class="dbtn" id="retry">Retry</button></div></div>`;
+  const attBody=LOADFAIL?fail:attention.length?attention.map(i=>itemRow(i,themes)).join(''):
+      '<div class="empty"><b>Nothing pressing</b>No binding instruments or consultations in range.</div>';
+  const chip=(w,label,n,on)=>`<button type="button" class="chip ${on?'on':''}" data-w="${w}" aria-pressed="${on}">${label}<span class="n">${n}</span></button>`;
+
+  return `<div class="layout"><section class="blk-att" aria-labelledby="h-att">
+    <div class="sec-h"><div><h2 class="sec-t" id="h-att">Needs attention</h2>
       <div class="d">${themes.size?'Binding rules and consultations in your perimeter from the last 30 days, most authoritative first.'
         :'Binding rules and consultations from the last 30 days, most authoritative first.'}</div></div></div>
-    <div class="rows">${attention.length?attention.map(i=>itemRow(i,themes)).join(''):
-      '<div class="empty"><b>Nothing pressing</b>No binding instruments or consultations in range.</div>'}</div>
+    <div class="rows">${attBody}</div>
+  </section>
 
-    <div class="sec-h"><div><span class="sec-t">All signals</span></div>
-      ${(fTopic||fWeight||fQuery)?'<button class="lnk" id="clr">Clear filters ×</button>':''}</div>
+  <aside class="side-col" aria-labelledby="h-up">
+    <div class="sec-h"><div><h2 class="sec-t" id="h-up">Coming up</h2></div></div>
+    <div class="rows">${dates.length?dates.map(deadlineRow).join(''):
+      '<div class="empty"><b>No dated deadlines</b></div>'}</div>
+  </aside>
+
+  ${LOADFAIL?'':`<section class="blk-feed" aria-labelledby="h-all">
+    <div class="sec-h"><div><h2 class="sec-t" id="h-all">All signals</h2></div>
+      ${(fTopic||fWeight||fQuery)?'<button type="button" class="lnk" id="clr">Clear filters ×</button>':''}</div>
     <div class="filters">
-      <div class="searchbox"><span class="si">⌕</span>
-        <input id="q" placeholder="Search…" value="${esc(fQuery)}"></div>
+      <div class="searchbox"><label class="sr" for="q">Search signals by title, source or theme</label>
+        <span class="si" aria-hidden="true">⌕</span>
+        <input id="q" type="search" autocomplete="off" placeholder="Search…" value="${esc(fQuery)}"></div>
       <select class="topic" id="topic" aria-label="Topic">
         <option value="">All topics</option>
         ${tks.map(t=>`<option value="${esc(t)}" ${fTopic===t?'selected':''}>${esc(t)} (${topics[t]})</option>`).join('')}
       </select>
     </div>
-    <div class="filters">
-      <button class="chip ${!fWeight?'on':''}" data-w="">All<span class="n">${ITEMS.length}</span></button>
-      ${themes.size?`<button class="chip ${fWeight==='mine'?'on':''}" data-w="mine">● For me<span class="n">${mine.length}</span></button>`:''}
-      <button class="chip ${fWeight==='binding'?'on':''}" data-w="binding">Binding<span class="n">${cnt(i=>(i.legal_weight||1)>=7)}</span></button>
-      <button class="chip ${fWeight==='soft'?'on':''}" data-w="soft">Consultations &amp; guidance<span class="n">${cnt(i=>{const w=i.legal_weight||1;return w>=4&&w<7})}</span></button>
+    <div class="filters" role="group" aria-label="Filter by legal weight">
+      ${chip('','All',ITEMS.length,!fWeight)}
+      ${themes.size?chip('mine','● For me',mine.length,fWeight==='mine'):''}
+      ${chip('binding','Binding',cnt(i=>(i.legal_weight||1)>=7),fWeight==='binding')}
+      ${chip('soft','Consultations &amp; guidance',cnt(i=>{const w=i.legal_weight||1;return w>=4&&w<7}),fWeight==='soft')}
     </div>
-    <div class="rows">${list.length?list.slice(0,SHOWN).map(i=>itemRow(i,themes)).join(''):
+    <div class="rows" id="feed">${list.length?list.slice(0,SHOWN).map(i=>itemRow(i,themes)).join(''):
       '<div class="empty"><b>No matches</b>Try clearing a filter.</div>'}
-      ${list.length>SHOWN?`<button class="more" id="more">Show more · ${list.length-SHOWN} left</button>`:''}</div>
-  </section>
-
-  <aside class="side-col">
-    <div class="sec-h"><div><span class="sec-t">Coming up</span></div></div>
-    <div class="rows">${dates.length?dates.map(deadlineRow).join(''):
-      '<div class="empty"><b>No dated deadlines</b></div>'}</div>
-  </aside></div>`;
+      ${list.length>SHOWN?`<button type="button" class="more" id="more">Show more · ${list.length-SHOWN} left</button>`:''}</div>
+  </section>`}</div>`;
 }
 
 /* "What applies to me": entity + activities → perimeter. Opens in the
    side panel so it never takes the reader away from the feed. */
 function profilePanel(){
-  if(!APP) return '<div class="empty">Applicability data unavailable.</div>';
+  if(!APP) return '<button type="button" class="x" onclick="closeDrawer()" aria-label="Close">×</button><h2 class="dtitle" id="dwTitle">What applies to me</h2><div class="empty">Applicability data unavailable.</div>';
   const rows=ENTITY?APP.regulations.map(r=>({r,v:verdictFor(r,ENTITY,ACTS)}))
     .sort((a,b)=>({direct:0,conditional:1,na:2})[a.v]-({direct:0,conditional:1,na:2})[b.v]
       ||a.r.name.localeCompare(b.r.name)):[];
   const n={direct:0,conditional:0,na:0}; rows.forEach(x=>n[x.v]++);
   return `
-  <button class="x" onclick="closeDrawer()">×</button>
-  <h2>What applies to me</h2>
-  <div class="sec-h"><div><span class="sec-t">I am a…</span>
+  <button type="button" class="x" onclick="closeDrawer()" aria-label="Close">×</button>
+  <h2 class="dtitle" id="dwTitle">What applies to me</h2>
+  <div class="sec-h"><div><h3 class="sec-t">I am a…</h3>
     <div class="d">Stored on this device only.</div></div>
-    ${ENTITY?'<button class="lnk" id="clrProf">Clear ×</button>':''}</div>
+    ${ENTITY?'<button type="button" class="lnk" id="clrProf">Clear ×</button>':''}</div>
   <div class="ents">${APP.entities.map(e=>`
-    <button class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}">
+    <button type="button" class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}" aria-pressed="${ENTITY===e.id}">
       <div class="ic">${e.icon}</div><div class="nm">${esc(e.label)}</div>
       <div class="ds">${esc(e.desc)}</div></button>`).join('')}</div>
-  <div class="sec-h"><div><span class="sec-t">And I also do…</span>
+  <div class="sec-h"><div><h3 class="sec-t">And I also do…</h3>
     <div class="d">Optional. Never removes an obligation.</div></div></div>
   <div class="filters">${APP.activities.map(a=>`
-    <button class="chip ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('')}</div>
+    <button type="button" class="chip ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}" aria-pressed="${ACTS.has(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('')}</div>
   ${ENTITY?`
-  <div class="sec-h"><div><span class="sec-t">Your perimeter</span>
+  <div class="sec-h"><div><h3 class="sec-t">Your perimeter</h3>
     <div class="d">${n.direct} in scope · ${n.conditional} conditional · ${n.na} not applicable</div></div></div>
   <div class="rows">${rows.filter(x=>x.v!=='na').map(({r,v})=>{
     const note=(r.notes||{})[ENTITY];
@@ -436,6 +473,10 @@ function profilePanel(){
 }
 function openProfile(){
   const body=document.getElementById('dwBody');
+  // Re-rendering replaces the button that was just pressed; remember which
+  // one so keyboard focus lands back on it.
+  const ae=document.activeElement;
+  const was=body.contains(ae)?(ae.dataset.e?'[data-e="'+ae.dataset.e+'"]':ae.dataset.a?'[data-a="'+ae.dataset.a+'"]':ae.id?'#'+ae.id:''):'';
   body.innerHTML=profilePanel();
   body.querySelectorAll('[data-e]').forEach(b=>b.addEventListener('click',()=>{
     ENTITY = ENTITY===b.dataset.e?'':b.dataset.e; saveP(); paintWho(); render(); openProfile();
@@ -445,8 +486,7 @@ function openProfile(){
   }));
   const cp=body.querySelector('#clrProf');
   if(cp) cp.addEventListener('click',()=>{ENTITY='';ACTS.clear();saveP();paintWho();render();openProfile();});
-  document.getElementById('dw').classList.add('on');
-  document.getElementById('ov').classList.add('on');
+  showDrawer(was?body.querySelector(was):null);
 }
 
 /* ── drawer ────────────────────────────────────────────────────── */
@@ -462,62 +502,121 @@ const LEGAL_TEXT={
   'non-binding':'Non-binding — background and context.',
   'informational':'Informational — no direct obligation.',
 };
-function openDrawer(id){
+function openDrawer(id,opener){
   const it=ITEMS.find(x=>x.id===id); if(!it)return;
   const themes=myThemes(), rel=isRelevant(it,themes);
   const w=it.legal_weight||1;
   const mine=rel?inScopeRegs().filter(r=>(TOPIC_THEMES[r.topic]||[]).some(t=>(it.themes||[]).includes(t))):[];
   document.getElementById('dwBody').innerHTML=`
-    <button class="x" onclick="closeDrawer()">×</button>
+    <button type="button" class="x" onclick="closeDrawer()" aria-label="Close">×</button>
     <div class="filters" style="margin:0">
       <span class="pill ${it.impact===3?'crit':it.impact===2?'warn':''}">${it.impact===3?'Critical':it.impact===2?'Important':'Info'}</span>
       <span class="pill">${esc(it.source)}</span>
       <span class="pill">${fmt(it.date)}</span>
       ${rel?'<span class="pill acc">● Relevant to you</span>':''}
     </div>
-    <h2>${esc(title(it))}</h2>
-    ${it.doc_label&&it.doc_type!=='news'?`<div class="dsec"><div class="dl2">Instrument &amp; legal weight</div>
+    <h2 class="dtitle" id="dwTitle">${esc(title(it))}</h2>
+    ${it.doc_label&&it.doc_type!=='news'?`<div class="dsec"><h3 class="dl2">Instrument &amp; legal weight</h3>
       <div class="filters" style="margin-bottom:8px">
         <span class="pill ${w>=7?'crit':w>=4?'warn':''}">${esc(it.doc_label)}</span>
         ${it.lifecycle_label?`<span class="pill">${esc(it.lifecycle_label)}</span>`:''}
       </div>
       <p>${esc(LEGAL_TEXT[it.legal_status]||it.legal_status||'')}</p></div>`:''}
-    ${mine.length?`<div class="dsec"><div class="dl2">Why this reaches you</div>
+    ${mine.length?`<div class="dsec"><h3 class="dl2">Why this reaches you</h3>
       <p>Touches ${mine.length===1?'a regulation':'regulations'} in your perimeter:
       ${mine.map(r=>esc(r.name)).join(', ')}.</p></div>`:''}
-    ${it.summary?`<div class="dsec"><div class="dl2">What happened</div><p>${esc(it.summary)}</p></div>`:''}
-    ${it.so_what?`<div class="dsec"><div class="dl2">So what</div><p>${esc(it.so_what)}</p></div>`:''}
-    ${it.action?`<div class="dsec"><div class="dl2">Action</div><p>${esc(it.action)}</p></div>`:''}
-    <div class="dsec"><div class="dl2">Scope</div><div class="filters">
+    ${it.summary?`<div class="dsec"><h3 class="dl2">What happened</h3><p>${esc(it.summary)}</p></div>`:''}
+    ${it.so_what?`<div class="dsec"><h3 class="dl2">So what</h3><p>${esc(it.so_what)}</p></div>`:''}
+    ${it.action?`<div class="dsec"><h3 class="dl2">Action</h3><p>${esc(it.action)}</p></div>`:''}
+    <div class="dsec"><h3 class="dl2">Scope</h3><div class="filters">
       ${(it.themes||[]).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}
       ${it.jurisdiction?`<span class="pill">${esc(it.jurisdiction)}</span>`:''}
     </div></div>
     ${it.url?`<a class="dbtn" href="${esc(it.url)}" target="_blank" rel="noopener">Open primary source ↗</a>`:''}`;
-  document.getElementById('dw').classList.add('on');
-  document.getElementById('ov').classList.add('on');
+  showDrawer(null);
 }
-function closeDrawer(){document.getElementById('dw').classList.remove('on');
-  document.getElementById('ov').classList.remove('on');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+/* Dialog behaviour: the page behind becomes inert while the drawer is
+   open, focus moves in, Tab is kept inside, Esc closes, and focus returns
+   to whatever opened it. A closed drawer is inert + hidden, so its links
+   are not in the tab order. */
+function setBackdropInert(on){
+  [...document.body.children].forEach(el=>{
+    if(el.id==='dw'||el.id==='ov'||el.tagName==='SCRIPT') return;
+    if(on){ if(!el.hasAttribute('inert')){ el.setAttribute('inert',''); el.dataset.wasInert='1'; } }
+    else if(el.dataset.wasInert){ el.removeAttribute('inert'); delete el.dataset.wasInert; }
+  });
+}
+function showDrawer(focusEl){
+  const dw=document.getElementById('dw'), ov=document.getElementById('ov');
+  if(!dw.classList.contains('on')){
+    LASTFOCUS=document.activeElement;
+    OPENER_ID=LASTFOCUS&&LASTFOCUS.dataset&&LASTFOCUS.dataset.id||'';
+    setBackdropInert(true);
+    dw.removeAttribute('inert'); dw.removeAttribute('aria-hidden');
+    dw.classList.add('on'); ov.classList.add('on'); dw.scrollTop=0;
+  }
+  const t=focusEl||dw.querySelector('.x')||dw;
+  t.focus({preventScroll:true});
+}
+function closeDrawer(){
+  const dw=document.getElementById('dw'), ov=document.getElementById('ov');
+  if(!dw.classList.contains('on')) return;
+  dw.classList.remove('on'); ov.classList.remove('on');
+  dw.setAttribute('inert',''); dw.setAttribute('aria-hidden','true');
+  setBackdropInert(false);
+  let t=LASTFOCUS;
+  if(!t||t===document.body||!document.contains(t)){
+    t=(OPENER_ID&&document.querySelector('.row[data-id="'+OPENER_ID.replace(/["\\]/g,'\\$&')+'"]'))||document.getElementById('whoBtn');
+  }
+  LASTFOCUS=null; OPENER_ID='';
+  if(t&&t.focus) t.focus();
+}
+document.addEventListener('keydown',e=>{
+  const dw=document.getElementById('dw');
+  if(!dw.classList.contains('on')) return;
+  if(e.key==='Escape'){ e.preventDefault(); closeDrawer(); }
+  else if(e.key==='Tab'){
+    const f=[...dw.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])')];
+    if(!f.length) return;
+    const first=f[0], last=f[f.length-1], a=document.activeElement;
+    if(e.shiftKey&&(a===first||a===dw)){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey&&a===last){ e.preventDefault(); first.focus(); }
+  }
+});
 
 /* ── render ────────────────────────────────────────────────────── */
-function render(){
+function announce(){
+  const l=document.getElementById('live');
+  if(l) l.textContent=LIVE_N+(LIVE_N===1?' item':' items')+' shown';
+}
+function render(focusSel){
   const v=document.getElementById('view');
   v.innerHTML=vPage();
+  v.setAttribute('aria-busy','false');
   wireRows();
   v.querySelectorAll('[data-w]').forEach(b=>b.addEventListener('click',()=>{
-    fWeight=b.dataset.w; SHOWN=PAGE; render(); }));
+    fWeight=b.dataset.w; SHOWN=PAGE; render('[data-w="'+fWeight+'"]'); announce(); }));
   const tp=document.getElementById('topic');
-  if(tp) tp.addEventListener('change',()=>{ fTopic=tp.value; SHOWN=PAGE; render(); });
+  if(tp) tp.addEventListener('change',()=>{ fTopic=tp.value; SHOWN=PAGE; render('#topic'); announce(); });
   const clr=document.getElementById('clr');
-  if(clr) clr.addEventListener('click',()=>{fTopic='';fWeight='';fQuery='';SHOWN=PAGE;render();});
+  if(clr) clr.addEventListener('click',()=>{fTopic='';fWeight='';fQuery='';SHOWN=PAGE;render('#q');announce();});
   const more=document.getElementById('more');
-  if(more) more.addEventListener('click',()=>{ SHOWN+=PAGE; render(); });
+  if(more) more.addEventListener('click',()=>{
+    const was=SHOWN; SHOWN+=PAGE; render();
+    const r=document.querySelectorAll('#feed .row')[was]; if(r) r.focus();
+  });
+  const retry=document.getElementById('retry');
+  if(retry) retry.addEventListener('click',async()=>{
+    retry.disabled=true; retry.textContent='Retrying…';
+    await load(); render(LOADFAIL?'#retry':'#h-att');
+  });
   const q=document.getElementById('q');
   if(q) q.addEventListener('input',()=>{
     fQuery=q.value; SHOWN=PAGE; const at=document.activeElement===q;
-    render(); if(at){const n=document.getElementById('q'); if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length);} }
+    render(); announce(); if(at){const n=document.getElementById('q'); if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length);} }
   });
+  if(focusSel){ const n=v.querySelector(focusSel); if(n){ if(!n.matches('button,input,select,a')) n.setAttribute('tabindex','-1'); n.focus(); } }
 }
 
 function paintWho(){
@@ -529,29 +628,34 @@ function paintWho(){
     : 'See what applies to you';
 }
 
-async function boot(){
-  loadP();
-  document.getElementById('whoBtn').addEventListener('click',openProfile);
-  try{
-    // no-store: the pipeline rewrites these on a schedule, and a cached
-    // copy would quietly show yesterday's regulatory position.
-    const opt={cache:'no-store'};
-    const [items,meta,app]=await Promise.all([
-      fetch('data/items.json',opt).then(r=>r.json()).catch(()=>[]),
-      fetch('data/meta.json',opt).then(r=>r.json()).catch(()=>({})),
-      fetch('data/applicability.json',opt).then(r=>r.json()).catch(()=>null),
-    ]);
-    ITEMS=Array.isArray(items)?items:(items.items||[]); META=meta||{}; APP=app;
-  }catch(e){}
+async function load(){
+  // no-store: the pipeline rewrites these on a schedule, and a cached
+  // copy would quietly show yesterday's regulatory position.
+  const get=u=>fetch(u,{cache:'no-store'}).then(r=>{ if(!r.ok) throw new Error(u+' '+r.status); return r.json(); });
+  const [items,meta,app]=await Promise.all([
+    get('data/items.json').catch(()=>null),
+    get('data/meta.json').catch(()=>({})),
+    get('data/applicability.json').catch(()=>null),
+  ]);
+  // A failed feed is an error, never an empty (all-clear) feed.
+  const list=Array.isArray(items)?items:(items&&Array.isArray(items.items)?items.items:null);
+  LOADFAIL=!list;
+  ITEMS=list||[]; META=meta||{}; APP=app;
   ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
   if(META.last_updated){
     const d=new Date(META.last_updated);
     document.getElementById('upd').textContent=
       `Belgian & EU regulators · updated ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}, ${d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`;
   }
+  paintWho();
+}
+async function boot(){
+  loadP();
+  document.getElementById('whoBtn').addEventListener('click',openProfile);
+  await load();
+  render();
   // Old links (regwatch.html#apply) open the profile panel; the other
   // former views are all on this page now.
-  paintWho(); render();
   if(location.hash==='#apply') openProfile();
 }
 boot();
