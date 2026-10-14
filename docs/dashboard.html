@@ -19,9 +19,10 @@
   }
   html[data-theme="light"] {
     --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F8FAFC; --border:#E6E9EF; --border-strong:#D5DAE2;
-    --text:#16202C; --text-2:#5A6675; --text-3:#94A0AE; --accent:#0039A6; --accent-bg:#E7EDFB;
-    --crit:#C13515; --crit-bg:#FCEEE9; --imp:#B25E09; --imp-bg:#FBF1E2; --info:#1E6FB8; --ok:#0F8A5F; --ok-bg:#E7F5EE; --purple:#6B2D8B;
+    --text:#16202C; --text-2:#5A6675; --text-3:#5F6B7A; --accent:#0039A6; --accent-bg:#E7EDFB;
+    --crit:#C13515; --crit-bg:#FCEEE9; --imp:#9A5206; --imp-bg:#FBF1E2; --info:#1E6FB8; --ok:#0B6E4C; --ok-bg:#E7F5EE; --purple:#6B2D8B;
   }
+  html[data-theme="dark"] { --text-3:#8A93A0; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
   a { color:inherit; text-decoration:none; }
@@ -35,8 +36,8 @@
   .kpi { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; }
   .kpi.warn { border-color:var(--crit); }
   .kpi-n { font-size:26px; font-weight:700; font-family:var(--mono); }
-  .kpi-l { font-size:11.5px; color:var(--text-3); margin-top:4px; }
-  .kpi-sub { font-size:11px; color:var(--text-3); margin-top:9px; }
+  .kpi-l { font-size:12px; color:var(--text-3); margin-top:4px; }
+  .kpi-sub { font-size:12px; color:var(--text-3); margin-top:9px; }
 
   .ring-card { display:flex; align-items:center; gap:16px; }
   .ring { width:76px; height:76px; border-radius:50%; flex:0 0 auto; display:flex; align-items:center; justify-content:center; }
@@ -47,12 +48,12 @@
 
   .panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; }
   .panel h2 { font-size:13px; font-weight:700; margin-bottom:2px; }
-  .panel .hint { font-size:11px; color:var(--text-3); margin-bottom:12px; }
+  .panel .hint { font-size:12px; color:var(--text-3); margin-bottom:12px; }
 
   .topic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
   .topic-cell { border-radius:8px; padding:11px 12px; border:1px solid var(--border); }
   .topic-cell .t { font-size:12px; font-weight:600; }
-  .topic-cell .v { font-family:var(--mono); font-size:11px; margin-top:4px; }
+  .topic-cell .v { font-family:var(--mono); font-size:12px; margin-top:4px; }
   .topic-full { background:var(--ok-bg); border-color:var(--ok); }
   .topic-full .v { color:var(--ok); }
   .topic-partial { background:var(--imp-bg); border-color:var(--imp); }
@@ -64,26 +65,31 @@
   .gap-item { background:var(--bg); border-left:3px solid var(--crit); border-radius:0 8px 8px 0; padding:10px 13px; display:flex; align-items:center; gap:12px; }
   .gap-item .txt { flex:1; min-width:0; }
   .gap-item .txt .w { font-size:12.5px; font-weight:600; }
-  .gap-item .txt .b { font-size:11px; color:var(--text-3); margin-top:2px; }
-  .map-btn { font-size:11px; font-weight:600; color:var(--accent); background:var(--accent-bg); border:1px solid var(--accent); border-radius:16px; padding:5px 11px; cursor:pointer; white-space:nowrap; }
+  .gap-item .txt .b { font-size:12px; color:var(--text-3); margin-top:2px; }
+  .map-btn { display:inline-flex; align-items:center; min-height:32px; font-size:12px; font-weight:600; color:var(--accent); background:var(--accent-bg); border:1px solid var(--accent); border-radius:16px; padding:5px 12px; cursor:pointer; white-space:nowrap; text-decoration:none; }
   .map-btn:hover { opacity:.85; }
+  .topic-cell .st { font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-right:6px; }
+  @media (max-width:600px){ .map-btn { min-height:44px; } .gap-item { flex-direction:column; align-items:flex-start; } }
   .test-item { display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--border); }
   .test-item:last-child { border-bottom:none; }
-  .test-av { width:26px; height:26px; border-radius:50%; background:var(--accent-bg); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:10.5px; font-weight:700; flex:0 0 auto; }
+  .test-av { width:26px; height:26px; border-radius:50%; background:var(--accent-bg); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex:0 0 auto; }
   .test-txt { flex:1; min-width:0; }
   .test-txt .w { font-size:12.5px; font-weight:600; }
-  .test-txt .b { font-size:11px; color:var(--text-3); margin-top:2px; }
-  .test-due { font-family:var(--mono); font-size:11px; white-space:nowrap; }
+  .test-txt .b { font-size:12px; color:var(--text-3); margin-top:2px; }
+  .test-due { font-family:var(--mono); font-size:12px; white-space:nowrap; }
   .due-overdue { color:var(--crit); font-weight:700; } .due-soon { color:var(--imp); } .due-ok { color:var(--text-3); }
   .empty-mini { font-size:12px; color:var(--text-3); padding:8px 0; }
 
-  .disclaimer { font-size:11px; color:var(--text-3); text-align:center; margin:24px 0 40px; line-height:1.6; }
+  .skip { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:8px 14px; z-index:2000; }
+  .skip:focus { left:8px; top:8px; }
+  .disclaimer { font-size:12px; color:var(--text-3); text-align:center; margin:24px 0 40px; line-height:1.6; }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <script src="site-nav.js"></script>
 
-<div class="wrap">
+<main class="wrap" id="main">
   <div class="head">
     <h1>Compliance dashboard</h1>
     <p class="sub">Obligation coverage, gaps and control testing — computed live from the obligations register and controls library.</p>
@@ -111,7 +117,7 @@
     </div>
   </div>
   <p class="disclaimer">Demo data for a fictional org (CF Bank). Coverage reflects obligation↔control mappings only — it is not an audit opinion on control design or operating effectiveness.</p>
-</div>
+</main>
 
 <script src="controls-data.js"></script>
 <script>
@@ -165,8 +171,8 @@ function renderKpis(pct, cov, gaps, overdue, testedRecent){
   const scopeNote = ENTITY ? `for ${entityLabel(ENTITY)}` : 'across all entity types';
   document.getElementById('kpis').innerHTML = `
     <div class="kpi ring-card">
-      <div class="ring" style="background:conic-gradient(var(--ok) 0deg ${pct*3.6}deg, var(--border) ${pct*3.6}deg 360deg)">
-        <div class="ring-inner" style="color:var(--ok)">${pct}%</div>
+      <div class="ring" role="img" aria-label="Obligation coverage ${pct} percent: ${cov.mappedCount} of ${cov.total} obligations have a mapped control" style="background:conic-gradient(var(--ok) 0deg ${pct*3.6}deg, var(--border) ${pct*3.6}deg 360deg)">
+        <div class="ring-inner" aria-hidden="true" style="color:${cov.total?'var(--ok)':'var(--text-3)'}">${cov.total?pct+'%':'\u2013'}</div>
       </div>
       <div>
         <div class="kpi-l" style="font-weight:600;color:var(--text)">Obligation coverage</div>
@@ -194,21 +200,22 @@ function renderTopics(cov){
   const cells = Object.keys(cov.byTopic).sort().map(topic=>{
     const t = cov.byTopic[topic];
     const cls = t.mapped===0 ? 'topic-gap' : (t.mapped<t.total ? 'topic-partial' : 'topic-full');
-    return `<div class="topic-cell ${cls}"><div class="t">${esc(topic)}</div><div class="v">${t.mapped} / ${t.total} mapped</div></div>`;
+    const word = t.mapped===0 ? 'Gap' : (t.mapped<t.total ? 'Partial' : 'Covered');
+    return `<div class="topic-cell ${cls}"><div class="t">${esc(topic)}</div><div class="v"><span class="st">${word}</span>${t.mapped} / ${t.total}</div></div>`;
   }).join('');
   document.getElementById('topicGrid').innerHTML = cells || '<div class="empty-mini">No obligations in scope.</div>';
 }
 
 function renderGaps(gaps){
   document.getElementById('gapsTitle').textContent = `Gaps to close (${gaps.length})`;
-  if(!gaps.length){ document.getElementById('gapList').innerHTML='<div class="empty-mini">No open gaps — every obligation in scope has at least one mapped control.</div>'; return; }
+  if(!gaps.length){ document.getElementById('gapList').innerHTML = OBS.length ? '<div class="empty-mini">No open gaps — every obligation in scope has at least one mapped control.</div>' : '<div class="empty-mini">Nothing in scope for this profile, so there is nothing to cover.</div>'; return; }
   document.getElementById('gapList').innerHTML = gaps.map(o=>`
     <div class="gap-item">
       <div class="txt">
         <div class="w">${esc(o.what)}</div>
         <div class="b">§ ${esc(o.legal_basis)} · ${esc(o.criticality)} criticality</div>
       </div>
-      <button class="map-btn" onclick="location.href='obligations.html'">+ Map a control</button>
+      <a class="map-btn" href="obligations.html?map=${encodeURIComponent(o.id)}" aria-label="Map a control to ${esc(o.legal_basis)}">+ Map a control</a>
     </div>`).join('');
 }
 

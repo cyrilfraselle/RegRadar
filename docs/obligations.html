@@ -19,9 +19,10 @@
   }
   html[data-theme="light"] {
     --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#F8FAFC; --border:#E6E9EF; --border-strong:#D5DAE2;
-    --text:#16202C; --text-2:#5A6675; --text-3:#94A0AE; --accent:#0039A6; --accent-bg:#E7EDFB;
-    --crit:#C13515; --crit-bg:#FCEEE9; --imp:#B25E09; --imp-bg:#FBF1E2; --info:#1E6FB8; --ok:#0F8A5F; --ok-bg:#E7F5EE; --purple:#6B2D8B;
+    --text:#16202C; --text-2:#5A6675; --text-3:#5F6B7A; --accent:#0039A6; --accent-bg:#E7EDFB;
+    --crit:#C13515; --crit-bg:#FCEEE9; --imp:#9A5206; --imp-bg:#FBF1E2; --info:#1E6FB8; --ok:#0B6E4C; --ok-bg:#E7F5EE; --purple:#6B2D8B;
   }
+  html[data-theme="dark"] { --text-3:#8A93A0; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
   a { color:inherit; text-decoration:none; }
@@ -234,7 +235,11 @@ async function load(){
     CONTROLS = cd.controls || [];
     if(appData) (appData.entities||[]).forEach(e=>ENTITY_LABEL[e.id]={label:e.label, icon:e.icon});
     loadProfile(); loadMine();
-    renderMeta(); renderProfileRow(); renderStats(); buildFilters(); render();
+    renderMeta(); renderProfileRow(); renderStats(); buildFilters();
+    const want=new URLSearchParams(location.search).get('map');
+    if(want && OBS.some(x=>x.id===want)){ openId=want; mapPickerId=want; myRegOnly=false; renderProfileRow(); }
+    render();
+    if(want && openId===want){ const row=document.querySelector('[data-id="'+want.replace(/"/g,'')+'"]'); if(row) row.scrollIntoView({block:'center'}); }
   }catch(e){
     document.getElementById('list').innerHTML='<div class="empty">No obligations yet. Run the engine to extract them.</div>';
   }

@@ -87,7 +87,7 @@
     ".rrn-ic:hover{background:#1E232A;color:var(--rrn-hi)}" +
     ".rrn-ic:focus-visible{outline:2px solid var(--rrn-acc)}" +
     ".rrn-right{display:flex}.rrn-menu{display:none}" +
-    "@media (max-width:760px){" +
+    "@media (max-width:900px){" +
     ".rrn-sub,.rrn-grp{display:none}.rrn-menu{display:grid}" +
     ".rrn.mob .rrn-in{flex-wrap:wrap;height:auto;min-height:48px}" +
     ".rrn.mob .rrn-grp{display:block;flex:1 0 100%;border-top:1px solid var(--rrn-line);order:2}" +
@@ -95,7 +95,7 @@
     ".rrn.mob .rrn-dd{position:static;display:block;box-shadow:none;border:0;background:transparent;padding:0 0 8px}" +
     ".rrn.mob .rrn-car{display:none}}" +
     ".rrf{margin-top:48px;padding:22px 16px 28px;border-top:1px solid rgba(128,128,128,.25);" +
-    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:#8B929C;text-align:center}" +
+    "font:400 12px/1.6 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--text-2,#8B929C);text-align:center}" +
     ".rrf p{max-width:760px;margin:0 auto}.rrf b{font-weight:600}";
 
   function el(tag, cls, html) {
