@@ -3,21 +3,24 @@
 How new tools and features move from idea to prototype to product.
 
 ```
-proposed  -->  approved  -->  prototyped  -->  adopted | rejected
-(agent PR)    (owner edit)    (agent PR)       (owner decision)
+proposed PR  -->  merged = approved  -->  prototyped  -->  adopted | rejected
+(agent opens)     (one tap by owner)      (agent PR)       (owner decision)
 ```
 
-- **proposed**: written by the weekly ideation session as one file in this
-  folder (`NNN-short-name.md`, see `TEMPLATE.md`), opened as a PR. Merging
-  the PR only records the idea; it does not approve it.
-- **approved**: the owner changes `status:` to `approved` in the idea's
-  front matter (GitHub web editor is fine). Only approved ideas are built.
-- **prototyped**: the prototyping session builds it under
-  `docs/labs/<id>/`, sets `status: prototyped` and `prototype:` in the
-  idea file, and opens a PR.
-- **adopted / rejected**: the owner decides after trying the lab page.
-  Adopting means a normal development task (add it to `NEXT_STEPS.md`);
-  labs code is never wired into the main nav automatically.
+- **Idea PR**: written by the weekly ideation session as one file in this
+  folder (`NNN-short-name.md`, see `TEMPLATE.md`), opened as a pull
+  request titled `Idea: ...`.
+- **Merging that PR is the approval.** Closing it unmerged rejects the
+  idea. There is no second step. Every idea file on `main` whose status is
+  `proposed` or `approved` and that has no `prototype:` yet is approved
+  for prototyping.
+- **prototyped**: the prototyping session builds the oldest such idea
+  under `docs/labs/<id>/`, sets `status: prototyped` and `prototype:` in
+  the idea file, and opens a `Lab: ...` PR.
+- **adopted / rejected**: the owner decides after trying the lab page
+  (set `status: adopted` or `rejected`). Adopting means a normal
+  development task (add it to `NEXT_STEPS.md`); labs code is never wired
+  into the main nav automatically.
 
 Rules for agents:
 

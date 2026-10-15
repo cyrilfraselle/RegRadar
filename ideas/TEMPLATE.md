@@ -1,7 +1,7 @@
 ---
 id: NNN-short-name
 title: Plain-language title
-status: proposed        # proposed | approved | prototyped | adopted | rejected
+status: proposed        # merged proposed/approved = go; then prototyped | adopted | rejected
 users: who benefits (e.g. one-person compliance team at an EMI)
 needs_owner: false      # true if it needs a backend, auth, pricing or credentials
 effort: S               # S = one session, M = a few sessions
