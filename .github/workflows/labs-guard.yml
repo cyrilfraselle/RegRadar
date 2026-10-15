@@ -1,0 +1,46 @@
+name: guard
+
+# Every PR: syntax-check changed JS/JSON.
+# Lab PRs (branch lab/<id>): may ONLY touch docs/labs/<id>/ and ideas/<id>.*,
+# which is what makes unattended merging of lab prototypes safe.
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    env:
+      HEAD_REF: ${{ github.head_ref }}
+      BASE_REF: ${{ github.base_ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lab PRs stay inside their own folder
+        if: startsWith(github.head_ref, 'lab/')
+        run: |
+          id="${HEAD_REF#lab/}"
+          case "$id" in
+            ''|*[!A-Za-z0-9._-]*) echo "Unexpected lab id: $id"; exit 1 ;;
+          esac
+          changed=$(git diff --name-only "origin/${BASE_REF}...HEAD")
+          bad=$(printf '%s\n' "$changed" | grep -v -E "^(docs/labs/${id}/|ideas/${id}\.)" || true)
+          if [ -n "$bad" ]; then
+            echo "These files are outside docs/labs/${id}/ and ideas/${id}.*:"
+            printf '%s\n' "$bad"
+            exit 1
+          fi
+          echo "Lab PR touches only its own folder and idea file."
+
+      - name: Syntax checks on changed files
+        run: |
+          changed=$(git diff --name-only "origin/${BASE_REF}...HEAD")
+          for f in $(printf '%s\n' "$changed" | grep -E '\.js$' || true); do
+            [ -f "$f" ] && node --check "$f"
+          done
+          for f in $(printf '%s\n' "$changed" | grep -E '\.json$' || true); do
+            [ -f "$f" ] && python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f"
+          done
+          echo "ok"
