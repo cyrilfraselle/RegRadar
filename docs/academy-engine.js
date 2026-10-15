@@ -93,10 +93,10 @@ const Ownership = (function(){
       const mx=(a.x+b.x)/2+off*.72;
       const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'benef.' : e.pct+' %';
       svg+=`<g class="ae-edg" data-e="${esc(e.from)}>${esc(e.to)}" style="cursor:${e.doc?'pointer':'default'}">
-        <rect x="${mx-26}" y="${my-9}" width="52" height="18" fill="var(--console)"
+        <rect x="${mx-31}" y="${my-10}" width="62" height="20" fill="var(--console)"
           stroke="${col}" stroke-width=".8" opacity=".95"/>
-        <text x="${mx}" y="${my+4}" text-anchor="middle" font-family="var(--mono)"
-          font-size="10" font-weight="700" fill="${col}">${lbl}</text></g>`;
+        <text x="${mx}" y="${my+4.5}" text-anchor="middle" font-family="var(--mono)"
+          font-size="12" font-weight="700" fill="${col}">${lbl}</text></g>`;
     });
 
     entities.forEach(e=>{
@@ -110,25 +110,58 @@ const Ownership = (function(){
       svg+=`<g class="ae-nod" data-n="${esc(e.id)}" style="cursor:${isP?'pointer':'default'}">
         <rect x="${p.x-NW/2}" y="${p.y-NH/2}" width="${NW}" height="${NH}" fill="${fill}"
           stroke="${stroke}" stroke-width="${isP?2:1.3}" stroke-dasharray="${dashed?'4 3':''}"/>
-        <text x="${p.x}" y="${p.y-2}" text-anchor="middle" font-family="var(--mono)"
-          font-size="10.5" font-weight="700" fill="${txt}">${esc(nm)}</text>
-        <text x="${p.x}" y="${p.y+11}" text-anchor="middle" font-family="var(--mono)"
-          font-size="8" fill="${txt}" opacity=".7">${esc(e.juris)} · ${isP?'PERSON':e.type.toUpperCase()}</text>
+        <text x="${p.x}" y="${p.y-3}" text-anchor="middle" font-family="var(--mono)"
+          font-size="12" font-weight="700" fill="${txt}">${esc(nm)}</text>
+        <text x="${p.x}" y="${p.y+12}" text-anchor="middle" font-family="var(--mono)"
+          font-size="12" fill="${txt}" opacity=".9">${esc(e.juris)} · ${isP?'PERSON':e.type.toUpperCase()}</text>
       </g>`;
     });
+    /* Text alternative: who is in the chart and who holds what in whom,
+       so the structure is available without seeing the drawing. */
+    const nameOf={}; entities.forEach(e=>nameOf[e.id]=e.name);
+    const kindOf=e=>e.type==='person'?'person':e.type;
+    const ents=entities.map(e=>`${e.name} (${kindOf(e)}${e.id===root?', the client':''}, ${e.juris})`).join('; ');
+    const links=edges.map(e=>{
+      const f=nameOf[e.from]||e.from, t=nameOf[e.to]||e.to;
+      return e.kind==='trustee'? `${f} is trustee of ${t}`
+        : e.kind==='beneficiary'? `${f} is beneficiary of ${t}`
+        : `${f} holds ${e.pct} % of ${t}`;
+    }).join('; ');
+    const alt=`Ownership chart of ${nameOf[root]||'the client'}. ${entities.length} parties: ${ents}. `
+      +`Links: ${links||'none'}.`;
     return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
-      aria-label="Ownership chart"><g class="ae-oz">${svg}</g></svg>`;
+      aria-label="${esc(alt)}" data-w="${W}" data-h="${H}"><g class="ae-oz">${svg}</g></svg>`;
   }
 
   /* ── zoom/pan + node/edge click wiring for one chart instance.
         wrap: the element containing the <svg> (e.g. .ae-chart).
-        opts: {onNodeClick(entityId), onEdgeClick(fromId,toId)} ── */
+        opts: {onNodeClick(entityId), onEdgeClick(fromId,toId), state}
+        Pan/pinch use pointer events (mouse, touch and pen), the svg is
+        touch-action:none so a drag pans instead of scrolling the page,
+        and the keyboard works too (arrows pan, + / - zoom, 0 resets).
+        On a narrow container the chart starts zoomed to ~1:1 so node text
+        is readable, in a taller window, and can be panned. ── */
   function wireChart(wrap, opts){
     opts=opts||{};
     const svg=wrap.querySelector('svg'); if(!svg) return null;
     const oz=svg.querySelector('.ae-oz');
-    let ZS=1,ZX=0,ZY=0;
+    const W=+svg.dataset.w||760, H=+svg.dataset.h||300;
+    const cw=wrap.clientWidth||W;
+    const narrow = cw>0 && cw<560;
+    let VH=H, Z0=1, X0=0, Y0=0;
+    if(narrow){
+      Z0=Math.min(2.4, Math.max(1.2, W/cw));            /* ~1:1 pixels */
+      const px=Math.min(Math.max(240, H*(cw/W)*Z0), Math.round(window.innerHeight*.6), 520);
+      VH=W*px/cw;                                          /* taller window, same x-scale */
+      svg.setAttribute('viewBox',`0 0 ${W} ${VH}`);
+      svg.style.height=px+'px';
+      X0=W/2*(1-Z0); Y0=VH/2-Z0*H/2;
+    }
+    let ZS=Z0, ZX=X0, ZY=Y0;
+    const st=opts.state;                                    /* keep zoom across re-renders */
+    if(st){ ZS=st.ZS; ZX=st.ZX; ZY=st.ZY; }
     const az=()=>{ if(oz) oz.setAttribute('transform',`translate(${ZX},${ZY}) scale(${ZS})`); };
+    az();
     svg.querySelectorAll('.ae-nod').forEach(el=>el.addEventListener('click',ev=>{
       ev.stopPropagation();
       if(opts.onNodeClick) opts.onNodeClick(el.dataset.n);
@@ -138,22 +171,74 @@ const Ownership = (function(){
       const [f,t]=el.dataset.e.split('>');
       if(opts.onEdgeClick) opts.onEdgeClick(f,t);
     }));
-    let drag=false,sx=0,sy=0;
-    svg.addEventListener('mousedown',e=>{if(e.target.closest('.ae-nod,.ae-edg'))return;
-      drag=true;sx=e.clientX-ZX;sy=e.clientY-ZY;svg.classList.add('ae-drag')});
-    window.addEventListener('mouseup',()=>{drag=false;svg.classList.remove('ae-drag')});
-    window.addEventListener('mousemove',e=>{if(!drag)return;ZX=e.clientX-sx;ZY=e.clientY-sy;az()});
+
+    /* pointer pan + pinch. 'k' converts screen px to svg user units. */
+    const k=()=>{ const r=svg.getBoundingClientRect(); return (r.width? W/r.width : 1); };
+    const ptrs=new Map(); let last=null, moved=false, pinch0=null;
+    svg.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='mouse' && e.button!==0) return;
+      ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(ptrs.size===1){ last={x:e.clientX,y:e.clientY}; moved=false; }
+      if(ptrs.size===2){
+        const [a,b]=[...ptrs.values()];
+        pinch0={d:Math.hypot(a.x-b.x,a.y-b.y), z:ZS}; moved=true;
+      }
+    });
+    svg.addEventListener('pointermove',e=>{
+      const p=ptrs.get(e.pointerId); if(!p) return;
+      p.x=e.clientX; p.y=e.clientY;
+      if(ptrs.size===2 && pinch0){
+        const [a,b]=[...ptrs.values()];
+        const d=Math.hypot(a.x-b.x,a.y-b.y)||1;
+        const nz=Math.max(.5,Math.min(4,pinch0.z*d/pinch0.d));
+        const r=svg.getBoundingClientRect(), kk=k();
+        const cx=((a.x+b.x)/2-r.left)*kk, cy=((a.y+b.y)/2-r.top)*kk;   /* zoom about the midpoint */
+        ZX=cx-(cx-ZX)*(nz/ZS); ZY=cy-(cy-ZY)*(nz/ZS); ZS=nz; az();
+        return;
+      }
+      if(ptrs.size===1 && last){
+        const dx=e.clientX-last.x, dy=e.clientY-last.y;
+        if(!moved && Math.hypot(dx,dy)<5) return;            /* a tap, not a drag */
+        if(!moved){ moved=true; svg.classList.add('ae-drag'); try{ svg.setPointerCapture(e.pointerId); }catch(_){} }
+        const kk=k(); ZX+=dx*kk; ZY+=dy*kk; last={x:e.clientX,y:e.clientY}; az();
+      }
+    });
+    const end=e=>{
+      ptrs.delete(e.pointerId);
+      if(ptrs.size<2) pinch0=null;
+      if(ptrs.size===0){ svg.classList.remove('ae-drag'); last=null; }
+      else if(ptrs.size===1){ const p=[...ptrs.values()][0]; last={x:p.x,y:p.y}; }
+    };
+    svg.addEventListener('pointerup',end);
+    svg.addEventListener('pointercancel',end);
+    /* a drag must not also "click" the node it ended on */
+    svg.addEventListener('click',ev=>{ if(moved){ ev.stopPropagation(); ev.preventDefault(); moved=false; } },true);
+
+    /* keyboard: the chart is a pannable region */
+    svg.setAttribute('tabindex','0');
+    svg.addEventListener('keydown',e=>{
+      const step=40;
+      if(e.key==='ArrowLeft') ZX+=step; else if(e.key==='ArrowRight') ZX-=step;
+      else if(e.key==='ArrowUp') ZY+=step; else if(e.key==='ArrowDown') ZY-=step;
+      else if(e.key==='+'||e.key==='=') ZS=Math.min(4,ZS*1.2);
+      else if(e.key==='-'||e.key==='_') ZS=Math.max(.5,ZS/1.2);
+      else if(e.key==='0'){ ZS=Z0; ZX=X0; ZY=Y0; }
+      else return;
+      e.preventDefault(); az();
+    });
     return {
-      zoom(f){ ZS=Math.max(.5,Math.min(3,ZS*f)); az(); },
-      reset(){ ZS=1;ZX=0;ZY=0;az(); },
+      zoom(f){ ZS=Math.max(.5,Math.min(4,ZS*f)); az(); },
+      reset(){ ZS=Z0; ZX=X0; ZY=Y0; az(); },
+      state(){ return {ZS,ZX,ZY}; },
     };
   }
 
   function chartTools(){
-    return `<div class="ae-ctools">
-      <button type="button" class="ae-ct-b" data-ae-zoom="1.2">+</button>
-      <button type="button" class="ae-ct-b" data-ae-zoom=".85">−</button>
-      <button type="button" class="ae-ct-b" data-ae-zoom="reset">⤾</button></div>`;
+    return `<div class="ae-ctools" role="group" aria-label="Chart zoom and pan">
+      <span class="ae-ch">Drag to pan · pinch or use the buttons to zoom</span>
+      <button type="button" class="ae-ct-b" data-ae-zoom="1.2" aria-label="Zoom in" title="Zoom in"><span aria-hidden="true">+</span></button>
+      <button type="button" class="ae-ct-b" data-ae-zoom=".85" aria-label="Zoom out" title="Zoom out"><span aria-hidden="true">−</span></button>
+      <button type="button" class="ae-ct-b" data-ae-zoom="reset" aria-label="Reset zoom and position" title="Reset view"><span aria-hidden="true">⤾</span></button></div>`;
   }
   function wireChartTools(wrap, zoomCtl){
     if(!zoomCtl) return;
@@ -163,11 +248,11 @@ const Ownership = (function(){
     }));
   }
   function legend(){
-    return `<div class="ae-legend">
-      <span><i style="background:var(--alarm)"></i>Client</span>
-      <span><i style="border:1.5px solid var(--violet)"></i>Natural person</span>
-      <span><i style="border:1.5px dashed var(--amber)"></i>Trust / nominee</span>
-      <span><i style="border-top:2px dashed var(--amber);width:16px;height:0"></i>Loop</span>
+    return `<div class="ae-legend" aria-label="Chart legend" role="group">
+      <span><i aria-hidden="true" style="background:var(--alarm)"></i>Client</span>
+      <span><i aria-hidden="true" style="border:1.5px solid var(--violet)"></i>Natural person</span>
+      <span><i aria-hidden="true" style="border:1.5px dashed var(--amber)"></i>Trust / nominee</span>
+      <span><i aria-hidden="true" style="border-top:2px dashed var(--amber);width:16px;height:0"></i>Loop (ownership that circles back)</span>
     </div>`;
   }
 
@@ -208,7 +293,7 @@ const Ownership = (function(){
     const list=caseObj.requests.map(r=>{
       const done=state.spent.includes(r.id);
       return `<button type="button" class="ae-req" ${done||state.hours<r.cost?'disabled':''} data-ae-req="${esc(r.id)}">
-        <span class="ae-rc">${done?'✓':r.cost+' h'}</span>
+        <span class="ae-rc">${done?'✓ done':r.cost+' h'}</span>
         <span class="ae-rn">${esc(r.name)}</span></button>`;
     }).join('');
     return `<div class="ae-blk"><div class="ae-bl"><span>AVAILABLE REQUESTS</span>
@@ -217,16 +302,17 @@ const Ownership = (function(){
   function renderPicker(caseObj, state){
     const persons=caseObj.entities.filter(e=>e.type==='person');
     return `<div class="ae-pick">${persons.map(p=>
-      `<button type="button" class="ae-pk ${state.picked.has(p.id)?'ae-on':''}" data-ae-pick="${esc(p.id)}">
-        <span class="ae-box">${state.picked.has(p.id)?'✓':''}</span>
+      `<button type="button" class="ae-pk ${state.picked.has(p.id)?'ae-on':''}" data-ae-pick="${esc(p.id)}"
+        aria-pressed="${state.picked.has(p.id)?'true':'false'}"${state.nd?' aria-disabled="true"':''}>
+        <span class="ae-box" aria-hidden="true">${state.picked.has(p.id)?'✓':''}</span>
         <span class="ae-who">${esc(p.name)}</span>
         <span class="ae-juris">${esc(p.juris)}</span></button>`).join('')}</div>
-      <button type="button" class="ae-nd ${state.nd?'ae-on':''}" data-ae-nd="1">
-        <span class="ae-box">${state.nd?'✓':''}</span>
+      <button type="button" class="ae-nd ${state.nd?'ae-on':''}" data-ae-nd="1" aria-pressed="${state.nd?'true':'false'}">
+        <span class="ae-box" aria-hidden="true">${state.nd?'✓':''}</span>
         <span>Cannot be determined</span></button>
       <button type="button" class="ae-submit" data-ae-submit="1" ${(!state.picked.size&&!state.nd)?'disabled':''}>
         SUBMIT FILE</button>
-      <div class="ae-hint">Select the natural persons who cross the threshold, or who exercise control
+      <div class="ae-hint" id="ae-pickhint">Select the natural persons who cross the threshold, or who exercise control
         by other means. If the documents don't allow a conclusion, say so — that's a valid answer,
         and sometimes the only correct one.</div>`;
   }

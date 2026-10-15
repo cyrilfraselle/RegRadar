@@ -20,8 +20,8 @@
    ═══════════════════════════════════════════════════════════════════ */
 :root{
   --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
-  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
-  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
+  --ink:#0A0A0A; --ink-2:#4A4F58; --ink-3:#5F646D;
+  --phos:#0C6E46; --amber:#835800; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -30,23 +30,25 @@
 /* full-screen layout is now the shell's responsibility */
 
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+button:disabled{cursor:not-allowed}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 ::selection{background:var(--ice);color:var(--void)}
 
 /* ── HUD ── */
 .hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:18px;
   padding:0 18px;height:52px;background:linear-gradient(180deg,var(--raised),var(--console));
   border-bottom:1px solid var(--grid)}
-.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:12px;font-weight:700}
 .brand .dot{width:7px;height:7px;background:var(--ice);border-radius:50%;
   box-shadow:0 0 10px var(--ice);animation:beat 3s infinite}
 @keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
 .g{display:flex;align-items:center;gap:8px}
-.g .l{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.g .l{font-size:12px;letter-spacing:.15em;color:var(--ink-3)}
 .g .v{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
 .hours{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
 .hours.low{color:var(--amber)} .hours.out{color:var(--alarm)}
 .xpw{flex:1;max-width:180px;min-width:70px}
-.xpt{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.13em;color:var(--ink-3);margin-bottom:5px}
+.xpt{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;color:var(--ink-3);margin-bottom:5px}
 .xpt b{color:var(--ice)}
 .xpb{height:4px;background:var(--grid);position:relative;overflow:hidden}
 .xpb i{position:absolute;inset:0 auto 0 0;background:var(--ice);width:0;
@@ -64,7 +66,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 
 /* ── TIMELINE (the hub) ── */
 .tl-head{border-bottom:1px solid var(--grid);padding-bottom:20px;margin-bottom:8px}
-.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+.kick{font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
 .tl-head h1{font-size:clamp(24px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;
   line-height:1.05;margin-top:12px}
 .tl-head h1 em{font-style:normal;color:var(--ice)}
@@ -73,22 +75,23 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 
 .entry{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:16px 0;
   border-bottom:1px solid var(--grid);position:relative}
-.entry .when{font-size:10px;letter-spacing:.11em;color:var(--ink-3);padding-top:3px;text-align:right}
-.entry .when b{display:block;color:var(--ink-2);font-size:11.5px;letter-spacing:.06em}
+.entry .when{font-size:12px;letter-spacing:.06em;color:var(--ink-3);padding-top:3px;text-align:right}
+.entry .when b{display:block;color:var(--ink-2);font-size:12px;letter-spacing:.06em}
 .entry .what{min-width:0}
 .entry .et{font-size:14.5px;font-weight:700;letter-spacing:-.005em;display:flex;
   align-items:baseline;gap:9px;flex-wrap:wrap}
 .entry .eb{font-family:var(--sans);font-size:13px;color:var(--ink-2);line-height:1.55;margin-top:6px;max-width:66ch}
-.entry .chip{font-size:8.5px;letter-spacing:.13em;padding:2px 7px;border:1px solid currentColor;font-weight:700}
+.entry .chip{font-size:12px;letter-spacing:.13em;padding:2px 7px;border:1px solid currentColor;font-weight:700}
 .entry.done .et{color:var(--ink-2)} .entry.done .chip{color:var(--phos)}
 .entry.harm .chip{color:var(--alarm)} .entry.harm .et{color:var(--ink)}
 .entry.next{background:linear-gradient(90deg,rgba(0,57,166,.05),transparent 60%);
   margin:0 -14px;padding:18px 14px;border-left:2px solid var(--ice)}
 .entry.next .et{color:var(--ice)}
-.entry.locked{opacity:.34}
-.entry .go{margin-top:12px;border:1px solid var(--ice);color:var(--ice);padding:10px 20px;
-  font-size:11px;font-weight:700;letter-spacing:.15em;background:rgba(0,57,166,.06);
-  transition:all .18s;display:inline-block}
+.entry.locked .et,.entry.locked .eb,.entry.locked .when,.entry.locked .when b{color:var(--ink-3)}
+.entry.locked .et::after{content:'AHEAD';font-size:12px;letter-spacing:.1em;border:1px dashed var(--ink-3);padding:1px 7px;font-weight:700}
+.entry .go{margin-top:12px;border:1px solid var(--ice);color:var(--ice);padding:10px 20px;min-height:44px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;background:rgba(0,57,166,.06);
+  transition:all .18s;display:inline-flex;align-items:center}
 .entry .go:hover{background:var(--ice);color:var(--void)}
 .entry.consequence{border-left:2px solid var(--alarm);margin:0 -14px;padding:18px 14px;
   background:linear-gradient(90deg,rgba(200,50,15,.05),transparent 55%)}
@@ -100,51 +103,63 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 .brief-in .body{font-family:var(--sans);font-size:15px;line-height:1.66;color:var(--ink-2);margin-top:18px}
 .brief-in .body p{margin-top:13px}
 .rules{border:1px solid var(--grid);margin-top:24px}
-.rules .rh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
+.rules .rh{font-size:12px;letter-spacing:.1em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
 .rules .rr{padding:12px 15px;border-bottom:1px solid var(--grid);display:grid;
   grid-template-columns:26px 1fr;gap:12px;font-family:var(--sans);font-size:13.5px;
   line-height:1.55;color:var(--ink-2)}
 .rules .rr:last-child{border-bottom:none}
 .rules .rr .i{font-family:var(--mono);color:var(--ice);font-weight:700}
 .rules .rr b{color:var(--ink)}
-.go-big{margin-top:28px;border:1px solid var(--phos);color:var(--phos);padding:15px 34px;
-  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(15,123,79,.06);transition:all .18s}
+.go-big{margin-top:28px;border:1px solid var(--phos);color:var(--phos);padding:12px 34px;min-height:48px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;background:rgba(12,110,70,.06);transition:all .18s;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.row>.go-big{margin-top:0}
 .go-big:hover{background:var(--phos);color:var(--void);box-shadow:0 0 34px rgba(125,240,200,.35)}
-.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
-  font-weight:700;letter-spacing:.14em;transition:all .16s}
+.ghost{border:1px solid var(--ink-3);color:var(--ink-2);padding:12px 24px;min-height:48px;font-size:12px;
+  font-weight:700;letter-spacing:.1em;transition:all .16s;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center}
 .ghost:hover{border-color:var(--ink-2);color:var(--ink)}
-.row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;align-items:stretch}
 
 /* ── WORK (alerts + onboarding share this) ── */
 .work{display:grid;grid-template-columns:minmax(0,1fr) 320px;height:100%;min-height:0}
-@media(max-width:1000px){.work{grid-template-columns:1fr}}
+/* Below 1000px: ONE natural scroll column (the view). The file and the
+   decision panel stack; neither pane scrolls on its own. */
+.jump{display:none}
+@media(max-width:1000px){
+  .work{display:block;height:auto}
+  .wmain,.wside{overflow:visible}
+  .jump{display:inline-flex;align-items:center;gap:8px;margin-top:14px;min-height:44px;padding:0 14px;
+    border:1px solid var(--ice);color:var(--ice);font-size:12px;font-weight:700;letter-spacing:.08em;
+    background:rgba(0,57,166,.06)}
+}
 .wmain{overflow-y:auto;padding:24px 28px 40px;min-height:0}
 .wmain::-webkit-scrollbar{width:8px} .wmain::-webkit-scrollbar-thumb{background:var(--grid)}
 .wside{border-left:1px solid var(--grid);background:var(--raised);overflow-y:auto;
   padding:22px 20px 40px;min-height:0}
-@media(max-width:1000px){.wside{border-left:none;border-top:1px solid var(--grid)}}
+@media(max-width:1000px){.wmain,.wside{overflow:visible}.wside{border-left:none;border-top:1px solid var(--grid)}}
 
-.meta{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;font-size:9.5px;
-  letter-spacing:.14em;color:var(--ink-3)}
+.meta{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;font-size:12px;
+  letter-spacing:.08em;color:var(--ink-3)}
 .meta .rule{border:1px solid var(--amber);color:var(--amber);padding:2px 7px;letter-spacing:.1em}
 .meta .pos{margin-left:auto;font-variant-numeric:tabular-nums}
 h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
   line-height:1.16;margin:12px 0 6px;max-width:25ch}
-.subj{font-size:11.5px;color:var(--ink-2);letter-spacing:.04em}
+.subj{font-size:12px;color:var(--ink-2);letter-spacing:.04em}
 
 .blk{margin-top:22px;border-top:1px solid var(--grid);padding-top:12px}
-.blk .bl{font-size:9px;letter-spacing:.18em;color:var(--ink-3);margin-bottom:10px;
+.blk .bl{font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-bottom:10px;
   display:flex;justify-content:space-between;align-items:baseline}
 .blk .bl b{color:var(--ink-2);letter-spacing:.09em}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px 20px}
-.facts .k{font-size:8.5px;letter-spacing:.14em;color:var(--ink-3)}
+.facts .k{font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
 .facts .v{font-size:13px;color:var(--ink);margin-top:3px}
 .prose{font-family:var(--sans);font-size:14.5px;line-height:1.62;color:var(--ink-2);max-width:72ch}
 .ledger{width:100%;border-collapse:collapse;margin-top:4px}
 .ledger td{font-size:12.5px;padding:6px 12px 6px 0;border-bottom:1px solid var(--grid);
   color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ledger td.amt{color:var(--ink);text-align:right;font-weight:700}
-.ledger td.det{white-space:normal;color:var(--ink-3);font-size:11.5px}
+.ledger td.det{white-space:normal;color:var(--ink-3);font-size:12px}
 
 .docs{display:grid;gap:9px}
 .doc{border:1px solid var(--grid);padding:11px 13px}
@@ -153,34 +168,40 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 
 /* actions */
 .acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px}
-.act{border:1px solid var(--grid);padding:11px 13px;transition:all .16s var(--ease);position:relative}
-.act:hover:not(:disabled){border-color:var(--ice);transform:translateY(-2px)}
-.act:disabled{opacity:.3;cursor:not-allowed}
-.act.done{opacity:.48}
-.act .an{font-size:12px;font-weight:700;line-height:1.35;padding-right:32px}
-.act .ac{position:absolute;top:10px;right:12px;font-size:10px;color:var(--amber);font-weight:700}
+.act{border:1px solid var(--grid);padding:11px 13px;min-height:48px;transition:all .16s var(--ease);position:relative;text-align:left}
+.act:hover:not([aria-disabled="true"]){border-color:var(--ice);transform:translateY(-2px)}
+.act[aria-disabled="true"]{cursor:not-allowed}
+.act.cant{opacity:.55}
+.act.done{border-style:dashed;background:rgba(12,110,70,.05)}
+.act .an{display:block;font-size:12px;font-weight:700;line-height:1.35;padding-right:64px}
+.act .ac{position:absolute;top:10px;right:12px;font-size:12px;color:var(--amber);font-weight:700}
 .act.done .ac{color:var(--phos)}
 
 .ev{border-left:2px solid var(--grid);padding:10px 0 10px 14px;margin-bottom:10px;
   animation:slide .4s var(--ease)}
 @keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 .ev.decisive{border-left-color:var(--alarm)} .ev.supporting{border-left-color:var(--ice)}
-.ev.exculpatory{border-left-color:var(--phos)} .ev.noise{border-left-color:var(--ink-3);opacity:.7}
-.ev .et2{font-size:11.5px;font-weight:700;display:flex;gap:9px;align-items:baseline}
-.ev .ew{font-size:8.5px;letter-spacing:.13em;padding:1px 6px;border:1px solid currentColor}
+.ev.exculpatory{border-left-color:var(--phos)} .ev.noise{border-left-color:var(--ink-3)}
+.ev .et2{font-size:12px;font-weight:700;display:flex;gap:9px;align-items:baseline}
+.ev .ew{font-size:12px;letter-spacing:.13em;padding:1px 6px;border:1px solid currentColor}
 .ev.decisive .ew{color:var(--alarm)} .ev.supporting .ew{color:var(--ice)}
 .ev.exculpatory .ew{color:var(--phos)} .ev.noise .ew{color:var(--ink-3)}
 .ev .eb2{font-family:var(--sans);font-size:13px;line-height:1.58;color:var(--ink-2);margin-top:6px}
 
 /* decisions */
 .dec{display:grid;gap:8px;margin-top:10px}
-.db{border:1px solid var(--grid);padding:11px 13px;transition:all .16s var(--ease)}
+.db{border:1px solid var(--grid);padding:11px 13px;min-height:52px;transition:all .16s var(--ease);width:100%;display:block}
 .db:hover:not(:disabled){transform:translateX(3px)}
-.db:disabled{opacity:.3;cursor:not-allowed}
+.db:disabled{opacity:.55;cursor:not-allowed}
 .db .dn{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.04em}
-.db .num{width:18px;height:18px;border:1px solid currentColor;display:grid;place-items:center;
-  font-size:9.5px;flex:0 0 auto}
-.db .dd{font-size:10.5px;color:var(--ink-3);margin-top:5px;line-height:1.42}
+.db .num{width:22px;height:22px;border:1px solid currentColor;display:grid;place-items:center;
+  font-size:12px;flex:0 0 auto}
+.db .dd{display:block;font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.42}
+h2.bl{font-weight:400}
+.keys{font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.9;margin-top:14px}
+.keys kbd{font-family:var(--mono);font-size:12px;font-weight:700;border:1px solid var(--ink-3);border-bottom-width:2px;
+  padding:0 6px;margin:0 3px 0 0;color:var(--ink);background:var(--console);display:inline-block;min-width:22px;text-align:center}
+.keys span{white-space:nowrap;margin-right:8px;display:inline-block}
 .db.a{color:var(--phos)} .db.a:hover:not(:disabled){border-color:var(--phos)}
 .db.b{color:var(--amber)} .db.b:hover:not(:disabled){border-color:var(--amber)}
 .db.c{color:var(--ice)}   .db.c:hover:not(:disabled){border-color:var(--ice)}
@@ -188,25 +209,26 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 
 /* Nadia */
 .nadia{border:1px solid var(--violet);padding:12px 13px;margin-bottom:18px;background:rgba(180,140,255,.05)}
-.nadia .nh{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.13em;
+.nadia .nh{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.13em;
   color:var(--violet);font-weight:700}
-.nadia .nh .av{width:20px;height:20px;border:1px solid var(--violet);display:grid;place-items:center;font-size:10px}
+.nadia .nh .av{width:20px;height:20px;border:1px solid var(--violet);display:grid;place-items:center;font-size:12px}
 .nadia .nb{font-family:var(--sans);font-size:12.5px;line-height:1.56;color:var(--ink-2);margin-top:9px}
-.nadia button{margin-top:10px;border:1px solid var(--violet);color:var(--violet);padding:7px 11px;
-  font-size:9.5px;font-weight:700;letter-spacing:.11em;transition:all .16s;width:100%;text-align:center}
+.nadia button{margin-top:10px;border:1px solid var(--violet);color:var(--violet);padding:9px 11px;min-height:44px;
+  font-size:12px;font-weight:700;letter-spacing:.11em;transition:all .16s;width:100%;text-align:center}
 .nadia button:hover:not(:disabled){background:var(--violet);color:var(--void)}
 .nadia button:disabled{opacity:.4;cursor:not-allowed}
 
 /* tutorial coach */
+.coach:focus{outline:none}
 .coach{position:fixed;z-index:60;max-width:330px;border:1px solid var(--ice);
   background:var(--console);padding:14px 16px;box-shadow:0 12px 32px rgba(10,10,10,.18);
   animation:pop .34s var(--ease)}
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
-.coach .ch{font-size:9px;letter-spacing:.16em;color:var(--ice);font-weight:700}
+.coach .ch{font-size:12px;letter-spacing:.1em;color:var(--ice);font-weight:700}
 .coach .cb{font-family:var(--sans);font-size:13.5px;line-height:1.58;color:var(--ink);margin-top:9px}
 .coach .cf{display:flex;justify-content:space-between;align-items:center;margin-top:13px}
-.coach .cs{font-size:9.5px;color:var(--ink-3);letter-spacing:.1em}
-.coach button{border:1px solid var(--ice);color:var(--ice);padding:7px 15px;font-size:10px;
+.coach .cs{font-size:12px;color:var(--ink-3);letter-spacing:.1em}
+.coach button{border:1px solid var(--ice);color:var(--ice);padding:9px 18px;min-height:44px;font-size:12px;
   font-weight:700;letter-spacing:.12em;transition:all .16s}
 .coach button:hover{background:var(--ice);color:var(--void)}
 .spot{position:fixed;z-index:55;pointer-events:none;border:2px solid var(--ice);
@@ -215,38 +237,38 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
 
 /* outcome */
 .vhead{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
-.stamp{font-size:10.5px;font-weight:700;letter-spacing:.19em;padding:6px 12px;border:2px solid currentColor}
+.stamp{font-size:12px;font-weight:700;letter-spacing:.12em;padding:6px 12px;border:2px solid currentColor}
 .vhead h2{font-size:clamp(18px,2.4vw,26px);font-weight:700;letter-spacing:-.015em}
 .vxp{margin-left:auto;font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
 .scoregrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:1px;
   background:var(--grid);border:1px solid var(--grid);margin-top:22px}
 .scoregrid div{background:var(--console);padding:14px 10px}
 .scoregrid .n{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums}
-.scoregrid .l{font-size:8.5px;letter-spacing:.14em;color:var(--ink-3);margin-top:6px}
+.scoregrid .l{font-size:12px;letter-spacing:.08em;color:var(--ink-3);margin-top:6px}
 .note{font-family:var(--sans);font-size:13.5px;line-height:1.62;color:var(--ink-2);
   margin-top:18px;border-left:2px solid var(--amber);padding-left:15px;max-width:68ch}
 .note.ice{border-left-color:var(--ice)} .note.red{border-left-color:var(--alarm)}
-.note .nl{font-family:var(--mono);font-size:9px;letter-spacing:.17em;color:var(--amber);
+.note .nl{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--amber);
   margin-bottom:7px;display:block}
 .note.ice .nl{color:var(--ice)} .note.red .nl{color:var(--alarm)}
-.lawline{font-size:11.5px;color:var(--ice);margin-top:18px;line-height:1.58}
+.lawline{font-size:12px;color:var(--ice);margin-top:18px;line-height:1.58}
 .missbox{border:1px solid var(--grid);margin-top:18px}
-.missbox .mh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--grid)}
+.missbox .mh{font-size:12px;letter-spacing:.1em;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--grid)}
 .missbox .mr{padding:11px 14px;border-bottom:1px solid var(--grid);font-family:var(--sans);
   font-size:13px;line-height:1.55;color:var(--ink-2)}
 .missbox .mr:last-child{border-bottom:none}
-.missbox .mr b{color:var(--alarm);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+.missbox .mr b{color:var(--alarm);font-family:var(--mono);font-size:12px;letter-spacing:.05em}
 
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:70;
   border:1px solid var(--amber);background:var(--console);color:var(--amber);padding:10px 19px;
-  font-size:10.5px;letter-spacing:.11em;font-weight:700;animation:toast 2.6s var(--ease) forwards;
+  font-size:12px;letter-spacing:.11em;font-weight:700;animation:toast 2.6s var(--ease) forwards;
   pointer-events:none}
 @keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}12%,78%{opacity:1;transform:translate(-50%,0)}
   100%{opacity:0;transform:translate(-50%,-8px)}}
 
 :focus-visible{outline:2px solid var(--ice);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{
-  animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 @media(max-width:760px){
   .hud{gap:11px;padding:0 11px;height:48px} .xpw,.g.hide-s{display:none}
   .pad{padding:22px 16px 80px} .wmain{padding:18px 15px 26px} .wside{padding:18px 15px 30px}
@@ -254,13 +276,13 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
   .coach{left:12px!important;right:12px!important;max-width:none;bottom:16px!important;top:auto!important}
 }
 </style>
-<link rel="stylesheet" href="academy.css">
-<link rel="stylesheet" href="glossary.css">
-<script src="academy-shell.js"></script>
-<script src="glossary.js"></script>
+<link rel="stylesheet" href="academy.css?v=20261015">
+<link rel="stylesheet" href="glossary.css?v=20261015">
+<script src="academy-shell.js?v=20261015"></script>
+<script src="glossary.js?v=20261015"></script>
 </head>
 <body>
-<script src="site-nav.js"></script>
+<script src="site-nav.js?v=20261015"></script>
 
 <!-- TIMELINE -->
 <div class="view on" id="vTimeline"><div class="pad">
@@ -280,8 +302,8 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
   <div class="body" id="bBody"></div>
   <div id="bRules"></div>
   <div class="row">
-    <button class="go-big" id="bGo">BEGIN</button>
-    <button class="ghost" onclick="toTimeline()">NOT NOW</button>
+    <button type="button" class="go-big" id="bGo">BEGIN</button>
+    <button type="button" class="ghost" onclick="toTimeline()">NOT NOW</button>
   </div>
 </div></div></div>
 
@@ -303,7 +325,7 @@ h2.ct{font-size:clamp(19px,2.5vw,28px);font-weight:700;letter-spacing:-.015em;
   <div id="oExtras"></div>
   <div class="lawline" id="oLaw"></div>
   <div class="note" id="oLesson"><span class="nl">WHAT THIS TEACHES</span><span id="oLessonText"></span></div>
-  <div class="row"><button class="go-big" id="oNext">CONTINUE</button></div>
+  <div class="row"><button type="button" class="go-big" id="oNext">CONTINUE</button></div>
 </div></div>
 
 <script>
@@ -364,6 +386,10 @@ const sfx={good:()=>{tone(587,.13,'sine',.06);tone(880,.22,'sine',.05,.08)},
   rank:()=>[523,659,784,1047].forEach((f,i)=>tone(f,.28,'sine',.06,i*.09))};
 function toggleSnd(){SND=!SND;try{localStorage.setItem('regradar-snd',SND?'on':'off')}catch(e){}if(SND)sfx.tick();}
 function toast(m){ AcademyShell.toast(m); }
+const SH=AcademyShell;
+const smooth=()=>SH.reducedMotion?'auto':'smooth';
+const vis=el=>el && el.getClientRects().length>0;
+const hrs=n=>n+' hour'+(n===1?'':'s');
 
 function paintHud(){
   /* Rank and XP belong to the shell; the module only pushes what's its
@@ -378,9 +404,38 @@ function paintHud(){
   AcademyShell.status(items);
 }
 
-function show(id){['vTimeline','vBrief','vWork','vOut'].forEach(v=>
-  document.getElementById(v).classList.toggle('on',v===id));
-  document.getElementById(id).scrollTop=0;}
+function show(id){
+  const out=document.getElementById('vOut');
+  /* navigating away always ends the induction coach: it must not outlive its screen */
+  if(id!=='vWork') endCoach();
+  ['vTimeline','vBrief','vWork','vOut'].forEach(v=>
+    document.getElementById(v).classList.toggle('on',v===id));
+  const el=document.getElementById(id);
+  el.scrollTop=0;
+  if(id!=='vOut'){
+    SH.closeDialog(out,{fallback:()=>headingOf(el)});
+    focusView(el);
+  } else {
+    /* the verdict is a dialog: labelled, focus on its title, Tab trapped,
+       Esc = continue (same as the primary button) */
+    SH.openDialog(out,{labelledBy:'oTitle', focus:'#oTitle', noScroll:true,
+      onEscape:()=>document.getElementById('oNext').click()});
+  }
+}
+function headingOf(el){ return el && (el.querySelector('h2.ct')||el.querySelector('h1,h2')); }
+function focusView(el){
+  const h=headingOf(el); if(!h) return;
+  if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1');
+  h.focus({preventScroll:true});
+}
+/* Keyboard shortcuts follow the buttons actually on screen, in order:
+   RUN.keys[0] is "1". Pressed through here (click or key) so the numbers
+   shown on the buttons and the keys can never disagree. */
+function pressKey(i){ const f=RUN&&RUN.keys&&RUN.keys[i]; if(f) f(); }
+function keysHint(list){
+  return `<p class="keys" id="keysHint"><b>Keyboard</b> —
+    ${list.map((o,i)=>`<span><kbd>${i+1}</kbd>${esc(o)}</span>`).join('')}</p>`;
+}
 
 /* ═══════════ TIMELINE ═══════════ */
 function toTimeline(){
@@ -420,7 +475,7 @@ function toTimeline(){
           ${done?`<span class="chip">${rec?esc(rec):'DONE'}</span>`:''}
           ${isNext?'<span class="chip">NEXT</span>':''}</div>
         <div class="eb">${esc(d.blurb)}</div>
-        ${isNext?`<button class="go" onclick="startDay(${d.d})">
+        ${isNext?`<button type="button" class="go" onclick="startDay(${d.d})">
           ${d.type==='tutorial'?'START INDUCTION':'CLOCK IN'}</button>`:''}
       </div></div>`;
   });
@@ -512,7 +567,13 @@ function runDesk(d, tutorial){
   RUN={type:'desk', d, tutorial, alerts, i:0, hours:tutorial?4:d.hours,
        budget:tutorial?4:d.hours, results:[], opened:false, spent:[], gathered:[], nadia:0};
   paintHud(); show('vWork'); renderAlert();
-  if(tutorial) setTimeout(()=>coach(0),600);
+  if(tutorial){
+    clearTimeout(coachT);
+    coachT=setTimeout(()=>{
+      /* only if the induction screen is still the one in front */
+      if(RUN && RUN.tutorial && vis(document.getElementById('vWork'))) coach(0);
+    },600);
+  }
 }
 
 function renderAlert(){
@@ -524,8 +585,9 @@ function renderAlert(){
   document.getElementById('wMain').innerHTML=`
     <div class="meta"><span class="rule">${esc(c.rule)}</span><span>${esc(c.id)}</span>
       <span class="pos">${RUN.i+1} / ${RUN.alerts.length}</span></div>
-    <h2 class="ct">${esc(c.title)}</h2>
+    <h2 class="ct" tabindex="-1">${esc(c.title)}</h2>
     <div class="subj">${esc(c.customer)}</div>
+    <button type="button" class="jump" onclick="jumpToCall()">YOUR CALL <span aria-hidden="true">↓</span></button>
     ${Object.keys(c.facts||{}).length?`<div class="blk"><div class="bl">CUSTOMER</div>
       <div class="facts">${Object.entries(c.facts).map(([k,v])=>
         `<div><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>`:''}
@@ -539,40 +601,51 @@ function renderAlert(){
   renderSide(c, deep);
   paintHud();
   document.getElementById('wMain').scrollTop=0;
+  focusView(document.getElementById('wMain'));
+  SH.announce(`Alert ${RUN.i+1} of ${RUN.alerts.length}: ${c.title}.`);
 }
 
+function jumpToCall(){
+  const h=document.getElementById('callH'); if(!h) return;
+  h.scrollIntoView({behavior:smooth(),block:'start'}); h.focus({preventScroll:true});
+}
 function renderSide(c, deep){
   const canOpen = deep && RUN.hours>0 && !RUN.opened;
+  /* the buttons, in order; numbers and keys both come from this one list */
+  const opts=[{cls:'a', n:'CLOSE ON THE FILE', d:'Resolved with what you have. Costs nothing.', short:'Close',
+      fn:()=>deskDecide('close')}];
+  if(deep) opts.push({cls:'c', n:RUN.opened?'INVESTIGATING…':'OPEN AN INVESTIGATION',
+      d:RUN.opened?'Lines of enquiry below.':'Spends hours from the day budget.', short:'Investigate',
+      fn:canOpen?openInvestigation:null});
+  if(RUN.opened||!deep) opts.push(
+    {cls:'b', n:'REQUEST INFORMATION', d:'Back to the customer or RM before concluding.', short:'Request info', fn:()=>deskDecide('rfi')},
+    {cls:'c', n:'ESCALATE', d:'Hand up with what you have.', short:'Escalate', fn:()=>deskDecide('escalate')},
+    {cls:'d', n:'FILE A REPORT', d:'Suspicion articulated and reported.', short:'Report', fn:()=>deskDecide('sar')});
+  /* a disabled investigate keeps its number (2) so the others never renumber mid-alert */
+  RUN.keys=opts.map(o=>o.fn);
+  const fallback=()=>document.querySelector('#acts .act:not([aria-disabled="true"])')
+    || document.querySelector('#wSide .db:not(:disabled)');
+  SH.keepFocus(document.getElementById('wSide'),()=>{
   document.getElementById('wSide').innerHTML=`
     ${RUN.opened?`<div class="nadia">
-      <div class="nh"><span class="av">N</span>NADIA</div>
+      <div class="nh"><span class="av" aria-hidden="true">N</span>NADIA</div>
       <div class="nb" id="nadiaText">She will not tell you the answer. She will ask what you have
         not asked yourself.</div>
-      <button id="nadiaBtn" onclick="askNadia()">ASK HER · 1 HOUR</button></div>`:''}
-    <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
-      YOUR CALL</div>
+      <button type="button" id="nadiaBtn" onclick="askNadia()">ASK HER · 1 HOUR</button></div>`:''}
+    <h2 class="bl" id="callH" tabindex="-1" style="font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-bottom:9px">
+      YOUR CALL</h2>
     <div class="dec">
-      <button class="db a" onclick="deskDecide('close')">
-        <span class="dn"><span class="num">1</span>CLOSE ON THE FILE</span>
-        <span class="dd">Resolved with what you have. Costs nothing.</span></button>
-      ${deep?`<button class="db c" onclick="openInvestigation()" ${canOpen?'':'disabled'}>
-        <span class="dn"><span class="num">2</span>${RUN.opened?'INVESTIGATING…':'OPEN AN INVESTIGATION'}</span>
-        <span class="dd">${RUN.opened?'Lines of enquiry below.':'Spends hours from the day budget.'}</span></button>`:''}
-      ${RUN.opened||!deep?`
-      <button class="db b" onclick="deskDecide('rfi')">
-        <span class="dn"><span class="num">3</span>REQUEST INFORMATION</span>
-        <span class="dd">Back to the customer or RM before concluding.</span></button>
-      <button class="db c" onclick="deskDecide('escalate')">
-        <span class="dn"><span class="num">4</span>ESCALATE</span>
-        <span class="dd">Hand up with what you have.</span></button>
-      <button class="db d" onclick="deskDecide('sar')">
-        <span class="dn"><span class="num">5</span>FILE A REPORT</span>
-        <span class="dd">Suspicion articulated and reported.</span></button>`:''}
+      ${opts.map((o,k)=>`<button type="button" class="db ${o.cls}" onclick="pressKey(${k})"
+        aria-keyshortcuts="${k+1}" ${o.fn?'':'disabled'}>
+        <span class="dn"><span class="num" aria-hidden="true">${k+1}</span>${o.n}</span>
+        <span class="dd">${o.d}</span></button>`).join('')}
     </div>
-    <div style="font-family:var(--sans);font-size:11.5px;color:var(--ink-3);line-height:1.55;margin-top:14px">
+    ${keysHint(opts.map(o=>o.short))}
+    <div style="font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:14px">
       ${deep? 'This one has depth. Closing it costs nothing — but if it needed looking at, that will show.'
             : 'Everything you need is on the file. The skill is deciding without buying time you do not need to spend.'}
     </div>`;
+  }, fallback);
 }
 
 function openInvestigation(){
@@ -587,7 +660,10 @@ function openInvestigation(){
       <div id="board"><div class="prose" style="color:var(--ink-3)">Nothing yet. You cannot afford
         every line — pick the one most likely to change your answer.</div></div></div>`;
   paintActs(); renderSide(c,true); paintHud();
-  document.getElementById('invZone').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('invZone').scrollIntoView({behavior:smooth(),block:'start'});
+  SH.announce(`Investigation open. ${hrs(RUN.hours)} left. ${c.actions.length} lines of enquiry.`);
+  const first=document.querySelector('#acts .act:not([aria-disabled="true"])');
+  if(first) first.focus({preventScroll:true});
 }
 
 function paintActs(){
@@ -596,12 +672,15 @@ function paintActs(){
   const bl=document.getElementById('budgLine');
   if(bl) bl.textContent=`${RUN.hours}h left · ${total}h would buy everything`;
   const el=document.getElementById('acts'); if(!el) return;
+  /* aria-disabled, not disabled: a spent line keeps focus where it was */
+  SH.keepFocus(el,()=>{
   el.innerHTML=c.actions.map(a=>{
     const done=RUN.spent.includes(a.id), afford=RUN.hours>=a.cost;
-    return `<button class="act ${done?'done':''}" ${done||!afford?'disabled':''}
-      onclick="buyAction('${a.id}')">
-      <span class="ac">${done?'✓':a.cost+'h'}</span>
-      <span class="an">${esc(a.name)}</span></button>`}).join('');
+    return `<button type="button" class="act ${done?'done':''} ${!done&&!afford?'cant':''}"
+      ${done||!afford?'aria-disabled="true"':''} onclick="buyAction('${a.id}')">
+      <span class="ac">${done?'✓ done':a.cost+'h'}</span>
+      <span class="an">${esc(a.name)}</span>${!done&&!afford?'<span class="sr"> — not enough hours</span>':''}</button>`}).join('');
+  },()=>el.querySelector('.act:not([aria-disabled="true"])'));
 }
 
 function buyAction(aid){
@@ -620,6 +699,9 @@ function buyAction(aid){
     const ec=document.getElementById('evCount');
     if(ec) ec.textContent=`${RUN.gathered.length} item${RUN.gathered.length>1?'s':''}`;
     if(ev.weight==='decisive') toast('DECISIVE');
+    SH.announce(`Evidence found: ${ev.title}, ${ev.weight}. ${hrs(RUN.hours)} left.`);
+  } else {
+    SH.announce(`Nothing found. ${hrs(RUN.hours)} left.`);
   }
   paintActs(); paintHud();
   if(RUN.hours<=0) toast('OUT OF HOURS');
@@ -647,10 +729,13 @@ function askNadia(){
   const nt=document.getElementById('nadiaText'); if(nt) nt.textContent=line;
   const nb=document.getElementById('nadiaBtn');
   if(nb){nb.disabled=RUN.nadia>=2||RUN.hours<1; if(RUN.nadia>=2) nb.textContent='SHE HAS SAID HER PIECE';}
+  SH.announce(`Nadia: ${line} ${hrs(RUN.hours)} left.`);
+  if(nb&&nb.disabled){ const f=document.querySelector('#acts .act:not([aria-disabled="true"])')||document.querySelector('#wSide .db:not(:disabled)'); if(f) f.focus({preventScroll:true}); }
   paintActs(); paintHud();
 }
 
 function deskDecide(choice){
+  endCoach();                    /* the coach never outlives a decision */
   const c=RUN.alerts[RUN.i];
   const deep=(c.actions||[]).length>0;
   const found=new Set(RUN.gathered);
@@ -737,7 +822,12 @@ function showOutcome(c, choice, verdict, xp, foundN, decisive){
   const btn=document.getElementById('oNext');
   btn.textContent=last?'END THE DAY':'NEXT ALERT';
   btn.onclick=()=>{ if(last) endDay(); else { RUN.i++; show('vWork'); renderAlert(); } };
-  paintHud(); show('vOut');
+  paintHud();
+  const nFlag=(c.flags||[]).filter(f=>f.present).length;
+  SH.announce(`${label}. ${document.getElementById('oTitle').textContent}.`
+    +((c.flags||[]).length?` ${nFlag} of ${c.flags.length} flags present.`:'')
+    +(decisive.length?` ${foundN} of ${decisive.length} decisive facts found.`:''));
+  show('vOut');
 }
 
 /* ═══════════ ONBOARDING ═══════════ */
@@ -753,8 +843,9 @@ function renderOnb(){
   document.getElementById('wMain').innerHTML=`
     <div class="meta"><span class="rule">APPLICATION</span><span>${esc(c.id)}</span>
       <span class="pos">${RUN.i+1} / ${RUN.cases.length}</span></div>
-    <h2 class="ct">${esc(c.title)}</h2>
+    <h2 class="ct" tabindex="-1">${esc(c.title)}</h2>
     <div class="subj">${esc(c.applicant)}</div>
+    <button type="button" class="jump" onclick="jumpToCall()">YOUR CALL <span aria-hidden="true">↓</span></button>
     <div class="blk"><div class="bl">THE FILE</div>
       <div class="facts">${Object.entries(c.facts).map(([k,v])=>
         `<div><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>
@@ -762,29 +853,29 @@ function renderOnb(){
       <div class="docs">${c.documents.map(d=>
         `<div class="doc"><div class="dn">${esc(d.n)}</div><div class="ds">${esc(d.s)}</div></div>`).join('')}</div></div>
     <div class="blk"><div class="bl">SCREENING</div><div class="prose">${esc(c.screening)}</div></div>`;
+  const O=[['a','STANDARD','Proportionate measures. Ordinary risk.','standard','Standard'],
+           ['b','ENHANCED','The law or the risk requires more.','edd','Enhanced'],
+           ['c','ASK FIRST','A missing fact decides this.','more','Ask first'],
+           ['d','DECLINE','The relationship cannot be established.','decline','Decline']];
+  RUN.keys=O.map(o=>()=>onbDecide(o[3]));
   document.getElementById('wSide').innerHTML=`
-    <div class="prose" style="font-size:12.5px;color:var(--ink-3);margin-bottom:16px">${esc(c.intro)}</div>
-    <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
-      HOW MUCH DILIGENCE?</div>
+    <div class="prose" style="font-size:12.5px;color:var(--ink-2);margin-bottom:16px">${esc(c.intro)}</div>
+    <h2 class="bl" id="callH" tabindex="-1" style="font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-bottom:9px">
+      HOW MUCH DILIGENCE?</h2>
     <div class="dec">
-      <button class="db a" onclick="onbDecide('standard')">
-        <span class="dn"><span class="num">1</span>STANDARD</span>
-        <span class="dd">Proportionate measures. Ordinary risk.</span></button>
-      <button class="db b" onclick="onbDecide('edd')">
-        <span class="dn"><span class="num">2</span>ENHANCED</span>
-        <span class="dd">The law or the risk requires more.</span></button>
-      <button class="db c" onclick="onbDecide('more')">
-        <span class="dn"><span class="num">3</span>ASK FIRST</span>
-        <span class="dd">A missing fact decides this.</span></button>
-      <button class="db d" onclick="onbDecide('decline')">
-        <span class="dn"><span class="num">4</span>DECLINE</span>
-        <span class="dd">The relationship cannot be established.</span></button>
-    </div>`;
+      ${O.map((o,k)=>`<button type="button" class="db ${o[0]}" onclick="pressKey(${k})" aria-keyshortcuts="${k+1}">
+        <span class="dn"><span class="num" aria-hidden="true">${k+1}</span>${o[1]}</span>
+        <span class="dd">${o[2]}</span></button>`).join('')}
+    </div>
+    ${keysHint(O.map(o=>o[4]))}`;
   paintHud();
   document.getElementById('wMain').scrollTop=0;
+  focusView(document.getElementById('wMain'));
+  SH.announce(`Application ${RUN.i+1} of ${RUN.cases.length}: ${c.title}.`);
 }
 
 function onbDecide(choice){
+  endCoach();
   const c=RUN.cases[RUN.i];
   const right=choice===c.decision;
   const verdict=right?'right':(choice==='edd'&&c.decision==='standard')?'part':'wrong';
@@ -817,8 +908,9 @@ function onbDecide(choice){
   const btn=document.getElementById('oNext');
   btn.textContent=last?'END THE DAY':'NEXT APPLICATION';
   btn.onclick=()=>{ if(last) endDay(); else { RUN.i++; show('vWork'); renderOnb(); } };
-  paintHud(); show('vOut');
-
+  paintHud();
+  SH.announce(`${st.textContent}. ${names[choice]}.`);
+  show('vOut');
 }
 
 /* ═══════════ END OF DAY ═══════════ */
@@ -872,59 +964,78 @@ function endDay(){
   const btn=document.getElementById('oNext');
   btn.textContent='BACK TO THE JOURNAL';
   btn.onclick=toTimeline;
+  SH.announce(`${st.textContent}. ${document.getElementById('oTitle').textContent}`
+    +(xp?` ${xp} XP earned today.`:''));
   RUN=null; paintHud(); show('vOut');
 }
 
-/* ═══════════ TUTORIAL COACH ═══════════ */
+/* ═══════════ TUTORIAL COACH ═══════════
+   Nadia's tips are a real dialog (role=dialog, aria-modal, labelled; focus
+   goes to GO ON; Tab trapped; Esc dismisses it) and are torn down by
+   endCoach() on any decision or navigation, so the spotlight can never
+   sit over a verdict screen again. While it is open the 1-5 shortcuts
+   are ignored (the page behind it is inert). */
 const COACH=[
  {sel:'.wmain .blk', t:'This is the file. Everything the system knows, and nothing it does not. '
    +'Read the counterparty and the reason before you read the amount — that order matters more than it sounds.'},
  {sel:'.wside .dec', t:'Three ways out, and closing is not the coward\'s option. Most alerts are noise, '
    +'and an analyst who cannot close confidently ends up escalating everything — which is how the real cases '
    +'get buried.'},
- {sel:'.hud .xpw', t:'You are scored on both failures: missing a case, and drowning the team in noise. '
-   +'Hold both. That tension is the entire job.'},
+ {sel:'#acStatus', t:'You are scored on both failures: missing a case, and drowning the team in noise. '
+   +'Hold both. That tension is the entire job. Your XP and rank are in this bar.'},
  {sel:null, t:'Work these two however you like. Nothing counts today. Tomorrow it will.'},
 ];
-let coachI=0;
+let coachI=0, coachT=null, coachEl=null, spotEl=null;
 function coach(i){
   coachI=i;
-  document.querySelectorAll('.coach,.spot').forEach(e=>e.remove());
-  const step=COACH[i]; if(!step) return;
+  const step=COACH[i]; if(!step){ endCoach(); return; }
   const el=step.sel?document.querySelector(step.sel):null;
-  if(el){
-    const r=el.getBoundingClientRect();
-    const sp=document.createElement('div'); sp.className='spot';
-    sp.style.cssText=`left:${r.left-6}px;top:${r.top-6}px;width:${r.width+12}px;height:${r.height+12}px`;
-    document.body.appendChild(sp);
+  const r=el&&vis(el)?el.getBoundingClientRect():null;
+  if(spotEl){ spotEl.remove(); spotEl=null; }
+  if(r){
+    spotEl=document.createElement('div'); spotEl.className='spot'; spotEl.setAttribute('aria-hidden','true');
+    spotEl.style.cssText=`left:${r.left-6}px;top:${r.top-6}px;width:${r.width+12}px;height:${r.height+12}px`;
+    document.body.appendChild(spotEl);
   }
-  const c=document.createElement('div'); c.className='coach';
-  const r=el?el.getBoundingClientRect():null;
-  let top = r? Math.min(window.innerHeight-190, r.bottom+14) : window.innerHeight/2-80;
-  let left= r? Math.min(window.innerWidth-350, Math.max(14, r.left)) : window.innerWidth/2-165;
-  c.style.cssText=`top:${top}px;left:${left}px`;
-  c.innerHTML=`<div class="ch">NADIA</div><div class="cb">${esc(step.t)}</div>
-    <div class="cf"><span class="cs">${i+1} / ${COACH.length}</span>
-      <button onclick="${i<COACH.length-1?`coach(${i+1})`:'endCoach()'}">
-        ${i<COACH.length-1?'GO ON':'GOT IT'}</button></div>`;
-  document.body.appendChild(c);
+  const fresh=!coachEl;
+  if(fresh){ coachEl=document.createElement('div'); coachEl.className='coach'; document.body.appendChild(coachEl); }
+  const top = r? Math.min(window.innerHeight-210, r.bottom+14) : window.innerHeight/2-80;
+  const left= r? Math.min(window.innerWidth-350, Math.max(14, r.left)) : window.innerWidth/2-165;
+  coachEl.style.cssText=`top:${Math.max(8,top)}px;left:${Math.max(8,left)}px`;
+  const lastStep=i>=COACH.length-1;
+  coachEl.innerHTML=`<div class="ch" id="coachT">NADIA · INDUCTION TIP ${i+1} OF ${COACH.length}</div>
+    <div class="cb">${esc(step.t)}</div>
+    <div class="cf"><span class="cs">${i+1} / ${COACH.length} · Esc to skip</span>
+      <button type="button" id="coachGo" onclick="${lastStep?'endCoach()':`coach(${i+1})`}">
+        ${lastStep?'GOT IT':'GO ON'}</button></div>`;
+  if(fresh){
+    SH.openDialog(coachEl,{labelledBy:'coachT', focus:'#coachGo', onEscape:endCoach});
+  } else {
+    const b=document.getElementById('coachGo'); if(b) b.focus({preventScroll:true});
+  }
 }
-function endCoach(){ document.querySelectorAll('.coach,.spot').forEach(e=>e.remove()); }
+function endCoach(){
+  clearTimeout(coachT);
+  if(spotEl){ spotEl.remove(); spotEl=null; }
+  document.querySelectorAll('.spot').forEach(e=>e.remove());
+  if(coachEl){
+    const el=coachEl; coachEl=null;
+    SH.closeDialog(el,{ fallback:()=>document.querySelector('#wSide .db:not(:disabled)')||document.querySelector('#wMain h2.ct') });
+    el.remove();
+  }
+  document.querySelectorAll('.coach').forEach(e=>e.remove());
+}
+/* the spotlight is positioned in viewport pixels: re-place it on resize */
+window.addEventListener('resize',()=>{ if(coachEl) coach(coachI); });
 
 document.addEventListener('keydown',e=>{
-  if(!RUN||!document.getElementById('vWork').classList.contains('on')) return;
-  const k=e.key;
-  if(RUN.type==='onboard'){
-    ({'1':()=>onbDecide('standard'),'2':()=>onbDecide('edd'),
-      '3':()=>onbDecide('more'),'4':()=>onbDecide('decline')}[k]||(()=>{}))();
-  }else{
-    const c=RUN.alerts[RUN.i]; const deep=(c.actions||[]).length>0;
-    if(k==='1') deskDecide('close');
-    else if(k==='2'&&deep&&!RUN.opened) openInvestigation();
-    else if(k==='3'&&(RUN.opened||!deep)) deskDecide('rfi');
-    else if(k==='4'&&(RUN.opened||!deep)) deskDecide('escalate');
-    else if(k==='5'&&(RUN.opened||!deep)) deskDecide('sar');
-  }
+  if(e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||e.repeat) return;
+  if(!RUN||!vis(document.getElementById('vWork'))) return;
+  /* no shortcuts while the coach (or any dialog) is open */
+  if(coachEl||document.querySelector('.coach')||SH.dialogOpen) return;
+  const t=e.target; if(t&&/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+  if(!/^[1-9]$/.test(e.key)) return;
+  pressKey(parseInt(e.key,10)-1);
 });
 
 /* ═══════════ BOOT ═══════════ */

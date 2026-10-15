@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>THE LAUNDROMAT — RegRadar Academy</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="academy.css">
-<link rel="stylesheet" href="glossary.css">
-<script src="academy-shell.js"></script>
-<script src="academy-engine.js"></script>
-<script src="glossary.js"></script>
+<link rel="stylesheet" href="academy.css?v=20261015">
+<link rel="stylesheet" href="glossary.css?v=20261015">
+<script src="academy-shell.js?v=20261015"></script>
+<script src="academy-engine.js?v=20261015"></script>
+<script src="glossary.js?v=20261015"></script>
 <style>
 /* ═══════════════════════════════════════════════════════════════════
    THE LAUNDROMAT — module 01. You play the launderer.
@@ -20,8 +20,8 @@
    ═══════════════════════════════════════════════════════════════════ */
 :root{
   --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
-  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
-  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
+  --ink:#0A0A0A; --ink-2:#4A4F58; --ink-3:#5F646D;
+  --phos:#0C6E46; --amber:#835800; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -33,7 +33,9 @@ body{background:var(--void);color:var(--ink);font-family:var(--mono);font-size:1
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(120% 80% at 50% 0%,rgba(200,50,15,.04),transparent 62%)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
-button:disabled{cursor:default;opacity:.35}
+button:disabled{cursor:default;opacity:.5}
+button{min-height:44px}
+a.ib,.strikes s,.ac-tab{min-height:0}
 ::selection{background:var(--alarm);color:var(--void)}
 a{color:inherit;text-decoration:none}
 
@@ -41,32 +43,35 @@ a{color:inherit;text-decoration:none}
 .hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:16px;
   padding:0 18px;height:52px;background:linear-gradient(180deg,var(--raised),var(--console));
   border-bottom:1px solid var(--grid)}
-.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700;white-space:nowrap}
-.brand .dot{width:7px;height:7px;background:var(--alarm);border-radius:50%;
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:12px;font-weight:700;white-space:nowrap}
+.brand .dot{width:8px;height:8px;background:var(--alarm);border-radius:50%;
   box-shadow:0 0 10px var(--alarm);animation:beat 3s infinite}
 @keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
 .g{display:flex;align-items:center;gap:8px;white-space:nowrap}
-.g .l{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.g .l{font-size:12px;letter-spacing:.1em;color:var(--ink-3)}
 .g .v{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
 .heatw{flex:1;max-width:220px;min-width:90px}
-.heatt{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.13em;color:var(--ink-3);margin-bottom:5px}
+.heatt{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;color:var(--ink-3);margin-bottom:5px}
 .heatt b{color:var(--alarm)}
 .heatb{height:5px;background:var(--grid);position:relative;overflow:hidden}
 .heatb i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--amber),var(--alarm));
   width:0;box-shadow:0 0 12px var(--alarm);transition:width .7s var(--ease)}
 .strikes{display:flex;gap:6px}
-.strikes s{width:9px;height:9px;border:1px solid var(--grid);border-radius:50%;display:block}
+.strikes s{width:12px;height:12px;border:1px solid var(--ink-3);border-radius:50%;display:block}
 .strikes s.hit{background:var(--alarm);border-color:var(--alarm);box-shadow:0 0 9px var(--alarm)}
+.strikes s.hit::after{content:'×';display:block;color:#fff;font:700 10px/10px var(--mono);text-align:center}
 .hud-r{margin-left:auto;display:flex;align-items:center;gap:9px}
-.ib{width:30px;height:30px;border:1px solid var(--grid);color:var(--ink-3);font-size:12px;
+.ib{width:44px;height:44px;border:1px solid var(--grid);color:var(--ink-2);font-size:14px;
   display:grid;place-items:center;transition:all .16s;text-align:center}
 .ib:hover{border-color:var(--ice);color:var(--ice)}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.hud .heatb{border:1px solid var(--grid)}
 
 /* ── ledger strip ── */
 .ledger{flex:0 0 auto;display:flex;border-bottom:1px solid var(--grid);background:var(--console)}
 .ledger .cell{flex:1;padding:9px 16px;border-right:1px solid var(--grid)}
 .ledger .cell:last-child{border-right:none}
-.ledger .cl{font-size:8.5px;letter-spacing:.17em;color:var(--ink-3)}
+.ledger .cl{font-size:12px;letter-spacing:.1em;color:var(--ink-3)}
 .ledger .cv{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:3px}
 .cv.dirty{color:var(--amber)} .cv.play{color:var(--ice)} .cv.clean{color:var(--phos)} .cv.frozen{color:var(--alarm)}
 
@@ -74,85 +79,90 @@ a{color:inherit;text-decoration:none}
 .view{position:relative;z-index:2;flex:1 1 auto;overflow-y:auto;min-height:0;display:none}
 .view.on{display:block}
 .view::-webkit-scrollbar{width:8px} .view::-webkit-scrollbar-thumb{background:var(--grid)}
+main{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;position:relative;z-index:2}
+main:focus{outline:none}
+body.playing>.rrf{display:none}
 .pad{max-width:1080px;margin:0 auto;padding:30px 26px 80px}
 
 /* ── INTRO ── */
-.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+.kick{font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
 .intro h1{font-size:clamp(26px,4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin-top:12px}
 .intro h1 em{font-style:normal;color:var(--alarm)}
 .intro .sub{font-family:var(--sans);font-size:15px;color:var(--ink-2);margin-top:16px;max-width:62ch;line-height:1.65}
 .rules{border:1px solid var(--grid);margin-top:26px;max-width:640px}
-.rules .rh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
+.rules .rh{font-size:12px;letter-spacing:.1em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
 .rules .rr{padding:12px 15px;border-bottom:1px solid var(--grid);display:grid;
   grid-template-columns:26px 1fr;gap:12px;font-family:var(--sans);font-size:13.5px;line-height:1.55;color:var(--ink-2)}
 .rules .rr:last-child{border-bottom:none}
 .rules .rr .i{font-family:var(--mono);color:var(--alarm);font-weight:700}
 .rules .rr b{color:var(--ink)}
-.go-big{margin-top:28px;border:1px solid var(--alarm);color:var(--alarm);padding:15px 34px;
-  font-size:11.5px;font-weight:700;letter-spacing:.17em;background:rgba(200,50,15,.06);transition:all .18s}
+.go-big{margin-top:28px;border:1px solid var(--alarm);color:var(--alarm);padding:15px 34px;min-height:48px;
+  font-size:12px;font-weight:700;letter-spacing:.1em;background:rgba(200,50,15,.06);transition:all .18s}
 .go-big:hover{background:var(--alarm);color:var(--void);box-shadow:0 0 34px rgba(255,90,82,.35)}
-.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:14px 24px;font-size:11px;
-  font-weight:700;letter-spacing:.14em;transition:all .16s;display:inline-block}
+.ghost{border:1px solid var(--ink-3);color:var(--ink-2);padding:12px 24px;min-height:48px;font-size:12px;
+  font-weight:700;letter-spacing:.1em;transition:all .16s;display:inline-flex;align-items:center;justify-content:center;text-align:center}
 .ghost:hover{border-color:var(--ink-2);color:var(--ink)}
-.row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;align-items:stretch}
+.row>.go-big{margin-top:0}
 .note{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-top:22px;max-width:62ch;line-height:1.6}
 
 /* ── GAME layout ── */
 .game{display:grid;grid-template-columns:280px 1fr;gap:0;height:100%}
 .rail{border-right:1px solid var(--grid);overflow-y:auto;min-height:0;background:var(--raised)}
 .rail::-webkit-scrollbar{width:6px} .rail::-webkit-scrollbar-thumb{background:var(--grid)}
-.rail .rh2{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:12px 14px 8px}
+.rail .rh2{font-size:12px;letter-spacing:.1em;color:var(--ink-3);padding:12px 14px 8px}
 .feed{padding:0 14px 30px}
-.fe{padding:9px 0;border-bottom:1px solid var(--grid);font-size:11.5px;line-height:1.5}
-.fe .fw{color:var(--ink-3);font-size:9.5px;letter-spacing:.1em}
+.fe{padding:9px 0;border-bottom:1px solid var(--grid);font-size:12px;line-height:1.5}
+.fe .fw{color:var(--ink-3);font-size:12px;letter-spacing:.1em}
 .fe.ok .ft{color:var(--phos)} .fe.caught .ft{color:var(--alarm);font-weight:700}
 .fe.wait .ft{color:var(--ink-3)} .fe .fs{color:var(--ink-2)}
 .main{overflow-y:auto;min-height:0;padding:22px 24px 90px}
 .main::-webkit-scrollbar{width:8px} .main::-webkit-scrollbar-thumb{background:var(--grid)}
 
-.stageh{font-size:9px;letter-spacing:.2em;color:var(--ink-3);margin:20px 0 8px;display:flex;align-items:center;gap:10px}
+.stageh{font-weight:400;font-size:12px;letter-spacing:.12em;color:var(--ink-3);margin:20px 0 8px;display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 10px}
 .stageh:first-child{margin-top:0}
 .stageh .amt{color:var(--ink-2);letter-spacing:.05em}
 .ops{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px}
 .op{border:1px solid var(--grid);padding:11px 12px;transition:all .15s;position:relative}
 .op:not(:disabled):hover{border-color:var(--ice)}
-.op.sel{border-color:var(--alarm);background:rgba(255,90,82,.06)}
+.op.sel{border-color:var(--alarm);background:rgba(200,50,15,.06);box-shadow:inset 3px 0 0 var(--alarm)}
 .op .on2{font-size:12.5px;font-weight:700;letter-spacing:-.005em}
-.op .od{font-family:var(--sans);font-size:11px;color:var(--ink-2);line-height:1.45;margin-top:5px}
-.op .om{font-size:9px;color:var(--ink-3);letter-spacing:.08em;margin-top:7px}
-.op .used{position:absolute;top:8px;right:10px;font-size:8.5px;color:var(--amber);letter-spacing:.1em}
+.op .od{font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.45;margin-top:5px}
+.op .om{font-size:12px;color:var(--ink-3);letter-spacing:.08em;margin-top:7px}
+.op .used{position:absolute;top:8px;right:10px;font-size:12px;color:var(--amber);letter-spacing:.1em}
 
 /* config panel */
 .cfg{border:1px solid var(--alarm);margin-top:18px;background:rgba(255,90,82,.03)}
 .cfg .ch{padding:12px 16px;border-bottom:1px solid var(--grid);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .cfg .ch b{font-size:14px}
-.cfg .ch .sub2{font-family:var(--sans);font-size:11.5px;color:var(--ink-2)}
+.cfg .ch .sub2{font-family:var(--sans);font-size:12px;color:var(--ink-2)}
 .cfg .sec{padding:12px 16px;border-bottom:1px solid var(--grid)}
-.cfg .sl{font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px}
+.cfg .sl{font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-bottom:9px}
 .chips{display:flex;gap:7px;flex-wrap:wrap}
-.chip{border:1px solid var(--grid);padding:7px 11px;font-size:11px;transition:all .14s}
+.chip{border:1px solid var(--grid);padding:9px 12px;min-height:44px;font-size:12px;transition:all .14s;display:inline-flex;align-items:center}
 .chip:hover{border-color:var(--ink-2)}
-.chip.sel{border-color:var(--ice);color:var(--ice);background:rgba(143,184,255,.07)}
-.chip .cr{display:inline-block;margin-left:7px;font-size:8.5px;letter-spacing:.05em}
-.jnote{font-family:var(--sans);font-size:11.5px;color:var(--ink-2);margin-top:9px;line-height:1.5;min-height:17px}
-.sizes .chip .amt2{color:var(--ink-2);margin-left:7px;font-size:10px}
+.chip.sel{border-color:var(--ice);color:var(--ice);background:rgba(0,57,166,.07);font-weight:700}
+.chip.sel::before{content:'✓';margin-right:6px}
+.chip .cr{display:inline-block;margin-left:7px;font-size:12px;letter-spacing:.05em}
+.jnote{font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-top:9px;line-height:1.5;min-height:17px}
+.sizes .chip .amt2{color:var(--ink-2);margin-left:7px;font-size:12px}
 /* exposure meter */
 .expo{padding:13px 16px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
 .exrows{display:grid;gap:5px}
-.exr{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center;font-size:9px;letter-spacing:.12em;color:var(--ink-3)}
+.exr{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center;font-size:12px;letter-spacing:.12em;color:var(--ink-3)}
 .exb{height:3px;background:var(--grid);position:relative}
 .exb i{position:absolute;inset:0 auto 0 0;background:var(--ink-2);transition:width .3s}
 .exr.hot .exb i{background:var(--amber)} .exr.crit .exb i{background:var(--alarm)}
 .verdict{text-align:right}
 .verdict .vt{font-size:16px;font-weight:700;letter-spacing:.08em}
-.verdict .vs{font-family:var(--sans);font-size:10.5px;color:var(--ink-3);margin-top:3px}
+.verdict .vs{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-top:3px}
 .v-quiet{color:var(--phos)} .v-elev{color:var(--amber)} .v-loud{color:var(--alarm)} .v-reck{color:var(--alarm);text-shadow:0 0 12px var(--alarm)}
 .actions{padding:13px 16px;display:flex;gap:9px;flex-wrap:wrap}
-.exec{border:1px solid var(--alarm);color:var(--alarm);padding:12px 26px;font-size:11px;
+.exec{border:1px solid var(--alarm);color:var(--alarm);padding:12px 26px;min-height:48px;font-size:12px;
   font-weight:700;letter-spacing:.15em;background:rgba(200,50,15,.06);transition:all .16s}
 .exec:hover:not(:disabled){background:var(--alarm);color:var(--void)}
 .waitrow{display:flex;gap:9px;margin-top:16px;align-items:center;flex-wrap:wrap}
-.waitrow .wl{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.waitrow .wl{font-size:12px;letter-spacing:.1em;color:var(--ink-3)}
 
 /* ── overlays ── */
 .ov{position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:90;display:none;
@@ -162,16 +172,17 @@ a{color:inherit;text-decoration:none}
   max-height:88vh;overflow-y:auto;box-shadow:0 0 40px rgba(200,50,15,.15);animation:pop .3s var(--ease)}
 @keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
 .card.okc{border-color:var(--grid);box-shadow:0 0 30px rgba(10,10,10,.15)}
-.card .kh{padding:14px 20px;border-bottom:1px solid var(--grid);font-size:10px;letter-spacing:.22em;color:var(--alarm);font-weight:700}
+.card .kh{padding:14px 20px;border-bottom:1px solid var(--grid);font-size:12px;letter-spacing:.14em;color:var(--alarm);font-weight:700}
 .okc .kh{color:var(--phos)}
 .card .kb{padding:18px 20px}
 .card .flag{font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
-.card .kmeta{font-size:10px;color:var(--ink-3);letter-spacing:.1em;margin-top:9px}
+.card .kmeta{font-size:12px;color:var(--ink-3);letter-spacing:.1em;margin-top:9px}
 .card .ktext{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);line-height:1.62;margin-top:14px}
 .lawbox{border:1px solid var(--grid);border-left:2px solid var(--ice);margin-top:16px;padding:12px 15px}
-.lawbox .la{font-size:11px;font-weight:700;color:var(--ice);letter-spacing:.06em}
+.lawbox .la{font-size:12px;font-weight:700;color:var(--ice);letter-spacing:.06em}
 .lawbox .lt{font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-top:4px;line-height:1.5}
-.card .kfoot{padding:14px 20px;border-top:1px solid var(--grid);display:flex;gap:9px;justify-content:flex-end}
+.card .kfoot{padding:14px 20px;border-top:1px solid var(--grid);display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap}
+.card:focus{outline:none}
 
 /* ── END ── */
 .endwrap{max-width:760px;margin:0 auto;padding:40px 26px 90px}
@@ -179,29 +190,50 @@ a{color:inherit;text-decoration:none}
 .score-row{display:flex;gap:0;border:1px solid var(--grid);margin-top:24px}
 .score-cell{flex:1;padding:14px 18px;border-right:1px solid var(--grid)}
 .score-cell:last-child{border-right:none}
-.score-cell .sl2{font-size:8.5px;letter-spacing:.17em;color:var(--ink-3)}
+.score-cell .sl2{font-size:12px;letter-spacing:.1em;color:var(--ink-3)}
 .score-cell .sv2{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:4px}
 .endwrap .why{font-family:var(--sans);font-size:14.5px;color:var(--ink-2);line-height:1.65;margin-top:20px;max-width:62ch}
 .flagslist{border:1px solid var(--grid);margin-top:26px}
-.flagslist .fh{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
+.flagslist .fh{font-size:12px;letter-spacing:.1em;color:var(--ink-3);padding:11px 15px;border-bottom:1px solid var(--grid)}
 .flagslist .fr{padding:12px 15px;border-bottom:1px solid var(--grid);display:grid;grid-template-columns:52px 1fr;gap:12px}
 .flagslist .fr:last-child{border-bottom:none}
-.flagslist .fwk{font-size:10px;color:var(--ink-3);letter-spacing:.08em;padding-top:2px}
+.flagslist .fwk{font-size:12px;color:var(--ink-3);letter-spacing:.08em;padding-top:2px}
 .flagslist .fn2{font-size:12.5px;font-weight:700;color:var(--alarm)}
-.flagslist .fa2{font-size:10.5px;color:var(--ice);margin-top:3px}
+.flagslist .fa2{font-size:12px;color:var(--ice);margin-top:3px}
 .flagslist .fd2{font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.5;margin-top:5px}
 .calib{font-family:var(--sans);font-size:12px;color:var(--ink-3);line-height:1.6;margin-top:24px;max-width:62ch}
 
+/* the HUD wraps instead of clipping HEAT / STRIKES / close */
 @media (max-width:760px){
-  .game{grid-template-columns:1fr}
-  .rail{display:none}
+  .hud{flex-wrap:wrap;height:auto;min-height:52px;padding:6px 12px;gap:6px 14px}
+  .hud-r{order:2}
+  .heatw{flex:1 1 130px;max-width:none}
   .ledger .cell{padding:8px 10px}
-  .hud{gap:10px;overflow-x:auto}
+  .ledger .cl{letter-spacing:.04em}
+  .pad{padding:22px 16px 70px}
+  .main{padding:16px 14px 90px}
+  .endwrap{padding:28px 16px 70px}
+  .score-row{flex-wrap:wrap}
+  .score-cell{flex:1 1 40%;border-bottom:1px solid var(--grid)}
+  /* the operation log is NOT hidden: the latest actions sit in a compact strip */
+  .game{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+  .rail{border-right:none;border-bottom:1px solid var(--grid);overflow:visible;max-height:none}
+  .rail .rh2{padding:6px 14px 2px}
+  .feed{padding:0 14px 6px}
+  .fe{padding:4px 0;border-bottom:none;display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+  .fe:nth-child(n+3){display:none}
+  .fe .fs{display:none}
+  .cfg .expo{grid-template-columns:1fr}
+  .verdict{text-align:left}
+  .exr{grid-template-columns:96px 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 <body>
-<script src="site-nav.js"></script>
+<script src="site-nav.js?v=20261015"></script>
 
 <div class="ac-brand">
   <span class="mk"><i>A</i>REGRADAR ACADEMY</span>
@@ -212,12 +244,12 @@ a{color:inherit;text-decoration:none}
     <a href="index.html">← RegRadar</a>
   </span>
 </div>
-<nav class="ac-tabs">
-  <a class="ac-tab on" href="laundromat.html"><span class="n">01</span>Laundromat</a>
+<!-- Filled by AcademyShell.renderTabs() so the lock rule is the shell's one rule;
+     the static links are only the no-script fallback. -->
+<nav class="ac-tabs" id="acTabs" aria-label="Academy modules">
+  <a class="ac-tab on" href="laundromat.html" aria-current="page"><span class="n">01</span>Laundromat</a>
   <a class="ac-tab" href="ownership.html"><span class="n">02</span>Ownership</a>
   <a class="ac-tab" href="desk.html"><span class="n">03</span>Desk</a>
-  <span class="ac-tab locked" title="Requires 2 module(s) started"><span class="n">04</span>Filing</span>
-  <span class="ac-tab locked" title="Requires 3 module(s) started"><span class="n">05</span>Inspection</span>
   <span class="ac-tab grow"></span>
 </nav>
 
@@ -226,27 +258,29 @@ a{color:inherit;text-decoration:none}
   <div class="g"><span class="l">WEEK</span><span class="v" id="hWeek">—</span></div>
   <div class="heatw">
     <div class="heatt"><span>HEAT</span><b id="hHeatN">0</b></div>
-    <div class="heatb"><i id="hHeat"></i></div>
+    <div class="heatb" role="meter" id="hHeatM" aria-label="Heat" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="hHeat"></i></div>
   </div>
   <div class="g"><span class="l">STRIKES</span>
-    <span class="strikes"><s id="s1"></s><s id="s2"></s><s id="s3"></s></span></div>
+    <span class="strikes" id="hStrikes" role="img" aria-label="0 of 3 strikes"><s id="s1"></s><s id="s2"></s><s id="s3"></s></span>
+    <span class="sr" id="hStrikeT">0 of 3</span></div>
   <div class="hud-r">
-    <a class="ib" href="workstation.html" title="Back to Academy">✕</a>
+    <a class="ib" href="workstation.html" title="Back to the Academy" aria-label="Close the simulator and go back to the Academy"><span aria-hidden="true">✕</span></a>
   </div>
 </div>
 
-<div class="ledger" id="ledger" style="display:none">
+<div class="ledger" id="ledger" style="display:none" role="group" aria-label="Money by status">
   <div class="cell"><div class="cl">DIRTY</div><div class="cv dirty" id="lDirty">—</div></div>
   <div class="cell"><div class="cl">IN PLAY</div><div class="cv play" id="lPlay">—</div></div>
   <div class="cell"><div class="cl">CLEAN</div><div class="cv clean" id="lClean">—</div></div>
   <div class="cell"><div class="cl">FROZEN</div><div class="cv frozen" id="lFrozen">—</div></div>
 </div>
 
+<main id="mainContent" aria-label="The Laundromat">
 <!-- INTRO -->
 <div class="view on" id="vIntro">
   <div class="pad intro">
     <div class="kick">REGRADAR ACADEMY · MODULE 01 · PLAY THE ADVERSARY</div>
-    <h1>You have <em>€10,000,000</em><br>and it is all dirty.</h1>
+    <h1 id="introH" tabindex="-1">You have <em>€10,000,000</em><br>and it is all dirty.</h1>
     <p class="sub">Get as much of it as you can into the legitimate economy before the
       compliance function closes the net. Every euro must survive three stages —
       placement, layering, integration. Every operation leaves a trace. The monitoring
@@ -266,7 +300,7 @@ a{color:inherit;text-decoration:none}
         is a decision real launderers get wrong. So do analysts.</span></div>
     </div>
     <div class="row">
-      <button class="go-big" onclick="startRun()">OPEN FOR BUSINESS</button>
+      <button type="button" class="go-big" onclick="startRun()">OPEN FOR BUSINESS</button>
       <a class="ghost" href="workstation.html">BACK TO THE ACADEMY</a>
     </div>
     <p class="note">A training simulator. Typologies are described at the level of the public FATF /
@@ -277,9 +311,10 @@ a{color:inherit;text-decoration:none}
 
 <!-- GAME -->
 <div class="view" id="vGame">
+  <h2 class="sr" id="gameH" tabindex="-1">Operations board</h2>
   <div class="game">
     <div class="rail">
-      <div class="rh2">OPERATION LOG</div>
+      <div class="rh2">OPERATION LOG<span class="sr"> — latest first</span></div>
       <div class="feed" id="feed"></div>
     </div>
     <div class="main" id="main"></div>
@@ -288,9 +323,10 @@ a{color:inherit;text-decoration:none}
 
 <!-- END -->
 <div class="view" id="vEnd"><div class="endwrap" id="endwrap"></div></div>
+</main>
 
 <!-- catch / success overlay -->
-<div class="ov" id="ov"><div class="card" id="ovCard"></div></div>
+<div class="ov" id="ov"><div class="card" id="ovCard" role="dialog" aria-modal="true" aria-labelledby="ovT"></div></div>
 
 <script>
 /* THE LAUNDROMAT — UI layer over the engine. The engine itself
@@ -303,6 +339,8 @@ let S = null;                       // engine state
 let sel = {tid:null, jid:null, size:'small'};
 
 const $ = id => document.getElementById(id);
+const SH = window.AcademyShell;
+const smooth = () => (SH && SH.reducedMotion) ? 'auto' : 'smooth';
 const esc = s => (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const eur = n => '€'+Math.round(n).toLocaleString('en-IE');
 const eurM = n => n>=1e6 ? '€'+(n/1e6).toFixed(2).replace(/\.?0+$/,'')+'M'
@@ -316,7 +354,14 @@ function logEvent(e){ try{ const a=JSON.parse(localStorage.getItem(EVK)||'[]');
 
 /* ── views ── */
 function show(v){ document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
-  $(v).classList.add('on'); $('ledger').style.display = v==='vGame' ? 'flex' : 'none'; }
+  $(v).classList.add('on'); $('ledger').style.display = v==='vGame' ? 'flex' : 'none';
+  $(v).scrollTop = 0;
+  /* the site disclaimer footer steals a hundred pixels of a game screen */
+  document.body.classList.toggle('playing', v==='vGame');
+  /* a view change must not drop focus to <body>: land on the view's heading */
+  const h = v==='vGame' ? $('gameH') : $(v).querySelector('h1,h2');
+  if(h && SH) SH.focusHeading($(v), h.tagName==='H1'?'h1':'h2');
+}
 
 /* ── HUD / ledger ── */
 function hud(){
@@ -324,7 +369,11 @@ function hud(){
   const h = S ? S.heat : 0;
   $('hHeat').style.width = h+'%';
   $('hHeatN').textContent = Math.round(h);
+  $('hHeatM').setAttribute('aria-valuenow', Math.round(h));
   for(let i=1;i<=3;i++) $('s'+i).classList.toggle('hit', S && S.catches>=i);
+  const nC = S ? S.catches : 0;
+  $('hStrikes').setAttribute('aria-label', nC+' of '+E.MAX_CATCHES+' strikes');
+  $('hStrikeT').textContent = nC+' of '+E.MAX_CATCHES;
   if(!S) return;
   $('lDirty').textContent = eurM(S.pools.dirty);
   $('lPlay').textContent = eurM(S.pools.placed + S.pools.layered);
@@ -354,12 +403,12 @@ function board(){
   let h='';
   for(const [stage,label,pool] of STAGES){
     const avail = S.pools[pool];
-    h += `<div class="stageh">${label} <span class="amt">· ${eurM(avail)} available</span></div>`;
+    h += `<h3 class="stageh">${label} <span class="amt">· ${eurM(avail)} available</span></h3>`;
     h += '<div class="ops">';
     for(const t of E.TYPOLOGIES.filter(x=>x.stage===stage)){
       const can = avail>=25000 && !S.over;
       const used = S.useCount[t.id]||0;
-      h += `<button class="op ${sel.tid===t.id?'sel':''}" ${can?'':'disabled'} onclick="pick('${t.id}')">
+      h += `<button type="button" class="op ${sel.tid===t.id?'sel':''}" aria-pressed="${sel.tid===t.id}" ${can?'':'disabled'} onclick="pick('${t.id}')">
         ${used?`<span class="used">×${used}</span>`:''}
         <div class="on2">${esc(t.n)}</div>
         <div class="od">${esc(t.d)}</div>
@@ -371,12 +420,14 @@ function board(){
   h += `<div id="cfgMount"></div>
   <div class="waitrow">
     <span class="wl">OR</span>
-    <button class="ghost" onclick="wait(2)">LAY LOW · 2 WK</button>
-    <button class="ghost" onclick="wait(4)">LAY LOW · 4 WK</button>
-    <button class="ghost" onclick="confirmWalk()">WALK AWAY — BANK ${eurM(S.pools.clean)}</button>
+    <button type="button" class="ghost" onclick="wait(2)">LAY LOW · 2 WK</button>
+    <button type="button" class="ghost" onclick="wait(4)">LAY LOW · 4 WK</button>
+    <button type="button" class="ghost" onclick="confirmWalk()">WALK AWAY — BANK ${eurM(S.pools.clean)}</button>
   </div>`;
-  $('main').innerHTML=h;
-  cfg();
+  /* re-render without dropping the keyboard focus to <body> */
+  const fallback = () => document.querySelector('#cfgMount .exec') || document.querySelector('#main .op.sel')
+    || document.querySelector('#main .op:not(:disabled)') || $('gameH');
+  SH.keepFocus($('main'), ()=>{ $('main').innerHTML=h; cfg(); }, fallback);
 }
 
 window.pick = tid => {
@@ -384,10 +435,23 @@ window.pick = tid => {
   const t = E.TYPOLOGIES.find(x=>x.id===tid);
   if(!t.juris.includes(sel.jid)) sel.jid = t.juris[0];
   board();
-  const m=$('cfgMount'); if(m) m.scrollIntoView({behavior:'smooth',block:'nearest'});
+  const m=$('cfgMount');
+  if(m){
+    m.scrollIntoView({behavior:smooth(),block:'nearest'});
+    /* the options for the chosen typology are far below the grid: take the
+       keyboard there so Tab reaches jurisdiction, tranche and EXECUTE next */
+    const c=m.querySelector('.cfg'); if(c) c.focus({preventScroll:true});
+    SH.announce(t.n+' selected. Choose a jurisdiction and a tranche, then execute.');
+  }
 };
-window.pickJ = jid => { sel.jid=jid; cfg(); };
-window.pickS = sid => { sel.size=sid; cfg(); };
+function sayExposure(lead){
+  const vt=document.querySelector('#cfgMount .vt'), vs=document.querySelector('#cfgMount .vs');
+  SH.announce(`${String(lead).replace(/[.\s]+$/,'')}. Exposure ${vt?vt.textContent:''}${vs?': '+vs.textContent:''}`);
+}
+window.pickJ = jid => { sel.jid=jid; SH.keepFocus($('cfgMount'), cfg);
+  const j=E.JURISDICTIONS.find(x=>x.id===jid); sayExposure(j.n+'. '+j.note); };
+window.pickS = sid => { sel.size=sid; SH.keepFocus($('cfgMount'), cfg);
+  const z=E.SIZES.find(x=>x.id===sid); sayExposure(z.n+' tranche'); };
 
 /* exposure buckets — legible, not numeric */
 function bucket(p){
@@ -421,31 +485,33 @@ function cfg(){
   const rows=parts.map(([n,v,max])=>{
     const w=Math.min(100,v/max*100);
     const cls=w>66?'crit':w>33?'hot':'';
-    return `<div class="exr ${cls}"><span>${n}</span><div class="exb"><i style="width:${w}%"></i></div></div>`;
+    const lvl = cls==='crit'?'high':cls==='hot'?'elevated':'low';
+    return `<div class="exr ${cls}"><span>${n}</span><div class="exb" role="img" aria-label="${lvl}"><i style="width:${w}%"></i></div></div>`;
   }).join('');
 
-  m.innerHTML=`<div class="cfg">
+  m.innerHTML=`<div class="cfg" tabindex="-1" role="group" aria-label="Configure ${esc(t.n)}">
     <div class="ch"><b>${esc(t.n)}</b><span class="sub2">${esc(t.d)}</span></div>
     <div class="sec"><div class="sl">JURISDICTION</div>
       <div class="chips">${t.juris.map(jid=>{
         const jj=E.JURISDICTIONS.find(x=>x.id===jid);
         const stars='•'.repeat(Math.max(1,Math.round(jj.risk*10)));
-        return `<button class="chip ${sel.jid===jid?'sel':''}" onclick="pickJ('${jid}')">${esc(jj.n)}
-          <span class="cr" style="color:var(--${jj.risk>0.3?'alarm':jj.risk>0.15?'amber':'phos'})">${stars}</span></button>`;
+        const lvl = jj.risk>0.3?'high':jj.risk>0.15?'medium':'low';
+        return `<button type="button" class="chip ${sel.jid===jid?'sel':''}" aria-pressed="${sel.jid===jid}" onclick="pickJ('${jid}')">${esc(jj.n)}
+          <span class="cr" aria-hidden="true" style="color:var(--${jj.risk>0.3?'alarm':jj.risk>0.15?'amber':'phos'})">${stars}</span><span class="sr"> — ${lvl} country risk</span></button>`;
       }).join('')}</div>
       <div class="jnote">${esc(j.note)}</div></div>
     <div class="sec sizes"><div class="sl">TRANCHE</div>
       <div class="chips">${E.SIZES.map(sz=>{
         const a=Math.min(pool, Math.round(t.cap*sz.f));
-        return `<button class="chip ${sel.size===sz.id?'sel':''}" onclick="pickS('${sz.id}')">${sz.n}
+        return `<button type="button" class="chip ${sel.size===sz.id?'sel':''}" aria-pressed="${sel.size===sz.id}" onclick="pickS('${sz.id}')">${sz.n}
           <span class="amt2">${eurM(a)}</span></button>`;
       }).join('')}</div></div>
     <div class="expo">
       <div class="exrows">${rows}</div>
-      <div class="verdict"><div class="vt ${vc}">${vt}</div><div class="vs">${vs}</div></div>
+      <div class="verdict" role="group" aria-label="Exposure"><div class="vt ${vc}">${vt}</div><div class="vs">${vs}</div></div>
     </div>
     <div class="actions">
-      <button class="exec" onclick="exec()">EXECUTE — ${eurM(amount)} · ${t.weeks} WK</button>
+      <button type="button" class="exec" onclick="exec()">EXECUTE — ${eurM(amount)} · ${t.weeks} WK</button>
     </div>
   </div>`;
 }
@@ -455,31 +521,64 @@ window.exec = () => {
   const ev=E.doOp(S, sel.tid, sel.jid, sel.size);
   if(!ev) return;
   hud(); feed();
-  if(ev.kind==='caught'){ E.onCatch(ev); showCatch(ev); } else showOk(ev);
+  if(ev.kind==='caught'){
+    E.onCatch(ev);
+    SH.announce(`Strike ${S.catches} of ${E.MAX_CATCHES}. ${eurM(ev.amount)} frozen in week ${ev.week}: ${ev.t.flag}. Heat ${Math.round(S.heat)}.`);
+    showCatch(ev);
+  } else {
+    SH.announce(`${eurM(ev.amount)} went through in week ${ev.week}, fee ${eurM(ev.fee)}. Heat ${Math.round(S.heat)}.`);
+    showOk(ev);
+  }
 };
-window.wait = w => { E.layLow(S,w); hud(); feed(); afterMove(); };
+window.wait = w => {
+  E.layLow(S,w); hud(); feed();
+  SH.announce(`Laid low for ${w} weeks. Week ${S.week}.`);
+  afterMove();
+};
+/* one dialog helper (AcademyShell.openDialog): role, label, focus in, Tab
+   trap, Esc closes, focus restored — shared with the ownership/desk verdicts */
+function openCard(){
+  $('ov').classList.add('on');
+  SH.openDialog($('ovCard'), {labelledBy:'ovT', onEscape:closeOv});
+}
+let ovFrom=null;
 window.confirmWalk = () => {
+  ovFrom='walk';
   const card=$('ovCard');
   card.className='card okc';
-  card.innerHTML=`<div class="kh">WALK AWAY?</div><div class="kb">
+  card.innerHTML=`<div class="kh" id="ovT">WALK AWAY?</div><div class="kb">
     <div class="flag">Bank ${eurM(S.pools.clean)} and disappear.</div>
     <div class="ktext">Everything not yet integrated — ${eurM(S.pools.dirty+S.pools.placed+S.pools.layered)} —
     stays where it is, radioactive. The run ends. Knowing when to stop is the one skill the
     reckless never develop.</div></div>
-    <div class="kfoot"><button class="ghost" onclick="closeOv()">KEEP WORKING</button>
-    <button class="exec" onclick="doWalk()">WALK AWAY</button></div>`;
-  $('ov').classList.add('on');
+    <div class="kfoot"><button type="button" class="ghost" onclick="closeOv()">KEEP WORKING</button>
+    <button type="button" class="exec" onclick="doWalk()">WALK AWAY</button></div>`;
+  openCard();
 };
-window.doWalk = () => { closeOv(); E.walkAway(S); finish(); };
-window.closeOv = () => { $('ov').classList.remove('on'); afterMove(); };
+window.doWalk = () => {
+  $('ov').classList.remove('on');
+  SH.closeDialog($('ovCard'), {noRestore:true});
+  E.walkAway(S); finish();
+};
+window.closeOv = () => {
+  $('ov').classList.remove('on');
+  SH.closeDialog($('ovCard'), {
+    after: afterMove,                       /* re-render, THEN restore focus */
+    fallback: () => [ovFrom==='walk' && document.querySelector('#main [onclick="confirmWalk()"]'),
+        document.querySelector('#cfgMount .exec'), document.querySelector('#main .op.sel'),
+        document.querySelector('#main .op:not(:disabled)'), $('gameH'), $('endwrap').querySelector('h2')]
+      .find(n => n && n.getClientRects().length)
+  });
+};
 
 function afterMove(){ if(S.over) finish(); else board(); }
 
 /* ── catch & success cards ── */
 function showCatch(ev){
+  ovFrom='catch';
   const card=$('ovCard');
   card.className='card';
-  card.innerHTML=`<div class="kh">■ TRANCHE FROZEN — STRIKE ${S.catches} OF ${E.MAX_CATCHES}</div>
+  card.innerHTML=`<div class="kh" id="ovT">■ TRANCHE FROZEN — STRIKE ${S.catches} OF ${E.MAX_CATCHES}</div>
   <div class="kb">
     <div class="flag">${esc(ev.t.flag)}</div>
     <div class="kmeta">WK ${ev.week} · ${esc(ev.t.n).toUpperCase()} · ${esc(ev.j.n).toUpperCase()} · ${eurM(ev.amount)} SEIZED</div>
@@ -487,20 +586,21 @@ function showCatch(ev){
     <div class="lawbox"><div class="la">AMLR — ${esc(ev.t.art)}</div>
     <div class="lt">${esc(ev.t.artTitle)}</div></div>
   </div>
-  <div class="kfoot"><button class="exec" onclick="closeOv()">UNDERSTOOD</button></div>`;
-  $('ov').classList.add('on');
+  <div class="kfoot"><button type="button" class="exec" onclick="closeOv()">UNDERSTOOD</button></div>`;
+  openCard();
 }
 function showOk(ev){
+  ovFrom='ok';
   /* successes pass silently unless they were loud — keep the tempo */
   if(ev.p<0.13){ afterMove(); return; }
   const card=$('ovCard');
   card.className='card okc';
-  card.innerHTML=`<div class="kh">THROUGH — BARELY</div><div class="kb">
+  card.innerHTML=`<div class="kh" id="ovT">THROUGH — BARELY</div><div class="kb">
     <div class="flag">${eurM(ev.amount)} made it.</div>
     <div class="ktext">That operation was loud — the kind of pattern that survives on luck, not craft.
     The footprint it left is permanent.</div></div>
-  <div class="kfoot"><button class="ghost" onclick="closeOv()">MOVE ON</button></div>`;
-  $('ov').classList.add('on');
+  <div class="kfoot"><button type="button" class="ghost" onclick="closeOv()">MOVE ON</button></div>`;
+  openCard();
 }
 
 /* ── run lifecycle ── */
@@ -526,6 +626,7 @@ function finish(){
 
   const caught=S.log.filter(e=>e.kind==='caught');
   const [vh,vb]=VERDICTS[S.verdict]||VERDICTS.done;
+  SH.announce(`Run over. ${vh} ${sc.toFixed(1)} percent laundered, ${caught.length} tranche${caught.length===1?'':'s'} frozen.`);
   $('endwrap').innerHTML=`
     <div class="kick">RUN COMPLETE · ${S.week} WEEKS</div>
     <h2>${vh}</h2>
@@ -553,7 +654,7 @@ function finish(){
     <p class="calib">Calibration: across 600 simulated runs per style, patient play cleans ≈50%,
       unfocused play ≈24%, maximum-size speed runs ≈19%. Craft beats appetite by a factor of about 2.7.</p>
     <div class="row">
-      <button class="go-big" onclick="startRun()">RUN IT AGAIN</button>
+      <button type="button" class="go-big" onclick="startRun()">RUN IT AGAIN</button>
       <a class="ghost" href="ownership.html">MODULE 02 — OWNERSHIP</a>
       <a class="ghost" href="workstation.html">BACK TO THE ACADEMY</a>
     </div>`;
@@ -565,9 +666,8 @@ function finish(){
   const st=acState();
   $('introBest').textContent = (st.laundromat&&st.laundromat.best)
     ? st.laundromat.best.toFixed(1)+'% laundered' : 'no runs yet';
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape' && $('ov').classList.contains('on')) closeOv();
-  });
+  /* tabs: same lock rule as every other module page */
+  if(SH) SH.renderTabs('laundromat');
   hud();
 })();
 

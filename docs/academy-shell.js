@@ -18,6 +18,12 @@
 
 const KEY='regradar-academy-progress';
 
+/* The path is locked, and the lock is ONE rule (unlocked() below) applied
+   everywhere: the tabs, the static nav on laundromat.html, and a direct
+   visit to a module's URL (mount() puts a gate card over a locked module).
+   Flip this to false to turn the path into a recommended order only. */
+const ENFORCE_GATE=true;
+
 /* The path. The order IS the pedagogy: you can't recognise a pattern
    you've never produced, so offence precedes defence. The path is
    locked: each module requires the ones before it. */
@@ -136,9 +142,161 @@ function ensureLoad(){ if(!loaded){ loaded=true; load(); } }
 const rankOf=xp=>{let r=RANKS[0];RANKS.forEach(x=>{if(xp>=x.xp)r=x});return r};
 const nextRank=xp=>RANKS.find(x=>x.xp>xp)||null;
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+/* A module counts as done once it has been COMPLETED at least once — a
+   finished laundromat run, one ownership file solved, one desk day closed.
+   Merely opening it (started) does not count. */
 const doneCount=()=>MODULES.filter(m=>(P.modules[m.id]||{}).done>0).length;
 
-function unlocked(m){ return m.file && doneCount()>=m.needs; }
+function unlocked(m){ return !!m.file && doneCount()>=m.needs; }
+function lockWhy(m){
+  if(!m.file) return 'In development — not open yet.';
+  const n=m.needs-doneCount();
+  return `Locked — complete ${m.needs} module${m.needs>1?'s':''} first (${doneCount()} of ${m.needs} done). `
+    +`${n} more to go.`;
+}
+
+/* ═══ accessibility helpers, shared by every simulator page ═══════════
+   announce(): one polite live region for strikes, XP, verdicts, flags.
+   openDialog()/closeDialog(): role=dialog + aria-modal + label, focus
+   moved in on open, Tab trapped, Esc closes, focus restored on close.
+   keepFocus(): re-render a container without dropping focus to <body>. */
+let liveEl=null, liveQ=[], liveT=null;
+function liveRegion(){
+  if(liveEl && document.body.contains(liveEl)) return liveEl;
+  liveEl=document.getElementById('acLive');
+  if(!liveEl){
+    liveEl=document.createElement('div');
+    liveEl.id='acLive'; liveEl.className='ac-sr';
+    liveEl.setAttribute('role','status');
+    liveEl.setAttribute('aria-live','polite');
+    liveEl.setAttribute('aria-atomic','true');
+    document.body.appendChild(liveEl);
+  }
+  return liveEl;
+}
+/* Messages sent within ~120 ms are read as one ("Strike 2 of 3. +40 XP"). */
+function announce(msg){
+  if(!msg) return;
+  liveQ.push(String(msg).replace(/\s+/g,' ').trim());
+  clearTimeout(liveT);
+  liveT=setTimeout(()=>{
+    const el=liveRegion();
+    const t=liveQ.map(x=>x.replace(/[.\s]+$/,'')).filter(Boolean).join('. ')+'.';
+    liveQ=[]; el.textContent='';
+    setTimeout(()=>{ el.textContent=t; },40);
+  },120);
+}
+
+const FOCUSABLE='a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),'
+  +'textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])';
+const isShown=n=>!!n && n.getClientRects().length>0 && getComputedStyle(n).visibility!=='hidden';
+const focusables=root=>Array.from(root.querySelectorAll(FOCUSABLE)).filter(isShown);
+const DLG=[], WAIT=[];
+let dlgWired=false;
+
+function inertAround(el){
+  const out=[]; let n=el;
+  while(n && n!==document.body && n.parentElement){
+    Array.from(n.parentElement.children).forEach(s=>{
+      if(s===n || s.id==='acLive' || s.tagName==='SCRIPT' || s.tagName==='STYLE' || s.hasAttribute('inert')) return;
+      s.setAttribute('inert',''); out.push(s);
+    });
+    n=n.parentElement;
+  }
+  return out;
+}
+function activate(d){
+  const el=d.el, o=d.o;
+  d.inerted=inertAround(el);
+  DLG.push(d);
+  if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','-1');
+  let f=typeof o.focus==='function'? o.focus() : (typeof o.focus==='string'? el.querySelector(o.focus) : o.focus);
+  if(f && !f.matches?.(FOCUSABLE) && !f.hasAttribute('tabindex')) f.setAttribute('tabindex','-1');
+  if(!f) f=focusables(el)[0];
+  (f||el).focus({preventScroll:!!o.noScroll});
+}
+function wireDialogs(){
+  if(dlgWired) return; dlgWired=true;
+  document.addEventListener('keydown',e=>{
+    const d=DLG[DLG.length-1]; if(!d) return;
+    if(e.key==='Escape'){
+      e.preventDefault(); e.stopPropagation();
+      (d.o.onEscape||(()=>closeDialog(d.el)))();
+      return;
+    }
+    if(e.key!=='Tab') return;
+    const f=focusables(d.el), a=document.activeElement;
+    if(!f.length){ e.preventDefault(); d.el.focus(); return; }
+    const first=f[0], last=f[f.length-1];
+    if(!d.el.contains(a)) { e.preventDefault(); first.focus(); }
+    else if(e.shiftKey && (a===first || a===d.el)){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && a===last){ e.preventDefault(); first.focus(); }
+  },true);
+}
+/* o: {label | labelledBy, focus (selector|element|fn), opener, onEscape} */
+function openDialog(el,o){
+  if(!el) return null;
+  o=o||{}; wireDialogs();
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  if(o.labelledBy){ el.setAttribute('aria-labelledby',o.labelledBy); el.removeAttribute('aria-label'); }
+  else if(o.label){ el.setAttribute('aria-label',o.label); el.removeAttribute('aria-labelledby'); }
+  const ae=document.activeElement;
+  const d={el,o,opener:o.opener||(ae&&ae!==document.body?ae:null)};
+  if(DLG.some(x=>x.el===el)) return d;
+  if(DLG.length){ WAIT.push(d); return d; }   /* queued behind the dialog on top */
+  activate(d); return d;
+}
+/* o: {after: runs before focus is restored (e.g. re-render),
+       fallback: ()=>element when the opener is gone, noRestore} */
+function closeDialog(el,o){
+  if(!el) return; o=o||{};
+  const i=DLG.findIndex(d=>d.el===el);
+  if(i<0){
+    const j=WAIT.findIndex(w=>w.el===el); if(j>=0) WAIT.splice(j,1);
+    el.removeAttribute('aria-modal');
+    if(o.after) o.after();
+    return;
+  }
+  const d=DLG.splice(i,1)[0];
+  d.inerted.forEach(n=>n.removeAttribute('inert'));
+  el.removeAttribute('aria-modal');
+  if(o.after) o.after();
+  const nx=WAIT.length? WAIT.shift() : null;
+  if(nx && isShown(nx.el)){ activate(nx); return; }
+  if(o.noRestore) return;
+  let t=d.opener;
+  if(!(t && document.contains(t) && isShown(t) && !t.closest('[inert]'))) t=o.fallback? o.fallback() : null;
+  if(t && t.focus) t.focus({preventScroll:false});
+}
+
+/* Re-render a container without losing keyboard focus: the focused
+   control is found again by its onclick / data-fk / id / label. */
+function sig(n){
+  /* identity = onclick / data-* / id when there is one; visible text only as a last resort */
+  const data=Array.from(n.attributes).filter(a=>/^data-/.test(a.name)).map(a=>a.name+'='+a.value).join(',');
+  const ident=(n.getAttribute('onclick')||'')+'|'+data+'|'+(n.id||'');
+  return n.tagName+'|'+(ident!=='||'? ident : (n.textContent||'').replace(/\s+/g,' ').trim().slice(0,40));
+}
+function keepFocus(container,fn,fallback){
+  const a=document.activeElement;
+  const had=container && a && a!==container && container.contains(a);
+  const key=had? sig(a) : null;
+  const r=fn();
+  if(had && container){
+    const q='button,a[href],input,select,textarea,[tabindex]';
+    let t=Array.from(container.querySelectorAll(q)).find(n=>sig(n)===key);
+    if(!t && fallback) t=typeof fallback==='function'? fallback() : fallback;
+    if(t && t.focus) t.focus({preventScroll:true});
+  }
+  return r;
+}
+/* Move focus to a view's heading after a navigation (keeps it out of <body>). */
+function focusHeading(root,sel){
+  if(!root) return;
+  const h=root.querySelector(sel||'h1,h2,[data-focus]')||root;
+  if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1');
+  h.focus({preventScroll:true});
+}
 
 /* ── shell construction ─────────────────────────────────────────── */
 function build(active){
@@ -151,36 +309,49 @@ function build(active){
       <span class="sim">AML TRAINING SIMULATOR</span>
       <span class="rr">
         <a href="workstation.html">Path</a>
-        <a href="index.html">← RegRadar</a>
+        <a href="index.html"><span aria-hidden="true">← </span>RegRadar</a>
       </span>
     </div>
     <div class="ac-machine">
       <div class="ac-title">
         <span class="dots"><i></i><i></i><i></i></span>
         <span class="ac-sys"><b>CF BANK</b><span>COMPLIANCE DESK · v4.2</span></span>
-        <span class="env"><i></i>SIMULATED ENVIRONMENT<span> · FICTIONAL DATA</span></span>
+        <span class="env"><i aria-hidden="true"></i>SIMULATED ENVIRONMENT<span> · FICTIONAL DATA</span></span>
       </div>
-      <nav class="ac-tabs" id="acTabs"></nav>
-      <div class="ac-screen" id="acScreen"></div>
+      <nav class="ac-tabs" id="acTabs" aria-label="Academy modules"></nav>
+      <main class="ac-screen" id="acScreen"></main>
       <div class="ac-status" id="acStatus"></div>
       <div class="ac-rank" id="acRank"></div>
     </div>`;
   return outer;
 }
 
+function tabsHTML(active){
+  return MODULES.map(m=>{
+    const rec=P.modules[m.id]||{};
+    const tick=rec.done>0?'<span class="tick"><span aria-hidden="true">✓</span><span class="ac-sr"> completed</span></span>':'';
+    if(unlocked(m)){
+      return `<a class="ac-tab ${m.id===active?'on':''}" href="${m.file}"${m.id===active?' aria-current="page"':''}>
+        <span class="n">${m.no}</span>${esc(m.n)}${tick}</a>`;
+    }
+    const why=lockWhy(m);
+    return `<button type="button" class="ac-tab locked" aria-disabled="true" data-why="${esc(why)}" title="${esc(why)}">
+      <span class="n">${m.no}</span>${esc(m.n)}<span class="lk"> · ${m.file?'locked':'soon'}</span>
+      <span class="ac-sr">. ${esc(why)}</span></button>`;
+  }).join('')+'<span class="ac-tab grow" aria-hidden="true"></span>';
+}
 function paintTabs(active){
   const el=document.getElementById('acTabs'); if(!el) return;
-  el.innerHTML=MODULES.map(m=>{
-    const rec=P.modules[m.id]||{};
-    const open=unlocked(m);
-    const cls=[m.id===active?'on':'', open?'':'locked'].filter(Boolean).join(' ');
-    const tick=rec.done>0?'<span class="tick">✓</span>':'';
-    const attr = open&&m.id!==active ? `onclick="location.href='${m.file}'"`
-               : !open ? `title="Requires ${m.needs} module(s) started"` : '';
-    return `<button class="ac-tab ${cls}" ${attr}>
-      <span class="n">${m.no}</span>${esc(m.n)}${tick}</button>`;
-  }).join('')+'<span class="ac-tab grow"></span>';
+  el.setAttribute('aria-label','Academy modules');
+  el.innerHTML=tabsHTML(active);
 }
+/* A locked tab is aria-disabled, not disabled: it stays focusable and says why. */
+document.addEventListener('click',e=>{
+  const b=e.target.closest&&e.target.closest('.ac-tab.locked');
+  if(!b) return;
+  const why=b.dataset.why||'Locked';
+  announce(why); Shell.toast(why);
+});
 
 function paintStatus(extra){
   const el=document.getElementById('acStatus'); if(!el) return;
@@ -195,6 +366,29 @@ function paintStatus(extra){
     <span class="mod" id="acMod">${extra||''}</span>`;
 }
 
+/* A module opened by direct URL before the path allows it: same rule as the
+   locked tab, shown as a card over the (inert) page — the page's own script
+   still runs underneath, so nothing throws. */
+function gate(m,screen){
+  const prior=MODULES.filter(x=>x.file && x.no<m.no && !((P.modules[x.id]||{}).done>0));
+  const first=prior[0]||MODULES.find(x=>x.file);
+  const g=document.createElement('div');
+  g.className='ac-gate';
+  g.innerHTML=`<div role="region" aria-labelledby="acGateT">
+    <div class="k">MODULE ${esc(m.no)} · LOCKED</div>
+    <h1 id="acGateT">${esc(m.n)} opens after you complete ${m.needs} module${m.needs>1?'s':''}.</h1>
+    <p>${esc(lockWhy(m))} The path is built in order — you cannot recognise a pattern you have
+      never produced — so each module needs the one before it. Start with
+      <b>${esc(first.n)}</b>.</p>
+    <div class="acts"><a href="${first.file}">GO TO ${esc(first.n.toUpperCase())}</a>
+      <a class="sec" href="workstation.html">SEE THE PATH</a></div></div>`;
+  Array.from(screen.children).forEach(k=>k.setAttribute('inert',''));
+  screen.appendChild(g);
+  const h=g.querySelector('h1'); h.setAttribute('tabindex','-1');
+  announce(m.n+' is locked. '+lockWhy(m));
+  setTimeout(()=>h.focus({preventScroll:true}),0);
+}
+
 /* ── API exposed to modules ─────────────────────────────────────── */
 const Shell={
   /* Mounts the shell and renders the page's existing content into the screen. */
@@ -206,6 +400,8 @@ const Shell={
     const screen=document.getElementById('acScreen');
     kids.forEach(k=>{ if(k.tagName!=='SCRIPT') screen.appendChild(k); });
     paintTabs(moduleId); paintStatus('');
+    const me=MODULES.find(x=>x.id===moduleId);
+    if(ENFORCE_GATE && me && !unlocked(me)) gate(me, screen);
     return screen;
   },
   /* Module-specific indicators, on the right of the status bar.
@@ -228,6 +424,7 @@ const Shell={
     loadSK(); SK.daily={date:todayStr(), done:true}; saveSK();
     const after=rankOf(P.xp);
     paintStatus(document.getElementById('acMod')?.innerHTML||'');
+    if(xp) announce('+'+xp+' XP');
     if(after.n!==before){ Shell.promote(after); return true; }
     return false;
   },
@@ -240,17 +437,33 @@ const Shell={
   },
   promote(r){
     const el=document.getElementById('acRank'); if(!el) return;
-    el.innerHTML=`<div class="k">PROMOTION</div><div class="art">${r.art}</div>
-      <h2>${esc(r.n)}</h2><p>${esc(r.blurb)}</p>
-      <button onclick="AcademyShell.closeRank()">CONTINUE</button>`;
+    el.innerHTML=`<div class="k">PROMOTION</div><div class="art" aria-hidden="true">${r.art}</div>
+      <h2 id="acRankT">${esc(r.n)}</h2><p>${esc(r.blurb)}</p>
+      <button type="button" onclick="AcademyShell.closeRank()">CONTINUE</button>`;
     el.classList.add('on');
+    announce('Promoted to '+r.n);
+    openDialog(el,{labelledBy:'acRankT', onEscape:()=>Shell.closeRank()});
   },
-  closeRank(){ const el=document.getElementById('acRank'); if(el) el.classList.remove('on'); },
+  closeRank(){
+    const el=document.getElementById('acRank'); if(!el) return;
+    el.classList.remove('on');
+    closeDialog(el);
+  },
   toast(msg){
+    announce(msg);
     const s=document.getElementById('acScreen'); if(!s) return;
     const t=document.createElement('div'); t.className='ac-toast'; t.textContent=msg;
+    t.setAttribute('aria-hidden','true');   /* announced once, via the live region */
     s.appendChild(t); setTimeout(()=>t.remove(),2700);
   },
+  /* shared a11y helpers (see top of file) */
+  announce, openDialog, closeDialog, keepFocus, focusHeading, focusables,
+  get dialogOpen(){ return DLG.length>0 || WAIT.length>0; },
+  get reducedMotion(){ return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); },
+  /* Fills <nav id="acTabs"> on pages that don't mount() the whole shell
+     (laundromat.html) with the same tabs, same lock rule. */
+  renderTabs(active){ ensureLoad(); paintTabs(active); },
+  isUnlocked(id){ ensureLoad(); const m=MODULES.find(x=>x.id===id); return !!m && unlocked(m); },
   get xp(){ ensureLoad(); return P.xp; },
   get rank(){ ensureLoad(); return rankOf(P.xp); },
   get ranks(){ return RANKS; },

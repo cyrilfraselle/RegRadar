@@ -7,21 +7,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="academy-engine.css">
-<link rel="stylesheet" href="glossary.css">
-<script src="academy-shell.js"></script>
-<script src="academy-engine.js"></script>
-<script src="glossary.js"></script>
+<link rel="stylesheet" href="academy-engine.css?v=20261015">
+<link rel="stylesheet" href="glossary.css?v=20261015">
+<script src="academy-shell.js?v=20261015"></script>
+<script src="academy-engine.js?v=20261015"></script>
+<script src="glossary.js?v=20261015"></script>
 <style>
 :root{
   --wallpaper:#1B2430; --wallpaper-2:#222E3D; --taskbar:#12161D;
   --chrome:#23303F; --chrome-2:#2C3B4E;
   --surface:#FFFFFF; --surface-2:#F5F6F8; --surface-3:#EBEDF1;
   --border:#DDE1E6; --border-strong:#C3C9D1;
-  --text:#1A1F27; --text-2:#5B6472; --text-3:#8B93A0;
+  /* text-3 / warn darkened so every text pairing clears 4.5:1 on the
+     white, grey and tinted surfaces (was 3.1:1 and 4.2:1). */
+  --text:#1A1F27; --text-2:#505968; --text-3:#5F6876;
   --brand:#1F5C8B; --brand-ink:#164363;
   --crit:#B3392C; --crit-bg:#FBEDEB;
-  --warn:#9A6B1F; --warn-bg:#FBF3E5;
+  --warn:#8A5F18; --warn-bg:#FBF3E5;
+  --focus:#1F5C8B; --focus-on-dark:#9CC9EC;
   --ok:#1E7145; --ok-bg:#EAF5EE;
   --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -44,52 +47,84 @@ body{
     linear-gradient(160deg,var(--wallpaper),var(--wallpaper-2) 70%);
   height:100vh;overflow:hidden;position:relative;
   -webkit-font-smoothing:antialiased;
-  user-select:none;
 }
+/* Chrome (not content) is non-selectable; document text stays copyable. */
+.titlebar,.dicon,.taskbar,.tab{user-select:none}
+
+/* ── shared a11y helpers ─────────────────────────────────────────── */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Real controls were bare divs; a visible keyboard ring for all of them.
+   Light surfaces use the brand blue, dark chrome overrides below. */
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.taskbar :focus-visible,.titlebar :focus-visible,.dicon:focus-visible,
+.start-menu :focus-visible,.tabstrip :focus-visible,.ntf-stack :focus-visible,
+.alex-bubble-stack :focus-visible{outline-color:var(--focus-on-dark)}
+.win:focus{outline:none}
+.mail-read:focus-visible,.fe-preview:focus-visible,.page:focus-visible,.tm-thread:focus-visible,
+.inv-view:focus-visible,#path-body:focus-visible,#skills-body:focus-visible,.inv-verdict:focus-visible,
+.inv-reveal:focus-visible{outline-offset:-3px}
+.win:focus-visible{outline:2px solid var(--focus-on-dark);outline-offset:-3px}
+/* native-button reset for controls that were styled divs */
+.dicon,.tb-app,.start,.tb-flag,.mitem,.att,.fe-tree .t,.fitem,.tm-chan,.inv-tab,
+.navbtn,.bmk,.bmkbar button,.tab-btn,.tab .x,.ntf,.alex-bubble{
+  font-family:inherit;font-size:inherit;color:inherit;background:none;border:0;margin:0;
+  text-align:inherit;-webkit-appearance:none;appearance:none}
 
 /* ── desktop chrome ──────────────────────────────────────────────── */
 .desktop-mark{position:absolute;top:36px;left:36px;display:flex;align-items:center;gap:10px;
-  color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  pointer-events:none}
-.desktop-mark .sq{width:22px;height:22px;border:1.5px solid rgba(255,255,255,.45);
+  color:rgba(255,255,255,.72);font-size:12px;font-weight:400;letter-spacing:.14em;
+  text-transform:uppercase;pointer-events:none;margin:0;font-family:var(--sans)}
+.desktop-mark .sq{width:22px;height:22px;border:1.5px solid rgba(255,255,255,.55);
   display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:11px}
 
-.dicon{position:absolute;width:76px;display:flex;flex-direction:column;align-items:center;gap:7px;
-  color:rgba(255,255,255,.82);cursor:default}
+/* Icons flow in a column that wraps, so short viewports get a second
+   column instead of icons sliding under the taskbar. */
+.desk-icons{position:absolute;top:84px;left:40px;bottom:62px;display:flex;
+  flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:14px 20px}
+.dicon{width:76px;display:flex;flex-direction:column;align-items:center;gap:7px;
+  color:rgba(255,255,255,.9);cursor:pointer;padding:4px 0;border-radius:8px}
 .dicon .ico{width:42px;height:42px;border-radius:9px;display:grid;place-items:center;font-size:19px;
   box-shadow:0 1px 2px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.12);transition:transform .12s}
 .dicon:hover .ico{transform:translateY(-2px)}
 .dicon:active .ico{transform:translateY(0) scale(.96)}
-.dicon .lbl{font-size:11.5px;text-align:center;line-height:1.3;
+.dicon .lbl{display:block;font-size:12px;text-align:center;line-height:1.3;
   text-shadow:0 1px 3px rgba(0,0,0,.5)}
-.dicon.i1{top:100px;left:40px} .dicon.i2{top:210px;left:40px}
-.dicon.i3{top:320px;left:40px} .dicon.i4{top:430px;left:40px}
-.dicon.i5{top:540px;left:40px}
 
 /* ── windows ─────────────────────────────────────────────────────── */
+/* The desk is its own stacking context: window z-order (which only ever
+   goes up) can no longer overtake the taskbar or the toasts. */
+#desk{position:absolute;inset:0;z-index:1}
 .win{position:absolute;background:var(--surface);border-radius:8px;
   box-shadow:0 2px 8px rgba(0,0,0,.25), 0 24px 64px rgba(0,0,0,.4);
   display:none;flex-direction:column;overflow:hidden;
   border:1px solid rgba(0,0,0,.25);min-width:360px;min-height:220px}
 .win.show{display:flex}
-.win.maxed{top:0 !important;left:0 !important;width:100% !important;height:100% !important;
+/* a maximised window stops above the taskbar instead of hiding under it */
+.win.maxed{top:0 !important;left:0 !important;width:100% !important;height:calc(100% - 46px) !important;
   border-radius:0}
 
 .titlebar{flex:0 0 40px;display:flex;align-items:center;gap:10px;padding:0 10px 0 12px;
   background:linear-gradient(180deg,var(--chrome-2),var(--chrome));color:#EAF0F6;
   font-size:12.5px;font-weight:500;cursor:grab}
 .titlebar:active{cursor:grabbing}
-.tctl{display:flex;gap:7px;flex:0 0 auto}
-.tctl button{width:11px;height:11px;border-radius:50%;display:block;border:none;padding:0;
-  cursor:pointer;position:relative}
-.tctl button.tc-close{background:#E0574C} .tctl button.tc-min{background:#E0A93D}
-.tctl button.tc-max{background:#3FAE5C}
-.tctl button::after{content:'';position:absolute;inset:0;border-radius:50%}
-.tctl button:hover::after{background:rgba(0,0,0,.18)}
+/* Window controls: the coloured dot stays 11px, but the button is a
+   24x24 hit area (::before draws the dot, ::after the hover glyph). */
+.tctl{display:flex;gap:0;flex:0 0 auto;margin-left:-6px}
+.tctl button{width:24px;height:24px;display:grid;place-items:center;border:none;padding:0;
+  background:none;cursor:pointer;position:relative;border-radius:6px;color:#1A1F27}
+.tctl button::before{content:'';width:11px;height:11px;border-radius:50%;background:#E0574C;
+  grid-area:1/1}
+.tctl button.tc-min::before{background:#E0A93D}
+.tctl button.tc-max::before{background:#3FAE5C}
+.tctl button::after{grid-area:1/1;font-size:12px;font-weight:700;line-height:1;opacity:0;
+  content:attr(data-glyph)}
+.tctl button:hover::after,.tctl button:focus-visible::after{opacity:.75}
+.tctl button:hover::before{filter:brightness(.9)}
 .tapp{display:flex;align-items:center;gap:7px;color:rgba(234,240,246,.85);white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
 .tapp .tico{width:15px;height:15px;border-radius:3px;flex:0 0 auto}
-.ttitle{margin-left:auto;color:rgba(234,240,246,.55);font-size:11.5px;white-space:nowrap}
+.ttitle{margin-left:auto;color:rgba(234,240,246,.78);font-size:12px;white-space:nowrap}
 .resize-handle{position:absolute;right:0;bottom:0;width:16px;height:16px;cursor:nwse-resize;
   background:
     linear-gradient(135deg,transparent 0 40%,rgba(0,0,0,.18) 40% 46%,transparent 46% 58%,
@@ -98,30 +133,37 @@ body{
 /* browser chrome */
 .tabstrip{flex:0 0 36px;display:flex;align-items:flex-end;gap:2px;padding:0 8px;
   background:var(--chrome-2);overflow-x:auto}
-.tab{display:flex;align-items:center;gap:7px;padding:8px 12px 7px;font-size:12px;
-  color:rgba(234,240,246,.6);background:rgba(255,255,255,.03);border-radius:7px 7px 0 0;
-  max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;
-  flex:0 0 auto}
+.tab{display:flex;align-items:center;font-size:12px;
+  color:rgba(234,240,246,.85);background:rgba(255,255,255,.03);border-radius:7px 7px 0 0;
+  max-width:230px;white-space:nowrap;overflow:hidden;flex:0 0 auto}
 .tab.on{background:var(--surface);color:var(--text);font-weight:500}
-.tab .dot{width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:var(--text-3)}
+.tab-btn{display:flex;align-items:center;gap:7px;padding:8px 4px 7px 12px;cursor:pointer;
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:inherit}
+.tab .dot{width:6px;height:6px;border-radius:50%;flex:0 0 auto;background:#C7CDD6}
 .tab.on .dot{background:var(--ok)}
-.tab .x{margin-left:auto;opacity:.5;font-size:13px}
-.tab .x:hover{opacity:1}
+.tab .x{width:24px;height:24px;margin:0 4px 0 0;border-radius:4px;display:grid;place-items:center;
+  flex:0 0 auto;opacity:.8;font-size:14px;cursor:pointer}
+.tab .x:hover{opacity:1;background:rgba(127,127,127,.25)}
+.tab .x:disabled{display:none}
 .addrbar{flex:0 0 42px;display:flex;align-items:center;gap:10px;padding:0 12px;
   background:var(--surface);border-bottom:1px solid var(--border)}
-.navbtn{color:var(--text-3);font-size:14px;width:22px;text-align:center;cursor:pointer}
-.navbtn:hover{color:var(--text)}
-.navbtn.dis{opacity:.3;cursor:default;pointer-events:none}
+.navbtn{color:var(--text-2);font-size:16px;width:28px;height:28px;border-radius:6px;
+  display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+.navbtn:hover:not(:disabled){color:var(--text);background:var(--surface-3)}
+.navbtn:disabled{opacity:.4;cursor:default}
 .addrpill{flex:1;height:26px;background:var(--surface-2);border:1px solid var(--border);
   border-radius:13px;display:flex;align-items:center;gap:8px;padding:0 12px;
-  font-family:var(--mono);font-size:11.5px;color:var(--text-2)}
-.addrpill .lock{color:var(--ok);font-size:10px}
-.bmk{font-size:13px;color:var(--text-3);letter-spacing:.02em;cursor:pointer}
-.bmk.on{color:#D9A400}
-.bmkbar{flex:0 0 26px;display:flex;align-items:center;gap:14px;padding:0 14px;background:var(--surface-2);
-  border-bottom:1px solid var(--border);font-size:10.5px;color:var(--text-2)}
-.bmkbar span{cursor:pointer;display:flex;align-items:center;gap:4px}
-.bmkbar span:hover{color:var(--text)}
+  font-family:var(--mono);font-size:12px;color:var(--text-2)}
+.addrpill .lock{color:var(--ok);font-size:12px}
+.bmk{font-size:16px;color:var(--text-2);letter-spacing:.02em;cursor:pointer;width:28px;height:28px;
+  border-radius:6px;display:grid;place-items:center;flex:0 0 auto}
+.bmk:hover{background:var(--surface-3)}
+.bmk.on{color:#8A5F18}
+.bmkbar{flex:0 0 30px;display:flex;align-items:center;gap:8px;padding:0 10px;background:var(--surface-2);
+  border-bottom:1px solid var(--border);font-size:12px;color:var(--text-2)}
+.bmkbar button{cursor:pointer;display:flex;align-items:center;gap:4px;height:24px;padding:0 6px;
+  border-radius:4px;color:var(--text-2)}
+.bmkbar button:hover{color:var(--text);background:var(--surface-3)}
 
 .browser-body{flex:1;overflow:hidden;background:var(--surface);position:relative}
 .page{height:100%;overflow-y:auto;display:none}
@@ -131,34 +173,36 @@ body{
 .mail-body{flex:1;display:grid;grid-template-columns:150px 210px 1fr;min-height:0}
 .mail-folders{background:var(--surface-2);border-right:1px solid var(--border);
   padding:14px 0;font-size:12.5px;overflow-y:auto}
-.mail-folders .fh{padding:4px 16px 10px;color:var(--text-3);font-size:10px;
+.mail-folders .fh{padding:4px 16px 10px;color:var(--text-3);font-size:12px;
   letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-.mail-folders .f{padding:7px 16px;color:var(--text-2);display:flex;justify-content:space-between;cursor:pointer}
-.mail-folders .f:hover{background:rgba(0,0,0,.03)}
+.mail-folders .f{padding:7px 16px;color:var(--text-2);display:flex;justify-content:space-between}
 .mail-folders .f.on{background:var(--surface);color:var(--brand-ink);font-weight:600;
   border-right:2px solid var(--brand)}
-.mail-folders .f b{font-weight:600;color:var(--text-3);font-size:11px}
+.mail-folders .f b{font-weight:600;color:var(--text-3);font-size:12px}
 .mail-list{border-right:1px solid var(--border);overflow-y:auto}
-.mitem{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer}
-.mitem:hover{background:rgba(0,0,0,.02)}
+.mitem{display:block;width:100%;padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;
+  text-align:left}
+.mitem>span{display:block}
+.mitem:hover{background:rgba(0,0,0,.03)}
 .mitem.on{background:var(--surface-3)}
+.mitem:focus-visible{outline-offset:-3px}
 .mitem .mf{display:flex;justify-content:space-between;font-size:12px;font-weight:600}
-.mitem .mf time{font-weight:400;color:var(--text-3);font-size:10.5px}
-.mitem .ms{font-size:11.5px;color:var(--text);margin-top:3px;font-weight:500}
-.mitem .mp{font-size:11px;color:var(--text-3);margin-top:2px;
+.mitem .mf time{font-weight:400;color:var(--text-3);font-size:12px}
+.mitem .ms{font-size:12px;color:var(--text);margin-top:3px;font-weight:500}
+.mitem .mp{font-size:12px;color:var(--text-3);margin-top:2px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mitem.unread .mf{position:relative}
 .mitem.unread .mf::before{content:'';width:6px;height:6px;border-radius:50%;
   background:var(--brand);display:inline-block;margin-right:6px}
 .mail-read{overflow-y:auto;padding:20px 24px}
 .mail-read h2{font-size:16px;margin:0 0 12px;font-weight:600;line-height:1.4}
-.mail-meta{font-size:11.5px;color:var(--text-3);line-height:1.7;margin-bottom:16px;
+.mail-meta{font-size:12px;color:var(--text-3);line-height:1.7;margin-bottom:16px;
   padding-bottom:14px;border-bottom:1px solid var(--border)}
 .mail-meta b{color:var(--text-2);font-weight:600}
 .mail-text{font-size:13px;line-height:1.7;color:var(--text)}
 .mail-text p{margin:0 0 12px}
 .attach{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
-.att{border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:11.5px;
+.att{border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:12px;min-height:34px;
   display:flex;align-items:center;gap:8px;color:var(--text-2);background:var(--surface-2);cursor:pointer}
 .att:hover{border-color:var(--border-strong);color:var(--text)}
 
@@ -168,9 +212,9 @@ body{
 .site-brand{font-size:13px;font-weight:700;letter-spacing:.01em;display:flex;align-items:center;gap:8px}
 .site-brand .mk{width:20px;height:20px;border-radius:4px;display:grid;place-items:center;
   color:#fff;font-size:10px;font-weight:700}
-.site-nav{display:flex;gap:18px;font-size:11.5px;color:var(--text-3)}
+.site-nav{display:flex;gap:18px;font-size:12px;color:var(--text-3)}
 .pad{padding:22px}
-.kicker{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);
   font-weight:600;margin-bottom:6px}
 h1.pt{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
 .sub{font-size:12px;color:var(--text-2);margin-bottom:18px}
@@ -178,18 +222,18 @@ h1.pt{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
 .kvgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);
   border:1px solid var(--border);margin-top:6px}
 .kvgrid .kv{background:var(--surface);padding:11px 14px}
-.kvgrid .k{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
+.kvgrid .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
 .kvgrid .v{font-size:13px;margin-top:3px;font-weight:500}
 .kvgrid .v.mono{font-family:var(--mono);font-size:12.5px}
 
-.chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;
   padding:3px 9px;border-radius:11px;letter-spacing:.02em}
 .chip.crit{background:var(--crit-bg);color:var(--crit)}
 .chip.warn{background:var(--warn-bg);color:var(--warn)}
 .chip.ok{background:var(--ok-bg);color:var(--ok)}
 
 table.dt{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}
-table.dt th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+table.dt th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-3);font-weight:600;padding:0 10px 8px;border-bottom:1px solid var(--border)}
 table.dt td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text-2)}
 table.dt td.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
@@ -199,92 +243,97 @@ table.dt td b{color:var(--text);font-weight:600}
 .searchbox{display:flex;gap:8px;margin-top:4px}
 .searchbox input{flex:1;height:34px;border:1px solid var(--border-strong);border-radius:6px;
   padding:0 12px;font-family:var(--sans);font-size:12.5px;color:var(--text);background:var(--surface-2)}
+.xlink{color:var(--brand);text-decoration:underline;text-underline-offset:2px}
+.xlink:hover{color:var(--brand-ink)}
 .searchbtn{height:34px;padding:0 16px;background:var(--brand);color:#fff;border-radius:6px;
   font-size:12px;font-weight:600;display:grid;place-items:center}
 .result{border:1px solid var(--border);border-radius:6px;padding:13px 14px;margin-top:12px}
 .result .rh{display:flex;justify-content:space-between;align-items:baseline}
 .result .rn{font-size:13.5px;font-weight:600}
 .result .rmeta{margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-  font-size:11px;color:var(--text-2)}
-.result .rmeta b{display:block;color:var(--text-3);font-size:9.5px;text-transform:uppercase;
+  font-size:12px;color:var(--text-2)}
+.result .rmeta b{display:block;color:var(--text-3);font-size:12px;text-transform:uppercase;
   letter-spacing:.06em;font-weight:600;margin-bottom:2px}
-.result .rsrc{margin-top:9px;font-size:10.5px;color:var(--text-3);font-family:var(--mono)}
+.result .rsrc{margin-top:9px;font-size:12px;color:var(--text-3);font-family:var(--mono)}
 
 /* ── file explorer ───────────────────────────────────────────────── */
 .fe-body{flex:1;display:grid;grid-template-columns:170px 230px 1fr;min-height:0}
 .fe-tree{background:var(--surface-2);border-right:1px solid var(--border);padding:10px 0;
   font-size:12.5px;overflow-y:auto}
-.fe-tree .t{padding:7px 16px;color:var(--text-2);display:flex;align-items:center;gap:8px;cursor:pointer}
+.fe-tree .t{width:100%;padding:7px 16px;color:var(--text-2);display:flex;align-items:center;gap:8px;
+  cursor:pointer;text-align:left}
 .fe-tree .t:hover{background:rgba(0,0,0,.03)}
 .fe-tree .t.on{background:var(--surface);color:var(--brand-ink);font-weight:600;
   border-right:2px solid var(--brand)}
 .fe-search{margin:0 10px 8px;height:26px;border:1px solid var(--border);border-radius:5px;
   background:var(--surface);display:flex;align-items:center;padding:0 9px;gap:6px;
-  font-size:11px;color:var(--text-3)}
+  font-size:12px;color:var(--text-3)}
 .fe-list{border-right:1px solid var(--border);overflow-y:auto;padding:6px 0}
-.fe-list .hd{padding:6px 14px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+.fe-list .hd{padding:6px 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-3);font-weight:600}
-.fitem{padding:9px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px}
+.fitem{width:100%;padding:9px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;
+  text-align:left}
+.fe-tree .t:focus-visible,.fitem:focus-visible,.tm-chan:focus-visible,.inv-tab:focus-visible{outline-offset:-3px}
 .fitem:hover{background:rgba(0,0,0,.03)}
 .fitem.on{background:var(--surface-3)}
 .fitem .fico{width:26px;height:26px;border-radius:5px;display:grid;place-items:center;
   font-size:12px;flex:0 0 auto;color:#fff}
-.fitem .fn{overflow:hidden}
-.fitem .fname{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fitem .fmeta{font-size:10px;color:var(--text-3);margin-top:1px}
+.fitem .fn{overflow:hidden;display:block;min-width:0}
+.fitem .fname{display:block;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fitem .fmeta{display:block;font-size:12px;color:var(--text-3);margin-top:1px}
 .fe-empty{padding:30px 14px;color:var(--text-3);font-size:12px;text-align:center}
 .fe-preview{overflow-y:auto;padding:22px 26px;background:var(--surface-2)}
 .fe-preview .ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
 .fe-preview .pt{font-size:13.5px;font-weight:600}
-.fe-preview .pm{font-size:11px;color:var(--text-3);margin-top:3px}
+.fe-preview .pm{font-size:12px;color:var(--text-3);margin-top:3px}
 .dlbtn{border:1px solid var(--border-strong);background:var(--surface);border-radius:5px;
-  padding:6px 12px;font-size:11px;font-weight:600;color:var(--text-2);cursor:pointer}
+  min-height:32px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--text-2);cursor:pointer}
 .docsheet{background:var(--surface);border:1px solid var(--border);border-radius:2px;
   padding:26px 28px;font-size:12px;line-height:1.6;color:var(--text-2);
   box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.docsheet .dh{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--text-3);
+.docsheet .dh{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--text-3);
   text-transform:uppercase;margin-bottom:4px}
 .docsheet h3{font-size:14.5px;margin:0 0 14px;color:var(--text)}
 .docsheet .row{display:flex;gap:8px;margin-bottom:6px}
-.docsheet .row b{width:150px;flex:0 0 auto;color:var(--text-3);font-weight:600;font-size:11px}
+.docsheet .row b{width:150px;flex:0 0 auto;color:var(--text-3);font-weight:600;font-size:12px}
 .docsheet ul{margin:8px 0;padding-left:18px}
 .docsheet li{margin-bottom:6px}
 .idcard{background:linear-gradient(135deg,#1F5C8B,#164363);border-radius:10px;padding:18px 20px;
   color:#fff;display:flex;gap:16px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .idphoto{width:64px;height:80px;border-radius:4px;background:rgba(255,255,255,.15);
   border:1px solid rgba(255,255,255,.3);flex:0 0 auto;display:grid;place-items:center;font-size:22px}
-.idfields{font-size:11px;line-height:1.9}
-.idfields b{display:block;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;
-  opacity:.65;margin-top:6px}
+.idfields{font-size:12px;line-height:1.9}
+.idfields b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  opacity:.92;margin-top:6px}
 .idfields b:first-child{margin-top:0}
 
 /* ── notifications ───────────────────────────────────────────────── */
 .ntf-stack{position:absolute;top:20px;right:20px;z-index:200;display:flex;flex-direction:column;
   gap:8px;width:300px}
 .ntf{background:var(--surface);border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.35);
-  padding:12px 13px;display:flex;gap:10px;cursor:pointer;
+  padding:12px 13px;display:flex;gap:10px;cursor:pointer;text-align:left;width:100%;color:var(--text);
   animation:ntfIn .32s var(--ease);border:1px solid var(--border)}
 @keyframes ntfIn{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
 .ntf.out{animation:ntfOut .22s var(--ease) forwards}
 @keyframes ntfOut{to{opacity:0;transform:translateX(30px)}}
 .ntf .nico{width:32px;height:32px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;
   font-size:14px;color:#fff}
-.ntf .nb{min-width:0}
-.ntf .nt{font-size:12px;font-weight:600;color:var(--text)}
-.ntf .nd{font-size:11px;color:var(--text-2);margin-top:2px;line-height:1.4}
+.ntf .nb{min-width:0;display:block}
+.ntf .nt{display:block;font-size:12px;font-weight:600;color:var(--text)}
+.ntf .nd{display:block;font-size:12px;color:var(--text-2);margin-top:2px;line-height:1.4}
 
 /* ── Alex bubble — a colleague reacting, not a system toast ────────── */
 .alex-bubble-stack{position:absolute;left:20px;bottom:60px;z-index:200;
   display:flex;flex-direction:column;gap:8px;width:270px;pointer-events:none}
-.alex-bubble{background:#fff;border-radius:14px 14px 14px 3px;
+.alex-bubble{background:#fff;border-radius:14px 14px 14px 3px;text-align:left;width:100%;
   box-shadow:0 10px 26px rgba(0,0,0,.32);padding:10px 13px;display:flex;gap:9px;
   align-items:flex-start;cursor:pointer;opacity:0;transform:translateY(8px) scale(.98);
   transition:opacity .22s var(--ease),transform .22s var(--ease);pointer-events:auto}
 .alex-bubble.in{opacity:1;transform:none}
 .alex-bubble.out{opacity:0;transform:translateY(6px) scale(.98)}
 .alex-bubble .av{width:26px;height:26px;border-radius:50%;flex:0 0 auto;display:grid;
-  place-items:center;font-size:10.5px;font-weight:700;color:#fff}
-.alex-bubble .txt{font-size:12px;line-height:1.45;color:var(--text-2);padding-top:2px}
+  place-items:center;font-size:12px;font-weight:700;color:#fff}
+.alex-bubble .txt{display:block;font-size:12px;line-height:1.45;color:var(--text-2);padding-top:2px}
 
 /* ── taskbar ─────────────────────────────────────────────────────── */
 .taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;
@@ -292,70 +341,98 @@ table.dt td b{color:var(--text);font-weight:600}
   border-top:1px solid rgba(255,255,255,.08);
   display:flex;align-items:center;padding:0 10px;gap:4px;z-index:100}
 .start{width:34px;height:34px;border-radius:7px;background:var(--brand);display:grid;
-  place-items:center;color:#fff;font-weight:700;font-size:13px;font-family:var(--mono);cursor:pointer}
+  place-items:center;color:#fff;font-weight:700;font-size:13px;font-family:var(--mono);cursor:pointer;
+  flex:0 0 auto}
+.start[aria-expanded="true"]{background:var(--brand-ink)}
 .tsep{width:1px;height:22px;background:rgba(255,255,255,.12);margin:0 6px}
 .tb-app{width:34px;height:34px;border-radius:7px;display:grid;place-items:center;font-size:15px;
-  position:relative;color:#EAF0F6;cursor:pointer;background:#2C3B4E;opacity:.55}
-.tb-app.open{opacity:1}
+  position:relative;color:#EAF0F6;cursor:pointer;background:#222D3B;flex:0 0 auto}
+.tb-app>span{opacity:.7}
+.tb-app.open{background:#2C3B4E}
+.tb-app.open>span{opacity:1}
 .tb-app::after{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);
   width:4px;height:4px;border-radius:50%;background:transparent}
 .tb-app.open::after{background:rgba(234,240,246,.4)}
 .tb-app.active::after{background:#EAF0F6}
-.tb-right{margin-left:auto;display:flex;align-items:center;gap:14px;color:#C7CDD6;font-size:11.5px}
-.tb-right .grp{display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:11px}
-.tb-right .grp b{font-size:11.5px;color:#EAF0F6;font-weight:500}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:14px;color:#C7CDD6;font-size:12px;
+  flex:0 0 auto;padding-left:10px}
+.tb-exit{display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 12px;border-radius:7px;
+  color:#EAF0F6;background:#2C3B4E;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;
+  flex:0 0 auto;margin-left:10px}
+.tb-exit:hover{background:#38495F}
+@media (max-width:1000px){ .tb-exit .tb-long{display:none} .tb-right{gap:10px} }
+.tb-right .grp{display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:12px}
+.tb-right .grp b{font-size:12px;color:#EAF0F6;font-weight:500}
 .tb-flag{display:flex;align-items:center;gap:6px;background:rgba(179,57,44,.18);
-  color:#F0A99E;border:1px solid rgba(179,57,44,.35);border-radius:5px;padding:5px 10px;font-size:11px;
-  cursor:pointer}
+  color:#F4B8AE;border:1px solid rgba(179,57,44,.5);border-radius:5px;padding:5px 10px;font-size:12px;
+  cursor:pointer;min-width:0;height:34px;margin-left:8px;white-space:nowrap}
+.tb-flag .ft{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tb-flag i{flex:0 0 auto}
+
+/* Start menu — opens above the Start button */
+.start-menu{position:absolute;left:10px;bottom:52px;z-index:150;width:250px;padding:6px;
+  background:#1B2430;border:1px solid rgba(255,255,255,.14);border-radius:10px;
+  box-shadow:0 12px 36px rgba(0,0,0,.5);display:none;color:#EAF0F6}
+.start-menu.on{display:block}
+.start-menu .sm-h{padding:8px 10px 8px;font-size:12px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:#C7CDD6;margin:0}
+.start-menu ul{list-style:none;margin:0;padding:0}
+.start-menu a{display:flex;align-items:center;gap:10px;min-height:40px;padding:0 10px;
+  border-radius:7px;color:#EAF0F6;text-decoration:none;font-size:13px;font-weight:500}
+.start-menu a:hover{background:rgba(255,255,255,.1)}
+.start-menu .sm-f{margin:6px 4px 2px;padding:8px 6px 4px;border-top:1px solid rgba(255,255,255,.12);
+  font-size:12px;color:#C7CDD6}
 .tb-flag i{width:6px;height:6px;border-radius:50%;background:#E0574C}
 
 /* ── teams / messaging ────────────────────────────────────────────── */
 .tm-body{flex:1;display:grid;grid-template-columns:200px 1fr;min-height:0}
 .tm-side{background:var(--surface-2);border-right:1px solid var(--border);overflow-y:auto;padding:12px 0}
-.tm-side .sh{padding:6px 16px 8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+.tm-side .sh{padding:6px 16px 8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--text-3);font-weight:600}
-.tm-chan{padding:8px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;color:var(--text-2)}
+.tm-chan{width:100%;text-align:left;padding:8px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;color:var(--text-2)}
 .tm-chan:hover{background:rgba(0,0,0,.03)}
 .tm-chan.on{background:var(--surface);color:var(--brand-ink);font-weight:600;border-right:2px solid var(--brand)}
 .tm-chan .av{width:24px;height:24px;border-radius:6px;flex:0 0 auto;display:grid;place-items:center;
-  font-size:11px;font-weight:700;color:#fff}
+  font-size:12px;font-weight:700;color:#fff}
 .tm-chan .badge{margin-left:auto;background:var(--brand);color:#fff;border-radius:9px;
-  font-size:9.5px;font-weight:700;padding:1px 6px}
+  font-size:12px;font-weight:700;padding:1px 6px}
 .tm-main{display:flex;flex-direction:column;min-height:0}
 .tm-head{flex:0 0 44px;display:flex;align-items:center;gap:10px;padding:0 18px;
   border-bottom:1px solid var(--border);font-size:13px;font-weight:600}
-.tm-head .sub{font-weight:400;color:var(--text-3);font-size:11px;margin-left:8px}
+.tm-head .sub{font-weight:400;color:var(--text-3);font-size:12px;margin-left:8px}
 .tm-thread{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
 .tm-msg{display:flex;gap:10px;max-width:82%}
 .tm-msg .av{width:28px;height:28px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;
   font-size:12px;font-weight:700;color:#fff}
 .tm-msg .body{min-width:0}
 .tm-msg .who{font-size:12px;font-weight:600;display:flex;align-items:baseline;gap:8px}
-.tm-msg .who time{font-weight:400;color:var(--text-3);font-size:10.5px}
+.tm-msg .who time{font-weight:400;color:var(--text-3);font-size:12px}
 .tm-msg .txt{font-size:12.5px;line-height:1.55;color:var(--text);margin-top:3px;
   background:var(--surface-2);border-radius:2px 10px 10px 10px;padding:9px 12px;display:inline-block}
 .tm-msg .txt p{margin:0 0 8px}.tm-msg .txt p:last-child{margin:0}
 .tm-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .tm-btn{border:1px solid var(--brand);color:var(--brand-ink);background:rgba(31,92,139,.06);
-  border-radius:6px;padding:7px 13px;font-size:11.5px;font-weight:600;cursor:pointer}
+  border-radius:6px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer}
 .tm-btn:hover{background:var(--brand);color:#fff}
 .tm-btn.ghost{border-color:var(--border-strong);color:var(--text-2);background:var(--surface)}
 .tm-btn.ghost:hover{background:var(--surface-3);color:var(--text)}
-.tm-typing{font-size:11px;color:var(--text-3);font-style:italic;padding-left:38px}
+.tm-typing{font-size:12px;color:var(--text-3);font-style:italic;padding-left:38px}
 .tm-compose{flex:0 0 46px;border-top:1px solid var(--border);display:flex;align-items:center;
-  padding:0 14px;color:var(--text-3);font-size:11.5px;gap:8px}
+  padding:0 14px;color:var(--text-3);font-size:12px;gap:8px}
 
 /* ── AML Investigation app: primer quiz + case workbench ─────────── */
 .inv-tabs{flex:0 0 40px;display:flex;gap:2px;padding:0 10px;background:var(--surface-2);
   border-bottom:1px solid var(--border)}
 .inv-tab{display:flex;align-items:center;padding:0 16px;font-size:12.5px;font-weight:600;
-  color:var(--text-3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  color:var(--text-3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;
+  background:none}
+.inv-tab:hover{color:var(--text)}
 .inv-tab.on{color:var(--text);border-bottom-color:var(--brand)}
 .inv-body{flex:1;overflow:hidden;position:relative}
 .inv-view{position:absolute;inset:0;overflow-y:auto;padding:22px 26px;display:none}
 .inv-view.on{display:block}
 .inv-step{border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:16px;background:var(--surface)}
-.inv-step .sn{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
+.inv-step .sn{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
 .inv-step h3{font-size:16px;font-weight:600;margin:8px 0 0}
 .inv-step .note{font-size:12px;color:var(--text-2);margin-top:8px;border-left:2px solid var(--border);
   padding-left:12px;line-height:1.55}
@@ -366,13 +443,14 @@ table.dt td b{color:var(--text);font-weight:600}
 .inv-opt{border:1px solid var(--border-strong);border-radius:6px;padding:10px 13px;font-size:12.5px;
   cursor:pointer;background:var(--surface);transition:all .12s;text-align:left;width:100%;font-family:var(--sans)}
 .inv-opt:hover:not(:disabled){border-color:var(--brand)}
+.inv-opt{color:var(--text)}
 .inv-opt:disabled{cursor:default}
 .inv-opt.right{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
 .inv-opt.wrong{border-color:var(--crit);background:var(--crit-bg);color:var(--crit)}
 .inv-reveal{margin-top:12px;border-left:2px solid var(--ok);padding:9px 0 9px 13px;font-size:12.5px;
   line-height:1.55;color:var(--text-2);display:none}
 .inv-reveal.on{display:block}
-.inv-reveal b{display:block;color:var(--ok);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.inv-reveal b{display:block;color:var(--ok);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 .inv-reveal .pr{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);color:var(--text)}
 .inv-chart{border:1px solid var(--border);border-radius:8px;background:var(--surface-2);margin-top:14px;position:relative}
 .inv-chart svg{display:block;width:100%;height:auto}
@@ -385,15 +463,15 @@ table.dt td b{color:var(--text);font-weight:600}
 .inv-pk:hover{border-color:var(--text-3)}
 .inv-pk.on{border-color:var(--brand);background:rgba(31,92,139,.06);color:var(--brand-ink);font-weight:600}
 .inv-pk .box{width:15px;height:15px;border:1px solid currentColor;border-radius:3px;flex:0 0 auto;
-  display:grid;place-items:center;font-size:10px}
+  display:grid;place-items:center;font-size:12px}
 .inv-nd{border:1px solid var(--warn);color:var(--warn);border-radius:6px;padding:10px 12px;margin-top:10px;
   font-size:12px;width:100%;font-family:var(--sans);text-align:left;cursor:pointer;background:var(--warn-bg)}
 .inv-nd.on{background:var(--warn);color:#fff}
 .inv-submit{margin-top:14px;border:none;border-radius:6px;background:var(--ok);color:#fff;padding:12px;
   width:100%;font-size:12px;font-weight:700;letter-spacing:.04em;cursor:pointer}
-.inv-submit:disabled{opacity:.4;cursor:not-allowed}
+.inv-submit:disabled{background:var(--surface-3);color:var(--text-2);cursor:not-allowed}
 .inv-verdict{border-radius:8px;border:1px solid var(--border);padding:20px 22px;margin-top:6px}
-.inv-verdict .stamp{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;
+.inv-verdict .stamp{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;
   padding:5px 12px;border-radius:5px;margin-bottom:10px}
 .inv-verdict .stamp.ok{background:var(--ok-bg);color:var(--ok)}
 .inv-verdict .stamp.bad{background:var(--crit-bg);color:var(--crit)}
@@ -406,15 +484,15 @@ table.dt td b{color:var(--text);font-weight:600}
 .inv-note{font-size:12.5px;line-height:1.6;color:var(--text-2);margin-top:14px;border-left:2px solid var(--warn);
   padding-left:13px}
 .inv-note.crit{border-left-color:var(--crit)}
-.inv-note b{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);margin-bottom:4px}
+.inv-note b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);margin-bottom:4px}
 .inv-note.crit b{color:var(--crit)}
-.inv-law{font-size:11.5px;color:var(--brand-ink);margin-top:14px;line-height:1.55}
+.inv-law{font-size:12px;color:var(--brand-ink);margin-top:14px;line-height:1.55}
 .inv-locked{padding:40px 20px;text-align:center;color:var(--text-3)}
 .inv-locked .lk{font-size:32px;margin-bottom:10px}
 
 /* ── laundromat (module 01) ──────────────────────────────────────── */
 .lb-rules{border:1px solid var(--border);border-radius:8px;margin-top:16px}
-.lb-rules .rh{padding:10px 16px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+.lb-rules .rh{padding:10px 16px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--text-3);font-weight:700;border-bottom:1px solid var(--border)}
 .lb-rules .rr{display:flex;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:12.5px;
   line-height:1.55;color:var(--text-2)}
@@ -425,7 +503,7 @@ table.dt td b{color:var(--text);font-weight:600}
   border:1px solid var(--border);margin-bottom:16px}
 .lb-stats div{background:var(--surface);padding:10px 13px}
 .lb-stats .n{font-family:var(--mono);font-size:16px;font-weight:700}
-.lb-stats .l{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.lb-stats .l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
 .lb-heatrow{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .lb-heatbar{flex:1;height:8px;background:var(--surface-3);border-radius:4px;overflow:hidden}
 .lb-heatbar i{display:block;height:100%;background:linear-gradient(90deg,var(--warn),var(--crit));
@@ -433,73 +511,75 @@ table.dt td b{color:var(--text);font-weight:600}
 .lb-strikes{display:flex;gap:5px}
 .lb-strikes span{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--border-strong)}
 .lb-strikes span.hit{background:var(--crit);border-color:var(--crit)}
-.lb-stageh{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--text-2);margin:16px 0 8px}
+.lb-stageh{font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--text-2);margin:16px 0 8px}
 .lb-stageh .amt{font-weight:400;color:var(--text-3);text-transform:none;letter-spacing:0}
 .lb-ops{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
 .lb-op{border:1px solid var(--border);border-radius:8px;padding:11px 13px;text-align:left;
   background:var(--surface);cursor:pointer;position:relative;font-family:var(--sans)}
 .lb-op:hover:not(:disabled){border-color:var(--brand)}
 .lb-op.sel{border-color:var(--brand);background:rgba(31,92,139,.05)}
-.lb-op:disabled{opacity:.4;cursor:not-allowed}
+.lb-op{color:var(--text)}
+.lb-op:disabled{background:var(--surface-2);border-style:dashed;cursor:not-allowed}
+.lb-op:disabled .on2,.lb-op:disabled .od{color:var(--text-2)}
 .lb-op .on2{font-size:12.5px;font-weight:600}
-.lb-op .od{font-size:11px;color:var(--text-2);margin-top:4px;line-height:1.4}
-.lb-op .om{font-size:9.5px;color:var(--text-3);margin-top:7px;font-family:var(--mono);letter-spacing:.02em}
-.lb-op .used{position:absolute;top:9px;right:11px;font-size:10px;font-family:var(--mono);color:var(--warn)}
+.lb-op .od{font-size:12px;color:var(--text-2);margin-top:4px;line-height:1.4}
+.lb-op .om{font-size:12px;color:var(--text-3);margin-top:7px;font-family:var(--mono);letter-spacing:.02em}
+.lb-op .used{position:absolute;top:9px;right:11px;font-size:12px;font-family:var(--mono);color:var(--warn)}
 .lb-cfg{border:1px solid var(--brand);border-radius:8px;padding:16px 18px;margin-top:14px;background:rgba(31,92,139,.03)}
 .lb-cfg .ch b{font-size:13.5px}
-.lb-cfg .ch .sub2{display:block;font-size:11.5px;color:var(--text-2);margin-top:3px}
+.lb-cfg .ch .sub2{display:block;font-size:12px;color:var(--text-2);margin-top:3px}
 .lb-sec{margin-top:14px}
-.lb-sl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);font-weight:700;margin-bottom:7px}
+.lb-sl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);font-weight:700;margin-bottom:7px}
 .lb-chips{display:flex;flex-wrap:wrap;gap:6px}
-.lb-chip{border:1px solid var(--border-strong);border-radius:6px;padding:7px 12px;font-size:11.5px;
+.lb-chip{border:1px solid var(--border-strong);border-radius:6px;padding:7px 12px;font-size:12px;
   background:var(--surface);cursor:pointer;font-family:var(--sans)}
 .lb-chip.sel{border-color:var(--brand);background:var(--brand);color:#fff}
-.lb-jnote{font-size:11px;color:var(--text-3);margin-top:8px;line-height:1.5}
+.lb-jnote{font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.5}
 .lb-expo{margin-top:16px;display:flex;gap:18px;align-items:flex-start}
 .lb-exrows{flex:1;display:grid;gap:5px}
-.lb-exr{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;font-size:10px;color:var(--text-3)}
+.lb-exr{display:grid;grid-template-columns:80px 1fr;gap:8px;align-items:center;font-size:12px;color:var(--text-3)}
 .lb-exb{height:5px;background:var(--surface-3);border-radius:3px;overflow:hidden}
 .lb-exb i{display:block;height:100%;background:var(--ok)}
 .lb-exr.hot .exb i, .lb-exr.hot i{background:var(--warn)}
 .lb-exr.crit i{background:var(--crit)}
 .lb-verdict2{flex:0 0 120px;text-align:center;border-left:1px solid var(--border);padding-left:16px}
 .lb-verdict2 .vt{font-size:12px;font-weight:700;letter-spacing:.04em}
-.lb-verdict2 .vs{font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4}
+.lb-verdict2 .vs{font-size:12px;color:var(--text-3);margin-top:4px;line-height:1.4}
 .lb-op-btn{margin-top:14px;width:100%;background:var(--crit);color:#fff;border:none;border-radius:6px;
   padding:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--sans)}
 .lb-waitrow{display:flex;align-items:center;gap:9px;margin-top:16px;flex-wrap:wrap}
-.lb-waitrow .wl{font-size:10px;color:var(--text-3);font-weight:700}
+.lb-waitrow .wl{font-size:12px;color:var(--text-3);font-weight:700}
 .lb-ghost{border:1px solid var(--border-strong);background:var(--surface);color:var(--text-2);
-  border-radius:6px;padding:9px 14px;font-size:11.5px;cursor:pointer;font-family:var(--sans)}
+  border-radius:6px;padding:9px 14px;font-size:12px;cursor:pointer;font-family:var(--sans)}
 .lb-feed{border:1px solid var(--border);border-radius:8px;margin-top:18px;max-height:180px;overflow-y:auto}
-.lb-fe{padding:9px 14px;border-bottom:1px solid var(--border);font-size:11.5px}
+.lb-fe{padding:9px 14px;border-bottom:1px solid var(--border);font-size:12px}
 .lb-fe:last-child{border-bottom:none}
-.lb-fe .fw{font-family:var(--mono);font-size:9.5px;color:var(--text-3);letter-spacing:.04em}
+.lb-fe .fw{font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:.04em}
 .lb-fe.caught{background:var(--crit-bg)}
 .lb-fe.caught .ft{color:var(--crit);font-weight:600}
 .lb-fe.ok .ft{color:var(--ok);font-weight:600}
-.lb-fe .fs{color:var(--text-3);font-size:10.5px;margin-top:2px}
+.lb-fe .fs{color:var(--text-3);font-size:12px;margin-top:2px}
 .lb-overlay{position:fixed;inset:0;background:rgba(10,10,10,.5);z-index:900;display:none;
   align-items:center;justify-content:center;padding:20px}
 .lb-overlay.on{display:flex}
 .lb-card{background:var(--surface);border-radius:10px;max-width:520px;width:100%;max-height:80vh;
   overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.lb-card .kh{padding:16px 20px;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;
+.lb-card .kh{padding:16px 20px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;
   letter-spacing:.06em;color:var(--crit)}
 .lb-card.okc .kh{color:var(--ok)}
 .lb-card .kb{padding:18px 20px}
 .lb-card .flag{font-size:15px;font-weight:600}
-.lb-card .kmeta{font-size:10.5px;color:var(--text-3);margin-top:6px;font-family:var(--mono)}
+.lb-card .kmeta{font-size:12px;color:var(--text-3);margin-top:6px;font-family:var(--mono)}
 .lb-card .ktext{font-size:12.5px;color:var(--text-2);line-height:1.6;margin-top:12px}
 .lb-card .kfoot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
 .lb-endscore{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);
   border:1px solid var(--border);margin:16px 0}
 .lb-endscore div{background:var(--surface);padding:12px 10px;text-align:center}
 .lb-endscore .n{font-family:var(--mono);font-size:16px;font-weight:700}
-.lb-endscore .l{font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:4px}
-.lb-flagrow{border-top:1px solid var(--border);padding:10px 0;font-size:11.5px}
+.lb-endscore .l{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:4px}
+.lb-flagrow{border-top:1px solid var(--border);padding:10px 0;font-size:12px}
 .lb-flagrow b{display:block;color:var(--crit)}
-.lb-flagrow .fa2{color:var(--brand-ink);font-size:10.5px;margin-top:2px}
+.lb-flagrow .fa2{color:var(--brand-ink);font-size:12px;margin-top:2px}
 .lb-flagrow .fd2{color:var(--text-2);margin-top:3px;line-height:1.5}
 
 /* ── the desk (module 03) ─────────────────────────────────────────── */
@@ -507,14 +587,14 @@ table.dt td b{color:var(--text);font-weight:600}
   border:1px solid var(--border)}
 .dk-entry{background:var(--surface);padding:14px 16px;display:grid;grid-template-columns:90px 1fr;gap:14px}
 .dk-entry.consequence{background:var(--warn-bg)}
-.dk-entry.locked{opacity:.45}
+.dk-entry.locked{background:var(--surface-2)}
 .dk-entry.done{background:var(--ok-bg)}
-.dk-entry .when{font-size:10px;color:var(--text-3)}
+.dk-entry .when{font-size:12px;color:var(--text-3)}
 .dk-entry .when b{display:block;font-size:12px;color:var(--text);font-weight:700}
 .dk-entry .et{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:8px}
 .dk-entry .eb{font-size:12px;color:var(--text-2);margin-top:4px;line-height:1.5}
 .dk-rules{border:1px solid var(--border);border-radius:8px;margin-top:16px}
-.dk-rules .rh{padding:10px 16px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+.dk-rules .rh{padding:10px 16px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--text-3);font-weight:700;border-bottom:1px solid var(--border)}
 .dk-rules .rr{display:flex;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:12.5px;
   line-height:1.5;color:var(--text-2)}
@@ -522,57 +602,61 @@ table.dt td b{color:var(--text);font-weight:600}
 .dk-rules .rr .i{font-family:var(--mono);color:var(--brand);font-weight:700;flex:0 0 auto}
 .dk-work{display:grid;grid-template-columns:1fr 300px;gap:22px}
 .dk-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px 18px;margin-top:8px}
-.dk-facts .k{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+.dk-facts .k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
 .dk-facts .v{font-size:12.5px;color:var(--text);margin-top:2px}
 .dk-doc{border:1px solid var(--border);border-radius:6px;padding:9px 12px;margin-bottom:6px}
 .dk-doc .dn{font-size:12px;font-weight:600}
-.dk-doc .ds{font-size:11px;color:var(--text-3);margin-top:2px}
+.dk-doc .ds{font-size:12px;color:var(--text-3);margin-top:2px}
 .dk-db{border:1px solid var(--border-strong);border-radius:8px;padding:12px 14px;width:100%;
   text-align:left;background:var(--surface);cursor:pointer;margin-bottom:7px;font-family:var(--sans)}
 .dk-db:hover:not(:disabled){border-color:var(--brand)}
-.dk-db:disabled{opacity:.4;cursor:not-allowed}
+.dk-db{color:var(--text)}
+.dk-db:disabled{background:var(--surface-2);border-style:dashed;cursor:not-allowed}
+.dk-db:disabled .dn2,.dk-db:disabled .dd{color:var(--text-2)}
 .dk-db .dn2{font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:9px}
 .dk-db .num{width:19px;height:19px;border:1px solid currentColor;border-radius:50%;display:grid;
-  place-items:center;font-size:10px;flex:0 0 auto}
-.dk-db .dd{font-size:11px;color:var(--text-3);margin-top:4px;margin-left:28px}
+  place-items:center;font-size:12px;flex:0 0 auto}
+.dk-db .dd{font-size:12px;color:var(--text-3);margin-top:4px;margin-left:28px}
 .dk-act{border:1px solid var(--border);border-radius:6px;padding:9px 12px;width:100%;text-align:left;
   background:var(--surface);cursor:pointer;margin-bottom:6px;font-family:var(--sans);display:flex;
   align-items:center;gap:10px;font-size:12px}
 .dk-act:hover:not(:disabled){border-color:var(--brand)}
-.dk-act:disabled{opacity:.4;cursor:not-allowed}
+.dk-act{color:var(--text)}
+.dk-act:disabled{background:var(--surface-2);cursor:not-allowed}
+.dk-act.done:disabled{background:var(--ok-bg)}
 .dk-act.done{border-color:var(--ok);color:var(--ok)}
-.dk-act .ac{font-family:var(--mono);font-size:10.5px;color:var(--warn);flex:0 0 auto}
-.dk-ev{border-left:2px solid var(--border);padding:9px 0 9px 12px;margin-bottom:9px;font-size:11.5px}
+.dk-act .ac{font-family:var(--mono);font-size:12px;color:var(--warn);flex:0 0 auto}
+.dk-ev{border-left:2px solid var(--border);padding:9px 0 9px 12px;margin-bottom:9px;font-size:12px}
 .dk-ev.decisive{border-left-color:var(--crit)}
 .dk-ev.supporting{border-left-color:var(--brand)}
 .dk-ev.exculpatory{border-left-color:var(--ok)}
-.dk-ev.noise{border-left-color:var(--text-3);opacity:.7}
+.dk-ev.noise{border-left-color:var(--text-3);border-left-style:dashed}
 .dk-ev .et2{font-weight:600;display:flex;gap:8px;align-items:baseline}
-.dk-ev .ew{font-size:8.5px;letter-spacing:.06em;color:var(--text-3);font-weight:400}
+.dk-ev .ew{font-size:12px;letter-spacing:.06em;color:var(--text-3);font-weight:400}
 .dk-ev .eb2{color:var(--text-2);margin-top:4px;line-height:1.5}
 .dk-nadia{border:1px solid var(--brand);border-radius:8px;padding:13px 14px;margin-bottom:16px;
   background:rgba(31,92,139,.04)}
-.dk-nadia .nh{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--brand-ink);display:flex;
+.dk-nadia .nh{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--brand-ink);display:flex;
   align-items:center;gap:8px}
-.dk-nadia .av{width:20px;height:20px;border-radius:6px;background:var(--brand);color:#fff;font-size:10px;
+.dk-nadia .av{width:20px;height:20px;border-radius:6px;background:var(--brand);color:#fff;font-size:12px;
   font-weight:700;display:grid;place-items:center}
 .dk-nadia .nb{font-size:12px;color:var(--text-2);margin-top:8px;line-height:1.5;font-style:italic}
 .dk-nadia button{margin-top:10px;border:1px solid var(--brand);color:var(--brand-ink);background:var(--surface);
-  border-radius:5px;padding:7px 12px;font-size:11px;font-weight:600;cursor:pointer;width:100%}
-.dk-nadia button:disabled{opacity:.4;cursor:not-allowed}
+  border-radius:5px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;width:100%}
+.dk-nadia button:disabled{background:var(--surface-2);color:var(--text-2);border-color:var(--border-strong);cursor:not-allowed}
 .dk-missbox{border-top:1px solid var(--border);padding-top:12px;margin-top:14px}
-.dk-missbox .mh{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);
+.dk-missbox .mh{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);
   font-weight:700;margin-bottom:8px}
-.dk-missbox .mr{font-size:11.5px;color:var(--text-2);margin-bottom:9px;line-height:1.5}
+.dk-missbox .mr{font-size:12px;color:var(--text-2);margin-bottom:9px;line-height:1.5}
 .dk-missbox .mr b{color:var(--text)}
 .dk-coach{position:fixed;z-index:950;max-width:320px;background:var(--surface);border:1px solid var(--brand);
   border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,.2);padding:13px 15px}
-.dk-coach .ch{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--brand-ink)}
+.dk-coach .ch{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--brand-ink)}
 .dk-coach .cb{font-size:12px;color:var(--text-2);line-height:1.5;margin-top:7px}
 .dk-coach .cf{display:flex;justify-content:space-between;align-items:center;margin-top:11px}
-.dk-coach .cs{font-size:10px;color:var(--text-3)}
+.dk-coach .cs{font-size:12px;color:var(--text-3)}
 .dk-coach button{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:5px;
-  padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer}
+  padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
 .dk-spot{position:fixed;z-index:940;border:2px solid var(--brand);border-radius:6px;pointer-events:none;
   box-shadow:0 0 0 4000px rgba(10,10,10,.35)}
 
@@ -581,55 +665,61 @@ table.dt td b{color:var(--text);font-weight:600}
   border:1px solid var(--border);margin-bottom:22px}
 .path-prog div{background:var(--surface);padding:12px 13px}
 .path-prog .n{font-size:20px;font-weight:700;font-family:var(--mono)}
-.path-prog .l{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
+.path-prog .l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:5px}
 .path-mod{border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;
-  display:flex;align-items:center;gap:14px}
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;font-family:var(--sans);
+  font-size:inherit;color:inherit;background:var(--surface)}
+button.path-mod{cursor:pointer}
+button.path-mod:hover{border-color:var(--brand)}
+.path-mod .nm,.path-mod .tag{display:block}
 .path-mod .num{width:34px;height:34px;border-radius:8px;background:var(--surface-2);display:grid;
   place-items:center;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--text-3);flex:0 0 auto}
 .path-mod.done .num{background:var(--ok-bg);color:var(--ok)}
 .path-mod.now .num{background:var(--brand);color:#fff}
-.path-mod .body{flex:1;min-width:0}
+.path-mod .body{flex:1;min-width:0;display:block}
 .path-mod .nm{font-size:13.5px;font-weight:600}
-.path-mod .tag{font-size:11.5px;color:var(--text-2);margin-top:2px}
-.path-mod.locked{opacity:.5}
-.path-mod .st{font-size:10px;font-weight:700;letter-spacing:.06em;padding:4px 9px;border-radius:5px;flex:0 0 auto}
+.path-mod .tag{font-size:12px;color:var(--text-2);margin-top:2px}
+.path-mod.locked{background:var(--surface-2);border-style:dashed}
+.path-mod .st{font-size:12px;font-weight:700;letter-spacing:.06em;padding:4px 9px;border-radius:5px;flex:0 0 auto}
 .path-mod .st.done{background:var(--ok-bg);color:var(--ok)}
 .path-mod .st.now{background:var(--brand);color:#fff}
 .path-mod .st.locked{background:var(--surface-2);color:var(--text-3)}
 
 /* ── progression / skill tree ────────────────────────────────────── */
-.streak-pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;
+.streak-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;
   color:var(--warn);background:var(--warn-bg);padding:5px 11px;border-radius:20px}
 .daily-card{border:1px solid var(--brand);border-radius:8px;padding:14px 16px;
   background:rgba(31,92,139,.05);margin:14px 0 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .daily-card .body{flex:1;min-width:180px}
-.daily-card .k{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
+.daily-card .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);font-weight:700}
 .daily-card .nm{font-size:14px;font-weight:600;margin-top:5px}
-.daily-card .d{font-size:11.5px;color:var(--text-2);margin-top:3px;line-height:1.5}
+.daily-card .d{font-size:12px;color:var(--text-2);margin-top:3px;line-height:1.5}
 .daily-card .go{flex:0 0 auto;border:1px solid var(--brand);color:#fff;background:var(--brand);
-  padding:9px 16px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:pointer}
+  padding:9px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
 .daily-card.done{border-color:var(--ok);background:var(--ok-bg)}
 .daily-card.done .k{color:var(--ok)}
-.stage-legend{font-size:11px;color:var(--text-3);line-height:1.6;margin:2px 0 18px;
+.stage-legend{font-size:12px;color:var(--text-3);line-height:1.6;margin:2px 0 18px;
   border-left:2px solid var(--border);padding-left:12px}
 .skl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 .skl-card{border:1px solid var(--border);border-radius:8px;padding:12px 13px}
 .skl-card .hd{display:flex;align-items:center;gap:8px}
 .skl-card .ic{font-size:17px}
 .skl-card .nm{font-size:12px;font-weight:600;line-height:1.25}
-.skl-card .tier{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+.skl-card .tier{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
   color:var(--brand-ink);margin-top:9px}
 .skl-bar{height:5px;border-radius:3px;background:var(--surface-2);margin-top:6px;overflow:hidden}
 .skl-bar i{display:block;height:100%;background:var(--brand)}
-.skl-card .xpl{font-size:9.5px;color:var(--text-3);margin-top:5px;font-family:var(--mono)}
+.skl-card .xpl{font-size:12px;color:var(--text-3);margin-top:5px;font-family:var(--mono)}
 .badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
 .badge-card{border:1px solid var(--border);border-radius:8px;padding:10px 12px;
-  display:flex;gap:10px;align-items:flex-start;opacity:.42}
-.badge-card.earned{opacity:1;border-color:var(--ok);background:var(--ok-bg)}
+  display:flex;gap:10px;align-items:flex-start;background:var(--surface-2);border-style:dashed}
+.badge-card .ic{filter:grayscale(1);opacity:.55}
+.badge-card.earned{border-color:var(--ok);background:var(--ok-bg);border-style:solid}
+.badge-card.earned .ic{filter:none;opacity:1}
 .badge-card .ic{font-size:19px;line-height:1}
-.badge-card .nm{font-size:11.5px;font-weight:700}
-.badge-card .d{font-size:10.5px;color:var(--text-3);margin-top:2px;line-height:1.4}
-.boss-chip{background:var(--crit);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;
+.badge-card .nm{font-size:12px;font-weight:700}
+.badge-card .d{font-size:12px;color:var(--text-3);margin-top:2px;line-height:1.4}
+.boss-chip{background:var(--crit);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;
   padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle}
 
 /* ── highlight pulse (Alex points at something) ──────────────────── */
@@ -637,8 +727,14 @@ table.dt td b{color:var(--text);font-weight:600}
   animation:hlPulse 1.4s ease-in-out 3;box-shadow:0 0 0 6px rgba(31,92,139,.25) !important}
 @keyframes hlPulse{0%,100%{outline-color:var(--brand)}50%{outline-color:#7EB6DD}}
 
-@media(max-width:900px){
-  .dicon{display:none}
+/* Motion: the pulse, toasts, bubbles and every transition drop to
+   instant for people who ask for less motion. The highlight outline
+   itself stays as a static cue. */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .hl-pulse{animation:none !important}
+  .ntf{animation:none}
 }
 
 /* ── mobile gate — this is a draggable-window desktop, not a
@@ -649,7 +745,7 @@ table.dt td b{color:var(--text);font-weight:600}
   /* Normal document flow, not position:fixed — this is the one thing
      shown, so it doesn't need to float above anything. Everything else
      the desktop is built from is hidden outright rather than covered. */
-  .desktop-mark,.dicon,.win,.taskbar,.ntf-stack,.alex-bubble-stack{display:none !important}
+  #desk,.taskbar,.start-menu,.ntf-stack,.alex-bubble-stack{display:none !important}
   html,body{height:auto;overflow:auto}
   .mobile-gate{display:flex;min-height:100vh;width:100%;
     background:linear-gradient(165deg,var(--wallpaper),var(--wallpaper-2) 75%);
@@ -667,7 +763,7 @@ table.dt td b{color:var(--text);font-weight:600}
 </head>
 <body>
 
-<div class="mobile-gate" id="mobile-gate">
+<main class="mobile-gate" id="mobile-gate" aria-label="Screen size notice">
   <div class="mg-card">
     <div class="ic">🖥️</div>
     <h1>This one's built for a bigger screen.</h1>
@@ -676,24 +772,56 @@ table.dt td b{color:var(--text);font-weight:600}
       the room. Open it on a laptop or desktop instead.</p>
     <a href="academy.html">← Back to the Academy</a>
   </div>
+</main>
+
+<!-- ═══════════════════ TASKBAR (first in tab order) ═══════════════════ -->
+<nav class="taskbar" aria-label="Taskbar">
+  <button type="button" class="start" id="start-btn" aria-haspopup="true" aria-expanded="false"
+    aria-controls="start-menu" aria-label="Start menu" title="Start"><span aria-hidden="true">CF</span></button>
+  <div class="tsep" aria-hidden="true"></div>
+  <button type="button" class="tb-app" id="tb-browser" title="Chrome browser" aria-label="Chrome browser" aria-pressed="false"><span aria-hidden="true">🌐</span></button>
+  <button type="button" class="tb-app" id="tb-mail" title="CF Bank Mail" aria-label="CF Bank Mail" aria-pressed="false"><span aria-hidden="true">✉️</span></button>
+  <button type="button" class="tb-app" id="tb-explorer" title="File Explorer" aria-label="File Explorer" aria-pressed="false"><span aria-hidden="true">🗄️</span></button>
+  <button type="button" class="tb-app" id="tb-invest" title="AML Investigation" aria-label="AML Investigation" aria-pressed="false"><span aria-hidden="true">🛡️</span></button>
+  <button type="button" class="tb-app" id="tb-path" title="Training Path" aria-label="Training Path" aria-pressed="false"><span aria-hidden="true">🎯</span></button>
+  <button type="button" class="tb-app" id="tb-skills" title="Progression" aria-label="Progression" aria-pressed="false"><span aria-hidden="true">🧭</span></button>
+  <button type="button" class="tb-app" id="tb-teams" title="Teams" aria-label="CF Bank Teams" aria-pressed="false"><span aria-hidden="true">💬</span></button>
+  <button type="button" class="tb-flag" id="tb-flag" title="Open the customer profile for the active alert"><i aria-hidden="true"></i><span class="ft">Alert A-4471 — 3h 40m remaining</span></button>
+  <div class="tb-right">
+    <div class="grp"><b>Simulated environment</b>fictional data only</div>
+    <div class="grp"><b id="clock">14:07</b>Mon 24 Aug 2026</div>
+  </div>
+  <a class="tb-exit" href="academy.html" aria-label="Back to the Academy">← <span class="tb-long">Back to the&nbsp;</span>Academy</a>
+</nav>
+<div class="start-menu" id="start-menu" role="region" aria-label="Start menu">
+  <p class="sm-h">CF Bank Workstation</p>
+  <ul>
+    <li><a href="academy.html">← Back to the Academy</a></li>
+    <li><a href="glossary.html">Read the glossary</a></li>
+    <li><a href="index.html">RegRadar home</a></li>
+  </ul>
+  <p class="sm-f">Simulated environment &middot; fictional data. Your progress is saved in this browser.</p>
 </div>
 
-<div class="desktop-mark"><span class="sq">CF</span> CF BANK &middot; ANALYST WORKSTATION</div>
+<main id="desk" aria-label="Analyst desktop">
+<h1 class="desktop-mark"><span class="sq" aria-hidden="true">CF</span> CF BANK &middot; ANALYST WORKSTATION</h1>
 
-<div class="dicon i1" data-open="explorer"><div class="ico" style="background:#4A5568">🗄️</div><div class="lbl">File Explorer</div></div>
-<div class="dicon i2" data-open="invest"><div class="ico" style="background:#1F5C8B">🛡️</div><div class="lbl">AML Investigation</div></div>
-<div class="dicon i3" data-open="path"><div class="ico" style="background:#6E3FBF">🎯</div><div class="lbl">Training Path</div></div>
-<div class="dicon i4" data-open="soon" data-soon="Transaction Monitoring"><div class="ico" style="background:#4A5568">📈</div><div class="lbl">Transaction Monitoring</div></div>
-<div class="dicon i5" data-open="skills"><div class="ico" style="background:#9A6B1F">🧭</div><div class="lbl">Progression</div></div>
+<div class="desk-icons" role="group" aria-label="Desktop applications">
+  <button type="button" class="dicon" data-open="explorer"><span class="ico" style="background:#4A5568" aria-hidden="true">🗄️</span><span class="lbl">File Explorer</span></button>
+  <button type="button" class="dicon" data-open="invest"><span class="ico" style="background:#1F5C8B" aria-hidden="true">🛡️</span><span class="lbl">AML Investigation</span></button>
+  <button type="button" class="dicon" data-open="path"><span class="ico" style="background:#6E3FBF" aria-hidden="true">🎯</span><span class="lbl">Training Path</span></button>
+  <button type="button" class="dicon" data-open="soon" data-soon="Transaction Monitoring"><span class="ico" style="background:#4A5568" aria-hidden="true">📈</span><span class="lbl">Transaction Monitoring</span></button>
+  <button type="button" class="dicon" data-open="skills"><span class="ico" style="background:#9A6B1F" aria-hidden="true">🧭</span><span class="lbl">Progression</span></button>
+</div>
 
 <!-- ═══════════════════ OUTLOOK WINDOW ═══════════════════ -->
-<div class="win" id="win-mail" style="top:70px;left:96px;width:640px;height:520px">
+<section class="win" id="win-mail" role="dialog" aria-labelledby="wt-mail" tabindex="-1" style="top:70px;left:96px;width:640px;height:520px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#1F5C8B"></span>CF Bank Mail — analyst.desk@cfbank.internal</div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close CF Bank Mail window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize CF Bank Mail window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore CF Bank Mail window" title="Maximize / restore"></button></div>
+    <div class="tapp" id="wt-mail"><span class="tico" aria-hidden="true" style="background:#1F5C8B"></span>CF Bank Mail — analyst.desk@cfbank.internal</div>
   </div>
   <div class="mail-body">
-    <div class="mail-folders">
+    <div class="mail-folders" aria-label="Mail folders (display only)" role="group">
       <div class="f on">Inbox <b>3</b></div>
       <div class="f">Flagged</div>
       <div class="f">Sent</div>
@@ -703,40 +831,42 @@ table.dt td b{color:var(--text);font-weight:600}
       <div class="f">Compliance</div>
       <div class="f">Investigations</div>
     </div>
-    <div class="mail-list" id="mail-list"></div>
-    <div class="mail-read" id="mail-read"></div>
+    <div class="mail-list" id="mail-list" role="group" aria-label="Inbox messages"></div>
+    <div class="mail-read" id="mail-read" role="region" aria-label="Message" aria-live="polite" tabindex="0"></div>
   </div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
 <!-- ═══════════════════ BROWSER WINDOW ═══════════════════ -->
-<div class="win" id="win-browser" style="top:40px;left:270px;width:780px;height:600px">
+<section class="win" id="win-browser" role="dialog" aria-labelledby="browser-title" tabindex="-1" style="top:40px;left:270px;width:780px;height:600px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close Chrome browser window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize Chrome browser window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore Chrome browser window" title="Maximize / restore"></button></div>
     <div class="ttitle" style="margin-left:4px" id="browser-title">Chrome — CF Bank Analyst Profile</div>
   </div>
-  <div class="tabstrip" id="tabstrip">
-    <div class="tab on" data-tab="cif"><span class="dot"></span>Customer Profile<span class="x" data-close-tab="cif">×</span></div>
-    <div class="tab" data-tab="reg"><span class="dot"></span>Company Registry<span class="x" data-close-tab="reg">×</span></div>
-    <div class="tab" data-tab="sanc"><span class="dot"></span>Sanctions &amp; PEP Search<span class="x" data-close-tab="sanc">×</span></div>
-    <div class="tab" data-tab="news"><span class="dot"></span>News search<span class="x" data-close-tab="news">×</span></div>
+  <div class="tabstrip" id="tabstrip" role="group" aria-label="Browser tabs">
+    <div class="tab on" data-tab="cif"><button type="button" class="tab-btn" data-tab-go="cif" aria-current="page"><span class="dot" aria-hidden="true"></span>Customer Profile</button><button type="button" class="x" data-close-tab="cif" aria-label="Close tab: Customer Profile"><span aria-hidden="true">×</span></button></div>
+    <div class="tab" data-tab="reg"><button type="button" class="tab-btn" data-tab-go="reg"><span class="dot" aria-hidden="true"></span>Company Registry</button><button type="button" class="x" data-close-tab="reg" aria-label="Close tab: Company Registry"><span aria-hidden="true">×</span></button></div>
+    <div class="tab" data-tab="sanc"><button type="button" class="tab-btn" data-tab-go="sanc"><span class="dot" aria-hidden="true"></span>Sanctions &amp; PEP Search</button><button type="button" class="x" data-close-tab="sanc" aria-label="Close tab: Sanctions and PEP Search"><span aria-hidden="true">×</span></button></div>
+    <div class="tab" data-tab="news"><button type="button" class="tab-btn" data-tab-go="news"><span class="dot" aria-hidden="true"></span>News search</button><button type="button" class="x" data-close-tab="news" aria-label="Close tab: News search"><span aria-hidden="true">×</span></button></div>
   </div>
   <div class="addrbar">
-    <span class="navbtn" id="nav-back">‹</span><span class="navbtn dis" id="nav-fwd">›</span><span class="navbtn">↻</span>
-    <div class="addrpill" id="addr"><span class="lock">🔒</span> <span id="addr-text">cif.cfbank.internal/customer/BE-0741-KT</span></div>
-    <span class="bmk" id="bmk-star">☆</span>
+    <button type="button" class="navbtn" id="nav-back" aria-label="Back" title="Back"><span aria-hidden="true">‹</span></button>
+    <button type="button" class="navbtn" id="nav-fwd" aria-label="Forward" title="Forward" disabled><span aria-hidden="true">›</span></button>
+    <button type="button" class="navbtn" id="nav-reload" aria-label="Reload (not available in this simulation)" title="Reload (not available in this simulation)" disabled><span aria-hidden="true">↻</span></button>
+    <div class="addrpill" id="addr" role="group" aria-label="Address"><span class="lock" aria-hidden="true">🔒</span> <span id="addr-text">cif.cfbank.internal/customer/BE-0741-KT</span></div>
+    <button type="button" class="bmk" id="bmk-star" aria-pressed="false" aria-label="Bookmark this page" title="Bookmark this page"><span aria-hidden="true">☆</span></button>
   </div>
-  <div class="bmkbar">
-    <span data-goto="cif">📁 CIF</span>
-    <span data-goto="reg">📁 KvK Register</span>
-    <span data-goto="sanc">📁 Watchlist</span>
-    <span data-goto="policy">📁 Internal Policy</span>
+  <div class="bmkbar" role="group" aria-label="Bookmarks">
+    <button type="button" data-goto="cif"><span aria-hidden="true">📁</span> CIF</button>
+    <button type="button" data-goto="reg"><span aria-hidden="true">📁</span> KvK Register</button>
+    <button type="button" data-goto="sanc"><span aria-hidden="true">📁</span> Watchlist</button>
+    <button type="button" data-goto="policy"><span aria-hidden="true">📁</span> Internal Policy</button>
   </div>
   <div class="browser-body">
 
-    <div class="page on" id="page-cif">
+    <div class="page on" id="page-cif" role="region" aria-label="Customer profile" tabindex="0">
       <div class="site-head">
-        <div class="site-brand"><span class="mk" style="background:var(--brand)">CF</span>CF Bank CIF</div>
+        <div class="site-brand"><span class="mk" aria-hidden="true" style="background:var(--brand)">CF</span>CF Bank CIF</div>
         <div class="site-nav"><span>Overview</span><span>KYC</span><span>Accounts</span><span>Alerts</span></div>
       </div>
       <div class="pad">
@@ -751,7 +881,7 @@ table.dt td b{color:var(--text);font-weight:600}
           <div class="kv"><div class="k">Registered address</div><div class="v">Doorniksesteenweg 112, 8500 Kortrijk, BE</div></div>
           <div class="kv"><div class="k">Sector</div><div class="v">Textile manufacturing (NACE 13.20)</div></div>
           <div class="kv"><div class="k">Expected turnover</div><div class="v mono">€4.1M / year</div></div>
-          <div class="kv"><div class="k">Ultimate parent</div><div class="v" id="cif-parent"><a href="#" data-goto="reg" style="color:var(--brand);text-decoration:none">KT Holding BV (NL) →</a></div></div>
+          <div class="kv"><div class="k">Ultimate parent</div><div class="v" id="cif-parent"><a href="#" data-goto="reg" class="xlink">KT Holding BV (NL) →</a></div></div>
           <div class="kv"><div class="k">Beneficial owner</div><div class="v" id="cif-ubo">Mina Vanhoutte — 56% indirect</div></div>
         </div>
 
@@ -766,9 +896,9 @@ table.dt td b{color:var(--text);font-weight:600}
       </div>
     </div>
 
-    <div class="page" id="page-reg">
+    <div class="page" id="page-reg" role="region" aria-label="Company registry" tabindex="0">
       <div class="site-head">
-        <div class="site-brand"><span class="mk" style="background:#F7A800">KvK</span>Netherlands Chamber of Commerce</div>
+        <div class="site-brand"><span class="mk" aria-hidden="true" style="background:#F7A800">KvK</span>Netherlands Chamber of Commerce</div>
         <div class="site-nav"><span>Search register</span><span>Order extract</span><span>Help</span></div>
       </div>
       <div class="pad">
@@ -800,16 +930,16 @@ table.dt td b{color:var(--text);font-weight:600}
       </div>
     </div>
 
-    <div class="page" id="page-sanc">
+    <div class="page" id="page-sanc" role="region" aria-label="Sanctions and PEP search" tabindex="0">
       <div class="site-head">
-        <div class="site-brand"><span class="mk" style="background:#4A5568">◈</span>Global Watchlist Search</div>
+        <div class="site-brand"><span class="mk" aria-hidden="true" style="background:#4A5568">◈</span>Global Watchlist Search</div>
         <div class="site-nav"><span>Sanctions</span><span>PEP</span><span>Adverse media</span></div>
       </div>
       <div class="pad">
         <div class="kicker">Screening query</div>
         <div class="searchbox">
-          <input value="Vanhoutte, Bram — Belgium" readonly>
-          <div class="searchbtn">Search</div>
+          <input value="Vanhoutte, Bram — Belgium" readonly aria-label="Screening query">
+          <div class="searchbtn" aria-hidden="true">Search</div>
         </div>
 
         <div class="result">
@@ -834,24 +964,24 @@ table.dt td b{color:var(--text);font-weight:600}
       </div>
     </div>
 
-    <div class="page" id="page-news">
+    <div class="page" id="page-news" role="region" aria-label="News search" tabindex="0">
       <div class="site-head">
-        <div class="site-brand"><span class="mk" style="background:#1A1F27">◎</span>Newswire Search</div>
+        <div class="site-brand"><span class="mk" aria-hidden="true" style="background:#1A1F27">◎</span>Newswire Search</div>
         <div class="site-nav"><span>News</span><span>Filings</span><span>Court records</span></div>
       </div>
       <div class="pad">
         <div class="kicker">3 results for "Kortrijk Textiles"</div>
         <table class="dt">
-          <tr><td style="width:90px" class="mono">2025-11-03</td><td><b>Kortrijk Textiles wins regional export award</b><br><span style="color:var(--text-3);font-size:11px">Flanders Trade Bulletin — recognised for growth in Gulf-region exports</span></td></tr>
-          <tr><td class="mono">2024-06-18</td><td><b>Local manufacturer expands into machinery parts trading</b><br><span style="color:var(--text-3);font-size:11px">Kortrijk Business Weekly — diversification beyond core textile line</span></td></tr>
-          <tr><td class="mono">2019-04-22</td><td><b>Vanhoutte family restructures holdings ahead of expansion</b><br><span style="color:var(--text-3);font-size:11px">KvK filing notice — KT Holding BV incorporated</span></td></tr>
+          <tr><td style="width:90px" class="mono">2025-11-03</td><td><b>Kortrijk Textiles wins regional export award</b><br><span style="color:var(--text-3);font-size:12px">Flanders Trade Bulletin — recognised for growth in Gulf-region exports</span></td></tr>
+          <tr><td class="mono">2024-06-18</td><td><b>Local manufacturer expands into machinery parts trading</b><br><span style="color:var(--text-3);font-size:12px">Kortrijk Business Weekly — diversification beyond core textile line</span></td></tr>
+          <tr><td class="mono">2019-04-22</td><td><b>Vanhoutte family restructures holdings ahead of expansion</b><br><span style="color:var(--text-3);font-size:12px">KvK filing notice — KT Holding BV incorporated</span></td></tr>
         </table>
       </div>
     </div>
 
-    <div class="page" id="page-policy">
+    <div class="page" id="page-policy" role="region" aria-label="Internal policy" tabindex="0">
       <div class="site-head">
-        <div class="site-brand"><span class="mk" style="background:#164363">◫</span>CF Bank Knowledge Portal</div>
+        <div class="site-brand"><span class="mk" aria-hidden="true" style="background:#164363">◫</span>CF Bank Knowledge Portal</div>
         <div class="site-nav"><span>AML Policy</span><span>Procedures</span><span>FAQ</span></div>
       </div>
       <div class="pad">
@@ -873,102 +1003,86 @@ table.dt td b{color:var(--text);font-weight:600}
     </div>
 
   </div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
 <!-- ═══════════════════ FILE EXPLORER WINDOW ═══════════════════ -->
-<div class="win" id="win-explorer" style="top:96px;left:180px;width:820px;height:560px">
+<section class="win" id="win-explorer" role="dialog" aria-labelledby="wt-explorer" tabindex="-1" style="top:96px;left:180px;width:820px;height:560px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#4A5568"></span>File Explorer — <span id="fe-case-title">Case A-4471</span></div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close File Explorer window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize File Explorer window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore File Explorer window" title="Maximize / restore"></button></div>
+    <div class="tapp" id="wt-explorer"><span class="tico" aria-hidden="true" style="background:#4A5568"></span>File Explorer — <span id="fe-case-title">Case A-4471</span></div>
   </div>
   <div class="fe-body">
-    <div class="fe-tree" id="fe-tree"></div>
-    <div class="fe-list" id="fe-list"></div>
-    <div class="fe-preview" id="fe-preview"></div>
+    <div class="fe-tree" id="fe-tree" role="group" aria-label="Folders"></div>
+    <div class="fe-list" id="fe-list" role="group" aria-label="Files in folder"></div>
+    <div class="fe-preview" id="fe-preview" role="region" aria-label="File preview" aria-live="polite" tabindex="0"></div>
   </div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
 <!-- ═══════════════════ TEAMS WINDOW ═══════════════════ -->
-<div class="win" id="win-teams" style="top:120px;left:340px;width:660px;height:520px">
+<section class="win" id="win-teams" role="dialog" aria-labelledby="wt-teams" tabindex="-1" style="top:120px;left:340px;width:660px;height:520px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#5B4B9E"></span>CF Bank Teams</div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close CF Bank Teams window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize CF Bank Teams window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore CF Bank Teams window" title="Maximize / restore"></button></div>
+    <div class="tapp" id="wt-teams"><span class="tico" aria-hidden="true" style="background:#5B4B9E"></span>CF Bank Teams</div>
   </div>
   <div class="tm-body">
-    <div class="tm-side" id="tm-side"></div>
+    <div class="tm-side" id="tm-side" role="group" aria-label="Conversations"></div>
     <div class="tm-main">
       <div class="tm-head" id="tm-head"></div>
-      <div class="tm-thread" id="tm-thread"></div>
-      <div class="tm-compose">💬 Message @channel — replies aren't wired up in this prototype</div>
+      <div class="tm-thread" id="tm-thread" role="region" aria-label="Conversation" tabindex="0"></div>
+      <div class="tm-compose"><span aria-hidden="true">💬</span> Message @channel — replies aren't wired up in this prototype</div>
     </div>
   </div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
 <!-- ═══════════════════ AML INVESTIGATION WINDOW ═══════════════════ -->
-<div class="win" id="win-invest" style="top:50px;left:150px;width:900px;height:640px">
+<section class="win" id="win-invest" role="dialog" aria-labelledby="wt-invest" tabindex="-1" style="top:50px;left:150px;width:900px;height:640px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#1F5C8B"></span>AML Investigation — <span id="inv-case-title">Ownership structures</span></div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close AML Investigation window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize AML Investigation window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore AML Investigation window" title="Maximize / restore"></button></div>
+    <div class="tapp" id="wt-invest"><span class="tico" aria-hidden="true" style="background:#1F5C8B"></span>AML Investigation — <span id="inv-case-title">Ownership structures</span></div>
   </div>
-  <div class="inv-tabs">
-    <div class="inv-tab on" data-view="laundromat">01 · Laundromat</div>
-    <div class="inv-tab" data-view="primer">02 · Principles</div>
-    <div class="inv-tab" data-view="case">02 · Case workbench</div>
-    <div class="inv-tab" data-view="desk">03 · The Desk</div>
+  <div class="inv-tabs" role="tablist" aria-label="Investigation modules">
+    <button type="button" class="inv-tab on" role="tab" id="invtab-laundromat" aria-controls="inv-laundromat" aria-selected="true" data-view="laundromat">01 · Laundromat</button>
+    <button type="button" class="inv-tab" role="tab" id="invtab-primer" aria-controls="inv-primer" aria-selected="false" tabindex="-1" data-view="primer">02 · Principles</button>
+    <button type="button" class="inv-tab" role="tab" id="invtab-case" aria-controls="inv-case" aria-selected="false" tabindex="-1" data-view="case">02 · Case workbench</button>
+    <button type="button" class="inv-tab" role="tab" id="invtab-desk" aria-controls="inv-desk" aria-selected="false" tabindex="-1" data-view="desk">03 · The Desk</button>
   </div>
   <div class="inv-body">
-    <div class="inv-view on" id="inv-laundromat"></div>
-    <div class="inv-view" id="inv-primer"></div>
-    <div class="inv-view" id="inv-case"></div>
-    <div class="inv-view" id="inv-desk"></div>
+    <div class="inv-view on" id="inv-laundromat" role="tabpanel" aria-labelledby="invtab-laundromat" tabindex="0"></div>
+    <div class="inv-view" id="inv-primer" role="tabpanel" aria-labelledby="invtab-primer" tabindex="0"></div>
+    <div class="inv-view" id="inv-case" role="tabpanel" aria-labelledby="invtab-case" tabindex="0"></div>
+    <div class="inv-view" id="inv-desk" role="tabpanel" aria-labelledby="invtab-desk" tabindex="0"></div>
   </div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
 <!-- ═══════════════════ TRAINING PATH WINDOW ═══════════════════ -->
-<div class="win" id="win-path" style="top:90px;left:220px;width:640px;height:560px">
+<section class="win" id="win-path" role="dialog" aria-labelledby="wt-path" tabindex="-1" style="top:90px;left:220px;width:640px;height:560px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#6E3FBF"></span>Training Path</div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close Training Path window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize Training Path window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore Training Path window" title="Maximize / restore"></button></div>
+    <div class="tapp" id="wt-path"><span class="tico" aria-hidden="true" style="background:#6E3FBF"></span>Training Path</div>
   </div>
-  <div class="pad" id="path-body" style="overflow-y:auto"></div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="pad" id="path-body" style="overflow-y:auto" role="region" aria-label="Training path" tabindex="0"></div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
 <!-- ═══════════════════ PROGRESSION / SKILLS WINDOW ═══════════════════ -->
-<div class="win" id="win-skills" style="top:64px;left:250px;width:760px;height:600px">
+<section class="win" id="win-skills" role="dialog" aria-labelledby="wt-skills" tabindex="-1" style="top:64px;left:250px;width:760px;height:600px">
   <div class="titlebar">
-    <div class="tctl"><button class="tc-close" data-act="close"></button><button class="tc-min" data-act="min"></button><button class="tc-max" data-act="max"></button></div>
-    <div class="tapp"><span class="tico" style="background:#9A6B1F"></span>Progression</div>
+    <div class="tctl"><button type="button" class="tc-close" data-act="close" data-glyph="×" aria-label="Close Progression window" title="Close"></button><button type="button" class="tc-min" data-act="min" data-glyph="−" aria-label="Minimize Progression window" title="Minimize"></button><button type="button" class="tc-max" data-act="max" data-glyph="+" aria-label="Maximize or restore Progression window" title="Maximize / restore"></button></div>
+    <div class="tapp" id="wt-skills"><span class="tico" aria-hidden="true" style="background:#9A6B1F"></span>Progression</div>
   </div>
-  <div class="pad" id="skills-body" style="overflow-y:auto"></div>
-  <div class="resize-handle"></div>
-</div>
+  <div class="pad" id="skills-body" style="overflow-y:auto" role="region" aria-label="Progression" tabindex="0"></div>
+  <div class="resize-handle" aria-hidden="true"></div>
+</section>
 
-<!-- ═══════════════════ NOTIFICATIONS ═══════════════════ -->
-<div class="ntf-stack" id="ntf-stack"></div>
-<div class="alex-bubble-stack" id="alex-bubble-stack"></div>
+</main>
 
-<!-- ═══════════════════ TASKBAR ═══════════════════ -->
-<div class="taskbar">
-  <div class="start" title="Start">CF</div>
-  <div class="tsep"></div>
-  <div class="tb-app" id="tb-browser" title="Chrome">🌐</div>
-  <div class="tb-app" id="tb-mail" title="CF Bank Mail">✉️</div>
-  <div class="tb-app" id="tb-explorer" title="File Explorer">🗄️</div>
-  <div class="tb-app" id="tb-invest" title="AML Investigation">🛡️</div>
-  <div class="tb-app" id="tb-path" title="Training Path">🎯</div>
-  <div class="tb-app" id="tb-skills" title="Progression">🧭</div>
-  <div class="tb-app" id="tb-teams" title="Teams">💬</div>
-  <div class="tb-flag" id="tb-flag"><i></i>Alert A-4471 — 3h 40m remaining</div>
-  <div class="tb-right">
-    <div class="grp"><b>Sim. environment</b>fictional data only</div>
-    <div class="grp"><b id="clock">14:07</b>Mon 24 Aug 2026</div>
-  </div>
-</div>
+<!-- ═══════════════════ NOTIFICATIONS (polite live regions) ═══════════════════ -->
+<div class="ntf-stack" id="ntf-stack" role="status" aria-live="polite" aria-relevant="additions"></div>
+<div class="alex-bubble-stack" id="alex-bubble-stack" role="status" aria-live="polite" aria-relevant="additions"></div>
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════
@@ -978,8 +1092,10 @@ table.dt td b{color:var(--text);font-weight:600}
    ═══════════════════════════════════════════════════════════════════ */
 const WM = (function(){
   const STORE_KEY = 'meridiaan-wm-v1';
+  const TASKBAR_H = 46, MIN_W = 360, MIN_H = 220;
   let zTop = 10;
   let state = {};
+  const pref = {};   /* each window's preferred rect — applied clamped to the viewport */
 
   function load(){
     try{ state = JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }catch(e){ state = {}; }
@@ -996,6 +1112,29 @@ const WM = (function(){
     return state[id];
   }
 
+  /* ── keep windows on-screen: size ≤ viewport, position inside it ── */
+  function area(){ return {w: window.innerWidth, h: Math.max(MIN_H, window.innerHeight - TASKBAR_H)}; }
+  function applyRect(id){
+    const el = winEl(id), p = pref[id]; if(!el || !p) return;
+    const a = area();
+    const W = Math.min(Math.max(parseFloat(p.width)||640, MIN_W), Math.max(MIN_W, a.w));
+    const H = Math.min(Math.max(parseFloat(p.height)||520, MIN_H), a.h);
+    const L = Math.min(Math.max(0, parseFloat(p.left)||0), Math.max(0, a.w - W));
+    const T = Math.min(Math.max(0, parseFloat(p.top)||0), Math.max(0, a.h - H));
+    el.style.width = W+'px'; el.style.height = H+'px';
+    el.style.left = L+'px'; el.style.top = T+'px';
+  }
+  function remember(id){
+    const el = winEl(id), s = ensure(id);
+    pref[id] = {top:el.style.top, left:el.style.left, width:el.style.width, height:el.style.height};
+    s.top=el.style.top; s.left=el.style.left; s.width=el.style.width; s.height=el.style.height;
+  }
+
+  function syncTb(id){
+    const el = winEl(id), tb = tbEl(id); if(!el || !tb) return;
+    tb.setAttribute('aria-pressed', el.classList.contains('show') ? 'true' : 'false');
+  }
+
   function focus(id){
     const el = winEl(id); if(!el) return;
     zTop += 1; el.style.zIndex = zTop;
@@ -1003,14 +1142,18 @@ const WM = (function(){
     const tb = tbEl(id); if(tb) tb.classList.add('active');
   }
 
-  function open(id){
+  /* opts.keepFocus: z-order/visibility only (used at boot, never steals DOM focus) */
+  function open(id, opts){
     const el = winEl(id); if(!el) return;
     const s = ensure(id);
     s.open = true; s.min = false;
     el.classList.add('show');
     const tb = tbEl(id); if(tb) tb.classList.add('open');
+    applyRect(id);
     focus(id);
+    syncTb(id);
     save();
+    if(!(opts && opts.keepFocus)) el.focus({preventScroll:true});
   }
 
   function minimize(id){
@@ -1019,7 +1162,9 @@ const WM = (function(){
     s.min = true;
     el.classList.remove('show');
     const tb = tbEl(id); if(tb) tb.classList.remove('active');
+    syncTb(id);
     save();
+    if(tb && el.contains(document.activeElement)) tb.focus();
   }
 
   function toggleMax(id){
@@ -1030,7 +1175,7 @@ const WM = (function(){
       el.classList.add('maxed'); s.max = true;
     } else {
       el.classList.remove('maxed'); s.max = false;
-      if(s.prevRect){ Object.assign(el.style, s.prevRect); }
+      applyRect(id);
     }
     focus(id); save();
   }
@@ -1038,10 +1183,13 @@ const WM = (function(){
   function close(id){
     const el = winEl(id); if(!el) return;
     const s = ensure(id);
+    const hadFocus = el.contains(document.activeElement);
     s.open = false; s.min = false;
     el.classList.remove('show');
     const tb = tbEl(id); if(tb){ tb.classList.remove('open'); tb.classList.remove('active'); }
+    syncTb(id);
     save();
+    if(hadFocus && tb) tb.focus();   /* keyboard users land back on the launcher */
   }
 
   function taskbarClick(id){
@@ -1051,7 +1199,7 @@ const WM = (function(){
     const isFront = parseInt(el.style.zIndex||0) === zTop;
     if(s.min){ open(id); }
     else if(isFront){ minimize(id); }
-    else { focus(id); }
+    else { focus(id); el.focus({preventScroll:true}); }
   }
 
   function wireDrag(el, id){
@@ -1064,14 +1212,15 @@ const WM = (function(){
       const parentR = el.parentElement.getBoundingClientRect();
       const startLeft = r.left-parentR.left, startTop = r.top-parentR.top;
       function mm(ev){
-        const nl = Math.max(0, startLeft + (ev.clientX-startX));
-        const nt = Math.max(0, startTop + (ev.clientY-startY));
+        const a = area();
+        const nl = Math.min(Math.max(0, startLeft + (ev.clientX-startX)), Math.max(0, a.w - r.width));
+        const nt = Math.min(Math.max(0, startTop + (ev.clientY-startY)), Math.max(0, a.h - r.height));
         el.style.left = nl+'px'; el.style.top = nt+'px';
       }
       function mu(){
         document.removeEventListener('mousemove',mm);
         document.removeEventListener('mouseup',mu);
-        const s = ensure(id); s.top=el.style.top; s.left=el.style.left; save();
+        remember(id); save();
       }
       document.addEventListener('mousemove',mm);
       document.addEventListener('mouseup',mu);
@@ -1086,14 +1235,16 @@ const WM = (function(){
       const r = el.getBoundingClientRect();
       const startW=r.width, startH=r.height;
       function mm(ev){
-        const nw = Math.max(360, startW + (ev.clientX-startX));
-        const nh = Math.max(220, startH + (ev.clientY-startY));
+        const a = area();
+        const maxW = Math.max(MIN_W, a.w - r.left), maxH = Math.max(MIN_H, a.h - r.top);
+        const nw = Math.min(maxW, Math.max(MIN_W, startW + (ev.clientX-startX)));
+        const nh = Math.min(maxH, Math.max(MIN_H, startH + (ev.clientY-startY)));
         el.style.width = nw+'px'; el.style.height = nh+'px';
       }
       function mu(){
         document.removeEventListener('mousemove',mm);
         document.removeEventListener('mouseup',mu);
-        const s = ensure(id); s.width=el.style.width; s.height=el.style.height; save();
+        remember(id); save();
       }
       document.addEventListener('mousemove',mm);
       document.addEventListener('mouseup',mu);
@@ -1105,27 +1256,46 @@ const WM = (function(){
     el.querySelector('.tc-min').addEventListener('click', ()=>minimize(id));
     el.querySelector('.tc-max').addEventListener('click', ()=>toggleMax(id));
     el.addEventListener('mousedown', ()=>focus(id));
+    /* Esc closes the focused window — unless something inside it is
+       already using Esc (glossary tooltip, laundromat dialog, coach). */
+    el.addEventListener('keydown', e=>{
+      if(e.key!=='Escape' || e.defaultPrevented) return;
+      if(document.querySelector('.gl-tip.on, .lb-overlay.on, .dk-coach')) return;
+      e.preventDefault();
+      close(id);
+    });
   }
 
   function init(ids){
     load();
     ids.forEach(id=>{
       const el = winEl(id); if(!el) return;
+      const s = ensure(id);
+      pref[id] = {top:el.style.top, left:el.style.left, width:el.style.width, height:el.style.height};
+      if(s.top) pref[id].top = s.top;
+      if(s.left) pref[id].left = s.left;
+      if(s.width) pref[id].width = s.width;
+      if(s.height) pref[id].height = s.height;
+      applyRect(id);
       wireDrag(el, id); wireResize(el, id); wireControls(el, id);
       const tb = tbEl(id);
       if(tb) tb.addEventListener('click', ()=>taskbarClick(id));
-      const s = ensure(id);
-      if(s.top) el.style.top = s.top;
-      if(s.left) el.style.left = s.left;
-      if(s.width) el.style.width = s.width;
-      if(s.height) el.style.height = s.height;
       if(s.max) el.classList.add('maxed');
       if(s.open && !s.min){ el.classList.add('show'); if(tb) tb.classList.add('open'); }
+      syncTb(id);
+    });
+    /* viewport changed: re-clamp every window, shown or not */
+    let t = null;
+    window.addEventListener('resize', ()=>{
+      clearTimeout(t);
+      t = setTimeout(()=>ids.forEach(id=>{ if(!ensure(id).max) applyRect(id); }), 60);
     });
   }
 
   return {init, open, close, minimize, toggleMax, focus, taskbarClick};
 })();
+
+const reducedMotion = ()=> !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 /* ═══════════════════ MAIL DATA + RENDER ═══════════════════ */
 const MAIL = [
@@ -1164,11 +1334,11 @@ const MAIL = [
 function renderMailList(activeId){
   const el = document.getElementById('mail-list');
   el.innerHTML = MAIL.map(m=>`
-    <div class="mitem ${m.id===activeId?'on':''} ${m.unread?'unread':''}" data-mid="${m.id}">
-      <div class="mf">${m.from}${m.time?` <time>${m.time}</time>`:''}</div>
-      <div class="ms">${m.subj}</div>
-      <div class="mp">${m.snip}</div>
-    </div>`).join('');
+    <button type="button" class="mitem ${m.id===activeId?'on':''} ${m.unread?'unread':''}" data-mid="${m.id}"${m.id===activeId?' aria-current="true"':''}>
+      <span class="mf">${m.unread?'<span class="sr-only">Unread. </span>':''}<span>${m.from}</span>${m.time?` <time>${m.time}</time>`:''}</span>
+      <span class="ms">${m.subj}</span>
+      <span class="mp">${m.snip}</span>
+    </button>`).join('');
   el.querySelectorAll('.mitem').forEach(it=>it.addEventListener('click', ()=>{
     it.classList.remove('unread');
     const m = MAIL.find(x=>x.id===it.dataset.mid);
@@ -1188,7 +1358,7 @@ function renderMailRead(id){
       <div><b>Date</b> ${m.time==='Yesterday'?'Yesterday':'Today, '+(m.time||'09:00')}</div>
     </div>
     <div class="mail-text">${m.body.map(p=>`<p>${p}</p>`).join('')}</div>
-    ${m.attach.length?`<div class="attach">${m.attach.map(a=>`<div class="att" data-open-file="${a}">📎 ${a}</div>`).join('')}</div>`:''}`;
+    ${m.attach.length?`<div class="attach">${m.attach.map(a=>`<button type="button" class="att" data-open-file="${a}"><span aria-hidden="true">📎</span> ${a}</button>`).join('')}</div>`:''}`;
   el.querySelectorAll('[data-open-file]').forEach(a=>a.addEventListener('click', ()=>{
     WM.open('explorer');
     FE.openByName(a.dataset.openFile);
@@ -1206,17 +1376,26 @@ const TAB_ADDR = {cif:'cif.cfbank.internal/customer/BE-0741-KT',
   policy:'policy.cfbank.internal/aml/section-4'};
 let history = ['cif'], histPos = 0;
 
+const plainTitle = k=>TAB_TITLES[k];
+function ensureTab(key){
+  if(document.querySelector(`.tab[data-tab="${key}"]`)) return false;
+  const strip = document.getElementById('tabstrip');
+  const t = document.createElement('div');
+  t.className = 'tab'; t.dataset.tab = key;
+  t.innerHTML = `<button type="button" class="tab-btn" data-tab-go="${key}"><span class="dot" aria-hidden="true"></span>${TAB_TITLES[key].replace(/&/g,'&amp;')}</button>`+
+    `<button type="button" class="x" data-close-tab="${key}" aria-label="Close tab: ${plainTitle(key).replace(/&/g,'and')}"><span aria-hidden="true">×</span></button>`;
+  strip.appendChild(t);
+  wireTab(t);
+  syncTabClose();
+  return true;
+}
+function syncTabClose(){
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(t=>{ const x = t.querySelector('.x'); if(x) x.disabled = tabs.length<=1; });
+}
 function openTab(key){
   if(!document.getElementById('page-'+key)) return;
-  const isNew = !document.querySelector(`.tab[data-tab="${key}"]`);
-  if(isNew){
-    const strip = document.getElementById('tabstrip');
-    const t = document.createElement('div');
-    t.className = 'tab'; t.dataset.tab = key;
-    t.innerHTML = `<span class="dot"></span>${TAB_TITLES[key]}<span class="x" data-close-tab="${key}">×</span>`;
-    strip.appendChild(t);
-    wireTab(t);
-  }
+  const isNew = ensureTab(key);
   if(isNew && (key==='sanc'||key==='news')){
     let ts={sanc:0,news:0}; try{ ts=JSON.parse(localStorage.getItem('regradar-tab-stats')||'null')||ts; }catch(e){}
     ts[key]=(ts[key]||0)+1;
@@ -1229,27 +1408,37 @@ function openTab(key){
   goToTab(key, true);
 }
 function goToTab(key, pushHistory){
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  ensureTab(key);
+  document.querySelectorAll('.tab').forEach(x=>{
+    x.classList.remove('on');
+    const b = x.querySelector('.tab-btn'); if(b) b.removeAttribute('aria-current');
+  });
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));
   const tab = document.querySelector(`.tab[data-tab="${key}"]`);
-  if(tab) tab.classList.add('on');
+  if(tab){ tab.classList.add('on'); const b = tab.querySelector('.tab-btn'); if(b) b.setAttribute('aria-current','page'); }
   document.getElementById('page-'+key).classList.add('on');
   document.getElementById('addr-text').textContent = TAB_ADDR[key];
   document.getElementById('browser-title').textContent = 'Chrome — '+TAB_TITLES[key];
   if(pushHistory){ history = history.slice(0, histPos+1); history.push(key); histPos = history.length-1; }
-  document.getElementById('nav-back').classList.toggle('dis', histPos<=0);
-  document.getElementById('nav-fwd').classList.toggle('dis', histPos>=history.length-1);
+  document.getElementById('nav-back').disabled = histPos<=0;
+  document.getElementById('nav-fwd').disabled = histPos>=history.length-1;
 }
 function wireTab(t){
-  t.addEventListener('click', e=>{
-    if(e.target.dataset.closeTab){
-      e.stopPropagation();
-      const remaining = [...document.querySelectorAll('.tab')].filter(x=>x!==t);
-      t.remove();
-      if(remaining.length) goToTab(remaining[remaining.length-1].dataset.tab, false);
-      return;
-    }
-    goToTab(t.dataset.tab, true);
+  const go = t.querySelector('.tab-btn'), x = t.querySelector('.x');
+  if(go) go.addEventListener('click', ()=>goToTab(t.dataset.tab, true));
+  if(x) x.addEventListener('click', e=>{
+    e.stopPropagation();
+    const all = [...document.querySelectorAll('.tab')];
+    if(all.length<=1) return;                      /* never close the last tab */
+    const remaining = all.filter(y=>y!==t);
+    const wasOn = t.classList.contains('on');
+    const idx = all.indexOf(t);
+    t.remove();
+    syncTabClose();
+    const next = remaining[Math.min(idx, remaining.length-1)];
+    if(wasOn) goToTab(next.dataset.tab, false);
+    const nb = (document.querySelector('.tab.on')||next).querySelector('.tab-btn');
+    if(nb) nb.focus();
   });
 }
 document.querySelectorAll('.tab').forEach(wireTab);
@@ -1262,7 +1451,12 @@ document.getElementById('nav-back').addEventListener('click', ()=>{
 document.getElementById('nav-fwd').addEventListener('click', ()=>{
   if(histPos<history.length-1){ histPos++; goToTab(history[histPos], false); }
 });
-document.getElementById('bmk-star').addEventListener('click', function(){ this.classList.toggle('on'); this.textContent = this.classList.contains('on')?'★':'☆'; });
+document.getElementById('bmk-star').addEventListener('click', function(){
+  this.classList.toggle('on');
+  const on = this.classList.contains('on');
+  this.setAttribute('aria-pressed', on ? 'true' : 'false');
+  this.firstElementChild.textContent = on ? '★' : '☆';
+});
 
 /* ═══════════════════ FILE EXPLORER ═══════════════════ */
 const FE = (function(){
@@ -1292,8 +1486,8 @@ const FE = (function(){
 
   function renderTree(){
     document.getElementById('fe-tree').innerHTML = `
-      <div class="fe-search">🔍 Search files…</div>
-      ${folders.map(f=>`<div class="t ${f.id===curFolder?'on':''}" data-folder="${f.id}">📁 ${f.label}</div>`).join('')}`;
+      <div class="fe-search" aria-hidden="true">🔍 Search files…</div>
+      ${folders.map(f=>`<button type="button" class="t ${f.id===curFolder?'on':''}" data-folder="${f.id}"${f.id===curFolder?' aria-current="true"':''}><span aria-hidden="true">📁</span> ${f.label}</button>`).join('')}`;
     document.querySelectorAll('#fe-tree .t').forEach(t=>t.addEventListener('click', ()=>{
       curFolder = t.dataset.folder; curFile = null; renderTree(); renderList();
       document.getElementById('fe-preview').innerHTML = `<div class="fe-empty">Select a file to preview it.</div>`;
@@ -1308,10 +1502,10 @@ const FE = (function(){
     const el = document.getElementById('fe-list');
     el.innerHTML = `<div class="hd">${folders.find(f=>f.id===curFolder).label.toUpperCase()} · ${list.length} item${list.length===1?'':'s'}</div>` +
       (list.length? list.map(f=>`
-        <div class="fitem ${f.n===curFile?'on':''}" data-fname="${f.n}">
-          <div class="fico" style="background:${ICO[f.t].bg}">${ICO[f.t].e}</div>
-          <div class="fn"><div class="fname">${f.n}</div><div class="fmeta">${f.k}</div></div>
-        </div>`).join('')
+        <button type="button" class="fitem ${f.n===curFile?'on':''}" data-fname="${f.n}"${f.n===curFile?' aria-current="true"':''}>
+          <span class="fico" aria-hidden="true" style="background:${ICO[f.t].bg}">${ICO[f.t].e}</span>
+          <span class="fn"><span class="fname">${f.n}</span><span class="fmeta">${f.k}</span></span>
+        </button>`).join('')
         : `<div class="fe-empty">No documents saved here yet.</div>`);
     el.querySelectorAll('.fitem').forEach(it=>it.addEventListener('click', ()=>{
       curFile = it.dataset.fname; renderList(); preview(curFile);
@@ -1356,7 +1550,7 @@ const FE = (function(){
     if(f.t === 'case'){
       const c = f.caseRef;
       const btn = f.kind==='ownership'
-        ? `<button class="dlbtn" id="fe-open-case" data-case-id="${c.id}">Open as active case</button>`
+        ? `<button type="button" class="dlbtn" id="fe-open-case" data-case-id="${c.id}">Open as active case</button>`
         : '';
       el.innerHTML = `
         <div class="ph"><div><div class="pt">${c.title}</div><div class="pm">${c.subject||''}</div></div>${btn}</div>
@@ -1372,7 +1566,7 @@ const FE = (function(){
       return;
     }
 
-    const head = `<div class="ph"><div><div class="pt">${f.n}</div><div class="pm">${f.k} · ${(CASE.active&&CASE.active.id)||'Case A-4471'}</div></div><button class="dlbtn">Download</button></div>`;
+    const head = `<div class="ph"><div><div class="pt">${f.n}</div><div class="pm">${f.k} · ${(CASE.active&&CASE.active.id)||'Case A-4471'}</div></div><button type="button" class="dlbtn" id="fe-download">Download</button></div>`;
 
     let body = '';
     if(dynamicDocBodies[name]){
@@ -1380,6 +1574,7 @@ const FE = (function(){
       body = `<div class="docsheet"><div class="dh">CF Bank · from ownership.json</div>
         <h3>${dd.title}</h3><p style="margin:0">${dd.body}</p></div>`;
       el.innerHTML = head + body;
+      wireDownload();
       return;
     }
     if(name === 'Passport_Mina_Vanhoutte.jpg'){
@@ -1442,6 +1637,11 @@ const FE = (function(){
       body = `<div class="fe-empty">No preview available for this file type.</div>`;
     }
     el.innerHTML = head + body;
+    wireDownload();
+  }
+  function wireDownload(){
+    const d = document.getElementById('fe-download');
+    if(d) d.addEventListener('click', ()=>notify('📄','#5B6472','Download disabled','Files are display-only in this simulated environment.'));
   }
 
   renderTree(); renderList();
@@ -1488,7 +1688,7 @@ function renderActiveCase(caseObj){
   document.getElementById('cif-title').textContent = target.name;
   const parentEl = document.getElementById('cif-parent');
   parentEl.innerHTML = parent
-    ? `<a href="#" data-goto="reg" style="color:var(--brand);text-decoration:none">${parent.name} (${parent.juris}) →</a>`
+    ? `<a href="#" data-goto="reg" class="xlink">${parent.name} (${parent.juris}) →</a>`
     : '—';
   wireGotoLinks(parentEl);
 
@@ -1509,7 +1709,8 @@ function renderActiveCase(caseObj){
       ? parentShareholders.map(s=>`<tr><td><b>${s.name}</b></td><td class="mono">${s.pct}%</td><td>${s.juris}</td></tr>`).join('')
       : '<tr><td colspan="3" style="color:var(--text-3)">No shareholder data on file for this entity.</td></tr>');
 
-  document.getElementById('tb-flag').innerHTML = `<i></i>${caseObj.id} — ${target.name}`;
+  const flagText = document.querySelector('#tb-flag .ft');
+  if(flagText){ flagText.textContent = caseObj.id+' — '+target.name; document.getElementById('tb-flag').title = 'Open the customer profile for '+caseObj.id; }
   document.getElementById('fe-case-title').textContent = caseObj.id+' — '+target.name;
   FE.setActiveCaseDocs(caseObj);
 }
@@ -1561,14 +1762,33 @@ const INV = (function(){
   try{ const p = JSON.parse(localStorage.getItem('regradar-ownership')||'null'); if(p && p.done) doneMap = p.done; }catch(e){}
 
   function switchView(v){
-    document.querySelectorAll('.inv-tab').forEach(t=>t.classList.toggle('on', t.dataset.view===v));
+    document.querySelectorAll('.inv-tab').forEach(t=>{
+      const on = t.dataset.view===v;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
     document.getElementById('inv-laundromat').classList.toggle('on', v==='laundromat');
     document.getElementById('inv-primer').classList.toggle('on', v==='primer');
     document.getElementById('inv-case').classList.toggle('on', v==='case');
     document.getElementById('inv-desk').classList.toggle('on', v==='desk');
     if(v==='desk' && typeof DK!=='undefined') DK.onOpen();
   }
-  document.querySelectorAll('.inv-tab').forEach(t=>t.addEventListener('click', ()=>switchView(t.dataset.view)));
+  document.querySelectorAll('.inv-tab').forEach(t=>{
+    t.addEventListener('click', ()=>switchView(t.dataset.view));
+    t.addEventListener('keydown', e=>{
+      const tabs = [...document.querySelectorAll('.inv-tab')];
+      let i = tabs.indexOf(t);
+      if(e.key==='ArrowRight') i = (i+1)%tabs.length;
+      else if(e.key==='ArrowLeft') i = (i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home') i = 0;
+      else if(e.key==='End') i = tabs.length-1;
+      else return;
+      e.preventDefault();
+      switchView(tabs[i].dataset.view);
+      tabs[i].focus();
+    });
+  });
 
   function isUnlocked(){
     if(typeof AcademyShell==='undefined') return true;
@@ -1612,7 +1832,9 @@ const INV = (function(){
       if(b.dataset.o===p.answer) b.classList.add('right');
       else if(b.dataset.o===oid) b.classList.add('wrong');
     });
-    document.getElementById('pr'+i).classList.add('on');
+    const rv = document.getElementById('pr'+i);
+    rv.classList.add('on');
+    rv.tabIndex = -1; rv.focus({preventScroll:true});   /* read the explanation */
   }
 
   function renderWorkbench(){
@@ -1656,7 +1878,7 @@ const INV = (function(){
         const edge = c.edges.find(x=>x.from===f&&x.to===t);
         if(edge&&edge.doc&&CS.seen.includes(edge.doc)){
           const d=document.getElementById('ae-doc_'+edge.doc);
-          if(d){d.classList.add('ae-new');d.scrollIntoView({behavior:'smooth',block:'center'});
+          if(d){d.classList.add('ae-new');d.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'center'});
             setTimeout(()=>d.classList.remove('ae-new'),1400)}
         } else if(edge&&edge.doc) notify('📄','#5B6472','Not obtained yet','That document has not been requested.');
       },
@@ -1688,11 +1910,11 @@ const INV = (function(){
       <div class="inv-pick">${persons.map(p=>`
         <button class="inv-pk ${CS.picked.has(p.id)?'on':''}" data-pid="${esc(p.id)}">
           <span class="box">${CS.picked.has(p.id)?'✓':''}</span><span style="flex:1">${esc(p.name)}</span>
-          <span style="font-size:10px;color:var(--text-3)">${esc(p.juris)}</span>
+          <span style="font-size:12px;color:var(--text-3)">${esc(p.juris)}</span>
         </button>`).join('')}</div>
       <button class="inv-nd ${CS.nd?'on':''}" id="inv-nd-btn">${CS.nd?'✓ ':''}Cannot be determined</button>
       <button class="inv-submit" id="inv-submit-btn" ${(!CS.picked.size&&!CS.nd)?'disabled':''}>Submit designation</button>
-      <div style="font-size:11.5px;color:var(--text-3);margin-top:10px;line-height:1.5">
+      <div style="font-size:12px;color:var(--text-3);margin-top:10px;line-height:1.5">
         Select the natural persons who cross the threshold, or who exercise control by other means.</div>`;
     document.querySelectorAll('.inv-pk').forEach(b=>b.addEventListener('click', ()=>toggleOwner(b.dataset.pid)));
     document.getElementById('inv-nd-btn').addEventListener('click', toggleND);
@@ -1728,6 +1950,8 @@ const INV = (function(){
         <button class="inv-submit" id="inv-next-btn" style="margin-top:14px">Continue</button>
       </div>`;
     document.getElementById('inv-next-btn').addEventListener('click', goNextCase);
+    const vd = document.querySelector('#inv-side .inv-verdict');
+    if(vd){ vd.tabIndex = -1; vd.setAttribute('aria-label','Designation result'); vd.focus({preventScroll:false}); }
     notify(result.correct?'✅':'⚠️', result.correct?'#1E7145':'#B3392C',
       result.correct?'Case resolved':'Case needs another look', c.id+' — '+(result.correct?'+200 XP':'+40 XP'));
   }
@@ -1776,13 +2000,15 @@ const PATH = (function(){
         const cls = done?'done':unlocked?'now':'locked';
         const where = (m.id==='ownership'||m.id==='laundromat'||m.id==='desk') ? 'IN YOUR WORKSTATION' : 'CLASSIC PAGE';
         const st = done?'DONE':unlocked?where:(m.file?'LOCKED':'IN DEVELOPMENT');
-        return `<div class="path-mod ${cls}" data-mid="${m.id}" ${unlocked?'':'style="cursor:default"'}>
-          <div class="num">${done?'✓':m.no}</div>
-          <div class="body"><div class="nm">${esc(m.label)}</div><div class="tag">${esc(m.tag)}</div></div>
-          <div class="st ${cls}">${st}</div>
-        </div>`;
+        const tag = unlocked ? 'button' : 'div';
+        const attrs = unlocked ? ' type="button"' : '';
+        return `<${tag}${attrs} class="path-mod ${cls}" data-mid="${m.id}">
+          <span class="num" aria-hidden="true">${done?'✓':m.no}</span>
+          <span class="body"><span class="nm">${esc(m.label)}</span><span class="tag">${esc(m.tag)}</span></span>
+          <span class="st ${cls}">${st}</span>
+        </${tag}>`;
       }).join('')}`;
-    document.querySelectorAll('.path-mod').forEach(card=>{
+    document.querySelectorAll('button.path-mod').forEach(card=>{
       card.addEventListener('click', ()=>{
         const id = card.dataset.mid;
         const m = mods.find(x=>x.id===id);
@@ -1791,7 +2017,7 @@ const PATH = (function(){
         if(id==='ownership'){ WM.open('invest'); }
         else if(id==='laundromat'){ WM.open('invest'); document.querySelector('.inv-tab[data-view="laundromat"]')?.click(); }
         else if(id==='desk'){ WM.open('invest'); document.querySelector('.inv-tab[data-view="desk"]')?.click(); }
-        else { window.open(m.file, '_blank'); notify('↗️','#5B6472','Opening classic page', m.label+' is not migrated into the workstation yet.'); }
+        else { window.open(m.file, '_blank', 'noopener'); notify('↗️','#5B6472','Opening classic page', m.label+' is not migrated into the workstation yet.'); }
       });
     });
   }
@@ -1949,7 +2175,7 @@ const LB = (function(){
         <div class="rr"><span class="i">05</span><span><b>You can walk away.</b> Banking what is already clean is a decision real launderers get wrong. So do analysts.</span></div>
       </div>
       <button class="inv-submit" style="width:auto;padding:12px 24px;margin-top:16px;background:var(--crit)" id="lb-start">Open for business</button>
-      <div style="font-size:11px;color:var(--text-3);margin-top:12px">Best score so far: <b style="color:var(--text-2)">${best}</b></div>`;
+      <div style="font-size:12px;color:var(--text-3);margin-top:12px">Best score so far: <b style="color:var(--text-2)">${best}</b></div>`;
     document.getElementById('lb-start').addEventListener('click', startRun);
   }
 
@@ -1967,9 +2193,9 @@ const LB = (function(){
       <div><div class="n" style="color:var(--ok)">${eurM(S.pools.clean)}</div><div class="l">Clean</div></div>
     </div>
     <div class="lb-heatrow">
-      <div class="lb-heatbar"><i style="width:${S.heat}%"></i></div>
-      <div style="font-size:10.5px;color:var(--text-3);font-family:var(--mono)">HEAT ${Math.round(S.heat)}</div>
-      <div class="lb-strikes">${[1,2,3].map(i=>`<span class="${S.catches>=i?'hit':''}"></span>`).join('')}</div>
+      <div class="lb-heatbar" role="img" aria-label="Heat ${Math.round(S.heat)} out of 100"><i style="width:${S.heat}%"></i></div>
+      <div style="font-size:12px;color:var(--text-3);font-family:var(--mono)">HEAT ${Math.round(S.heat)}</div>
+      <div class="lb-strikes" role="img" aria-label="Strikes: ${S.catches} of ${LM.MAX_CATCHES}">${[1,2,3].map(i=>`<span class="${S.catches>=i?'hit':''}"></span>`).join('')}</div>
     </div>`;
   }
 
@@ -2012,7 +2238,7 @@ const LB = (function(){
       const t = LM.TYPOLOGIES.find(x=>x.id===sel.tid);
       if(!t.juris.includes(sel.jid)) sel.jid = t.juris[0];
       renderBoard();
-      document.getElementById('lb-cfg-mount').scrollIntoView({behavior:'smooth', block:'nearest'});
+      document.getElementById('lb-cfg-mount').scrollIntoView({behavior: reducedMotion()?'auto':'smooth', block:'nearest'});
     }));
     const w2=document.getElementById('lb-wait2'), w4=document.getElementById('lb-wait4'), wk=document.getElementById('lb-walk');
     if(w2) w2.addEventListener('click', ()=>{ LM.layLow(S,2); afterMove(); });
@@ -2048,7 +2274,7 @@ const LB = (function(){
     const rows = parts.map(([n,v,max])=>{
       const w = Math.min(100, v/max*100);
       const cls = w>66?'crit':w>33?'hot':'';
-      return `<div class="lb-exr ${cls}"><span>${n}</span><div class="lb-exb"><i style="width:${w}%"></i></div></div>`;
+      return `<div class="lb-exr ${cls}" role="img" aria-label="${n}: ${cls==='crit'?'high':cls==='hot'?'elevated':'low'} risk"><span>${n}</span><div class="lb-exb"><i style="width:${w}%"></i></div></div>`;
     }).join('');
     m.innerHTML = `<div class="lb-cfg">
       <div class="ch"><b>${esc(t.n)}</b><span class="sub2">${esc(t.d)}</span></div>
@@ -2056,13 +2282,13 @@ const LB = (function(){
         <div class="lb-chips">${t.juris.map(jid=>{
           const jj = LM.JURISDICTIONS.find(x=>x.id===jid);
           const stars='•'.repeat(Math.max(1,Math.round(jj.risk*10)));
-          return `<button class="lb-chip ${sel.jid===jid?'sel':''}" data-jid="${jid}">${esc(jj.n)} <span style="opacity:.7">${stars}</span></button>`;
+          return `<button class="lb-chip ${sel.jid===jid?'sel':''}" data-jid="${jid}">${esc(jj.n)} <span>${stars}</span></button>`;
         }).join('')}</div>
         <div class="lb-jnote">${esc(j.note)}</div></div>
       <div class="lb-sec"><div class="lb-sl">Tranche</div>
         <div class="lb-chips">${LM.SIZES.map(sz=>{
           const a = Math.min(pool, Math.round(t.cap*sz.f));
-          return `<button class="lb-chip ${sel.size===sz.id?'sel':''}" data-sid="${sz.id}">${sz.n} <span style="opacity:.7">${eurM(a)}</span></button>`;
+          return `<button class="lb-chip ${sel.size===sz.id?'sel':''}" data-sid="${sz.id}">${sz.n} <span>${eurM(a)}</span></button>`;
         }).join('')}</div></div>
       <div class="lb-expo">
         <div class="lb-exrows">${rows}</div>
@@ -2108,19 +2334,28 @@ const LB = (function(){
     document.getElementById('lb-card').className = 'lb-card '+cls;
     document.getElementById('lb-card').innerHTML = html;
     ov.classList.add('on');
+    const card = document.getElementById('lb-card');
+    card.setAttribute('role','dialog'); card.setAttribute('aria-modal','true');
+    card.setAttribute('aria-label', (card.querySelector('.kh')||{}).textContent || 'Notice');
+    const first = card.querySelector('button'); if(first) first.focus();
   }
   function closeOv(){
     const ov = document.getElementById('lb-overlay'); if(ov) ov.classList.remove('on');
     afterMove();
+    const w = document.getElementById('win-invest');
+    if(w && (!document.activeElement || document.activeElement===document.body)) w.focus({preventScroll:true});
   }
   window.LB_closeOv = closeOv;
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape' && document.querySelector('.lb-overlay.on')){ e.preventDefault(); closeOv(); }
+  });
 
   function showCatch(ev){
     openOverlay('', `<div class="kh">■ TRANCHE FROZEN — STRIKE ${S.catches} OF ${LM.MAX_CATCHES}</div>
       <div class="kb"><div class="flag">${esc(ev.t.flag)}</div>
       <div class="kmeta">WK ${ev.week} · ${esc(ev.t.n).toUpperCase()} · ${esc(ev.j.n).toUpperCase()} · ${eurM(ev.amount)} SEIZED</div>
       <div class="ktext">${esc(ev.t.detects)}</div>
-      <div style="margin-top:12px;padding:10px 12px;border-left:2px solid var(--brand);font-size:11.5px">
+      <div style="margin-top:12px;padding:10px 12px;border-left:2px solid var(--brand);font-size:12px">
         <b>AMLR — ${esc(ev.t.art)}</b><br>${esc(ev.t.artTitle)}</div></div>
       <div class="kfoot"><button class="lb-op-btn" style="width:auto" onclick="LB_closeOv()">Understood</button></div>`);
   }
@@ -2221,7 +2456,7 @@ const DK = (function(){
     if(RUN.hours!=null) bits.push(`${RUN.hours}h left`);
     if(RUN.alerts) bits.push(`Alert ${Math.min(RUN.i+1,RUN.alerts.length)}/${RUN.alerts.length}`);
     if(RUN.cases) bits.push(`Case ${Math.min(RUN.i+1,RUN.cases.length)}/${RUN.cases.length}`);
-    return `<div style="font-size:10.5px;color:var(--text-3);font-family:var(--mono);letter-spacing:.04em;margin-bottom:12px">${bits.join(' · ')}</div>`;
+    return `<div style="font-size:12px;color:var(--text-3);font-family:var(--mono);letter-spacing:.04em;margin-bottom:12px">${bits.join(' · ')}</div>`;
   }
 
   function renderTimeline(){
@@ -2371,7 +2606,7 @@ const DK = (function(){
     const canOpen = deep && RUN.hours>0 && !RUN.opened;
     document.getElementById('dk-side').innerHTML = `
       ${RUN.opened?`<div class="dk-nadia"><div class="nh"><span class="av">N</span>NADIA</div>
-        <div class="nb" id="dk-nadia-text">She will not tell you the answer. She will ask what you have not asked yourself.</div>
+        <div class="nb" id="dk-nadia-text" role="status" aria-live="polite">She will not tell you the answer. She will ask what you have not asked yourself.</div>
         <button id="dk-nadia-btn">Ask her · 1 hour</button></div>`:''}
       <div class="kicker">Your call</div>
       <div style="margin-top:8px">
@@ -2382,7 +2617,7 @@ const DK = (function(){
         <button class="dk-db" id="dk-escalate"><div class="dn2"><span class="num">4</span>Escalate</div><div class="dd">Hand up with what you have.</div></button>
         <button class="dk-db" id="dk-sar"><div class="dn2"><span class="num">5</span>File a report</div><div class="dd">Suspicion articulated and reported.</div></button>`:''}
       </div>
-      <div style="font-size:11.5px;color:var(--text-3);line-height:1.5;margin-top:12px">
+      <div style="font-size:12px;color:var(--text-3);line-height:1.5;margin-top:12px">
         ${deep?'This one has depth. Closing it costs nothing — but if it needed looking at, that will show.':'Everything you need is on the file. The skill is deciding without buying time you do not need to spend.'}</div>`;
     document.getElementById('dk-close').addEventListener('click', ()=>deskDecide('close'));
     document.getElementById('dk-open')?.addEventListener('click', openInvestigation);
@@ -2524,7 +2759,7 @@ const DK = (function(){
         <div></div>`}
       </div>
       ${extras}
-      ${c.law?`<div style="font-size:11.5px;color:var(--brand-ink);margin-top:14px">${esc(c.law)}</div>`:''}
+      ${c.law?`<div style="font-size:12px;color:var(--brand-ink);margin-top:14px">${esc(c.law)}</div>`:''}
       ${c.why?`<div class="inv-note" style="border-left-color:var(--brand)"><b style="color:var(--brand-ink)">What this teaches</b>${esc(c.why)}</div>`:''}
       <button class="inv-submit" style="width:auto;padding:11px 22px;margin-top:16px" id="dk-next">${RUN.i>=RUN.alerts.length-1?'End the day':'Next alert'}</button>`;
     document.getElementById('dk-next').addEventListener('click', ()=>{
@@ -2590,7 +2825,7 @@ const DK = (function(){
         <div><div class="n">${RUN.i+1}/${RUN.cases.length}</div><div class="l">Applications</div></div>
       </div>
       <div class="inv-note" style="border-left-color:var(--brand)"><b style="color:var(--brand-ink)">Why</b>${esc(c.why)}</div>
-      <div style="font-size:11.5px;color:var(--brand-ink);margin-top:12px">${esc(c.law)}</div>
+      <div style="font-size:12px;color:var(--brand-ink);margin-top:12px">${esc(c.law)}</div>
       <div class="inv-note"><b>What this teaches</b>${esc(c.lesson)}</div>
       <button class="inv-submit" style="width:auto;padding:11px 22px;margin-top:16px" id="dk-next">${RUN.i>=RUN.cases.length-1?'End the day':'Next application'}</button>`;
     document.getElementById('dk-next').addEventListener('click', ()=>{
@@ -2655,6 +2890,7 @@ const DK = (function(){
       document.body.appendChild(sp);
     }
     const c=document.createElement('div'); c.className='dk-coach';
+    c.setAttribute('role','dialog'); c.setAttribute('aria-label','Guidance from Nadia, step '+(i+1)+' of '+COACH.length);
     const r=el?el.getBoundingClientRect():null;
     const top = r? Math.min(window.innerHeight-190, r.bottom+14) : window.innerHeight/2-80;
     const left = r? Math.min(window.innerWidth-336, Math.max(14, r.left)) : window.innerWidth/2-165;
@@ -2663,9 +2899,15 @@ const DK = (function(){
       <div class="cf"><span class="cs">${i+1} / ${COACH.length}</span>
       <button id="dk-coach-next">${i<COACH.length-1?'Go on':'Got it'}</button></div>`;
     document.body.appendChild(c);
-    document.getElementById('dk-coach-next').addEventListener('click', ()=>{
-      if(i<COACH.length-1) coach(i+1); else document.querySelectorAll('.dk-coach,.dk-spot').forEach(e=>e.remove());
+    const nextBtn = document.getElementById('dk-coach-next');
+    nextBtn.addEventListener('click', ()=>{
+      if(i<COACH.length-1) coach(i+1);
+      else{
+        document.querySelectorAll('.dk-coach,.dk-spot').forEach(e=>e.remove());
+        const w = document.getElementById('win-invest'); if(w) w.focus({preventScroll:true});
+      }
     });
+    nextBtn.focus();
   }
 
   async function boot(){
@@ -2812,14 +3054,26 @@ function pumpAlexBubble(){
   const stack = document.getElementById('alex-bubble-stack'); if(!stack) return;
   alexBubbleBusy = true;
   const text = alexBubbleQueue.shift();
-  const n = document.createElement('div');
+  const n = document.createElement('button');
+  n.type = 'button';
   n.className = 'alex-bubble';
-  n.innerHTML = `<span class="av" style="background:${TM_PEOPLE.alex.color}">${TM_PEOPLE.alex.initials}</span><div class="txt"></div>`;
+  n.title = 'Open the conversation with Alex';
+  n.innerHTML = `<span class="av" aria-hidden="true" style="background:${TM_PEOPLE.alex.color}">${TM_PEOPLE.alex.initials}</span><span class="sr-only">Alex says: </span><span class="txt"></span>`;
   n.querySelector('.txt').textContent = text;
   n.addEventListener('click', ()=>{ WM.open('teams'); tmSelect('alex'); dismissAlexBubble(n); });
   stack.appendChild(n);
   requestAnimationFrame(()=>n.classList.add('in'));
-  setTimeout(()=>dismissAlexBubble(n), 6500);
+  autoDismiss(n, 6500, ()=>dismissAlexBubble(n));
+}
+/* Auto-dismiss that waits while the pointer or keyboard focus is on the
+   toast, so it can actually be read and used. */
+function autoDismiss(el, ms, fn){
+  let t = null;
+  const arm = ()=>{ clearTimeout(t); t = setTimeout(fn, ms); };
+  const hold = ()=>clearTimeout(t);
+  el.addEventListener('mouseenter', hold); el.addEventListener('focusin', hold);
+  el.addEventListener('mouseleave', arm); el.addEventListener('focusout', arm);
+  arm();
 }
 function dismissAlexBubble(n){
   if(!n.parentElement) return;
@@ -2847,10 +3101,10 @@ function renderTmSide(){
   const row = c=>{
     const label = c.kind==='dm' ? TM_PEOPLE[c.id].name : c.label;
     const av = c.kind==='dm'
-      ? `<span class="av" style="background:${TM_PEOPLE[c.id].color}">${TM_PEOPLE[c.id].initials}</span>`
-      : `<span class="av" style="background:#5B6472">#</span>`;
+      ? `<span class="av" aria-hidden="true" style="background:${TM_PEOPLE[c.id].color}">${TM_PEOPLE[c.id].initials}</span>`
+      : `<span class="av" aria-hidden="true" style="background:#5B6472">#</span>`;
     const badge = tmUnreadBadge(c.id);
-    return `<div class="tm-chan ${c.id===tmActiveChannel?'on':''}" data-ch="${c.id}">${av}${label}${badge?`<span class="badge">${badge}</span>`:''}</div>`;
+    return `<button type="button" class="tm-chan ${c.id===tmActiveChannel?'on':''}" data-ch="${c.id}"${c.id===tmActiveChannel?' aria-current="true"':''}>${av}${label}${badge?`<span class="badge" aria-label="${badge} unread">${badge}</span>`:''}</button>`;
   };
   el.innerHTML = `<div class="sh">Direct messages</div>${dms.map(row).join('')}
     <div class="sh" style="margin-top:10px">Channels</div>${chans.map(row).join('')}`;
@@ -2975,14 +3229,16 @@ function saveAlexOnboard(){
 /* ═══════════════════ NOTIFICATIONS ═══════════════════ */
 function notify(icon, iconBg, title, desc, onClick){
   const stack = document.getElementById('ntf-stack');
-  const n = document.createElement('div');
+  const n = document.createElement('button');
+  n.type = 'button';
   n.className = 'ntf';
-  n.innerHTML = `<div class="nico" style="background:${iconBg}">${icon}</div>
-    <div class="nb"><div class="nt">${title}</div><div class="nd">${desc}</div></div>`;
+  n.title = 'Dismiss';
+  n.innerHTML = `<span class="nico" aria-hidden="true" style="background:${iconBg}">${icon}</span>
+    <span class="nb"><span class="nt">${title}</span><span class="nd">${desc}</span></span>`;
   n.addEventListener('click', ()=>{ if(onClick) onClick(); dismiss(); });
   stack.appendChild(n);
   const dismiss = ()=>{ n.classList.add('out'); setTimeout(()=>n.remove(), 220); };
-  setTimeout(dismiss, 7000);
+  autoDismiss(n, 7000, dismiss);
 }
 
 /* ═══════════════════ DESKTOP ICONS ═══════════════════ */
@@ -3000,6 +3256,76 @@ document.querySelectorAll('.dicon').forEach(ic=>{
 });
 document.getElementById('tb-flag').addEventListener('click', ()=>{ WM.open('browser'); openTab('cif'); });
 
+/* ═══════════════════ START MENU ═══════════════════ */
+(function(){
+  const btn = document.getElementById('start-btn'), menu = document.getElementById('start-menu');
+  function setOpen(on, refocus){
+    menu.classList.toggle('on', on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    if(on){ const a = menu.querySelector('a'); if(a) a.focus(); }
+    else if(refocus) btn.focus();
+  }
+  btn.addEventListener('click', ()=>setOpen(!menu.classList.contains('on')));
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape' && menu.classList.contains('on')){ e.preventDefault(); e.stopPropagation(); setOpen(false, true); }
+  }, true);
+  document.addEventListener('mousedown', e=>{
+    if(menu.classList.contains('on') && !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false, false);
+  });
+  /* Tabbing out of the menu closes it. */
+  menu.addEventListener('focusout', e=>{
+    if(menu.classList.contains('on') && e.relatedTarget && !menu.contains(e.relatedTarget) && e.relatedTarget!==btn) setOpen(false, false);
+  });
+})();
+
+/* ═══════════════════ GLOSSARY vs. CONTROLS ═══════════════════
+   glossary.js wraps terms in focusable role=button spans. Inside a real
+   button/link that is a nested interactive control (and a surplus tab
+   stop in window chrome), so controls and chrome opt out of enhancement
+   as soon as they appear — before glossary.js?v=20261015's debounced pass runs. */
+(function(){
+  const CHROME = '.titlebar,.addrpill,.taskbar,.desktop-mark,.start-menu,.ntf-stack,.alex-bubble-stack,.tabstrip,.inv-tabs,.bmkbar';
+  function mark(root){
+    if(!root || root.nodeType!==1) return;
+    if(root.matches('button,a[href],[role="button"]:not(.gl-term)')) root.setAttribute('data-no-glossary','');
+    root.querySelectorAll('button,a[href],[role="button"]:not(.gl-term)').forEach(b=>b.setAttribute('data-no-glossary',''));
+    if(root.matches(CHROME)) root.setAttribute('data-no-glossary','');
+    root.querySelectorAll(CHROME).forEach(c=>c.setAttribute('data-no-glossary',''));
+  }
+  mark(document.body);
+  new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(mark))).observe(document.body,{childList:true,subtree:true});
+})();
+
+/* ═══════════════════ FOCUS KEEPING ═══════════════════
+   Most panels re-render by replacing innerHTML, which would drop a
+   keyboard user's focus onto <body>. After any click inside a window,
+   if the clicked control is gone and focus fell to <body>, put it back
+   on the matching control (same id / data-*), else on the view's
+   heading, else on the window. */
+document.addEventListener('click', e=>{
+  const b = e.target.closest && e.target.closest('button, a[href]');
+  if(!b) return;
+  const win = b.closest('.win'); if(!win) return;
+  let sel = null;
+  if(b.id) sel = '#'+CSS.escape(b.id);
+  else for(const a of b.attributes){
+    if(a.name.startsWith('data-') && a.name!=='data-act' && a.name!=='data-glyph'){
+      sel = b.tagName.toLowerCase()+'['+a.name+'="'+CSS.escape(a.value)+'"]'; break; }
+  }
+  const view = b.closest('.inv-view');
+  setTimeout(()=>{
+    if(b.isConnected) return;
+    const ae = document.activeElement;
+    if(ae && ae!==document.body) return;   /* focus already went somewhere on purpose */
+    let t = sel ? win.querySelector(sel) : null;
+    if(!t && view){
+      t = view.querySelector('h1, .kicker');
+      if(t){ t.tabIndex = -1; view.scrollTop = 0; }
+    }
+    (t || win).focus({preventScroll:true});
+  }, 0);
+}, true);   /* capture: read the DOM before the control's own handler re-renders it */
+
 /* ═══════════════════ CLOCK ═══════════════════ */
 function tickClock(){
   const d = new Date();
@@ -3011,7 +3337,7 @@ tickClock(); setInterval(tickClock, 30000);
 /* ═══════════════════ BOOT ═══════════════════ */
 WM.init(['mail','browser','explorer','teams','invest','path','skills']);
 if(!localStorage.getItem('meridiaan-wm-v1')){
-  WM.open('mail'); WM.open('browser');
+  WM.open('mail', {keepFocus:true}); WM.open('browser', {keepFocus:true});
 }
 loadAlexOnboard();
 const alexOnboardStarted = alexRevealed > 0;

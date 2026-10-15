@@ -15,8 +15,8 @@
    ═══════════════════════════════════════════════════════════════════ */
 :root{
   --void:#FAFAFA; --console:#FFFFFF; --raised:#F4F5F6; --grid:#E3E5E8;
-  --ink:#0A0A0A; --ink-2:#5B6069; --ink-3:#8B9099;
-  --phos:#0F7B4F; --amber:#9A6B00; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
+  --ink:#0A0A0A; --ink-2:#4A4F58; --ink-3:#5F646D;
+  --phos:#0C6E46; --amber:#835800; --alarm:#C8320F; --ice:#0039A6; --violet:#6E3FBF;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -25,17 +25,18 @@
 /* full-screen layout is now the shell's responsibility */
 
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+button:disabled{cursor:not-allowed}
 ::selection{background:var(--ice);color:var(--void)}
 
 .hud{position:relative;z-index:40;flex:0 0 auto;display:flex;align-items:center;gap:18px;
   padding:0 18px;height:52px;background:linear-gradient(180deg,var(--raised),var(--console));
   border-bottom:1px solid var(--grid)}
-.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:11px;font-weight:700}
+.brand{display:flex;align-items:baseline;gap:9px;letter-spacing:.14em;font-size:12px;font-weight:700}
 .brand .dot{width:7px;height:7px;background:var(--violet);border-radius:50%;
   box-shadow:0 0 10px var(--violet);animation:beat 3s infinite}
 @keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
 .g{display:flex;align-items:center;gap:8px}
-.g .l{font-size:9px;letter-spacing:.15em;color:var(--ink-3)}
+.g .l{font-size:12px;letter-spacing:.15em;color:var(--ink-3)}
 .g .v{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
 .g .v.seuil{color:var(--ice)}
 .hours{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
@@ -49,22 +50,25 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tex
 .view.on{display:block}
 .view::-webkit-scrollbar{width:8px}.view::-webkit-scrollbar-thumb{background:var(--grid)}
 .pad{max-width:920px;margin:0 auto;padding:32px 26px 80px}
-.kick{font-size:10px;letter-spacing:.26em;color:var(--ink-3)}
+.kick{font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
 h1{font-size:clamp(23px,3.4vw,38px);font-weight:700;letter-spacing:-.03em;line-height:1.06;margin-top:12px}
 h1 em{font-style:normal;color:var(--violet)}
 .body{font-family:var(--sans);font-size:15px;line-height:1.66;color:var(--ink-2);margin-top:16px;max-width:66ch}
 .body p{margin-top:12px}
-.go{margin-top:26px;border:1px solid var(--phos);color:var(--phos);padding:14px 30px;
-  font-size:11.5px;font-weight:700;letter-spacing:.16em;background:rgba(15,123,79,.06);transition:all .18s}
+.go{margin-top:26px;border:1px solid var(--phos);color:var(--phos);padding:12px 30px;min-height:48px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;background:rgba(12,110,70,.06);transition:all .18s;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center}
 .go:hover{background:var(--phos);color:var(--void);box-shadow:0 0 20px rgba(15,123,79,.18)}
-.ghost{border:1px solid var(--grid);color:var(--ink-2);padding:13px 22px;font-size:11px;
-  font-weight:700;letter-spacing:.13em;transition:all .16s}
+.ghost{border:1px solid var(--ink-3);color:var(--ink-2);padding:12px 22px;min-height:48px;font-size:12px;
+  font-weight:700;letter-spacing:.1em;transition:all .16s;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center}
 .ghost:hover{border-color:var(--ink-2);color:var(--ink)}
-.row{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.row{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;align-items:stretch}
+.row>.go{margin-top:0}
 
 /* ── primer ── */
 .step{border:1px solid var(--grid);padding:20px 22px;margin-top:20px}
-.step .sn{font-size:9px;letter-spacing:.17em;color:var(--violet);font-weight:700}
+.step .sn{font-size:12px;letter-spacing:.1em;color:var(--violet);font-weight:700}
 .step h3{font-size:18px;font-weight:700;letter-spacing:-.015em;margin-top:8px}
 .step .note{font-family:var(--sans);font-size:13px;line-height:1.55;color:var(--ink-3);
   margin-top:10px;border-left:2px solid var(--grid);padding-left:12px}
@@ -72,16 +76,20 @@ h1 em{font-style:normal;color:var(--violet)}
 .mini svg{display:block;width:100%;height:auto;max-height:230px}
 .q{font-family:var(--sans);font-size:15px;color:var(--ink);margin-top:14px;font-weight:600}
 .opts{display:grid;gap:8px;margin-top:12px}
-.opt{border:1px solid var(--grid);padding:11px 14px;font-size:13px;transition:all .16s}
+.opt{border:1px solid var(--grid);padding:11px 14px;min-height:48px;font-size:13px;transition:all .16s}
 .opt:hover:not(:disabled){border-color:var(--ice);transform:translateX(3px)}
 .opt:disabled{cursor:default}
-.opt.right{border-color:var(--phos);color:var(--phos)}
+.opt.right{border-color:var(--phos);color:var(--phos);font-weight:700}
 .opt.wrong{border-color:var(--alarm);color:var(--alarm)}
+/* not colour alone: a word says which is which */
+.opt.right::after{content:'  ✓ correct answer'}
+.opt.wrong::after{content:'  ✗ your answer'}
+.opt:disabled:not(.right):not(.wrong){opacity:.6}
 .reveal{margin-top:14px;border-left:2px solid var(--phos);padding:11px 0 11px 14px;
   font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--ink-2);display:none}
 .reveal.on{display:block;animation:slide .35s var(--ease)}
 @keyframes slide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.reveal .pl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--phos);
+.reveal .pl{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--phos);
   display:block;margin-bottom:6px}
 .reveal .pr{margin-top:10px;padding-top:10px;border-top:1px solid var(--grid);color:var(--ink)}
 
@@ -89,23 +97,33 @@ h1 em{font-style:normal;color:var(--violet)}
 .cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:11px;margin-top:24px}
 .cc{border:1px solid var(--grid);padding:15px 16px;transition:all .16s var(--ease)}
 .cc:hover:not(.locked){border-color:var(--violet);transform:translateY(-3px)}
-.cc.locked{opacity:.35;cursor:not-allowed}
-.cc .ct{font-size:9px;letter-spacing:.14em;color:var(--violet)}
+.cc.locked{opacity:.6;cursor:not-allowed;background:repeating-linear-gradient(135deg,transparent 0 7px,rgba(10,10,10,.03) 7px 14px)}
+.cc .ct{font-size:12px;letter-spacing:.14em;color:var(--violet)}
 .cc .cn{font-size:15px;font-weight:700;margin-top:8px;line-height:1.3}
 .cc .cd{font-family:var(--sans);font-size:12.5px;color:var(--ink-3);margin-top:8px;line-height:1.5}
-.cc .cs{font-size:9.5px;letter-spacing:.1em;margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+.cc .cs{font-size:12px;letter-spacing:.1em;margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
 .cc .cs span{border:1px solid var(--grid);padding:2px 7px;color:var(--ink-3)}
 .cc .cs .ok{border-color:var(--phos);color:var(--phos)}
 .cc .cs .bad{border-color:var(--alarm);color:var(--alarm)}
 
 /* ── workbench ── */
 .work{display:grid;grid-template-columns:minmax(0,1fr) 330px;height:100%;min-height:0}
-@media(max-width:1000px){.work{grid-template-columns:1fr}}
+/* Below 1000px there is ONE scroll column (the view itself): the two panes
+   stack and stop scrolling on their own, so the file and the designation
+   controls are never two nested scrollers. */
+.jump{display:none}
+@media(max-width:1000px){
+  .work{display:block;height:auto}
+  .wmain,.wside{overflow:visible}
+  .jump{display:inline-flex;align-items:center;gap:8px;margin-top:14px;min-height:44px;padding:0 14px;
+    border:1px solid var(--violet);color:var(--violet);font-size:12px;font-weight:700;letter-spacing:.08em;
+    background:rgba(110,63,191,.06)}
+}
 .wmain{overflow-y:auto;padding:22px 26px 40px;min-height:0}
 .wmain::-webkit-scrollbar{width:8px}.wmain::-webkit-scrollbar-thumb{background:var(--grid)}
 .wside{border-left:1px solid var(--grid);background:var(--raised);overflow-y:auto;
   padding:20px 18px 40px;min-height:0}
-@media(max-width:1000px){.wside{border-left:none;border-top:1px solid var(--grid)}}
+@media(max-width:1000px){.wmain,.wside{overflow:visible}.wside{border-left:none;border-top:1px solid var(--grid);min-height:0}}
 
 /* Chart tools, documents, requests and the owner-picker now live in
    academy-engine.css (shared with workstation.html's embedded window) —
@@ -113,56 +131,62 @@ h1 em{font-style:normal;color:var(--violet)}
 
 /* ── verdict ── */
 .vhead{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
-.stamp{font-size:10.5px;font-weight:700;letter-spacing:.19em;padding:6px 12px;border:2px solid currentColor}
+.stamp{font-size:12px;font-weight:700;letter-spacing:.12em;padding:6px 12px;border:2px solid currentColor}
 .vhead h2{font-size:clamp(19px,2.5vw,27px);font-weight:700;letter-spacing:-.02em}
 .calc{border:1px solid var(--grid);margin-top:20px}
-.calc .ch{font-size:9px;letter-spacing:.17em;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--grid)}
+.calc .ch{font-size:12px;letter-spacing:.1em;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--grid)}
 .calc .cr{padding:10px 14px;border-bottom:1px solid var(--grid);display:grid;
   grid-template-columns:1fr 80px 60px;gap:12px;align-items:baseline;font-size:13px}
 .calc .cr:last-child{border-bottom:none}
 .calc .cr .pc{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
-.calc .cr .vd{font-size:9.5px;letter-spacing:.1em;text-align:right}
+.calc .cr .vd{font-size:12px;letter-spacing:.1em;text-align:right}
 .calc .cr.isubo{color:var(--phos)} .calc .cr.sous{color:var(--ink-3)}
 .calc .cr.miss{color:var(--alarm)} .calc .cr.extra{color:var(--amber)}
 .note{font-family:var(--sans);font-size:13.5px;line-height:1.62;color:var(--ink-2);
   margin-top:18px;border-left:2px solid var(--amber);padding-left:15px;max-width:70ch}
 .note.ice{border-left-color:var(--ice)}.note.red{border-left-color:var(--alarm)}
-.note .nl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--amber);
+.note .nl{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--amber);
   margin-bottom:7px;display:block}
 .note.ice .nl{color:var(--ice)}.note.red .nl{color:var(--alarm)}
-.lawline{font-size:11.5px;color:var(--ice);margin-top:18px;line-height:1.58}
+.lawline{font-size:12px;color:var(--ice);margin-top:18px;line-height:1.58}
 
+h2.bl{font-weight:400}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:70;
   border:1px solid var(--phos);background:var(--console);color:var(--phos);padding:10px 19px;
-  font-size:10.5px;letter-spacing:.11em;font-weight:700;animation:toast 2.6s var(--ease) forwards;
+  font-size:12px;letter-spacing:.11em;font-weight:700;animation:toast 2.6s var(--ease) forwards;
   pointer-events:none}
 @keyframes toast{0%{opacity:0;transform:translate(-50%,10px)}12%,78%{opacity:1;transform:translate(-50%,0)}
   100%{opacity:0;transform:translate(-50%,-8px)}}
 
 :focus-visible{outline:2px solid var(--ice);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{
-  animation-duration:.01ms!important;transition-duration:.01ms!important}
-  .reveal{display:block}}
+  animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.calc .cr .vd{font-size:12px}
+.calc .cr{grid-template-columns:1fr 84px minmax(70px,auto)}
 @media(max-width:760px){
   .hud{gap:11px;padding:0 11px;height:48px}.g.hide-s{display:none}
   .pad{padding:22px 15px 70px}.wmain{padding:16px 14px 26px}.wside{padding:16px 14px 30px}
   .cases{grid-template-columns:1fr}
+  .row>.go,.row>.ghost{flex:1 1 200px}
+  .calc .cr{grid-template-columns:1fr auto;row-gap:2px}
+  .calc .cr .vd{grid-column:1 / -1;text-align:left}
 }
 </style>
-<link rel="stylesheet" href="academy.css">
-<link rel="stylesheet" href="academy-engine.css">
-<link rel="stylesheet" href="glossary.css">
-<script src="academy-shell.js"></script>
-<script src="academy-engine.js"></script>
-<script src="glossary.js"></script>
+<link rel="stylesheet" href="academy.css?v=20261015">
+<link rel="stylesheet" href="academy-engine.css?v=20261015">
+<link rel="stylesheet" href="glossary.css?v=20261015">
+<script src="academy-shell.js?v=20261015"></script>
+<script src="academy-engine.js?v=20261015"></script>
+<script src="glossary.js?v=20261015"></script>
 </head>
 <body>
-<script src="site-nav.js"></script>
+<script src="site-nav.js?v=20261015"></script>
 
 <!-- HOME -->
 <div class="view on" id="vHome"><div class="pad">
   <div class="kick">REGRADAR ACADEMY · MODULE 02</div>
-  <h1>Who <em>actually</em> owns this company?</h1>
+  <h1 tabindex="-1">Who <em>actually</em> owns this company?</h1>
   <div class="body">
     <p>An ownership chart reads fast and is understood badly. Percentages multiply down chains,
       add up across branches, and sometimes the name on the register belongs to no one at all.</p>
@@ -170,8 +194,8 @@ h1 em{font-style:normal;color:var(--violet)}
       can't conclude.</p>
   </div>
   <div class="row">
-    <button class="go" onclick="startPrimer()">START WITH THE PRINCIPLES</button>
-    <button class="ghost" onclick="toCases()">GO TO THE FILES</button>
+    <button type="button" class="go" onclick="startPrimer()">START WITH THE PRINCIPLES</button>
+    <button type="button" class="ghost" onclick="toCases()">GO TO THE FILES</button>
   </div>
   <div id="homeCases"></div>
 </div></div>
@@ -179,19 +203,19 @@ h1 em{font-style:normal;color:var(--violet)}
 <!-- PRIMER -->
 <div class="view" id="vPrimer"><div class="pad">
   <div class="kick">THE FOUR PRINCIPLES</div>
-  <h1>Before you read an ownership chart.</h1>
+  <h1 tabindex="-1">Before you read an ownership chart.</h1>
   <div class="body"><p>Answer first, understand after. Getting it wrong here costs nothing —
     the only time that will be true.</p></div>
   <div id="primerSteps"></div>
   <div class="row" id="primerEnd" style="display:none">
-    <button class="go" onclick="toCases()">PROCEED TO THE FILES</button>
+    <button type="button" class="go" onclick="toCases()">PROCEED TO THE FILES</button>
   </div>
 </div></div>
 
 <!-- FILES -->
 <div class="view" id="vCases"><div class="pad">
   <div class="kick">THE FILES</div>
-  <h1>Six structures.</h1>
+  <h1 tabindex="-1">Six structures.</h1>
   <div class="body"><p>Read the chart, review the documents, ask for what's missing if
     something's missing, then designate the beneficial owners.</p></div>
   <div class="cases" id="caseList"></div>
@@ -205,15 +229,15 @@ h1 em{font-style:normal;color:var(--violet)}
 
 <!-- VERDICT -->
 <div class="view" id="vOut"><div class="pad">
-  <div class="vhead"><span class="stamp" id="oStamp">—</span><h2 id="oTitle">—</h2></div>
+  <div class="vhead"><span class="stamp" id="oStamp">—</span><h2 id="oTitle" tabindex="-1">—</h2></div>
   <div class="body" id="oWhy"></div>
   <div class="calc" id="oCalc"></div>
   <div class="note red" id="oTrap" style="display:none"><span class="nl">THE TRAP</span><span id="oTrapT"></span></div>
   <div class="lawline" id="oLaw"></div>
   <div class="note ice"><span class="nl">WHAT THIS TEACHES</span><span id="oLesson"></span></div>
   <div class="row">
-    <button class="go" id="oNext">CONTINUE</button>
-    <button class="ghost" onclick="replay()">REDO THIS FILE</button>
+    <button type="button" class="go" id="oNext">CONTINUE</button>
+    <button type="button" class="ghost" onclick="replay()">REDO THIS FILE</button>
   </div>
 </div></div>
 
@@ -240,6 +264,8 @@ let zoomCtl=null;
 function load(){try{const p=JSON.parse(localStorage.getItem(KEY)||'null');if(p)S={...S,...p}}catch(e){}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function toast(m){ AcademyShell.toast(m); }
+const SH=AcademyShell;
+const smooth=()=>SH.reducedMotion?'auto':'smooth';
 
 /* ═══════════ HOME ═══════════ */
 function pushStatus(){
@@ -259,9 +285,29 @@ function pushStatus(){
 function toHome(){
   C=null; show('vHome'); pushStatus();
 }
-function show(id){['vHome','vPrimer','vCases','vWork','vOut'].forEach(v=>
-  document.getElementById(v).classList.toggle('on',v===id));
-  const el=document.getElementById(id); if(el) el.scrollTop=0;}
+function show(id){
+  const out=document.getElementById('vOut');
+  ['vHome','vPrimer','vCases','vWork','vOut'].forEach(v=>
+    document.getElementById(v).classList.toggle('on',v===id));
+  const el=document.getElementById(id); if(el) el.scrollTop=0;
+  if(id!=='vOut'){
+    /* leaving the verdict: close its dialog, land on the new view's heading */
+    SH.closeDialog(out,{fallback:()=>headingOf(el)});
+  } else {
+    /* the verdict is a dialog: labelled, focus on its title, Tab trapped,
+       Esc = continue (same as the primary button) */
+    SH.openDialog(out,{labelledBy:'oTitle', focus:'#oTitle', noScroll:true,
+      onEscape:()=>document.getElementById('oNext').click()});
+  }
+  if(id!=='vOut') focusView(el);
+}
+function headingOf(el){ return el && el.querySelector('h1,h2,[data-focus]'); }
+function focusView(el){
+  if(!el) return;
+  const h=headingOf(el); if(!h) return;
+  if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1');
+  h.focus({preventScroll:true});
+}
 
 /* ═══════════ PRIMER ═══════════ */
 function startPrimer(){
@@ -274,7 +320,7 @@ function startPrimer(){
       <div class="mini">${AE.drawChart(p.entities,p.edges,'cible',{small:true})}</div>
       <div class="q">${esc(p.question)}</div>
       <div class="opts">${p.options.map(o=>
-        `<button class="opt" data-o="${esc(o.id)}" onclick="answerPrimer(${i},'${esc(o.id)}')">
+        `<button type="button" class="opt" data-o="${esc(o.id)}" onclick="answerPrimer(${i},'${esc(o.id)}')">
           ${esc(o.label)}</button>`).join('')}</div>
       <div class="reveal" id="rv${i}">
         <span class="pl">WHY</span>${esc(p.explain)}
@@ -290,6 +336,8 @@ function answerPrimer(i,oid){
   });
   document.getElementById('rv'+i).classList.add('on');
   (oid===p.answer?AE.sfx.good:AE.sfx.bad)();
+  SH.announce((oid===p.answer?'Correct. ':'Not quite. ')+p.explain+' '+p.principle);
+
   S.primer=Math.max(S.primer,i+1); save();
   if(i===D.primer.length-1) document.getElementById('primerEnd').style.display='';
 }
@@ -303,7 +351,7 @@ function toCases(){
     const unlocked = c.tier===1 || solved >= (c.tier===2?1:2);
     const badge = st? `<span class="${st==='right'?'ok':'bad'}">${st==='right'?'RESOLVED':'NEEDS REDO'}</span>`
       : unlocked? '<span>NOT STARTED</span>' : `<span>REQUIRES ${c.tier===2?1:2} RESOLVED</span>`;
-    return `<button class="cc ${unlocked?'':'locked'}" ${unlocked?`onclick="open_('${c.id}')"`:'disabled'}>
+    return `<button type="button" class="cc ${unlocked?'':'locked'}" ${unlocked?`onclick="open_('${c.id}')"`:'disabled'}>
       <div class="ct">LEVEL ${c.tier} · ${esc(c.tier_name.toUpperCase())}</div>
       <div class="cn">${esc(c.title)}</div>
       <div class="cd">${esc(c.brief)}</div>
@@ -314,22 +362,24 @@ function toCases(){
 /* ═══════════ WORKBENCH ═══════════ */
 function open_(id){
   C=D.cases.find(x=>x.id===id); if(!C) return;
-  CS=AE.openCase(C);
+  CS=AE.openCase(C); zoomCtl=null;
   show('vWork'); renderWork();
+  focusView(document.getElementById('wMain'));
 }
 
 function renderWork(){
   const root=C.entities.find(e=>e.customer).id;
   document.getElementById('wMain').innerHTML=`
     <div class="kick">${esc(C.id)} · LEVEL ${C.tier} · ${esc(C.tier_name.toUpperCase())}</div>
-    <h1 style="font-size:24px;margin-top:10px">${esc(C.title)}</h1>
-    <div style="font-size:11.5px;color:var(--ink-2);margin-top:6px">${esc(C.subject)}</div>
+    <h1 tabindex="-1" style="font-size:24px;margin-top:10px">${esc(C.title)}</h1>
+    <div style="font-size:12px;color:var(--ink-2);margin-top:6px">${esc(C.subject)}</div>
     <div class="body" style="font-size:14px;margin-top:12px">${esc(C.brief)}</div>
+    <button type="button" class="jump" onclick="jumpToCall()">DESIGNATE THE OWNERS <span aria-hidden="true">↓</span></button>
     <div class="ae-chart" id="wChart"></div>
     <div id="wDocsReqs"></div>`;
   document.getElementById('wSide').innerHTML=`
-    <div class="bl" style="font-size:9px;letter-spacing:.17em;color:var(--ink-3);margin-bottom:9px">
-      WHO IS A BENEFICIAL OWNER?</div>
+    <h2 class="bl" id="pickH" tabindex="-1" style="font-size:12px;letter-spacing:.1em;color:var(--ink-3);margin-bottom:9px">
+      WHO IS A BENEFICIAL OWNER?</h2>
     <div id="wPicker"></div>`;
   renderChart(); renderDocsReqs(); renderPickerBlock();
   pushStatus();
@@ -339,11 +389,17 @@ function renderWork(){
 /* Chart, documents/requests and the picker refresh independently —
    requesting a document shouldn't reset the chart's zoom/pan, and
    toggling an owner shouldn't re-render (and re-fetch) the documents. */
+function jumpToCall(){
+  const h=document.getElementById('pickH'); if(!h) return;
+  h.scrollIntoView({behavior:smooth(),block:'start'}); h.focus({preventScroll:true});
+}
 function renderChart(){
   const root=C.entities.find(e=>e.customer).id;
   const chartWrap=document.getElementById('wChart');
+  const prev=zoomCtl? zoomCtl.state() : null;      /* toggling an owner keeps zoom/pan */
   chartWrap.innerHTML=AE.drawChart(C.entities,C.edges,root,{picked:CS.picked})+AE.chartTools()+AE.legend();
   zoomCtl=AE.wireChart(chartWrap, {
+    state:prev,
     onNodeClick(id){
       const e=C.entities.find(x=>x.id===id);
       if(e&&e.type==='person') toggleOwner(id);
@@ -352,22 +408,28 @@ function renderChart(){
       const edge=C.edges.find(x=>x.from===f&&x.to===t);
       if(edge&&edge.doc&&CS.seen.includes(edge.doc)){
         const d=document.getElementById('ae-doc_'+edge.doc);
-        if(d){d.classList.add('ae-new');d.scrollIntoView({behavior:'smooth',block:'center'});
+        if(d){d.classList.add('ae-new');d.scrollIntoView({behavior:smooth(),block:'center'});
           setTimeout(()=>d.classList.remove('ae-new'),1400)}
       } else if(edge&&edge.doc) toast('DOCUMENT NOT YET OBTAINED');
     },
   });
   AE.wireChartTools(chartWrap, zoomCtl);
 }
-function renderDocsReqs(){
-  document.getElementById('wDocsReqs').innerHTML=AE.renderDocs(C,CS)+AE.renderRequests(C,CS);
-  document.querySelectorAll('[data-ae-req]').forEach(b=>b.addEventListener('click',()=>doRequest(b.dataset.aeReq)));
+function renderDocsReqs(fallback){
+  const box=document.getElementById('wDocsReqs');
+  SH.keepFocus(box,()=>{
+    box.innerHTML=AE.renderDocs(C,CS)+AE.renderRequests(C,CS);
+    box.querySelectorAll('[data-ae-req]').forEach(b=>b.addEventListener('click',()=>doRequest(b.dataset.aeReq)));
+  }, fallback||(()=>box.querySelector('.ae-req:not(:disabled)')));
 }
 function renderPickerBlock(){
-  document.getElementById('wPicker').innerHTML=AE.renderPicker(C,CS);
-  document.querySelectorAll('[data-ae-pick]').forEach(b=>b.addEventListener('click',()=>toggleOwner(b.dataset.aePick)));
-  const ndBtn=document.querySelector('[data-ae-nd]'); if(ndBtn) ndBtn.addEventListener('click',toggleND);
-  const subBtn=document.querySelector('[data-ae-submit]'); if(subBtn) subBtn.addEventListener('click',submit);
+  const box=document.getElementById('wPicker');
+  SH.keepFocus(box,()=>{
+    box.innerHTML=AE.renderPicker(C,CS);
+    box.querySelectorAll('[data-ae-pick]').forEach(b=>b.addEventListener('click',()=>toggleOwner(b.dataset.aePick)));
+    const ndBtn=box.querySelector('[data-ae-nd]'); if(ndBtn) ndBtn.addEventListener('click',toggleND);
+    const subBtn=box.querySelector('[data-ae-submit]'); if(subBtn) subBtn.addEventListener('click',submit);
+  }, ()=>box.querySelector('.ae-pk'));
 }
 
 function doRequest(rid){
@@ -377,20 +439,35 @@ function doRequest(rid){
   if(out.revealed){
     AE.sfx.find();
     const d=document.getElementById('ae-doc_'+out.revealed);
-    if(d){d.classList.add('ae-new'); d.scrollIntoView({behavior:'smooth',block:'center'})}
+    if(d){d.classList.add('ae-new'); d.setAttribute('tabindex','-1');
+      d.scrollIntoView({behavior:smooth(),block:'center'}); d.focus({preventScroll:true});}
     toast('DOCUMENT OBTAINED');
   } else {
     toast('NO RESULT');
   }
   pushStatus();
+  SH.announce(CS.hours+' hours remaining');
 }
-function toggleOwner(id){ AE.toggleOwner(CS,id); AE.sfx.tick(); renderChart(); renderPickerBlock(); }
-function toggleND(){ AE.toggleND(CS); AE.sfx.tick(); renderChart(); renderPickerBlock(); }
+function nameOf(id){ const e=C.entities.find(x=>x.id===id); return e?e.name:id; }
+function toggleOwner(id){
+  if(CS.nd){ SH.announce('Clear "cannot be determined" first to designate a person.'); return; }
+  AE.toggleOwner(CS,id); AE.sfx.tick();
+  keepChartFocus(renderChart); renderPickerBlock();
+  SH.announce(`${nameOf(id)} ${CS.picked.has(id)?'designated':'removed'}. ${CS.picked.size} designated.`);
+}
+function toggleND(){
+  AE.toggleND(CS); AE.sfx.tick();
+  keepChartFocus(renderChart); renderPickerBlock();
+  SH.announce(CS.nd?'Cannot be determined: selected.':'Cannot be determined: cleared.');
+}
+/* the chart is re-drawn on a pick; keep focus if it was on a chart control */
+function keepChartFocus(fn){ SH.keepFocus(document.getElementById('wChart'), fn, ()=>document.querySelector('#wChart svg')); }
 
 /* ═══════════ VERDICT ═══════════ */
 function submit(){
   const result=AE.computeVerdict(C, CS);
   const reward=AE.applyReward(C, result);   /* writes regradar-ownership itself */
+  SH.announce(`${result.stamp}. ${result.title}. ${result.correct?'+200':'+40'} XP.`);
   load();                                    /* refresh this page's in-memory S (primer incl.) */
   pushStatus();
   (result.correct?AE.sfx.good:AE.sfx.bad)();
