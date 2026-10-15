@@ -1,0 +1,125 @@
+# RegRadar: next steps (the working to-do list)
+
+This file is the source of truth for what to work on next. Scheduled and
+manual sessions both read it, pick the top unchecked item they can finish
+safely, do it, tick it, and add anything new they discover.
+
+## What RegRadar is
+
+A static prototype (plain HTML/CSS/JS in `docs/`, GitHub Pages, no build
+step) helping EU financial firms (payment, e-money, crypto first) read the
+law, map obligations to their controls, follow regulators, assess country
+risk and train staff. Product truth: `PRODUCT.md` (if absent from the repo,
+this section is it). Tools today: **Compliance** (`workspace.html`:
+obligations + law text + controls + dashboard), **Academy**
+(`academy.html`, `workstation.html`, `laundromat.html`, `ownership.html`,
+`desk.html`, `glossary.html`), **RegWatch** (`regwatch.html`), **Country
+risk** (`country-risk.html`), the law reader (`law.html`), and the landing
+page (`index.html`). Shared nav: `site-nav.js`.
+
+## Working rules (non-negotiable)
+
+1. **Never push to `main`.** Work on a branch named `auto/<short-topic>`,
+   push it, open a pull request with a clear summary and a test plan.
+   One topic per PR; small and reviewable.
+2. **No fabricated facts.** No invented customers, testimonials, prices,
+   benchmarks, certifications, or legal claims. Legal text is quoted
+   verbatim from the parsed sources in `docs/data/laws/`; every new
+   obligation must be verified against that text (see
+   `build_obligations.py`, which asserts titles against the source).
+   Academy data and "CF Bank" are fictional and must say so.
+3. **Keep it simple and static.** No build step, no new runtime
+   dependencies, no third-party requests (fonts, analytics). Prefer
+   fitting a feature into an existing page over adding a page.
+4. **Quality floor on every UI change:** real `<button>`/`<a>` for
+   anything clickable; visible focus; text contrast 4.5:1 in light AND
+   dark; text >= 12px; touch targets >= 36-44px; dialogs get role, label,
+   focus in/out, Esc; `prefers-reduced-motion` honoured; no horizontal
+   overflow at 390/768/1280; no console errors.
+5. **Do not hand-edit generated data** (`docs/data/items.json`,
+   `meta.json`, `country-risk.json`): the GitHub Actions pipeline
+   rewrites them. Fix the generator scripts instead.
+6. **Verify before claiming done:** `node --check` changed JS, parse
+   changed JSON, load the page and check the console where a browser is
+   available. Say plainly what you could and could not verify.
+7. Leave `.claude/`, `.impeccable/` and `PRODUCT.md` alone unless the
+   task is about them. The disclaimers ("prototype, not legal advice")
+   stay.
+
+## Backlog (highest value first)
+
+### A. Data accuracy and trust
+- [ ] RegWatch "Critical" is inflated (about a third of items are impact 3;
+      many have low legal weight). Find the rule in the pipeline
+      (`classification_v3.py`, `intelligence_v4.py`), propose a tighter
+      scoring (legal weight + binding status + relevance), show before/
+      after counts in the PR. Do not edit `items.json` by hand.
+- [ ] Law reader: French and Dutch files have no `definitions`; parse
+      them from the CELLAR FR/NL texts if the source is available, or
+      document the limit in the UI (already shows an honest note).
+- [ ] RegWatch: extract concrete deadlines from consultations (e.g.
+      AMLA) into the "Coming up" list with source links.
+- [ ] Country risk: show per-feed freshness ("last refreshed") next to
+      each indicator and make the stale-feed banner link to the failing
+      source in the changelog.
+
+### B. Compliance workspace (the main product)
+- [ ] Extend the verified obligations beyond AMLR Chapter III: AMLR
+      Chapter IV (beneficial ownership), AMLD6 Belgian-transposition
+      duties, then DORA for a second sector. Use
+      `scaffold_obligations.py` for raw text, hand-author the judgment
+      fields, verify every excerpt with `build_obligations.py`-style
+      assertions. Update `docs/data/obligations.json` `_meta`.
+- [ ] Controls CSV import/export (columns: name, owner, frequency, type,
+      status, obligation ids) so a team can bring its existing register.
+- [ ] Evidence links on test records (URL + note) and a printable
+      coverage statement view (dated, with open findings).
+- [ ] Obligation-change tracking: when an obligation's `verbatim` or
+      `deadline` changes between data versions, flag mapped controls as
+      "needs review" in the workspace.
+- [ ] A short, honest in-app "how coverage is computed" explainer and a
+      configurable definition of gap (include overdue/failed controls).
+- [ ] Do NOT build a backend or auth. That decision (Supabase) is the
+      owner's; see `COMPLIANCE_DASHBOARD_SPEC.md`.
+
+### C. Academy
+- [ ] Dedupe the Desk engine: `desk.html` vs the Desk embedded in
+      `workstation.html` should share one engine in `academy-engine.js`
+      (same pattern already used for Ownership and Laundromat).
+- [ ] Curriculum breadth with real content: adverse media, geographic
+      risk, EDD as its own module, periodic KYC review, STR/SAR filing
+      (the "filing" module is a stub).
+- [ ] Time-budgeted session picker ("I have 15 / 30 / 60 minutes").
+- [ ] Workstation: keyboard alternative for window drag/resize; chart
+      text lives in `academy-engine.js` (raise to >= 12px).
+
+### D. Landing page and polish
+- [ ] Real mobile and reduced-motion visual review of `index.html`;
+      fix anything off. Add `og:` and `theme-color` meta.
+- [ ] Pause infinite CSS animations when offscreen; drive bar/slider
+      fills with `transform` instead of `width`/`left`.
+- [ ] No-JS fallback: headings and steps visible without scripts.
+- [ ] Consolidate duplicated token blocks into one shared
+      `tokens.css` and migrate pages gradually (RegWatch's palette is the
+      target; `regradar.css` is legacy and should be retired page by page).
+- [ ] Country risk: ~170 map tab stops (a skip link exists); consider a
+      list-only keyboard mode.
+
+### E. Quality gates
+- [ ] A tiny `scripts/check.sh` (or `.github/workflows/check.yml`) that
+      runs `node --check` on all JS, validates all JSON, and fails on
+      dead internal links, so PRs are verified automatically.
+- [ ] A smoke test list of pages to load and the console-error check.
+
+## Decisions that belong to the owner (do not decide alone)
+
+- Backend/auth choice (Supabase or other) and pricing/packaging.
+- Whether and how to recruit design partners; any contact address.
+- Any claim about customers, certifications, or performance.
+
+## Done log
+
+- 2026-10: Obligations registry (12 AMLR obligations), controls library,
+  unified Compliance workspace, scroll-driven landing page, whole-site
+  UI/UX audit and fix pass (accessibility, contrast, honest claims,
+  corrected AMLR application date to 10 Jul 2027).
