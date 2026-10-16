@@ -1,8 +1,8 @@
 name: guard
 
-# Every PR: syntax-check changed JS/JSON.
-# Lab PRs (branch lab/<id>): may ONLY touch docs/labs/<id>/ and ideas/<id>.*,
-# which is what makes unattended merging of lab prototypes safe.
+# Confines agent pull requests to their own paths (see tests/guard.py) and
+# syntax-checks changed JS/JSON. The guard script is read from main, so a
+# pull request cannot weaken it for itself.
 on:
   pull_request:
     branches: [main]
@@ -18,21 +18,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Lab PRs stay inside their own folder
-        if: startsWith(github.head_ref, 'lab/')
+      - name: Path guard (script taken from main)
         run: |
-          id="${HEAD_REF#lab/}"
-          case "$id" in
-            ''|*[!A-Za-z0-9._-]*) echo "Unexpected lab id: $id"; exit 1 ;;
-          esac
-          changed=$(git diff --name-only "origin/${BASE_REF}...HEAD")
-          bad=$(printf '%s\n' "$changed" | grep -v -E "^(docs/labs/${id}/|ideas/${id}\.)" || true)
-          if [ -n "$bad" ]; then
-            echo "These files are outside docs/labs/${id}/ and ideas/${id}.*:"
-            printf '%s\n' "$bad"
-            exit 1
-          fi
-          echo "Lab PR touches only its own folder and idea file."
+          git show "origin/${BASE_REF}:tests/guard.py" > "$RUNNER_TEMP/guard.py" 2>/dev/null || cp tests/guard.py "$RUNNER_TEMP/guard.py"
+          python3 "$RUNNER_TEMP/guard.py" "$BASE_REF" "$HEAD_REF"
 
       - name: Syntax checks on changed files
         run: |

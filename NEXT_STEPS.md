@@ -58,6 +58,7 @@ page (`index.html`). Shared nav: `site-nav.js`.
 ## Backlog (highest value first)
 
 ### 0. Quality gates (do these first, then everything else)
+- [x] Browser smoke test with a ratchet (`tests/smoke.mjs`, `.github/workflows/smoke.yml`) and a path guard (`tests/guard.py`). See `STRATEGY.md`. Remaining: dead internal link check; extend smoke to dark theme.
 - [ ] A tiny `scripts/check.sh` (or `.github/workflows/check.yml`) that
       runs `node --check` on all JS, validates all JSON, and fails on
       dead internal links, so PRs are verified automatically.
