@@ -80,7 +80,7 @@
           "present": false
         }
       ],
-      "law": "AMLR Art. 69 — occasional transactions above €10,000; Art. 25 — ongoing monitoring",
+      "law": "AMLR Art. 19(1)(b) — due diligence on occasional transactions of €10,000 or more (€1,000 for transfers of funds, Art. 19(2)); Art. 26 — ongoing monitoring",
       "why": "This looks exactly like structuring, and it may well be. But there is a mundane explanation that fits equally well — an inheritance, a car sale, cash gifts at a wedding — and you have not asked. Escalating now sends investigations a case with no source-of-funds question posed; closing it ignores a textbook pattern. The correct first move is cheap: ask.",
       "consequences": {
         "close": "You closed a textbook structuring pattern without asking a single question. If this was laundering, the file shows an analyst who saw the pattern and did nothing.",
@@ -170,7 +170,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 25 — ongoing monitoring; Art. 69 — reporting of suspicious transactions",
+      "law": "AMLR Art. 26 — ongoing monitoring; Art. 69 — reporting of suspicious transactions",
       "why": "This is a money mule account and the fraud-victim match makes it close to certain. Pass-through behaviour on a young account with no economic rationale is one of the clearest patterns there is. Asking the customer here is not neutral — it risks tipping off, and the answer would not change what the transaction record already shows.",
       "consequences": {
         "close": "A live mule account left running. Victim funds continued to move through it.",
@@ -316,7 +316,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 34 — EDD where no apparent economic purpose; Art. 22 — beneficial ownership",
+      "law": "AMLR Art. 34(2) — examine origin, destination and purpose where there is no apparent economic or lawful purpose; Arts 51–53 — beneficial ownership",
       "why": "Classic trade-based laundering: an intermediary that handles no goods, over-invoicing that moves value rather than merchandise, and a counterparty whose owner you cannot identify. Any one of these would warrant a question. Together they are a case. Note that this customer was already rated high risk — which should have meant enhanced monitoring, not a routine alert.",
       "consequences": {
         "close": "You closed a trade-based laundering pattern on a high-risk customer.",
@@ -377,7 +377,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 20 — purpose and intended nature of the relationship",
+      "law": "AMLR Art. 25 — purpose and intended nature of the relationship (see also Art. 20(1)(c))",
       "why": "Dormancy rules generate enormous noise. Here the reactivation has a coherent story: the customer moved to France, and a same-surname sender at a regulated French bank transferred a stated family loan that has not moved since. Nothing layers, nothing structures. Escalating this is defensible but wasteful; the discipline is to write the rationale down and close it.",
       "consequences": {
         "close": "Right. Coherent explanation, no layering, rationale recorded.",
@@ -456,7 +456,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 69 — structuring is reportable; Art. 22 — control relationships",
+      "law": "AMLR Art. 69 — structuring is reportable; Art. 69(2) — the link between several transactions is part of what builds a suspicion",
       "why": "The individual deposits are unremarkable. The pattern is the case. Structuring detection is about aggregation across parties, and the undisclosed family link to the receiving company removes the innocent reading. This is exactly the case that gets missed when analysts work alerts one account at a time instead of looking across them.",
       "consequences": {
         "close": "A coordinated structuring ring left in place.",
@@ -602,7 +602,7 @@
           "present": true
         }
       ],
-      "law": "TFR (EU) 2023/1113 Art. 14 — missing originator information; AMLR Art. 34(4) — source of funds and wealth",
+      "law": "TFR (EU) 2023/1113 Arts 14 and 16 — information accompanying crypto-asset transfers and detection of missing information; AMLR Art. 34(4) — source of funds and wealth",
       "why": "Mixer exposure alone justifies enhanced scrutiny, but the decisive fact is the combination: sanctioned-service exposure, a twentyfold departure from declared activity, and absent travel-rule data. Missing originator information is not an administrative gap under the TFR — it is itself a trigger. Asking the customer risks tipping off and would not change what the chain analytics already establish.",
       "consequences": {
         "close": "You closed a case with sanctioned-mixer exposure and missing travel-rule data.",
@@ -737,7 +737,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 20 — purpose and nature of the business relationship; Art. 25 — ongoing monitoring",
+      "law": "AMLR Art. 25 — purpose and intended nature of the business relationship; Art. 26 — ongoing monitoring",
       "why": "This is transaction laundering: a merchant account processing payments that are not what they claim to be. The 11% chargeback rate is the giveaway — real retail sits under 1%, and that level of dispute means cardholders do not recognise what they paid for. Combined with geography that contradicts the declared business and a shell-like web presence, this is a case. Payments firms see this pattern far more than banks do.",
       "consequences": {
         "close": "You left a transaction-laundering merchant processing. Chargeback liability sits with the acquirer.",
@@ -816,7 +816,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 20 — CDD proportionate to risk; Art. 25 — monitoring against the expected profile",
+      "law": "AMLR Art. 20(2) — CDD proportionate to risk; Art. 26 — monitoring against the expected profile",
       "why": "Cash-intensive businesses generate constant alerts, and the skill is knowing what corroborates. Here three things do: proportionate card growth, an identical pattern in prior years, and deposits made openly above the threshold rather than structured below it. Note the last point — a launderer structures to avoid reporting; this customer walked in with €27,000. The seasonal explanation is verifiable and verified.",
       "consequences": {
         "close": "Right, and the corroborating card data is what makes the rationale defensible.",
@@ -895,7 +895,7 @@
           "present": true
         }
       ],
-      "law": "AMLR Art. 34 — EDD where no apparent economic purpose; Art. 22 — beneficial ownership of counterparties",
+      "law": "AMLR Art. 34(2) — examine origin, destination and purpose where there is no apparent economic or lawful purpose; Arts 51–53 — beneficial ownership of counterparties",
       "why": "Circular flows have no legitimate explanation. Money that leaves and returns to the same controller, carrying invoices for services with no work product, is round-tripping — and the undisclosed common ownership removes any innocent reading. The detail worth internalising: no single transaction here looks odd. Each has an invoice and a plausible counterparty. Only the shape of the whole reveals it, which is why looking across transactions rather than at them is the core analytical habit.",
       "consequences": {
         "close": "A round-tripping structure left in place, with an unestablished beneficial owner in the chain.",
@@ -1055,7 +1055,7 @@
       "is_real_case": true,
       "best_action": "sar",
       "flags": [],
-      "law": "AMLR Art. 34 — EDD where a transaction has no apparent economic purpose; Art. 22 — beneficial ownership of counterparties; Art. 69 — reporting.",
+      "law": "AMLR Art. 34(2) — examine origin, destination and purpose where a transaction has no apparent economic or lawful purpose; Arts 51–53 — beneficial ownership of counterparties; Art. 69 — reporting.",
       "why": "Trade-based laundering hides inside legitimate commerce, which is why it is the most used and least detected typology. It is not visible in the transaction — it is visible in the price. Almost no bank benchmarks pricing, and that is precisely the gap being used.",
       "consequences": {
         "close": "Roughly €250,000 of unsupported value moved out through invoices you accepted at face value. The intermediary was a conduit and the pricing was the proof.",
@@ -1193,7 +1193,7 @@
       "is_real_case": true,
       "best_action": "sar",
       "flags": [],
-      "law": "AMLR Art. 25 — ongoing monitoring; Art. 69 — reporting. TFR where onward transfers lack originator data.",
+      "law": "AMLR Art. 26 — ongoing monitoring; Art. 69 — reporting. TFR (Regulation (EU) 2023/1113) Arts 14 and 16 where onward transfers lack originator data.",
       "why": "Mule networks are invisible one account at a time and obvious in aggregate. The decisive move is not deeper analysis of the flagged account — it is asking whether anything else behaves the same way. Most alert queues are structured to prevent exactly that question.",
       "consequences": {
         "close": "The single account was small. The network was not. Victim funds continued to move through the other ten for as long as they stayed open.",
@@ -1320,7 +1320,7 @@
       "is_real_case": true,
       "best_action": "sar",
       "flags": [],
-      "law": "EU Regulation 269/2014 — asset freezes extend to entities owned or controlled by designated persons; AMLR Art. 22 — beneficial ownership; Art. 34 — EDD.",
+      "law": "EU Regulation 269/2014 — asset freezes extend to entities owned or controlled by designated persons; AMLR Arts 51–53 — beneficial ownership; Art. 20(1)(d) — sanctions check, including owners and controllers; Art. 34 — EDD.",
       "why": "Sanctions screening matches names on the record in front of it. A structure built two levels up will never appear there. The 50% rule aggregates across chains and the control limb applies regardless of percentage — which means the only reliable defence is looking through the chain, and almost nobody does it unprompted.",
       "consequences": {
         "close": "The screening returned nothing because the designated person was never on the customer's record. The structure was built precisely to produce that result, and it worked.",
@@ -1675,7 +1675,7 @@
       "is_real_case": true,
       "best_action": "rfi",
       "flags": [],
-      "law": "AMLR Art. 22 — identification of the source of funds for the specific transaction, distinct from Art. 20's assessment of overall source of wealth. A plausible SoW does not discharge the SoF requirement for an individual transaction.",
+      "law": "AMLR Art. 25 — source and destination of funds are part of the purpose and intended nature; Art. 34(4)(c) — for higher-risk relationships, additional information on source of funds and source of wealth. The source of funds for the specific transaction is distinct from the overall source of wealth. A plausible SoW does not discharge the SoF requirement for an individual transaction.",
       "why": "Source of wealth explains a person. Source of funds explains a transaction. The relationship manager's sign-off answers the first question — she is, generally, someone who could plausibly have €800,000. It does not answer the second: did this €800,000 actually come from a property sale, as stated, or from somewhere else entirely. Those are different questions and one does not stand in for the other.",
       "consequences": {
         "close": "You accepted a specific, checkable claim — “proceeds from a property sale” — without checking it, on the strength of a general wealth narrative that was never about this transaction. If the stated origin is false, the file now shows a professional who saw the gap and signed anyway.",
