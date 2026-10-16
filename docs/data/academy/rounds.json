@@ -1,0 +1,756 @@
+{
+  "_meta": {
+    "name": "Academy rounds: Spot it games, Decide scenarios, Shifts",
+    "version": 1,
+    "purpose": "Data for docs/academy-rounds.js. One short game (Spot it) and one scenario (Decide) per lesson where they fit. Rendered inline in the lesson page.",
+    "honesty": "CF Bank, every person, company, list entry and amount here is fictional. Law quotes are verbatim from docs/data/laws/ (checked by academy/verify.mjs). Typology and teaching-model statements are worded as 'commonly' or 'one example', not as law. Every card and option is in the claim ledger academy/FACTCHECK-rounds.md.",
+    "defaults": {
+      "xp": { "spot_card": 5, "decide": 15 },
+      "note": "XP amounts, minute estimates and the warm-up length are defaults."
+    },
+    "skip": {
+      "dora-mica-primer": "No natural Spot it game or Decide scenario yet: the primer is about frameworks, not cases."
+    },
+    "labels": {
+      "context": "Context",
+      "aml-basics": "AML basics",
+      "cdd-kyc": "CDD and KYC",
+      "beneficial-ownership": "Ownership",
+      "peps": "PEPs",
+      "transaction-monitoring": "Monitoring",
+      "sanctions-screening": "Sanctions",
+      "suspicious-transaction-reports": "STRs",
+      "dora-mica-primer": "DORA, MiCA"
+    }
+  },
+
+  "tutorials": {
+    "flag": {
+      "name": "Fine or escalate",
+      "coach": [
+        { "target": ".rr-card", "title": "One card, one situation", "text": "Each card is one customer or transaction at CF Bank (fictional). Read the facts and compare them with what the bank knows." },
+        { "target": ".rr-choices", "title": "Make the call", "text": "Pick one of the two answers. Keys 1 and 2 work too, and on a phone you can swipe the card left or right." },
+        { "target": ".rr-help-btn", "title": "Learn as you go", "text": "After each card you see why, with the article of the law. Nothing is lost for a wrong answer. How to play is always here." }
+      ],
+      "howto": [
+        "Read the card, then pick one of the two answers (or press 1 or 2).",
+        "On a touch screen, swipe the card left for the first answer and right for the second.",
+        "You get the reason and the law right away. Missed cards come back in your next warm-up.",
+        "The first card is a practice card and does not count."
+      ]
+    },
+    "sort": {
+      "name": "Sort",
+      "coach": [
+        { "target": ".rr-card", "title": "One example per card", "text": "Each card describes one step, as a teaching example. Read it." },
+        { "target": ".rr-choices", "title": "Put it in a bucket", "text": "Tap the bucket it belongs in, or press its number. Arrow keys move between buckets." },
+        { "target": ".rr-help-btn", "title": "Learn as you go", "text": "You see why after every card. Wrong answers are not punished. How to play is always here." }
+      ],
+      "howto": [
+        "Read the card, then tap the bucket it fits (or press 1, 2, 3 or 4).",
+        "You get the reason right away. Missed cards come back in your next warm-up.",
+        "The first card is a practice card and does not count."
+      ]
+    },
+    "doc": {
+      "name": "Document check",
+      "coach": [
+        { "target": ".rr-ref", "title": "What the customer told us", "text": "This side shows the application: what the customer told CF Bank (fictional)." },
+        { "target": ".rr-doc", "title": "Tap the field that does not match", "text": "This is the document. Tap the one field that disagrees with the application. Arrow keys move between fields, Enter picks one." },
+        { "target": ".rr-help-btn", "title": "Learn as you go", "text": "You see the right field and the rule straight after. How to play is always here." }
+      ],
+      "howto": [
+        "Compare the application with the document, line by line.",
+        "Tap the one field on the document that does not match (or use the arrow keys and Enter).",
+        "A mismatch is a question to ask, not a verdict. The feedback says what to do with it.",
+        "The first document is a practice card and does not count."
+      ]
+    },
+    "pick": {
+      "name": "Pick",
+      "coach": [
+        { "target": ".rr-card", "title": "Read the case", "text": "Each card shows a small case. For ownership, read the structure from the customer down to the people." },
+        { "target": ".rr-opts", "title": "Pick every one that fits", "text": "Tap each answer that fits. There can be more than one. Tap again to undo." },
+        { "target": ".rr-check", "title": "Then check", "text": "Press Check to see the answer and the rule. How to play is always at the top." }
+      ],
+      "howto": [
+        "Read the case, then tap every answer that fits. There can be more than one.",
+        "Tap again to undo a pick. Press Check when you are ready.",
+        "The first card is a practice card and does not count."
+      ]
+    },
+    "match": {
+      "name": "Name match",
+      "coach": [
+        { "target": ".rr-compare", "title": "Our customer and the list entry", "text": "Screening found a possible hit. Our customer's details sit next to the list entry. The list entries are invented for training." },
+        { "target": ".rr-choices", "title": "True match or false positive?", "text": "Compare more than the name: date of birth, nationality, place of birth, owners. Then pick, or press 1 or 2." },
+        { "target": ".rr-help-btn", "title": "Learn as you go", "text": "You see why after each card. How to play is always here." }
+      ],
+      "howto": [
+        "Compare the identifiers row by row, not just the name.",
+        "Pick True match or False positive (or press 1 or 2; on a phone, swipe left or right).",
+        "Not a real sanctions list: every entry is invented for training.",
+        "The first card is a practice card and does not count."
+      ]
+    },
+    "decide": {
+      "name": "Decide",
+      "howto": [
+        "Read the situation and pick what you would do (or press its number).",
+        "You see what happens next, and why, with the article of the law.",
+        "There is no score: the point is the consequence. A risky choice comes back in your warm-up."
+      ]
+    }
+  },
+
+  "games": [
+    {
+      "id": "g-context-stages",
+      "module": "context",
+      "type": "sort",
+      "title": "Three stages",
+      "intro": "Laundering is commonly taught as three stages. Sort each example into the stage it shows best. These are teaching examples, not legal categories.",
+      "minutes": 2,
+      "choices": [
+        { "id": "placement", "label": "Placement", "hint": "dirty money first enters the system" },
+        { "id": "layering", "label": "Layering", "hint": "moved around to hide where it came from" },
+        { "id": "integration", "label": "Integration", "hint": "comes back looking legitimate" }
+      ],
+      "practice": {
+        "id": "p", "kicker": "Practice example",
+        "text": "A café pays far more banknotes into its account than its few tables could ever take in.",
+        "hint": "Hint: this is about cash getting into a bank account.",
+        "answer": "placement",
+        "why": "Cash entering the financial system is what the model calls placement. One example: a cash-heavy business used as cover."
+      },
+      "cards": [
+        { "id": "c1", "kicker": "Example 1", "text": "Someone splits a large amount of cash into many small deposits at several branches.", "answer": "placement",
+          "why": "Getting cash into accounts is placement. Splitting it into small amounts, often called structuring, is one common example. For occasional transactions, the law counts linked transactions together when applying its threshold.",
+          "cite": { "celex": "32024R1624", "art": "19", "para": "1(b)" } },
+        { "id": "c2", "kicker": "Example 2", "text": "Money moves through company accounts in three countries, backed by invoices for consulting nobody can describe.", "answer": "layering",
+          "why": "Moving money through layers of companies and countries to blur the trail is commonly called layering. Complex transactions with no apparent economic purpose must be examined.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2" } },
+        { "id": "c3", "kicker": "Example 3", "text": "The money comes back as a loan from a foreign company and pays for an apartment.", "answer": "integration",
+          "why": "Integration is the stage where the money returns looking legitimate, here as a loan that buys property. Asking about the source of funds is one way this gets noticed.",
+          "cite": { "celex": "32024R1624", "art": "25", "para": "(c)" } },
+        { "id": "c4", "kicker": "Example 4", "text": "Funds are wired back and forth between several new accounts within hours, with no trade behind them.", "answer": "layering",
+          "why": "Fast movement with no business behind it is a common layering pattern. The law asks for a closer look at transactions in an unusual pattern.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2(c)" } },
+        { "id": "c5", "kicker": "Example 5", "text": "A company that received the cleaned money pays its owner a large salary and bonus.", "answer": "integration",
+          "why": "The money now reaches the person as ordinary-looking income. One example of integration." },
+        { "id": "c6", "kicker": "Example 6", "text": "Banknotes are taken to a money changer and swapped for a few large-denomination notes.", "answer": "placement",
+          "why": "Still about turning cash into something easier to move or deposit: one example of placement. Real cases often mix stages." }
+      ],
+      "remember": [
+        "Placement, layering and integration is a common teaching model, not a legal definition.",
+        "Real cases mix the stages. Due diligence, monitoring and reporting work across all of them.",
+        "For occasional transactions, the law counts linked transactions together, so splitting does not hide the total."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "19", "para": "1(b)", "label": "When due diligence applies",
+          "quote": "when carrying out an occasional transaction of a value of at least EUR 10 000, or the equivalent in national currency, whether that transaction is carried out in a single operation or through linked transactions" }
+      ],
+      "reading": [ "FATF publications on money laundering methods and trends (typologies)" ]
+    },
+
+    {
+      "id": "g-basics-flags",
+      "module": "aml-basics",
+      "type": "flag",
+      "title": "Fine or escalate?",
+      "intro": "Each card is one transaction or request at CF Bank (fictional). Does it fit what the bank knows about the customer, or should someone take a closer look?",
+      "minutes": 2,
+      "choices": [
+        { "id": "fine", "label": "Looks fine", "hint": "fits what we know" },
+        { "id": "esc", "label": "Escalate", "hint": "someone should look closer" }
+      ],
+      "practice": {
+        "id": "p", "kicker": "Practice card", "title": "Monthly salary",
+        "facts": [ ["Customer", "Nurse, declared salary about €2,600 a month"], ["Today", "€2,580 in from City Hospital (fictional), as every month"] ],
+        "hint": "Hint: compare the payment with what the customer told us.",
+        "answer": "fine",
+        "why": "It matches what the bank knows about the customer. Ongoing monitoring checks exactly that: are transactions consistent with the bank's knowledge of the customer?",
+        "cite": { "celex": "32024R1624", "art": "26", "para": "1" }
+      },
+      "cards": [
+        { "id": "c1", "kicker": "Card 1", "title": "A big one-off",
+          "facts": [ ["Customer", "Freelance designer, expects €3,000 to €5,000 a month"], ["Today", "€185,000 in from a company abroad, no invoice reference"] ],
+          "answer": "esc",
+          "why": "Unusually large against the profile. The law asks firms to examine the origin, destination and purpose of unusually large transactions.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2(b)" } },
+        { "id": "c2", "kicker": "Card 2", "title": "Shop takings",
+          "facts": [ ["Customer", "Small online shop, declared sales of about €20,000 a month"], ["This month", "Daily payouts from its card processor, €19,400 in total"] ],
+          "answer": "fine",
+          "why": "Consistent with the business the customer declared at onboarding. That consistency is what ongoing monitoring looks for.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "1" } },
+        { "id": "c3", "kicker": "Card 3", "title": "Many small deposits",
+          "facts": [ ["Customer", "Student, part-time job"], ["Last two days", "Nine cash deposits of €950 to €990 at different branches"] ],
+          "answer": "esc",
+          "why": "Several small amounts can be one pattern. Transactions conducted in an unusual pattern must be examined.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2(c)" } },
+        { "id": "c4", "kicker": "Card 4", "title": "Round trip",
+          "facts": [ ["Customer", "Import company"], ["Today", "€70,000 goes from it to company B, then C, and back to it the same day. No goods."] ],
+          "answer": "esc",
+          "why": "Complex, and no apparent economic purpose: each one is a condition for a closer look under the law.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2(a), (d)" } },
+        { "id": "c5", "kicker": "Card 5", "title": "Family support",
+          "facts": [ ["Customer", "Retired teacher"], ["Today", "€1,200 to her daughter's account, as every month for two years"] ],
+          "answer": "fine",
+          "why": "A regular, explained pattern that the bank already knows. Consistent with the customer's profile.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "1" } },
+        { "id": "c6", "kicker": "Card 6", "title": "Urgent phone change",
+          "facts": [ ["Caller", "Says he is the account holder, cannot answer the security questions"], ["Request", "Change the phone number now, then send a large transfer"] ],
+          "answer": "esc",
+          "why": "Doubt about whether you are dealing with the customer at all is one of the situations where due diligence must be applied.",
+          "cite": { "celex": "32024R1624", "art": "19", "para": "1(f)" } }
+      ],
+      "remember": [
+        "Looks fine means consistent with what the bank knows about the customer.",
+        "Complex, unusually large, unusual pattern, or no apparent purpose: examine where the money comes from, where it goes and why.",
+        "Escalating is not accusing. It is asking a question the file cannot answer."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "34", "para": "2", "label": "Transactions that need a closer look",
+          "quote": "Obliged entities shall examine the origin and destination of funds involved in, and the purpose of, all transactions that fulfil at least one of the following conditions: (a) the transaction is of a complex nature; (b) the transaction is unusually large; (c) the transaction is conducted in an unusual pattern; (d) the transaction does not have an apparent economic or lawful purpose." }
+      ],
+      "reading": [ "EBA Guidelines on ML/TF risk factors (EBA/GL/2021/02)" ]
+    },
+
+    {
+      "id": "g-kyc-docs",
+      "module": "cdd-kyc",
+      "type": "doc",
+      "title": "Spot the mismatch",
+      "intro": "Compare what the customer told CF Bank (fictional) with the document they sent. Tap the one field on the document that does not match. Every person, company and document here is invented.",
+      "minutes": 2,
+      "practice": {
+        "id": "p", "title": "Practice document",
+        "hint": "Hint: look at the dates.",
+        "ref": { "title": "Application form", "rows": [ ["Name", "Mila Jansen"], ["Date of birth", "12 May 1994"], ["Place of birth", "Utrecht"], ["Nationality", "Dutch"] ] },
+        "doc": { "title": "Identity card (fictional)", "kind": "id", "fields": [
+          { "id": "name", "k": "Surname, given name", "v": "JANSEN, Mila" },
+          { "id": "dob", "k": "Date of birth", "v": "12.05.1984" },
+          { "id": "pob", "k": "Place of birth", "v": "Utrecht" },
+          { "id": "nat", "k": "Nationality", "v": "NLD" } ] },
+        "answer": "dob",
+        "why": "The year of birth on the card is 1984, the form says 1994. Place and full date of birth are core identification data. Ask before you accept.",
+        "cite": { "celex": "32024R1624", "art": "22", "para": "1(a)" }
+      },
+      "cards": [
+        { "id": "c1", "title": "Identity card",
+          "ref": { "title": "Application form", "rows": [ ["Name", "Lucas Peeters"], ["Date of birth", "3 March 1988"], ["Place of birth", "Ghent"], ["Nationality", "Belgian"] ] },
+          "doc": { "title": "Identity card (fictional)", "kind": "id", "fields": [
+            { "id": "name", "k": "Surname, given name", "v": "PEETERS, Lucas" },
+            { "id": "dob", "k": "Date of birth", "v": "03.03.1988" },
+            { "id": "pob", "k": "Place of birth", "v": "Liège" },
+            { "id": "nat", "k": "Nationality", "v": "BEL" } ] },
+          "answer": "pob",
+          "why": "Ghent on the form, Liège on the card. Place of birth is part of the identification data. Ask, record the answer, and do not accept until it is resolved.",
+          "cite": { "celex": "32024R1624", "art": "22", "para": "1(a)" } },
+        { "id": "c2", "title": "Passport",
+          "ref": { "title": "Application form", "rows": [ ["Name", "Daniel Okafor"], ["Date of birth", "19 July 1990"], ["Nationality", "Irish"], ["Address", "Dublin"] ] },
+          "doc": { "title": "Passport (fictional)", "kind": "id", "fields": [
+            { "id": "name", "k": "Surname, given names", "v": "OKAFOR, Samuel" },
+            { "id": "dob", "k": "Date of birth", "v": "19 JUL 1990" },
+            { "id": "nat", "k": "Nationality", "v": "IRISH" },
+            { "id": "no", "k": "Passport no.", "v": "FICT-118204" } ] },
+          "answer": "name",
+          "why": "A different first name may mean a different person. All names must be identified, and doubt about who you are dealing with is a reason to apply due diligence.",
+          "cite": { "celex": "32024R1624", "art": "19", "para": "1(f)" } },
+        { "id": "c3", "title": "Company register extract",
+          "ref": { "title": "Account application", "rows": [ ["Company", "Noordlicht Logistics BV"], ["Registered office", "Havenstraat 12, Rotterdam"], ["Signed for the company by", "Erik de Wit, director"] ] },
+          "doc": { "title": "Register extract (fictional)", "kind": "extract", "fields": [
+            { "id": "name", "k": "Name", "v": "Noordlicht Logistics B.V." },
+            { "id": "form", "k": "Legal form", "v": "Private limited company (BV)" },
+            { "id": "office", "k": "Registered office", "v": "Havenstraat 12, Rotterdam" },
+            { "id": "reps", "k": "Legal representatives", "v": "Sanne Visser, director" } ] },
+          "answer": "reps",
+          "why": "The person who signed is not among the legal representatives on the extract. The bank must verify that anyone acting for the customer is authorised, and identify them.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(i)" } },
+        { "id": "c4", "title": "Company register extract",
+          "ref": { "title": "Account application", "rows": [ ["Company", "Atelier Mosa SRL"], ["Country of creation", "Belgium"], ["Registered office", "Rue Haute 40, Brussels"] ] },
+          "doc": { "title": "Register extract (fictional)", "kind": "extract", "fields": [
+            { "id": "name", "k": "Name", "v": "Atelier Mosa SRL" },
+            { "id": "country", "k": "Country of creation", "v": "Cyprus" },
+            { "id": "office", "k": "Registered office", "v": "Rue Haute 40, Brussels" },
+            { "id": "reps", "k": "Legal representatives", "v": "Nora Gilles, manager" } ] },
+          "answer": "country",
+          "why": "The form says Belgium, the extract says Cyprus. The country of creation is part of the identification data for a legal entity. Ask why before going further.",
+          "cite": { "celex": "32024R1624", "art": "22", "para": "1(b)" } },
+        { "id": "c5", "title": "Passport",
+          "ref": { "title": "Application form", "rows": [ ["Name", "Inês Carvalho"], ["Date of birth", "2 October 1985"], ["Nationality", "Portuguese"] ] },
+          "doc": { "title": "Passport (fictional)", "kind": "id", "fields": [
+            { "id": "name", "k": "Surname, given names", "v": "CARVALHO, Inês" },
+            { "id": "dob", "k": "Date of birth", "v": "02 OCT 1985" },
+            { "id": "nat", "k": "Nationality", "v": "BRAZILIAN" },
+            { "id": "no", "k": "Passport no.", "v": "FICT-55702" } ] },
+          "answer": "nat",
+          "why": "It may simply be a second nationality, and the law asks for all nationalities. So this mismatch is a question: ask, and record both.",
+          "cite": { "celex": "32024R1624", "art": "22", "para": "1(a)" } }
+      ],
+      "remember": [
+        "Check what the customer told you against an identity document or reliable, independent source.",
+        "For a person: all names, place and full date of birth, nationalities, address. For a company: name, legal form, office, country, representatives.",
+        "A mismatch is a question, not a verdict: ask, record the answer, and where doubts remain apply due diligence again."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "22", "para": "1(a)", "label": "Identification data",
+          "quote": "for a natural person: (i) all names and surnames; (ii) place and full date of birth; (iii) nationalities, or statelessness and refugee or subsidiary protection status where applicable, and the national identification number, where applicable;" },
+        { "celex": "32024R1624", "art": "19", "para": "1(e)", "label": "When due diligence applies",
+          "quote": "when there are doubts about the veracity or adequacy of previously obtained customer identification data;" }
+      ],
+      "reading": [ "FATF Recommendation 10 (customer due diligence)" ]
+    },
+
+    {
+      "id": "g-ubo-pick",
+      "module": "beneficial-ownership",
+      "type": "pick",
+      "title": "Find the owner",
+      "intro": "Each card is a small company structure (fictional). Pick every natural person who is a beneficial owner. Multiply along chains, and check control as well as shares.",
+      "minutes": 3,
+      "practice": {
+        "id": "p", "title": "Kade Coffee BV (fictional)",
+        "text": "Who is a beneficial owner?",
+        "hint": "Hint: the threshold is 25% or more.",
+        "tree": { "name": "Kade Coffee BV", "note": "our customer", "kids": [
+          { "pct": "60%", "name": "Lotte Kade", "note": "person" },
+          { "pct": "40%", "name": "Twelve small shareholders", "note": "each under 5%" } ] },
+        "opts": [ { "id": "lotte", "label": "Lotte Kade" }, { "id": "small", "label": "The small shareholders" }, { "id": "none", "label": "No one qualifies: record it and identify the senior managing officials" } ],
+        "answer": [ "lotte" ],
+        "why": "Lotte holds 60%, which is 25% or more. None of the small shareholders comes close.",
+        "cite": { "celex": "32024R1624", "art": "52", "para": "1" }
+      },
+      "cards": [
+        { "id": "c1", "title": "Arno Fabrics BV (fictional)", "text": "Who is a beneficial owner?",
+          "tree": { "name": "Arno Fabrics BV", "note": "our customer", "kids": [
+            { "pct": "30%", "name": "Ines Moreau", "note": "person" },
+            { "pct": "20%", "name": "Pieter Lambrecht", "note": "person" },
+            { "pct": "50%", "name": "Moreau Holding BV", "note": "company", "kids": [ { "pct": "100%", "name": "Hugo Moreau", "note": "person" } ] } ] },
+          "opts": [ { "id": "ines", "label": "Ines Moreau" }, { "id": "pieter", "label": "Pieter Lambrecht" }, { "id": "hugo", "label": "Hugo Moreau" }, { "id": "none", "label": "No one qualifies: record it and identify the senior managing officials" } ],
+          "answer": [ "ines", "hugo" ],
+          "why": "Ines holds 30% directly. Hugo holds 50% indirectly (100% of the holding × 50%). Pieter's 20% is under 25%, and nothing here shows control by other means.",
+          "cite": { "celex": "32024R1624", "art": "52", "para": "1" } },
+        { "id": "c2", "title": "Solace Travel NV (fictional)", "text": "Who is a beneficial owner?",
+          "tree": { "name": "Solace Travel NV", "note": "our customer", "kids": [
+            { "pct": "60%", "name": "Solace Holding NV", "note": "company", "kids": [
+              { "pct": "60%", "name": "Mark Huysmans", "note": "person" },
+              { "pct": "40%", "name": "Rania Aziz", "note": "person" } ] },
+            { "pct": "40%", "name": "Listed shares, widely held", "note": "no holder over 2%" } ] },
+          "opts": [ { "id": "mark", "label": "Mark Huysmans" }, { "id": "rania", "label": "Rania Aziz" }, { "id": "none", "label": "No one qualifies: record it and identify the senior managing officials" } ],
+          "answer": [ "mark" ],
+          "why": "Multiply along the chain: Mark 60% × 60% = 36%. Rania 40% × 60% = 24%, just under 25%, and nothing on this chart shows she controls by other means. An agreement giving her control would change that.",
+          "cite": { "celex": "32024R1624", "art": "52", "para": "1" } },
+        { "id": "c3", "title": "Brug Software BV (fictional)", "text": "Who is a beneficial owner? The shareholder agreement says: Elena may appoint or remove a majority of the board.",
+          "tree": { "name": "Brug Software BV", "note": "our customer", "kids": [
+            { "pct": "20%", "name": "Yusuf Demir", "note": "person" },
+            { "pct": "20%", "name": "Elena Rossi", "note": "person, board appointment right" },
+            { "pct": "20%", "name": "Joris Claes", "note": "person" },
+            { "pct": "40%", "name": "Employees", "note": "each under 3%" } ] },
+          "opts": [ { "id": "yusuf", "label": "Yusuf Demir" }, { "id": "elena", "label": "Elena Rossi" }, { "id": "joris", "label": "Joris Claes" }, { "id": "none", "label": "No one qualifies: record it and identify the senior managing officials" } ],
+          "answer": [ "elena" ],
+          "why": "No one reaches 25%, but the right to appoint or remove a majority of the board is control via other means. Control is checked in parallel to ownership.",
+          "cite": { "celex": "32024R1624", "art": "53", "para": "3(b)" } },
+        { "id": "c4", "title": "Polder Wind BV (fictional)", "text": "Who is a beneficial owner? You checked the register, the shareholder list and the articles: no agreements, no one controls the board.",
+          "tree": { "name": "Polder Wind BV", "note": "our customer", "kids": [
+            { "pct": "100%", "name": "Sixty local residents", "note": "each under 3%, no voting agreements" } ] },
+          "opts": [ { "id": "chair", "label": "Ruth Koster, chair of the board" }, { "id": "biggest", "label": "The largest resident shareholder" }, { "id": "none", "label": "No one qualifies: record it and identify the senior managing officials" } ],
+          "answer": [ "none" ],
+          "why": "After exhausting all possible means, no natural person qualifies. Record that no beneficial owner was identified, and identify (and verify) the senior managing officials. They are not recorded as beneficial owners.",
+          "cite": { "celex": "32024R1624", "art": "22", "para": "2" } }
+      ],
+      "remember": [
+        "Look through companies to the natural person who ultimately owns or controls.",
+        "25% or more, direct or indirect. Multiply along the chain and add the chains together.",
+        "Control by other means counts in parallel, for example the right to appoint or remove a majority of the board.",
+        "No one found after all means? Record it and identify the senior managing officials."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "52", "para": "1", "label": "Ownership interest",
+          "quote": "shall mean direct or indirect ownership of 25 % or more of the shares or voting rights or other ownership interest in the corporate entity" },
+        { "celex": "32024R1624", "art": "53", "para": "3(b)", "label": "Control via other means",
+          "quote": "the right to appoint or remove a majority of the members of the board or the administrative, management or supervisory body or similar officers of the legal entity;" }
+      ],
+      "reading": [ "FATF Recommendations 24 and 25 (transparency of legal persons and arrangements)" ]
+    },
+
+    {
+      "id": "g-pep-sort",
+      "module": "peps",
+      "type": "sort",
+      "title": "Who counts?",
+      "intro": "Sort each person under the EU definitions. Everyone here is described by role only; no real people.",
+      "minutes": 2,
+      "choices": [
+        { "id": "pep", "label": "PEP", "hint": "holds or held a prominent public function" },
+        { "id": "family", "label": "Family member of a PEP" },
+        { "id": "assoc", "label": "Close associate of a PEP" },
+        { "id": "none", "label": "None of these", "hint": "under the EU definitions" }
+      ],
+      "practice": {
+        "id": "p", "kicker": "Practice",
+        "text": "A minister in the government of a Member State.",
+        "hint": "Hint: ministers are named in the definition.",
+        "answer": "pep",
+        "why": "Ministers are named in the definition of a politically exposed person.",
+        "cite": { "celex": "32024R1624", "art": "2", "para": "34(a)(i)" }
+      },
+      "cards": [
+        { "id": "c1", "kicker": "Person 1", "text": "The spouse of a member of a national parliament.", "answer": "family",
+          "why": "A spouse of a PEP is a family member. Members of parliament are PEPs.",
+          "cite": { "celex": "32024R1624", "art": "2", "para": "35(a)" } },
+        { "id": "c2", "kicker": "Person 2", "text": "A judge of a constitutional court.", "answer": "pep",
+          "why": "Members of supreme and constitutional courts are named in the definition.",
+          "cite": { "celex": "32024R1624", "art": "2", "para": "34(a)(iv)" } },
+        { "id": "c3", "kicker": "Person 3", "text": "The brother of a member of a national parliament.", "answer": "none",
+          "why": "Siblings count only for heads of State or government, ministers and deputy or assistant ministers (and equivalent functions). A parliament member's brother is not a family member under the EU definition. Your firm may still rate him higher risk.",
+          "cite": { "celex": "32024R1624", "art": "2", "para": "35(d)" } },
+        { "id": "c4", "kicker": "Person 4", "text": "Someone who co-owns a company with an ambassador.", "answer": "assoc",
+          "why": "Joint beneficial ownership of a legal entity with a PEP makes someone a person known to be a close associate. Ambassadors are PEPs.",
+          "cite": { "celex": "32024R1624", "art": "2", "para": "36(a)" } },
+        { "id": "c5", "kicker": "Person 5", "text": "The mayor of a town of 20,000 inhabitants.", "answer": "none",
+          "why": "The EU definition covers heads of local authorities with at least 50 000 inhabitants. A Member State can add other functions, so check your national list too.",
+          "cite": { "celex": "32024R1624", "art": "2", "para": "34(a)(viii)" } },
+        { "id": "c6", "kicker": "Person 6", "text": "A minister who left office eight months ago.", "answer": "pep",
+          "why": "The definition covers someone who is or has been entrusted with a prominent function. Measures continue for at least 12 months after leaving office, and longer while the risk remains.",
+          "cite": { "celex": "32024R1624", "art": "45", "para": "2" } }
+      ],
+      "remember": [
+        "A PEP is a natural person who is or has been entrusted with a prominent public function.",
+        "Family members and close associates get the same measures.",
+        "Measures: senior management approval, source of wealth and funds, enhanced ongoing monitoring.",
+        "Check the national list of prominent functions as well as the EU definition."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "42", "para": "1", "label": "PEP measures",
+          "quote": "obtain senior management approval for carrying out occasional transactions or for establishing or continuing business relationships with politically exposed persons;" },
+        { "celex": "32024R1624", "art": "46", "para": "", "label": "Family and close associates",
+          "quote": "The measures referred to in Articles 42, 44 and 45 shall also apply to family members or persons known to be close associates of politically exposed persons." }
+      ],
+      "reading": [ "FATF Recommendation 12 (politically exposed persons)" ]
+    },
+
+    {
+      "id": "g-tm-triage",
+      "module": "transaction-monitoring",
+      "type": "flag",
+      "title": "Alert triage",
+      "intro": "Each card is an alert at CF Bank (fictional), next to the customer's profile. Close it with a reason, or escalate.",
+      "minutes": 2,
+      "choices": [
+        { "id": "close", "label": "Close", "hint": "fits the profile, reason on file" },
+        { "id": "esc", "label": "Escalate", "hint": "the facts do not fit" }
+      ],
+      "practice": {
+        "id": "p", "kicker": "Practice alert", "title": "Rule: monthly volume up 30%",
+        "facts": [ ["Profile", "Bakery, card sales about €40,000 a month"], ["Alert", "December card sales €52,000, from the usual card processor"] ],
+        "hint": "Hint: is there an ordinary reason for this?",
+        "answer": "close",
+        "why": "A seasonal rise from the usual source fits the business. Close it, and write down why: the assessment is kept on record.",
+        "cite": { "celex": "32024R1624", "art": "77", "para": "1(b)" }
+      },
+      "cards": [
+        { "id": "c1", "kicker": "Alert 1", "title": "Rule: many new payers",
+          "facts": [ ["Profile", "Software consultant, invoices two or three business clients"], ["Alert", "€9,800 in from 14 private individuals in one week, sent on the same day to buy crypto-assets"] ],
+          "answer": "esc",
+          "why": "Many unrelated payers and fast pass-through do not fit a consultant's business. A suspicion can rest on the link between transactions and on where the funds come from and go.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "2" } },
+        { "id": "c2", "kicker": "Alert 2", "title": "Rule: round amount",
+          "facts": [ ["Profile", "Student, part-time job, pays rent monthly"], ["Alert", "€500 to Kamers BV (fictional), reference 'rent March', same as every month"] ],
+          "answer": "close",
+          "why": "Same payee, same amount, same reference as every month. Consistent with what the bank knows. Close, with that reason.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "1" } },
+        { "id": "c3", "kicker": "Alert 3", "title": "Rule: large incoming",
+          "facts": [ ["Profile", "Retired, pension €1,900 a month. Told us in May she is selling her house; notary deed on file"], ["Alert", "€48,000 in from a notary's client account"] ],
+          "answer": "close",
+          "why": "Expected and documented: the customer told the bank and the deed is on file. That knowledge is what monitoring compares against. Note it in the closure.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "1" } },
+        { "id": "c4", "kicker": "Alert 4", "title": "Rule: cash volume",
+          "facts": [ ["Profile", "Hair salon, card and cash takings about €15,000 a month"], ["Alert", "€61,000 cash paid in this month. The salon was closed for two weeks for renovation."] ],
+          "answer": "esc",
+          "why": "Four times the usual, while the salon was half closed. Unusually large and inconsistent with what the bank knows.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2(b)" } },
+        { "id": "c5", "kicker": "Alert 5", "title": "Rule: new counterparty",
+          "facts": [ ["Profile", "Wholesale textile importer"], ["Alert", "Regular 'consulting fees' in from a car-parts company, invoice numbers 1, 2, 3, 4, no contract on file"] ],
+          "answer": "esc",
+          "why": "No apparent economic purpose: a textile importer paid for consulting by an unrelated sector, with no contract. One example of a pattern that needs a closer look.",
+          "cite": { "celex": "32024R1624", "art": "34", "para": "2(d)" } },
+        { "id": "c6", "kicker": "Alert 6", "title": "Rule: new income source",
+          "facts": [ ["Profile", "Freelance photographer. Told us last week she now also rents out a holiday home"], ["Alert", "€1,100 in from a holiday booking platform"] ],
+          "answer": "close",
+          "why": "It fits the change she told the bank about. Update her profile: a change in a customer's circumstances is a reason to review the information held.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "3(a)" } }
+      ],
+      "remember": [
+        "Compare each alert with what the bank knows: profile, business, origin and destination of funds.",
+        "Close only with a reason you can write down. The assessment and its result are kept on record.",
+        "Escalate when facts do not fit: patterns, links between transactions, or where the money comes from and goes."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "26", "para": "1", "label": "Ongoing monitoring",
+          "quote": "Obliged entities shall conduct ongoing monitoring of business relationships, including transactions undertaken by the customer throughout the course of a business relationship, to ensure that those transactions are consistent with the obliged entity’s knowledge of the customer, the customer’s business activity and risk profile" }
+      ],
+      "reading": [ "EBA Guidelines on ML/TF risk factors (EBA/GL/2021/02)" ]
+    },
+
+    {
+      "id": "g-sanctions-match",
+      "module": "sanctions-screening",
+      "type": "match",
+      "title": "True match or false positive?",
+      "intro": "Screening found a possible hit. Compare our customer with the list entry. Every list entry here is invented for training: this is not a real sanctions list.",
+      "minutes": 2,
+      "choices": [
+        { "id": "true", "label": "True match", "hint": "escalate now" },
+        { "id": "fp", "label": "False positive", "hint": "clear it, record why" }
+      ],
+      "practice": {
+        "id": "p", "title": "Practice hit",
+        "rows": [ ["Name", "Jonas Berg", "Jonas BERGH"], ["Date of birth", "3 Feb 1990", "17 Nov 1958"], ["Nationality", "Swedish", "Norwegian"], ["Place of birth", "Malmö", "Bergen"] ],
+        "hint": "Hint: look past the name.",
+        "answer": "fp",
+        "why": "A similar name, but date of birth, nationality and place of birth all differ. Comparing identifiers before clearing a name is common practice; record what you compared.",
+        "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" }
+      },
+      "cards": [
+        { "id": "c1", "title": "Hit 1",
+          "rows": [ ["Name", "Petra Vosloo", "Petra VOSLOO"], ["Date of birth", "22 Aug 1971", "22 Aug 1971"], ["Nationality", "South African", "South African"], ["Place of birth", "Pretoria", "Pretoria"] ],
+          "answer": "true",
+          "why": "Name, date of birth, nationality and place of birth all agree. Escalate to your compliance officer at once and follow the firm's sanctions procedure.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" } },
+        { "id": "c2", "title": "Hit 2",
+          "rows": [ ["Name", "Kiril Danchev", "Kyrill DANTCHEV (also spelled Kiril Danchev)"], ["Date of birth", "5 Mar 1966", "5 Mar 1966"], ["Nationality", "Bulgarian", "Bulgarian"], ["Place of birth", "Plovdiv", "Plovdiv"] ],
+          "answer": "true",
+          "why": "Different spelling, same person: every identifier agrees and the entry lists the variant. Spelling variants and transliterations are a common way a match hides.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" } },
+        { "id": "c3", "title": "Hit 3",
+          "rows": [ ["Name", "Ana Lúcia Ferreira", "Ana FERREIRA"], ["Date of birth", "9 Jun 1988", "1 Jan 1950"], ["Nationality", "Portuguese", "Angolan"], ["Place of birth", "Porto", "Luanda"] ],
+          "answer": "fp",
+          "why": "A common name, and every identifier differs. Clear it, and record which identifiers you compared.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" } },
+        { "id": "c4", "title": "Hit 4: a company",
+          "rows": [ ["Name", "Lindqvist Shipping AB (our customer)", "Harbor Line Holdings Ltd"], ["Who owns it", "Erik Lindqvist 45%, Harbor Line Holdings Ltd 55%", "Designated entity (fictional)"] ],
+          "answer": "true",
+          "why": "The customer's name is not on the list, but a designated entity holds more than 50% of it. The law asks banks to check owners and controllers too.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" } },
+        { "id": "c5", "title": "Hit 5",
+          "rows": [ ["Name", "Lena Hartmann", "Lena HARTMANN"], ["Date of birth", "30 Sep 1992", "30 Sep 1962"], ["Nationality", "German", "German"], ["Place of birth", "Leipzig", "Bonn"] ],
+          "answer": "fp",
+          "why": "Same name and nationality, but thirty years apart and a different place of birth. Clear it, and record the identifiers you compared.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" } }
+      ],
+      "remember": [
+        "A name alone proves nothing: compare date of birth, nationality, place of birth and other identifiers (common practice).",
+        "Spelling variants and transliterations can still be the same person.",
+        "Check owners and controllers too: a legal entity controlled by, or more than 50% owned by, designated persons is caught.",
+        "Banks and financial institutions re-check on every new designation."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "20", "para": "1(d)", "label": "Sanctions check in due diligence",
+          "quote": "verifying whether the customer or the beneficial owners are subject to targeted financial sanctions, and, in the case of a customer or party to a legal arrangement who is a legal entity, whether natural or legal persons subject to targeted financial sanctions control the legal entity or have more than 50 % of the proprietary rights of that legal entity or majority interest in it, whether individually or collectively;" },
+        { "celex": "32024R1624", "art": "26", "para": "4", "label": "Re-check on new designations",
+          "quote": "For credit institutions and financial institutions, the verification referred to in the first subparagraph shall also be carried out upon any new designation in relation to targeted financial sanctions." }
+      ],
+      "reading": [ "EU Best Practices for the effective implementation of restrictive measures (Council of the EU)", "FATF Recommendations 6 and 7 (targeted financial sanctions)", "The EU consolidated list of financial sanctions, at the source" ]
+    },
+
+    {
+      "id": "g-str-facts",
+      "module": "suspicious-transaction-reports",
+      "type": "pick",
+      "title": "What goes in the report?",
+      "intro": "Each card is a short case at CF Bank (fictional). Pick every statement that belongs in the narrative of a suspicious transaction report: facts that support the suspicion.",
+      "minutes": 2,
+      "practice": {
+        "id": "p", "title": "Practice case",
+        "text": "A customer received money from many strangers and moved it on fast. Which statements belong in the narrative?",
+        "hint": "Hint: facts, not feelings.",
+        "opts": [
+          { "id": "a", "label": "From 3 to 5 March, 12 payers with no known link sent €30,000 in total" },
+          { "id": "b", "label": "I have a bad feeling about him" },
+          { "id": "c", "label": "The funds left within hours for a crypto-asset exchange" } ],
+        "answer": [ "a", "c" ],
+        "why": "Dates, amounts, links between transactions and where the money went are facts. A feeling is not.",
+        "cite": { "celex": "32024R1624", "art": "69", "para": "2" }
+      },
+      "cards": [
+        { "id": "c1", "title": "Voucher top-ups",
+          "text": "E-money account. Which statements belong in the narrative?",
+          "opts": [
+            { "id": "a", "label": "Account opened 2 May for 'online reselling', expected about €1,000 a month" },
+            { "id": "b", "label": "From 10 to 24 June: 46 prepaid voucher top-ups, €14,200 in total" },
+            { "id": "c", "label": "Funds sent on the same day to three accounts in other countries" },
+            { "id": "d", "label": "He sounded nervous on the phone, so he is clearly guilty" },
+            { "id": "e", "label": "His favourite football club" } ],
+          "answer": [ "a", "b", "c" ],
+          "why": "The profile, the pattern and the destination of the funds support the suspicion. A conclusion drawn from tone of voice, and irrelevant personal details, do not.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "2" } },
+        { "id": "c2", "title": "Round-trip invoices",
+          "text": "Business account. Which statements belong in the narrative?",
+          "opts": [
+            { "id": "a", "label": "Payments go from company A to B to C and back to A, same amounts" },
+            { "id": "b", "label": "€640,000 over four months" },
+            { "id": "c", "label": "The relationship manager says the client is important" },
+            { "id": "d", "label": "Invoices describe 'consulting', but the register lists no staff" },
+            { "id": "e", "label": "Probably tax fraud, maybe drugs, who knows" } ],
+          "answer": [ "a", "b", "d" ],
+          "why": "The pattern, the total and the mismatch with the business are facts. Whether the client is important has no place in the report, and a list of guesses is not a fact.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "2" } },
+        { "id": "c3", "title": "A cancelled transfer",
+          "text": "The payment never went out. Which statements belong in the narrative?",
+          "opts": [
+            { "id": "a", "label": "On 8 July the customer tried to send €25,000 to a new payee" },
+            { "id": "b", "label": "He cancelled when asked for the source of the funds" },
+            { "id": "c", "label": "Nothing happened, so there is nothing to report" },
+            { "id": "d", "label": "The analyst's guess about his private life" } ],
+          "answer": [ "a", "b" ],
+          "why": "Attempted transactions are reported too, and so are suspicions arising from not being able to complete due diligence. 'Nothing happened' is not a reason to stay silent.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "1" } }
+      ],
+      "remember": [
+        "Facts, not feelings. A common way to write it: who, what, when, how much, and why it does not fit.",
+        "A suspicion rests on facts such as the customer and counterparts, size and pattern, links between transactions, and where funds come from and go.",
+        "Attempted transactions are reported too. Never tell the customer."
+      ],
+      "law": [
+        { "celex": "32024R1624", "art": "69", "para": "2", "label": "What a suspicion is based on",
+          "quote": "A suspicion pursuant to paragraph 1, point (a), shall be based on the characteristics of the customer and their counterparts, the size and nature of the transaction or activity or the methods and patterns thereof, the link between several transactions or activities, the origin, destination or use of funds, or any other circumstance known to the obliged entity" },
+        { "celex": "32024R1624", "art": "69", "para": "1", "label": "Attempted transactions",
+          "quote": "All suspicious transactions, including attempted transactions and suspicions arising from the inability to conduct customer due diligence shall be reported in accordance with the first subparagraph." }
+      ],
+      "reading": [ "FATF Recommendation 20 (reporting of suspicious transactions)", "Your national FIU's guidance on writing reports" ]
+    }
+  ],
+
+  "decide": [
+    {
+      "id": "d-context", "module": "context", "title": "Something looks odd",
+      "text": "Day three at CF Bank (fictional). A payment on a customer account looks odd to you. Nobody has told you yet who handles this. What do you do?",
+      "options": [
+        { "id": "a", "label": "Find out who the compliance officer is and raise it with them today", "verdict": "best",
+          "consequence": "The right channel. The compliance officer is the person who reports suspicious transactions to the FIU, and you raised it promptly.",
+          "cite": { "celex": "32024R1624", "art": "11", "para": "2" } },
+        { "id": "b", "label": "Wait a few weeks to see whether it happens again", "verdict": "poor",
+          "consequence": "Reports are made promptly when there is a suspicion or reasonable grounds to suspect. Waiting for certainty is not the test.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "1(a)" } },
+        { "id": "c", "label": "Let it go: the amount is small", "verdict": "poor",
+          "consequence": "The reporting duty applies regardless of the amount involved.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "1(a)" } }
+      ]
+    },
+    {
+      "id": "d-basics", "module": "aml-basics", "title": "A launch next month",
+      "text": "The product team at CF Bank (fictional) wants to launch crypto-asset top-ups in a new country next month. Nobody has looked at the money laundering risks yet.",
+      "options": [
+        { "id": "a", "label": "Assess the risks before launch and set the controls to match", "verdict": "best",
+          "consequence": "Exactly what the law asks: before launching a new product or entering a new area, identify and assess the risks and take measures to manage them.",
+          "cite": { "celex": "32024R1624", "art": "10", "para": "1" } },
+        { "id": "b", "label": "Launch now and cover it at the annual review", "verdict": "poor",
+          "consequence": "The assessment comes before the launch, not after. A supervisor would ask why it was skipped.",
+          "cite": { "celex": "32024R1624", "art": "10", "para": "1" } },
+        { "id": "c", "label": "Launch, but put every customer through the heaviest checks", "verdict": "poor",
+          "consequence": "Heavy checks for everyone do not replace the launch assessment, and the extent of measures should follow an individual risk analysis.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "2" } }
+      ]
+    },
+    {
+      "id": "d-kyc", "module": "cdd-kyc", "title": "Open it today",
+      "text": "A new business customer's director wants the account opened today: 'Documents next week. A €40,000 payment is waiting.' Nothing in the file suggests lower risk.",
+      "options": [
+        { "id": "a", "label": "Verify identity and owners first, and explain why to the director", "verdict": "best",
+          "consequence": "Verification takes place before the business relationship starts. The payment waits a few days; the bank does not take an unknown customer.",
+          "cite": { "celex": "32024R1624", "art": "23", "para": "1" } },
+        { "id": "b", "label": "Open the account with every transaction blocked until the checks are complete", "verdict": "ok",
+          "consequence": "Also acceptable for a bank or financial institution, if safeguards really stop any transaction until due diligence is complete. The €40,000 still waits.",
+          "cite": { "celex": "32024R1624", "art": "23", "para": "3" } },
+        { "id": "c", "label": "Open it and let the payment through; collect the documents later", "verdict": "poor",
+          "consequence": "Money moves through an account whose owner nobody has verified. The exceptions for later verification need lower or little risk, and this file shows neither.",
+          "cite": { "celex": "32024R1624", "art": "23", "para": "1" } }
+      ]
+    },
+    {
+      "id": "d-ubo", "module": "beneficial-ownership", "title": "'Nobody owns us'",
+      "text": "A company customer's register entry lists no one with 25% or more. The director says: 'Nobody owns us, it is complicated.' You have the register entry and the articles, nothing else.",
+      "options": [
+        { "id": "a", "label": "Ask for the shareholder list and any agreements; only if still no one, record it and identify the senior managing officials", "verdict": "best",
+          "consequence": "Right order. The fallback to senior managing officials comes only after all possible means of identification are exhausted.",
+          "cite": { "celex": "32024R1624", "art": "22", "para": "2" } },
+        { "id": "b", "label": "Record 'no beneficial owner' and onboard", "verdict": "poor",
+          "consequence": "Too early. You have not exhausted the means of identification, and control by other means has not been checked.",
+          "cite": { "celex": "32024R1624", "art": "51", "para": "" } },
+        { "id": "c", "label": "Name the director as beneficial owner to close the file", "verdict": "poor",
+          "consequence": "Senior managing officials are identified as a fallback and recorded as such, not named as beneficial owners.",
+          "cite": { "celex": "32024R1624", "art": "22", "para": "2" } }
+      ]
+    },
+    {
+      "id": "d-pep", "module": "peps", "title": "A minister's son",
+      "text": "Screening shows that a new customer's mother is a serving minister in another Member State. He wants a premium account at CF Bank (fictional).",
+      "options": [
+        { "id": "a", "label": "Apply the PEP measures: senior management approval, source of wealth and funds, enhanced monitoring", "verdict": "best",
+          "consequence": "Correct. A child of a PEP is a family member, and the PEP measures apply to family members too.",
+          "cite": { "celex": "32024R1624", "art": "46", "para": "" } },
+        { "id": "b", "label": "Decline: family members of PEPs are too risky", "verdict": "ok",
+          "consequence": "Your firm can decide not to take the risk, but the law sets extra measures, not a ban. Declining every PEP relative by default is a business choice, not a legal duty.",
+          "cite": { "celex": "32024R1624", "art": "42", "para": "1" } },
+        { "id": "c", "label": "Standard checks: he is not the minister himself", "verdict": "poor",
+          "consequence": "The measures for PEPs also apply to family members. Standard checks would miss the approval, source of wealth and monitoring the law requires.",
+          "cite": { "celex": "32024R1624", "art": "46", "para": "" } }
+      ]
+    },
+    {
+      "id": "d-tm", "module": "transaction-monitoring", "title": "400 alerts a week",
+      "text": "One rule produces 400 alerts a week and nearly all are closed as false. A manager suggests closing them in bulk with the note 'no concern'.",
+      "options": [
+        { "id": "a", "label": "Keep closing alerts with a short written reason, and propose tuning the rule with the evidence", "verdict": "best",
+          "consequence": "Each assessment and its result stays on record, and the rule gets fixed with a documented reason instead of being ignored.",
+          "cite": { "celex": "32024R1624", "art": "77", "para": "1(b)" } },
+        { "id": "b", "label": "Bulk-close them with 'no concern'", "verdict": "poor",
+          "consequence": "The record of each assessment, and what was considered, would be missing. A bulk closure can also hide the one alert that mattered.",
+          "cite": { "celex": "32024R1624", "art": "77", "para": "1(b)" } },
+        { "id": "c", "label": "Switch the rule off", "verdict": "poor",
+          "consequence": "Monitoring still has to detect the transactions that need a closer look. Changing a rule is a decision to document, not a quick fix.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "1" } }
+      ]
+    },
+    {
+      "id": "d-sanctions", "module": "sanctions-screening", "title": "A new designation",
+      "text": "This morning a new designation (fictional) names Harbor Line Holdings Ltd, which owns 55% of your customer Lindqvist Shipping AB (fictional). A payment from the customer is queued.",
+      "options": [
+        { "id": "a", "label": "Escalate to the compliance officer now and follow the sanctions procedure before the payment goes", "verdict": "best",
+          "consequence": "Right. A designated owner with more than 50% is exactly what the sanctions check covers, and banks re-check on every new designation.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "4" } },
+        { "id": "b", "label": "Wait for the monthly screening run", "verdict": "poor",
+          "consequence": "For banks and financial institutions the check is also done upon any new designation, not on the next scheduled run.",
+          "cite": { "celex": "32024R1624", "art": "26", "para": "4" } },
+        { "id": "c", "label": "Check the customer's name only: it is not on the list", "verdict": "poor",
+          "consequence": "The check covers who owns and controls a legal entity, not only its name.",
+          "cite": { "celex": "32024R1624", "art": "20", "para": "1(d)" } }
+      ]
+    },
+    {
+      "id": "d-str", "module": "suspicious-transaction-reports", "title": "'Let me ask him at lunch'",
+      "text": "You are about to report a suspicion on a long-standing client. The relationship manager asks you to wait: 'I will ask him about it at lunch on Friday.'",
+      "options": [
+        { "id": "a", "label": "Report promptly through the compliance officer, and ask the manager not to raise it with the client", "verdict": "best",
+          "consequence": "Right. The report goes promptly, and nobody tells the client that a report or an analysis is under way.",
+          "cite": { "celex": "32024R1624", "art": "73", "para": "1" } },
+        { "id": "b", "label": "Wait until after the lunch", "verdict": "poor",
+          "consequence": "Telling the client that his transactions are being assessed is prohibited, and the report should be prompt.",
+          "cite": { "celex": "32024R1624", "art": "73", "para": "1" } },
+        { "id": "c", "label": "Leave it to the manager: it is his client", "verdict": "poor",
+          "consequence": "Reporting suspicions is the compliance officer's responsibility, not a sales decision. People who report are protected against retaliation.",
+          "cite": { "celex": "32024R1624", "art": "69", "para": "7" } }
+      ]
+    }
+  ],
+
+  "shifts": [
+    { "no": 1, "title": "Shift 1: the onboarding queue", "room": "The Desk", "href": "desk.html", "minutes": 15, "desk_days": 2,
+      "blurb": "Your first days at the Desk: an induction with a colleague at your shoulder, then the onboarding queue. Uses what you just learned about risk and due diligence. Fictional cases." },
+    { "no": 2, "title": "Shift 2: first real alerts", "room": "The Desk", "href": "desk.html", "minutes": 15, "desk_days": 4,
+      "blurb": "Alerts against the clock and harder applications. Ownership, PEPs and monitoring meet in one queue. Fictional cases." },
+    { "no": 3, "title": "Shift 3: the workstation (capstone)", "room": "Analyst workstation", "href": "workstation.html", "minutes": 15, "desk_days": 5, "desktop_only": true, "alt_href": "desk.html",
+      "blurb": "The full simulated desktop: inbox, browser, case files and the Desk. Sanctions, reporting and everything before. Built for a bigger screen; on a phone, play the next Desk day instead. Fictional cases." }
+  ]
+}
