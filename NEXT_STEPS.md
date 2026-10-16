@@ -86,6 +86,11 @@ How to build an epic slice:
 - [ ] E9 Audit pack, inspection readiness binder, board report
 - [ ] E1 Regulatory change impact analysis (RegWatch item to obligations, controls, policies)
 - [ ] E8 Academy assignments and completion tracking
+- [ ] E11 / A1 Ask the law: `docs/ai.js` + `docs/ask.html` with retrieval, bring-your-own-key model call and citation verifier (in progress)
+- [ ] E1 Regulatory change impact analysis page `docs/impact.html` (in progress)
+- [ ] A2 Drafting with sources in cases (STR narrative), policies, BWRA and controls, using `docs/ai.js`
+- [ ] A4 Reviewer: gap check of a policy or control against obligation text
+- [ ] AI evals in CI (retrieval recall and citation faithfulness gates)
 
 ## Backlog (highest value first)
 

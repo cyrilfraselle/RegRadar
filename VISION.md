@@ -44,6 +44,36 @@ test to the evidence.
 | E10 | Governance and multi-user | Roles (1LOD/2LOD/3LOD), approvals, audit trail, notifications | needs the backend decision |
 | E11 | Grounded AI copilot | Answers only from the law and the firm's own register, always with citations; drafts policies and STR narratives | needs the backend and model decision |
 
+
+## AI-native, not AI-decorated
+
+AI is how the product thinks, not a chat window bolted on. In compliance an
+unverifiable answer is worse than no answer, so these principles are fixed:
+
+1. **Grounded.** The model sees only retrieved passages (verbatim law plus
+   the firm's own register) and answers only from them. No passage, no answer.
+2. **Verifiable.** Every quote an AI output contains is machine-checked
+   against its source text. Unverified quotes are flagged and cannot be
+   exported as "checked".
+3. **Human decides.** AI drafts, flags and suggests; a person signs. Every AI
+   output is labelled, carries its sources and is logged with who accepted it.
+4. **Private by design.** Bring-your-own-key first (nothing stored on our
+   side), personal data redacted before any model call, no training on user
+   data, and a clear notice of what leaves the device.
+5. **Model-agnostic.** One provider interface; the model is a setting.
+6. **Measured.** Retrieval accuracy and citation faithfulness have golden
+   test sets that run in CI; a change that makes them worse does not merge.
+
+Where AI shows up (each is an epic slice, built on the shared `docs/ai.js`):
+
+| Slice | What it does |
+|---|---|
+| A1 Ask the law | Question in plain language, answer with verified citations; works as pure retrieval with no key |
+| A2 Drafting with sources | Policy sections, STR narratives, BWRA scenarios and control descriptions drafted from cited text |
+| A3 Regulatory impact | A RegWatch item becomes affected obligations, controls, policies and suggested actions |
+| A4 Reviewer | Checks a policy, control or customer file against the obligation text and lists gaps |
+| A5 Always-on watch | Agents that monitor regulators and open issues, already running for development |
+
 ## How to build it
 
 - Phase A (no backend): each module is a static page with its own
