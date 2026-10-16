@@ -34,6 +34,12 @@ jobs:
       - run: npx playwright install --with-deps chromium
         working-directory: tests
 
+      - name: AI evals (retrieval and citation checks, no model call)
+        run: |
+          node evals/retrieval.mjs
+          node evals/verify.mjs
+        working-directory: tests
+
       - run: node smoke.mjs
         working-directory: tests
         env:
