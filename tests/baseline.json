@@ -5,11 +5,23 @@
     "overflow": [],
     "axe": 0
   },
+  "actions.html": {
+    "console": 0,
+    "requestFailures": 0,
+    "overflow": [],
+    "axe": 0
+  },
   "casefile.html": {
     "console": 0,
     "requestFailures": 0,
     "overflow": [],
     "axe": 16
+  },
+  "cases.html": {
+    "console": 0,
+    "requestFailures": 0,
+    "overflow": [],
+    "axe": 0
   },
   "controls.html": {
     "console": 0,
@@ -18,6 +30,12 @@
     "axe": 0
   },
   "country-risk.html": {
+    "console": 0,
+    "requestFailures": 0,
+    "overflow": [],
+    "axe": 0
+  },
+  "customer-risk.html": {
     "console": 0,
     "requestFailures": 0,
     "overflow": [],
@@ -77,7 +95,19 @@
     "overflow": [],
     "axe": 0
   },
+  "policies.html": {
+    "console": 0,
+    "requestFailures": 0,
+    "overflow": [],
+    "axe": 0
+  },
   "regwatch.html": {
+    "console": 0,
+    "requestFailures": 0,
+    "overflow": [],
+    "axe": 0
+  },
+  "risk-assessment.html": {
     "console": 0,
     "requestFailures": 0,
     "overflow": [],

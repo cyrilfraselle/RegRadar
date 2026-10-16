@@ -21,7 +21,20 @@
     // One page: a plain link, no dropdown.
     { id: "regwatch", label: "RegWatch", href: "regwatch.html" },
     // Standalone tools: plain links.
-    { id: "compliance", label: "Compliance", href: "workspace.html" },
+    { id: "compliance", label: "Compliance", items: [
+      { href: "workspace.html",       t: "Workspace",            d: "Obligations, law, controls, coverage" },
+      { sep: "Assess" },
+      { href: "risk-assessment.html", t: "Business risk",        d: "Firm-wide ML/TF risk assessment" },
+      { href: "customer-risk.html",   t: "Customer risk",        d: "Scoring, onboarding checklists, reviews" },
+      { sep: "Operate" },
+      { href: "cases.html",           t: "Cases and STR",        d: "Alerts, case files, reports to the FIU" },
+      { href: "policies.html",        t: "Policies",             d: "Versions, sign-off, attestations" },
+      { href: "actions.html",         t: "Issues and actions",   d: "Remediation, escalation, board report" },
+      { href: "impact.html",          t: "Change impact",        d: "What a regulatory change touches in your firm" },
+      { href: "ask.html",             t: "Ask the law",          d: "Cited answers, checked against the legal text" },
+      { sep: "Reference" },
+      { href: "law.html",             t: "Read the law",         d: "EU texts in EN, FR, NL" },
+    ]},
     { id: "country", label: "Country Risk", href: "country-risk.html" },
     { id: "academy", label: "Academy", items: [
       { href: "academy.html",     t: "Overview",            d: "How the training works" },
@@ -38,6 +51,8 @@
   var GROUP_OF = {
     "regwatch.html": "regwatch",
     "workspace.html": "compliance", "law.html": "compliance", "obligations.html": "compliance",
+    "risk-assessment.html": "compliance", "customer-risk.html": "compliance", "cases.html": "compliance",
+    "policies.html": "compliance", "actions.html": "compliance", "impact.html": "compliance", "ask.html": "compliance",
     "controls.html": "compliance", "dashboard.html": "compliance",
     "country-risk.html": "country", "glossary.html": "academy",
     "academy.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",

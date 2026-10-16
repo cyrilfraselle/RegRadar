@@ -84,7 +84,7 @@ OBLIGATIONS = [
         "topic": "CDD",
         "priority": "high",
         "criticality": "high",
-        "verbatim": "[...] obliged entities shall obtain at least the following information in order to identify the customer [...]: (a) for a natural person: all names and surnames; place and full date of birth; nationalities [...]; the usual place of residence [...]; (b) for a legal entity: legal form and name; address of the registered or official office [...]; the names of the legal representatives [...]; (c) for a trustee of an express trust [...]: basic information on the legal arrangement [...]",
+        "verbatim": "[...] obliged entities shall obtain at least the following information in order to identify the customer, any person purporting to act on behalf of the customer, and the natural persons on whose behalf or for the benefit of whom a transaction or activity is being conducted: (a) for a natural person: (i) all names and surnames; (ii) place and full date of birth; (iii) nationalities, or statelessness and refugee or subsidiary protection status where applicable, and the national identification number, where applicable; (iv) the usual place of residence [...]; (b) for a legal entity: (i) legal form and name of the legal entity; (ii) address of the registered or official office and, if different, the principal place of business, and the country of creation; (iii) the names of the legal representatives of the legal entity [...]; (c) for a trustee of an express trust or a person holding an equivalent position in a similar legal arrangement: (i) basic information on the legal arrangement [...]",
         "sub_requirements": [
             "Natural person: full name, DOB, nationality, residential address",
             "Legal entity: legal form, name, registered address, legal representatives, LEI where available",
@@ -102,10 +102,10 @@ OBLIGATIONS = [
         "topic": "CDD",
         "priority": "medium",
         "criticality": "medium",
-        "verbatim": "Verification of the identity of the customer, the beneficial owner, and of any persons [...] shall take place before the establishment of a business relationship or the carrying out of an occasional transaction. Such obligation shall not apply to situations of [...] low risk, provided that verification is completed as soon as possible after the first contact.",
+        "verbatim": "Verification of the identity of the customer, the beneficial owner, and of any persons pursuant to Article 20(1), points (h) and (i), shall take place before the establishment of a business relationship or the carrying out of an occasional transaction. Such obligation shall not apply to situations of lower risk under Section 3 of this Chapter, provided that the lower risk justifies postponement of such verification.",
         "sub_requirements": [
             "Default: verify before onboarding / before the transaction",
-            "Narrow low-risk exception: verify as soon as possible after first contact",
+            "Derogation (para. 2): may be completed during establishment where necessary not to interrupt normal business and where ML/TF risk is little, as soon as practicable after initial contact",
         ],
         "academy_cases": [],
     },
@@ -150,7 +150,7 @@ OBLIGATIONS = [
         "topic": "Transaction Monitoring",
         "priority": "high",
         "criticality": "high",
-        "verbatim": "Obliged entities shall conduct ongoing monitoring of business relationships, including transactions undertaken by the customer throughout the course of a business relationship, to ensure that those transactions are consistent with the obliged entity’s knowledge of the customer, the customer’s business and risk profile [...]",
+        "verbatim": "Obliged entities shall conduct ongoing monitoring of business relationships, including transactions undertaken by the customer throughout the course of a business relationship, to ensure that those transactions are consistent with the obliged entity’s knowledge of the customer, the customer’s business activity and risk profile [...]",
         "sub_requirements": [
             "Screen transactions against the customer's known profile",
             "Keep documents, data and information up to date",
@@ -225,6 +225,24 @@ OBLIGATIONS = [
 ]
 
 
+import re as _re
+
+
+def _norm(t):
+    for a, b in (("\u2019", "'"), ("\u2018", "'"), ("\u201c", '"'), ("\u201d", '"'), ("\u00a0", " "), ("\u2011", "-"), ("\u2010", "-")):
+        t = t.replace(a, b)
+    return _re.sub(r"\s+", " ", t).strip().lower()
+
+
+def assert_verbatim(obligation_id, excerpt, article_text):
+    """Every segment between [...] elisions must appear word for word in the article."""
+    text = _norm(article_text)
+    for seg in _re.split(r"\[\.\.\.\]", excerpt):
+        seg = _norm(seg.strip(" ;,."))
+        if seg:
+            assert seg in text, f"{obligation_id}: excerpt segment not found verbatim in the article: {seg[:90]!r}"
+
+
 def build():
     laws_path = Path("docs/data/laws/32024R1624_EN.json")
     law = json.load(open(laws_path, encoding="utf-8"))
@@ -234,6 +252,7 @@ def build():
     for o in OBLIGATIONS:
         art = art_by_id.get(o["article"])
         assert art is not None, f"Article {o['article']} not found in AMLR text"
+        assert_verbatim(o["id"], o["verbatim"], art["text"])
         assert " ".join(art["title"].split()) == " ".join(o["title"].split()), (
             f"Title mismatch for Art. {o['article']}: "
             f"expected {o['title']!r}, law text has {art['title']!r}"

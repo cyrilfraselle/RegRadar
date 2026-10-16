@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "label": "FICTIONAL demo customers of the fictional firm CF Bank. Every name, number and decision below is invented for the demonstration. No real person or company is described.",
+    "note": "daysAgo values are turned into dates the first time the page loads, so the demo always shows some reviews overdue and some due soon."
+  },
+  "customers": [
+    {
+      "id": "CUS-1001", "name": "Alder Bakery BV", "daysAgoCreated": 1150,
+      "inputs": { "ctype": "sme", "sector": "cash", "ownership": "simple", "ubo": "verified", "age": "established",
+        "country_res": "BE", "country_ubo": "_same", "country_flow": "_same",
+        "product": "account", "channel": "f2f", "funding": "own_bank",
+        "volume": "v2", "purpose": "clear", "sof": "documented", "xb": "none", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 1150, "decision": "approve", "by": "Analyst A (demo)", "rationale": "Local bakery, owner-managed, CDD complete, cash takings explained by trade. Standard CDD." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1002", "name": "Brightwave Studio SRL", "daysAgoCreated": 300,
+      "inputs": { "ctype": "sme", "sector": "ordinary", "ownership": "simple", "ubo": "verified", "age": "established",
+        "country_res": "BE", "country_ubo": "_same", "country_flow": "DE",
+        "product": "account", "channel": "remote_ok", "funding": "own_bank",
+        "volume": "v3", "purpose": "clear", "sof": "documented", "xb": "some", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 300, "decision": "approve", "by": "Analyst A (demo)", "rationale": "Design agency, two shareholders verified, remote onboarding with an EBA/GL/2022/15-aligned provider." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1003", "name": "Cobalt Digital Assets Ltd", "daysAgoCreated": 9,
+      "inputs": { "ctype": "sme_foreign", "sector": "casp", "ownership": "complex", "ubo": "partial", "age": "new_large",
+        "country_res": "AE", "country_ubo": "VG", "country_flow": "NG",
+        "product": "crypto_transfer", "channel": "remote_ok", "funding": "third",
+        "volume": "v5", "purpose": "plausible", "sof": "plausible", "xb": "most", "behaviour": "minor", "cryptoexp": "high",
+        "pep": "none", "sanctions": "clear", "adverse": "minor", "prior_str": "no", "rbi": "no" },
+      "decisions": [],
+      "checklist": ["c_ident", "c_data", "c_timing", "c_ubo", "c_purpose", "c_sanc", "c_pep", "c_reg"]
+    },
+    {
+      "id": "CUS-1004", "name": "Delta Remit Services Ltd", "daysAgoCreated": 480,
+      "inputs": { "ctype": "sme_foreign", "sector": "msb", "ownership": "layers", "ubo": "verified", "age": "established",
+        "country_res": "GB", "country_ubo": "NG", "country_flow": "NG",
+        "product": "xborder", "channel": "f2f", "funding": "own_bank",
+        "volume": "v4", "purpose": "clear", "sof": "plausible", "xb": "most", "behaviour": "minor", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "earlier": [ { "daysAgo": 480, "patch": { "country_ubo": "GB", "country_flow": "GB", "xb": "some", "behaviour": "consistent", "volume": "v3", "sof": "documented" }, "note": "Onboarding assessment" },
+                   { "daysAgo": 320, "patch": { "country_flow": "NG", "xb": "most", "volume": "v4", "sof": "documented" }, "note": "Trigger event: new corridor to Nigeria added" } ],
+      "decisions": [ { "daysAgo": 475, "decision": "approve", "by": "Analyst A (demo)", "rationale": "Licensed money remitter in the UK, owners verified. Medium risk at onboarding." },
+                     { "daysAgo": 318, "decision": "approve", "by": "MLRO (demo)", "rationale": "Re-approved at High after the Nigeria corridor was added. EDD completed, senior management approved, monitoring tightened." } ],
+      "reviews": [ { "daysAgo": 318, "kind": "trigger", "outcome": "Tier raised to High", "by": "Analyst A (demo)", "note": "New corridor changed the geography and cross-border factors." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1005", "name": "Example Person A (PEP, demo)", "daysAgoCreated": 6,
+      "inputs": { "ctype": "nat_non", "sector": "ordinary", "ownership": "none", "ubo": "verified", "age": "new",
+        "country_res": "TR", "country_ubo": "_same", "country_flow": "BE",
+        "product": "account", "channel": "remote_ok", "funding": "own_bank",
+        "volume": "v3", "purpose": "clear", "sof": "plausible", "xb": "some", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "pep", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 3, "decision": "escalate", "by": "Analyst B (demo)", "rationale": "Foreign PEP. Source of wealth documents requested. Escalated to the MLRO for senior management approval." } ],
+      "checklist": ["c_ident", "c_data", "c_timing", "c_purpose", "c_sanc", "c_pep", "p_sow"]
+    },
+    {
+      "id": "CUS-1006", "name": "Nordlicht Holding GmbH", "daysAgoCreated": 100,
+      "inputs": { "ctype": "holding", "sector": "ordinary", "ownership": "layers", "ubo": "verified", "age": "established",
+        "country_res": "DE", "country_ubo": "NL", "country_flow": "CH",
+        "product": "account", "channel": "f2f", "funding": "own_bank",
+        "volume": "v4", "purpose": "clear", "sof": "documented", "xb": "some", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 98, "decision": "approve", "by": "Analyst A (demo)", "rationale": "Family holding with two layers, all in EU transparency registers. Treasury account only." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1007", "name": "Orion Trade FZE", "daysAgoCreated": 42,
+      "inputs": { "ctype": "sme_foreign", "sector": "highvalue", "ownership": "opaque", "ubo": "partial", "age": "new",
+        "country_res": "AE", "country_ubo": "IR", "country_flow": "TR",
+        "product": "xborder", "channel": "intro_hr", "funding": "third",
+        "volume": "v5", "purpose": "unclear", "sof": "unexplained", "xb": "most", "behaviour": "unusual", "cryptoexp": "na",
+        "pep": "none", "sanctions": "potential", "adverse": "minor", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 40, "decision": "reject", "by": "MLRO (demo)", "rationale": "Beneficial owner linked to a FATF black-listed country, opaque structure, unexplained source of funds. Declined. Refusal recorded; STR consideration passed to the MLRO." } ],
+      "checklist": ["d_refrain", "d_report", "d_record", "c_justify", "c_records"]
+    },
+    {
+      "id": "CUS-1008", "name": "Pilar Example (student account, demo)", "daysAgoCreated": 200,
+      "inputs": { "ctype": "nat_eea", "sector": "ordinary", "ownership": "none", "ubo": "verified", "age": "new",
+        "country_res": "ES", "country_ubo": "_same", "country_flow": "_same",
+        "product": "limited", "channel": "remote_ok", "funding": "own_bank",
+        "volume": "v1", "purpose": "clear", "sof": "documented", "xb": "none", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 200, "decision": "approve", "by": "Analyst B (demo)", "rationale": "Low-limit student wallet, EEA resident, remote onboarding verified." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1009", "name": "Quartz Relief Foundation", "daysAgoCreated": 700,
+      "inputs": { "ctype": "npo", "sector": "ordinary", "ownership": "layers", "ubo": "verified", "age": "established",
+        "country_res": "BE", "country_ubo": "_same", "country_flow": "AF",
+        "product": "xborder", "channel": "f2f", "funding": "mixed",
+        "volume": "v3", "purpose": "clear", "sof": "documented", "xb": "most", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 350, "decision": "approve", "by": "MLRO (demo)", "rationale": "Humanitarian NPO paying local partners in a listed high-risk country. EDD applied, senior management approval on file, payments only to vetted partners." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1010", "name": "Rhine Logistics NV", "daysAgoCreated": 800,
+      "inputs": { "ctype": "sme", "sector": "ordinary", "ownership": "layers", "ubo": "verified", "age": "established",
+        "country_res": "NL", "country_ubo": "NL", "country_flow": "DE",
+        "product": "acquiring", "channel": "f2f", "funding": "own_bank",
+        "volume": "v4", "purpose": "clear", "sof": "documented", "xb": "some", "behaviour": "consistent", "cryptoexp": "na",
+        "pep": "none", "sanctions": "clear", "adverse": "none", "prior_str": "no", "rbi": "no" },
+      "decisions": [ { "daysAgo": 800, "decision": "approve", "by": "Analyst A (demo)", "rationale": "Freight forwarder, two EU layers, merchant account for customer payments." } ],
+      "checklist": "all"
+    },
+    {
+      "id": "CUS-1011", "name": "Sable Retail (new, draft)", "daysAgoCreated": 1,
+      "inputs": { "ctype": "sme", "sector": "ordinary", "country_res": "BE" },
+      "decisions": [],
+      "checklist": []
+    }
+  ]
+}

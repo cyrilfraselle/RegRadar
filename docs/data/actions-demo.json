@@ -1,0 +1,196 @@
+{
+  "_meta": {
+    "name": "Issues and actions: demo register",
+    "version": 1,
+    "org": "CF Bank (fictional)",
+    "disclaimer": "Fictional demo data for the fictional firm CF Bank. Every finding, name, date and number is invented to show how the tracker works. It is not real audit or inspection output.",
+    "dates": "All dates are offsets in days from the day the page is first opened (negative = in the past), so the demo always looks current.",
+    "links": "control_ids refer to docs/data/controls.json, obligation_ids to docs/data/obligations.json."
+  },
+  "firm": "CF Bank (fictional)",
+  "issues": [
+    {
+      "id": "ISS-001", "title": "Customer identification evidence missing on sampled onboarding files",
+      "description": "A supervisory sample of 40 onboarding files found 9 where the identity document or the verification record could not be produced. Fictional finding.",
+      "source": "regulator_inspection", "source_ref": "Supervisory inspection letter, demo ref SI-2026-04",
+      "severity": "critical", "root_cause": "Process design", "owner": "T. Nguyen", "lod": "1LOD",
+      "status": "in_progress", "opened_off": -50, "due_off": -20,
+      "control_ids": ["ctl-01"], "obligation_ids": ["AMLR-art19", "AMLR-art20", "AMLR-art22"],
+      "actions": [
+        {"title": "Back-fill the 9 files and confirm identity evidence is retrievable", "owner": "T. Nguyen", "due_off": -30, "done_off": -28, "evidence": "Retrieval log attached to the case folder (demo reference BF-9)."},
+        {"title": "Make the onboarding workflow block completion without a verification record", "owner": "IT Change Board", "due_off": -10, "evidence": ""},
+        {"title": "Re-test a fresh sample of 40 files", "owner": "Priya K.", "due_off": 15, "evidence": ""}
+      ]
+    },
+    {
+      "id": "ISS-002", "title": "PEP book monitoring not performed for two consecutive quarters",
+      "description": "Enhanced ongoing monitoring of politically exposed persons has no test record and no review evidence. Fictional finding.",
+      "source": "internal_audit", "source_ref": "Internal audit report IA-2026-07 (demo)",
+      "severity": "high", "root_cause": "Resourcing", "owner": "M. Van Damme", "lod": "1LOD",
+      "status": "in_progress", "opened_off": -75, "due_off": -5,
+      "control_ids": ["ctl-07"], "obligation_ids": ["AMLR-art42", "AMLR-art46"],
+      "actions": [
+        {"title": "Assign a named reviewer and a quarterly calendar slot", "owner": "M. Van Damme", "due_off": -50, "done_off": -48, "evidence": "Calendar invite series and delegation e-mail saved to the evidence folder."},
+        {"title": "Complete the overdue reviews for the PEP book", "owner": "M. Van Damme", "due_off": -5, "evidence": ""}
+      ]
+    },
+    {
+      "id": "ISS-003", "title": "Four-eyes approval not evidenced for 6 of 25 sampled high-risk onboardings",
+      "description": "The approval step exists in the process but the second approver is not recorded in 6 of the sampled cases. Fictional control test result.",
+      "source": "control_test", "source_ref": "Control test ctl-06",
+      "severity": "high", "root_cause": "Technology and systems", "owner": "Sanmi O.", "lod": "1LOD",
+      "status": "open", "opened_off": -12, "due_off": 48,
+      "control_ids": ["ctl-06"], "obligation_ids": ["AMLR-art34"],
+      "actions": [
+        {"title": "Add a mandatory second-approver field to the onboarding tool", "owner": "IT Change Board", "due_off": 30, "evidence": ""}
+      ]
+    },
+    {
+      "id": "ISS-004", "title": "Beneficial-owner discrepancies reported late to the registers",
+      "description": "Discrepancies found during onboarding were logged but reported later than internal procedure requires. Fictional finding.",
+      "source": "self_identified", "source_ref": "",
+      "severity": "medium", "root_cause": "Policy or procedure gap", "owner": "M. Van Damme", "lod": "1LOD",
+      "status": "awaiting_validation", "opened_off": -60, "due_off": 10, "submitted_off": -4,
+      "control_ids": ["ctl-03"], "obligation_ids": ["AMLR-art24"],
+      "actions": [
+        {"title": "Add a discrepancy-reporting step with a time limit to the procedure", "owner": "M. Van Damme", "due_off": -20, "done_off": -18, "evidence": "Procedure v1.4 approved (demo document)."},
+        {"title": "Brief the onboarding team", "owner": "M. Van Damme", "due_off": -8, "done_off": -6, "evidence": "Attendance list, 11 of 11 present (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-005", "title": "Transaction monitoring thresholds not reviewed since go-live",
+      "description": "External reviewers noted the scenario thresholds were never re-calibrated against actual alert volumes. Fictional finding.",
+      "source": "external_review", "source_ref": "Independent effectiveness review, demo ref ER-2026-02",
+      "severity": "medium", "root_cause": "Governance and oversight", "owner": "T. Nguyen", "lod": "2LOD",
+      "status": "in_progress", "opened_off": -40, "due_off": 50,
+      "control_ids": ["ctl-05"], "obligation_ids": ["AMLR-art26"],
+      "actions": [
+        {"title": "Run a below-the-line threshold test on 6 months of data", "owner": "T. Nguyen", "due_off": 20, "evidence": ""},
+        {"title": "Present tuning decisions to the compliance committee", "owner": "Priya K.", "due_off": 45, "evidence": ""}
+      ]
+    },
+    {
+      "id": "ISS-006", "title": "STR internal escalation log incomplete",
+      "description": "Escalations from the first line to the MLRO are recorded in e-mail only; the log has gaps. No control is mapped to this obligation yet. Fictional finding.",
+      "source": "internal_audit", "source_ref": "Internal audit report IA-2026-09 (demo)",
+      "severity": "high", "root_cause": "Policy or procedure gap", "owner": "Priya K.", "lod": "2LOD",
+      "status": "open", "opened_off": -30, "due_off": 30,
+      "control_ids": [], "obligation_ids": ["AMLR-art69"],
+      "actions": []
+    },
+    {
+      "id": "ISS-007", "title": "Adverse-media vendor missed its screening turnaround several times",
+      "description": "The screening vendor exceeded the agreed turnaround on 14 occasions in the quarter. Fictional finding.",
+      "source": "self_identified", "source_ref": "",
+      "severity": "low", "root_cause": "Third party or outsourcing", "owner": "T. Nguyen", "lod": "1LOD",
+      "status": "open", "opened_off": -20, "due_off": 160,
+      "control_ids": ["ctl-08"], "obligation_ids": [],
+      "actions": [
+        {"title": "Review the vendor SLA and agree a service-credit clause", "owner": "Procurement", "due_off": 120, "evidence": ""}
+      ]
+    },
+    {
+      "id": "ISS-008", "title": "Dormant accounts are not reviewed as part of ongoing monitoring",
+      "description": "Accounts with no activity for 12 months fall outside the monitoring scenarios. The business judged the exposure low and the fix disproportionate for now. Fictional.",
+      "source": "internal_audit", "source_ref": "Internal audit report IA-2026-03 (demo)",
+      "severity": "medium", "root_cause": "Process design", "owner": "Sanmi O.", "lod": "1LOD",
+      "status": "risk_accepted", "opened_off": -100, "due_off": -10,
+      "accepted": {"by": "Head of Compliance (demo)", "until_off": 80, "on_off": -40, "rationale": "Fewer than 30 dormant accounts, all with zero balance; a manual annual sweep is in place. Re-assess at expiry."},
+      "control_ids": ["ctl-05"], "obligation_ids": ["AMLR-art26"],
+      "actions": []
+    },
+    {
+      "id": "ISS-009", "title": "Manual overrides of onboarding decisions lack a written rationale",
+      "description": "Seven overrides in the last month had no rationale recorded. Fictional finding.",
+      "source": "control_test", "source_ref": "Control test ctl-01",
+      "severity": "medium", "root_cause": "People and training", "owner": "T. Nguyen", "lod": "1LOD",
+      "status": "open", "opened_off": -5, "due_off": 85,
+      "control_ids": ["ctl-01"], "obligation_ids": ["AMLR-art20"],
+      "actions": []
+    },
+    {
+      "id": "ISS-010", "title": "Customer risk ratings not refreshed after trigger events",
+      "description": "Ratings stayed unchanged after address changes and adverse-media hits. Fictional finding.",
+      "source": "internal_audit", "source_ref": "Internal audit report IA-2026-01 (demo)",
+      "severity": "medium", "root_cause": "Process design", "owner": "T. Nguyen", "lod": "1LOD",
+      "status": "closed", "opened_off": -215, "due_off": -125, "closed_off": -128, "closed_by": "Priya K.",
+      "closure_note": "Trigger-event rule live; retest of 25 files clean.",
+      "control_ids": ["ctl-04"], "obligation_ids": ["AMLR-art25"],
+      "actions": [
+        {"title": "Add trigger-event refresh rule to the CRA workflow", "owner": "T. Nguyen", "due_off": -140, "done_off": -135, "evidence": "Rule release note and test screenshots (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-011", "title": "Onboarding team training completion below target",
+      "description": "Only 70 percent of the team had completed the annual AML module. Fictional finding.",
+      "source": "self_identified", "source_ref": "",
+      "severity": "low", "root_cause": "People and training", "owner": "Priya K.", "lod": "2LOD",
+      "status": "closed", "opened_off": -190, "due_off": -100, "closed_off": -104, "closed_by": "Sanmi O.",
+      "closure_note": "Completion at 100 percent; reminder cadence set.",
+      "control_ids": [], "obligation_ids": [],
+      "actions": [
+        {"title": "Assign the module with a completion deadline and weekly reminders", "owner": "Priya K.", "due_off": -120, "done_off": -112, "evidence": "Completion report export (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-012", "title": "CDD failure cases without a documented decision on the relationship",
+      "description": "Cases where customer due diligence could not be completed did not always record the decision taken. Fictional finding.",
+      "source": "internal_audit", "source_ref": "Internal audit report IA-2026-02 (demo)",
+      "severity": "high", "root_cause": "Policy or procedure gap", "owner": "Sanmi O.", "lod": "1LOD",
+      "status": "closed", "opened_off": -170, "due_off": -110, "closed_off": -92, "closed_by": "Priya K.",
+      "closure_note": "Closed after a second retest; closure was 18 days later than target.",
+      "control_ids": ["ctl-02"], "obligation_ids": ["AMLR-art21"],
+      "actions": [
+        {"title": "Add a mandatory decision field to the CDD failure form", "owner": "Sanmi O.", "due_off": -125, "done_off": -100, "evidence": "Form v2 in production (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-013", "title": "PEP screening list refresh failed silently for two weeks",
+      "description": "A scheduled list update failed without an alert. Fictional control test result.",
+      "source": "control_test", "source_ref": "Control test ctl-07",
+      "severity": "high", "root_cause": "Technology and systems", "owner": "M. Van Damme", "lod": "1LOD",
+      "status": "closed", "opened_off": -140, "due_off": -80, "closed_off": -84, "closed_by": "Priya K.",
+      "closure_note": "Failure alerting added and tested.",
+      "control_ids": ["ctl-07"], "obligation_ids": ["AMLR-art42"],
+      "actions": [
+        {"title": "Add job-failure alerting to the list refresh", "owner": "IT Operations", "due_off": -95, "done_off": -90, "evidence": "Alert test ticket (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-014", "title": "Purpose and nature of relationship fields blank in a share of files",
+      "description": "Free-text purpose field left blank or filled with placeholders in sampled files. Fictional finding.",
+      "source": "control_test", "source_ref": "Control test ctl-04",
+      "severity": "medium", "root_cause": "Data quality", "owner": "T. Nguyen", "lod": "1LOD",
+      "status": "closed", "opened_off": -110, "due_off": -20, "closed_off": -37, "closed_by": "Sanmi O.",
+      "closure_note": "Field made mandatory with a picklist; retest clean.",
+      "control_ids": ["ctl-04"], "obligation_ids": ["AMLR-art25"],
+      "actions": [
+        {"title": "Replace free text with a mandatory picklist plus comment", "owner": "IT Change Board", "due_off": -50, "done_off": -45, "evidence": "Release note R-226 (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-015", "title": "Supervisor information request answered after the requested date",
+      "description": "A request for information was answered three days late because ownership was unclear. Fictional finding.",
+      "source": "regulator_inspection", "source_ref": "Supervisory correspondence, demo ref SC-2026-11",
+      "severity": "medium", "root_cause": "Governance and oversight", "owner": "Priya K.", "lod": "2LOD",
+      "status": "closed", "opened_off": -80, "due_off": -20, "closed_off": -33, "closed_by": "Head of Compliance (demo)",
+      "closure_note": "Single point of contact named; tracker for regulator requests in place.",
+      "control_ids": [], "obligation_ids": [],
+      "actions": [
+        {"title": "Name an owner and back-up for supervisory requests", "owner": "Priya K.", "due_off": -45, "done_off": -40, "evidence": "Updated RACI (demo)."}
+      ]
+    },
+    {
+      "id": "ISS-016", "title": "Sanctions list update batch failed twice in a quarter",
+      "description": "Two failed batch runs were fixed by IT without a compliance notification. Fictional control test result.",
+      "source": "control_test", "source_ref": "Control test ctl-08",
+      "severity": "high", "root_cause": "Technology and systems", "owner": "T. Nguyen", "lod": "1LOD",
+      "status": "closed", "opened_off": -65, "due_off": 0, "closed_off": -12, "closed_by": "Priya K.",
+      "closure_note": "Monitoring and compliance notification added; two clean runs.",
+      "control_ids": ["ctl-08"], "obligation_ids": [],
+      "actions": [
+        {"title": "Alert compliance on any failed list update", "owner": "IT Operations", "due_off": -20, "done_off": -15, "evidence": "Alert rule export (demo)."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,553 @@
+{
+ "_meta": {
+  "about": "Golden set for retrieval evals. expected = articles that must appear in the top 5 retrieved articles. evidence = case-insensitive regex that must match the article text, checked on every run so the set stays tied to the law JSON. dev questions were used while tuning expansions; holdout questions were written first and only measured, not tuned on.",
+  "scope": "core scope in docs/ai.js (AMLR, TFR, AMLD6, AMLAR, DORA, MiCA, PSD2, GDPR, EMD2)"
+ },
+ "questions": [
+  {
+   "id": "amlr-cdd-when",
+   "split": "dev",
+   "question": "When do we have to apply customer due diligence to an occasional transaction?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "19",
+     "evidence": "occasional transaction"
+    }
+   ]
+  },
+  {
+   "id": "amlr-pep-measures",
+   "split": "dev",
+   "question": "What extra measures apply to politically exposed persons?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "42",
+     "evidence": "senior management approval"
+    }
+   ]
+  },
+  {
+   "id": "amlr-pep-cease",
+   "split": "dev",
+   "question": "How long do we keep treating someone as a PEP after they leave office?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "45",
+     "evidence": "cease"
+    }
+   ]
+  },
+  {
+   "id": "amlr-str",
+   "split": "dev",
+   "question": "What are our obligations to report suspicious transactions to the FIU?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "69",
+     "evidence": "report to the FIU"
+    }
+   ]
+  },
+  {
+   "id": "amlr-tipping",
+   "split": "dev",
+   "question": "Can we tell a customer that we filed a suspicious transaction report?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "73",
+     "evidence": "shall not disclose to the customer"
+    }
+   ]
+  },
+  {
+   "id": "amlr-retention",
+   "split": "dev",
+   "question": "How long must we retain customer due diligence records?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "77",
+     "evidence": "retain the following documents"
+    }
+   ]
+  },
+  {
+   "id": "amlr-cash",
+   "split": "dev",
+   "question": "What is the limit on cash payments for goods or services?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "80",
+     "evidence": "only up to an amount of EUR 10 000"
+    }
+   ]
+  },
+  {
+   "id": "amlr-bo-25",
+   "split": "dev",
+   "question": "What ownership percentage makes someone a beneficial owner?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "52",
+     "evidence": "25 %"
+    }
+   ]
+  },
+  {
+   "id": "amlr-edd",
+   "split": "dev",
+   "question": "When is enhanced due diligence mandatory?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "34",
+     "evidence": "enhanced due diligence"
+    }
+   ]
+  },
+  {
+   "id": "amlr-selfhosted",
+   "split": "dev",
+   "question": "What must a crypto-asset service provider do for transfers to self-hosted wallets?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "40",
+     "evidence": "self-hosted address"
+    }
+   ]
+  },
+  {
+   "id": "amlr-compliance-officer",
+   "split": "dev",
+   "question": "Do we need to appoint a compliance officer and who approves the business-wide risk assessment?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "11",
+     "evidence": "compliance officer"
+    },
+    {
+     "law": "AMLR",
+     "art": "10",
+     "evidence": "business-wide risk assessment"
+    }
+   ]
+  },
+  {
+   "id": "amlr-outsourcing",
+   "split": "dev",
+   "question": "Can an obliged entity outsource AML tasks to a service provider?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "18",
+     "evidence": "outsource tasks"
+    }
+   ]
+  },
+  {
+   "id": "tfr-payer-info",
+   "split": "dev",
+   "question": "What information about the payer must accompany a transfer of funds?",
+   "expected": [
+    {
+     "law": "TFR",
+     "art": "4",
+     "evidence": "name of the payer"
+    }
+   ]
+  },
+  {
+   "id": "tfr-travel-rule",
+   "split": "dev",
+   "question": "What originator and beneficiary information must go with a crypto-asset transfer?",
+   "expected": [
+    {
+     "law": "TFR",
+     "art": "14",
+     "evidence": "originator"
+    }
+   ]
+  },
+  {
+   "id": "dora-incident",
+   "split": "dev",
+   "question": "What is the process for reporting a major ICT-related incident?",
+   "expected": [
+    {
+     "law": "DORA",
+     "art": "19",
+     "evidence": "initial notification"
+    }
+   ]
+  },
+  {
+   "id": "dora-tlpt",
+   "split": "dev",
+   "question": "Do we have to do threat-led penetration testing and how often?",
+   "expected": [
+    {
+     "law": "DORA",
+     "art": "26",
+     "evidence": "threat-led penetration"
+    }
+   ]
+  },
+  {
+   "id": "dora-register",
+   "split": "dev",
+   "question": "Do we need to keep a register of information on ICT third-party arrangements?",
+   "expected": [
+    {
+     "law": "DORA",
+     "art": "28",
+     "evidence": "register of information"
+    }
+   ]
+  },
+  {
+   "id": "dora-contract",
+   "split": "dev",
+   "question": "What must be in the contract with an ICT service provider supporting critical functions?",
+   "expected": [
+    {
+     "law": "DORA",
+     "art": "30",
+     "evidence": "exit strategies"
+    }
+   ]
+  },
+  {
+   "id": "mica-ownfunds",
+   "split": "dev",
+   "question": "What are the own funds or prudential requirements for crypto-asset service providers?",
+   "expected": [
+    {
+     "law": "MiCA",
+     "art": "67",
+     "evidence": "permanent minimum capital"
+    }
+   ]
+  },
+  {
+   "id": "mica-whitepaper",
+   "split": "dev",
+   "question": "Who must draw up a crypto-asset white paper before an offer to the public?",
+   "expected": [
+    {
+     "law": "MiCA",
+     "art": "4",
+     "evidence": "white paper"
+    }
+   ]
+  },
+  {
+   "id": "psd2-safeguard",
+   "split": "dev",
+   "question": "How must a payment institution safeguard customer funds?",
+   "expected": [
+    {
+     "law": "PSD2",
+     "art": "10",
+     "evidence": "safeguard all funds"
+    }
+   ]
+  },
+  {
+   "id": "psd2-sca",
+   "split": "dev",
+   "question": "When must a payment service provider apply strong customer authentication?",
+   "expected": [
+    {
+     "law": "PSD2",
+     "art": "97",
+     "evidence": "strong customer authentication"
+    }
+   ]
+  },
+  {
+   "id": "gdpr-breach",
+   "split": "dev",
+   "question": "Within what time must a personal data breach be notified to the supervisory authority?",
+   "expected": [
+    {
+     "law": "GDPR",
+     "art": "33",
+     "evidence": "72 hours"
+    }
+   ]
+  },
+  {
+   "id": "gdpr-dpia",
+   "split": "dev",
+   "question": "When is a data protection impact assessment required?",
+   "expected": [
+    {
+     "law": "GDPR",
+     "art": "35",
+     "evidence": "data protection impact assessment"
+    }
+   ]
+  },
+  {
+   "id": "gdpr-erasure",
+   "split": "dev",
+   "question": "When can a data subject ask us to erase their personal data?",
+   "expected": [
+    {
+     "law": "GDPR",
+     "art": "17",
+     "evidence": "erasure"
+    }
+   ]
+  },
+  {
+   "id": "h-amlr-reliance",
+   "split": "holdout",
+   "question": "Can we rely on another obliged entity to carry out customer identification?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "48",
+     "evidence": "may rely on other obliged entities"
+    }
+   ]
+  },
+  {
+   "id": "h-amlr-shell",
+   "split": "holdout",
+   "question": "Are correspondent relationships with shell banks allowed?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "39",
+     "evidence": "shell institution"
+    }
+   ]
+  },
+  {
+   "id": "h-amlr-ongoing",
+   "split": "holdout",
+   "question": "How often do we need to review and update customer information during the relationship?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "26",
+     "evidence": "ongoing monitoring"
+    }
+   ]
+  },
+  {
+   "id": "h-amlr-refrain",
+   "split": "holdout",
+   "question": "What do we do if we cannot complete customer due diligence?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "21",
+     "evidence": "refrain from carrying out a transaction"
+    }
+   ]
+  },
+  {
+   "id": "h-amlr-whistle",
+   "split": "holdout",
+   "question": "What protection do employees get when they report breaches internally?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "14",
+     "evidence": "reporting"
+    }
+   ]
+  },
+  {
+   "id": "h-amlr-bearer",
+   "split": "holdout",
+   "question": "Are anonymous accounts or bearer shares permitted?",
+   "expected": [
+    {
+     "law": "AMLR",
+     "art": "79",
+     "evidence": "bearer shares"
+    }
+   ]
+  },
+  {
+   "id": "h-tfr-missing",
+   "split": "holdout",
+   "question": "What must we do when a transfer arrives with missing payer information?",
+   "expected": [
+    {
+     "law": "TFR",
+     "art": "8",
+     "evidence": "missing or incomplete"
+    }
+   ]
+  },
+  {
+   "id": "h-tfr-retention",
+   "split": "holdout",
+   "question": "How long do payment service providers keep records of payer and payee information on transfers?",
+   "expected": [
+    {
+     "law": "TFR",
+     "art": "26",
+     "evidence": "five years"
+    }
+   ]
+  },
+  {
+   "id": "h-dora-governance",
+   "split": "holdout",
+   "question": "What is the management body responsible for under digital operational resilience?",
+   "expected": [
+    {
+     "law": "DORA",
+     "art": "5",
+     "evidence": "management body"
+    }
+   ]
+  },
+  {
+   "id": "h-dora-backup",
+   "split": "holdout",
+   "question": "What backup and restoration procedures does DORA require?",
+   "expected": [
+    {
+     "law": "DORA",
+     "art": "12",
+     "evidence": "backup policies and procedures"
+    }
+   ]
+  },
+  {
+   "id": "h-mica-custody",
+   "split": "holdout",
+   "question": "What must a CASP do to safeguard clients' crypto-assets and funds?",
+   "expected": [
+    {
+     "law": "MiCA",
+     "art": "70",
+     "evidence": "safeguard the ownership rights"
+    }
+   ]
+  },
+  {
+   "id": "h-mica-conflicts",
+   "split": "holdout",
+   "question": "What rules apply to conflicts of interest at crypto-asset service providers?",
+   "expected": [
+    {
+     "law": "MiCA",
+     "art": "72",
+     "evidence": "conflicts of interest"
+    }
+   ]
+  },
+  {
+   "id": "h-mica-emt",
+   "split": "holdout",
+   "question": "What are the requirements to issue an e-money token?",
+   "expected": [
+    {
+     "law": "MiCA",
+     "art": "48",
+     "evidence": "e-money token"
+    }
+   ]
+  },
+  {
+   "id": "h-psd2-liability",
+   "split": "holdout",
+   "question": "What is the payer's liability for an unauthorised payment transaction?",
+   "expected": [
+    {
+     "law": "PSD2",
+     "art": "74",
+     "evidence": "unauthorised payment"
+    }
+   ]
+  },
+  {
+   "id": "h-psd2-incident",
+   "split": "holdout",
+   "question": "Do payment service providers have to notify authorities of major security incidents?",
+   "expected": [
+    {
+     "law": "PSD2",
+     "art": "96",
+     "evidence": "major operational or security incident"
+    }
+   ]
+  },
+  {
+   "id": "h-gdpr-dpo",
+   "split": "holdout",
+   "question": "When must we designate a data protection officer?",
+   "expected": [
+    {
+     "law": "GDPR",
+     "art": "37",
+     "evidence": "data protection officer"
+    }
+   ]
+  },
+  {
+   "id": "h-gdpr-transfer",
+   "split": "holdout",
+   "question": "Can personal data be transferred to a third country outside the EU?",
+   "expected": [
+    {
+     "law": "GDPR",
+     "art": "44",
+     "evidence": "third country"
+    }
+   ]
+  },
+  {
+   "id": "h-gdpr-lawful",
+   "split": "holdout",
+   "question": "What are the lawful bases for processing personal data?",
+   "expected": [
+    {
+     "law": "GDPR",
+     "art": "6",
+     "evidence": "lawfulness of processing"
+    }
+   ]
+  },
+  {
+   "id": "h-amld6-fiu",
+   "split": "holdout",
+   "question": "What are the powers of the Financial Intelligence Unit to access information?",
+   "expected": [
+    {
+     "law": "AMLD6",
+     "art": "21",
+     "evidence": "FIU"
+    }
+   ]
+  },
+  {
+   "id": "h-amlar-supervision",
+   "split": "holdout",
+   "question": "What supervisory powers does AMLA have over selected obliged entities?",
+   "expected": [
+    {
+     "law": "AMLAR",
+     "art": "6",
+     "evidence": "supervisory and investigative powers"
+    }
+   ]
+  }
+ ]
+}

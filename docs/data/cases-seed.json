@@ -1,0 +1,1069 @@
+{
+ "_meta": {
+  "name": "Cases demo seed",
+  "version": 1,
+  "note": "Entirely fictional demo data. Customers, entities, references and numbers are invented; alert content is adapted from the RegRadar Academy casebook (fictional). Ages are relative to the moment the demo is first loaded."
+ },
+ "alerts": [
+  {
+   "id": "ALR-0001",
+   "casebookId": "A-4471",
+   "title": "Six cash deposits in eleven days",
+   "typology": "structuring",
+   "priority": "medium",
+   "ageHours": 52,
+   "assignee": "Analyst A",
+   "status": "new",
+   "rule": "Threshold — cash deposits",
+   "customer": "Retail · Ms L. Peeters · customer since 2011 · low risk",
+   "summary": "Six cash deposits of between €8,000 and €9,600, all at branch counters, over eleven days. No prior cash activity of any size on this account in fourteen years.",
+   "amount": "€53,400 across 6 deposits",
+   "facts": {
+    "Profile": "Salaried nurse, single account",
+    "Expected activity": "Salary in, card spend out, ~€3.2k/month",
+    "Alert amount": "€53,400 across 6 deposits",
+    "Jurisdictions": "Belgium only"
+   },
+   "txs": [
+    {
+     "daysAgo": 15,
+     "kind": "Cash deposit",
+     "amount": "9,600",
+     "party": "Antwerp Centraal"
+    },
+    {
+     "daysAgo": 13,
+     "kind": "Cash deposit",
+     "amount": "8,900",
+     "party": "Antwerp Centraal"
+    },
+    {
+     "daysAgo": 11,
+     "kind": "Cash deposit",
+     "amount": "9,200",
+     "party": "Berchem"
+    },
+    {
+     "daysAgo": 8,
+     "kind": "Cash deposit",
+     "amount": "8,000",
+     "party": "Antwerp Centraal"
+    },
+    {
+     "daysAgo": 6,
+     "kind": "Cash deposit",
+     "amount": "9,100",
+     "party": "Berchem"
+    },
+    {
+     "daysAgo": 4,
+     "kind": "Cash deposit",
+     "amount": "8,600",
+     "party": "Antwerp Centraal"
+    }
+   ],
+   "onFile": "No supporting documentation on file. Relationship manager has not been contacted."
+  },
+  {
+   "id": "ALR-0002",
+   "casebookId": "A-4472",
+   "title": "Salary account suddenly forwarding funds",
+   "typology": "mule",
+   "priority": "high",
+   "ageHours": 20,
+   "assignee": "Analyst A",
+   "status": "escalated",
+   "rule": "Velocity — outbound transfers",
+   "customer": "Retail · Mr D. Okonkwo · customer since 2024 · standard risk",
+   "summary": "Twelve inbound transfers from unrelated private individuals, each €2,900–€4,600, followed within hours by outbound transfers to three accounts abroad. Balance returns to near zero each time.",
+   "amount": "€47,200 in, €46,850 out over 9 days",
+   "facts": {
+    "Profile": "Student account, part-time income",
+    "Expected activity": "~€900/month in, small card spend",
+    "Alert amount": "€47,200 in, €46,850 out over 9 days",
+    "Jurisdictions": "BE → PL, LT, RO"
+   },
+   "txs": [
+    {
+     "daysAgo": 5,
+     "kind": "Inbound — private",
+     "amount": "4,200",
+     "party": "from J. Nowak"
+    },
+    {
+     "daysAgo": 5,
+     "kind": "Outbound",
+     "amount": "4,150",
+     "party": "to LT account"
+    },
+    {
+     "daysAgo": 4,
+     "kind": "Inbound — private",
+     "amount": "3,800",
+     "party": "from A. Ivanova"
+    },
+    {
+     "daysAgo": 4,
+     "kind": "Outbound",
+     "amount": "3,760",
+     "party": "to PL account"
+    },
+    {
+     "daysAgo": 2,
+     "kind": "Inbound — private",
+     "amount": "4,600",
+     "party": "from M. Dumitru"
+    },
+    {
+     "daysAgo": 2,
+     "kind": "Outbound",
+     "amount": "4,540",
+     "party": "to RO account"
+    }
+   ],
+   "onFile": "Customer is 21, opened the account for a student job. No business activity declared. Two inbound senders appear in an internal fraud-victim list.",
+   "caseId": "CASE-2026-0002"
+  },
+  {
+   "id": "ALR-0003",
+   "casebookId": "A-4473",
+   "title": "€180,000 to a notary",
+   "typology": "high-value",
+   "priority": "low",
+   "ageHours": 100,
+   "assignee": "Analyst B",
+   "status": "new",
+   "rule": "High-value transfer",
+   "customer": "Retail · Mr & Mrs Vandenberghe · customers since 2003 · low risk",
+   "summary": "A single transfer of €180,000 to a Belgian notary account, referenced with a property address. Funded by the closure of a savings account held at the same bank since 2009.",
+   "amount": "€180,000 single outbound",
+   "facts": {
+    "Profile": "Two salaried professionals, joint account",
+    "Expected activity": "~€7k/month combined",
+    "Alert amount": "€180,000 single outbound",
+    "Jurisdictions": "Belgium only"
+   },
+   "txs": [
+    {
+     "daysAgo": 6,
+     "kind": "Internal transfer",
+     "amount": "180,000",
+     "party": "from savings ****4471"
+    },
+    {
+     "daysAgo": 6,
+     "kind": "Outbound",
+     "amount": "180,000",
+     "party": "Notaris Devos & Partners"
+    }
+   ],
+   "onFile": "Savings account shows fourteen years of regular monthly contributions. Mortgage application with this bank was approved two weeks earlier for the same address."
+  },
+  {
+   "id": "ALR-0004",
+   "casebookId": "A-4474",
+   "title": "Trade payments routed through three countries",
+   "typology": "trade-value",
+   "priority": "high",
+   "ageHours": 140,
+   "assignee": "Analyst A",
+   "status": "escalated",
+   "rule": "Jurisdiction — high-risk nexus",
+   "customer": "Corporate · Meridian Trading BVBA · customer since 2019 · high risk",
+   "summary": "Four payments for machinery parts, invoiced by a UAE intermediary, with goods shipped directly from Pakistan to Belgium. Invoice values are 40–60% above comparable market pricing.",
+   "amount": "€620,000 across 4 payments",
+   "facts": {
+    "Profile": "Import/export, declared turnover €4.1M",
+    "Expected activity": "Trade payments, EU and Türkiye",
+    "Alert amount": "€620,000 across 4 payments",
+    "Jurisdictions": "BE → AE → PK"
+   },
+   "txs": [
+    {
+     "daysAgo": 18,
+     "kind": "Outbound",
+     "amount": "185,000",
+     "party": "Gulf Machinery FZE, UAE"
+    },
+    {
+     "daysAgo": 14,
+     "kind": "Outbound",
+     "amount": "160,000",
+     "party": "Gulf Machinery FZE, UAE"
+    },
+    {
+     "daysAgo": 9,
+     "kind": "Outbound",
+     "amount": "140,000",
+     "party": "Gulf Machinery FZE, UAE"
+    },
+    {
+     "daysAgo": 7,
+     "kind": "Outbound",
+     "amount": "135,000",
+     "party": "Gulf Machinery FZE, UAE"
+    }
+   ],
+   "onFile": "Gulf Machinery FZE was incorporated four months ago. Beneficial owner not established — corporate shareholder in a jurisdiction with no public register. Goods never enter the UAE.",
+   "caseId": "CASE-2026-0001"
+  },
+  {
+   "id": "ALR-0005",
+   "casebookId": "A-4475",
+   "title": "Dormant account wakes up with a round sum",
+   "typology": "dormant",
+   "priority": "low",
+   "ageHours": 30,
+   "assignee": "Analyst B",
+   "status": "in_review",
+   "rule": "Dormancy — reactivation",
+   "customer": "Retail · Mr S. Haddad · customer since 2016 · standard risk",
+   "summary": "A single inbound transfer of €25,000 from a French bank, reference \"prêt familial\". No subsequent activity. Funds remain in the account.",
+   "amount": "€25,000 inbound",
+   "facts": {
+    "Profile": "Account dormant since 2021",
+    "Expected activity": "None for three years",
+    "Alert amount": "€25,000 inbound",
+    "Jurisdictions": "BE ← FR"
+   },
+   "txs": [
+    {
+     "daysAgo": 3,
+     "kind": "Inbound",
+     "amount": "25,000",
+     "party": "from Crédit Mutuel, ref: prêt familial"
+    }
+   ],
+   "onFile": "Sender name matches the customer’s surname. Customer address updated to France in 2021. No adverse media. Funds have not moved."
+  },
+  {
+   "id": "ALR-0006",
+   "casebookId": "A-4476",
+   "title": "Three accounts, one pattern",
+   "typology": "structuring",
+   "priority": "high",
+   "ageHours": 8,
+   "assignee": "",
+   "status": "new",
+   "rule": "Structuring — related parties",
+   "customer": "Retail · Three unrelated customers, same branch · all standard risk",
+   "summary": "Three customers with no declared relationship each deposited cash on the same three dates, at the same branch, in amounts between €4,500 and €6,200 — then each transferred the balance to a single fourth account within 48 hours.",
+   "amount": "€142,000 aggregate",
+   "facts": {
+    "Profile": "Three individual accounts, no declared connection",
+    "Expected activity": "Modest retail activity",
+    "Alert amount": "€142,000 aggregate",
+    "Jurisdictions": "Belgium only"
+   },
+   "txs": [
+    {
+     "daysAgo": 4,
+     "kind": "Cash — customer A",
+     "amount": "6,200",
+     "party": "Ghent Zuid"
+    },
+    {
+     "daysAgo": 4,
+     "kind": "Cash — customer B",
+     "amount": "5,800",
+     "party": "Ghent Zuid"
+    },
+    {
+     "daysAgo": 4,
+     "kind": "Cash — customer C",
+     "amount": "4,900",
+     "party": "Ghent Zuid"
+    },
+    {
+     "daysAgo": 2,
+     "kind": "Transfers to account ****8812",
+     "amount": "16,900",
+     "party": "consolidated"
+    }
+   ],
+   "onFile": "The receiving account belongs to a company whose director is the brother of customer A. The company is a car dealership."
+  },
+  {
+   "id": "ALR-0007",
+   "casebookId": "A-4477",
+   "title": "A 78% name match on a designated person",
+   "typology": "sanctions",
+   "priority": "high",
+   "ageHours": 5,
+   "assignee": "Analyst B",
+   "status": "new",
+   "rule": "Sanctions — name match",
+   "customer": "Retail · Mr A. Kuznetsov · customer since 2018 · standard risk",
+   "summary": "Screening flagged the customer against a designated individual on the EU consolidated list at 78% fuzzy match. The alert relates to a routine €2,300 rent payment.",
+   "amount": "€2,300 outbound",
+   "facts": {
+    "Profile": "Salaried engineer, Belgian resident",
+    "Expected activity": "~€4.1k/month salary, mortgage",
+    "Alert amount": "€2,300 outbound",
+    "Jurisdictions": "BE → BE"
+   },
+   "txs": [
+    {
+     "daysAgo": 2,
+     "kind": "Standing order",
+     "amount": "2,300",
+     "party": "Immo Verhoeven BVBA — rent"
+    }
+   ],
+   "onFile": "Designated person: Aleksei KUZNETSOV, born 1961, Russian national, resident Moscow. Customer: Anton KUZNETSOV, born 1989, Belgian national, born in Ghent, holds Belgian ID verified at onboarding. Different date of birth, different first name, different nationality."
+  },
+  {
+   "id": "ALR-0008",
+   "casebookId": "A-4478",
+   "title": "Inbound from an exchange, onward to a private wallet",
+   "typology": "crypto",
+   "priority": "high",
+   "ageHours": 260,
+   "assignee": "Analyst A",
+   "status": "escalated",
+   "rule": "Crypto — exposure screening",
+   "customer": "Retail · Ms N. Ferreira · customer since 2022 · standard risk",
+   "summary": "Four inbound transfers from a crypto exchange registered in Estonia, then onward transfers to two accounts the customer has not previously used. Chain analytics on the originating addresses shows indirect exposure to a sanctioned mixing service two hops back.",
+   "amount": "€88,000 in, €86,500 out",
+   "facts": {
+    "Profile": "Freelance designer",
+    "Expected activity": "Client invoices €2–6k/month",
+    "Alert amount": "€88,000 in, €86,500 out",
+    "Jurisdictions": "BE ← EE, → unknown"
+   },
+   "txs": [
+    {
+     "daysAgo": 23,
+     "kind": "Inbound — exchange",
+     "amount": "24,000",
+     "party": "BitBaltic OÜ"
+    },
+    {
+     "daysAgo": 22,
+     "kind": "Outbound",
+     "amount": "23,800",
+     "party": "private account"
+    },
+    {
+     "daysAgo": 18,
+     "kind": "Inbound — exchange",
+     "amount": "31,000",
+     "party": "BitBaltic OÜ"
+    },
+    {
+     "daysAgo": 16,
+     "kind": "Outbound",
+     "amount": "30,700",
+     "party": "private account"
+    },
+    {
+     "daysAgo": 12,
+     "kind": "Inbound — exchange",
+     "amount": "33,000",
+     "party": "BitBaltic OÜ"
+    }
+   ],
+   "onFile": "Customer declared crypto trading as a side activity at onboarding in 2022. Volumes then were under €5,000 a year. No source-of-wealth documentation on file. Travel-rule originator data absent on three of the four inbound transfers.",
+   "caseId": "CASE-2026-0003"
+  },
+  {
+   "id": "ALR-0009",
+   "casebookId": "A-4479",
+   "title": "A mayor's spouse opens a savings account",
+   "typology": "pep",
+   "priority": "medium",
+   "ageHours": 400,
+   "assignee": "MLRO (demo)",
+   "status": "escalated",
+   "rule": "PEP — screening match",
+   "customer": "Retail · Mrs C. Lemaire · new customer · PEP-related",
+   "summary": "Screening identified the customer as the spouse of a domestic PEP — mayor of a Belgian municipality of 18,000 inhabitants. Initial funding of €35,000 transferred from a joint account held at another Belgian bank.",
+   "amount": "€35,000 initial deposit",
+   "facts": {
+    "Profile": "Retired teacher, spouse of a municipal mayor",
+    "Expected activity": "Pension in, savings transfers",
+    "Alert amount": "€35,000 initial deposit",
+    "Jurisdictions": "BE only"
+   },
+   "txs": [
+    {
+     "daysAgo": 18,
+     "kind": "Inbound",
+     "amount": "35,000",
+     "party": "joint account, KBC — same customer name"
+    }
+   ],
+   "onFile": "Source of funds: proceeds of a property sale, notarial deed provided at onboarding. Senior management approval for the PEP relationship was NOT obtained. Source of wealth documented. No adverse media.",
+   "caseId": "CASE-2026-0004"
+  },
+  {
+   "id": "ALR-0010",
+   "casebookId": "A-4480",
+   "title": "A new merchant's volumes triple in a fortnight",
+   "typology": "merchant",
+   "priority": "medium",
+   "ageHours": 70,
+   "assignee": "",
+   "status": "new",
+   "rule": "Velocity — merchant acquiring",
+   "customer": "Corporate · SunGlow Wellness BV · merchant since Jan 2026 · standard risk",
+   "summary": "Card acquiring volume rose from €38,000 in February to €310,000 in the first fortnight of March. Chargeback rate 11%. Average ticket €189 against a projected €45. Cardholder geography spread across 31 countries where the merchant declared Benelux-only sales.",
+   "amount": "€310,000 in 14 days",
+   "facts": {
+    "Profile": "Online supplement retailer",
+    "Expected activity": "€40k/month card volume projected",
+    "Alert amount": "€310,000 in 14 days",
+    "Jurisdictions": "Cardholders: 31 countries"
+   },
+   "txs": [
+    {
+     "daysAgo": 17,
+     "kind": "Card settlements",
+     "amount": "142,000",
+     "party": "4,100 transactions"
+    },
+    {
+     "daysAgo": 10,
+     "kind": "Card settlements",
+     "amount": "168,000",
+     "party": "3,900 transactions"
+    },
+    {
+     "daysAgo": 4,
+     "kind": "Chargebacks",
+     "amount": "34,100",
+     "party": "11% of volume"
+    }
+   ],
+   "onFile": "Merchant declared Benelux-only online sales of supplements at onboarding. Website currently shows a single product page with no stock information. Director appointed three months before onboarding, no prior retail history."
+  },
+  {
+   "id": "ALR-0011",
+   "casebookId": "A-4481",
+   "title": "A restaurant's takings rise with its bookings",
+   "typology": "cash-intensive",
+   "priority": "low",
+   "ageHours": 90,
+   "assignee": "Analyst B",
+   "status": "closed",
+   "rule": "Threshold — aggregated cash",
+   "customer": "Corporate · Trattoria Lucia BVBA · customer since 2014 · standard risk",
+   "summary": "Cash deposits of €96,400 across March against a twelve-month average of €58,000. Deposits made weekly, amounts varying between €18,000 and €27,000, all at the same branch.",
+   "amount": "€96,400 cash deposits in March",
+   "facts": {
+    "Profile": "Restaurant, 60 covers, Antwerp",
+    "Expected activity": "€45–70k/month, cash-heavy",
+    "Alert amount": "€96,400 cash deposits in March",
+    "Jurisdictions": "BE only"
+   },
+   "txs": [
+    {
+     "daysAgo": 26,
+     "kind": "Cash deposit",
+     "amount": "24,100",
+     "party": "Antwerp Zuid"
+    },
+    {
+     "daysAgo": 19,
+     "kind": "Cash deposit",
+     "amount": "27,000",
+     "party": "Antwerp Zuid"
+    },
+    {
+     "daysAgo": 12,
+     "kind": "Cash deposit",
+     "amount": "18,900",
+     "party": "Antwerp Zuid"
+    },
+    {
+     "daysAgo": 5,
+     "kind": "Cash deposit",
+     "amount": "26,400",
+     "party": "Antwerp Zuid"
+    }
+   ],
+   "onFile": "VAT returns filed and consistent with declared turnover. March included Easter weekend and a two-week city food festival. Card takings rose 41% over the same period, proportionate to the cash increase. Same pattern visible in March of the two previous years.",
+   "closeReason": "Explained by documented customer activity",
+   "closeNote": "Bookings explained by the restaurant's reservation data; documents on file. Closed without escalation.",
+   "closedHoursAgo": 60
+  },
+  {
+   "id": "ALR-0012",
+   "casebookId": "A-4482",
+   "title": "Money that goes around in a circle",
+   "typology": "trade-value",
+   "priority": "medium",
+   "ageHours": 45,
+   "assignee": "Analyst A",
+   "status": "new",
+   "rule": "Related parties — circular flow",
+   "customer": "Corporate · Novara Consulting BVBA · customer since 2021 · standard risk",
+   "summary": "Nine transfers over five weeks. Funds leave the customer to a Luxembourg entity, then to a Cypriot entity, then return to a second Belgian account also held by the customer's director. Each leg carries a consultancy invoice. Net position after five weeks is approximately zero.",
+   "amount": "€540,000 across 9 transactions",
+   "facts": {
+    "Profile": "Management consultancy, 2 employees",
+    "Expected activity": "Invoices €15–30k/month",
+    "Alert amount": "€540,000 across 9 transactions",
+    "Jurisdictions": "BE → LU → CY → BE"
+   },
+   "txs": [
+    {
+     "daysAgo": 17,
+     "kind": "Outbound",
+     "amount": "180,000",
+     "party": "Aurex Sàrl, LU — invoice 2026-014"
+    },
+    {
+     "daysAgo": 14,
+     "kind": "Outbound",
+     "amount": "180,000",
+     "party": "Kestros Ltd, CY — invoice 2026-015"
+    },
+    {
+     "daysAgo": 10,
+     "kind": "Inbound",
+     "amount": "178,500",
+     "party": "Kestros Ltd, CY — invoice 2026-016"
+    },
+    {
+     "daysAgo": 3,
+     "kind": "Outbound",
+     "amount": "180,000",
+     "party": "Aurex Sàrl, LU — invoice 2026-021"
+    }
+   ],
+   "onFile": "Corporate registry checks show the director of Novara is also a shareholder of Aurex Sàrl. Kestros Ltd beneficial ownership not established — nominee shareholder. No deliverables, contracts or work product on file for any invoice. Total invoiced exceeds the company's entire prior-year turnover."
+  },
+  {
+   "id": "ALR-0013",
+   "casebookId": "",
+   "title": "New device login, payee changed, large payment out",
+   "typology": "fraud",
+   "priority": "high",
+   "ageHours": 3,
+   "assignee": "",
+   "status": "new",
+   "rule": "Fraud rules: account-takeover pattern",
+   "customer": "Retail · Mr R. Janssens (fictional) · customer since 2017 · low risk",
+   "summary": "A login from a device never seen before was followed within ten minutes by a new payee and a payment of EUR 18,500, ten times the customer's largest payment in twelve months.",
+   "amount": "€18,500 in one payment",
+   "facts": {
+    "Profile": "Salaried employee",
+    "Expected activity": "Salary in, bills and card spend out",
+    "Alert amount": "€18,500 in one payment",
+    "Jurisdictions": "BE → LT"
+   },
+   "txs": [
+    {
+     "daysAgo": 0,
+     "kind": "Outbound",
+     "amount": "18,500",
+     "party": "new payee, LT account"
+    }
+   ],
+   "onFile": "Customer not yet contacted. Payment pending release."
+  },
+  {
+   "id": "ALR-0014",
+   "casebookId": "",
+   "title": "Customer will not explain a EUR 40,000 incoming transfer",
+   "typology": "other",
+   "priority": "medium",
+   "ageHours": 120,
+   "assignee": "Analyst B",
+   "status": "in_review",
+   "rule": "Manual referral from branch",
+   "customer": "Retail · Ms K. De Smet (fictional) · customer since 2020 · standard risk",
+   "summary": "A branch employee reports that the customer received EUR 40,000 from an unfamiliar company and declined to say what it was for, twice.",
+   "amount": "€40,000 incoming",
+   "facts": {
+    "Profile": "Part-time bookkeeper",
+    "Expected activity": "~€1.8k/month",
+    "Alert amount": "€40,000 incoming",
+    "Jurisdictions": "BE ← CY"
+   },
+   "txs": [
+    {
+     "daysAgo": 6,
+     "kind": "Inbound",
+     "amount": "40,000",
+     "party": "Orchid Holdings Ltd, CY"
+    }
+   ],
+   "onFile": "No documents on file about the sender."
+  },
+  {
+   "id": "ALR-0015",
+   "casebookId": "",
+   "title": "Payments to a counterparty in a high-risk third country",
+   "typology": "trade-value",
+   "priority": "low",
+   "ageHours": 6,
+   "assignee": "",
+   "status": "new",
+   "rule": "Jurisdiction rule: high-risk third country",
+   "customer": "Corporate · Lindqvist Imports AB (fictional) · customer since 2021 · standard risk",
+   "summary": "Two payments totalling EUR 21,000 to a supplier in a jurisdiction on the firm's high-risk list. The supplier is new to this customer.",
+   "amount": "€21,000 across 2 payments",
+   "facts": {
+    "Profile": "Importer of home goods",
+    "Expected activity": "Supplier payments, EU and Asia",
+    "Alert amount": "€21,000 across 2 payments",
+    "Jurisdictions": "SE → third country"
+   },
+   "txs": [
+    {
+     "daysAgo": 2,
+     "kind": "Outbound",
+     "amount": "9,800",
+     "party": "new supplier"
+    },
+    {
+     "daysAgo": 1,
+     "kind": "Outbound",
+     "amount": "11,200",
+     "party": "new supplier"
+    }
+   ],
+   "onFile": "Supplier due diligence not yet performed."
+  }
+ ],
+ "cases": [
+  {
+   "id": "CASE-2026-0001",
+   "alertIds": [
+    "ALR-0004"
+   ],
+   "title": "Meridian Trading: trade payments via UAE intermediary",
+   "typology": "trade-value",
+   "priority": "high",
+   "status": "mlro",
+   "openedHoursAgo": 120,
+   "assignee": "Analyst A",
+   "suspicionDaysAgo": 5,
+   "holdTransaction": false,
+   "subjects": [
+    {
+     "name": "Meridian Trading BVBA (fictional)",
+     "role": "Customer",
+     "ref": "CUST-30417"
+    },
+    {
+     "name": "Gulf Machinery FZE (fictional)",
+     "role": "Counterparty",
+     "ref": "CP-2210"
+    }
+   ],
+   "flagState": {
+    "Intermediary adds no logistical function: goods bypass it entirely": "yes",
+    "Invoice pricing materially above market": "yes",
+    "Counterparty incorporated four months ago": "yes",
+    "Beneficial ownership of the counterparty not established": "yes",
+    "Funds return to an account controlled by the same person: circular flow": "no",
+    "Activity is inconsistent with the customer's profile and expected activity": "yes"
+   },
+   "timeline": [
+    {
+     "hoursAgo": 120,
+     "by": "System",
+     "type": "system",
+     "text": "Case opened from alert ALR-0004."
+    },
+    {
+     "hoursAgo": 110,
+     "by": "Analyst A",
+     "type": "note",
+     "text": "Reviewed the four invoices. Intermediary invoices machinery parts but never handles the goods."
+    },
+    {
+     "hoursAgo": 100,
+     "by": "Analyst A",
+     "type": "rfi",
+     "text": "Asked the relationship manager for the commercial rationale (internal only; the customer was not contacted)."
+    },
+    {
+     "hoursAgo": 70,
+     "by": "Analyst A",
+     "type": "note",
+     "text": "Relationship manager's explanation contradicts the shipping documents."
+    },
+    {
+     "hoursAgo": 26,
+     "by": "Analyst A",
+     "type": "signoff",
+     "text": "Analyst sign-off: recommends reporting to the FIU."
+    }
+   ],
+   "evidence": [
+    {
+     "label": "Invoices from Gulf Machinery FZE (4)",
+     "kind": "Document",
+     "ref": "DMS folder TRD-30417/invoices (placeholder)",
+     "hoursAgo": 110
+    },
+    {
+     "label": "Shipping documents Pakistan to Belgium",
+     "kind": "Document",
+     "ref": "DMS folder TRD-30417/shipping (placeholder)",
+     "hoursAgo": 108
+    },
+    {
+     "label": "Account statement for the period",
+     "kind": "System record",
+     "ref": "Core banking extract (placeholder)",
+     "hoursAgo": 105
+    }
+   ],
+   "analyst": {
+    "name": "Analyst A",
+    "hoursAgo": 26,
+    "rec": "report",
+    "rationale": "The routing, pricing and ownership picture fits a trade-based laundering pattern and the commercial explanation does not hold. Reasonable grounds to suspect are met in my assessment."
+   },
+   "mlro": null,
+   "narr": {
+    "type": "STR",
+    "suspicion": "ml",
+    "attempted": false,
+    "cddFailure": false,
+    "entityName": "CF Bank (fictional)",
+    "officerName": "MLRO (demo)",
+    "officerContact": "mlro@example.invalid",
+    "legalBasis": "AMLR Art. 69(1)(a), or the national law in force until the AMLR applies (10 July 2027)",
+    "subjectName": "Meridian Trading BVBA (fictional; customer ref CUST-30417)",
+    "subjectType": "legal",
+    "subjectIds": "Customer ref CUST-30417; company number: placeholder only in this demo",
+    "relationship": "Corporate customer since 2019, import/export, rated high risk",
+    "riskRating": "high",
+    "pep": "no",
+    "occupation": "Import and export of machinery parts, declared turnover EUR 4.1 million",
+    "otherParties": "Gulf Machinery FZE (UAE intermediary, incorporated four months before the first payment).",
+    "activitySummary": "Four outbound payments totalling EUR 620,000 were sent to a UAE intermediary for machinery parts that were shipped directly from Pakistan to Belgium and never entered the UAE.",
+    "method": "The payments were invoiced by Gulf Machinery FZE. Invoice values are 40 to 60 percent above comparable market pricing. The intermediary performs no logistics function and its beneficial owner could not be established: its shareholder is a company in a jurisdiction with no public register.",
+    "periodStart": {
+     "daysAgo": 18
+    },
+    "periodEnd": {
+     "daysAgo": 7
+    },
+    "detectedOn": {
+     "daysAgo": 6
+    },
+    "suspicionFormedOn": {
+     "daysAgo": 5
+    },
+    "jurisdictions": "Belgium, United Arab Emirates, Pakistan",
+    "channels": "SWIFT wire transfers",
+    "accounts": "Customer business account (reference placeholder)",
+    "counterpartyInstitutions": "UAE bank of the intermediary (name held on file)",
+    "totalAmount": "620,000",
+    "currency": "EUR",
+    "txCount": "4",
+    "expectedActivity": "Trade payments within the EU and to Türkiye; declared annual turnover EUR 4.1 million.",
+    "whyText": "The destination, the pricing and the routing do not fit an ordinary trade payment. The goods bypass the intermediary completely, so the intermediary adds nothing that would justify a payment of this size. Pricing is far above market, the intermediary is four months old, and its ownership cannot be established. The activity is outside the customer's declared pattern of EU and Türkiye trade.",
+    "includeFlags": true,
+    "explanations": "The customer's relationship manager was asked about the commercial rationale. The explanation (a consolidation service) is contradicted by the shipping documents.",
+    "actions": [
+     "monitoring",
+     "rfi",
+     "screening",
+     "media"
+    ],
+    "actionsOther": "Account placed under enhanced monitoring. Relationship review scheduled.",
+    "transactionHandling": "executed",
+    "tippingAck": true,
+    "docsText": "Four invoices from Gulf Machinery FZE; shipping documents (Pakistan to Belgium); account statement for the period; relationship manager call note."
+   }
+  },
+  {
+   "id": "CASE-2026-0002",
+   "alertIds": [
+    "ALR-0002"
+   ],
+   "title": "Okonkwo: student account used as pass-through",
+   "typology": "mule",
+   "priority": "high",
+   "status": "review",
+   "openedHoursAgo": 18,
+   "assignee": "Analyst A",
+   "suspicionDaysAgo": 1,
+   "holdTransaction": false,
+   "subjects": [
+    {
+     "name": "Mr D. Okonkwo (fictional)",
+     "role": "Customer",
+     "ref": "CUST-55120"
+    }
+   ],
+   "flagState": {
+    "Pass-through: funds in and straight out, balance returns to zero": "yes",
+    "Activity wholly inconsistent with a declared student profile": "yes",
+    "Two senders already flagged as fraud victims": "unk"
+   },
+   "timeline": [
+    {
+     "hoursAgo": 18,
+     "by": "System",
+     "type": "system",
+     "text": "Case opened from alert ALR-0002."
+    },
+    {
+     "hoursAgo": 14,
+     "by": "Analyst A",
+     "type": "note",
+     "text": "Twelve inbound transfers, all out again within hours. Checking whether the two flagged senders are confirmed victims."
+    }
+   ],
+   "evidence": [],
+   "analyst": null,
+   "mlro": null,
+   "narr": {
+    "type": "STR",
+    "suspicion": "ml",
+    "entityName": "CF Bank (fictional)",
+    "officerName": "MLRO (demo)",
+    "subjectName": "Mr D. Okonkwo (fictional; customer ref CUST-55120)",
+    "subjectType": "individual",
+    "relationship": "Retail customer since 2024, student account, standard risk",
+    "activitySummary": "Twelve inbound transfers from unrelated private individuals were forwarded abroad within hours.",
+    "totalAmount": "47,200",
+    "currency": "EUR",
+    "txCount": "24"
+   }
+  },
+  {
+   "id": "CASE-2026-0003",
+   "alertIds": [
+    "ALR-0008"
+   ],
+   "title": "Ferreira: exchange inflows to unused private accounts",
+   "typology": "crypto",
+   "priority": "high",
+   "status": "filed",
+   "openedHoursAgo": 264,
+   "assignee": "Analyst A",
+   "suspicionDaysAgo": 11,
+   "holdTransaction": true,
+   "subjects": [
+    {
+     "name": "Ms N. Ferreira (fictional)",
+     "role": "Customer",
+     "ref": "CUST-11802"
+    },
+    {
+     "name": "BitBaltic OÜ (fictional)",
+     "role": "Counterparty",
+     "ref": "CP-0981"
+    }
+   ],
+   "flagState": {
+    "Indirect exposure to a sanctioned mixing service": "yes",
+    "Volumes roughly twenty times the declared activity level": "yes",
+    "Travel-rule originator information missing on most transfers": "yes",
+    "Immediate onward transfer to previously unused accounts": "yes"
+   },
+   "timeline": [
+    {
+     "hoursAgo": 264,
+     "by": "System",
+     "type": "system",
+     "text": "Case opened from alert ALR-0008."
+    },
+    {
+     "hoursAgo": 225,
+     "by": "Analyst A",
+     "type": "note",
+     "text": "Chain analytics confirm indirect mixer exposure. No customer contact, to avoid tipping off."
+    },
+    {
+     "hoursAgo": 200,
+     "by": "Analyst A",
+     "type": "signoff",
+     "text": "Analyst sign-off: recommends reporting."
+    },
+    {
+     "hoursAgo": 190,
+     "by": "MLRO (demo)",
+     "type": "signoff",
+     "text": "MLRO decision: report to the FIU."
+    },
+    {
+     "hoursAgo": 168,
+     "by": "MLRO (demo)",
+     "type": "filing",
+     "text": "Report filed with the FIU (own ref STR-2026-0007)."
+    }
+   ],
+   "evidence": [
+    {
+     "label": "Chain-analytics report",
+     "kind": "System record",
+     "ref": "Analytics vendor export (placeholder)",
+     "hoursAgo": 225
+    }
+   ],
+   "analyst": {
+    "name": "Analyst A",
+    "hoursAgo": 200,
+    "rec": "report",
+    "rationale": "Sanctioned-service exposure plus volumes far above declared activity and missing travel-rule data."
+   },
+   "mlro": {
+    "name": "MLRO (demo)",
+    "hoursAgo": 190,
+    "decision": "report",
+    "rationale": "Reasonable grounds to suspect are met. Report to be filed without delay; pending transactions held until the report is submitted."
+   },
+   "narr": {
+    "type": "STR",
+    "suspicion": "ml",
+    "entityName": "CF Bank (fictional)",
+    "officerName": "MLRO (demo)",
+    "officerContact": "mlro@example.invalid",
+    "legalBasis": "AMLR Art. 69(1)(a), or the national law in force until the AMLR applies (10 July 2027)",
+    "subjectName": "Ms N. Ferreira (fictional; customer ref CUST-11802)",
+    "subjectType": "individual",
+    "subjectIds": "Customer ref CUST-11802; date of birth: placeholder only in this demo",
+    "relationship": "Retail customer since 2022, freelance designer, standard risk",
+    "riskRating": "medium",
+    "pep": "no",
+    "occupation": "Freelance designer",
+    "activitySummary": "Four inbound transfers totalling EUR 88,000 from a crypto exchange in Estonia were followed within days by onward transfers of EUR 86,500 to two accounts the customer had not used before.",
+    "method": "Funds arrive in blocks from the exchange and leave within one to two days to previously unused private accounts. Chain analytics show indirect exposure, two hops back, to a sanctioned mixing service.",
+    "periodStart": {
+     "daysAgo": 23
+    },
+    "periodEnd": {
+     "daysAgo": 12
+    },
+    "detectedOn": {
+     "daysAgo": 12
+    },
+    "suspicionFormedOn": {
+     "daysAgo": 11
+    },
+    "jurisdictions": "Belgium, Estonia, destination unknown",
+    "channels": "SEPA transfers",
+    "accounts": "Customer current account (reference placeholder)",
+    "counterpartyInstitutions": "BitBaltic OÜ (crypto exchange, Estonia)",
+    "totalAmount": "88,000",
+    "currency": "EUR",
+    "txCount": "8",
+    "expectedActivity": "Client invoices of EUR 2,000 to 6,000 a month; crypto trading declared as a side activity with under EUR 5,000 a year.",
+    "whyText": "Volumes are about twenty times the declared activity. The funds show indirect exposure to a sanctioned service, originator information is missing on three of four inbound transfers, and the money leaves immediately to accounts not used before. No source-of-wealth documents are on file.",
+    "includeFlags": true,
+    "explanations": "No explanation was sought from the customer, to avoid any risk of tipping off.",
+    "actions": [
+     "monitoring",
+     "screening"
+    ],
+    "actionsOther": "",
+    "transactionHandling": "held",
+    "tippingAck": true,
+    "docsText": "Chain-analytics report; account statement; travel-rule data gap list."
+   }
+  },
+  {
+   "id": "CASE-2026-0004",
+   "alertIds": [
+    "ALR-0009"
+   ],
+   "title": "Lemaire: PEP-related account opening",
+   "typology": "pep",
+   "priority": "medium",
+   "status": "closed",
+   "openedHoursAgo": 380,
+   "assignee": "MLRO (demo)",
+   "suspicionDaysAgo": null,
+   "holdTransaction": false,
+   "subjects": [
+    {
+     "name": "Mrs C. Lemaire (fictional)",
+     "role": "Customer",
+     "ref": "CUST-60233"
+    }
+   ],
+   "flagState": {
+    "Senior management approval for a PEP relationship was never obtained": "yes",
+    "Source of wealth is not documented or does not fit the official position": "no"
+   },
+   "timeline": [
+    {
+     "hoursAgo": 380,
+     "by": "System",
+     "type": "system",
+     "text": "Case opened from alert ALR-0009."
+    },
+    {
+     "hoursAgo": 350,
+     "by": "Analyst B",
+     "type": "note",
+     "text": "Source of funds documented by notarial deed. Missing item is the senior management approval, a process gap rather than suspicion."
+    },
+    {
+     "hoursAgo": 300,
+     "by": "MLRO (demo)",
+     "type": "signoff",
+     "text": "MLRO decision: no report. Approval obtained retroactively and logged as a control finding."
+    }
+   ],
+   "evidence": [
+    {
+     "label": "Notarial deed (property sale)",
+     "kind": "Document",
+     "ref": "KYC file CUST-60233 (placeholder)",
+     "hoursAgo": 350
+    }
+   ],
+   "analyst": {
+    "name": "Analyst B",
+    "hoursAgo": 320,
+    "rec": "noreport",
+    "rationale": "Funds and wealth are documented, own-name transfer, no adverse media. The failure is the missing approval."
+   },
+   "mlro": {
+    "name": "MLRO (demo)",
+    "hoursAgo": 300,
+    "decision": "noreport",
+    "rationale": "No reasonable grounds to suspect. Process gap raised as an internal finding; approval now on file."
+   },
+   "narr": {}
+  }
+ ],
+ "filings": [
+  {
+   "id": "FIL-0001",
+   "caseId": "CASE-2026-0003",
+   "kind": "STR",
+   "ownRef": "STR-2026-0007",
+   "filedDaysAgo": 7,
+   "channel": "FIU online portal (placeholder)",
+   "fiuRef": "",
+   "ack": null,
+   "holdResolved": false,
+   "note": "Awaiting FIU acknowledgement."
+  }
+ ],
+ "requests": [
+  {
+   "id": "REQ-0001",
+   "caseId": "CASE-2026-0003",
+   "receivedDaysAgo": 8,
+   "fiuRef": "FIU-REQ-DEMO-1",
+   "subject": "Request for account statements and customer file for the filed STR (demo)",
+   "dueSource": "default",
+   "respondedDaysAgo": null,
+   "note": ""
+  },
+  {
+   "id": "REQ-0002",
+   "caseId": null,
+   "receivedDaysAgo": 2,
+   "fiuRef": "FIU-REQ-DEMO-2",
+   "subject": "Request for transaction records on a customer not reported by us (demo)",
+   "dueSource": "default",
+   "respondedDaysAgo": null,
+   "note": ""
+  }
+ ]
+}
