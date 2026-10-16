@@ -136,3 +136,22 @@ Ranked by how much a compliance team would feel them:
 
 Standing agenda: what we learned, what the metrics say (metrics/history.jsonl),
 what to build next, what to cut, one decision. Notes live in strategy/LOG.md.
+
+## Feature note: policy-to-video (owner idea, 2026-10-16)
+
+Teams generate short, personalised motion explainers from their own policies
+and procedures (for example "how we onboard a PEP", "our escalation path").
+
+Design, to build after the policy library, the AI core and the Academy
+explainer player are merged:
+- A policy section is the source. AI drafts a storyboard (scenes, captions,
+  key figures) and every scene cites the policy paragraph it came from.
+- A human edits and approves the script before anything renders.
+- Scenes are data (a small JSON scene format), rendered by the same in-page
+  explainer player as the Academy. No video files, so it stays free,
+  accessible (real captions) and private (BYOK AI, redaction).
+- When the source policy changes, its videos are marked "out of date" until
+  re-approved. Completion feeds training evidence (Academy to workspace).
+- Later, paid: MP4 export and voice-over.
+Risk: a video that misstates the policy is worse than no video; hence
+citations, human approval and the out-of-date flag.
