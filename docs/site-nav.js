@@ -37,7 +37,7 @@
     ]},
     { id: "country", label: "Country Risk", href: "country-risk.html" },
     { id: "academy", label: "Academy", items: [
-      { href: "academy.html",     t: "Overview",            d: "How the training works" },
+      { href: "academy.html",     t: "Learning path",       d: "Nine short modules, your next step" },
       { href: "workstation.html", t: "Analyst workstation", d: "The full simulation" },
       { sep: "Practice modules" },
       { href: "laundromat.html",  t: "01 · Laundromat",     d: "Spot the red flags" },
