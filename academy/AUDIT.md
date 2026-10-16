@@ -46,7 +46,7 @@ The Academy cites AMLR article numbers. Checked against `docs/data/laws/32024R16
 | "Art. 25 — ongoing monitoring" (5 cases) | Art. 25 is *purpose and intended nature*. Ongoing monitoring is Art. 26. | yes |
 | "Art. 22 — beneficial ownership" (many) | Art. 22 is *identification and verification of identity*. Beneficial owners are defined in Arts 51 to 58; Art. 22(2) is the senior-managing-officials fallback. | yes |
 | "indicative threshold of 25% + one share" (OWN-01 and the principle card) | Art. 52(1): "25 % or more". No case sits exactly on 25%, so scoring is unchanged. | yes |
-| OWN-03: "trustee holds title, not economic interest" (so not a beneficial owner) | Art. 58(1) lists the trustees of an express trust among the beneficial owners. The case models a nominee (fiduciary) company, which is different, but the sentence reads as a general rule. | wording fixed and simplification stated; **scoring left to the owner** (see PR questions) |
+| OWN-03: "trustee holds title, not economic interest" (so not a beneficial owner) | Art. 58(1) lists the trustees of an express trust among the beneficial owners. The case models a nominee (fiduciary) company, which is different, but the sentence reads as a general rule. | reworked: settlor, trustee's own beneficial owner and beneficiary now count (Arts 55, 58(1), 58(3)) |
 | A-4478: "TFR Art. 14 — missing originator information" | TFR Art. 14 is the information that must *accompany* crypto-asset transfers; detection of missing information is Art. 16. | yes |
 | INV-403: "Art. 22 — source of funds for the specific transaction" | Source and destination of funds sit in Art. 25; Art. 34(4)(c) for higher risk. | yes |
 

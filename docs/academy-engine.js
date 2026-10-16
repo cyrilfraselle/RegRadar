@@ -31,7 +31,7 @@ const Ownership = (function(){
     (function walk(n,f,path){
       edges.forEach(e=>{
         if(e.to!==n || path.includes(e.from)) return;
-        if(e.kind==='trustee') return;
+        if(e.kind==='trustee' || e.kind==='settlor') return;
         const nf=f*(e.pct/100);
         if(persons.has(e.from)){
           if(!res[e.from]) res[e.from]={pct:0,paths:[]};
@@ -83,15 +83,15 @@ const Ownership = (function(){
     edges.forEach(e=>{
       const a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
       const back = a.y>=b.y;                       // upward edge = loop
-      const col = e.kind==='trustee'?'var(--ink-3)' : back?'var(--amber)':'var(--ink-3)';
-      const dash = e.kind==='trustee'?'5 4' : back?'6 4':'';
+      const col = (e.kind==='trustee'||e.kind==='settlor')?'var(--ink-3)' : back?'var(--amber)':'var(--ink-3)';
+      const dash = (e.kind==='trustee'||e.kind==='settlor')?'5 4' : back?'6 4':'';
       const off = back?46:0;
       const my=(a.y+b.y)/2;
       const d=`M${a.x},${a.y-NH/2} C${a.x+off},${my} ${b.x+off},${my} ${b.x},${b.y+NH/2}`;
       svg+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4"
               stroke-dasharray="${dash}" opacity=".65"/>`;
       const mx=(a.x+b.x)/2+off*.72;
-      const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'benef.' : e.pct+' %';
+      const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='settlor' ? 'settlor' : e.kind==='beneficiary' ? 'benef.' : e.pct+' %';
       svg+=`<g class="ae-edg" data-e="${esc(e.from)}>${esc(e.to)}" style="cursor:${e.doc?'pointer':'default'}">
         <rect x="${mx-31}" y="${my-10}" width="62" height="20" fill="var(--console)"
           stroke="${col}" stroke-width=".8" opacity=".95"/>
@@ -124,6 +124,7 @@ const Ownership = (function(){
     const links=edges.map(e=>{
       const f=nameOf[e.from]||e.from, t=nameOf[e.to]||e.to;
       return e.kind==='trustee'? `${f} is trustee of ${t}`
+        : e.kind==='settlor'? `${f} is settlor of ${t}`
         : e.kind==='beneficiary'? `${f} is beneficiary of ${t}`
         : `${f} holds ${e.pct} % of ${t}`;
     }).join('; ');
@@ -338,7 +339,8 @@ const Ownership = (function(){
          notes), so each host maps this onto its own class names. */
       const kind = should&&did?'ok':should&&!did?'miss':!should&&did?'extra':'neutral';
       const verdict = should&&did?'CORRECT':should&&!did?'MISSED':!should&&did?'WRONGLY':'—';
-      const ctrl = should && pct<threshold ? ' (control)' : '';
+      const role = caseObj.roles && caseObj.roles[e.id];
+      const ctrl = role ? ` (${role})` : should && pct<threshold ? ' (control)' : '';
       return {id:e.id, name:names[e.id], pct, kind, verdict, ctrl};
     });
     const stamp = correct?'CORRECT':missed.length?'BENEFICIAL OWNER MISSED':'OVER-DESIGNATION';

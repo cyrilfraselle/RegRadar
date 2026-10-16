@@ -445,7 +445,7 @@
    "family": "look-through",
    "title": "The holder isn't the beneficiary",
    "subject": "Ostende Marine BV · corporate client · 25% threshold",
-   "brief": "Two 35% blocks. One is held by a fiduciary company, the other by a trust. Both appear in the register. Neither is a beneficial owner.",
+   "brief": "The register shows a fiduciary company and a trust behind a 35% block. Look through both: for an express trust the law names a list of roles, not a percentage.",
    "budget": 5,
    "entities": [
     {
@@ -484,6 +484,18 @@
      "name": "Dispersed shareholding",
      "type": "other",
      "juris": "—"
+    },
+    {
+     "id": "marc",
+     "name": "Marc Van Acker",
+     "type": "person",
+     "juris": "BE"
+    },
+    {
+     "id": "paul",
+     "name": "Paul Delmas",
+     "type": "person",
+     "juris": "LU"
     }
    ],
    "edges": [
@@ -518,6 +530,19 @@
      "to": "cible",
      "pct": 20,
      "doc": "d1"
+    },
+    {
+     "from": "marc",
+     "to": "trust",
+     "pct": 0,
+     "kind": "settlor",
+     "doc": "d3"
+    },
+    {
+     "from": "paul",
+     "to": "nominee",
+     "pct": 100,
+     "doc": "d4"
     }
    ],
    "documents": [
@@ -534,25 +559,39 @@
     {
      "id": "d3",
      "name": "Trust deed — Van Acker Family Trust",
-     "body": "Sole named beneficiary: Elin Van Acker, born 1974, Belgian resident. The trust is irrevocable. The trustee distributes income to the named beneficiary alone."
+     "body": "Settlor: Marc Van Acker, born 1948, Belgian resident, father of the beneficiary. Trustee: Fiduciaire Delmas SA. Sole named beneficiary: Elin Van Acker, born 1974, Belgian resident. The trust is irrevocable. The trustee distributes income to the named beneficiary alone."
+    },
+    {
+     "id": "d4",
+     "name": "Luxembourg register extract — Fiduciaire Delmas SA",
+     "body": "Sole shareholder: Paul Delmas, born 1969, Luxembourg resident, 100%. Paul Delmas is also the managing director."
     }
    ],
    "requests": [],
    "answer": {
     "ubos": [
      "joris",
-     "elin"
+     "elin",
+     "marc",
+     "paul"
     ],
     "cannot_determine": false
    },
    "computed": {
     "joris": 45.0,
-    "elin": 35.0
+    "elin": 35.0,
+    "marc": 0.0,
+    "paul": 0.0
    },
-   "why": "Joris holds 45% directly. The 35% block belongs economically to Elin, the trust's sole beneficiary — the fiduciary only holds legal title. It has no economic interest and is therefore not a beneficial owner.",
-   "trap": "Two mirror-image errors are waiting here. Naming the fiduciary — it's the name that appears in the register, and that's exactly what the arrangement is designed to produce. Or dropping the 35% block for want of knowing who it belongs to, when the trust deed names the beneficiary in full. All three documents needed reading, not just the register.",
-   "law": "AMLR Art. 58 — for an express trust the beneficial owners are the settlors, trustees, protectors, beneficiaries and any other person exercising ultimate control. In this fictional case the 35% block is held through a nominee (fiduciary) company: the nominee is not itself a beneficial owner, so look through it to the trust and its people. The case is simplified: it does not model a settlor or trustee, who would also count under Art. 58.",
-   "lesson": "The shareholder register says who holds — not who benefits. A fiduciary arrangement is perfectly lawful and perfectly transparent once the deed is requested — the failure is never the arrangement itself, it's stopping at the first document."
+   "why": "Joris holds 45% directly. The 35% block is held through an express trust, and for an express trust the law lists roles rather than a percentage: the settlor (Marc), the trustee, and the beneficiary (Elin). The trustee is a company, so the trust's beneficial owners also include the beneficial owner of that company (Paul, its sole shareholder). The fiduciary company itself is not a natural person and is not designated.",
+   "trap": "Three errors are waiting here. Naming the fiduciary company: it is the name in the register, and it is not a natural person. Stopping at Elin, because the deed names her as the only beneficiary and 35% belongs to her economically: the settlor and the trustee count too. Or forgetting that the trustee is itself a company, whose own beneficial owner must be found. All four documents needed reading, not just the register.",
+   "law": "AMLR Art. 58(1): the beneficial owners of an express trust are all of the settlors, trustees, protectors (if any), beneficiaries and anyone else exercising ultimate control; Art. 58(3): where one of those positions is held by a legal entity, the beneficial owners of that entity are included too; Art. 55: the beneficial owners of a legal arrangement holding an interest in a company are beneficial owners of that company; Art. 66: nominees must disclose who they act for. This fictional case has no protector.",
+   "lesson": "The shareholder register says who holds, not who benefits or who controls. A trust is a list of roles, and a corporate trustee has owners of its own. Request the deed and the trustee's register extract before you conclude.",
+   "roles": {
+    "elin": "beneficiary of the trust",
+    "marc": "settlor of the trust",
+    "paul": "owner of the corporate trustee"
+   }
   },
   {
    "id": "OWN-04",
