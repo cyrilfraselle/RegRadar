@@ -45,6 +45,34 @@ test to the evidence.
 | E11 | Grounded AI copilot | Answers only from the law and the firm's own register, always with citations; drafts policies and STR narratives | needs the backend and model decision |
 
 
+## Replace the stack (owner notes, 2026-10-16)
+
+The ambition is not one more tool beside the others. It is to replace the
+set of tools a compliance team juggles today: spreadsheets (Excel), GRC
+suites (AuditBoard class), ticketing and boards (Jira/Atlassian class, but
+built for compliance work), wikis for policies, horizon-scanning services,
+training platforms and e-mail chasing.
+
+Four ideas that shape everything:
+
+1. **Jarvis for compliance teams.** The product opens on a briefing, not a
+   menu: here is what is up for your team, what changes in the next X months,
+   which files need review, what is overdue, what the regulator will ask next.
+   Role-aware (MLRO, analyst, board), with outstanding dashboards.
+2. **Work management built in.** Kanban boards, tickets, owners, SLAs and
+   calendars for compliance work (control tests, reviews, remediation,
+   regulatory-change tasks, customer reviews, training), linked to the
+   obligations and evidence they serve.
+3. **Horizon scanning as a core loop.** New and coming obligations, consultations
+   and effective dates, mapped to the firm's own controls, policies and
+   customers, with a forward calendar.
+4. **Natively connected.** It connects to the tools and databases that banks,
+   payment firms and fintechs already run (ticketing and wikis, identity,
+   KYC and screening vendors, transaction monitoring, data warehouses,
+   documents, chat), pulls evidence automatically and pushes work out.
+
+See ROADMAP.md for the plan, the dependencies and the decisions.
+
 ## AI-native, not AI-decorated
 
 AI is how the product thinks, not a chat window bolted on. In compliance an
