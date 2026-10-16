@@ -3,20 +3,24 @@
 How new tools and features move from idea to prototype to product.
 
 ```
-proposed PR  -->  merged = approved  -->  prototyped  -->  adopted | rejected
-(agent opens)     (one tap by owner)      (agent PR)       (owner decision)
+idea PR (with mockup)  -->  you merge = approve  -->  lab built + auto-merged  -->  adopted | rejected
+(weekly agent)              (one tap, phone)          (agent, guard must pass)       (owner decision)
 ```
 
-- **Idea PR**: written by the weekly ideation session as one file in this
-  folder (`NNN-short-name.md`, see `TEMPLATE.md`), opened as a pull
-  request titled `Idea: ...`.
+- **Idea PR**: written by the weekly ideation session as one idea file
+  (`NNN-short-name.md`, see `TEMPLATE.md`) plus a hand-drawn SVG mockup
+  (`NNN-short-name.mockup.svg`), opened as a pull request titled `Idea: ...`.
+  Both render in the GitHub mobile app.
 - **Merging that PR is the approval.** Closing it unmerged rejects the
-  idea. There is no second step. Every idea file on `main` whose status is
-  `proposed` or `approved` and that has no `prototype:` yet is approved
-  for prototyping.
-- **prototyped**: the prototyping session builds the oldest such idea
-  under `docs/labs/<id>/`, sets `status: prototyped` and `prototype:` in
-  the idea file, and opens a `Lab: ...` PR.
+  idea. Every idea file on `main` whose status is `proposed` or
+  `approved` and that has no `prototype:` yet is approved for prototyping.
+- **Lab built and merged by the agent.** The prototyping session builds it
+  under `docs/labs/<id>/` on branch `lab/<id>`, opens a `Lab: ...` PR and
+  merges it itself (squash) ONLY if the `guard` check is green. The guard
+  fails any lab PR that touches a file outside `docs/labs/<id>/` and
+  `ideas/<id>.*`, so unattended merging cannot change the real product.
+  Anything else (adopting a lab into the product, edits to existing pages)
+  is never auto-merged: it waits for the owner.
 - **adopted / rejected**: the owner decides after trying the lab page
   (set `status: adopted` or `rejected`). Adopting means a normal
   development task (add it to `NEXT_STEPS.md`); labs code is never wired
