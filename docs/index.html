@@ -305,6 +305,12 @@ footer p{max-width:70ch;margin:0 auto}
 .dark .p-wait{background:rgba(255,180,84,.16);color:#FFC477}
 @media(max-width:860px){.pin-steps{min-height:0;display:grid;gap:22px}}
 
+
+.suite-list{margin-top:0}
+.suite-list li{padding:clamp(10px,1.4vw,16px) 0}
+.suite-list b{font-size:clamp(22px,2.6vw,34px)}
+.suite-list span{font-size:clamp(14px,1.4vw,18px)}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .pin,.acad.pin{height:auto}
@@ -363,7 +369,7 @@ footer p{max-width:70ch;margin:0 auto}
   <div class="overview-in">
     <h2 class="split">Four tools.</h2>
     <ol class="tool-list" data-rise>
-      <li style="--d:.04"><b>Compliance</b><span>Law, controls, coverage</span></li>
+      <li style="--d:.04"><b>Compliance</b><span>Risk, customers, cases, policies</span></li>
       <li style="--d:.2"><b>Academy</b><span>Train at the desk</span></li>
       <li style="--d:.36"><b>RegWatch</b><span>Your regulators</span></li>
       <li style="--d:.52"><b>Country risk</b><span>Your risk model</span></li>
@@ -415,6 +421,25 @@ footer p{max-width:70ch;margin:0 auto}
           <div class="gap"><span class="a">ART. 69</span><span class="t">Report to the FIU</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool dark" id="suite" data-cta-name="Compliance" data-cta-label="Try Compliance" data-cta-href="workspace.html" data-cta-theme="dark" data-nav-id="stack">
+  <div class="wrap">
+    <div class="copy" data-rise>
+      <h2 class="split">Compliance. All linked.</h2>
+      <p>One trail from law to evidence.</p>
+    </div>
+    <div class="plane" data-tilt>
+      <ol class="tool-list suite-list">
+        <li><b>Obligations</b><span>What the law requires</span></li>
+        <li><b>Business risk</b><span>Where you are exposed</span></li>
+        <li><b>Customer risk</b><span>Who you onboard</span></li>
+        <li><b>Cases and STR</b><span>What you report</span></li>
+        <li><b>Policies</b><span>What staff must follow</span></li>
+        <li><b>Actions</b><span>What is still open</span></li>
+      </ol>
     </div>
   </div>
 </section>

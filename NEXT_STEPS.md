@@ -78,11 +78,11 @@ How to build an epic slice:
 - Wire the new page into `docs/site-nav.js` (under Compliance) and add one
   short card to the workspace only in a separate small PR.
 
-- [ ] E3 Business-wide risk assessment (BWRA) builder
-- [ ] E4 Customer risk assessment (CRA) engine and onboarding checklists
-- [ ] E5 Monitoring alerts, case file and STR/SAR narrative builder
-- [ ] E6 Policies and procedures library with versions and attestations
-- [ ] E7 Issues and actions tracker (findings, remediation, escalation)
+- [x] E3 Business-wide risk assessment (BWRA) builder (first slice built: see docs/ page; deepen next)
+- [x] E4 Customer risk assessment (CRA) engine and onboarding checklists (first slice built: see docs/ page; deepen next)
+- [x] E5 Monitoring alerts, case file and STR/SAR narrative builder (first slice built: see docs/ page; deepen next)
+- [x] E6 Policies and procedures library with versions and attestations (first slice built: see docs/ page; deepen next)
+- [x] E7 Issues and actions tracker (findings, remediation, escalation) (first slice built: see docs/ page; deepen next)
 - [ ] E9 Audit pack, inspection readiness binder, board report
 - [ ] E1 Regulatory change impact analysis (RegWatch item to obligations, controls, policies)
 - [ ] E8 Academy assignments and completion tracking
