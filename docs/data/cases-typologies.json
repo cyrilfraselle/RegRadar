@@ -1,0 +1,368 @@
+{
+ "_meta": {
+  "name": "Case typologies and default red-flag checklists",
+  "version": 1,
+  "note": "Typology names and the 'casebook' red flags are shared with the RegRadar Academy casebook (docs/data/academy/casebook.json, fictional). 'default' flags are illustrative indicators written for this prototype: configure them for your firm. AMLR Art. 69(5) requires AMLA to issue guidelines on indicators of suspicious activity by 10 July 2027; replace these defaults with them when published.",
+  "common": [
+   "Activity is inconsistent with the customer's profile and expected activity",
+   "Customer is unable or unwilling to explain the source of funds",
+   "Unusual complexity with no apparent economic or lawful purpose",
+   "Adverse media or a law-enforcement enquiry concerns the customer or a counterparty"
+  ]
+ },
+ "typologies": [
+  {
+   "id": "structuring",
+   "label": "Structuring / smurfing",
+   "description": "Splitting amounts to stay under a threshold or to spread value across accounts, branches or people.",
+   "casebook_families": [
+    "structuring"
+   ],
+   "academy_cases": [
+    "A-4471",
+    "A-4476"
+   ],
+   "redFlags": [
+    {
+     "text": "Amounts consistently below the €10,000 cash reporting threshold",
+     "source": "casebook"
+    },
+    {
+     "text": "Sharp departure from a fourteen-year behavioural baseline",
+     "source": "casebook"
+    },
+    {
+     "text": "Deposits split across two branches",
+     "source": "casebook"
+    },
+    {
+     "text": "Coordinated timing across supposedly unrelated parties",
+     "source": "casebook"
+    },
+    {
+     "text": "Rapid consolidation into one controlled account",
+     "source": "casebook"
+    },
+    {
+     "text": "Several transactions just under an internal or external threshold in a short period",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "mule",
+   "label": "Money mule / pass-through",
+   "description": "Account used to receive and immediately forward funds that belong to others.",
+   "casebook_families": [
+    "mule-passthrough",
+    "mule-network"
+   ],
+   "academy_cases": [
+    "A-4472",
+    "INV-202"
+   ],
+   "redFlags": [
+    {
+     "text": "Pass-through: funds in and straight out, balance returns to zero",
+     "source": "casebook"
+    },
+    {
+     "text": "Activity wholly inconsistent with a declared student profile",
+     "source": "casebook"
+    },
+    {
+     "text": "Inbound senders unrelated to each other and to the customer",
+     "source": "casebook"
+    },
+    {
+     "text": "Two senders already flagged as fraud victims",
+     "source": "casebook"
+    },
+    {
+     "text": "New account with high-velocity activity soon after opening",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "trade-value",
+   "label": "Trade-based / value transfer",
+   "description": "Invoices, intermediaries or circular flows used to move value under cover of trade.",
+   "casebook_families": [
+    "value-transfer",
+    "trade-value"
+   ],
+   "academy_cases": [
+    "A-4474",
+    "A-4482",
+    "INV-201"
+   ],
+   "redFlags": [
+    {
+     "text": "Intermediary adds no logistical function: goods bypass it entirely",
+     "source": "casebook"
+    },
+    {
+     "text": "Invoice pricing materially above market",
+     "source": "casebook"
+    },
+    {
+     "text": "Counterparty incorporated four months ago",
+     "source": "casebook"
+    },
+    {
+     "text": "Beneficial ownership of the counterparty not established",
+     "source": "casebook"
+    },
+    {
+     "text": "Funds return to an account controlled by the same person: circular flow",
+     "source": "casebook"
+    },
+    {
+     "text": "Undisclosed common ownership between customer and counterparty",
+     "source": "casebook"
+    },
+    {
+     "text": "Invoiced amounts exceed the company's entire prior-year turnover",
+     "source": "casebook"
+    },
+    {
+     "text": "No evidence any service was actually delivered",
+     "source": "casebook"
+    },
+    {
+     "text": "Payment to a party that does not appear in the shipping or commercial documents",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "crypto",
+   "label": "Crypto / VASP exposure",
+   "description": "Crypto-asset flows with indirect exposure to illicit services or missing travel-rule data.",
+   "casebook_families": [
+    "crypto-vasp"
+   ],
+   "academy_cases": [
+    "A-4478"
+   ],
+   "redFlags": [
+    {
+     "text": "Indirect exposure to a sanctioned mixing service",
+     "source": "casebook"
+    },
+    {
+     "text": "Volumes roughly twenty times the declared activity level",
+     "source": "casebook"
+    },
+    {
+     "text": "Travel-rule originator information missing on most transfers",
+     "source": "casebook"
+    },
+    {
+     "text": "Immediate onward transfer to previously unused accounts",
+     "source": "casebook"
+    },
+    {
+     "text": "Use of privacy-enhancing tools or obfuscation services",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "pep",
+   "label": "PEP / corruption risk",
+   "description": "Politically exposed persons, family members and close associates.",
+   "casebook_families": [
+    "pep"
+   ],
+   "academy_cases": [
+    "A-4479",
+    "INV-401"
+   ],
+   "redFlags": [
+    {
+     "text": "Senior management approval for a PEP relationship was never obtained",
+     "source": "casebook"
+    },
+    {
+     "text": "Source of wealth is not documented or does not fit the official position",
+     "source": "default"
+    },
+    {
+     "text": "Complex structures obscure a PEP link",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "sanctions",
+   "label": "Sanctions / name match",
+   "description": "Screening hits, evasion patterns and designated-person links.",
+   "casebook_families": [
+    "sanctions",
+    "sanctions-layering"
+   ],
+   "academy_cases": [
+    "A-4477",
+    "INV-301",
+    "INV-402"
+   ],
+   "redFlags": [
+    {
+     "text": "Surname matches a designated individual",
+     "source": "casebook"
+    },
+    {
+     "text": "A partial name match cannot be discounted with the data on file",
+     "source": "default"
+    },
+    {
+     "text": "Altered names or payment references that look designed to avoid screening",
+     "source": "default"
+    },
+    {
+     "text": "Payment routed through a jurisdiction unconnected to the parties",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "merchant",
+   "label": "Merchant / transaction laundering",
+   "description": "Merchant-acquiring volumes that do not match the declared business.",
+   "casebook_families": [
+    "merchant"
+   ],
+   "academy_cases": [
+    "A-4480"
+   ],
+   "redFlags": [
+    {
+     "text": "Chargeback rate of 11% against a typical retail norm under 1%",
+     "source": "casebook"
+    },
+    {
+     "text": "Cardholder geography inconsistent with declared Benelux-only sales",
+     "source": "casebook"
+    },
+    {
+     "text": "Average ticket four times the projected value",
+     "source": "casebook"
+    },
+    {
+     "text": "Minimal web presence for the volume claimed",
+     "source": "casebook"
+    },
+    {
+     "text": "Transaction mix inconsistent with the merchant category code",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "cash-intensive",
+   "label": "Cash-intensive business / source of funds",
+   "description": "Cash volumes or deposits that outrun the documented business or wealth.",
+   "casebook_families": [
+    "cash-source",
+    "sow-sof"
+   ],
+   "academy_cases": [
+    "A-4481",
+    "INV-101",
+    "INV-403"
+   ],
+   "redFlags": [
+    {
+     "text": "Cash volume 66% above the twelve-month average",
+     "source": "casebook"
+    },
+    {
+     "text": "Cash deposits with no documented source",
+     "source": "default"
+    },
+    {
+     "text": "Deposit pattern changes sharply without a business reason",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "dormant",
+   "label": "Dormant account reactivation",
+   "description": "Long-inactive accounts that suddenly receive or send significant sums.",
+   "casebook_families": [],
+   "academy_cases": [
+    "A-4475"
+   ],
+   "redFlags": [
+    {
+     "text": "Account reactivation after long dormancy",
+     "source": "casebook"
+    },
+    {
+     "text": "Round-sum credit with no stated reason",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "high-value",
+   "label": "Unusual high-value transfer",
+   "description": "Single large transfers that deviate sharply from the customer's baseline.",
+   "casebook_families": [],
+   "academy_cases": [
+    "A-4473"
+   ],
+   "redFlags": [
+    {
+     "text": "Amount is a large deviation from monthly baseline",
+     "source": "casebook"
+    },
+    {
+     "text": "Beneficiary newly added shortly before the payment",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "fraud",
+   "label": "Fraud / account takeover",
+   "description": "Payments that look like fraud against the customer or by the customer.",
+   "casebook_families": [],
+   "academy_cases": [],
+   "redFlags": [
+    {
+     "text": "Login from a new device or location followed by a change of payee",
+     "source": "default"
+    },
+    {
+     "text": "Payment instructions out of character with the customer's habits",
+     "source": "default"
+    },
+    {
+     "text": "Customer appears to be coached or under pressure while making the payment",
+     "source": "default"
+    },
+    {
+     "text": "Funds moved on immediately after receipt",
+     "source": "default"
+    }
+   ]
+  },
+  {
+   "id": "other",
+   "label": "Other unusual activity",
+   "description": "Anything that does not fit another typology.",
+   "casebook_families": [],
+   "academy_cases": [],
+   "redFlags": [
+    {
+     "text": "Behaviour or pattern the analyst cannot explain with the information held",
+     "source": "default"
+    }
+   ]
+  }
+ ]
+}
