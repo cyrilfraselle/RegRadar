@@ -1,0 +1,980 @@
+{
+  "_meta": {
+    "name": "Impact analysis matching rules",
+    "version": 1,
+    "generated": "2026-10-16",
+    "purpose": "Deterministic rules that map a RegWatch item to instruments in applicability.json, to obligations in obligations.json, to customer segments and to task templates. No model is involved. Every match records the exact terms that produced it.",
+    "method": "Score = identifier citation (4) + name in title (3) or in summary (2) + keyword in title (1.5) or summary (1), each distinct term counted once, broad terms capped at 1 in total, + 1 when the item comes from a source tied to the instrument (for example AMLA), + 0.5 when RegWatch's own theme maps to the instrument's topic. Confidence: high at 4 or more, medium at 2 or more, low above 0. A theme alone never rises above low.",
+    "disclaimer": "Keyword rules are approximate. A match is a prompt to read the source, not a legal conclusion. Keywords are plain defaults: edit this file to tune them for your firm.",
+    "ai_hook": "Marked AI HOOK in impact.js: AI-assisted matching (slice A3 of VISION.md) will plug into docs/ai.js later. Nothing in this file or in impact.js calls a model."
+  },
+  "themeToTopic": {
+    "AML/CFT": [
+      "AML/CFT",
+      "Sanctions"
+    ],
+    "Operational Resilience": [
+      "DORA"
+    ],
+    "Crypto": [
+      "MiCA/Crypto"
+    ],
+    "Markets": [
+      "MiFID/MiFIR",
+      "Market Infrastructure"
+    ],
+    "Capital": [
+      "Capital/CRR"
+    ],
+    "Payments": [
+      "Payments"
+    ],
+    "Data Protection": [
+      "Data Protection"
+    ]
+  },
+  "instruments": {
+    "AMLR": {
+      "aliases": [
+        {
+          "t": "AMLR",
+          "cs": true
+        },
+        "Anti-Money Laundering Regulation",
+        "AML Regulation",
+        "AML Rulebook",
+        "single rulebook"
+      ],
+      "keywords": [
+        "customer due diligence",
+        "beneficial owner*",
+        "politically exposed",
+        "suspicious transaction*",
+        "suspicious activit*",
+        "obliged entit*",
+        "enhanced due diligence",
+        "transaction monitoring",
+        "CDD",
+        "know your customer",
+        "KYC",
+        "financial intelligence unit*",
+        "business relationship*",
+        "occasional transaction*"
+      ],
+      "broad": [
+        "money laundering",
+        "AML/CFT",
+        "terrorist financing",
+        "anti-money laundering"
+      ],
+      "sources": [
+        "AMLA"
+      ]
+    },
+    "AMLD6": {
+      "aliases": [
+        {
+          "t": "AMLD6",
+          "cs": true
+        },
+        "AMLD 6",
+        "6AMLD",
+        "6th Anti-Money Laundering Directive",
+        "Sixth Anti-Money Laundering Directive"
+      ],
+      "keywords": [
+        "financial intelligence unit*",
+        "beneficial ownership register*",
+        "AML supervisor*",
+        "supervision of obliged entit*"
+      ],
+      "broad": [
+        "anti-money laundering"
+      ],
+      "sources": []
+    },
+    "AMLAR": {
+      "aliases": [
+        "AMLA Regulation",
+        "Authority for Anti-Money Laundering and Countering the Financing of Terrorism"
+      ],
+      "keywords": [
+        "direct supervision",
+        "selection of obliged entit*"
+      ],
+      "broad": [],
+      "sources": [
+        "AMLA"
+      ],
+      "sources_weight": 0.5
+    },
+    "TFR": {
+      "aliases": [
+        {
+          "t": "TFR",
+          "cs": true
+        },
+        "Transfer of Funds Regulation",
+        "travel rule"
+      ],
+      "keywords": [
+        "transfer of funds",
+        "transfers of funds",
+        "payer",
+        "payee",
+        "originator information",
+        "information accompanying transfers",
+        "crypto-asset transfer*"
+      ],
+      "broad": [],
+      "sources": []
+    },
+    "DORA": {
+      "aliases": [
+        {
+          "t": "DORA",
+          "cs": true
+        },
+        "Digital Operational Resilience Act",
+        "digital operational resilience"
+      ],
+      "keywords": [
+        "ICT risk",
+        "ICT third-party",
+        "ICT incident*",
+        "ICT-related incident*",
+        "ICT service provider*",
+        "critical ICT",
+        "register of information",
+        "threat-led penetration",
+        "TLPT",
+        "operational resilience",
+        "third-party risk",
+        "outsourcing arrangement*",
+        "cyber resilience"
+      ],
+      "broad": [
+        "cyber",
+        "outsourcing"
+      ],
+      "sources": []
+    },
+    "NIS2": {
+      "aliases": [
+        {
+          "t": "NIS2",
+          "cs": true
+        },
+        "NIS 2",
+        "NIS2 Directive",
+        "Network and Information Security"
+      ],
+      "keywords": [
+        "cybersecurity",
+        "network and information systems",
+        "essential entities",
+        "important entities",
+        "cyber-security"
+      ],
+      "broad": [
+        "cyber"
+      ],
+      "sources": []
+    },
+    "MiCA": {
+      "aliases": [
+        {
+          "t": "MiCA",
+          "cs": true
+        },
+        "MiCAR",
+        "Markets in Crypto-Assets"
+      ],
+      "keywords": [
+        "crypto-asset*",
+        "crypto asset*",
+        "stablecoin*",
+        "asset-referenced token*",
+        "e-money token*",
+        "crypto-asset service provider*",
+        "CASP",
+        "CASPs",
+        "white paper",
+        "utility token*"
+      ],
+      "broad": [
+        "crypto"
+      ],
+      "sources": []
+    },
+    "MiFID II": {
+      "aliases": [
+        "MiFID II",
+        "MiFID 2",
+        {
+          "t": "MiFID",
+          "cs": true
+        },
+        "Markets in Financial Instruments Directive"
+      ],
+      "keywords": [
+        "investment service*",
+        "investment firm*",
+        "suitability",
+        "best execution",
+        "investor protection",
+        "inducement*",
+        "product governance",
+        "appropriateness"
+      ],
+      "broad": [],
+      "sources": []
+    },
+    "MiFIR": {
+      "aliases": [
+        {
+          "t": "MiFIR",
+          "cs": true
+        },
+        "Markets in Financial Instruments Regulation"
+      ],
+      "keywords": [
+        "transaction reporting",
+        "systematic internaliser*",
+        "trading obligation",
+        "consolidated tape",
+        "pre-trade transparency",
+        "post-trade transparency"
+      ],
+      "broad": [],
+      "sources": []
+    },
+    "MAR": {
+      "aliases": [
+        {
+          "t": "MAR",
+          "cs": true
+        },
+        "Market Abuse Regulation"
+      ],
+      "keywords": [
+        "market abuse",
+        "insider dealing",
+        "inside information",
+        "insider information",
+        "market manipulation",
+        "STOR",
+        "suspicious transaction and order report*"
+      ],
+      "broad": [],
+      "sources": []
+    },
+    "CRR": {
+      "aliases": [
+        {
+          "t": "CRR",
+          "cs": true
+        },
+        {
+          "t": "CRR2",
+          "cs": true
+        },
+        {
+          "t": "CRR3",
+          "cs": true
+        },
+        "Capital Requirements Regulation"
+      ],
+      "keywords": [
+        "own funds",
+        "capital requirements",
+        "liquidity coverage",
+        "leverage ratio",
+        "large exposure*",
+        "output floor",
+        "NSFR",
+        "Pillar 3",
+        "credit risk",
+        "market risk",
+        "Basel"
+      ],
+      "broad": [
+        "prudential"
+      ],
+      "sources": []
+    },
+    "CRD IV": {
+      "aliases": [
+        {
+          "t": "CRD",
+          "cs": true
+        },
+        "CRD IV",
+        "CRD V",
+        "CRD VI",
+        "Capital Requirements Directive"
+      ],
+      "keywords": [
+        "SREP",
+        "supervisory review",
+        "fit and proper",
+        "suitability of members",
+        "management body",
+        "remuneration policy",
+        "internal governance"
+      ],
+      "broad": [
+        "prudential"
+      ],
+      "sources": []
+    },
+    "PSD2": {
+      "aliases": [
+        {
+          "t": "PSD2",
+          "cs": true
+        },
+        {
+          "t": "PSD3",
+          "cs": true
+        },
+        {
+          "t": "PSR",
+          "cs": true
+        },
+        "Payment Services Directive",
+        "Payment Services Regulation"
+      ],
+      "keywords": [
+        "payment service*",
+        "payment service provider*",
+        "strong customer authentication",
+        "open banking",
+        "payment account*",
+        "payment initiation",
+        "account information service*",
+        "payment fraud",
+        "instant payment*",
+        "payment institution*",
+        "SEPA"
+      ],
+      "broad": [],
+      "sources": []
+    },
+    "EMD2": {
+      "aliases": [
+        {
+          "t": "EMD2",
+          "cs": true
+        },
+        "E-Money Directive",
+        "Electronic Money Directive"
+      ],
+      "keywords": [
+        "electronic money",
+        "e-money",
+        "electronic money institution*",
+        "e-money institution*",
+        {
+          "t": "EMI",
+          "cs": true
+        },
+        {
+          "t": "EMIs",
+          "cs": true
+        }
+      ],
+      "broad": [],
+      "sources": []
+    },
+    "GDPR": {
+      "aliases": [
+        {
+          "t": "GDPR",
+          "cs": true
+        },
+        "General Data Protection Regulation"
+      ],
+      "keywords": [
+        "personal data",
+        "data protection",
+        "data subject*",
+        "data breach*",
+        "EDPB",
+        "data controller*",
+        "data processor*"
+      ],
+      "broad": [
+        "privacy"
+      ],
+      "sources": []
+    }
+  },
+  "obligationTopics": {
+    "CDD": [
+      "customer due diligence",
+      "CDD",
+      "know your customer",
+      "KYC",
+      "customer identification",
+      "customer onboarding",
+      "remote onboarding"
+    ],
+    "UBO": [
+      "beneficial owner*",
+      "beneficial ownership",
+      "ownership structure*",
+      "ultimate beneficial",
+      "UBO"
+    ],
+    "Transaction Monitoring": [
+      "transaction monitoring",
+      "monitoring of transactions",
+      "unusual transaction*"
+    ],
+    "EDD": [
+      "enhanced due diligence",
+      "EDD",
+      "high-risk third countr*",
+      "high-risk customer*",
+      "high-risk jurisdiction*",
+      "FATF"
+    ],
+    "PEP": [
+      "politically exposed",
+      "PEP",
+      "PEPs",
+      "prominent public function*"
+    ],
+    "STR/SAR": [
+      "suspicious transaction*",
+      "suspicious activit*",
+      "STR",
+      "STRs",
+      "SAR",
+      "SARs",
+      "financial intelligence unit*",
+      "FIU",
+      "FIUs",
+      "suspicion*"
+    ]
+  },
+  "tags": {
+    "aml": {
+      "label": "AML/CFT",
+      "keywords": [
+        "money laundering",
+        "AML/CFT",
+        "terrorist financing",
+        "customer due diligence",
+        "beneficial owner*",
+        "obliged entit*",
+        "AMLA",
+        "AMLR"
+      ],
+      "instruments": [
+        "AMLR",
+        "AMLD6",
+        "AMLAR",
+        "TFR"
+      ],
+      "controlWords": [
+        "cdd",
+        "due diligence",
+        "onboarding",
+        "monitoring",
+        "beneficial",
+        "pep",
+        "suspicio",
+        "kyc",
+        "screening"
+      ],
+      "policyWords": [
+        "aml",
+        "due diligence",
+        "kyc",
+        "suspicious",
+        "pep"
+      ]
+    },
+    "sanctions": {
+      "label": "Sanctions",
+      "keywords": [
+        "sanction*",
+        "restrictive measure*",
+        "asset freeze*",
+        "freezing of funds",
+        "designated person*",
+        "listings",
+        "individual listings"
+      ],
+      "instruments": [],
+      "controlWords": [
+        "sanction",
+        "screening",
+        "freez",
+        "watchlist"
+      ],
+      "policyWords": [
+        "sanction",
+        "screening"
+      ]
+    },
+    "crypto": {
+      "label": "Crypto-assets",
+      "keywords": [
+        "crypto*",
+        "stablecoin*",
+        "e-money token*",
+        "CASP",
+        "CASPs",
+        "virtual asset*",
+        "token*"
+      ],
+      "instruments": [
+        "MiCA"
+      ],
+      "controlWords": [
+        "crypto",
+        "wallet",
+        "custody",
+        "virtual",
+        "token"
+      ],
+      "policyWords": [
+        "crypto",
+        "wallet",
+        "custody"
+      ]
+    },
+    "ict": {
+      "label": "ICT and third parties",
+      "keywords": [
+        "ICT",
+        "cyber*",
+        "outsourcing",
+        "third-party",
+        "operational resilience",
+        "incident*",
+        "cloud"
+      ],
+      "instruments": [
+        "DORA",
+        "NIS2"
+      ],
+      "controlWords": [
+        "ict",
+        "incident",
+        "resilien",
+        "outsourc",
+        "third-party",
+        "vendor",
+        "cyber"
+      ],
+      "policyWords": [
+        "ict",
+        "resilien",
+        "outsourc",
+        "third-party",
+        "third party",
+        "cyber"
+      ]
+    },
+    "payments": {
+      "label": "Payments",
+      "keywords": [
+        "payment*",
+        "e-money",
+        "electronic money",
+        "SEPA",
+        "instant payment*",
+        "IBAN"
+      ],
+      "instruments": [
+        "PSD2",
+        "EMD2"
+      ],
+      "controlWords": [
+        "payment",
+        "sca",
+        "authentication",
+        "fraud",
+        "safeguard"
+      ],
+      "policyWords": [
+        "payment",
+        "safeguard",
+        "fraud"
+      ]
+    },
+    "data": {
+      "label": "Data protection",
+      "keywords": [
+        "personal data",
+        "data protection",
+        "data breach*",
+        "privacy",
+        "GDPR"
+      ],
+      "instruments": [
+        "GDPR"
+      ],
+      "controlWords": [
+        "data",
+        "privacy",
+        "gdpr",
+        "retention"
+      ],
+      "policyWords": [
+        "data",
+        "privacy",
+        "retention",
+        "record"
+      ]
+    },
+    "capital": {
+      "label": "Capital and prudential",
+      "keywords": [
+        "own funds",
+        "capital requirement*",
+        "liquidity",
+        "prudential",
+        "leverage ratio"
+      ],
+      "instruments": [
+        "CRR",
+        "CRD IV"
+      ],
+      "controlWords": [
+        "capital",
+        "liquidity",
+        "prudential"
+      ],
+      "policyWords": [
+        "capital",
+        "liquidity",
+        "prudential"
+      ]
+    },
+    "markets": {
+      "label": "Markets and investment",
+      "keywords": [
+        "investment service*",
+        "market abuse",
+        "trading venue*",
+        "transaction reporting",
+        "investor*"
+      ],
+      "instruments": [
+        "MiFID II",
+        "MiFIR",
+        "MAR"
+      ],
+      "controlWords": [
+        "trade",
+        "market",
+        "investment",
+        "surveillance"
+      ],
+      "policyWords": [
+        "market",
+        "investment",
+        "conflict"
+      ]
+    }
+  },
+  "segments": [
+    {
+      "id": "new-customers",
+      "label": "New customers at onboarding",
+      "note": "Identification, verification and the data you collect at the start of a relationship.",
+      "obligationTopics": [
+        "CDD"
+      ],
+      "keywords": [
+        "onboarding",
+        "customer identification",
+        "remote identification",
+        "digital identity"
+      ]
+    },
+    {
+      "id": "legal-entities",
+      "label": "Legal entities, trusts and their beneficial owners",
+      "note": "Corporate customers, trusts and similar arrangements.",
+      "obligationTopics": [
+        "UBO"
+      ],
+      "keywords": [
+        "beneficial owner*",
+        "legal entit*",
+        "ownership structure*"
+      ]
+    },
+    {
+      "id": "peps",
+      "label": "Politically exposed persons and their associates",
+      "note": "Customers needing senior approval and enhanced monitoring.",
+      "obligationTopics": [
+        "PEP"
+      ],
+      "keywords": [
+        "politically exposed"
+      ]
+    },
+    {
+      "id": "higher-risk",
+      "label": "Higher-risk customers and high-risk third-country links",
+      "note": "Customers whose risk profile triggers enhanced due diligence.",
+      "obligationTopics": [
+        "EDD"
+      ],
+      "keywords": [
+        "high-risk third countr*",
+        "higher risk",
+        "FATF"
+      ]
+    },
+    {
+      "id": "existing-book",
+      "label": "Existing customer base (ongoing monitoring and refresh)",
+      "note": "Relationships already on the books that must be monitored or re-papered.",
+      "obligationTopics": [
+        "Transaction Monitoring"
+      ],
+      "keywords": [
+        "ongoing monitoring",
+        "periodic review",
+        "transaction monitoring"
+      ]
+    },
+    {
+      "id": "unusual-activity",
+      "label": "Customers with unusual or suspicious activity",
+      "note": "Cases that may lead to a suspicious transaction report.",
+      "obligationTopics": [
+        "STR/SAR"
+      ],
+      "keywords": [
+        "suspicious transaction*",
+        "suspicious activit*"
+      ]
+    },
+    {
+      "id": "crypto-customers",
+      "label": "Crypto-asset customers and crypto transfers",
+      "note": "Holders, senders and recipients of crypto-assets and e-money tokens.",
+      "instruments": [
+        "MiCA",
+        "TFR"
+      ],
+      "tags": [
+        "crypto"
+      ]
+    },
+    {
+      "id": "payment-users",
+      "label": "Payment service users (consumers, merchants)",
+      "note": "Payers, payees and e-money holders.",
+      "instruments": [
+        "PSD2",
+        "EMD2"
+      ],
+      "tags": [
+        "payments"
+      ]
+    },
+    {
+      "id": "investors",
+      "label": "Investors and trading clients",
+      "note": "Clients of investment services.",
+      "instruments": [
+        "MiFID II",
+        "MiFIR",
+        "MAR"
+      ],
+      "tags": [
+        "markets"
+      ]
+    },
+    {
+      "id": "screened-parties",
+      "label": "All customers and counterparties screened against lists",
+      "note": "Anyone passed through sanctions or watchlist screening.",
+      "tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "data-subjects",
+      "label": "Customers and staff as data subjects",
+      "note": "Anyone whose personal data you process.",
+      "instruments": [
+        "GDPR"
+      ],
+      "tags": [
+        "data"
+      ]
+    },
+    {
+      "id": "internal-ict",
+      "label": "Not a customer segment: internal ICT assets and service providers",
+      "note": "Affects systems, suppliers and incident handling rather than a customer group.",
+      "instruments": [
+        "DORA",
+        "NIS2"
+      ],
+      "tags": [
+        "ict"
+      ]
+    }
+  ],
+  "taskTemplates": {
+    "confirm": {
+      "title": "Confirm whether this change applies to us and record the decision",
+      "detail": "Read the primary source, check the scope and entity types, and write down the conclusion in the assessment. Rule-based matching is approximate.",
+      "role": "Compliance officer",
+      "daysBefore": 90,
+      "fallbackDays": 14,
+      "weight": 0
+    },
+    "consult": {
+      "title": "Decide whether to respond to the consultation, and by when",
+      "detail": "Check the closing date at the source. If responding, assign a drafter and agree the position with senior management.",
+      "role": "Compliance officer",
+      "daysBefore": 14,
+      "fallbackDays": 14,
+      "weight": 0
+    },
+    "gap": {
+      "title": "Design or map a control for {obligation}",
+      "detail": "No control is mapped to this obligation in the register. Define the control, its owner, frequency and evidence, then map it in the Compliance workspace.",
+      "role": "Control owner",
+      "daysBefore": 60,
+      "fallbackDays": 45,
+      "weight": 0
+    },
+    "control": {
+      "title": "Review control {control} against this change",
+      "detail": "Check whether the control design, frequency, evidence and owner still satisfy the changed requirement. Re-test if the design changes.",
+      "role": "Control owner",
+      "daysBefore": 45,
+      "fallbackDays": 30,
+      "weight": 1
+    },
+    "policy": {
+      "title": "Review and update policy {policy}",
+      "detail": "Check the policy text against the change, publish a new version if needed and re-run attestations.",
+      "role": "Policy owner",
+      "daysBefore": 45,
+      "fallbackDays": 30,
+      "weight": 1
+    },
+    "customers": {
+      "title": "Check onboarding forms, customer communications and procedures for {segments}",
+      "detail": "List the customer-facing documents and processes that touch these segments and decide what must change.",
+      "role": "Business owner",
+      "daysBefore": 40,
+      "fallbackDays": 30,
+      "weight": 1
+    },
+    "training": {
+      "title": "Update staff training and awareness for the change",
+      "detail": "Brief affected staff and update training material once the controls and policies are settled.",
+      "role": "Compliance officer",
+      "daysBefore": 21,
+      "fallbackDays": 60,
+      "weight": 2
+    },
+    "board": {
+      "title": "Brief senior management or the board on this change",
+      "detail": "Summarise what changed, who is affected, the gaps, the deadline and the plan. The impact memo can be used as the basis.",
+      "role": "Compliance officer",
+      "daysBefore": 30,
+      "fallbackDays": 21,
+      "weight": 0
+    },
+    "monitor": {
+      "title": "Re-check this change for progress and decide whether action is now needed",
+      "detail": "Set a review point. Check the source for the final text, the effective date and any implementing measures.",
+      "role": "Compliance officer",
+      "daysBefore": 60,
+      "fallbackDays": 90,
+      "weight": 0
+    }
+  },
+  "obligationKeywords": {
+    "AMLR-art19": [
+      "business relationship*",
+      "occasional transaction*",
+      "linked transaction*",
+      "identification threshold*"
+    ],
+    "AMLR-art20": [
+      "identify the customer",
+      "verify the customer",
+      "identification and verification",
+      "nature and purpose"
+    ],
+    "AMLR-art21": [
+      "unable to complete",
+      "terminate the business relationship",
+      "cannot be completed",
+      "failure to complete"
+    ],
+    "AMLR-art22": [
+      "identification data",
+      "identity document*",
+      "minimum data",
+      "customer information"
+    ],
+    "AMLR-art23": [
+      "verification of identity",
+      "verify the identity",
+      "remote identification",
+      "electronic identification",
+      "digital identity",
+      "eIDAS",
+      "independent source*"
+    ],
+    "AMLR-art24": [
+      "discrepanc*",
+      "beneficial ownership register*",
+      "central register*"
+    ],
+    "AMLR-art25": [
+      "purpose and intended nature",
+      "economic rationale",
+      "customer risk profile",
+      "risk profile"
+    ],
+    "AMLR-art26": [
+      "ongoing monitoring",
+      "monitoring scenario*",
+      "scenario*"
+    ],
+    "AMLR-art34": [
+      "complex transaction*",
+      "unusually large",
+      "higher risk",
+      "high risk"
+    ],
+    "AMLR-art42": [
+      "senior management approval",
+      "source of wealth",
+      "source of funds"
+    ],
+    "AMLR-art46": [
+      "family member*",
+      "close associate*",
+      "after leaving office"
+    ],
+    "AMLR-art69": [
+      "suspicious transaction report*",
+      "report suspicion*",
+      "reporting of suspicions",
+      "reporting suspicions",
+      "goAML"
+    ]
+  }
+}
