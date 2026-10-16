@@ -1,0 +1,46 @@
+name: smoke
+
+# Loads every page in headless Chromium at 390/768/1280px and fails if
+# console errors, failed requests, horizontal overflow or serious/critical
+# accessibility violations get WORSE than tests/baseline.json on main
+# (a pull request cannot loosen the baseline it is judged against).
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches-ignore: [main]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: tests/package-lock.json
+
+      - name: Baseline from main
+        run: |
+          git show origin/main:tests/baseline.json > "$RUNNER_TEMP/baseline.json" 2>/dev/null || cp tests/baseline.json "$RUNNER_TEMP/baseline.json"
+
+      - run: npm ci
+        working-directory: tests
+
+      - run: npx playwright install --with-deps chromium
+        working-directory: tests
+
+      - run: node smoke.mjs
+        working-directory: tests
+        env:
+          BASELINE_FILE: ${{ runner.temp }}/baseline.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-report
+          path: tests/out/report.json

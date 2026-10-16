@@ -1,0 +1,10 @@
+{
+  "name": "regradar-tests",
+  "private": true,
+  "type": "module",
+  "scripts": { "smoke": "node smoke.mjs" },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "playwright": "^1.50.0"
+  }
+}
