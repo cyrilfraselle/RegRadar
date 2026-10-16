@@ -1,0 +1,246 @@
+{
+  "_meta": {
+    "name": "RegRadar default customer risk model",
+    "version": "2026.10-default",
+    "status": "DEFAULT, configure for your firm. The factor list follows the EBA risk-factor categories; weights, option scores, thresholds and review periods are a starting judgement, not a regulatory requirement.",
+    "scale": "Each answer carries a score from 1 (lowest risk) to 5 (highest). The customer score is the weighted average of the answers, rescaled to 0 (all answers score 1) to 100 (all answers score 5).",
+    "sources": [
+      {
+        "id": "eba-gl",
+        "label": "EBA Guidelines EBA/GL/2021/02 on customer due diligence and the ML/TF risk factors, as amended by EBA/GL/2024/01 (16 January 2024)",
+        "url": "https://www.eba.europa.eu/sites/default/files/2024-01/a3e89f4f-fbf3-4bd6-9e07-35f3243555b3/Final%20Amending%20%20Guidelines%20on%20MLTF%20Risk%20Factors.pdf",
+        "used_for": "Guideline 2 (identifying risk factors: customer, countries and geographical areas, products/services/transactions, delivery channels), Guideline 3.2 (holistic view of all factors), Guideline 4 (CDD measures), Guideline 21 (crypto-asset service providers: 21.3 product, 21.5 customer and behaviour, 21.7 geography, 21.9 channel, 21.12 enhanced CDD)."
+      },
+      {
+        "id": "amlr",
+        "label": "Regulation (EU) 2024/1624 (AMLR), Chapter III Customer due diligence",
+        "url": "law.html?celex=32024R1624&art=20",
+        "used_for": "Arts 19-26 (CDD), 29 (high-risk third countries), 33 (simplified), 34 (enhanced), 40 (self-hosted addresses), 41 (residence by investment), 42, 45, 46 (PEPs), 69 and 73 (reporting, no disclosure)."
+      },
+      {
+        "id": "country-risk",
+        "label": "RegRadar Country risk data (data/country-risk.json)",
+        "url": "country-risk.html",
+        "used_for": "Country composite score, tier and listings (FATF, EU high-risk third countries, EU non-cooperative tax list, sanctions exposure)."
+      }
+    ]
+  },
+  "unanswered_score": 4,
+  "thresholds": { "medium": 12, "high": 30 },
+  "review_months": { "low": 36, "medium": 24, "high": 12 },
+  "review_max_months": { "low": 60, "medium": 60, "high": 12 },
+  "geo": {
+    "note": "Mirrors the Balanced preset of the Country risk page: composite 0 to 10 from the weighted indicators, Low below 3.5, High from 6.5. Edit to match your own country policy.",
+    "weights": { "fatf": 20, "eu_hrtc": 10, "sanctions": 15, "criminality": 20, "cpi": 10, "secrecy": 10, "resilience": 10, "human_trafficking": 5 },
+    "low": 3.5,
+    "high": 6.5,
+    "prohib_sanctions": 9,
+    "tier_score": { "low": 1, "med": 3, "high": 5, "prohib": 5, "nodata": 4 }
+  },
+  "groups": [
+    { "id": "customer", "label": "Customer type and ownership", "eba": "EBA GL 2 (customer risk factors); GL 21.5(a) for crypto customers" },
+    { "id": "geography", "label": "Geography", "eba": "EBA GL 2 (countries and geographical areas); GL 21.7 for crypto" },
+    { "id": "product", "label": "Products, services and channels", "eba": "EBA GL 2 (products, services, transactions and delivery channels); GL 21.3 and 21.9 for crypto" },
+    { "id": "activity", "label": "Expected activity and behaviour", "eba": "EBA GL 2 and GL 4 (understanding purpose, source of funds, ongoing monitoring); GL 21.5(b) for crypto behaviour" },
+    { "id": "flags", "label": "PEP, sanctions and adverse media", "eba": "EBA GL 2 and GL 4; AMLR Arts 20(1)(d), 20(1)(g), 41, 42, 45, 46" }
+  ],
+  "factors": [
+    { "id": "ctype", "group": "customer", "label": "Customer type", "weight": 7,
+      "help": "Legal form and whether the customer is regulated, listed or a more opaque vehicle.",
+      "options": [
+        { "v": "nat_eea", "label": "Natural person, resident in the EEA", "score": 1, "tags": ["natural"] },
+        { "v": "nat_non", "label": "Natural person, resident outside the EEA", "score": 3, "tags": ["natural"] },
+        { "v": "fi", "label": "Regulated EU credit or financial institution", "score": 1, "tags": ["legal"] },
+        { "v": "listed", "label": "Company listed on a regulated market, or public body", "score": 1, "tags": ["legal"] },
+        { "v": "sme", "label": "Private company or sole trader, local operations", "score": 2, "tags": ["legal"] },
+        { "v": "sme_foreign", "label": "Private company with foreign incorporation or operations", "score": 3, "tags": ["legal"] },
+        { "v": "npo", "label": "Non-profit organisation or charity", "score": 3, "tags": ["legal"] },
+        { "v": "holding", "label": "Holding, investment vehicle or special-purpose vehicle", "score": 4, "tags": ["legal"] },
+        { "v": "trust", "label": "Trust, foundation or similar legal arrangement", "score": 4, "tags": ["legal", "trust"] }
+      ] },
+    { "id": "sector", "group": "customer", "label": "Sector of activity", "weight": 7,
+      "help": "EBA GL 2.4(b) lists certain money service businesses, crypto-asset service providers, casinos and dealers in precious metals as sectors associated with higher risk.",
+      "options": [
+        { "v": "ordinary", "label": "Ordinary commercial activity or salaried / pension income", "score": 1 },
+        { "v": "cash", "label": "Cash-intensive business (retail, hospitality, vending)", "score": 3, "tags": ["cash-intensive"] },
+        { "v": "highvalue", "label": "High-value goods, real estate, art or precious metals", "score": 4 },
+        { "v": "msb", "label": "Money service business or payment intermediary", "score": 4 },
+        { "v": "casp", "label": "Crypto-asset service provider or crypto-related business", "score": 4, "tags": ["crypto-customer"] },
+        { "v": "gambling", "label": "Gambling or casino", "score": 4 },
+        { "v": "defence", "label": "Arms, defence or dual-use goods", "score": 4 },
+        { "v": "unclear", "label": "Business activity unclear or not evidenced", "score": 5 }
+      ] },
+    { "id": "ownership", "group": "customer", "label": "Ownership structure and complexity", "weight": 8,
+      "help": "Number of layers between the customer and the natural persons who ultimately own or control it, and whether nominees or bearer shares are used.",
+      "options": [
+        { "v": "none", "label": "Not applicable (natural person)", "score": 1 },
+        { "v": "simple", "label": "Simple: owners hold shares directly, one layer", "score": 1 },
+        { "v": "layers", "label": "Two to three layers, all in transparent jurisdictions", "score": 3 },
+        { "v": "complex", "label": "Four or more layers, cross-border chain, or a trust in the chain", "score": 4, "tags": ["complex"] },
+        { "v": "opaque", "label": "Opaque: nominee shareholders or directors, bearer shares, or no clear commercial reason for the structure", "score": 5, "tags": ["opaque", "nominee"] }
+      ] },
+    { "id": "ubo", "group": "customer", "label": "Identification and verification status", "weight": 6,
+      "help": "How far CDD is complete for the customer and its beneficial owners (AMLR Arts 20-23).",
+      "options": [
+        { "v": "verified", "label": "Customer and beneficial owners identified and verified", "score": 1 },
+        { "v": "partial", "label": "Verified in part: senior managing official used as the fallback (Art. 22(2))", "score": 3, "tags": ["ubo-fallback"] },
+        { "v": "pending", "label": "Documents or verification still outstanding", "score": 4, "tags": ["cdd-pending"] },
+        { "v": "failed", "label": "CDD cannot be completed (refused, unverifiable or inconsistent)", "score": 5, "tags": ["cdd-failed"] }
+      ] },
+    { "id": "age", "group": "customer", "label": "Relationship and entity history", "weight": 2,
+      "help": "EBA GL 21.5(a)(iii) names a recently established company processing large volumes as an increasing factor.",
+      "options": [
+        { "v": "established", "label": "Established customer, or entity with a longstanding record", "score": 1 },
+        { "v": "new", "label": "New entity (under 12 months) or no prior history", "score": 3 },
+        { "v": "new_large", "label": "Recently established company expected to process large volumes", "score": 4 }
+      ] },
+
+    { "id": "country_res", "group": "geography", "kind": "country", "short": "Residence or incorporation", "label": "Country of residence or incorporation", "weight": 9,
+      "help": "Tier from the Country risk data, with the FATF, EU and sanctions listings shown beside it." },
+    { "id": "country_ubo", "group": "geography", "kind": "country", "short": "Owner or controller", "same": "Same as residence or incorporation", "label": "Beneficial owner or controller: nationality and residence (highest-risk country)", "weight": 5,
+      "help": "Pick the highest-risk country among the beneficial owners and controllers." },
+    { "id": "country_flow", "group": "geography", "kind": "country", "short": "Transfer corridor", "same": "None: domestic activity only", "sameScore": 1, "label": "Main counterparty or transfer corridor (highest-risk country)", "weight": 6,
+      "help": "Pick the highest-risk country the customer expects to send money to or receive money from." },
+
+    { "id": "product", "group": "product", "label": "Product or service", "weight": 6,
+      "help": "The product the customer will use. Low limits and limited functionality reduce risk; anonymity and cross-border reach increase it (EBA GL 21.3, 21.4).",
+      "options": [
+        { "v": "limited", "label": "Limited-function product (closed loop, low limits)", "score": 1 },
+        { "v": "account", "label": "Payment account or e-money wallet, EEA transfers", "score": 2 },
+        { "v": "card", "label": "Reloadable card or prepaid card", "score": 3 },
+        { "v": "acquiring", "label": "Merchant acquiring or payment initiation for merchants", "score": 3 },
+        { "v": "xborder", "label": "Cross-border payments or remittance outside the EEA", "score": 4 },
+        { "v": "crypto", "label": "Crypto exchange (fiat to crypto) or custodial wallet", "score": 4, "tags": ["crypto"] },
+        { "v": "crypto_transfer", "label": "Crypto transfers, including to or from self-hosted addresses", "score": 5, "tags": ["crypto", "selfhosted"] }
+      ] },
+    { "id": "channel", "group": "product", "label": "Onboarding channel", "weight": 5,
+      "help": "EBA GL 21.9(a): remote onboarding that does not comply with the EBA Guidelines on remote customer onboarding (EBA/GL/2022/15) is an increasing factor.",
+      "options": [
+        { "v": "f2f", "label": "Face to face", "score": 1 },
+        { "v": "remote_ok", "label": "Remote, using a solution that follows EBA/GL/2022/15", "score": 2, "tags": ["remote"] },
+        { "v": "intro", "label": "Introduced by an intermediary (reliance on a third party)", "score": 3, "tags": ["reliance"] },
+        { "v": "remote_bad", "label": "Remote, solution not aligned with EBA/GL/2022/15 or not verified", "score": 4, "tags": ["remote"] },
+        { "v": "intro_hr", "label": "Introduced by an intermediary that is unregulated or in a high-risk jurisdiction", "score": 5, "tags": ["reliance"] }
+      ] },
+    { "id": "funding", "group": "product", "label": "Funding and payment instruments", "weight": 3,
+      "help": "EBA GL 21.3(b): third-party payments with no apparent rationale increase risk; no restriction on cash or exempt e-money is a channel risk (GL 21.9(b)).",
+      "options": [
+        { "v": "own_bank", "label": "Own account at an EEA credit institution", "score": 1 },
+        { "v": "mixed", "label": "Own account plus occasional third-party payers with a clear rationale", "score": 2 },
+        { "v": "third", "label": "Third-party payments allowed or used without clear rationale", "score": 4 },
+        { "v": "cash", "label": "Cash, or anonymous or exempt e-money", "score": 5, "tags": ["cash"] }
+      ] },
+
+    { "id": "volume", "group": "activity", "label": "Expected monthly volume (EUR)", "weight": 5,
+      "help": "Default bands are illustrative. Set them against your own business model and monitoring scenarios.",
+      "options": [
+        { "v": "v1", "label": "Under 2,000", "score": 1 },
+        { "v": "v2", "label": "2,000 to 10,000", "score": 2 },
+        { "v": "v3", "label": "10,000 to 50,000", "score": 3 },
+        { "v": "v4", "label": "50,000 to 250,000", "score": 4 },
+        { "v": "v5", "label": "Over 250,000", "score": 5 }
+      ] },
+    { "id": "purpose", "group": "activity", "label": "Purpose and economic rationale (Art. 25)", "weight": 4,
+      "help": "Can the customer explain why they want the relationship and does it fit their profile?",
+      "options": [
+        { "v": "clear", "label": "Clear and consistent with the customer's profile", "score": 1 },
+        { "v": "plausible", "label": "Plausible but not evidenced", "score": 3 },
+        { "v": "unclear", "label": "Unclear, vague or inconsistent with the profile", "score": 5 }
+      ] },
+    { "id": "sof", "group": "activity", "label": "Source of funds and wealth", "weight": 5,
+      "help": "AMLR Art. 25(c) and Art. 34(4)(c).",
+      "options": [
+        { "v": "documented", "label": "Documented and consistent", "score": 1 },
+        { "v": "plausible", "label": "Plausible, partly evidenced", "score": 3 },
+        { "v": "unexplained", "label": "Unexplained or not evidenced", "score": 5 }
+      ] },
+    { "id": "xb", "group": "activity", "label": "Cross-border share of expected transfers", "weight": 3,
+      "options": [
+        { "v": "none", "label": "None", "score": 1 },
+        { "v": "some", "label": "A minority of transfers", "score": 2 },
+        { "v": "most", "label": "Most transfers", "score": 4 }
+      ] },
+    { "id": "behaviour", "group": "activity", "label": "Behaviour against the stated profile", "weight": 4,
+      "help": "At onboarding use the stated profile and any pre-contact signals; at review use observed behaviour. EBA GL 4.60 and GL 21.5(b): transactions that differ in amount, frequency or complexity from what is expected.",
+      "options": [
+        { "v": "consistent", "label": "Consistent with the profile", "score": 1 },
+        { "v": "minor", "label": "Minor deviations, explained", "score": 2 },
+        { "v": "unusual", "label": "Unexplained deviations, structuring signs or rapid in-and-out movement", "score": 5, "tags": ["unusual"] }
+      ] },
+    { "id": "cryptoexp", "group": "activity", "label": "Crypto: self-hosted, DeFi and privacy exposure", "weight": 3,
+      "help": "EBA GL 21.3(d) and 21.5(b): self-hosted addresses, decentralised platforms, mixers and anonymity-enhancing tools. Choose 'Not applicable' for customers without crypto services.",
+      "options": [
+        { "v": "na", "label": "Not applicable (no crypto-asset services)", "score": 1 },
+        { "v": "low", "label": "Transfers only to or from wallets at regulated providers", "score": 2 },
+        { "v": "some", "label": "Some self-hosted transfers, ownership confirmed", "score": 3, "tags": ["selfhosted"] },
+        { "v": "high", "label": "Significant self-hosted or DeFi use, ownership unconfirmed", "score": 4, "tags": ["selfhosted"] },
+        { "v": "mixer", "label": "Mixers, privacy-enhancing tools or darknet exposure", "score": 5, "tags": ["selfhosted", "darknet"] }
+      ] },
+
+    { "id": "pep", "group": "flags", "label": "PEP status (customer or beneficial owner)", "weight": 4,
+      "help": "AMLR Art. 20(1)(g) requires the determination; Arts 42, 45 and 46 set the measures for PEPs, former PEPs, family members and close associates.",
+      "options": [
+        { "v": "none", "label": "Not a PEP, family member or close associate", "score": 1 },
+        { "v": "former_old", "label": "Former PEP, left office more than 12 months ago (residual risk assessed)", "score": 3, "tags": ["pep-former-old"] },
+        { "v": "former", "label": "Former PEP, left office within the last 12 months", "score": 4, "tags": ["pep", "pep-former"] },
+        { "v": "pep", "label": "Politically exposed person", "score": 5, "tags": ["pep"] },
+        { "v": "family", "label": "Family member of a PEP", "score": 4, "tags": ["pep", "pep-family"] },
+        { "v": "associate", "label": "Known close associate of a PEP", "score": 4, "tags": ["pep", "pep-family"] }
+      ] },
+    { "id": "sanctions", "group": "flags", "label": "Targeted financial sanctions screening", "weight": 3,
+      "help": "AMLR Art. 20(1)(d): screen the customer and beneficial owners, including persons holding more than 50% or a majority interest.",
+      "options": [
+        { "v": "clear", "label": "No match", "score": 1 },
+        { "v": "potential", "label": "Potential match under review", "score": 4, "tags": ["sanctions-potential"] },
+        { "v": "confirmed", "label": "Confirmed match (customer, beneficial owner or controller)", "score": 5, "tags": ["sanctions-confirmed"] }
+      ] },
+    { "id": "adverse", "group": "flags", "label": "Adverse media", "weight": 3,
+      "options": [
+        { "v": "none", "label": "No adverse media found", "score": 1 },
+        { "v": "minor", "label": "Unconfirmed, minor or old reports", "score": 3 },
+        { "v": "serious", "label": "Credible reports of financial crime, corruption or terrorism links", "score": 5, "tags": ["adverse-serious"] }
+      ] },
+    { "id": "prior_str", "group": "flags", "label": "Prior suspicion on file (restricted)", "weight": 1,
+      "help": "Restricted information. AMLR Art. 73(1) prohibits disclosing to the customer or third persons that a transaction is or has been assessed under Art. 69. Limit who can see this answer.",
+      "options": [
+        { "v": "no", "label": "None", "score": 1 },
+        { "v": "yes", "label": "A report or internal suspicion exists for this customer", "score": 5, "tags": ["prior-str"] }
+      ] },
+    { "id": "rbi", "group": "flags", "label": "Residence-by-investment applicant", "weight": 1,
+      "help": "AMLR Art. 41: third-country nationals applying for residence rights in exchange for an investment.",
+      "options": [
+        { "v": "no", "label": "No", "score": 1 },
+        { "v": "yes", "label": "Yes", "score": 5, "tags": ["rbi"] }
+      ] }
+  ],
+  "rules": [
+    { "id": "r_sanc", "tag": "sanctions-confirmed", "label": "Confirmed targeted financial sanctions match", "action": "prohibited", "min": "prohibited",
+      "basis": "AMLR Art. 20(1)(d) and Art. 21(1): CDD includes the sanctions check; if CDD cannot be completed the firm refrains from the relationship. Escalate to your sanctions procedure." },
+    { "id": "r_cdd", "tag": "cdd-failed", "label": "CDD cannot be completed", "action": "prohibited", "min": "prohibited",
+      "basis": "AMLR Art. 21(1): refrain from the transaction or relationship, terminate it and consider a report to the FIU." },
+    { "id": "r_fatf_black", "tag": "fatf-black", "label": "A linked country is on the FATF black list", "action": "prohibited", "min": "off",
+      "basis": "Firm policy default (same as the Country risk page). Many firms decline or escalate every such case; configure to your risk appetite." },
+    { "id": "r_geo_sanc", "tag": "geo-sanctions", "label": "A linked country has sanctions exposure of 9 or more (analyst-assigned, 0 to 10)", "action": "prohibited", "min": "off", "param": 9,
+      "basis": "Firm policy default (same as the Country risk page, Balanced preset). The 0 to 10 sanctions score is subjective in the source data." },
+    { "id": "r_eu_hrtc", "tag": "eu-hrtc", "label": "A linked country is on the EU list of high-risk third countries", "action": "high", "min": "high",
+      "basis": "AMLR Art. 29(4): enhanced due diligence measures listed in Art. 34(4) apply to relationships involving persons from the country. Check the Commission's delegated act for country-specific measures." },
+    { "id": "r_pep", "tag": "pep", "label": "PEP, former PEP (12 months), family member or close associate", "action": "high", "min": "high",
+      "basis": "AMLR Arts 42, 45 and 46: senior management approval, source of wealth and funds, enhanced ongoing monitoring." },
+    { "id": "r_rbi", "tag": "rbi", "label": "Residence-by-investment applicant", "action": "high", "min": "high",
+      "basis": "AMLR Art. 41: at least the Art. 34(4) measures (a), (c), (e) and (f)." },
+    { "id": "r_sanc_pot", "tag": "sanctions-potential", "label": "Potential sanctions match not yet resolved", "action": "high", "min": "off",
+      "basis": "Firm policy default: treat as High until the alert is cleared. Do not onboard with an open potential match." },
+    { "id": "r_adverse", "tag": "adverse-serious", "label": "Credible adverse media on financial crime", "action": "high", "min": "off",
+      "basis": "Firm policy default." },
+    { "id": "r_str", "tag": "prior-str", "label": "Prior suspicion on file", "action": "high", "min": "off",
+      "basis": "Firm policy default. Restricted: see AMLR Art. 73(1)." },
+    { "id": "r_opaque", "tag": "opaque", "label": "Opaque ownership: nominees, bearer shares or unexplained structure", "action": "high", "min": "off",
+      "basis": "Firm policy default, based on EBA GL 2 customer risk factors and AMLR Art. 34(2) scrutiny of complex structures." },
+    { "id": "r_darknet", "tag": "darknet", "label": "Mixer, privacy tool or darknet exposure (crypto)", "action": "high", "min": "off",
+      "basis": "Firm policy default, based on EBA GL 21.3(d)(iv) and 21.5(b)." },
+    { "id": "r_fatf_grey", "tag": "fatf-grey", "label": "A linked country is on the FATF grey list", "action": "medium", "min": "off",
+      "basis": "Firm policy default: at least Medium. The score already weights the listing." },
+    { "id": "r_eu_tax", "tag": "eu-tax", "label": "A linked country is on the EU list of non-cooperative tax jurisdictions", "action": "medium", "min": "off",
+      "basis": "Firm policy default." }
+  ]
+}
