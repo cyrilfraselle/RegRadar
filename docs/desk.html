@@ -278,7 +278,8 @@ h2.bl{font-weight:400}
 </style>
 <link rel="stylesheet" href="academy.css?v=20261015">
 <link rel="stylesheet" href="glossary.css?v=20261015">
-<script src="academy-shell.js?v=20261015"></script>
+<script src="academy-shell.js?v=20261016"></script>
+<script src="academy-engine.js?v=20261016"></script>
 <script src="glossary.js?v=20261015"></script>
 </head>
 <body>
@@ -340,35 +341,15 @@ AcademyShell.mount("desk");
    and you end the day with six half-worked files you could not defend.
    Precision and recall stop being scores and become a felt constraint.
    ═══════════════════════════════════════════════════════════════════ */
-const SKEY='regradar-desk', EVKEY='regradar-events';
-
-/* The career. Each day is a unit of work, not a lesson. */
-const DAYS=[
- {d:1, type:'tutorial', label:'Day 1', name:'Induction',
-  blurb:'Nadia walks you through the desk. Two alerts, nothing at stake.'},
- {d:2, type:'onboard', label:'Day 2', name:'The onboarding queue', n:2,
-  blurb:'Four applications. Decide how much diligence each one deserves.'},
- {d:3, type:'desk', label:'Day 3', name:'First real shift', n:4, hours:6,
-  blurb:'Four alerts. Six hours. Close what you can, investigate what you must.'},
- {d:5, type:'onboard', label:'Day 5', name:'Harder applications', n:2, hard:true,
-  blurb:'Files where nothing is wrong and nothing is proven.'},
- {d:8, type:'desk', label:'Day 8', name:'A busier queue', n:5, hours:7,
-  blurb:'Five alerts, seven hours. The maths gets tighter.'},
- {d:14,type:'desk', label:'Day 14', name:'Second week', n:5, hours:6,
-  blurb:'Five alerts, six hours. Something you saw before comes back.'},
- {d:21,type:'desk', label:'Day 21', name:'Month end', n:6, hours:7,
-  blurb:'Six alerts. The queue does not care that it is month end.'},
-];
-
-let S={day:0, done:[], harm:[], seen:{}, tutorialDone:false};
+/* The model (days, alert draw, hours, verdicts, XP, end of day) lives in
+   academy-engine.js as AcademyEngine.Desk, shared with the Desk window in
+   workstation.html. This page is the screen. */
+const D=AcademyEngine.Desk, DAYS=D.DAYS, S=D.S;
 let BOOK=[], ONB=[], PROFILES=[];
 let RUN=null;            /* the day in progress */
 
 const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-function save(){try{localStorage.setItem(SKEY,JSON.stringify(S))}catch(e){}}
-function load(){try{const p=JSON.parse(localStorage.getItem(SKEY)||'null');if(p)S={...S,...p}}catch(e){}}
-function logEvent(e){try{const a=JSON.parse(localStorage.getItem(EVKEY)||'[]');a.push(e);
-  localStorage.setItem(EVKEY,JSON.stringify(a.slice(-2000)))}catch(x){}}
+const save=()=>D.save(), load=()=>D.load();
 
 /* audio */
 let AC=null,SND=true;
@@ -482,8 +463,8 @@ function toTimeline(){
   if(S.done.length>=DAYS.length){
     html+=`<div class="entry next"><div class="when"><b>—</b>ahead</div><div class="what">
       <div class="et">More days are being written</div>
-      <div class="eb">You have worked everything currently in the journal. The Filing and the
-        Inspection come next — writing the report, then defending the decisions you made here.</div>
+      <div class="eb">You have worked everything currently in the journal. More days are still being
+        written. Until then, the learning path covers reporting (module 8) in short form.</div>
       </div></div>`;
   }
   document.getElementById('tlEntries').innerHTML=html;
@@ -491,81 +472,24 @@ function toTimeline(){
 
 /* ═══════════ DAY START ═══════════ */
 function startDay(dn){
-  const d=DAYS.find(x=>x.d===dn); if(!d) return;
+  const d=D.dayOf(dn); if(!d) return;
   S.day=dn; paintHud();
   document.getElementById('bKick').textContent=`${d.label.toUpperCase()} · ${d.name.toUpperCase()}`;
-  const go=document.getElementById('bGo');
-
-  if(d.type==='tutorial'){
-    document.getElementById('bTitle').textContent='First morning.';
-    document.getElementById('bBody').innerHTML=
-      `<p>Nadia has the desk next to yours and eleven years on you. She is going to sit with you
-        through two alerts, and she will interrupt.</p>
-       <p>Nothing counts today. That is the only day of which that will be true.</p>`;
-    document.getElementById('bRules').innerHTML='';
-    go.textContent='SIT DOWN';
-    go.onclick=()=>runDesk(d,true);
-  }else if(d.type==='onboard'){
-    document.getElementById('bTitle').textContent='The onboarding queue.';
-    document.getElementById('bBody').innerHTML=
-      `<p>Applications waiting for a decision. For each one you decide how much diligence is
-        proportionate — and set the profile of activity you would expect to see.</p>
-       <p>That profile is not paperwork. It is the baseline every future alert on this customer
-        gets measured against. Set it carelessly and you generate noise for a decade.</p>`;
-    document.getElementById('bRules').innerHTML=`<div class="rules">
-      <div class="rh">WHAT YOU ARE DECIDING</div>
-      <div class="rr"><span class="i">1</span><div><b>Standard</b> — proportionate measures, ordinary risk.</div></div>
-      <div class="rr"><span class="i">2</span><div><b>Enhanced</b> — where the law or the risk requires more.</div></div>
-      <div class="rr"><span class="i">3</span><div><b>Ask first</b> — a fact is missing that decides the answer.</div></div>
-      <div class="rr"><span class="i">4</span><div><b>Decline</b> — the relationship cannot be established.</div></div>
-    </div>`;
-    go.textContent='OPEN THE QUEUE';
-    go.onclick=()=>runOnboard(d);
-  }else{
-    document.getElementById('bTitle').textContent=`${d.n} alerts. ${d.hours} hours.`;
-    document.getElementById('bBody').innerHTML=
-      `<p>Most of these you will resolve on the file in front of you, and that costs nothing.
-        Some you cannot resolve without looking further — and looking further costs hours out of
-        the same ${d.hours}.</p>
-       <p>There is not enough time to investigate everything. That is not a flaw in the day.
-        It is the day.</p>`;
-    document.getElementById('bRules').innerHTML=`<div class="rules">
-      <div class="rh">HOW THE HOURS WORK</div>
-      <div class="rr"><span class="i">·</span><div><b>Closing on the file</b> costs nothing. Do it confidently where the file supports it.</div></div>
-      <div class="rr"><span class="i">·</span><div><b>Opening an investigation</b> spends hours on each line of enquiry you buy.</div></div>
-      <div class="rr"><span class="i">·</span><div><b>Run out</b> and you decide the remaining alerts blind.</div></div>
-    </div>`;
-    go.textContent='CLOCK IN';
-    go.onclick=()=>runDesk(d,false);
-  }
+  const go=document.getElementById('bGo'), b=D.briefing(d);
+  document.getElementById('bTitle').textContent=b.title;
+  document.getElementById('bBody').innerHTML=b.paras.map(p=>`<p>${esc(p)}</p>`).join('');
+  document.getElementById('bRules').innerHTML=b.rules
+    ? `<div class="rules"><div class="rh">${esc(b.rules.head.toUpperCase())}</div>${b.rules.items.map(r=>
+        `<div class="rr"><span class="i">${esc(r[0])}</span><div><b>${esc(r[1])}</b> — ${esc(r[2])}</div></div>`).join('')}</div>`
+    : '';
+  go.textContent=b.go.toUpperCase();
+  go.onclick=()=> d.type==='onboard'? runOnboard(d) : runDesk(d, d.type==='tutorial');
   show('vBrief');
 }
 
 /* ═══════════ THE DESK (merged loop) ═══════════ */
-function pickAlerts(n, tutorial){
-  const seen=new Set(Object.keys(S.seen));
-  let pool=BOOK.slice();
-  if(tutorial){
-    /* induction: one obviously benign, one obviously not */
-    const benign=pool.find(c=>!c.is_real_case&&c.depth==='shallow');
-    const real=pool.find(c=>c.is_real_case&&c.depth==='shallow');
-    return [benign,real].filter(Boolean);
-  }
-  /* about a third review, rest fresh — and never the same case twice in a day */
-  const fresh=pool.filter(c=>!seen.has(c.id)).sort(()=>Math.random()-0.5);
-  const old=pool.filter(c=>seen.has(c.id)).sort(()=>Math.random()-0.5);
-  const wantOld=Math.min(old.length, Math.round(n*0.34));
-  const out=[...old.slice(0,wantOld), ...fresh.slice(0,n-wantOld)];
-  while(out.length<n && pool.length){
-    const extra=pool.find(c=>!out.includes(c)); if(!extra) break; out.push(extra);
-  }
-  return out.slice(0,n).sort(()=>Math.random()-0.5);
-}
-
 function runDesk(d, tutorial){
-  const alerts=pickAlerts(tutorial?2:d.n, tutorial);
-  RUN={type:'desk', d, tutorial, alerts, i:0, hours:tutorial?4:d.hours,
-       budget:tutorial?4:d.hours, results:[], opened:false, spent:[], gathered:[], nadia:0};
+  RUN=D.startAlerts(BOOK, d, tutorial);
   paintHud(); show('vWork'); renderAlert();
   if(tutorial){
     clearTimeout(coachT);
@@ -684,13 +608,10 @@ function paintActs(){
 }
 
 function buyAction(aid){
-  const c=RUN.alerts[RUN.i];
-  const a=c.actions.find(x=>x.id===aid);
-  if(!a||RUN.spent.includes(aid)||RUN.hours<a.cost) return;
-  RUN.hours-=a.cost; RUN.spent.push(aid);
-  const ev=c.evidence[a.reveals];
+  const r=D.spend(RUN, aid); if(!r.ok) return;
+  const ev=r.ev;
   if(ev){
-    RUN.gathered.push(a.reveals); sfx.find();
+    sfx.find();
     const b=document.getElementById('board');
     if(RUN.gathered.length===1) b.innerHTML='';
     b.insertAdjacentHTML('afterbegin',`<div class="ev ${ev.weight}">
@@ -708,24 +629,8 @@ function buyAction(aid){
 }
 
 function askNadia(){
-  const c=RUN.alerts[RUN.i];
-  if(RUN.hours<1||RUN.nadia>=2) return;
-  RUN.hours-=1; RUN.nadia++;
-  const found=new Set(RUN.gathered);
-  const missing=(c.decisive||[]).filter(k=>!found.has(k));
-  let line;
-  if(RUN.nadia===1){
-    line='"What would have to be true for this to be completely innocent? Work that out, then go '
-      +'and look for it. If it is not there, you have your answer."';
-  }else if(missing.length){
-    const act=c.actions.find(a=>a.reveals===missing[0]);
-    const what=act?act.name.replace(/^(Pull|Obtain|Request|Review|Check|Look for|Examine|Map|Establish|Compare|Re-run|Screen|Cross-reference|Open|Call|Ask|Interview|Aggregate)\s+/i,''):'the part that matters';
-    line=`"Everything you have shown me is consistent with itself. That is not the same as being `
-      +`true. Have you looked at ${what.toLowerCase()}?"`;
-  }else{
-    line='"You have what you need. Say it in two sentences: what is the suspicion, and which fact '
-      +'supports it. If you cannot, you are not done thinking."';
-  }
+  const r=D.askNadia(RUN); if(!r.ok) return;
+  const line=r.line;
   const nt=document.getElementById('nadiaText'); if(nt) nt.textContent=line;
   const nb=document.getElementById('nadiaBtn');
   if(nb){nb.disabled=RUN.nadia>=2||RUN.hours<1; if(RUN.nadia>=2) nb.textContent='SHE HAS SAID HER PIECE';}
@@ -736,42 +641,10 @@ function askNadia(){
 
 function deskDecide(choice){
   endCoach();                    /* the coach never outlives a decision */
-  const c=RUN.alerts[RUN.i];
-  const deep=(c.actions||[]).length>0;
-  const found=new Set(RUN.gathered);
-  const decisive=c.decisive||[];
-  const foundAll=decisive.length? decisive.every(k=>found.has(k)) : true;
-  const foundN=decisive.filter(k=>found.has(k)).length;
-
-  let verdict, xp=0;
-  if(choice===c.best_action){ verdict = foundAll?'right':'thin'; }
-  else if((choice==='escalate'||choice==='sar') && c.is_real_case) verdict='part';
-  else if(choice==='rfi' && c.best_action!=='close') verdict='part';
-  else verdict = c.is_real_case ? 'harm' : 'wrong';
-
-  xp = verdict==='right'?260 : verdict==='thin'?110 : verdict==='part'?120 : verdict==='wrong'?30 : 0;
-  if(verdict==='right' && deep && RUN.hours>=2) xp+=60;
-  if(RUN.tutorial) xp=0;
-
-  S.seen[c.id]=verdict; save();
-  if(xp) AcademyShell.award('desk', xp);
-
-  logEvent({module:'desk', case:c.id, family:c.family, decision:choice, correct:verdict,
-            evidence:RUN.gathered.length, hours:RUN.budget-RUN.hours, at:new Date().toISOString()});
-  RUN.results.push({c, choice, verdict, xp, foundN, decisiveTotal:decisive.length});
-
-  /* a harmful call is scheduled to resurface on a later day */
-  if(verdict==='harm' && !RUN.tutorial){
-    const later=DAYS.find(d=>d.d>S.day && !S.done.includes(d.d));
-    if(later) S.harm.push({surfaceOn:later.d, caseId:c.id,
-      headline:`Follow-up: ${c.title}`,
-      body: c.epilogue_wrong || `The file you closed on day ${S.day} has come back. `
-        +`Compliance has asked why the alert was dismissed without the question being put.`});
-    save();
-  }
-  (verdict==='right'||verdict==='part'?sfx.good:sfx.bad)();
-  showOutcome(c, choice, verdict, xp, foundN, decisive);
-
+  const r=D.decideAlert(RUN, choice);
+  r.badges.forEach(b=>toast('BADGE: '+b.n.toUpperCase()));
+  (r.verdict==='right'||r.verdict==='part'?sfx.good:sfx.bad)();
+  showOutcome(r.c, choice, r.verdict, r.xp, r.foundN, r.decisive);
 }
 
 function showOutcome(c, choice, verdict, xp, foundN, decisive){
@@ -832,9 +705,7 @@ function showOutcome(c, choice, verdict, xp, foundN, decisive){
 
 /* ═══════════ ONBOARDING ═══════════ */
 function runOnboard(d){
-  const pool=ONB.slice().sort((a,b)=>a.difficulty-b.difficulty);
-  const set = d.hard? pool.slice(2) : pool.slice(0,2);
-  RUN={type:'onboard', d, cases:set, i:0, hours:null, results:[]};
+  RUN=D.startOnboard(ONB, d);
   paintHud(); show('vWork'); renderOnb();
 }
 
@@ -876,15 +747,9 @@ function renderOnb(){
 
 function onbDecide(choice){
   endCoach();
-  const c=RUN.cases[RUN.i];
-  const right=choice===c.decision;
-  const verdict=right?'right':(choice==='edd'&&c.decision==='standard')?'part':'wrong';
-  let xp=right?220:verdict==='part'?70:20;
-  S.seen[c.id]=verdict; save();
-  if(xp) AcademyShell.award('desk', xp);
-  logEvent({module:'onboard', case:c.id, family:c.family, decision:choice,
-            correct:verdict, at:new Date().toISOString()});
-  RUN.results.push({c,choice,verdict,xp});
+  const r=D.decideOnboard(RUN, choice);
+  const c=r.c, right=r.right, verdict=r.verdict, xp=r.xp;
+  r.badges.forEach(b=>toast('BADGE: '+b.n.toUpperCase()));
   (right?sfx.good:sfx.bad)();
 
   const col=right?'var(--phos)':verdict==='part'?'var(--amber)':'var(--alarm)';
@@ -915,37 +780,14 @@ function onbDecide(choice){
 
 /* ═══════════ END OF DAY ═══════════ */
 function endDay(){
-  const d=RUN.d;
-  const res=RUN.results;
-  const good=res.filter(r=>r.verdict==='right').length;
-  const harm=res.filter(r=>r.verdict==='harm').length;
-  const xp=res.reduce((s,r)=>s+r.xp,0);
-  const hoursUsed=RUN.budget!=null?(RUN.budget-RUN.hours):null;
-
-  if(!S.done.includes(d.d)){ S.done.push(d.d); }
-  AcademyShell.complete('desk', S.done.length);
-  S.seen['day'+d.d]= harm? 'HARM' : good===res.length? 'CLEAN' : 'MIXED';
-  if(RUN.tutorial) S.tutorialDone=true;
-  save();
+  const r=D.closeDay(RUN), d=r.d, good=r.good, harm=r.harm, xp=r.xp, hoursUsed=r.hoursUsed;
+  r.badges.forEach(b=>toast('BADGE: '+b.n.toUpperCase()));
 
   const st=document.getElementById('oStamp');
   st.textContent='DAY '+d.d+' CLOSED'; st.style.color='var(--ice)';
-  document.getElementById('oTitle').textContent =
-    RUN.tutorial? 'Induction over.'
-    : harm? `${harm} of them will come back.`
-    : good===res.length? 'A clean day.' : 'Worked, with gaps.';
+  document.getElementById('oTitle').textContent=r.title;
   document.getElementById('oXp').innerHTML=xp?`<span style="color:var(--ice)">+${xp} XP</span>`:'';
-  document.getElementById('oBody').innerText = RUN.tutorial
-    ? 'Nothing you did today counted. From tomorrow it does — and Nadia will get steadily less '
-      + 'forthcoming as you rank up, which is the intention.'
-    : harm
-    ? 'A file closed wrongly does not disappear. It sits there until something forces it back into '
-      + 'view, and by then the question is not what you decided but why nobody asked.'
-    : hoursUsed!=null
-    ? `You spent ${hoursUsed} of ${RUN.budget} hours. The ones you closed on the file are what paid `
-      + `for the ones you could open.`
-    : 'Profiles set. Every alert these customers generate from now on is measured against what you '
-      + 'decided today.';
+  document.getElementById('oBody').innerText=r.body;
 
   document.getElementById('oScores').innerHTML=`
     <div><div class="n" style="color:var(--phos)">${good}</div><div class="l">CORRECT</div></div>
@@ -953,12 +795,12 @@ function endDay(){
     ${hoursUsed!=null?`<div><div class="n" style="color:var(--amber)">${hoursUsed}h</div><div class="l">HOURS SPENT</div></div>`:''}
     <div><div class="n" style="color:var(--ice)">${xp}</div><div class="l">XP</div></div>`;
 
-  const nextD=DAYS.find(x=>!S.done.includes(x.d));
+  const nextD=r.nextD;
   document.getElementById('oExtras').innerHTML = nextD
     ? `<div class="note ice"><span class="nl">NEXT IN THE JOURNAL</span>
         <b>${esc(nextD.label)} — ${esc(nextD.name)}.</b> ${esc(nextD.blurb)}</div>`
     : `<div class="note ice"><span class="nl">THE JOURNAL SO FAR</span>You have worked every day
-        currently written. The Filing and the Inspection come next.</div>`;
+        currently written. More days are still being written.</div>`;
   document.getElementById('oLaw').textContent='';
   document.getElementById('oLesson').style.display='none';
   const btn=document.getElementById('oNext');
