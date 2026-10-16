@@ -1,0 +1,438 @@
+{
+ "_meta": {
+  "name": "BWRA demo dataset",
+  "fictional": true,
+  "note": "Fictional firm 'CF Bank' (a real US 'CFBank' exists; this is not it). All scores, owners, links, actions and snapshot history are invented to show the tool working. Controls are the 8 sample controls in controls.json."
+ },
+ "firm": {
+  "name": "CF Bank (fictional)",
+  "type": "emi"
+ },
+ "links": {
+  "cus-pep": [
+   "ctl-07",
+   "ctl-06",
+   "ctl-08"
+  ],
+  "cus-ubo": [
+   "ctl-03",
+   "ctl-01"
+  ],
+  "cus-shell": [
+   "ctl-01",
+   "ctl-04"
+  ],
+  "cus-mule": [
+   "ctl-05",
+   "ctl-01"
+  ],
+  "cus-sector": [
+   "ctl-04",
+   "ctl-08"
+  ],
+  "prd-emoney": [
+   "ctl-01"
+  ],
+  "prd-passthrough": [
+   "ctl-05"
+  ],
+  "chn-remote": [
+   "ctl-01"
+  ],
+  "trx-struct": [
+   "ctl-05"
+  ],
+  "trx-layer": [
+   "ctl-05"
+  ],
+  "trx-thirdparty": [
+   "ctl-05",
+   "ctl-04"
+  ],
+  "trx-monitor": [
+   "ctl-05"
+  ]
+ },
+ "owners": {
+  "cus-pep": "M. Van Damme",
+  "cus-ubo": "T. Nguyen",
+  "cus-shell": "T. Nguyen",
+  "cus-mule": "Sanmi O.",
+  "cus-sector": "M. Van Damme",
+  "cus-npo": "M. Van Damme",
+  "prd-emoney": "T. Nguyen",
+  "prd-passthrough": "Sanmi O.",
+  "prd-new": "Head of Product (fictional)",
+  "chn-remote": "T. Nguyen",
+  "chn-agents": "Head of Partnerships (fictional)",
+  "chn-reliance": "Sanmi O.",
+  "chn-baas": "Head of Partnerships (fictional)",
+  "chn-api": "CTO (fictional)",
+  "geo-hrtc": "M. Van Damme",
+  "geo-weak": "M. Van Damme",
+  "geo-xborder": "Sanmi O.",
+  "geo-sanctions": "M. Van Damme",
+  "trx-struct": "Sanmi O.",
+  "trx-layer": "Sanmi O.",
+  "trx-thirdparty": "Sanmi O.",
+  "trx-monitor": "T. Nguyen",
+  "trx-tfr": "Sanmi O.",
+  "trx-cash": "Head of Payments (fictional)"
+ },
+ "overrides": {
+  "chn-remote": {
+   "value": 0.25,
+   "rationale": "Demo: ctl-01 tests cover document checks only. The liveness and deepfake detection of the onboarding vendor has not yet been independently tested, so we rate the channel as weak whatever the control status says."
+  }
+ },
+ "actions": [
+  {
+   "sid": "prd-new",
+   "title": "Introduce a new-product ML/TF assessment gate in the product approval process",
+   "owner": "Head of Product (fictional)",
+   "due": "2026-09-30",
+   "status": "open"
+  },
+  {
+   "sid": "geo-hrtc",
+   "title": "Add high-risk third country checks to onboarding and payment screening",
+   "owner": "M. Van Damme",
+   "due": "2026-11-30",
+   "status": "progress"
+  },
+  {
+   "sid": "geo-sanctions",
+   "title": "Test sanctions screening against a set of known evasion typologies",
+   "owner": "M. Van Damme",
+   "due": "2026-12-15",
+   "status": "open"
+  },
+  {
+   "sid": "chn-baas",
+   "title": "Define due diligence expectations for partner sub-clients and review the top 5 partners",
+   "owner": "Head of Partnerships (fictional)",
+   "due": "2026-12-31",
+   "status": "open"
+  },
+  {
+   "sid": "chn-remote",
+   "title": "Commission an independent test of the vendor's liveness and deepfake detection",
+   "owner": "T. Nguyen",
+   "due": "2026-11-15",
+   "status": "progress"
+  },
+  {
+   "sid": "cus-pep",
+   "title": "Complete the first test of the PEP book monitoring control (ctl-07)",
+   "owner": "M. Van Damme",
+   "due": "2026-10-31",
+   "status": "open"
+  },
+  {
+   "sid": "trx-tfr",
+   "title": "Document the process for incomplete payer and payee information on incoming transfers",
+   "owner": "Sanmi O.",
+   "due": "2026-06-30",
+   "status": "done"
+  }
+ ],
+ "refresh": {
+  "months": 12,
+  "due": "2026-11-20"
+ },
+ "signoff": {
+  "label": "FY2026 business-wide risk assessment",
+  "preparedBy": "M. Van Damme",
+  "preparedOn": "2026-10-12",
+  "reviewedBy": "",
+  "reviewedOn": "",
+  "approvedBy": "",
+  "approvedOn": "",
+  "communicated": false,
+  "ref": ""
+ },
+ "snapshots": [
+  {
+   "label": "FY2024 assessment (demo history)",
+   "date": "2024-11-14",
+   "preparedBy": "M. Van Damme",
+   "preparedOn": "2024-11-14",
+   "reviewedBy": "T. Nguyen",
+   "reviewedOn": "2024-11-21",
+   "approvedBy": "Board of directors (fictional)",
+   "approvedOn": "2024-11-28",
+   "rows": {
+    "cus-pep": [
+     3,
+     4,
+     3,
+     4
+    ],
+    "cus-ubo": [
+     2,
+     4,
+     2,
+     4
+    ],
+    "cus-shell": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "cus-mule": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "cus-sector": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "cus-npo": [
+     2,
+     5,
+     2,
+     5
+    ],
+    "prd-emoney": [
+     2,
+     4,
+     2,
+     4
+    ],
+    "prd-passthrough": [
+     5,
+     3,
+     5,
+     3
+    ],
+    "chn-remote": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "chn-agents": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "chn-reliance": [
+     2,
+     3,
+     2,
+     3
+    ],
+    "geo-hrtc": [
+     3,
+     4,
+     3,
+     4
+    ],
+    "geo-weak": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "geo-xborder": [
+     2,
+     3,
+     2,
+     3
+    ],
+    "geo-sanctions": [
+     4,
+     5,
+     4,
+     5
+    ],
+    "trx-struct": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "trx-layer": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "trx-thirdparty": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "trx-monitor": [
+     2,
+     4,
+     2,
+     4
+    ],
+    "trx-tfr": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "trx-cash": [
+     3,
+     3,
+     3,
+     3
+    ]
+   }
+  },
+  {
+   "label": "FY2025 assessment (demo history)",
+   "date": "2025-11-20",
+   "preparedBy": "M. Van Damme",
+   "preparedOn": "2025-11-20",
+   "reviewedBy": "T. Nguyen",
+   "reviewedOn": "2025-11-26",
+   "approvedBy": "Board of directors (fictional)",
+   "approvedOn": "2025-12-04",
+   "rows": {
+    "cus-pep": [
+     2,
+     4,
+     1,
+     3
+    ],
+    "cus-ubo": [
+     4,
+     4,
+     4,
+     4
+    ],
+    "cus-shell": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "cus-mule": [
+     4,
+     3,
+     3,
+     3
+    ],
+    "cus-sector": [
+     3,
+     3,
+     3,
+     2
+    ],
+    "cus-npo": [
+     1,
+     5,
+     1,
+     5
+    ],
+    "prd-emoney": [
+     4,
+     4,
+     3,
+     4
+    ],
+    "prd-passthrough": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "chn-remote": [
+     4,
+     3,
+     3,
+     3
+    ],
+    "chn-agents": [
+     2,
+     3,
+     2,
+     3
+    ],
+    "chn-reliance": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "chn-baas": [
+     3,
+     4,
+     2,
+     3
+    ],
+    "geo-hrtc": [
+     3,
+     4,
+     3,
+     4
+    ],
+    "geo-weak": [
+     2,
+     3,
+     1,
+     3
+    ],
+    "geo-xborder": [
+     4,
+     3,
+     4,
+     2
+    ],
+    "geo-sanctions": [
+     3,
+     5,
+     3,
+     5
+    ],
+    "trx-struct": [
+     4,
+     3,
+     3,
+     3
+    ],
+    "trx-layer": [
+     4,
+     3,
+     4,
+     3
+    ],
+    "trx-thirdparty": [
+     2,
+     3,
+     2,
+     2
+    ],
+    "trx-monitor": [
+     4,
+     4,
+     3,
+     4
+    ],
+    "trx-tfr": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "trx-cash": [
+     3,
+     3,
+     3,
+     3
+    ]
+   }
+  }
+ ]
+}

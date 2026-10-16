@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar: Business-wide risk assessment</title>
+<meta name="description" content="Build, version and sign off a business-wide ML/TF risk assessment: scenarios, control effectiveness, residual risk heat maps and a board report. Prototype, not legal advice.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root{
+  --bg:#0E1117;--surface:#151A21;--surface-2:#1A2029;--border:#232B36;--border-strong:#2E3845;
+  --text:#E6EDF3;--text-2:#AAB4C6;--text-3:#8A93A0;--accent:#6D9BFF;--accent-bg:#14213D;--on-accent:#06101F;
+  --crit:#F0616D;--crit-bg:#2A1518;--imp:#E3A008;--imp-bg:#2A2008;--ok:#2EBD85;--ok-bg:#0F2018;
+  --b0-bg:#123325;--b0-fg:#7BE0B0;--b1-bg:#3A2D08;--b1-fg:#F2C24A;--b2-bg:#47230F;--b2-fg:#FFAA78;--b3-bg:#4D161A;--b3-fg:#FF9298;
+  --pat:rgba(230,237,243,.22);
+  --radius:12px;--radius-sm:8px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:'SF Mono',ui-monospace,Menlo,monospace;
+  --serif:Georgia,'Times New Roman',serif;
+}
+html[data-theme="light"]{
+  --bg:#F5F6F8;--surface:#FFFFFF;--surface-2:#F4F6F9;--border:#E3E6EC;--border-strong:#CDD3DD;
+  --text:#16202C;--text-2:#455163;--text-3:#5F6B7A;--accent:#0A4FD6;--accent-bg:#E7EEFC;--on-accent:#FFFFFF;
+  --crit:#B3261E;--crit-bg:#FCEBE9;--imp:#8A4B00;--imp-bg:#FBF0DB;--ok:#0B6E4C;--ok-bg:#E3F4EC;
+  --b0-bg:#D9F2E6;--b0-fg:#0A5338;--b1-bg:#FBEFC9;--b1-fg:#5E3B00;--b2-bg:#FBD9C2;--b2-fg:#7A2D00;--b3-bg:#F6C6C2;--b3-fg:#7E140D;
+  --pat:rgba(22,32,44,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+::selection{background:var(--accent);color:var(--on-accent)}
+h1,h2,h3,h4{line-height:1.25}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px;background:var(--accent);color:var(--on-accent);padding:8px 14px;z-index:99}
+.skip:focus{left:8px;top:8px}
+[hidden]{display:none!important}
+
+/* header */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 0 14px}
+.head h1{font-size:26px;letter-spacing:-.025em}
+.head p{color:var(--text-2);margin-top:4px;max-width:66ch}
+.head-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sel,.in{padding:8px 11px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);min-height:40px;max-width:100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--text);text-decoration:none;font-weight:600;font-size:13px}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.pri:hover{filter:brightness(1.08);color:var(--on-accent)}
+.btn.sm{min-height:36px;padding:0 12px;font-size:12.5px}
+.btn.danger:hover{border-color:var(--crit);color:var(--crit)}
+.lnk{background:none;border:0;padding:6px 0;min-height:36px;text-align:left;font-weight:700;color:var(--text);text-decoration:underline;text-decoration-color:var(--border-strong);text-underline-offset:3px}
+.lnk:hover{color:var(--accent);text-decoration-color:var(--accent)}
+a.lnk{display:inline-block;text-decoration:underline}
+sub{font-size:12px}
+
+/* banners */
+.banner{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid var(--border-strong);background:var(--surface);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:10px;font-size:13.5px}
+.banner b{font-weight:700}
+.banner.demo{border-color:var(--accent);background:var(--accent-bg)}
+.banner.bad{border-color:var(--crit);background:var(--crit-bg)}
+.banner.warn{border-color:var(--imp);background:var(--imp-bg)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--border);margin:6px 0 18px;padding-bottom:0;scrollbar-width:thin}
+.tabs button{border:0;background:transparent;min-height:44px;padding:0 14px;font-weight:600;color:var(--text-2);border-bottom:3px solid transparent;white-space:nowrap;border-radius:6px 6px 0 0}
+.tabs button:hover{color:var(--text)}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tabs .cnt{font-family:var(--mono);font-size:12px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:1px 7px;margin-left:5px;color:var(--text-2)}
+
+/* cards */
+.pane{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;min-width:0}
+.pane h2{font-size:16px;letter-spacing:-.01em;margin-bottom:4px}
+.pane h3{font-size:13.5px;margin:16px 0 8px}
+.pane .sub{color:var(--text-2);font-size:13px;margin-bottom:12px;max-width:70ch}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:16px}
+.stack{display:flex;flex-direction:column;gap:16px;margin-bottom:60px}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;min-width:0}
+.kpi .n{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.kpi .l{font-size:13px;color:var(--text-2);margin-top:4px}
+.kpi .s{font-size:12.5px;color:var(--text-3);margin-top:2px}
+.kpi.warn{border-color:var(--crit)}
+.kpi.amber{border-color:var(--imp)}
+
+/* chips and bands */
+.chip{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:14px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);white-space:nowrap;display:inline-block}
+button.chip{min-height:36px;cursor:pointer}
+button.chip[aria-pressed="true"]{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.chip.crit{background:var(--crit-bg);color:var(--crit);border-color:transparent}
+.chip.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.chip.imp{background:var(--imp-bg);color:var(--imp);border-color:transparent}
+.band{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:6px;border:1px solid currentColor;white-space:nowrap;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.band .sc{font-family:var(--mono)}
+.b0{background:var(--b0-bg);color:var(--b0-fg)}
+.b1{background:var(--b1-bg);color:var(--b1-fg)}
+.b2{background:var(--b2-bg);color:var(--b2-fg)}
+.b3{background:var(--b3-bg);color:var(--b3-fg)}
+/* patterns: not colour alone */
+.p1{background-image:repeating-linear-gradient(0deg,transparent 0 5px,var(--pat) 5px 6px)}
+.p2{background-image:repeating-linear-gradient(45deg,transparent 0 5px,var(--pat) 5px 6px)}
+.p3{background-image:repeating-linear-gradient(45deg,transparent 0 5px,var(--pat) 5px 6px),repeating-linear-gradient(-45deg,transparent 0 5px,var(--pat) 5px 6px)}
+.swatch{display:inline-block;width:18px;height:18px;border-radius:4px;border:1px solid currentColor;vertical-align:-4px;margin-right:5px}
+.legend{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px;color:var(--text-2);margin-top:10px}
+.legend>span{display:inline-flex;align-items:center}
+.pill-up{color:var(--crit);font-weight:700}
+.pill-down{color:var(--ok);font-weight:700}
+.pill-eq{color:var(--text-2);font-weight:600}
+
+/* heat map */
+.hmwrap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px;align-items:stretch}
+.hm-y{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:12.5px;font-weight:700;color:var(--text-2);letter-spacing:.02em}
+.hm-x{grid-column:2;text-align:center;font-size:12.5px;font-weight:700;color:var(--text-2)}
+table.hm{border-collapse:separate;border-spacing:3px;width:100%;table-layout:fixed}
+table.hm th{font-size:12px;font-weight:600;color:var(--text-2);padding:2px;text-align:center;line-height:1.2;overflow-wrap:normal;hyphens:none}
+table.hm th.rowh{width:68px;text-align:right;padding-right:4px;vertical-align:middle}
+table.hm td{padding:0;height:62px;vertical-align:top}
+.cell,.hm-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:100%;height:100%;min-height:60px;border-radius:6px;border:1px solid transparent;padding:2px;text-align:center;font-size:12px;line-height:1.2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+button.cell{border:1px solid currentColor}
+button.cell:hover{outline:2px solid var(--accent);outline-offset:0}
+.cell.sel{outline:3px solid var(--accent);outline-offset:1px}
+.cell .z{font-family:var(--mono);font-size:12px;opacity:.9}
+.cell .n{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:12px;background:var(--text);color:var(--bg);font-weight:700;font-size:13px;padding:0 6px;font-family:var(--mono)}
+.cell .cd{font-size:12px;font-weight:600;word-break:break-word}
+.hm-key{display:none;font-size:12.5px;color:var(--text-2);margin-top:6px}
+
+/* category summary and trend */
+.cats{list-style:none;display:flex;flex-direction:column;gap:10px}
+.cats li{display:grid;grid-template-columns:minmax(120px,1.1fr) repeat(3,minmax(0,1fr));gap:6px 12px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2)}
+.cats .nm{font-weight:700}
+.cats .nm small{display:block;font-weight:500;color:var(--text-2);font-size:12.5px}
+.cats .st{font-size:12.5px;color:var(--text-2)}
+.cats .st b{display:block;color:var(--text);font-size:15px;font-family:var(--mono)}
+.bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden;margin-top:3px}
+.bar i{display:block;height:100%;background:var(--accent)}
+.bar.res i{background:var(--text-2)}
+table.mini{width:100%;border-collapse:collapse;font-size:13px}
+table.mini th,table.mini td{padding:7px 8px;border-bottom:1px solid var(--border);text-align:left}
+table.mini th{font-size:12.5px;color:var(--text-2);font-weight:700}
+table.mini td.num,table.mini th.num{text-align:right;font-family:var(--mono)}
+.dist{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid var(--border-strong);margin:4px 0}
+.dist span{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;font-family:var(--mono);min-width:0;overflow:hidden}
+.spark{width:100%;max-width:400px;height:auto;margin-top:8px;display:block}
+.spark text{font-size:12px;fill:var(--text-2);font-family:var(--font)}
+.spark .ln{fill:none;stroke:var(--accent);stroke-width:2.5}
+.spark .dot{fill:var(--accent)}
+.spark .ax{stroke:var(--border-strong)}
+
+/* lists */
+.list-plain{list-style:none;display:flex;flex-direction:column;gap:2px}
+.list-plain li{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-bottom:1px solid var(--border);padding:2px 0}
+.attn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.attn h3{margin-top:0}
+.muted{color:var(--text-2)}
+.small{font-size:12.5px}
+.empty{padding:28px 16px;text-align:center;color:var(--text-2)}
+
+/* register */
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+.filters .f{display:flex;flex-direction:column;gap:3px}
+.filters label{font-size:12.5px;font-weight:700;color:var(--text-2)}
+.filters .f.grow{flex:1;min-width:200px}
+.filters .in,.filters .sel{width:100%}
+.checkline{display:inline-flex;gap:8px;align-items:center;min-height:40px;font-size:13px}
+.checkline input{width:20px;height:20px;accent-color:var(--accent)}
+.tblwrap{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface)}
+table.reg{width:100%;border-collapse:collapse;font-size:13.5px}
+table.reg th{font-size:12.5px;text-align:left;color:var(--text-2);padding:10px 10px;border-bottom:1px solid var(--border-strong);background:var(--surface-2);font-weight:700}
+table.reg td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+table.reg tr:last-child td{border-bottom:0}
+table.reg td.rk{font-family:var(--mono);color:var(--text-3);width:40px}
+table.reg .flags{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+.sub{color:var(--text-2);font-size:12.5px}
+.cardrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2)}
+.cardrow + .cardrow{margin-top:8px}
+.cardrow .t{font-weight:700}
+.cardrow.done .t{text-decoration:line-through;color:var(--text-2)}
+.rowtools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* forms */
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field label,.field .lbl{display:block;font-size:12.5px;font-weight:700;color:var(--text-2);margin-bottom:4px}
+.field .in,.field .sel{width:100%}
+.field.full{grid-column:1/-1}
+textarea.in{width:100%;min-height:76px;resize:vertical}
+.hint{font-size:12.5px;color:var(--text-2);margin-top:3px}
+.err{color:var(--crit);font-weight:600;font-size:13px;margin-top:4px}
+
+/* dialogs */
+dialog{margin:auto;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);color:var(--text);padding:0;width:min(760px,calc(100vw - 24px));max-height:calc(100vh - 24px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(5,8,14,.6)}
+dialog[open]{display:flex;flex-direction:column}
+.dlg-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.dlg-h h2{font-size:18px;letter-spacing:-.015em}
+.dlg-b{padding:16px 20px;overflow:auto;flex:1}
+.dlg-f{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;padding:12px 20px;border-top:1px solid var(--border);background:var(--surface-2);border-radius:0 0 14px 14px}
+.dlg-f .grp{display:flex;gap:8px;flex-wrap:wrap}
+.xbtn{border:1px solid var(--border-strong);background:var(--surface);border-radius:var(--radius-sm);min-width:40px;min-height:40px;font-size:18px;line-height:1}
+.xbtn:hover{border-color:var(--accent);color:var(--accent)}
+.sec{margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+.sec:first-child{margin-top:0;padding-top:0;border-top:0}
+.sec h3{font-size:13.5px;margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctlpick{display:flex;flex-direction:column;gap:6px;max-height:260px;overflow:auto;padding:2px}
+.ctlitem{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 10px;background:var(--surface-2);min-height:48px}
+.ctlitem{flex:0 0 auto}
+.ctlitem .t,.ctlitem .sub{display:block}
+.ctlitem input{width:20px;height:20px;accent-color:var(--accent)}
+.ctlitem .t{font-weight:600;font-size:13.5px}
+.ctlitem label{cursor:pointer;display:block}
+.calc{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px}
+.calc code,.formula{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:1px 6px}
+.calc ol{margin:8px 0 0 18px;display:flex;flex-direction:column;gap:5px}
+.pairs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.arrow{font-size:18px;color:var(--text-2)}
+details.calc summary{cursor:pointer;font-weight:700;min-height:28px}
+
+/* versions */
+.so-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+
+/* report */
+.rtools{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px}
+.report{background:#fff;color:#16202C;border:1px solid var(--border-strong);border-radius:var(--radius);padding:36px 40px;font-family:var(--font);max-width:980px;margin:0 auto 60px;--text:#16202C;--text-2:#455163;--text-3:#5F6B7A;--surface:#fff;--surface-2:#F4F6F9;--border:#E3E6EC;--border-strong:#CDD3DD;--bg:#fff;--accent:#0A4FD6;--accent-bg:#E7EEFC;--crit:#B3261E;--ok:#0B6E4C;--imp:#8A4B00;
+  --b0-bg:#D9F2E6;--b0-fg:#0A5338;--b1-bg:#FBEFC9;--b1-fg:#5E3B00;--b2-bg:#FBD9C2;--b2-fg:#7A2D00;--b3-bg:#F6C6C2;--b3-fg:#7E140D;--pat:rgba(22,32,44,.22)}
+.report h1{font-size:26px;letter-spacing:-.02em}
+.report h2{font-size:17px;margin:26px 0 8px;padding-top:14px;border-top:1px solid var(--border-strong)}
+.report p{margin:6px 0;max-width:80ch}
+.report .meta{display:flex;gap:6px 22px;flex-wrap:wrap;color:var(--text-2);font-size:13px;margin-top:8px}
+.report .demo-tag{display:inline-block;border:2px solid var(--crit);color:var(--crit);font-weight:800;padding:2px 10px;border-radius:6px;margin-bottom:10px;font-size:13px}
+.report .hm2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.report .kv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}
+.report .kv div{border:1px solid var(--border-strong);border-radius:8px;padding:8px 10px}
+.report .kv b{display:block;font-size:20px;font-family:var(--mono)}
+.report .kv span{font-size:12.5px;color:var(--text-2)}
+.sign{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:14px}
+.sign div{border-top:1px solid var(--text);padding-top:6px;min-height:70px;font-size:13px}
+.sign small{display:block;color:var(--text-2);font-size:12.5px}
+.quote{font-family:var(--serif);font-size:15px;line-height:1.6;background:var(--surface-2);border-radius:var(--radius-sm);padding:12px 16px;border:1px solid var(--border);white-space:pre-wrap}
+.quote p{margin:0 0 6px}
+.src{display:grid;gap:8px}
+.src li{margin-left:18px}
+.note{font-size:12.5px;color:var(--text-3);text-align:center;margin:8px 0 40px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:13.5px;z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+.methods p{margin:6px 0;max-width:78ch}
+.methods ul,.methods ol{margin:6px 0 6px 20px;max-width:78ch}
+.methods li{margin:3px 0}
+.pt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;font-size:13px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;background:var(--surface-2);max-width:560px}
+.pt b{font-family:var(--mono);text-align:right}
+
+@media screen and (max-width:1100px){
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .attn{grid-template-columns:1fr}
+}
+@media screen and (max-width:900px){
+  .grid2{grid-template-columns:1fr}
+  .so-grid{grid-template-columns:1fr 1fr}
+  .report{padding:22px 18px}
+  .report .hm2{grid-template-columns:1fr}
+  .report .kv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sign{grid-template-columns:1fr}
+}
+@media screen and (max-width:720px){
+  .wrap{padding:0 16px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fields,.so-grid{grid-template-columns:1fr}
+  .cats li{grid-template-columns:1fr 1fr}
+  .cats li .nm{grid-column:1/-1}
+  table.hm th.rowh{width:22px;padding-right:2px}
+  table.hm{border-spacing:2px}
+  table.hm td{height:56px}
+  .cell .cd{display:none}
+  table.hm .nm{display:none}
+  .hm-key{display:block}
+  .pane{padding:14px}
+  .report table.mini,.report table.mini tbody,.report table.mini tr,.report table.mini td,.report table.mini th{display:block;width:100%}
+  .report table.mini thead{position:absolute;left:-9999px}
+  .report table.mini tr{border-bottom:1px solid var(--border-strong);padding:6px 0}
+  .report table.mini td,.report table.mini th{border:0;padding:2px 4px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;text-align:left}
+  .report table.mini td.num{text-align:left}
+  .report table.mini td::before,.report table.mini th[scope=row]::before{content:attr(data-l);font-size:12.5px;font-weight:700;color:var(--text-2)}
+  /* register table becomes stacked cards */
+  table.reg,table.reg tbody,table.reg tr,table.reg td{display:block;width:100%}
+  table.reg thead{position:absolute;left:-9999px}
+  table.reg tr{border-bottom:1px solid var(--border-strong);padding:8px 4px}
+  table.reg td{border:0;padding:3px 10px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px}
+  table.reg td::before{content:attr(data-l);font-size:12.5px;font-weight:700;color:var(--text-2)}
+  table.reg td.rk{width:100%}
+  dialog{width:100vw;max-width:100vw;max-height:100vh;height:100vh;border-radius:0}
+  .dlg-f{border-radius:0}
+  .cardrow{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.toast{transition:none}*{scroll-behavior:auto!important}}
+
+/* print: only the board report */
+@media print{
+  @page{size:A4;margin:14mm}
+  html,html[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#F4F6F9;--border:#E3E6EC;--border-strong:#CDD3DD;--text:#16202C;--text-2:#455163;--text-3:#5F6B7A;--accent:#0A4FD6;--accent-bg:#E7EEFC;--crit:#B3261E;--ok:#0B6E4C;--imp:#8A4B00;
+    --b0-bg:#D9F2E6;--b0-fg:#0A5338;--b1-bg:#FBEFC9;--b1-fg:#5E3B00;--b2-bg:#FBD9C2;--b2-fg:#7A2D00;--b3-bg:#F6C6C2;--b3-fg:#7E140D;--pat:rgba(22,32,44,.3)}
+  body{background:#fff;font-size:12px}
+  .rrn,.rrf,.skip,.toast,.head,#banners,.tabs,.note,dialog,.rtools{display:none!important}
+  main > *:not(#panel-report){display:none!important}
+  #panel-report,#panel-report[hidden]{display:block!important}
+  .wrap{max-width:none;padding:0}
+  .report{border:0;padding:0;margin:0;max-width:none;border-radius:0}
+  .report h2{break-after:avoid;margin-top:18px}
+  .report .keep,.report table,.report .hm2 > div,.sign{break-inside:avoid}
+  .report .hm2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .report .kv{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .sign{grid-template-columns:repeat(3,minmax(0,1fr))}
+  table.hm td{height:50px}
+  .cell .cd{display:block}
+}
+</style>
+</head>
+<body>
+<script src="site-nav.js?v=20261015"></script>
+<a class="skip" href="#main">Skip to the risk assessment</a>
+
+<main id="main" class="wrap">
+  <header class="head">
+    <div>
+      <h1>Business-wide risk assessment</h1>
+      <p>Identify your money laundering and terrorist financing risks, link the controls that answer them, see the residual risk, and put a signed, dated version in front of the board.</p>
+    </div>
+    <div class="head-tools">
+      <button class="btn" type="button" data-act="library">Scenario library</button>
+      <button class="btn pri" type="button" data-act="add">Add a risk</button>
+      <button class="btn" type="button" data-act="csv">Export register (CSV)</button>
+      <button class="btn" type="button" data-act="print">Print board report</button>
+      <button class="btn" type="button" data-act="settings">Scales and settings</button>
+    </div>
+  </header>
+
+  <div id="banners"></div>
+
+  <div class="tabs" role="tablist" aria-label="Sections of the risk assessment" id="tabs">
+    <button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" data-tab="overview">Overview</button>
+    <button type="button" role="tab" id="tab-register" aria-controls="panel-register" aria-selected="false" tabindex="-1" data-tab="register">Risk register <span class="cnt" id="cntReg">0</span></button>
+    <button type="button" role="tab" id="tab-actions" aria-controls="panel-actions" aria-selected="false" tabindex="-1" data-tab="actions">Actions <span class="cnt" id="cntAct">0</span></button>
+    <button type="button" role="tab" id="tab-versions" aria-controls="panel-versions" aria-selected="false" tabindex="-1" data-tab="versions">Versions and sign-off</button>
+    <button type="button" role="tab" id="tab-report" aria-controls="panel-report" aria-selected="false" tabindex="-1" data-tab="report">Board report</button>
+    <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1" data-tab="method">Method and sources</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid2">
+      <section class="pane" aria-labelledby="h-inh">
+        <h2 id="h-inh">Inherent risk</h2>
+        <p class="sub">Before controls. Likelihood times impact. Select a cell to list its risks in the register.</p>
+        <div id="hmInh"></div>
+      </section>
+      <section class="pane" aria-labelledby="h-res">
+        <h2 id="h-res">Residual risk</h2>
+        <p class="sub">After the effect of linked controls (or your documented override). Formula under "Method and sources".</p>
+        <div id="hmRes"></div>
+      </section>
+    </div>
+    <div class="pane" style="margin-bottom:16px"><div class="legend" id="legend" aria-label="Legend"></div></div>
+    <div class="grid2">
+      <section class="pane" aria-labelledby="h-cat">
+        <h2 id="h-cat">By category</h2>
+        <p class="sub">Customers, products and services, delivery channels, geographies, transactions.</p>
+        <div id="catSum"></div>
+      </section>
+      <section class="pane" aria-labelledby="h-trend">
+        <h2 id="h-trend">Trend against a previous version</h2>
+        <div id="trend"></div>
+      </section>
+    </div>
+    <section class="pane" style="margin-bottom:60px" aria-labelledby="h-attn">
+      <h2 id="h-attn">Needs attention</h2>
+      <p class="sub">Where the assessment tells you to do something next.</p>
+      <div class="attn" id="attention"></div>
+    </section>
+  </section>
+
+  <!-- REGISTER -->
+  <section id="panel-register" role="tabpanel" aria-labelledby="tab-register" hidden>
+    <div class="filters" role="search" aria-label="Filter the register">
+      <div class="f grow"><label for="fq">Search</label><input class="in" id="fq" type="search" autocomplete="off" placeholder="Title, owner, control"></div>
+      <div class="f"><label for="fcat">Category</label><select class="sel" id="fcat"></select></div>
+      <div class="f"><label for="fband">Residual rating</label><select class="sel" id="fband"></select></div>
+      <div class="f"><label for="fowner">Owner</label><select class="sel" id="fowner"></select></div>
+      <div class="f"><label for="fsort">Sort by</label><select class="sel" id="fsort">
+        <option value="res">Residual risk (highest first)</option>
+        <option value="inh">Inherent risk (highest first)</option>
+        <option value="chg">Change since previous version</option>
+        <option value="cat">Category</option>
+        <option value="owner">Owner</option>
+      </select></div>
+      <label class="checkline"><input type="checkbox" id="fnoctl"> No control linked</label>
+      <button class="btn sm" type="button" data-act="clearfilters">Clear filters</button>
+    </div>
+    <p class="sub" id="regCount" role="status"></p>
+    <div class="tblwrap"><table class="reg" id="regTable">
+      <thead><tr><th scope="col">Rank</th><th scope="col">Risk</th><th scope="col">Inherent</th><th scope="col">Controls and effectiveness</th><th scope="col">Residual</th><th scope="col">Since previous</th><th scope="col">Owner</th><th scope="col">Open actions</th></tr></thead>
+      <tbody id="regBody"></tbody>
+    </table></div>
+    <div id="regEmpty"></div>
+    <div style="height:60px"></div>
+  </section>
+
+  <!-- ACTIONS -->
+  <section id="panel-actions" role="tabpanel" aria-labelledby="tab-actions" hidden>
+    <div class="filters">
+      <div class="f"><label for="afilter">Show</label><select class="sel" id="afilter">
+        <option value="open">Open and in progress</option><option value="overdue">Overdue</option><option value="done">Done</option><option value="all">All</option></select></div>
+      <button class="btn pri" type="button" data-act="addaction">Add an action</button>
+      <button class="btn" type="button" data-act="csvactions">Export actions (CSV)</button>
+    </div>
+    <div id="actList" style="margin-bottom:60px"></div>
+  </section>
+
+  <!-- VERSIONS -->
+  <section id="panel-versions" role="tabpanel" aria-labelledby="tab-versions" hidden>
+    <div class="stack">
+      <section class="pane" aria-labelledby="h-refresh">
+        <h2 id="h-refresh">Annual refresh</h2>
+        <p class="sub">The business-wide risk assessment must be kept up to date and regularly reviewed, including after events that significantly change your risk (AMLR Art. 10(2)). The interval below is your own policy; the date is your next planned review.</p>
+        <div class="fields" style="max-width:560px">
+          <div class="field"><label for="rf_months">Review every (months)</label><input class="in" type="number" min="1" max="60" id="rf_months"></div>
+          <div class="field"><label for="rf_due">Next refresh due</label><input class="in" type="date" id="rf_due"></div>
+        </div>
+        <p class="hint" id="rfState" role="status" style="margin-top:10px"></p>
+      </section>
+
+      <section class="pane" aria-labelledby="h-sign">
+        <h2 id="h-sign">Current assessment and sign-off</h2>
+        <p class="sub">Under AMLR Art. 10(2) the assessment is drawn up by the compliance officer, approved by the management body in its management function and, where such a body exists, communicated to the management body in its supervisory function. Fill in the fields, then save a version to freeze it.</p>
+        <div class="fields">
+          <div class="field"><label for="so_label">Name of this assessment</label><input class="in" id="so_label" data-so="label" autocomplete="off"></div>
+          <div class="field"><label for="so_firm">Firm name</label><input class="in" id="so_firm" autocomplete="off"></div>
+        </div>
+        <div class="so-grid" style="margin-top:12px">
+          <div class="field"><label for="so_prep">Prepared by (compliance officer)</label><input class="in" id="so_prep" data-so="preparedBy" autocomplete="off"></div>
+          <div class="field"><label for="so_prepOn">Prepared on</label><input class="in" type="date" id="so_prepOn" data-so="preparedOn"></div>
+          <div class="field"><label for="so_ref">Minute or document reference</label><input class="in" id="so_ref" data-so="ref" autocomplete="off"></div>
+          <div class="field"><label for="so_rev">Reviewed by</label><input class="in" id="so_rev" data-so="reviewedBy" autocomplete="off"></div>
+          <div class="field"><label for="so_revOn">Reviewed on</label><input class="in" type="date" id="so_revOn" data-so="reviewedOn"></div>
+          <div class="field"></div>
+          <div class="field"><label for="so_app">Approved by (management body)</label><input class="in" id="so_app" data-so="approvedBy" autocomplete="off"></div>
+          <div class="field"><label for="so_appOn">Approved on</label><input class="in" type="date" id="so_appOn" data-so="approvedOn"></div>
+          <div class="field"><span class="lbl">Supervisory function</span><label class="checkline"><input type="checkbox" id="so_comm" data-so="communicated"> Communicated to the supervisory function</label></div>
+        </div>
+        <div class="rowtools" style="margin-top:14px">
+          <button class="btn pri" type="button" data-act="savesnap">Save as a new version</button>
+          <span class="hint">Freezes the register, scores, sign-off and actions as they are now. If an approval date is set, the next refresh date moves to that date plus your interval.</span>
+        </div>
+      </section>
+
+      <section class="pane" aria-labelledby="h-snaps">
+        <h2 id="h-snaps">Saved versions</h2>
+        <p class="sub">Each version is a frozen copy you can open as a board report or use as the baseline for the trend.</p>
+        <div id="snapList"></div>
+      </section>
+
+      <section class="pane" aria-labelledby="h-backup">
+        <h2 id="h-backup">Back up, restore, reset</h2>
+        <p class="sub">Everything lives in this browser on this device (localStorage key regradar-bwra). Clearing site data removes it, so keep a backup file.</p>
+        <div class="rowtools">
+          <button class="btn" type="button" data-act="backup">Download backup (JSON)</button>
+          <label class="btn" for="restoreFile" style="cursor:pointer">Restore from backup</label>
+          <input type="file" id="restoreFile" accept="application/json,.json" style="position:absolute;left:-9999px" aria-label="Restore from a backup file">
+          <button class="btn danger" type="button" data-act="startblank">Start a blank assessment</button>
+          <button class="btn" type="button" data-act="loaddemo">Load the CF Bank demo</button>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- REPORT -->
+  <section id="panel-report" role="tabpanel" aria-labelledby="tab-report" hidden>
+    <div class="rtools">
+      <div class="f"><label for="rsrc" style="display:block;font-size:12.5px;font-weight:700;color:var(--text-2);margin-bottom:3px">Report on</label><select class="sel" id="rsrc"></select></div>
+      <button class="btn pri" type="button" data-act="print">Print or save as PDF</button>
+      <button class="btn" type="button" data-act="csv">Export register (CSV)</button>
+    </div>
+    <article class="report" id="reportRoot" aria-label="Board report"></article>
+  </section>
+
+  <!-- METHOD -->
+  <section id="panel-method" role="tabpanel" aria-labelledby="tab-method" hidden>
+    <div class="stack methods" id="methodRoot"></div>
+  </section>
+
+  <p class="note">Prototype, not legal advice. The demo firm (CF Bank) is fictional. Everything you change stays on this device.</p>
+</main>
+
+<!-- Scenario dialog -->
+<dialog id="dlgScenario" aria-labelledby="dsTitle">
+  <div class="dlg-h"><div><h2 id="dsTitle">Risk</h2><div class="sub" id="dsSub"></div></div><button class="xbtn" type="button" data-close aria-label="Close">&times;</button></div>
+  <div class="dlg-b">
+    <div class="sec">
+      <div class="fields">
+        <div class="field full"><label for="ds_title">Risk scenario</label><input class="in" id="ds_title" autocomplete="off"></div>
+        <div class="field full"><label for="ds_desc">What could happen</label><textarea class="in" id="ds_desc"></textarea></div>
+        <div class="field"><label for="ds_cat">Category</label><select class="sel" id="ds_cat"></select></div>
+        <div class="field"><label for="ds_owner">Risk owner</label><input class="in" id="ds_owner" list="ownerList" autocomplete="off"><datalist id="ownerList"></datalist></div>
+        <div class="field"><label for="ds_L">Likelihood (inherent)</label><select class="sel" id="ds_L"></select><div class="hint" id="ds_Lh"></div></div>
+        <div class="field"><label for="ds_I">Impact (inherent)</label><select class="sel" id="ds_I"></select><div class="hint" id="ds_Ih"></div></div>
+      </div>
+      <p class="hint" id="ds_ref"></p>
+    </div>
+    <div class="sec">
+      <h3>Linked controls</h3>
+      <div class="field" style="margin-bottom:8px"><label for="ds_cq">Search the controls library</label><input class="in" id="ds_cq" type="search" autocomplete="off"></div>
+      <div class="ctlpick" id="ds_ctls"></div>
+      <p class="hint">From the controls library plus the controls you added in the Compliance workspace on this device. A control's contribution comes from its approval status, last test result and whether its retest is overdue. <a class="lnk" href="workspace.html">Manage controls</a></p>
+    </div>
+    <div class="sec">
+      <h3>Control effectiveness and residual risk</h3>
+      <div id="ds_eff"></div>
+      <div class="fields" style="margin-top:12px">
+        <div class="field"><label for="ds_ovr">Effectiveness used</label><select class="sel" id="ds_ovr"></select></div>
+        <div class="field"><label for="ds_rat">Rationale for the override</label><textarea class="in" id="ds_rat" style="min-height:60px"></textarea><div class="err" id="ds_raterr" hidden>Write the reason for the override. It goes into the board report.</div></div>
+      </div>
+      <details class="calc" style="margin-top:12px" open><summary>How this was calculated</summary><div id="ds_calc"></div></details>
+    </div>
+    <div class="sec">
+      <h3>Notes</h3>
+      <div class="field"><label for="ds_notes" class="lbl">Working notes (not printed in the board report)</label><textarea class="in" id="ds_notes" style="min-height:60px"></textarea></div>
+    </div>
+    <div class="sec">
+      <h3>Actions for this risk <button class="btn sm" type="button" data-act="addaction-here">Add an action</button></h3>
+      <div id="ds_acts"></div>
+    </div>
+  </div>
+  <div class="dlg-f"><div class="grp"><button class="btn danger" type="button" data-act="delscenario">Remove this risk</button></div><div class="grp"><button class="btn pri" type="button" data-act="donescenario">Done</button></div></div>
+</dialog>
+
+<!-- Library dialog -->
+<dialog id="dlgLibrary" aria-labelledby="dlTitle">
+  <div class="dlg-h"><div><h2 id="dlTitle">Scenario library</h2><div class="sub">Starter scenarios drafted by RegRadar for each firm type. Tick the ones that apply to you; likelihood and impact start at defaults you then change.</div></div><button class="xbtn" type="button" data-close aria-label="Close">&times;</button></div>
+  <div class="dlg-b">
+    <div class="fields" style="margin-bottom:10px">
+      <div class="field"><label for="dl_firm">Firm type</label><select class="sel" id="dl_firm"></select></div>
+      <div class="field"><span class="lbl">Quick choice</span><button class="btn sm" type="button" data-act="libdefaults">Tick all scenarios for this firm type</button></div>
+    </div>
+    <div id="dl_list"></div>
+  </div>
+  <div class="dlg-f"><span class="hint" id="dl_sum" role="status"></span><div class="grp"><button class="btn" type="button" data-close>Cancel</button><button class="btn pri" type="button" data-act="libapply">Apply</button></div></div>
+</dialog>
+
+<!-- Settings dialog -->
+<dialog id="dlgSettings" aria-labelledby="dgTitle">
+  <div class="dlg-h"><div><h2 id="dgTitle">Scales and settings</h2><div class="sub">Defaults chosen by RegRadar, not set by any regulator. Change them to match your own risk appetite and methodology, and document why.</div></div><button class="xbtn" type="button" data-close aria-label="Close">&times;</button></div>
+  <div class="dlg-b">
+    <div class="sec"><h3>Likelihood scale (1 to 5)</h3><div id="dg_L"></div></div>
+    <div class="sec"><h3>Impact scale (1 to 5)</h3><div id="dg_I"></div></div>
+    <div class="sec"><h3>Rating bands (score = likelihood x impact, 1 to 25)</h3>
+      <div class="fields">
+        <div class="field"><label for="dg_b0">Low up to and including</label><input class="in" type="number" min="1" max="23" id="dg_b0"></div>
+        <div class="field"><label for="dg_b1">Medium up to and including</label><input class="in" type="number" min="2" max="24" id="dg_b1"></div>
+        <div class="field"><label for="dg_b2">High up to and including (above is Very high)</label><input class="in" type="number" min="3" max="24" id="dg_b2"></div>
+      </div>
+      <div class="err" id="dg_err" hidden>Each band limit must be higher than the one before.</div>
+    </div>
+    <div class="sec"><h3>Control effect</h3>
+      <div class="fields">
+        <div class="field"><label for="dg_cap">Largest possible reduction by controls (%)</label><input class="in" type="number" min="10" max="100" id="dg_cap"><div class="hint">Default 75. Even perfect controls leave some risk.</div></div>
+        <div class="field"><label for="dg_od">Credit kept when a control's retest is overdue (%)</label><input class="in" type="number" min="0" max="100" id="dg_od"><div class="hint">Default 70.</div></div>
+        <div class="field"><label for="dg_un">Credit for a control with no test result (%)</label><input class="in" type="number" min="0" max="100" id="dg_un"><div class="hint">Default 30. Approved with no test result still earns some credit; failed tests earn none.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="dlg-f"><button class="btn" type="button" data-act="resetsettings">Restore defaults</button><div class="grp"><button class="btn" type="button" data-close>Cancel</button><button class="btn pri" type="button" data-act="savesettings">Save settings</button></div></div>
+</dialog>
+
+<!-- Action dialog -->
+<dialog id="dlgAction" aria-labelledby="daTitle">
+  <div class="dlg-h"><h2 id="daTitle">Action</h2><button class="xbtn" type="button" data-close aria-label="Close">&times;</button></div>
+  <div class="dlg-b"><div class="fields">
+    <div class="field full"><label for="da_title">What will be done</label><input class="in" id="da_title" autocomplete="off"></div>
+    <div class="field full"><label for="da_sid">Linked risk</label><select class="sel" id="da_sid"></select></div>
+    <div class="field"><label for="da_owner">Owner</label><input class="in" id="da_owner" list="ownerList" autocomplete="off"></div>
+    <div class="field"><label for="da_due">Due date</label><input class="in" type="date" id="da_due"></div>
+    <div class="field"><label for="da_status">Status</label><select class="sel" id="da_status"><option value="open">Open</option><option value="progress">In progress</option><option value="done">Done</option></select></div>
+  </div><div class="err" id="da_err" hidden>Describe the action first.</div></div>
+  <div class="dlg-f"><div class="grp"><button class="btn danger" type="button" data-act="delaction" id="da_del">Delete</button></div><div class="grp"><button class="btn" type="button" data-close>Cancel</button><button class="btn pri" type="button" data-act="saveaction">Save action</button></div></div>
+</dialog>
+
+<!-- Confirm dialog -->
+<dialog id="dlgConfirm" aria-labelledby="dcTitle" style="width:min(460px,calc(100vw - 24px))">
+  <div class="dlg-h"><h2 id="dcTitle">Please confirm</h2></div>
+  <div class="dlg-b"><p id="dcMsg"></p></div>
+  <div class="dlg-f"><span></span><div class="grp"><button class="btn" type="button" data-close>Cancel</button><button class="btn pri" type="button" id="dcOk">Confirm</button></div></div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="controls-data.js?v=20261015"></script>
+<script src="risk-assessment.js?v=20261016"></script>
+<script>
+window.toggleTheme=function(){var h=document.documentElement,t=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}};
+</script>
+</body>
+</html>
