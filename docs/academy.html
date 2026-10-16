@@ -1,398 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RegRadar — Academy</title>
+<title>RegRadar: Academy learning path</title>
+<meta name="description" content="Short AML, KYC and compliance modules for payment, e-money and crypto firms: animated explainers, quick checks, practice simulations and the law text. Fictional cases only.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<style>
-  :root{
-    --bg:#FAFAFA; --surface:#FFFFFF; --surface-2:#F5F6F8; --surface-3:#EBEDF1;
-    --border:#DDE1E6; --border-strong:#C3C9D1;
-    --text:#1A1F27; --text-2:#465060; --text-3:#5B6472; /* text-3: 5.1:1 on the darkest surface, 5.7:1 on --bg */
-    --brand:#1F5C8B; --brand-ink:#164363; --brand-bg:#E9F1F7;
-    --crit:#B3392C; --crit-bg:#FBEDEB;
-    --warn:#9A6B1F; --warn-bg:#FBF3E5;
-    --ok:#1E7145; --ok-bg:#EAF5EE;
-    --violet:#6E3FBF; --violet-bg:#F1EBFA;
-    --wallpaper:#1B2430; --wallpaper-2:#222E3D; --taskbar:#12161D;
-    --chrome:#23303F; --chrome-2:#2C3B4E;
-    --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
-    --ease:cubic-bezier(.2,.7,.3,1);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  main{display:block}
-  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;
-    -webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  ::selection{background:var(--brand);color:#fff}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-  img,svg{display:block;max-width:100%}
-
-  /* ── hero ───────────────────────────────────────────────────────── */
-  .hero{background:
-      radial-gradient(ellipse 900px 520px at 82% -12%, rgba(110,63,191,.16), transparent 60%),
-      radial-gradient(ellipse 700px 500px at -8% 10%, rgba(31,92,139,.20), transparent 55%),
-      linear-gradient(165deg,var(--wallpaper),var(--wallpaper-2) 75%);
-    color:#F2F4F7;overflow:hidden;position:relative}
-  .hero-inner{max-width:1180px;margin:0 auto;padding:68px 24px 0;display:grid;
-    grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-  .hero-kick{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;
-    text-transform:uppercase;color:#8FB4D6}
-  .hero h1{font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.08;
-    margin-top:16px;text-wrap:balance}
-  .hero h1 em{font-style:normal;color:#8FB4D6}
-  .hero .lede{font-size:16px;line-height:1.65;color:#C3CBD6;margin-top:18px;max-width:46ch}
-  .hero-ctas{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
-  .cta-main{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--wallpaper);
-    font-size:14.5px;font-weight:700;padding:15px 26px;border-radius:8px;
-    box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform 160ms var(--ease),box-shadow 160ms var(--ease)}
-  .cta-main:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.42)}
-  .cta-main .arrow{transition:transform 160ms var(--ease)}
-  .cta-main:hover .arrow{transform:translateX(3px)}
-  .cta-ghost{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font-size:14px;font-weight:600;color:#C3CBD6;
-    text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:5px}
-  .cta-ghost:hover{color:#fff;text-decoration-color:#fff}
-  .hero-meta{display:flex;gap:22px;margin-top:34px;flex-wrap:wrap}
-  .hero-meta div{font-family:var(--mono)}
-  .hero-meta .n{font-size:20px;font-weight:700;color:#fff}
-  .hero-meta .l{font-size:12px;color:#A9B3C1;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
-
-  /* desktop mockup */
-  .mock{position:relative;padding-bottom:0}
-  .mock-frame{background:linear-gradient(165deg,#222E3D,#1B2430);border:1px solid rgba(255,255,255,.08);
-    border-radius:12px 12px 0 0;box-shadow:0 30px 70px rgba(0,0,0,.5);overflow:hidden;
-    transform:perspective(1400px) rotateX(2deg);transform-origin:bottom center}
-  .mock-bar{height:26px;background:rgba(0,0,0,.25);display:flex;align-items:center;gap:6px;padding:0 12px}
-  .mock-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22)}
-  .mock-body{position:relative;height:280px;padding:16px}
-  .mwin{position:absolute;background:#F5F6F8;border-radius:6px;box-shadow:0 14px 34px rgba(0,0,0,.4);overflow:hidden}
-  .mwin .mt{height:20px;background:#E4E7EC;display:flex;align-items:center;gap:5px;padding:0 8px;
-    font-family:var(--mono);font-size:8px;color:#5B6472;font-weight:600}
-  .mwin .mt i{width:6px;height:6px;border-radius:50%}
-  .mwin.w1{top:18px;left:10px;width:56%;height:150px}
-  .mwin.w1 .row{display:flex;gap:6px;padding:9px 10px}
-  .mwin.w1 .col-a{width:34%}
-  .mwin.w1 .ln{height:5px;background:#E4E7EC;border-radius:2px;margin-bottom:5px}
-  .mwin.w1 .ln.s{width:60%}
-  .mwin.w2{top:70px;right:8px;width:42%;height:190px;z-index:3}
-  .mwin.w2 .chip{display:inline-block;font-family:var(--mono);font-size:7px;font-weight:700;color:#fff;
-    background:var(--crit);border-radius:3px;padding:2px 5px;margin:8px 8px 0}
-  .mwin.w2 .ln{height:5px;background:#E4E7EC;border-radius:2px;margin:6px 8px}
-  .mwin.w2 .btn{margin:10px 8px 0;height:16px;width:64px;background:var(--brand);border-radius:3px}
-  .mwin.w3{bottom:14px;left:36px;width:44%;height:64px;z-index:2}
-  .mwin.w3 .bubble{display:flex;gap:6px;padding:8px 9px}
-  .mwin.w3 .av{width:14px;height:14px;border-radius:50%;background:var(--brand);flex:0 0 auto}
-  .mwin.w3 .ln{height:5px;background:#E4E7EC;border-radius:2px;margin-bottom:4px}
-  .mwin.w3 .ln.s{width:70%}
-  .mock-taskbar{height:34px;background:var(--taskbar);display:flex;align-items:center;gap:10px;padding:0 12px}
-  .mock-taskbar .m{width:20px;height:20px;border:1px solid rgba(255,255,255,.3);border-radius:5px;
-    display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff}
-  .mock-taskbar .apps{display:flex;gap:8px;font-size:13px}
-  .mock-taskbar .clock{margin-left:auto;font-family:var(--mono);font-size:10px;color:#A9B3C1}
-  @media(max-width:900px){.hero-inner{grid-template-columns:1fr;padding-top:44px}.mock{margin-top:8px}}
-
-  /* ── sections ───────────────────────────────────────────────────── */
-  section{padding:76px 0}
-  .kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--brand)}
-  h2{font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.02em;margin-top:12px;
-    max-width:34ch;text-wrap:balance}
-  .sec-lede{font-size:15px;color:var(--text-2);line-height:1.65;margin-top:14px;max-width:56ch}
-
-  /* why different */
-  .why{background:var(--surface)}
-  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
-    border:1px solid var(--border);margin-top:40px}
-  .why-card{background:var(--surface);padding:28px 26px}
-  .why-card .ic{width:38px;height:38px;border-radius:8px;background:var(--brand-bg);color:var(--brand);
-    display:grid;place-items:center;font-size:18px}
-  .why-card h3{font-size:16.5px;font-weight:700;margin-top:16px;letter-spacing:-.01em}
-  .why-card p{font-size:13.5px;color:var(--text-2);line-height:1.6;margin-top:9px}
-  @media(max-width:860px){.why-grid{grid-template-columns:1fr}}
-
-  /* the path */
-  .path{background:var(--surface-2)}
-  .path-list{margin-top:44px;display:flex;flex-direction:column;gap:1px;background:var(--border);
-    border:1px solid var(--border)}
-  .path-row{background:var(--surface);display:grid;grid-template-columns:64px 1fr auto;gap:20px;
-    align-items:center;padding:22px 26px;transition:background 140ms var(--ease)}
-  .path-row:hover{background:var(--surface-2)}
-  .path-num{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--text-3)}
-  .path-row.on .path-num{color:var(--brand)}
-  .path-nm{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
-  .path-tag{font-size:13px;color:var(--text-2);line-height:1.55;margin-top:5px;max-width:60ch}
-  .path-badge{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.05em;
-    text-transform:uppercase;padding:5px 10px;border-radius:20px;white-space:nowrap}
-  .path-badge.live{background:var(--ok-bg);color:var(--ok)}
-  .path-badge.soon{background:var(--surface-3);color:var(--text-2)}
-  .path-lock{margin-top:16px;font-size:12.5px;color:var(--text-3);display:flex;align-items:center;gap:7px}
-  @media(max-width:640px){.path-row{grid-template-columns:40px 1fr;padding:18px}.path-badge{grid-column:2;justify-self:start;margin-top:8px}}
-
-  /* progression */
-  .prog{background:var(--surface)}
-  .prog-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:40px}
-  .rank-ladder{display:flex;flex-direction:column;border-left:2px solid var(--border);padding-left:22px;
-    gap:20px}
-  .rank-step{position:relative}
-  .rank-step::before{content:'';position:absolute;left:-28px;top:4px;width:9px;height:9px;border-radius:50%;
-    background:var(--surface);border:2px solid var(--border-strong)}
-  .rank-step.hi::before{border-color:var(--violet);background:var(--violet)}
-  .rank-step .n{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.03em}
-  .rank-step .d{font-size:12.5px;color:var(--text-2);margin-top:3px}
-  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .skill-chip{border:1px solid var(--border);border-radius:8px;padding:12px 10px;text-align:center}
-  .skill-chip .e{font-size:19px}
-  .skill-chip .t{font-size:12px;font-weight:600;color:var(--text-2);margin-top:6px;line-height:1.3}
-  .prog-foot{margin-top:26px;display:flex;gap:22px;flex-wrap:wrap}
-  .prog-foot .f{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2)}
-  .prog-foot .f b{color:var(--text)}
-  @media(max-width:860px){.prog-top{grid-template-columns:1fr}}
-
-  /* alex */
-  .alex{background:var(--surface-2)}
-  .alex-card{margin-top:36px;background:var(--surface);border:1px solid var(--border);border-radius:12px;
-    padding:32px 34px;display:flex;gap:22px;align-items:flex-start;max-width:760px}
-  .alex-av{width:46px;height:46px;border-radius:50%;background:var(--brand);color:#fff;flex:0 0 auto;
-    display:grid;place-items:center;font-weight:700;font-size:15px}
-  .alex-card blockquote{font-size:17px;line-height:1.55;color:var(--text);letter-spacing:-.005em}
-  .alex-card .who{margin-top:14px;font-size:13px;color:var(--text-3)}
-  .ex-tag{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;
-    text-transform:uppercase;color:var(--text-2);background:var(--surface-3);border-radius:4px;padding:3px 8px;margin-bottom:12px}
-  .alex-card .who b{color:var(--text-2)}
-
-  /* closing cta */
-  .close-cta{background:linear-gradient(165deg,var(--wallpaper),var(--wallpaper-2) 75%);color:#fff;
-    text-align:center}
-  .close-cta h2{color:#fff;margin:0 auto;max-width:26ch}
-  .close-cta .sec-lede{color:#C3CBD6;margin-left:auto;margin-right:auto}
-  .close-cta .hero-ctas{justify-content:center;margin-top:32px}
-
-  footer{border-top:1px solid var(--border);padding:26px 0;font-size:12.5px;align-items:center;color:var(--text-3);
-    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  footer a{color:var(--text-2);display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:3px}
-  footer a:hover{color:var(--brand)}
-
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{transition:none!important;animation:none!important}
-    .cta-main:hover,.cta-main:hover .arrow{transform:none}
-  }
-</style>
+<link rel="stylesheet" href="academy-hub.css?v=20261016">
 </head>
 <body>
 
+<script>
+/* Light/dark switch: same contract as the other RegRadar tools (site-nav.js adds the button). */
+window.toggleTheme=function(){var h=document.documentElement,t=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}};
+</script>
 <script src="site-nav.js?v=20261015"></script>
 
-<main id="main">
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-kick">REGRADAR ACADEMY · AML TRAINING SIMULATOR</div>
-      <h1>Meet CF Bank.<br>You start <em>Monday</em>.</h1>
-      <div class="lede">A full analyst workstation, not a course — inbox, browser, case files, and a
-        senior colleague on Teams. You learn to investigate money laundering the way the job actually
-        teaches it: by working the desk.</div>
-      <div class="hero-ctas">
-        <a class="cta-main" href="workstation.html">Start the demo <span class="arrow">→</span></a>
-        <a class="cta-ghost" href="#how">See how it works ↓</a>
-      </div>
-      <!-- Counts verified against docs/data/academy + academy-engine.js:
-           29 = casebook.json (19 unique: 12 alerts + 7 investigations; triage-cases.json and
-           investigations.json are subsets of it) + onboarding.json (4) + ownership.json (6).
-           13 typologies = academy-engine.js TYPOLOGIES. -->
-      <div class="hero-meta">
-        <div><div class="n">3</div><div class="l">Modules live</div></div>
-        <div><div class="n">9</div><div class="l">Skills tracked</div></div>
-        <div><div class="n">29</div><div class="l">Fictional cases</div></div>
-        <div><div class="n">13</div><div class="l">Typologies to play</div></div>
-      </div>
-    </div>
-    <div class="mock" aria-hidden="true">
-      <div class="mock-frame">
-        <div class="mock-bar"><i></i><i></i><i></i></div>
-        <div class="mock-body">
-          <div class="mwin w1">
-            <div class="mt"><i style="background:#B3392C"></i><i style="background:#9A6B1F"></i><i style="background:#1E7145"></i>CF Bank CIF</div>
-            <div class="row"><div class="col-a"><div class="ln"></div><div class="ln s"></div><div class="ln"></div></div>
-              <div style="flex:1"><div class="ln"></div><div class="ln"></div><div class="ln s"></div></div></div>
-          </div>
-          <div class="mwin w2">
-            <div class="mt">AML Investigation</div>
-            <span class="chip">EDD FLAG</span>
-            <div class="ln" style="margin-top:12px"></div><div class="ln"></div><div class="ln" style="width:80%"></div>
-            <div class="btn"></div>
-          </div>
-          <div class="mwin w3">
-            <div class="mt">Teams — Alex</div>
-            <div class="bubble"><div class="av"></div><div style="flex:1"><div class="ln"></div><div class="ln s"></div></div></div>
-          </div>
-        </div>
-        <div class="mock-taskbar">
-          <div class="m">CF</div>
-          <div class="apps">✉️ 🌐 🗄️ 🛡️ 🧭 💬</div>
-          <div class="clock">14:07</div>
-        </div>
-      </div>
-    </div>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main" class="wrap" tabindex="-1">
+  <div id="app">
+    <noscript>
+      <header class="head"><div><div class="kicker">REGRADAR ACADEMY</div><h1>Academy learning path</h1>
+      <p>The learning path needs JavaScript. The simulations and the glossary do not require the path:
+      <a href="laundromat.html">Laundromat</a>, <a href="ownership.html">Ownership</a>, <a href="desk.html">The Desk</a>,
+      <a href="workstation.html">Workstation</a>, <a href="glossary.html">Glossary</a>.</p></div></header>
+    </noscript>
+    <p class="loading">Loading the learning path…</p>
   </div>
-</section>
-
-<section class="why" id="how">
-  <div class="wrap">
-    <div class="kicker">HOW IT'S DIFFERENT</div>
-    <h2>Not slides. A desk.</h2>
-    <div class="sec-lede">Most training teaches AML by describing it. This puts you in front of an
-      inbox that gets mail, a browser with a simulated customer file open in it, and a queue that doesn't
-      wait for you to finish reading.</div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="ic" aria-hidden="true">🖥️</div>
-        <h3>A realistic environment</h3>
-        <p>Draggable windows, a taskbar, an inbox, a Chrome-style browser with the customer profile and
-          company registry open in tabs, a File Explorer with a simulated KYC folder. Everything is
-          fictional but built to feel like the job. You navigate it; nobody hands you the answer on a slide.</p>
-      </div>
-      <div class="why-card">
-        <div class="ic" aria-hidden="true">💬</div>
-        <h3>A mentor, not a manual</h3>
-        <p>Alex — senior on the desk — reacts to what you actually do: a catch, a wrong call, a file
-          that comes back to bite you. He talks more when you're new, and steadily less as you rank up.
-          That's the point.</p>
-      </div>
-      <div class="why-card">
-        <div class="ic" aria-hidden="true">🔒</div>
-        <h3>A path, not a menu</h3>
-        <p>Laundromat, then Ownership, then the Desk — locked in that order, because you can't
-          recognise a pattern you've never produced. Each module opens once the one before it is done.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="path">
-  <div class="wrap">
-    <div class="kicker">THE PATH</div>
-    <h2>Three modules, in the order the job teaches them.</h2>
-    <div class="sec-lede">Every module is scored, every module writes to the same progress — rank up
-      once, and it carries across all three.</div>
-    <div class="path-list">
-      <div class="path-row on">
-        <div class="path-num">01</div>
-        <div><div class="path-nm">The Laundromat</div>
-          <div class="path-tag">Play the adversary first: thirteen typologies, eight jurisdictions,
-            €10 million to move before the net closes. You can't spot a pattern you've never produced.</div></div>
-        <div class="path-badge live">Live</div>
-      </div>
-      <div class="path-row on">
-        <div class="path-num">02</div>
-        <div><div class="path-nm">Ownership structures</div>
-          <div class="path-tag">Read a realistic ownership chart — holding companies, nominees, trusts —
-            and designate the beneficial owners. Some cases are traps. One of them can't be solved at all,
-            and knowing that is the answer.</div></div>
-        <div class="path-badge live">Live</div>
-      </div>
-      <div class="path-row on">
-        <div class="path-num">03</div>
-        <div><div class="path-nm">The Desk</div>
-          <div class="path-tag">A journal of days: onboarding queues, alert triage, an hour budget
-            that runs out before the queue does. What you close wrongly doesn't disappear — it comes
-            back later in the week.</div></div>
-        <div class="path-badge live">Live</div>
-      </div>
-      <div class="path-row">
-        <div class="path-num">04</div>
-        <div><div class="path-nm">Filing</div>
-          <div class="path-tag">Drafting the STR — what the FIU actually receives, and the least-taught
-            skill in the job.</div></div>
-        <div class="path-badge soon">In development</div>
-      </div>
-      <div class="path-row">
-        <div class="path-num">05</div>
-        <div><div class="path-nm">Inspection</div>
-          <div class="path-tag">A supervisor goes back through your own decisions and asks why.</div></div>
-        <div class="path-badge soon">In development</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="prog">
-  <div class="wrap">
-    <div class="kicker">PROGRESSION</div>
-    <h2>XP for the work, not a score.</h2>
-    <div class="sec-lede">Global rank tracks how far along the path you are. A nine-skill tree tracks
-      at what, specifically — each one earned by the actions that actually exercise it.</div>
-    <div class="prog-top">
-      <div>
-        <div class="rank-ladder">
-          <div class="rank-step"><div class="n">JUNIOR</div><div class="d">An access badge and a queue.</div></div>
-          <div class="rank-step"><div class="n">ANALYST</div><div class="d">Tells a documented purchase from a structured deposit.</div></div>
-          <div class="rank-step"><div class="n">SENIOR ANALYST</div><div class="d">Closes cleanly, escalates deliberately.</div></div>
-          <div class="rank-step"><div class="n">INVESTIGATOR</div><div class="d">Reads the counterparty before the amount.</div></div>
-          <div class="rank-step hi"><div class="n">AML EXPERT</div><div class="d">Consistent, calibrated, economical.</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="skill-grid">
-          <div class="skill-chip"><div class="e" aria-hidden="true">🪪</div><div class="t">KYC / CDD</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">🔍</div><div class="t">Transaction Monitoring</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">🌍</div><div class="t">Sanctions &amp; PEP</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">📰</div><div class="t">Adverse Media</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">🏢</div><div class="t">UBO / KYB</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">⚠️</div><div class="t">Risk Assessment</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">📋</div><div class="t">STR/SAR &amp; Escalation</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">⚖️</div><div class="t">AML Regulation</div></div>
-          <div class="skill-chip"><div class="e" aria-hidden="true">🧠</div><div class="t">Investigation &amp; Judgement</div></div>
-        </div>
-        <div class="prog-foot">
-          <div class="f"><span aria-hidden="true">🔥</span> <span><b>Streak</b> — a daily case to keep you moving</span></div>
-          <div class="f"><span aria-hidden="true">⚔️</span> <span><b>Boss cases</b> — the hardest files, tagged</span></div>
-          <div class="f"><span aria-hidden="true">🏆</span> <span><b>Badges</b> — First Investigation, UBO Detective…</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alex">
-  <div class="wrap">
-    <div class="kicker">YOUR MENTOR</div>
-    <h2>Alex is senior on the desk this week.</h2>
-    <div class="alex-card">
-      <div class="alex-av">AD</div>
-      <div>
-        <span class="ex-tag">Example &middot; simulated, fictional</span>
-        <blockquote>"Caught on 'structuring below the threshold' — that's the flag a real desk would
-          have raised too. Worth reading the AMLR note, it's not boilerplate."</blockquote>
-        <div class="who"><b>Alex</b> · fictional senior analyst. A sample of the feedback the simulator gives when you catch a flag in the Laundromat; not a real person or customer.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="close-cta">
-  <div class="wrap">
-    <div class="kicker" style="color:#8FB4D6">READY WHEN YOU ARE</div>
-    <h2>Your desk is already set up.</h2>
-    <div class="sec-lede">No account, no install. All data is fictional — a training environment,
-      not a real bank.</div>
-    <div class="hero-ctas">
-      <a class="cta-main" href="workstation.html">Start the demo <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
+  <div id="acLive" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>
+  <footer class="foot">
+    <span>RegRadar Academy. CF Bank, its customers and all practice cases are fictional. A prototype for training, not legal advice and not an official certificate.</span>
+    <a href="index.html">RegRadar home</a>
+  </footer>
 </main>
 
-<div class="wrap">
-  <footer>
-    <span>RegRadar Academy · CF Bank, its customers and all cases are fictional; training environment only</span>
-    <span><a href="index.html">← Back to RegRadar</a></span>
-  </footer>
-</div>
-
+<script src="academy-shell.js?v=20261016"></script>
+<script src="academy-engine.js?v=20261016"></script>
+<script src="academy-explainer.js?v=20261016"></script>
+<script src="academy-hub.js?v=20261016"></script>
 </body>
 </html>

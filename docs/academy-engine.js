@@ -626,5 +626,311 @@ const Laundromat = (function(){
     newGame, rng, velocity, opRisk, doOp, layLow, walkAway, score, onCatch, onFinish};
 })();
 
-return {esc, Ownership, Laundromat};
+
+/* ═══════════════════════════════════════════════════════════════════
+   THE DESK — the model, once
+   ───────────────────────────────────────────────────────────────────
+   desk.html and the Desk window inside workstation.html used to carry two
+   copies of the same rules: the days, how alerts are drawn, what an
+   investigation costs, the verdicts and XP, the end-of-day summary. They
+   had drifted (only one awarded skill XP, only one wrote the event log).
+   This is the single copy. The pages keep their own screens and call:
+
+     const D = AcademyEngine.Desk;  D.load();  D.S            state (same object always)
+     D.startAlerts(BOOK, day, tutorial)  -> RUN        D.startOnboard(ONB, day) -> RUN
+     D.spend(RUN, actionId)  -> {ok, action, ev}       D.askNadia(RUN)  -> {ok, line, count}
+     D.decideAlert(RUN, choice, hooks)   -> result     D.decideOnboard(RUN, choice, hooks) -> result
+     D.closeDay(RUN, hooks)              -> summary    D.briefing(day) -> copy for the day's start screen
+
+   hooks (all optional; default = the AcademyShell API):
+     {award(xp), skill(id, xp), lawSeen(text), badges() -> [newly earned]}
+   A host passes its own hooks when it wants a toast or a refreshed panel.
+   Storage keys are unchanged: 'regradar-desk', 'regradar-events', 'regradar-desk-stats'.
+   ═══════════════════════════════════════════════════════════════════ */
+const Desk = (function(){
+  const KEY='regradar-desk', EVKEY='regradar-events', STATKEY='regradar-desk-stats';
+  const DAYS=[
+    {d:1, type:'tutorial', label:'Day 1', name:'Induction', blurb:'Nadia walks you through the desk. Two alerts, nothing at stake.'},
+    {d:2, type:'onboard', label:'Day 2', name:'The onboarding queue', n:2, blurb:'Four applications. Decide how much diligence each one deserves.'},
+    {d:3, type:'desk', label:'Day 3', name:'First real shift', n:4, hours:6, blurb:'Four alerts. Six hours. Close what you can, investigate what you must.'},
+    {d:5, type:'onboard', label:'Day 5', name:'Harder applications', n:2, hard:true, blurb:'Files where nothing is wrong and nothing is proven.'},
+    {d:8, type:'desk', label:'Day 8', name:'A busier queue', n:5, hours:7, blurb:'Five alerts, seven hours. The maths gets tighter.'},
+    {d:14,type:'desk', label:'Day 14', name:'Second week', n:5, hours:6, blurb:'Five alerts, six hours. Something you saw before comes back.'},
+    {d:21,type:'desk', label:'Day 21', name:'Month end', n:6, hours:7, blurb:'Six alerts. The queue does not care that it is month end.'},
+  ];
+  const S={day:0, done:[], harm:[], seen:{}, tutorialDone:false};   /* one object, never reassigned */
+
+  function load(){ try{ const p=JSON.parse(localStorage.getItem(KEY)||'null'); if(p) Object.assign(S,p); }catch(e){} return S; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  function logEvent(e){
+    try{ const a=JSON.parse(localStorage.getItem(EVKEY)||'[]'); a.push(e); localStorage.setItem(EVKEY, JSON.stringify(a.slice(-2000))); }catch(x){}
+  }
+  const dayOf=n=>DAYS.find(x=>x.d===n);
+  const nextDay=()=>DAYS.find(d=>!S.done.includes(d.d));
+
+  const shell=()=>window.AcademyShell;
+  const defaultHooks={
+    award(xp){ const sh=shell(); if(sh && xp) sh.award('desk', xp); },
+    skill(id,xp){ const sh=shell(); if(sh && xp) sh.awardSkill(id, xp); },
+    lawSeen(t){ const sh=shell(); if(sh && t) sh.markLawSeenFromText(t); },
+    badges(){ const sh=shell(); return sh? (sh.checkBadges()||[]) : []; },
+  };
+  const H=h=>({...defaultHooks, ...(h||{})});
+
+  /* ── alerts ── */
+  function pickAlerts(BOOK, n, tutorial){
+    const seen=new Set(Object.keys(S.seen));
+    const pool=BOOK.slice();
+    if(tutorial){
+      /* induction: one obviously benign, one obviously not */
+      const benign=pool.find(c=>!c.is_real_case&&c.depth==='shallow');
+      const real=pool.find(c=>c.is_real_case&&c.depth==='shallow');
+      return [benign,real].filter(Boolean);
+    }
+    /* about a third review, rest fresh — and never the same case twice in a day */
+    const fresh=pool.filter(c=>!seen.has(c.id)).sort(()=>Math.random()-0.5);
+    const old=pool.filter(c=>seen.has(c.id)).sort(()=>Math.random()-0.5);
+    const wantOld=Math.min(old.length, Math.round(n*0.34));
+    const out=[...old.slice(0,wantOld), ...fresh.slice(0,n-wantOld)];
+    while(out.length<n && pool.length){ const extra=pool.find(c=>!out.includes(c)); if(!extra) break; out.push(extra); }
+    return out.slice(0,n).sort(()=>Math.random()-0.5);
+  }
+  function startAlerts(BOOK, d, tutorial){
+    const alerts=pickAlerts(BOOK, tutorial?2:d.n, tutorial);
+    return {type:'desk', d, tutorial, alerts, i:0, hours:tutorial?4:d.hours, budget:tutorial?4:d.hours,
+            results:[], opened:false, spent:[], gathered:[], nadia:0};
+  }
+  function startOnboard(ONB, d){
+    const pool=ONB.slice().sort((a,b)=>a.difficulty-b.difficulty);
+    const set=d.hard? pool.slice(2) : pool.slice(0,2);
+    return {type:'onboard', d, cases:set, i:0, hours:null, results:[]};
+  }
+  /* buy one line of enquiry: costs hours, may reveal evidence */
+  function spend(RUN, aid){
+    const c=RUN.alerts[RUN.i], a=(c.actions||[]).find(x=>x.id===aid);
+    if(!a || RUN.spent.includes(aid) || RUN.hours<a.cost) return {ok:false};
+    RUN.hours-=a.cost; RUN.spent.push(aid);
+    const ev=c.evidence[a.reveals]||null;
+    if(ev) RUN.gathered.push(a.reveals);
+    return {ok:true, action:a, ev};
+  }
+  /* Nadia asks the question you have not asked yourself. One hour each, twice at most. */
+  function askNadia(RUN){
+    const c=RUN.alerts[RUN.i];
+    if(RUN.hours<1 || RUN.nadia>=2) return {ok:false};
+    RUN.hours-=1; RUN.nadia++;
+    const found=new Set(RUN.gathered);
+    const missing=(c.decisive||[]).filter(k=>!found.has(k));
+    let line;
+    if(RUN.nadia===1){
+      line='"What would have to be true for this to be completely innocent? Work that out, then go and look for it. If it is not there, you have your answer."';
+    }else if(missing.length){
+      const act=c.actions.find(a=>a.reveals===missing[0]);
+      const what=act?act.name.replace(/^(Pull|Obtain|Request|Review|Check|Look for|Examine|Map|Establish|Compare|Re-run|Screen|Cross-reference|Open|Call|Ask|Interview|Aggregate)\s+/i,''):'the part that matters';
+      line=`"Everything you have shown me is consistent with itself. That is not the same as being true. Have you looked at ${what.toLowerCase()}?"`;
+    }else{
+      line='"You have what you need. Say it in two sentences: what is the suspicion, and which fact supports it. If you cannot, you are not done thinking."';
+    }
+    return {ok:true, line, count:RUN.nadia};
+  }
+  function bumpSarStat(){
+    let st={sar:0}; try{ st=JSON.parse(localStorage.getItem(STATKEY)||'null')||st; }catch(e){}
+    st.sar=(st.sar||0)+1;
+    try{ localStorage.setItem(STATKEY, JSON.stringify(st)); }catch(e){}
+  }
+  function decideAlert(RUN, choice, hooks){
+    const h=H(hooks), c=RUN.alerts[RUN.i];
+    const deep=(c.actions||[]).length>0, found=new Set(RUN.gathered), decisive=c.decisive||[];
+    const foundAll=decisive.length? decisive.every(k=>found.has(k)) : true;
+    const foundN=decisive.filter(k=>found.has(k)).length;
+    let verdict;
+    if(choice===c.best_action) verdict=foundAll?'right':'thin';
+    else if((choice==='escalate'||choice==='sar') && c.is_real_case) verdict='part';
+    else if(choice==='rfi' && c.best_action!=='close') verdict='part';
+    else verdict=c.is_real_case?'harm':'wrong';
+    let xp=verdict==='right'?260 : verdict==='thin'?110 : verdict==='part'?120 : verdict==='wrong'?30 : 0;
+    if(verdict==='right' && deep && RUN.hours>=2) xp+=60;
+    if(RUN.tutorial) xp=0;
+    S.seen[c.id]=verdict; save();
+    if(xp) h.award(xp);
+    logEvent({module:'desk', case:c.id, family:c.family, decision:choice, correct:verdict,
+              evidence:RUN.gathered.length, hours:RUN.budget-RUN.hours, at:new Date().toISOString()});
+    let badges=[];
+    if(xp>0){
+      h.skill('tm', Math.round(xp/6));
+      h.skill('judgement', Math.round(xp/8));
+      if(choice==='escalate'||choice==='sar') h.skill('str', Math.round(xp/3));
+      if(choice==='sar') bumpSarStat();
+      h.lawSeen(c.law);
+      badges=h.badges()||[];
+    }
+    RUN.results.push({c, choice, verdict, xp, foundN, decisiveTotal:decisive.length});
+    /* a harmful call is scheduled to resurface on a later day */
+    if(verdict==='harm' && !RUN.tutorial){
+      const later=DAYS.find(d=>d.d>S.day && !S.done.includes(d.d));
+      if(later) S.harm.push({surfaceOn:later.d, caseId:c.id, headline:`Follow-up: ${c.title}`,
+        body:c.epilogue_wrong || `The file you closed on day ${S.day} has come back. Compliance has asked why the alert was dismissed without the question being put.`});
+      save();
+    }
+    return {c, choice, verdict, xp, foundN, decisive, deep, badges};
+  }
+  function decideOnboard(RUN, choice, hooks){
+    const h=H(hooks), c=RUN.cases[RUN.i];
+    const right=choice===c.decision;
+    const verdict=right?'right':(choice==='edd'&&c.decision==='standard')?'part':'wrong';
+    const xp=right?220:verdict==='part'?70:20;
+    S.seen[c.id]=verdict; save();
+    if(xp) h.award(xp);
+    h.skill('kyc', Math.round(xp/3));
+    h.lawSeen(c.law);
+    logEvent({module:'onboard', case:c.id, family:c.family, decision:choice, correct:verdict, at:new Date().toISOString()});
+    const badges=h.badges()||[];
+    RUN.results.push({c, choice, verdict, xp});
+    return {c, choice, verdict, xp, right, badges};
+  }
+  /* End of day: records it, completes the module for the shell, returns what to show. */
+  function closeDay(RUN, hooks){
+    const h=H(hooks), d=RUN.d, res=RUN.results;
+    const good=res.filter(r=>r.verdict==='right').length;
+    const harm=res.filter(r=>r.verdict==='harm').length;
+    const xp=res.reduce((s,r)=>s+r.xp,0);
+    const hoursUsed=RUN.budget!=null?(RUN.budget-RUN.hours):null;
+    if(!S.done.includes(d.d)) S.done.push(d.d);
+    const sh=shell(); if(sh) sh.complete('desk', S.done.length);
+    S.seen['day'+d.d]=harm?'HARM':good===res.length?'CLEAN':'MIXED';
+    if(RUN.tutorial) S.tutorialDone=true;
+    save();
+    const badges=h.badges()||[];
+    const title=RUN.tutorial?'Induction over.' : harm?`${harm} of them will come back.` : good===res.length?'A clean day.' : 'Worked, with gaps.';
+    const body=RUN.tutorial
+      ? 'Nothing you did today counted. From tomorrow it does — and Nadia will get steadily less forthcoming as you rank up, which is the intention.'
+      : harm
+      ? 'A file closed wrongly does not disappear. It sits there until something forces it back into view, and by then the question is not what you decided but why nobody asked.'
+      : hoursUsed!=null
+      ? `You spent ${hoursUsed} of ${RUN.budget} hours. The ones you closed on the file are what paid for the ones you could open.`
+      : 'Profiles set. Every alert these customers generate from now on is measured against what you decided today.';
+    return {d, good, harm, xp, hoursUsed, budget:RUN.budget, tutorial:!!RUN.tutorial, title, body, nextD:nextDay(), badges};
+  }
+  /* Copy for the screen that opens a day. Hosts decide the markup. */
+  function briefing(d){
+    if(d.type==='tutorial') return {title:'First morning.', go:'Sit down',
+      paras:['Nadia has the desk next to yours and eleven years on you. She is going to sit with you through two alerts, and she will interrupt.','Nothing counts today. That is the only day of which that will be true.'], rules:null};
+    if(d.type==='onboard') return {title:'The onboarding queue.', go:'Open the queue',
+      paras:['Applications waiting for a decision. For each one you decide how much diligence is proportionate — and set the profile of activity you would expect to see.','That profile is not paperwork. It is the baseline every future alert on this customer gets measured against. Set it carelessly and you generate noise for a decade.'],
+      rules:{head:'What you are deciding', items:[['1','Standard','proportionate measures, ordinary risk.'],['2','Enhanced','where the law or the risk requires more.'],['3','Ask first','a fact is missing that decides the answer.'],['4','Decline','the relationship cannot be established.']]}};
+    return {title:`${d.n} alerts. ${d.hours} hours.`, go:'Clock in',
+      paras:[`Most of these you will resolve on the file in front of you, and that costs nothing. Some you cannot resolve without looking further — and looking further costs hours out of the same ${d.hours}.`,'There is not enough time to investigate everything. That is not a flaw in the day. It is the day.'],
+      rules:{head:'How the hours work', items:[['·','Closing on the file','costs nothing. Do it confidently where the file supports it.'],['·','Opening an investigation','spends hours on each line of enquiry you buy.'],['·','Run out','and you decide the remaining alerts blind.']]}};
+  }
+  return {KEY, DAYS, S, load, save, logEvent, dayOf, nextDay, pickAlerts, startAlerts, startOnboard, spend, askNadia,
+          decideAlert, decideOnboard, closeDay, briefing};
+})();
+
+return {esc, Ownership, Laundromat, Desk};
+})();
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   ACADEMY PROGRESS — training completion, in one clean shape
+   ───────────────────────────────────────────────────────────────────
+   One localStorage key holds what a learner has done in the learning
+   path (docs/academy.html), as plain records that other RegRadar pages
+   can read as TRAINING EVIDENCE (AMLR Art. 12 asks for ongoing training
+   programmes). The Compliance workspace can call:
+
+     AcademyProgress.get()
+       -> { version, updated,
+            completions:[{module, completedAt, score, max, steps}],  // modules fully done
+            modules:{ <id>:{steps:{watch,risks,check,law,practice}, completed} } }
+
+   Stored under 'regradar-academy-training':
+     { v:1, updated:ISO, prefs:{budget:30}, modules:{
+         'cdd-kyc':{ steps:{ watch:{at}, risks:{at}, check:{at,score,max,best,tries,passed},
+                             law:{at}, practice:{at,auto} },
+                     completed:{ at:ISO, score:3, max:4 } } } }
+
+   A module is complete when watch, risks, a passed check and law are
+   done. Practice (the simulations) is optional. The game XP/rank lives
+   separately in AcademyShell ('regradar-academy-progress'); nothing in
+   that key changes. Everything stays on this device.
+   ═══════════════════════════════════════════════════════════════════ */
+window.AcademyProgress = (function(){
+'use strict';
+const KEY='regradar-academy-training';
+const REQUIRED=['watch','risks','check','law'];
+let S=null;
+
+function blank(){ return {v:1, updated:null, prefs:{}, modules:{}}; }
+function load(){
+  if(S) return S;
+  S=blank();
+  try{
+    const p=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(p && p.v===1 && p.modules && typeof p.modules==='object'){ S={...S,...p, prefs:p.prefs||{}}; }
+  }catch(e){}
+  return S;
+}
+function save(){
+  S.updated=new Date().toISOString();
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
+}
+function mod(id){ load(); return S.modules[id]||(S.modules[id]={steps:{}}); }
+function isComplete(id){ load(); return !!(S.modules[id] && S.modules[id].completed); }
+function maybeComplete(id){
+  const m=mod(id);
+  if(m.completed) return false;
+  if(!REQUIRED.every(k=>m.steps[k] && (k!=='check' || m.steps.check.passed))) return false;
+  const c=m.steps.check;
+  m.completed={at:new Date().toISOString(), score:c.best, max:c.max};
+  return true;
+}
+/* Mark a step done. Returns {first:boolean, completed:boolean}: first =
+   this step was not recorded before; completed = this call finished the module. */
+function step(id, name, data){
+  const m=mod(id), first=!m.steps[name];
+  if(first || name==='check') m.steps[name]={...(m.steps[name]||{}), ...(data||{}), at:new Date().toISOString()};
+  const completed=maybeComplete(id);
+  save();
+  return {first, completed};
+}
+/* Record one quiz attempt. Keeps the best score and the number of tries. */
+function quiz(id, score, max, passed){
+  const m=mod(id), prev=m.steps.check||{};
+  const best=Math.max(prev.best||0, score);
+  const wasPassed=!!prev.passed;
+  m.steps.check={at:new Date().toISOString(), score, max, best, tries:(prev.tries||0)+1, passed:wasPassed||!!passed};
+  const completed=maybeComplete(id);
+  if(m.completed && best>(m.completed.score||0)) m.completed.score=best;
+  save();
+  return {firstPass:!wasPassed && !!passed, completed};
+}
+function get(){
+  load();
+  const completions=Object.keys(S.modules).filter(id=>S.modules[id].completed).map(id=>{
+    const m=S.modules[id];
+    return {module:id, completedAt:m.completed.at, score:m.completed.score, max:m.completed.max,
+            steps:Object.keys(m.steps)};
+  }).sort((a,b)=>a.completedAt<b.completedAt?-1:1);
+  return JSON.parse(JSON.stringify({version:1, updated:S.updated, completions, modules:S.modules}));
+}
+function stepDone(id, name){ load(); const m=S.modules[id]; return !!(m && m.steps[name] && (name!=='check' || m.steps.check.passed)); }
+function pref(k,def){ load(); return k in S.prefs? S.prefs[k] : def; }
+function setPref(k,v){ load(); S.prefs[k]=v; save(); }
+function csvCell(v){ v=v==null?'':String(v); return /[",\n]/.test(v)? '"'+v.replace(/"/g,'""')+'"' : v; }
+/* titles: {moduleId: title}. One row per module in `order` (or per recorded module). */
+function toCSV(titles, order){
+  load(); titles=titles||{};
+  const ids=order&&order.length? order : Object.keys(S.modules);
+  const head=['module_id','module_title','status','completed_on','quiz_best_score','quiz_max_score','quiz_attempts','steps_done','programme'];
+  const rows=ids.map(id=>{
+    const m=S.modules[id]||{steps:{}}, c=m.steps.check||{};
+    const done=Object.keys(m.steps).filter(k=>k!=='check'||c.passed);
+    return [id, titles[id]||id, m.completed?'complete':done.length?'in progress':'not started',
+      m.completed? m.completed.at.slice(0,10):'', c.best==null?'':c.best, c.max==null?'':c.max, c.tries||'',
+      done.join('|'), 'RegRadar Academy (fictional cases; not an official certificate)'];
+  });
+  return [head].concat(rows).map(r=>r.map(csvCell).join(',')).join('\r\n')+'\r\n';
+}
+function reset(){ S=blank(); save(); }
+return {KEY, REQUIRED, get, step, quiz, isComplete, stepDone, pref, setPref, toCSV, reset};
 })();
