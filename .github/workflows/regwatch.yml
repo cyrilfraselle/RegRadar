@@ -18,6 +18,10 @@ jobs:
       # 1. Récupère le code du repo
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # A token owned by an admin (secret DATA_BOT_TOKEN) lets this job push to a
+          # protected main; falls back to the built-in token if the secret is absent.
+          token: ${{ secrets.DATA_BOT_TOKEN || github.token }}
 
       # 2. Installe Python
       - name: Set up Python
