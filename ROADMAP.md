@@ -72,6 +72,57 @@ marketplace.
 - Every screen answers "what do I do next?", not just "what is the status?".
 - Verified content and grounded AI stay the moat; everything else is plumbing.
 
+## Owner decisions so far (2026-10-16)
+
+1. **First buyer: a team.** The MLRO or managers dispatch work and need a
+   clear overview: dispatch, workload, status per person, what is at risk.
+2. **Wedge:** horizon scanning plus the obligation register plus evidence
+   tracking, with next-level features (below).
+3. **Prototype for free until the first contract, then upgrade.** Design for
+   portability (see decisions/002-free-prototype-stack.md).
+4. **Tickets: both.** Own board by default, two-way link to Jira-class tools
+   for firms that already use them. Everything is configurable by the team
+   (fields, workflows, templates, dashboards, thresholds, roles).
+5. **Weekly strategy brief** (Friday), logged in strategy/LOG.md.
+
+## Everything configurable ("configuration over code")
+
+Entity types, custom fields, statuses and workflows, task templates, scoring
+models, SLAs, dashboards and saved views, roles and permissions, notification
+rules, connector mappings: all stored as data per organisation, editable in a
+settings area, versioned, with a reset to sensible EU defaults.
+
+## Next-level features (beyond replacing the stack)
+
+Ranked by how much a compliance team would feel them:
+
+1. **Launch readiness check ("what-if").** Describe a new product, market or
+   customer segment; the system lists the obligations that apply, the controls
+   and policies you lack, the risk-assessment changes and a sign-off checklist.
+2. **Evidence autopilot.** Controls collect their own evidence from connected
+   systems (database query results, ticket histories, screening run logs),
+   dated and hashed, so a test is a click, not a week.
+3. **Inspection simulator.** Generates the questions a supervisor would ask
+   from your own register, scores how well your files answer them, and builds
+   the document binder. Practise before the real one.
+4. **Regulatory change redlines.** When a text changes, show the exact diff and
+   the controls, policies and customers it touches, with draft updates.
+5. **Capacity and workload forecast.** Alerts, reviews and tests coming due
+   turned into hours per person per week; flags overload before it becomes a
+   breach (the dispatcher's best friend).
+6. **QA sampling engine.** Second-line sampling of cases and customer files
+   with scoring, trends and coaching notes.
+7. **Precedent library.** How did we decide similar cases before? Searchable,
+   anonymised decisions with rationale.
+8. **Incident clocks.** For operational incidents and reportable events, the
+   reporting deadlines and templates start automatically.
+9. **Third-party register.** The ICT third-party and outsourcing register with
+   due diligence status and concentration view.
+10. **Regulator correspondence tracker.** Letters, requests and answers with
+    deadlines and owners.
+11. **Slack/Teams Jarvis.** Ask "what is overdue for my team?" where people work.
+12. **Peer benchmark** (needs customers): anonymised control-coverage benchmarks.
+
 ## Decisions that belong to the owner
 
 1. First buyer and size (1-person MLRO at an EMI, a 5 to 20 person team, or a
