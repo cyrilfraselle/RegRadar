@@ -1,0 +1,69 @@
+{
+ "_meta": {
+  "name": "Academy module map",
+  "purpose": "Which obligations in docs/data/obligations.json each Academy module trains on. Used for the Related obligations links in the Academy and, later, for training evidence in the Compliance workspace.",
+  "link_pattern": "workspace.html?open=<obligation id>",
+  "verified_by": "academy/verify.mjs checks every id against obligations.json"
+ },
+ "modules": {
+  "context": {
+   "obligations": [],
+   "note": "Context module. No single register obligation; see AMLR Arts 1, 3 and 90 in the law reader."
+  },
+  "aml-basics": {
+   "obligations": [
+    "AMLR-art20"
+   ],
+   "note": "Risk-based approach (Art. 20(2), (4)). The business-wide risk assessment (Art. 10) is not yet in the register."
+  },
+  "cdd-kyc": {
+   "obligations": [
+    "AMLR-art19",
+    "AMLR-art20",
+    "AMLR-art21",
+    "AMLR-art22",
+    "AMLR-art23",
+    "AMLR-art25",
+    "AMLR-art26",
+    "AMLR-art34"
+   ]
+  },
+  "beneficial-ownership": {
+   "obligations": [
+    "AMLR-art22",
+    "AMLR-art24"
+   ],
+   "note": "The beneficial owner definitions (Arts 51-58) are not yet in the register."
+  },
+  "peps": {
+   "obligations": [
+    "AMLR-art42",
+    "AMLR-art46",
+    "AMLR-art34"
+   ]
+  },
+  "transaction-monitoring": {
+   "obligations": [
+    "AMLR-art26",
+    "AMLR-art34",
+    "AMLR-art69"
+   ]
+  },
+  "sanctions-screening": {
+   "obligations": [
+    "AMLR-art20",
+    "AMLR-art26"
+   ],
+   "note": "Sanctions-specific provisions are Art. 20(1)(d), 26(4) and 27."
+  },
+  "suspicious-transaction-reports": {
+   "obligations": [
+    "AMLR-art69"
+   ]
+  },
+  "dora-mica-primer": {
+   "obligations": [],
+   "note": "DORA and MiCA obligations are not yet in the register."
+  }
+ }
+}
