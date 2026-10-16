@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "name": "BWRA starter scenario library",
+    "version": 1,
+    "generated": "2026-10-16",
+    "status": "Starter scenarios drafted by RegRadar for a business-wide ML/TF risk assessment. They are prompts for the firm to adapt, not a regulator-approved list. All likelihood/impact values are DEFAULTS: configure them for your firm.",
+    "firm_types": {
+      "pi": "Payment institution",
+      "emi": "E-money institution",
+      "casp": "Crypto-asset service provider"
+    },
+    "categories": {
+      "customers": "Customers",
+      "products": "Products and services",
+      "channels": "Delivery channels",
+      "geographies": "Geographies",
+      "transactions": "Transactions"
+    },
+    "ref_note": "A 'ref' only names a source where its text was checked: AMLR (Reg. (EU) 2024/1624) against docs/data/laws/32024R1624_EN.json, and the EBA ML/TF Risk Factors Guidelines (EBA/GL/2021/02 as amended by EBA/GL/2024/01) against the published amending text. Scenarios without a ref are RegRadar starter scenarios."
+  },
+  "defaults": {
+    "likelihood": [
+      { "n": "Rare", "d": "Not expected within three years or more" },
+      { "n": "Unlikely", "d": "Could occur about once in two to three years" },
+      { "n": "Possible", "d": "Could occur about once a year" },
+      { "n": "Likely", "d": "Could occur several times a year" },
+      { "n": "Almost certain", "d": "Expected monthly or more often" }
+    ],
+    "impact": [
+      { "n": "Minor", "d": "Absorbed in routine work, no supervisory follow-up" },
+      { "n": "Limited", "d": "Isolated weakness, fixed internally" },
+      { "n": "Moderate", "d": "Supervisory finding or notable abuse, remediation plan needed" },
+      { "n": "Major", "d": "Significant breach or enabling of serious crime, sanction or business restriction likely" },
+      { "n": "Severe", "d": "Systemic failure, licence at risk, major sanction or lasting reputational damage" }
+    ],
+    "bands": [4, 9, 15],
+    "params": { "cap": 0.75, "overdue": 0.7, "untested": 0.3 }
+  },
+  "scenarios": [
+    {
+      "id": "cus-pep", "cat": "customers",
+      "title": "Politically exposed persons not identified or not escalated",
+      "desc": "A customer, beneficial owner or person acting for the customer is a PEP, family member or close associate and is onboarded without enhanced measures or senior sign-off.",
+      "firms": { "pi": [3, 4], "emi": [3, 4], "casp": [3, 4] },
+      "kw": ["pep", "enhanced", "adverse", "four-eyes", "high-risk onboarding"]
+    },
+    {
+      "id": "cus-ubo", "cat": "customers",
+      "title": "Opaque ownership structures hide the beneficial owner",
+      "desc": "Layered companies, trusts or nominee arrangements make it impossible to establish who ultimately owns or controls a business customer.",
+      "firms": { "pi": [3, 4], "emi": [3, 4], "casp": [4, 4] },
+      "kw": ["beneficial", "owner", "ubo", "identification"]
+    },
+    {
+      "id": "cus-shell", "cat": "customers",
+      "title": "Shell or newly formed companies move high volumes",
+      "desc": "Companies with no real activity, or recently incorporated entities, are used to receive and pass on large flows soon after onboarding.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [4, 4] },
+      "kw": ["shell", "purpose", "rationale", "onboarding", "monitoring"]
+    },
+    {
+      "id": "cus-mule", "cat": "customers",
+      "title": "Money mules and straw-man account holders",
+      "desc": "Individuals who lend their identity or account to criminals, often recruited online, open accounts that are used to receive and forward proceeds.",
+      "firms": { "pi": [4, 3], "emi": [4, 3], "casp": [3, 3] },
+      "kw": ["mule", "monitoring", "identification", "verification"]
+    },
+    {
+      "id": "cus-sector", "cat": "customers",
+      "title": "Customers in higher-risk sectors",
+      "desc": "Customers active in money services, unregulated crypto-asset services, casinos, dealing in precious metals or other cash-intensive activity are onboarded without matching enhanced measures.",
+      "firms": { "pi": [3, 4], "emi": [3, 3], "casp": [4, 4] },
+      "kw": ["adverse", "sector", "enhanced", "purpose", "rationale"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, Guideline 2.4(b) as replaced by EBA/GL/2024/01"
+    },
+    {
+      "id": "cus-npo", "cat": "customers",
+      "title": "Non-profit organisations misused to move funds",
+      "desc": "A non-profit customer is used as a front to raise or move funds for terrorist financing or other criminal purposes.",
+      "firms": { "pi": [2, 5], "emi": [2, 5], "casp": [2, 5] },
+      "kw": ["purpose", "rationale", "monitoring"]
+    },
+    {
+      "id": "prd-remit", "cat": "products",
+      "title": "Cross-border money remittance used to move illicit funds",
+      "desc": "Fast, low-friction transfers to cash-pay-out corridors or higher-risk destinations are used to move or disguise criminal proceeds.",
+      "firms": { "pi": [4, 4] },
+      "kw": ["monitoring", "corridor", "transfer"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, sectoral Guideline 11 (money remitters)"
+    },
+    {
+      "id": "prd-emoney", "cat": "products",
+      "title": "Lightly verified e-money products with high load limits",
+      "desc": "Anonymous or simplified-due-diligence e-money products with generous load, spend or withdrawal limits allow value to be moved without a verified identity.",
+      "firms": { "emi": [3, 4] },
+      "kw": ["identification", "verification", "limit", "onboarding"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, sectoral Guideline 10 (electronic money issuers)"
+    },
+    {
+      "id": "prd-passthrough", "cat": "products",
+      "title": "Wallets and IBANs used as pass-through accounts",
+      "desc": "Customer accounts or virtual IBANs receive funds and immediately forward them, adding an apparently legitimate layer between sender and final recipient.",
+      "firms": { "pi": [3, 3], "emi": [4, 3] },
+      "kw": ["monitoring", "rule", "review"]
+    },
+    {
+      "id": "prd-acquiring", "cat": "products",
+      "title": "Merchant acquiring for high-risk or front merchants",
+      "desc": "Merchants processing through the firm are fronts, or trade in goods or services with a high abuse profile, and are onboarded without merchant-level due diligence.",
+      "firms": { "pi": [3, 3] },
+      "kw": ["merchant", "onboarding", "monitoring"]
+    },
+    {
+      "id": "prd-pisp", "cat": "products",
+      "title": "Payment initiation and account information services obscure fund origins",
+      "desc": "Initiated payments or aggregated account data are used to hide the true source or purpose of funds, with limited visibility of the underlying accounts.",
+      "firms": { "pi": [2, 3] },
+      "kw": ["monitoring", "purpose"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, sectoral Guideline 18 (payment initiation and account information services)"
+    },
+    {
+      "id": "prd-anon", "cat": "products",
+      "title": "Crypto-assets or services offering a higher degree of anonymity",
+      "desc": "Privacy-enhancing assets or features reduce the firm's ability to trace the origin and destination of funds.",
+      "firms": { "casp": [4, 5] },
+      "kw": ["analytics", "screening", "monitoring"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, Guideline 21.3(a), inserted by EBA/GL/2024/01"
+    },
+    {
+      "id": "prd-nolimit", "cat": "products",
+      "title": "Crypto-asset products with no upfront limits on volume or value",
+      "desc": "Products place no restriction on the overall volume or value of transactions a customer can make.",
+      "firms": { "casp": [3, 4] },
+      "kw": ["limit", "monitoring", "onboarding"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, Guideline 21.3(c), inserted by EBA/GL/2024/01"
+    },
+    {
+      "id": "prd-new", "cat": "products",
+      "title": "New products, features or technologies launched without a prior ML/TF assessment",
+      "desc": "A product, delivery channel, technology or customer segment goes live before its ML/TF risk has been identified, assessed and mitigated.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [4, 4] },
+      "kw": ["launch", "new product", "approval"],
+      "ref": "AMLR Art. 10(1), second subparagraph; EBA ML/TF Risk Factors Guidelines, Guideline 1.7(d), added by EBA/GL/2024/01"
+    },
+    {
+      "id": "chn-remote", "cat": "channels",
+      "title": "Remote onboarding fraud: impersonation, deepfakes, synthetic identities",
+      "desc": "Fully remote onboarding is defeated with stolen, forged or AI-generated identities, so the verified person is not the real user of the account.",
+      "firms": { "pi": [4, 3], "emi": [4, 3], "casp": [4, 4] },
+      "kw": ["identification", "verification", "onboarding", "liveness"],
+      "ref": "EBA Guidelines on remote customer onboarding solutions (EBA/GL/2022/15), referred to in Guideline 4.29 as amended by EBA/GL/2024/01"
+    },
+    {
+      "id": "chn-agents", "cat": "channels",
+      "title": "Agents, distributors and introducers weaken due diligence quality",
+      "desc": "Third parties that sell or onboard on the firm's behalf apply due diligence inconsistently or are themselves complicit.",
+      "firms": { "pi": [3, 4], "emi": [3, 3] },
+      "kw": ["agent", "distributor", "oversight", "onboarding"]
+    },
+    {
+      "id": "chn-reliance", "cat": "channels",
+      "title": "Reliance on third parties or outsourced due diligence without effective oversight",
+      "desc": "Customer due diligence is performed by a provider or group entity and the firm cannot show that it is complete, current and available on request.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [3, 3] },
+      "kw": ["outsourc", "reliance", "oversight", "third"]
+    },
+    {
+      "id": "chn-baas", "cat": "channels",
+      "title": "Partner and banking-as-a-service sub-client onboarding (nested relationships)",
+      "desc": "Partners bring their own customers onto the firm's rails and the firm has limited insight into who the end users are and how they are vetted.",
+      "firms": { "pi": [3, 4], "emi": [3, 4], "casp": [3, 4] },
+      "kw": ["partner", "nested", "beneficial", "onboarding"],
+      "ref": "For CASPs: EBA ML/TF Risk Factors Guidelines, Guideline 21.3(f) (weak control over a nested service), inserted by EBA/GL/2024/01"
+    },
+    {
+      "id": "chn-api", "cat": "channels",
+      "title": "Programmatic access (APIs, bulk onboarding) enables abuse at scale",
+      "desc": "Automated onboarding or payment interfaces let a single bad actor create many accounts or move large volumes before controls can react.",
+      "firms": { "pi": [2, 3], "emi": [3, 3], "casp": [3, 3] },
+      "kw": ["monitoring", "velocity", "onboarding"]
+    },
+    {
+      "id": "geo-hrtc", "cat": "geographies",
+      "title": "Customers, owners or counterparties in high-risk third countries",
+      "desc": "Customers, beneficial owners or payment counterparties are linked to countries identified as high-risk, without the required enhanced measures.",
+      "firms": { "pi": [3, 4], "emi": [3, 4], "casp": [3, 4] },
+      "kw": ["country", "geograph", "high-risk", "enhanced"]
+    },
+    {
+      "id": "geo-weak", "cat": "geographies",
+      "title": "Flows with jurisdictions of weak AML/CFT supervision or high corruption",
+      "desc": "Payments or customers connect to jurisdictions where supervision, transparency or the rule of law is weak, even if they are not formally listed.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [3, 3] },
+      "kw": ["country", "geograph", "monitoring"]
+    },
+    {
+      "id": "geo-xborder", "cat": "geographies",
+      "title": "Cross-border activity in other Member States without local risk understanding",
+      "desc": "Customers or agents in other Member States are served on a passport basis without understanding local typologies, supervisors and national risk assessments.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [3, 3] },
+      "kw": ["national", "country", "geograph"]
+    },
+    {
+      "id": "geo-sanctions", "cat": "geographies",
+      "title": "Evasion of targeted financial sanctions through third-country intermediaries",
+      "desc": "Sanctioned persons or sectors reach the firm indirectly via front companies, transshipment hubs or nested accounts, and screening does not catch it.",
+      "firms": { "pi": [3, 5], "emi": [3, 5], "casp": [3, 5] },
+      "kw": ["sanction", "screening"],
+      "ref": "AMLR Art. 10(1): the assessment covers the risks of non-implementation and evasion of targeted financial sanctions"
+    },
+    {
+      "id": "trx-struct", "cat": "transactions",
+      "title": "Structuring of payments below monitoring thresholds",
+      "desc": "Amounts are split into smaller transactions, or spread across accounts and channels, to stay below reporting or alert limits.",
+      "firms": { "pi": [4, 3], "emi": [4, 3], "casp": [3, 3] },
+      "kw": ["monitoring", "rule", "threshold"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, Guideline 4.60(a) as replaced by EBA/GL/2024/01 (transactions split up to circumvent reporting limits)"
+    },
+    {
+      "id": "trx-layer", "cat": "transactions",
+      "title": "Rapid in-and-out movements used to layer funds",
+      "desc": "Funds enter and leave an account within hours or days with no obvious economic rationale, often through several accounts in sequence.",
+      "firms": { "pi": [4, 3], "emi": [4, 3], "casp": [4, 3] },
+      "kw": ["monitoring", "rule", "review"]
+    },
+    {
+      "id": "trx-thirdparty", "cat": "transactions",
+      "title": "Funding or pay-outs involving unrelated third parties",
+      "desc": "Payments come from, or go to, parties that are neither identified nor linked to the customer, with no apparent economic rationale.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [3, 3] },
+      "kw": ["monitoring", "purpose", "rationale"],
+      "ref": "For CASPs: EBA ML/TF Risk Factors Guidelines, Guideline 21.3(b), inserted by EBA/GL/2024/01"
+    },
+    {
+      "id": "trx-selfhosted", "cat": "transactions",
+      "title": "Transfers to and from self-hosted wallets and unregulated providers",
+      "desc": "Customers send or receive crypto-assets to addresses that are not held by a regulated provider, which breaks the audit trail.",
+      "firms": { "casp": [4, 4] },
+      "kw": ["analytics", "wallet", "monitoring", "travel"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, Guideline 21.3(d)(i) and (ii), inserted by EBA/GL/2024/01"
+    },
+    {
+      "id": "trx-mixer", "cat": "transactions",
+      "title": "Exposure to mixers, tumblers and decentralised platforms",
+      "desc": "Customers use or receive funds from platforms built to obfuscate transactions or that no legal or natural person controls.",
+      "firms": { "casp": [3, 5] },
+      "kw": ["analytics", "screening", "monitoring"],
+      "ref": "EBA ML/TF Risk Factors Guidelines, Guideline 21.3(d)(iii) and (iv), inserted by EBA/GL/2024/01"
+    },
+    {
+      "id": "trx-monitor", "cat": "transactions",
+      "title": "Transaction monitoring gaps: rule coverage, data quality, alert backlog",
+      "desc": "Scenarios do not cover the firm's real products and typologies, data feeds are incomplete, or alerts are not worked in time, so suspicious activity goes unseen.",
+      "firms": { "pi": [3, 4], "emi": [3, 4], "casp": [3, 4] },
+      "kw": ["monitoring", "tuning", "rule", "review"]
+    },
+    {
+      "id": "trx-tfr", "cat": "transactions",
+      "title": "Incomplete payer and payee (or originator and beneficiary) information on transfers",
+      "desc": "Transfers of funds or crypto-assets arrive or leave without the required information and the firm does not detect or act on it.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [3, 3] },
+      "kw": ["transfer", "travel", "payer", "originator"],
+      "ref": "Regulation (EU) 2023/1113 (transfers of funds and certain crypto-assets)"
+    },
+    {
+      "id": "trx-cash", "cat": "transactions",
+      "title": "Cash-based top-ups and cash-outs",
+      "desc": "Cash loaded or withdrawn through agents, ATMs or voucher networks hides the source or destination of funds.",
+      "firms": { "pi": [3, 3], "emi": [3, 3], "casp": [3, 4] },
+      "kw": ["cash", "agent", "monitoring"],
+      "ref": "For CASPs: EBA ML/TF Risk Factors Guidelines, Guideline 21.3(d)(v) (crypto-ATMs and similar hardware), inserted by EBA/GL/2024/01"
+    }
+  ]
+}
