@@ -117,7 +117,7 @@
       "body":"The report names what makes this suspicious: an intermediary handling no goods, systematic over-invoicing quantified against market, and a beneficial owner that cannot be established. That is a report an FIU analyst can act on."}
    },
    "epilogue_wrong":"Eleven months later the FIU requests records for Meridian in connection with a sanctions-evasion network. The bank's file shows the alert was raised and dismissed without the pricing ever being checked.",
-   "law":"AMLR Art. 34 — EDD where a transaction has no apparent economic purpose; Art. 22 — beneficial ownership of counterparties; Art. 69 — reporting.",
+   "law":"AMLR Art. 34(2) — examine origin, destination and purpose where a transaction has no apparent economic or lawful purpose; Arts 51–53 — beneficial ownership of counterparties; Art. 69 — reporting.",
    "lesson":"Trade-based laundering hides inside legitimate commerce, which is why it is the most used and least detected typology. It is not visible in the transaction — it is visible in the price. Almost no bank benchmarks pricing, and that is precisely the gap being used."
   },
 
@@ -169,7 +169,7 @@
       "body":"Eleven linked accounts, a shared device fingerprint, common destinations and identified victim funds. This is a report that lets an FIU see a structure rather than an incident."}
    },
    "epilogue_wrong":"Four months later, three of the remaining accounts appear in a police request. Total victim losses routed through the institution during the intervening period: €338,000.",
-   "law":"AMLR Art. 25 — ongoing monitoring; Art. 69 — reporting. TFR where onward transfers lack originator data.",
+   "law":"AMLR Art. 26 — ongoing monitoring; Art. 69 — reporting. TFR (Regulation (EU) 2023/1113) Arts 14 and 16 where onward transfers lack originator data.",
    "lesson":"Mule networks are invisible one account at a time and obvious in aggregate. The decisive move is not deeper analysis of the flagged account — it is asking whether anything else behaves the same way. Most alert queues are structured to prevent exactly that question."
   },
 
@@ -224,7 +224,7 @@
       "body":"You identified what the screening could not: that no single holding breaches a threshold, that the aggregate does, and that control sits with parties connected to a designated individual. This is the case sanctions screening is structurally unable to find on its own."}
    },
    "epilogue_wrong":"Fourteen months later the structure surfaces in an EU enforcement action. The institution's exposure is characterised as a failure to look through a chain that was, on the record, visible from the documents it already held.",
-   "law":"EU Regulation 269/2014 — asset freezes extend to entities owned or controlled by designated persons; AMLR Art. 22 — beneficial ownership; Art. 34 — EDD.",
+   "law":"EU Regulation 269/2014 — asset freezes extend to entities owned or controlled by designated persons; AMLR Arts 51–53 — beneficial ownership; Art. 20(1)(d) — sanctions check, including owners and controllers; Art. 34 — EDD.",
    "lesson":"Sanctions screening matches names on the record in front of it. A structure built two levels up will never appear there. The 50% rule aggregates across chains and the control limb applies regardless of percentage — which means the only reliable defence is looking through the chain, and almost nobody does it unprompted."
   }
  ]

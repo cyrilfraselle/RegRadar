@@ -18,29 +18,27 @@
 
 const KEY='regradar-academy-progress';
 
-/* The path is locked, and the lock is ONE rule (unlocked() below) applied
-   everywhere: the tabs, the static nav on laundromat.html, and a direct
-   visit to a module's URL (mount() puts a gate card over a locked module).
-   Flip this to false to turn the path into a recommended order only. */
-const ENFORCE_GATE=true;
+/* The learning path (academy.html) is where modules unlock in order. The
+   practice rooms below it (Laundromat, Ownership, Desk) are open any time:
+   the modules send learners to the right one. ENFORCE_GATE only matters if a
+   module sets needs > 0; flip it to true to lock a room behind earlier ones. */
+const ENFORCE_GATE=false;
 
-/* The path. The order IS the pedagogy: you can't recognise a pattern
-   you've never produced, so offence precedes defence. The path is
-   locked: each module requires the ones before it. */
+/* The practice rooms. 'learn' is the learning path itself: it records the XP
+   and the count of completed modules ('regradar-academy-progress' keeps its
+   shape; the detailed completion records live in AcademyProgress). */
 const MODULES=[
+ {id:'learn',      n:'Learn', no:'00', file:'academy.html', needs:0, noTick:true,
+  label:'Learning path', tag:'Nine short modules: explainer, risks, questions and the law.'},
  {id:'laundromat', n:'Laundromat', no:'01', file:'laundromat.html',
   label:'The launderer', needs:0,
   tag:'Play the adversary: thirteen typologies, eight jurisdictions.'},
  {id:'ownership',  n:'Ownership', no:'02', file:'ownership.html',
-  label:'Ownership structures', needs:1,
+  label:'Ownership structures', needs:0,
   tag:'Read an ownership chart and designate the beneficial owners.'},
  {id:'desk',       n:'The Desk', no:'03', file:'desk.html',
-  label:'Alerts and investigations', needs:2,
+  label:'Alerts and investigations', needs:0,
   tag:'One day: alerts, and hours you don’t get back.'},
- {id:'filing',     n:'Filing', no:'04', file:null,
-  label:'Drafting the STR', needs:2, tag:'In development.'},
- {id:'inspection', n:'Inspection', no:'05', file:null,
-  label:'Defending your decisions', needs:3, tag:'In development.'},
 ];
 
 const RANKS=[
@@ -308,7 +306,7 @@ function build(active){
       <span class="sep"></span>
       <span class="sim">AML TRAINING SIMULATOR</span>
       <span class="rr">
-        <a href="workstation.html">Path</a>
+        <a href="academy.html">Learning path</a>
         <a href="index.html"><span aria-hidden="true">← </span>RegRadar</a>
       </span>
     </div>
@@ -329,7 +327,7 @@ function build(active){
 function tabsHTML(active){
   return MODULES.map(m=>{
     const rec=P.modules[m.id]||{};
-    const tick=rec.done>0?'<span class="tick"><span aria-hidden="true">✓</span><span class="ac-sr"> completed</span></span>':'';
+    const tick=(rec.done>0 && !m.noTick)?'<span class="tick"><span aria-hidden="true">✓</span><span class="ac-sr"> completed</span></span>':'';
     if(unlocked(m)){
       return `<a class="ac-tab ${m.id===active?'on':''}" href="${m.file}"${m.id===active?' aria-current="page"':''}>
         <span class="n">${m.no}</span>${esc(m.n)}${tick}</a>`;
@@ -500,7 +498,7 @@ const Shell={
      engine) can call one thing instead of repeating the regex. */
   markLawSeenFromText(text){
     if(!text) return false;
-    const m=String(text).match(/Art(?:icle)?\.?\s*[\dIVXLC]+(?:\([\da-z]+\))*/i);
+    const m=String(text).match(/Art(?:s|icles?)?\.?\s*[\dIVXLC]+(?:\([\da-z]+\))*/i);
     if(!m) return false;
     return Shell.markLawSeen(m[0].replace(/\s+/g,' '));
   },

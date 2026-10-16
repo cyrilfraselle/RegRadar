@@ -54,7 +54,7 @@
    ],
    "answer": "oui",
    "explain": "30% is above the 25% threshold. This is the simplest case, and the only one where the answer can be read directly off the chart.",
-   "principle": "The indicative threshold is 25% + one share. A threshold isn't an absolute rule — it's the point beyond which closer scrutiny is required."
+   "principle": "The AMLR threshold is 25% or more of the shares, voting rights or other ownership interest, direct or indirect (Art. 52(1)). A threshold isn't an absolute rule — it's the point beyond which closer scrutiny is required."
   },
   {
    "id": "P2",
@@ -221,7 +221,7 @@
     }
    ],
    "answer": "oui",
-   "explain": "Percentage ownership is only one of two tests. Appointing a majority of the board and holding a veto over disposals is control within the meaning of Article 22, regardless of shareholding.",
+   "explain": "Percentage ownership is only one of two tests. Appointing a majority of the board and holding a veto over disposals is control by other means within the meaning of Articles 51 and 53, regardless of shareholding.",
    "principle": "Two paths lead to beneficial owner status: ownership and control. An analysis that only looks at percentages consistently misses the second one — and that's the one used to hide behind."
   }
  ],
@@ -321,7 +321,7 @@
    },
    "why": "Mina holds 80% × 70% = 56%, well above the threshold. Bram reaches 80% × 30% = 24% — one point short of the threshold, and therefore not a beneficial owner on ownership grounds. Inès tops out at 20% direct.",
    "trap": "Bram at 24% is the trap in this case. The temptation is to round up, or to treat 'almost 25%' as close enough. That isn't an analyst's call to make — a threshold is a threshold. What does warrant a check is that a brother and sister together hold 80% of a holding company: it's worth verifying whether an agreement exists between them — which the extract confirms it doesn't, and that's exactly why it was read.",
-   "law": "AMLR Art. 22 — identification of beneficial owners; indicative threshold of 25% + one share.",
+   "law": "AMLR Arts 51–52 — beneficial owners; an ownership interest is 25% or more of the shares, voting rights or other ownership interest.",
    "lesson": "The calculation is trivial; the discipline isn't. A percentage just under the threshold is not a beneficial owner, and writing that down plainly in the file is worth more than including them 'to be safe' — including everyone amounts to identifying no one."
   },
   {
@@ -435,7 +435,7 @@
    },
    "why": "Victor: 55% × 70% = 38.5%. Lena accumulates three paths — 15% direct, 55% × 20% = 11%, and 30% × 10% = 3%. Total 29%. None of her three branches crosses the threshold on its own.",
    "trap": "This is the case analysts miss most often. Working through the chart branch by branch, you see 15%, then 20% of one holding company, then 10% of another — three figures, all below the threshold, and it's easy to conclude too quickly. Aggregating by person, not by branch, is the only way to see Lena.",
-   "law": "AMLR Art. 22 — indirect ownership is assessed by aggregating all paths.",
+   "law": "AMLR Art. 52(1) — indirect ownership is calculated by multiplying along each chain and adding the chains together.",
    "lesson": "Spreading a stake across several vehicles, none of which crosses the threshold, is the simplest concealment technique there is, and it works against anyone reading a chart top to bottom. The countermeasure is methodological: calculate by person, not by branch."
   },
   {
@@ -551,7 +551,7 @@
    },
    "why": "Joris holds 45% directly. The 35% block belongs economically to Elin, the trust's sole beneficiary — the fiduciary only holds legal title. It has no economic interest and is therefore not a beneficial owner.",
    "trap": "Two mirror-image errors are waiting here. Naming the fiduciary — it's the name that appears in the register, and that's exactly what the arrangement is designed to produce. Or dropping the 35% block for want of knowing who it belongs to, when the trust deed names the beneficiary in full. All three documents needed reading, not just the register.",
-   "law": "AMLR Art. 22 — for a trust, the beneficial owners are the settlor, the trustee, the protector, the beneficiaries, and any other person exercising effective control. The trustee holds title, not economic interest.",
+   "law": "AMLR Art. 58 — for an express trust the beneficial owners are the settlors, trustees, protectors, beneficiaries and any other person exercising ultimate control. In this fictional case the 35% block is held through a nominee (fiduciary) company: the nominee is not itself a beneficial owner, so look through it to the trust and its people. The case is simplified: it does not model a settlor or trustee, who would also count under Art. 58.",
    "lesson": "The shareholder register says who holds — not who benefits. A fiduciary arrangement is perfectly lawful and perfectly transparent once the deed is requested — the failure is never the arrangement itself, it's stopping at the first document."
   },
   {
@@ -659,7 +659,7 @@
    },
    "why": "No natural person reaches 25% through ownership. But Karel appoints a majority of the board and holds a veto over structural decisions: that's control by other means, which makes him a beneficial owner regardless of his 8%.",
    "trap": "If the agreement isn't requested, the file concludes with 'no beneficial owner at the threshold, senior managing official retained by default' — a perfectly reasoned and perfectly wrong conclusion. Falling back on the senior managing official is only legitimate once both routes, ownership and control, have been exhausted. Exhausting them means requesting the agreements.",
-   "law": "AMLR Art. 22(1)(b) — control exercised by other means; recourse to the senior managing official applies only as a last resort, after the other routes are exhausted.",
+   "law": "AMLR Arts 51 and 53(3) — control by other means; Art. 22(2) — recourse to senior managing officials applies only as a last resort, after all possible means of identification are exhausted.",
    "lesson": "A fragmented shareholding isn't the absence of a beneficial owner — it's often a sign that control needs to be looked for elsewhere. Defaulting to the senior managing official is the most common way to close a file cleanly without having identified anything."
   },
   {
@@ -773,7 +773,7 @@
    },
    "why": "Sara holds 60% × 50% = 30% via the holding company, plus 8% direct, for 38%. Omar stays at 22% direct, below the threshold. Gand Maritime's cross-shareholding in its own holding company doesn't propagate — it's logged as a loop and the traversal stops there.",
    "trap": "Two ways to get this wrong. Running the loop and artificially inflating the percentages — the calculation converges mathematically but no longer describes anything real. Or treating the cross-shareholding as an additional shareholder and diluting the others. A cross-shareholding dilutes the real economic interest of external shareholders; it belongs in the file as a flag, not in the calculation.",
-   "law": "AMLR Art. 22 — the analysis must identify natural persons; a circular shareholding creates no additional beneficial owner.",
+   "law": "AMLR Art. 51 — beneficial owners are natural persons; a circular shareholding creates no additional beneficial owner.",
    "lesson": "When a chain loops back to an entity already traversed, stop and note it. The fact is worth flagging — cross-shareholdings are also used to obscure real economic interest — but it isn't something you calculate."
   },
   {
@@ -886,7 +886,7 @@
    },
    "why": "Pieter tops out at 20%, below the threshold. The 62% block is held by a structure whose beneficial owner cannot be identified with the documents available. This isn't a partial conclusion — it's the impossibility of concluding, and Article 21 draws the consequences from that.",
    "trap": "Three wrong outcomes, all superficially defensible. Naming Pieter because he's the only visible natural person. Naming the nominee because it's the one in the register. Or falling back to the senior managing official as a last resort — when that route assumes the other paths have been exhausted, and here they haven't: the provider explicitly opened a disclosure channel.",
-   "law": "AMLR Art. 22 — identification of beneficial owners; Art. 21 — where due diligence measures cannot be completed, the relationship must not be established.",
+   "law": "AMLR Art. 22(2) — where, after exhausting all possible means, no beneficial owner is identified, record that and identify senior managing officials; Art. 21 — where due diligence measures cannot be completed, the relationship must not be established.",
    "lesson": "Professional courage here means writing 'undetermined' rather than a plausible name. A file that names the wrong beneficial owner is worse than one that acknowledges the gap — the first looks complete and will never be reopened."
   }
  ]

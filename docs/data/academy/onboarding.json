@@ -38,7 +38,7 @@
     "more": "You already hold identity, address, employment and source of funds. There is nothing further to ask for.",
     "decline": "You have declined a customer with no risk indicator whatsoever. Beyond the commercial cost, this is the behaviour that produces de-risking of entire customer segments."
    },
-   "law": "AMLR Art. 20 — CDD measures proportionate to risk; Art. 25 — the expected profile is what ongoing monitoring measures against.",
+   "law": "AMLR Art. 20(2) — CDD measures proportionate to risk; Art. 25 — purpose and intended nature, which gives the expected profile; Art. 26 — what ongoing monitoring measures against.",
    "lesson": "Most onboarding is this. The skill being trained is not suspicion — it is setting an accurate expected profile quickly, so that the monitoring system has a meaningful baseline. A profile set carelessly here becomes a false positive every month for the next decade."
   },
 
@@ -72,7 +72,7 @@
     "more": "You hold the company extract, the accounts, the ownership chain and a board resolution. Naming what is still missing would be difficult.",
     "decline": "A profitable Belgian operating company with fully transparent ownership. Declining this is a commercial decision with no compliance basis."
    },
-   "law": "AMLR Art. 22 — identification of beneficial owners; Art. 20 — proportionality.",
+   "law": "AMLR Arts 51–53 — identification of beneficial owners; Art. 20(2) — proportionality.",
    "lesson": "Layers are not opacity. The test is whether the chain terminates in identified natural persons using documents you can verify. This case exists because analysts trained only on suspicious files start treating ordinary corporate structures as suspicious, and that is its own kind of failure."
   },
 
@@ -100,14 +100,14 @@
    "screening": "No sanctions or PEP match on the company, the nominee, or the director. No adverse media.",
    "decision": "more",
    "expected_right": "unknown",
-   "why": "Nothing here is illegitimate, and nothing here is established either. You cannot identify the beneficial owner — a nominee declaration that names no individual is precisely the absence of the information Art. 22 requires. Add a director who fronts eleven other companies and projected turnover with no contracts behind it, and you have a file you cannot yet risk-rate at all. This is not a decline: the nominee has said it will disclose through a formal channel, and you have not used it. Ask, then decide.",
+   "why": "Nothing here is illegitimate, and nothing here is established either. You cannot identify the beneficial owner — a nominee declaration that names no individual is precisely the absence of the information Art. 22(2) and Arts 51–53 require. Add a director who fronts eleven other companies and projected turnover with no contracts behind it, and you have a file you cannot yet risk-rate at all. This is not a decline: the nominee has said it will disclose through a formal channel, and you have not used it. Ask, then decide.",
    "outcomes": {
     "standard": "You have onboarded a customer whose beneficial owner is unknown to you. Every monitoring alert on this account will now be assessed against a profile you had no basis to set.",
     "edd": "Enhanced measures are right in spirit, but they do not substitute for the missing fact. You cannot apply enhanced diligence to a beneficial owner you have not identified — EDD without identification is activity, not diligence.",
     "more": "Correct. The nominee has a disclosure channel and you have not used it. Nothing can be concluded until the beneficial owner is named, and everything can be concluded quickly once they are.",
     "decline": "Premature. A nominee arrangement is lawful and common in Malta, and the provider has offered a disclosure route. Declining before asking is how legitimate business gets pushed toward less scrupulous institutions."
    },
-   "law": "AMLR Art. 22 — beneficial ownership must be identified, not assumed; Art. 21 — where CDD cannot be completed, the relationship must not be established.",
+   "law": "AMLR Art. 20(1)(b) and Arts 51–53 — beneficial ownership must be identified, not assumed; Art. 22(2) — what to record if none can be identified; Art. 21 — where CDD cannot be completed, the relationship must not be established.",
    "lesson": "The hardest onboarding decisions are not between good and bad customers. They are files where nothing is wrong and nothing is proven, and the discipline is refusing to rate a risk you have no basis to rate. Note the trap in both wrong answers: 'standard' and 'decline' are opposite errors made for the same reason — deciding without the fact that decides it."
   },
 

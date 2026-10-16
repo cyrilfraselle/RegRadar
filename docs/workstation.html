@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="academy-engine.css?v=20261015">
 <link rel="stylesheet" href="glossary.css?v=20261015">
-<script src="academy-shell.js?v=20261015"></script>
-<script src="academy-engine.js?v=20261015"></script>
+<script src="academy-shell.js?v=20261016"></script>
+<script src="academy-engine.js?v=20261016"></script>
 <script src="glossary.js?v=20261015"></script>
 <style>
 :root{
@@ -1986,7 +1986,7 @@ const PATH = (function(){
     el.innerHTML = `
       <div class="kicker">TRAINING PATH</div>
       <h1 class="pt">CF Bank Academy</h1>
-      <div class="sub">Locked sequence — each module opens once the one before it is done.</div>
+      <div class="sub">The practice rooms are open any time. The step-by-step learning path (explainers, questions and the law) is on the Academy page.</div>
       <div class="path-prog">
         <div><div class="n">${esc(r.n)}</div><div class="l">Rank</div></div>
         <div><div class="n">${AcademyShell.xp.toLocaleString('en-US')}</div><div class="l">XP</div></div>
@@ -2431,25 +2431,13 @@ const LB = (function(){
    ═══════════════════════════════════════════════════════════════════ */
 const DK = (function(){
   const esc = s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const SKEY='regradar-desk';
-  const DAYS=[
-   {d:1, type:'tutorial', label:'Day 1', name:'Induction', blurb:'Nadia walks you through the desk. Two alerts, nothing at stake.'},
-   {d:2, type:'onboard', label:'Day 2', name:'The onboarding queue', n:2, blurb:'Four applications. Decide how much diligence each one deserves.'},
-   {d:3, type:'desk', label:'Day 3', name:'First real shift', n:4, hours:6, blurb:'Four alerts. Six hours. Close what you can, investigate what you must.'},
-   {d:5, type:'onboard', label:'Day 5', name:'Harder applications', n:2, hard:true, blurb:'Files where nothing is wrong and nothing is proven.'},
-   {d:8, type:'desk', label:'Day 8', name:'A busier queue', n:5, hours:7, blurb:'Five alerts, seven hours. The maths gets tighter.'},
-   {d:14,type:'desk', label:'Day 14', name:'Second week', n:5, hours:6, blurb:'Five alerts, six hours. Something you saw before comes back.'},
-   {d:21,type:'desk', label:'Day 21', name:'Month end', n:6, hours:7, blurb:'Six alerts. The queue does not care that it is month end.'},
-  ];
-  let S={day:0, done:[], harm:[], seen:{}, tutorialDone:false};
+  const D = AcademyEngine.Desk, DAYS = D.DAYS, S = D.S;   /* the model is shared with desk.html */
   let BOOK=[], ONB=[];
   let RUN=null;
 
   function root(){ return document.getElementById('inv-desk'); }
-  function save(){ try{ localStorage.setItem(SKEY, JSON.stringify(S)); }catch(e){} }
-  function load(){ try{ const p=JSON.parse(localStorage.getItem(SKEY)||'null'); if(p) S={...S,...p}; }catch(e){} }
-  function award(xp){ if(xp && typeof AcademyShell!=='undefined') AcademyShell.award('desk', xp); }
-
+  function save(){ D.save(); }
+  function load(){ D.load(); }
   function statsRow(){
     if(!RUN) return '';
     const bits=[`DAY ${S.day}`];
@@ -2489,72 +2477,42 @@ const DK = (function(){
     if(S.done.length>=DAYS.length){
       html+=`<div class="dk-entry"><div class="when"><b>—</b>ahead</div><div>
         <div class="et">More days are being written</div>
-        <div class="eb">You have worked everything currently in the journal. Filing and Inspection come next.</div></div></div>`;
+        <div class="eb">You have worked everything currently in the journal. More days are still being written.</div></div></div>`;
     }
     document.getElementById('dk-entries').innerHTML=html;
     const nd=DAYS.find(d=>!S.done.includes(d.d));
     if(nd) document.getElementById('dk-start-'+nd.d)?.addEventListener('click', ()=>startDay(nd.d));
   }
 
+  /* Hooks: the same shared model, with this page's toasts and panel refresh. */
+  const HOOKS = {
+    skill:(id,xp)=>awardSkillXP(id,xp),
+    lawSeen:t=>markLawSeen(t),
+    badges:()=>{ checkBadges(); return []; },
+  };
+
   function startDay(dn){
-    const d=DAYS.find(x=>x.d===dn); if(!d) return;
+    const d=D.dayOf(dn); if(!d) return;
     S.day=dn;
-    let body='', rules='', goLabel='', goFn=null;
-    if(d.type==='tutorial'){
-      body=`<p>Nadia has the desk next to yours and eleven years on you. She is going to sit with you through two alerts, and she will interrupt.</p>
-        <p>Nothing counts today. That is the only day of which that will be true.</p>`;
-      goLabel='Sit down'; goFn=()=>runDesk(d,true);
-    } else if(d.type==='onboard'){
-      body=`<p>Applications waiting for a decision. For each one you decide how much diligence is proportionate — and set the profile of activity you would expect to see.</p>
-        <p>That profile is not paperwork. It is the baseline every future alert on this customer gets measured against.</p>`;
-      rules=`<div class="dk-rules"><div class="rh">What you are deciding</div>
-        <div class="rr"><span class="i">1</span><div><b>Standard</b> — proportionate measures, ordinary risk.</div></div>
-        <div class="rr"><span class="i">2</span><div><b>Enhanced</b> — where the law or the risk requires more.</div></div>
-        <div class="rr"><span class="i">3</span><div><b>Ask first</b> — a fact is missing that decides the answer.</div></div>
-        <div class="rr"><span class="i">4</span><div><b>Decline</b> — the relationship cannot be established.</div></div></div>`;
-      goLabel='Open the queue'; goFn=()=>runOnboard(d);
-    } else {
-      body=`<p>Most of these you will resolve on the file in front of you, and that costs nothing. Some you cannot resolve without looking further — and looking further costs hours out of the same ${d.hours}.</p>
-        <p>There is not enough time to investigate everything. That is not a flaw in the day. It is the day.</p>`;
-      rules=`<div class="dk-rules"><div class="rh">How the hours work</div>
-        <div class="rr"><span class="i">·</span><div><b>Closing on the file</b> costs nothing. Do it confidently where the file supports it.</div></div>
-        <div class="rr"><span class="i">·</span><div><b>Opening an investigation</b> spends hours on each line of enquiry you buy.</div></div>
-        <div class="rr"><span class="i">·</span><div><b>Run out</b> and you decide the remaining alerts blind.</div></div></div>`;
-      goLabel='Clock in'; goFn=()=>runDesk(d,false);
-    }
+    const b=D.briefing(d);
+    const rules = b.rules ? `<div class="dk-rules"><div class="rh">${esc(b.rules.head)}</div>${b.rules.items.map(r=>
+      `<div class="rr"><span class="i">${esc(r[0])}</span><div><b>${esc(r[1])}</b> — ${esc(r[2])}</div></div>`).join('')}</div>` : '';
+    const goFn = ()=> d.type==='onboard'? runOnboard(d) : runDesk(d, d.type==='tutorial');
     root().innerHTML = `
       <div class="kicker">${esc(d.label.toUpperCase())} · ${esc(d.name.toUpperCase())}</div>
-      <h1 class="pt">${d.type==='tutorial'?'First morning.':d.type==='onboard'?'The onboarding queue.':`${d.n} alerts. ${d.hours} hours.`}</h1>
-      <div class="sub" style="font-size:13px">${body}</div>
+      <h1 class="pt">${esc(b.title)}</h1>
+      <div class="sub" style="font-size:13px">${b.paras.map(p=>`<p>${esc(p)}</p>`).join('')}</div>
       ${rules}
       <div style="display:flex;gap:10px;margin-top:16px">
-        <button class="inv-submit" style="width:auto;padding:11px 20px" id="dk-go">${goLabel}</button>
+        <button class="inv-submit" style="width:auto;padding:11px 20px" id="dk-go">${esc(b.go)}</button>
         <button class="lb-ghost" id="dk-notnow">Not now</button>
       </div>`;
     document.getElementById('dk-go').addEventListener('click', goFn);
     document.getElementById('dk-notnow').addEventListener('click', renderTimeline);
   }
 
-  function pickAlerts(n, tutorial){
-    const seen=new Set(Object.keys(S.seen));
-    let pool=BOOK.slice();
-    if(tutorial){
-      const benign=pool.find(c=>!c.is_real_case&&c.depth==='shallow');
-      const real=pool.find(c=>c.is_real_case&&c.depth==='shallow');
-      return [benign,real].filter(Boolean);
-    }
-    const fresh=pool.filter(c=>!seen.has(c.id)).sort(()=>Math.random()-0.5);
-    const old=pool.filter(c=>seen.has(c.id)).sort(()=>Math.random()-0.5);
-    const wantOld=Math.min(old.length, Math.round(n*0.34));
-    const out=[...old.slice(0,wantOld), ...fresh.slice(0,n-wantOld)];
-    while(out.length<n && pool.length){ const extra=pool.find(c=>!out.includes(c)); if(!extra) break; out.push(extra); }
-    return out.slice(0,n).sort(()=>Math.random()-0.5);
-  }
-
   function runDesk(d, tutorial){
-    const alerts=pickAlerts(tutorial?2:d.n, tutorial);
-    RUN={type:'desk', d, tutorial, alerts, i:0, hours:tutorial?4:d.hours, budget:tutorial?4:d.hours,
-      results:[], opened:false, spent:[], gathered:[], nadia:0};
+    RUN=D.startAlerts(BOOK, d, tutorial);
     renderAlert();
     if(tutorial) setTimeout(()=>coach(0),500);
   }
@@ -2653,13 +2611,9 @@ const DK = (function(){
   }
 
   function buyAction(aid){
-    const c=RUN.alerts[RUN.i];
-    const a=c.actions.find(x=>x.id===aid);
-    if(!a||RUN.spent.includes(aid)||RUN.hours<a.cost) return;
-    RUN.hours-=a.cost; RUN.spent.push(aid);
-    const ev=c.evidence[a.reveals];
+    const r=D.spend(RUN, aid); if(!r.ok) return;
+    const ev=r.ev;
     if(ev){
-      RUN.gathered.push(a.reveals);
       const b=document.getElementById('dk-board');
       if(RUN.gathered.length===1) b.innerHTML='';
       b.insertAdjacentHTML('afterbegin', `<div class="dk-ev ${ev.weight}"><div class="et2">${esc(ev.title)}<span class="ew">${ev.weight.toUpperCase()}</span></div><div class="eb2">${esc(ev.body)}</div></div>`);
@@ -2670,65 +2624,17 @@ const DK = (function(){
   }
 
   function askNadia(){
-    const c=RUN.alerts[RUN.i];
-    if(RUN.hours<1||RUN.nadia>=2) return;
-    RUN.hours-=1; RUN.nadia++;
-    const found=new Set(RUN.gathered);
-    const missing=(c.decisive||[]).filter(k=>!found.has(k));
-    let line;
-    if(RUN.nadia===1){
-      line='"What would have to be true for this to be completely innocent? Work that out, then go and look for it. If it is not there, you have your answer."';
-    } else if(missing.length){
-      const act=c.actions.find(a=>a.reveals===missing[0]);
-      const what=act?act.name.replace(/^(Pull|Obtain|Request|Review|Check|Look for|Examine|Map|Establish|Compare|Re-run|Screen|Cross-reference|Open|Call|Ask|Interview|Aggregate)\s+/i,''):'the part that matters';
-      line=`"Everything you have shown me is consistent with itself. That is not the same as being true. Have you looked at ${what.toLowerCase()}?"`;
-    } else {
-      line='"You have what you need. Say it in two sentences: what is the suspicion, and which fact supports it."';
-    }
-    document.getElementById('dk-nadia-text').textContent=line;
+    const r=D.askNadia(RUN); if(!r.ok) return;
+    document.getElementById('dk-nadia-text').textContent=r.line;
     const nb=document.getElementById('dk-nadia-btn');
     if(nb){ nb.disabled=RUN.nadia>=2||RUN.hours<1; if(RUN.nadia>=2) nb.textContent='She has said her piece'; }
     paintActs();
   }
 
   function deskDecide(choice){
-    const c=RUN.alerts[RUN.i];
-    const deep=(c.actions||[]).length>0;
-    const found=new Set(RUN.gathered);
-    const decisive=c.decisive||[];
-    const foundAll=decisive.length? decisive.every(k=>found.has(k)) : true;
-    const foundN=decisive.filter(k=>found.has(k)).length;
-    let verdict;
-    if(choice===c.best_action){ verdict=foundAll?'right':'thin'; }
-    else if((choice==='escalate'||choice==='sar') && c.is_real_case) verdict='part';
-    else if(choice==='rfi' && c.best_action!=='close') verdict='part';
-    else verdict = c.is_real_case ? 'harm' : 'wrong';
-    let xp = verdict==='right'?260 : verdict==='thin'?110 : verdict==='part'?120 : verdict==='wrong'?30 : 0;
-    if(verdict==='right' && deep && RUN.hours>=2) xp+=60;
-    if(RUN.tutorial) xp=0;
-    S.seen[c.id]=verdict; save();
-    award(xp);
-    if(xp>0){
-      awardSkillXP('tm', Math.round(xp/6));
-      awardSkillXP('judgement', Math.round(xp/8));
-      if(choice==='escalate'||choice==='sar') awardSkillXP('str', Math.round(xp/3));
-      if(choice==='sar'){
-        let dst={sar:0}; try{ dst=JSON.parse(localStorage.getItem('regradar-desk-stats')||'null')||dst; }catch(e){}
-        dst.sar=(dst.sar||0)+1;
-        try{ localStorage.setItem('regradar-desk-stats', JSON.stringify(dst)); }catch(e){}
-      }
-      markLawSeen(c.law);
-      checkBadges();
-    }
-    RUN.results.push({c, choice, verdict, xp, foundN, decisiveTotal:decisive.length});
-    if(verdict==='harm' && !RUN.tutorial) alexSay('deskHarm');
-    if(verdict==='harm' && !RUN.tutorial){
-      const later=DAYS.find(d=>d.d>S.day && !S.done.includes(d.d));
-      if(later) S.harm.push({surfaceOn:later.d, caseId:c.id, headline:`Follow-up: ${c.title}`,
-        body: c.epilogue_wrong || `The file you closed on day ${S.day} has come back. Compliance has asked why the alert was dismissed without the question being put.`});
-      save();
-    }
-    showOutcome(c, choice, verdict, xp, foundN, decisive);
+    const r=D.decideAlert(RUN, choice, HOOKS);
+    if(r.verdict==='harm' && !RUN.tutorial) alexSay('deskHarm');
+    showOutcome(r.c, choice, r.verdict, r.xp, r.foundN, r.decisive);
   }
 
   function showOutcome(c, choice, verdict, xp, foundN, decisive){
@@ -2768,9 +2674,7 @@ const DK = (function(){
   }
 
   function runOnboard(d){
-    const pool=ONB.slice().sort((a,b)=>a.difficulty-b.difficulty);
-    const set = d.hard? pool.slice(2) : pool.slice(0,2);
-    RUN={type:'onboard', d, cases:set, i:0, hours:null, results:[]};
+    RUN=D.startOnboard(ONB, d);
     renderOnb();
   }
   function renderOnb(){
@@ -2802,16 +2706,8 @@ const DK = (function(){
     document.querySelectorAll('#dk-side [data-c]').forEach(b=>b.addEventListener('click', ()=>onbDecide(b.dataset.c)));
   }
   function onbDecide(choice){
-    const c=RUN.cases[RUN.i];
-    const right=choice===c.decision;
-    const verdict=right?'right':(choice==='edd'&&c.decision==='standard')?'part':'wrong';
-    let xp=right?220:verdict==='part'?70:20;
-    S.seen[c.id]=verdict; save();
-    award(xp);
-    awardSkillXP('kyc', Math.round(xp/3));
-    markLawSeen(c.law);
-    checkBadges();
-    RUN.results.push({c,choice,verdict,xp});
+    const r=D.decideOnboard(RUN, choice, HOOKS);
+    const c=r.c, right=r.right, verdict=r.verdict, xp=r.xp;
     const col=right?'var(--ok)':verdict==='part'?'var(--warn)':'var(--crit)';
     const label=right?'CORRECT':verdict==='part'?'OVER-APPLIED':'WRONG CALL';
     const names={standard:'Standard due diligence',edd:'Enhanced due diligence',more:'Requested more information',decline:'Declined the relationship'};
@@ -2834,27 +2730,10 @@ const DK = (function(){
   }
 
   function endDay(){
-    const d=RUN.d, res=RUN.results;
-    const good=res.filter(r=>r.verdict==='right').length;
-    const harm=res.filter(r=>r.verdict==='harm').length;
-    const xp=res.reduce((s,r)=>s+r.xp,0);
-    const hoursUsed=RUN.budget!=null?(RUN.budget-RUN.hours):null;
-    if(!S.done.includes(d.d)) S.done.push(d.d);
-    if(typeof AcademyShell!=='undefined'){
-      AcademyShell.complete('desk', S.done.length);
-      checkBadges();
-      if(typeof PATH!=='undefined') PATH.render();
-    }
-    S.seen['day'+d.d] = harm?'HARM':good===res.length?'CLEAN':'MIXED';
-    if(RUN.tutorial) S.tutorialDone=true;
-    save();
-    const title = RUN.tutorial?'Induction over.' : harm?`${harm} of them will come back.` : good===res.length?'A clean day.':'Worked, with gaps.';
-    const body = RUN.tutorial
-      ? 'Nothing you did today counted. From tomorrow it does — and Nadia will get steadily less forthcoming as you rank up, which is the intention.'
-      : harm ? 'A file closed wrongly does not disappear. It sits there until something forces it back into view.'
-      : hoursUsed!=null ? `You spent ${hoursUsed} of ${RUN.budget} hours. The ones you closed on the file are what paid for the ones you could open.`
-      : 'Profiles set. Every alert these customers generate from now on is measured against what you decided today.';
-    const nextD=DAYS.find(x=>!S.done.includes(x.d));
+    const r=D.closeDay(RUN, HOOKS), d=r.d, good=r.good, harm=r.harm, xp=r.xp, hoursUsed=r.hoursUsed;
+    if(typeof PATH!=='undefined') PATH.render();
+    const title=r.title, body=r.body;
+    const nextD=r.nextD;
     root().innerHTML = `
       <span class="chip" style="background:var(--brand);color:#fff;font-weight:700">DAY ${d.d} CLOSED</span>
       ${xp?`<span style="margin-left:8px;color:var(--brand-ink);font-weight:700;font-size:12px">+${xp} XP</span>`:''}
@@ -2867,7 +2746,7 @@ const DK = (function(){
         <div><div class="n" style="color:var(--brand)">${xp}</div><div class="l">XP</div></div>
       </div>
       <div class="inv-note" style="border-left-color:var(--brand)"><b style="color:var(--brand-ink)">${nextD?'Next in the journal':'The journal so far'}</b>
-        ${nextD?`${esc(nextD.label)} — ${esc(nextD.name)}. ${esc(nextD.blurb)}`:'You have worked every day currently written. Filing and Inspection come next.'}</div>
+        ${nextD?`${esc(nextD.label)} — ${esc(nextD.name)}. ${esc(nextD.blurb)}`:'You have worked every day currently written. More days are still being written.'}</div>
       <button class="inv-submit" style="width:auto;padding:11px 22px;margin-top:16px" id="dk-back">Back to the journal</button>`;
     document.getElementById('dk-back').addEventListener('click', renderTimeline);
     RUN=null;

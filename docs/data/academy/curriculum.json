@@ -1,0 +1,1680 @@
+{
+ "_meta": {
+  "name": "Academy curriculum",
+  "version": 1,
+  "purpose": "One learning path of 9 short modules. Each module: explainer, risks, check questions, optional practice link, and what the law says.",
+  "honesty": "Legal text is quoted verbatim from docs/data/laws/ (checked by academy/verify.mjs and again in the browser). Minute estimates, the pass mark and XP are default values. Practice cases and CF Bank are fictional. Not legal advice.",
+  "defaults": {
+   "pass_mark": 0.75,
+   "pass_note": "default, 3 of 4 questions",
+   "xp": {
+    "watch": 20,
+    "risks": 10,
+    "question_first_try": 15,
+    "law": 10,
+    "practice": 30
+   }
+  },
+  "law_names": {
+   "32024R1624": "AMLR (Regulation (EU) 2024/1624)",
+   "32024L1640": "AMLD6 (Directive (EU) 2024/1640)",
+   "32024R1620": "AMLAR (Regulation (EU) 2024/1620)",
+   "32022R2554": "DORA (Regulation (EU) 2022/2554)",
+   "32023R1114": "MiCA (Regulation (EU) 2023/1114)",
+   "32023R1113": "TFR (Regulation (EU) 2023/1113)"
+  }
+ },
+ "tracks": [
+  {
+   "id": "context",
+   "no": 1,
+   "title": "Why AML exists and the EU framework",
+   "short": "How laundering works, who writes the rules, and why firms are the gate.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 2,
+    "practice": 10
+   },
+   "skill": "reg",
+   "learn": [
+    "What money laundering and terrorist financing are, and the three-stage picture",
+    "The EU framework: AMLR, AMLD6, AMLA and your FIU",
+    "Why your firm is an obliged entity and what is at stake"
+   ],
+   "explainer": "context",
+   "risks": {
+    "wrong": [
+     "Treating AML as a form-filling exercise rather than a control against real harm",
+     "Not knowing which rules and which supervisor apply to your firm"
+    ],
+    "consequences": [
+     {
+      "text": "Supervisors can impose pecuniary sanctions for serious, repeated or systematic breaches.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "Supervisors can issue a public statement, limit the business or withdraw an authorisation.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "56",
+       "para": ""
+      }
+     },
+     {
+      "text": "Business effect (judgement): remediation projects, restricted growth and loss of trust from partners. Not quantified here.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Staff cannot say who the compliance officer is or where to escalate",
+     "Policies exist but nobody has read them",
+     "Rules are discussed only when an inspection is announced"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "Which description fits \"layering\"?",
+     "options": [
+      "Putting cash into the financial system for the first time",
+      "Moving funds through many transactions or entities to hide the trail",
+      "Spending the money on assets in the open",
+      "Reporting the funds to the authorities"
+     ],
+     "answer": 1,
+     "why": "Placement gets money in, layering hides the trail, and integration brings it back as apparently clean wealth. This three-stage model is a teaching picture, not a legal definition."
+    },
+    {
+     "type": "mcq",
+     "q": "You file a suspicious transaction report. Who receives it?",
+     "options": [
+      "AMLA directly",
+      "The financial intelligence unit (FIU) of your Member State",
+      "The customer’s bank",
+      "The European Commission"
+     ],
+     "answer": 1,
+     "why": "Each Member State establishes an FIU that receives and analyses reports submitted under AMLR Article 69.",
+     "law": {
+      "celex": "32024L1640",
+      "art": "19",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "A customer pays in cash in many small deposits just under a reporting limit, then wires the total abroad. Which stage is the deposit part most likely to be?",
+     "options": [
+      "Placement",
+      "Layering",
+      "Integration",
+      "None: it is normal behaviour"
+     ],
+     "answer": 0,
+     "why": "Splitting cash into small deposits is a classic way to get cash into the system: placement. The wire onward may then be layering. It is a pattern to examine, not proof.",
+     "scenario": "Scenario (fictional customer)."
+    },
+    {
+     "type": "mcq",
+     "q": "From what date does the AML Regulation (AMLR) apply in general?",
+     "options": [
+      "9 July 2024",
+      "17 January 2025",
+      "10 July 2027",
+      "10 July 2029"
+     ],
+     "answer": 2,
+     "why": "The AMLR entered into force in 2024 and applies from 10 July 2027, with a later date (2029) for some non-financial obliged entities.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "90",
+      "para": ""
+     }
+    }
+   ],
+   "practice": {
+    "href": "laundromat.html",
+    "label": "The Laundromat: play the launderer",
+    "minutes": 10,
+    "module": "laundromat",
+    "why": "Seeing the three stages from the other side makes the red flags stick. Fictional scenario."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "1",
+     "para": "1(a)",
+     "label": "Subject matter",
+     "quote": "This Regulation lays down rules concerning: (a) the measures to be applied by obliged entities to prevent money laundering and terrorist financing;",
+     "note": "The AMLR is a Regulation: directly applicable to firms, without national transposition."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "3",
+     "para": "",
+     "label": "Obliged entities",
+     "quote": "The following entities are to be considered obliged entities for the purposes of this Regulation: (1) credit institutions; (2) financial institutions;",
+     "note": "Crypto-asset service providers are listed as financial institutions in Article 2."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "90",
+     "para": "",
+     "label": "Entry into force and application",
+     "quote": "It shall apply from 10 July 2027",
+     "note": "Application date. Check RegRadar’s applicability table for each regulation."
+    },
+    {
+     "celex": "32024L1640",
+     "art": "19",
+     "para": "1",
+     "label": "Establishment of the FIU",
+     "quote": "Each Member State shall establish an FIU in order to prevent, detect and effectively combat money laundering and terrorist financing.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1620",
+     "art": "1",
+     "para": "3(a)",
+     "label": "Establishment and scope of action",
+     "quote": "The objective of the Authority shall be to protect the public interest, the stability and integrity of the Union’s financial system, and the proper functioning of the internal market by: (a) preventing the use of the Union’s financial system for the purposes of money laundering and terrorist financing (‘ML/TF’);",
+     "note": ""
+    },
+    {
+     "celex": "32024L1640",
+     "art": "55",
+     "para": "",
+     "label": "AMLD6 Art. 55: pecuniary sanctions",
+     "quote": "Member States shall ensure that pecuniary sanctions are imposed on obliged entities for serious, repeated or systematic breaches, whether committed intentionally or negligently, of the requirements laid down in the following provisions of Regulation (EU) 2024/1624: (a) Chapter II (Internal policies, procedures and controls of obliged entities); (b) Chapter III (Customer due diligence); (c) Chapter V (Reporting obligations);",
+     "note": "Breaches of Chapter II (internal controls), Chapter III (customer due diligence), Chapter V (reporting) and Article 77 (record retention) of the AMLR can be sanctioned."
+    },
+    {
+     "celex": "32024L1640",
+     "art": "55",
+     "para": "",
+     "label": "AMLD6 Art. 55(2): minimum ceiling",
+     "quote": "the maximum pecuniary sanctions that can be imposed amount at least to twice the amount of the benefit derived from the breach where that benefit can be determined, or at least EUR 1 000 000, whichever is higher",
+     "note": "Member States must make at least this ceiling available. Credit and financial institutions face higher ceilings under paragraph 3."
+    },
+    {
+     "celex": "32024L1640",
+     "art": "56",
+     "para": "",
+     "label": "AMLD6 Art. 56(2): administrative measures",
+     "quote": "issue a public statement which identifies the natural or legal person and the nature of the breach; (d) issue an order requiring the natural or legal person to cease the conduct and to desist from repetition of that conduct; (e) restrict or limit the business, operations or network of institutions comprising the obliged entity, or to require the divestment of activities; (f) where an obliged entity is subject to an authorisation, withdraw or suspend the authorisation",
+     "note": "Supervisors can also restrict the business, order corrective measures and require changes in governance."
+    }
+   ],
+   "reading": [
+    "FATF Recommendations (the international standard the EU rules build on)"
+   ]
+  },
+  {
+   "id": "aml-basics",
+   "no": 2,
+   "title": "AML basics and the risk-based approach",
+   "short": "Four duties, risk-based effort and the business-wide risk assessment.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 2,
+    "practice": 8
+   },
+   "skill": "risk",
+   "learn": [
+    "The four everyday duties of an obliged entity",
+    "What risk-based means in practice, and why you must be able to show it",
+    "The business-wide risk assessment: who drafts it, who approves it"
+   ],
+   "explainer": "aml-basics",
+   "risks": {
+    "wrong": [
+     "Applying the same checks to everyone (waste) or the lightest checks to everyone (exposure)",
+     "No documented firm-level risk assessment, so controls cannot be justified",
+     "Launching a product or entering a market without a risk assessment first"
+    ],
+    "consequences": [
+     {
+      "text": "Policies, procedures and controls that are not commensurate with the risks can themselves be a ground for administrative measures.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "56",
+       "para": "1(c)"
+      }
+     },
+     {
+      "text": "Serious, repeated or systematic breaches of the internal-controls chapter can be fined.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     }
+    ],
+    "redflags": [
+     "The risk assessment is more than a year old and nobody can say what changed",
+     "Customer rating is the same for nearly every customer",
+     "Management has never seen the risk assessment"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "What does \"risk-based approach\" mean for due diligence?",
+     "options": [
+      "Every customer gets the maximum checks",
+      "The extent of measures follows an individual analysis of the risk",
+      "Only high-value customers are checked",
+      "Checks are optional below a revenue limit"
+     ],
+     "answer": 1,
+     "why": "The extent of due diligence is determined on the basis of an individual risk analysis, taking the firm’s business-wide risk assessment into account.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "20",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Who approves the business-wide risk assessment?",
+     "options": [
+      "The compliance officer alone",
+      "The management body in its management function",
+      "The supervisor",
+      "An external auditor"
+     ],
+     "answer": 1,
+     "why": "The compliance officer draws it up and the management body approves it.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "10",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Your firm will launch a new product in a new country next quarter. When must the money laundering risks be assessed?",
+     "options": [
+      "After the first complaints",
+      "At the next annual review",
+      "Before the launch",
+      "Only if a regulator asks"
+     ],
+     "answer": 2,
+     "why": "Before the launch of new products or services, or before serving a new customer segment or geography, the risks must be identified and assessed.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "10",
+      "para": "1"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "A firm applies identical, heavy checks to every customer and says this is the safest option. What is the problem?",
+     "options": [
+      "None: more checks are always better",
+      "It ignores the risk-based approach: effort should follow risk, and the firm must be able to show why its measures are appropriate",
+      "It is illegal to check low-risk customers",
+      "It breaks data protection law"
+     ],
+     "answer": 1,
+     "why": "The law asks for proportionate measures and for the ability to demonstrate to supervisors that they are appropriate to the risks. Uniform heavy checks waste capacity that high-risk cases need.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "20",
+      "para": "4"
+     },
+     "scenario": "Scenario (fictional firm)."
+    }
+   ],
+   "practice": {
+    "href": "desk.html",
+    "label": "The Desk, Day 1: induction",
+    "minutes": 8,
+    "module": "desk",
+    "why": "Work two alerts with a colleague at your shoulder. Fictional cases."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "10",
+     "para": "1",
+     "label": "Business-wide risk assessment",
+     "quote": "Obliged entities shall take appropriate measures, proportionate to the nature of their business, including its risks and complexity, and their size, to identify and assess the risks of money laundering and terrorist financing to which they are exposed, as well as the risks of non-implementation and evasion of targeted financial sanctions, taking into account at least: (a) the risk variables set out in Annex I and the risk factors set out in Annexes II and III;",
+     "note": "The firm must assess risks proportionate to its business."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10",
+     "para": "2",
+     "label": "Business-wide risk assessment",
+     "quote": "The business-wide risk assessment drawn up by the obliged entity pursuant to paragraph 1 shall be documented, kept up-to-date and regularly reviewed, including where any internal or external events significantly affect the money laundering and terrorist financing risks associated with the activities, products, transactions, delivery channels, customers or geographical zones of activities of the obliged entity. It shall be made available to supervisors upon request.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10",
+     "para": "2",
+     "label": "Business-wide risk assessment",
+     "quote": "The business-wide risk assessment shall be drawn up by the compliance officer and approved by the management body in its management function",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20",
+     "para": "2",
+     "label": "Customer due diligence measures",
+     "quote": "Obliged entities shall determine the extent of the measures referred to in paragraph 1 on the basis of an individual analysis of the risks of money laundering and terrorist financing having regard to the specific characteristics of the client and of the business relationship or occasional transaction, and taking into account the business-wide risk assessment by the obliged entity pursuant to Article 10 and the money laundering and terrorist financing variables set out in Annex I as well as the risk factors set out in Annexes II and III.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20",
+     "para": "4",
+     "label": "Customer due diligence measures",
+     "quote": "Obliged entities shall at all times be able to demonstrate to their supervisors that the measures taken are appropriate in view of the risks of money laundering and terrorist financing",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "12",
+     "para": "",
+     "label": "Awareness of requirements",
+     "quote": "The measures referred to in the first paragraph shall include the participation of employees or persons in comparable positions, including agents and distributors, in specific, ongoing training programmes to help them recognise operations which may be related to money laundering or terrorist financing and to instruct them as to how to proceed in such cases.",
+     "note": "Ongoing training is itself a legal requirement. Completion records from this Academy can serve as training evidence."
+    }
+   ],
+   "reading": [
+    "EBA Guidelines on ML/TF risk factors (EBA/GL/2021/02)",
+    "FATF Recommendation 1 (risk-based approach)"
+   ]
+  },
+  {
+   "id": "cdd-kyc",
+   "no": 3,
+   "title": "Customer due diligence and KYC",
+   "short": "When CDD applies, what it includes, how much is enough and what happens if you cannot finish.",
+   "minutes": {
+    "watch": 3,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 10
+   },
+   "skill": "kyc",
+   "learn": [
+    "The situations that trigger CDD, including the EUR 1 000 and EUR 10 000 limits",
+    "The core measures, simplified versus enhanced, and refresh intervals",
+    "What you must do when due diligence cannot be completed"
+   ],
+   "explainer": "cdd-kyc",
+   "risks": {
+    "wrong": [
+     "Onboarding first, collecting later, and never closing the gap",
+     "Accepting documents that do not agree, without asking why",
+     "Treating a risk rating as permanent and never refreshing it"
+    ],
+    "consequences": [
+     {
+      "text": "Serious, repeated or systematic breaches of the customer due diligence chapter can be fined.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "If due diligence cannot be completed you must not proceed, must end an existing relationship and consider a report to the FIU.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "21",
+       "para": ""
+      }
+     },
+     {
+      "text": "Business effect (judgement): onboarding slows down or stalls when files are incomplete, and rework piles up.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Customer avoids giving information or gives conflicting answers",
+     "Structure is complex with no business reason",
+     "Pressure to move money before checks are complete",
+     "Documents look altered or do not match each other"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "A payment institution makes an occasional transfer of funds for a walk-in customer, value EUR 1 500, no ongoing relationship. Is customer due diligence required?",
+     "options": [
+      "No: the limit is EUR 10 000",
+      "Yes: for credit and financial institutions (other than crypto-asset service providers) it applies from EUR 1 000 for transfers of funds",
+      "Only if the customer is a company",
+      "Only if the customer is from outside the EU"
+     ],
+     "answer": 1,
+     "why": "The general trigger for occasional transactions is EUR 10 000, but credit and financial institutions (except crypto-asset service providers) must also apply CDD to occasional transfers of funds of EUR 1 000 or more. Check how your own firm is classified.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "19",
+      "para": "2"
+     },
+     "scenario": "Scenario (fictional)."
+    },
+    {
+     "type": "mcq",
+     "q": "A prospective customer refuses to say who owns the company. What must you do?",
+     "options": [
+      "Onboard anyway and ask again in a year",
+      "Not establish the relationship, and consider reporting to the FIU",
+      "Lower the risk rating",
+      "Ask the relationship manager to decide"
+     ],
+     "answer": 1,
+     "why": "If you cannot complete CDD you must refrain from the transaction or relationship (and end an existing one) and consider a suspicious transaction report.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "21",
+      "para": "1"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Under simplified due diligence for a lower-risk case, verification of identity may be postponed to after the relationship is established, but no later than:",
+     "options": [
+      "10 days",
+      "30 days",
+      "60 days",
+      "12 months"
+     ],
+     "answer": 2,
+     "why": "The text allows verification after establishment where lower risk justifies it, in any case no later than 60 days. This is an option, not a right.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "33",
+      "para": "1(a)"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "At most how long may pass between updates of customer information for higher-risk customers subject to enhanced measures?",
+     "options": [
+      "6 months",
+      "1 year",
+      "3 years",
+      "5 years"
+     ],
+     "answer": 1,
+     "why": "Higher-risk customers: not more than 1 year. All others: not more than 5 years. Also update when circumstances change.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "26",
+      "para": "2"
+     }
+    }
+   ],
+   "practice": {
+    "href": "desk.html",
+    "label": "The Desk, Day 2: the onboarding queue",
+    "minutes": 10,
+    "module": "desk",
+    "why": "Decide how much diligence each application deserves. Fictional applicants."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "19",
+     "para": "1",
+     "label": "Application of customer due diligence measures",
+     "quote": "Obliged entities shall apply customer due diligence measures in any of the following circumstances: (a) when establishing a business relationship; (b) when carrying out an occasional transaction of a value of at least EUR 10 000, or the equivalent in national currency, whether that transaction is carried out in a single operation or through linked transactions, or a lower value laid down pursuant to paragraph 9; (c) when participating in the creation of a legal entity, the setting up of a legal arrangement or, for the obliged entities referred to in Article 3, points (3) (a), (b) or (c), in the transfer of ownership of a legal entity, irrespective of the value of the transaction; (d) when there is a suspicion of money laundering or terrorist financing, regardless of any derogation, exemption or threshold; (e) when there are doubts about the veracity or adequacy of previously obtained customer identification data; (f) when there are doubts as to whether the person they interact with is the customer or person authorised to act on behalf of the customer.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "19",
+     "para": "2",
+     "label": "Application of customer due diligence measures",
+     "quote": "In addition to the circumstances referred to in paragraph 1, credit institutions and financial institutions, with the exception of crypto-asset service providers, shall apply customer due diligence measures when initiating or executing an occasional transaction that constitutes a transfer of funds as defined in Article 3, point (9), of Regulation (EU) 2023/1113, that amounts to a value of at least EUR 1 000, or the equivalent in national currency",
+     "note": "Particularly relevant to payment firms. Check the full article for crypto-asset service providers."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20",
+     "para": "1(a)-(b)",
+     "label": "Customer due diligence measures",
+     "quote": "For the purpose of conducting customer due diligence, obliged entities shall apply all of the following measures: (a) identifying the customer and verifying the customer’s identity; (b) identifying the beneficial owners",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "21",
+     "para": "1",
+     "label": "Inability to comply with the requirement to apply customer due diligence measures",
+     "quote": "Where an obliged entity is unable to comply with the requirement to apply customer due diligence measures laid down in Article 20(1), it shall refrain from carrying out a transaction or establishing a business relationship, and shall terminate the business relationship and consider reporting a suspicious transaction to the FIU in relation to the customer in accordance with Article 69.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "33",
+     "para": "1(a)",
+     "label": "Simplified due diligence measures",
+     "quote": "verifying the identity of the customer and the beneficial owner after the establishment of the business relationship, provided that the specific lower risk identified justified such postponement, but in any case no later than 60 days of the relationship being established;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "34",
+     "para": "4(c)",
+     "label": "Scope of application of enhanced due diligence measures",
+     "quote": "obtaining additional information on the source of funds, and source of wealth of the customer and of the beneficial owners;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "26",
+     "para": "2",
+     "label": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
+     "quote": "The period between updates of customer information pursuant to the first subparagraph shall be dependent on the risk posed by the business relationship and shall not in any case exceed: (a) for higher risk customers to which measures under Section 4 of this Chapter apply, 1 year; (b) for all other customers, 5 years.",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "EBA Guidelines on ML/TF risk factors (EBA/GL/2021/02)",
+    "FATF Recommendation 10 (customer due diligence)"
+   ]
+  },
+  {
+   "id": "beneficial-ownership",
+   "no": 4,
+   "title": "Beneficial ownership",
+   "short": "Who really owns or controls a customer: the 25% line, indirect chains, control and trusts.",
+   "minutes": {
+    "watch": 3,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 10
+   },
+   "skill": "ubo",
+   "learn": [
+    "What a beneficial owner is and the 25% or more ownership test",
+    "How to calculate indirect ownership and when control applies instead",
+    "Trusts, nominees and what to do when no owner can be found"
+   ],
+   "explainer": "beneficial-ownership",
+   "risks": {
+    "wrong": [
+     "Stopping at the first company on the register instead of looking through to a person",
+     "Treating 24% as safe without checking control by other means",
+     "Accepting a nominee or secrecy structure without a documented explanation"
+    ],
+    "consequences": [
+     {
+      "text": "Customer due diligence failures, including beneficial ownership, can be fined when serious, repeated or systematic.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "If you cannot identify the owner after exhausting all means, you must record that and identify senior managing officials, and unresolved gaps stop the relationship.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "22",
+       "para": "2"
+      }
+     },
+     {
+      "text": "Business effect (judgement): sanctions exposure if an owner is a listed person you did not see.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Nominee shareholders or directors with no explanation",
+     "Circular or very long ownership chains with no commercial reason",
+     "Register shows one thing, documents another (report the discrepancy)",
+     "Owner is reluctant to be named"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "A person holds exactly 25% of the shares of a company, directly. Is the person a beneficial owner by ownership interest?",
+     "options": [
+      "No: it must be more than 25%",
+      "Yes: the line is 25% or more",
+      "Only if they have voting rights",
+      "Only if they sit on the board"
+     ],
+     "answer": 1,
+     "why": "The AMLR defines an ownership interest as direct or indirect ownership of 25 % or more of the shares, voting rights or other ownership interest.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "52",
+      "para": "1"
+     },
+     "scenario": "The older \"25% plus one share\" wording is not the AMLR test."
+    },
+    {
+     "type": "mcq",
+     "q": "Alma owns 40% of Holding Ltd. Holding Ltd owns 50% of Target NV. Alma owns nothing else in Target. What is her indirect ownership of Target?",
+     "options": [
+      "90%",
+      "50%",
+      "20%",
+      "10%"
+     ],
+     "answer": 2,
+     "why": "Indirect ownership is calculated by multiplying along the chain: 40% × 50% = 20%. Several chains are added together. 20% is below 25%, so check control before you conclude.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "52",
+      "para": "1"
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "Karel holds 8% of a company but has the right to appoint most of its board. What is his status?",
+     "options": [
+      "Not a beneficial owner: below 25%",
+      "A beneficial owner through control by other means",
+      "Only a shareholder",
+      "Needs a majority of shares first"
+     ],
+     "answer": 1,
+     "why": "Control can be exercised by other means, such as the right to appoint or remove a majority of the board. Control by other means is identified independently of any ownership percentage.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "53",
+      "para": "3(b)"
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "Who are the beneficial owners of an express trust?",
+     "options": [
+      "Only people with 25% or more of the trust assets",
+      "All of the listed roles: settlors, trustees, protectors, beneficiaries and others with ultimate control",
+      "Only the settlor",
+      "Only the trustee"
+     ],
+     "answer": 1,
+     "why": "For express trusts the law lists all those natural persons. There is a special rule for classes of beneficiaries.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "58",
+      "para": "1"
+     }
+    }
+   ],
+   "practice": {
+    "href": "ownership.html",
+    "label": "Ownership structures: six cases",
+    "minutes": 10,
+    "module": "ownership",
+    "why": "Read real-looking charts and designate the beneficial owners. Fictional companies."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "51",
+     "para": "",
+     "label": "Identification of beneficial owners for legal entities",
+     "quote": "Beneficial owners of legal entities shall be the natural persons who: (a) have, directly or indirectly, an ownership interest in the corporate entity; or (b) control, directly or indirectly, the corporate or other legal entity, through ownership interest or via other means.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "52",
+     "para": "1",
+     "label": "Beneficial ownership through ownership interest",
+     "quote": "For the purpose of Article 51, first paragraph, point (a), ‘an ownership interest in the corporate entity’ shall mean direct or indirect ownership of 25 % or more of the shares or voting rights or other ownership interest in the corporate entity, including rights to a share of profits, other internal resources or liquidation balance. The indirect ownership shall be calculated by multiplying the shares or voting rights or other ownership interests held by the intermediate entities in the chain of entities in which the beneficial owner holds shares or voting rights and by adding together the results from those various chains",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "53",
+     "para": "3",
+     "label": "Beneficial ownership through control",
+     "quote": "Control of the legal entity via other means shall in any case include the possibility to exercise: (a) in the case of a corporate entity, the majority of the voting rights in the corporate entity, whether or not shared by persons acting in concert; (b) the right to appoint or remove a majority of the members of the board or the administrative, management or supervisory body or similar officers of the legal entity;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "58",
+     "para": "1",
+     "label": "Identification of beneficial owners for express trusts and similar legal arrangements",
+     "quote": "The beneficial owners of express trusts shall be all the following natural persons: (a) the settlors; (b) the trustees; (c) the protectors, if any; (d) the beneficiaries, unless Article 59 or 60 applies; (e) any other natural persons exercising ultimate control",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "22",
+     "para": "2",
+     "label": "Identification and verification of the identity of customers and beneficial owners",
+     "quote": "Where, after having exhausted all possible means of identification, no natural persons are identified as beneficial owners, or where there are doubts that the persons identified are the beneficial owners, obliged entities shall record that no beneficial owner was identified and identify all the natural persons holding the positions of senior managing officials in the legal entity and shall verify their identity.",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "FATF Recommendations 24 and 25 (transparency of legal persons and arrangements)"
+   ]
+  },
+  {
+   "id": "peps",
+   "no": 5,
+   "title": "Politically exposed persons (PEPs)",
+   "short": "Who counts as a PEP, family and close associates, the three required measures, and the time after leaving office.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 2,
+    "practice": 10
+   },
+   "skill": "sanctions",
+   "learn": [
+    "Who is a PEP and who else the rules cover",
+    "The three extra measures: approval, source of wealth and funds, enhanced monitoring",
+    "Why risk continues after someone leaves office"
+   ],
+   "explainer": "peps",
+   "risks": {
+    "wrong": [
+     "Not recognising a PEP because screening only checks the customer, not relatives or associates",
+     "Accepting a source of wealth story without evidence",
+     "No senior sign-off recorded"
+    ],
+    "consequences": [
+     {
+      "text": "Customer due diligence breaches, which include PEP measures, can be fined when serious, repeated or systematic.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "Business effect (judgement): reputational damage if a firm is used to move proceeds of corruption.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Wealth that does not match the public role",
+     "Payments from third parties or companies with no clear link",
+     "Use of relatives’ or associates’ accounts",
+     "Reluctance to explain the source of wealth"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "Which measures must be applied to a PEP in addition to ordinary due diligence?",
+     "options": [
+      "Only a higher fee",
+      "Senior management approval, source of wealth and funds, and enhanced ongoing monitoring",
+      "Automatic refusal",
+      "An annual letter to the customer"
+     ],
+     "answer": 1,
+     "why": "AMLR Article 42(1) lists exactly these three.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "42",
+      "para": "1"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Your customer’s brother is a government minister. Do the PEP measures apply to your customer?",
+     "options": [
+      "No: only the minister is a PEP",
+      "Yes: they also apply to family members",
+      "Only if the brother is a customer too",
+      "Only above EUR 10 000"
+     ],
+     "answer": 1,
+     "why": "The measures also apply to family members and to persons known to be close associates of a PEP.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "46",
+      "para": ""
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "A customer left a prominent public function six months ago. What applies?",
+     "options": [
+      "Nothing: they are no longer a PEP",
+      "Enhanced measures continue, at least until 12 months after leaving and as long as the risk exists",
+      "Only a one-off review",
+      "Automatic termination"
+     ],
+     "answer": 1,
+     "why": "Measures must be applied for as long as the risk exists, and in any case for not less than 12 months after the person ceased to hold the function.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "45",
+      "para": "2"
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "A customer is a PEP. What is the right attitude?",
+     "options": [
+      "Refuse the relationship by default",
+      "Treat it as a higher-risk marker: apply the measures, decide on the facts and record why",
+      "Ignore it if the customer is cooperative",
+      "Report every PEP to the FIU"
+     ],
+     "answer": 1,
+     "why": "The AMLR requires measures, including senior approval, which presupposes the relationship can exist. PEP status alone is not a suspicion.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "42",
+      "para": "1"
+     },
+     "scenario": "The \"risk marker, not accusation\" framing is judgement, shown as default guidance."
+    }
+   ],
+   "practice": {
+    "href": "desk.html",
+    "label": "The Desk, Day 5: harder applications (includes a PEP file)",
+    "minutes": 10,
+    "module": "desk",
+    "why": "Day 5 includes a file about a mayor’s business partner. Reach Day 5 in order. Fictional cases."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "42",
+     "para": "1",
+     "label": "Specific provisions regarding politically exposed persons",
+     "quote": "In addition to the customer due diligence measures laid down in Article 20, obliged entities shall apply the following measures with respect to occasional transactions or business relationships with politically exposed persons: (a) obtain senior management approval for carrying out occasional transactions or for establishing or continuing business relationships with politically exposed persons; (b) take adequate measures to establish the source of wealth and source of funds that are involved in business relationships or occasional transactions with politically exposed persons; (c) conduct enhanced, ongoing monitoring of those business relationships.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "45",
+     "para": "2",
+     "label": "Measures for persons who cease to be politically exposed persons",
+     "quote": "Obliged entities shall apply one or more of the measures referred to in Article 34(4) to mitigate the risks posed by the politically exposed person until such time as the risks referred to in paragraph 1 of this Article no longer exist, but in any case for not less than 12 months following the time when the individual ceased to be entrusted with a prominent public function.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "46",
+     "para": "",
+     "label": "Family members and persons known to be close associates of politically exposed persons",
+     "quote": "The measures referred to in Articles 42, 44 and 45 shall also apply to family members or persons known to be close associates of politically exposed persons.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "43",
+     "para": "1",
+     "label": "List of prominent public functions",
+     "quote": "Each Member State shall issue and keep up-to-date a list indicating the exact functions which, in accordance with its national laws, regulations and administrative provisions, qualify as prominent public functions for the purposes of Article 2(1), point (34).",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "FATF Recommendation 12 (politically exposed persons)"
+   ]
+  },
+  {
+   "id": "transaction-monitoring",
+   "no": 6,
+   "title": "Transaction monitoring and alerts",
+   "short": "Compare activity with the profile, triage alerts, investigate and document.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 12
+   },
+   "skill": "tm",
+   "learn": [
+    "What monitoring compares, and why the onboarding profile matters",
+    "The difference between an alert and a suspicion",
+    "How to investigate, decide and leave a record a supervisor can follow"
+   ],
+   "explainer": "transaction-monitoring",
+   "risks": {
+    "wrong": [
+     "Rules never tuned: too many false alerts or blind spots",
+     "Alerts closed in bulk without a recorded reason",
+     "Customer profiles out of date, so everything looks unusual"
+    ],
+    "consequences": [
+     {
+      "text": "Monitoring sits in the customer due diligence chapter, so serious, repeated or systematic failures can be fined.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "You must keep a record of each assessment, whether or not a report follows. Missing records are a breach of the record-keeping article.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "77",
+       "para": "1(b)"
+      }
+     },
+     {
+      "text": "Business effect (judgement): analyst time is lost to noise, and genuine cases sit in a growing backlog.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Alert backlog grows month after month",
+     "The same rule produces mostly false alerts and nobody changes it",
+     "Closure notes say only \"no concern\"",
+     "Profiles are never refreshed"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "What is the main yardstick when monitoring a customer’s transactions?",
+     "options": [
+      "The average of all customers",
+      "What you know about the customer: business, risk profile and, where needed, source of funds",
+      "The size of the transaction only",
+      "Last year’s activity of the same customer only"
+     ],
+     "answer": 1,
+     "why": "Monitoring ensures transactions are consistent with the firm’s knowledge of the customer, their business activity and risk profile.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "26",
+      "para": "1"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Which of these is NOT one of the four features the law says to examine?",
+     "options": [
+      "A complex transaction",
+      "An unusually large transaction",
+      "An unusual pattern",
+      "A transaction in a foreign currency"
+     ],
+     "answer": 3,
+     "why": "The four are: complex, unusually large, conducted in an unusual pattern, or without an apparent economic or lawful purpose. Foreign currency alone is not one of them.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "34",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "An alert fires on a EUR 40 000 deposit. The file holds a signed property sale contract and the buyer’s bank confirmation, consistent with the profile. Best action?",
+     "options": [
+      "Escalate to the MLRO",
+      "Close the alert and record the reason with the evidence",
+      "Freeze the account",
+      "Report to the FIU to be safe"
+     ],
+     "answer": 1,
+     "why": "Where the file explains the activity, closing with a recorded reason is the right call. Reporting without a suspicion creates noise. A reasoned closure is what a supervisor will look for.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "77",
+      "para": "1(b)"
+     },
+     "scenario": "Scenario (fictional). Judgement: shown as default guidance."
+    },
+    {
+     "type": "mcq",
+     "q": "You close an alert as explained. Must you keep a record of your assessment?",
+     "options": [
+      "No: only reports are recorded",
+      "Yes: record the information considered and the result, whether or not a report is made",
+      "Only if the amount is above EUR 10 000",
+      "Only for high-risk customers"
+     ],
+     "answer": 1,
+     "why": "Record retention covers the assessment, including the circumstances considered and its result, whether or not it leads to a report.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "77",
+      "para": "1(b)"
+     }
+    }
+   ],
+   "practice": {
+    "href": "desk.html",
+    "label": "The Desk, Day 3: first real shift",
+    "minutes": 12,
+    "module": "desk",
+    "why": "Four alerts and six hours. Close what you can, investigate what you must. Fictional cases."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "26",
+     "para": "1",
+     "label": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
+     "quote": "Obliged entities shall conduct ongoing monitoring of business relationships, including transactions undertaken by the customer throughout the course of a business relationship, to ensure that those transactions are consistent with the obliged entity’s knowledge of the customer, the customer’s business activity and risk profile, and where necessary, with the information about the origin and destination of the funds and to detect those transactions that shall be made subject to a more thorough assessment pursuant to Article 69(2).",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "34",
+     "para": "2",
+     "label": "Scope of application of enhanced due diligence measures",
+     "quote": "Obliged entities shall examine the origin and destination of funds involved in, and the purpose of, all transactions that fulfil at least one of the following conditions: (a) the transaction is of a complex nature; (b) the transaction is unusually large; (c) the transaction is conducted in an unusual pattern; (d) the transaction does not have an apparent economic or lawful purpose.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "69",
+     "para": "2",
+     "label": "Reporting of suspicions",
+     "quote": "For the purposes of paragraph 1, obliged entities shall assess transactions or activities carried out by their customers",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "77",
+     "para": "1(b)",
+     "label": "Record retention",
+     "quote": "a record of the assessment undertaken pursuant to Article 69(2), including the information and circumstances considered and the results of such assessment, whether or not such assessment results in a suspicious transaction report being made to the FIU, and a copy of the suspicion transaction report, if any;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "26",
+     "para": "5",
+     "label": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
+     "quote": "AMLA shall issue guidelines on ongoing monitoring of a business relationship and on the monitoring of the transactions",
+     "note": "Guidelines are due by 10 July 2026 under this paragraph. Check whether they have been published."
+    }
+   ],
+   "reading": [
+    "EBA Guidelines on ML/TF risk factors (EBA/GL/2021/02)",
+    "FATF Recommendation 10 (ongoing due diligence)"
+   ]
+  },
+  {
+   "id": "sanctions-screening",
+   "no": 7,
+   "title": "Sanctions screening",
+   "short": "Targeted financial sanctions, when to screen, the 50% ownership rule and handling a hit.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 12
+   },
+   "skill": "sanctions",
+   "learn": [
+    "What targeted financial sanctions are",
+    "When to screen and re-screen, and why ownership matters",
+    "How to handle a possible match, and the UN interim rule"
+   ],
+   "explainer": "sanctions-screening",
+   "risks": {
+    "wrong": [
+     "Screening only the account holder and not the owners and controllers",
+     "Screening once at onboarding and never again after list updates",
+     "Clearing a name match without comparing identifiers"
+    ],
+    "consequences": [
+     {
+      "text": "The AMLR makes managing the risk of non-implementation and evasion of targeted financial sanctions part of the firm’s own risk assessment and controls.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "9",
+       "para": "1"
+      }
+     },
+     {
+      "text": "Failures in customer due diligence, which includes the sanctions check, can be fined when serious, repeated or systematic.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "The sanctions regulations themselves carry their own national penalties. They are not reproduced here; check your national authority.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Ownership changed shortly after a listing",
+     "Spelling variants or transliterations of listed names",
+     "Payments routed through unusual intermediaries",
+     "Vague reasons for third-party payments"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "What do targeted financial sanctions consist of?",
+     "options": [
+      "Fines on the customer",
+      "Asset freezing and a ban on making funds or assets available to designated persons and entities",
+      "A ban on all trade with a country",
+      "Increased reporting for the customer"
+     ],
+     "answer": 1,
+     "why": "This is the definition in AMLR Article 2(49).",
+     "law": {
+      "celex": "32024R1624",
+      "art": "2",
+      "para": "49"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "A customer company is 60% owned by a person on a sanctions list. How should you treat the company?",
+     "options": [
+      "Normally: it is not itself listed",
+      "As covered by the screening duty: more than 50% held by a listed person is in scope",
+      "Only if the customer is a bank",
+      "Only if the 60% is held directly"
+     ],
+     "answer": 1,
+     "why": "Due diligence must verify whether listed persons control the entity or hold more than 50% of its proprietary rights or a majority interest, alone or together. Always escalate and follow the sanctions regulation itself.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "20",
+      "para": "1(d)"
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "When must a bank or financial institution re-verify its client base against sanctions?",
+     "options": [
+      "Only at onboarding",
+      "Regularly, and also upon any new designation",
+      "Once a year",
+      "Only when a customer asks"
+     ],
+     "answer": 1,
+     "why": "The frequency must match your exposure, and for credit and financial institutions also upon any new designation. This does not replace stricter obligations under other EU or national law.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "26",
+      "para": "4"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Screening flags a possible match on a name. You cannot clear it with date of birth or nationality. What now?",
+     "options": [
+      "Let the payment through and look later",
+      "Stop, do not process, and escalate immediately",
+      "Delete the alert",
+      "Ask the customer to explain by email"
+     ],
+     "answer": 1,
+     "why": "An unresolved possible match is escalated at once. Do not let funds move while the match is open. Freezing and reporting follow the sanctions regulation and your national authority.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "26",
+      "para": "4"
+     },
+     "scenario": "Good-practice guidance, shown as default."
+    }
+   ],
+   "practice": {
+    "href": "workstation.html",
+    "label": "AML Investigation: a sanctions-related case (INV-301)",
+    "minutes": 12,
+    "module": null,
+    "why": "Open the workstation, then AML Investigation, and look for the case about a shareholder just under the line. Fictional case. Desktop only."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "2",
+     "para": "(49)",
+     "label": "Definitions",
+     "quote": "‘targeted financial sanctions’ means both asset freezing and prohibitions to make funds or other assets available, directly or indirectly, for the benefit of designated persons and entities pursuant to Council Decisions adopted on the basis of Article 29 TEU and Council Regulations adopted on the basis of Article 215 TFEU;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20",
+     "para": "1(d)",
+     "label": "Customer due diligence measures",
+     "quote": "verifying whether the customer or the beneficial owners are subject to targeted financial sanctions, and, in the case of a customer or party to a legal arrangement who is a legal entity, whether natural or legal persons subject to targeted financial sanctions control the legal entity or have more than 50 % of the proprietary rights of that legal entity or majority interest in it, whether individually or collectively;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "26",
+     "para": "4",
+     "label": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
+     "quote": "In addition to the ongoing monitoring referred to in paragraph 1 of this Article, obliged entities shall regularly verify whether the conditions laid down in Article 20(1), point (d), are met. The frequency of that verification shall be commensurate with the exposure of the obliged entity and the business relationship to risks of non-implementation and evasion of targeted financial sanctions. For credit institutions and financial institutions, the verification referred to in the first subparagraph shall also be carried out upon any new designation in relation to targeted financial sanctions.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "27",
+     "para": "1",
+     "label": "Temporary measures for customers subject to UN financial sanctions",
+     "quote": "In respect of customers that are subject to UN financial sanctions or that are controlled by natural or legal persons or entities subject to UN financial sanctions, or in which natural or legal persons or entities that are subject to UN financial sanctions have more than 50 % of the proprietary rights or majority interest, whether individually or collectively, obliged entities shall keep records of: (a) the funds or other assets that they manage for the customer at the time when UN financial sanctions are made public; (b) the transactions attempted by the customer; (c) the transactions carried out for the customer.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10",
+     "para": "1",
+     "label": "Business-wide risk assessment",
+     "quote": "as well as the risks of non-implementation and evasion of targeted financial sanctions",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "EU sanctions regulations and the consolidated list: not in the RegRadar law library, read at the source",
+    "FATF Recommendations 6 and 7 (targeted financial sanctions)"
+   ]
+  },
+  {
+   "id": "suspicious-transaction-reports",
+   "no": 8,
+   "title": "Suspicious transaction reports (STRs)",
+   "short": "When to report, how to build and write a suspicion, timing, and no tipping off.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 12
+   },
+   "skill": "str",
+   "learn": [
+    "The reporting trigger: know, suspect or have reasonable grounds",
+    "What belongs in an STR narrative and what does not",
+    "Timing, the 5-working-day reply and the ban on tipping off"
+   ],
+   "explainer": "suspicious-transaction-reports",
+   "risks": {
+    "wrong": [
+     "Sitting on a suspicion because the customer is valuable",
+     "Telling the customer that a report is being made",
+     "Reports that are vague, late or missing the facts"
+    ],
+    "consequences": [
+     {
+      "text": "Failures in the reporting obligations (Chapter V of the AMLR) can be fined when serious, repeated or systematic.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "Disclosure to the FIU in good faith does not breach confidentiality restrictions or create liability.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "72",
+       "para": ""
+      }
+     },
+     {
+      "text": "Tipping off the customer is prohibited by the AMLR itself.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "73",
+       "para": "1"
+      }
+     }
+    ],
+    "redflags": [
+     "A suspicion is discussed for weeks with no decision",
+     "A relationship manager asks you to hold back a report because the customer is important",
+     "Pressure to close the file quickly",
+     "Narratives say only \"unusual activity\""
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "What triggers the duty to report to the FIU?",
+     "options": [
+      "A transaction above EUR 10 000",
+      "Knowing, suspecting or having reasonable grounds to suspect criminal proceeds or terrorist financing, regardless of the amount",
+      "A customer complaint",
+      "A court order"
+     ],
+     "answer": 1,
+     "why": "The trigger is the state of knowledge or suspicion, not a threshold. Attempted transactions are included.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "69",
+      "para": "1"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Who transmits the report to the FIU?",
+     "options": [
+      "Any employee, directly",
+      "The compliance officer, to the FIU of the Member State where the firm is established",
+      "The customer’s relationship manager",
+      "AMLA"
+     ],
+     "answer": 1,
+     "why": "The compliance officer transmits the report to the FIU of the Member State of establishment.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "69",
+      "para": "6"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "After you file an STR, the customer phones and asks whether you have reported them. What do you say?",
+     "options": [
+      "Confirm: honesty is best",
+      "Nothing about any assessment or report: disclosure to the customer is prohibited",
+      "Tell them to ask the FIU",
+      "Close the account straight away and say why"
+     ],
+     "answer": 1,
+     "why": "You must not disclose that a transaction is being or has been assessed, or that information has been or will be sent to the FIU. Escalate the call to the compliance officer.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "73",
+      "para": "1"
+     },
+     "scenario": "Scenario (fictional)."
+    },
+    {
+     "type": "multi",
+     "q": "Which of these belong in an STR narrative? Select all that apply.",
+     "options": [
+      "The customer received 9 transfers from 6 unrelated senders in 4 days, then sent 95% of the total abroad",
+      "\"I think he is a drug dealer\"",
+      "His declared occupation is student and inflows far exceed the declared income",
+      "\"We told the customer we were filing a report\""
+     ],
+     "answer": [
+      0,
+      2
+     ],
+     "why": "A good narrative sticks to facts and reasons: what happened, when, why it does not fit the profile. Speculation and accusations do not belong, and the customer must never be told about the report.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "69",
+      "para": "2"
+     },
+     "scenario": "Judgement on structure: good practice, not a legal template."
+    }
+   ],
+   "practice": {
+    "href": "desk.html",
+    "label": "The Desk: decide to file a report",
+    "minutes": 12,
+    "module": "desk",
+    "why": "From Day 3, \"file a report\" is one of your options. Choose it only when the file supports a reasoned suspicion. Fictional cases."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "69",
+     "para": "1(a)",
+     "label": "Reporting of suspicions",
+     "quote": "reporting to the FIU, on their own initiative, where the obliged entity knows, suspects or has reasonable grounds to suspect that funds or activities, regardless of the amount involved, are the proceeds of criminal activity or are related to terrorist financing or criminal activity",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "69",
+     "para": "1",
+     "label": "Reporting of suspicions",
+     "quote": "All suspicious transactions, including attempted transactions and suspicions arising from the inability to conduct customer due diligence shall be reported",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "69",
+     "para": "2",
+     "label": "Reporting of suspicions",
+     "quote": "A suspicion pursuant to paragraph 1, point (a), shall be based on the characteristics of the customer and their counterparts, the size and nature of the transaction or activity or the methods and patterns thereof, the link between several transactions or activities, the origin, destination or use of funds, or any other circumstance known to the obliged entity, including the consistency of the transaction or activity with the information obtained pursuant to Chapter III including the risk profile of the client.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "69",
+     "para": "6",
+     "label": "Reporting of suspicions",
+     "quote": "The compliance officer appointed in accordance with Article 11(2) shall transmit the information referred to in paragraph 1 of this Article to the FIU",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "71",
+     "para": "1",
+     "label": "Refraining from carrying out transactions",
+     "quote": "Obliged entities shall refrain from carrying out transactions which they know or suspect to be related to proceeds of criminal activity or to terrorist financing until they have submitted a report in accordance with Article 69(1), first subparagraph, point (a), and have complied with any further specific instructions from the FIU or other competent authority in accordance with the applicable law. Obliged entities may carry out the transaction concerned after having assessed the risks of proceeding with the transaction if they have not received instructions to the contrary from the FIU within 3 working days of submitting the report.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "73",
+     "para": "1",
+     "label": "Prohibition of disclosure",
+     "quote": "Obliged entities and their directors, employees, or persons in comparable positions, including agents and distributors, shall not disclose to the customer concerned or to other third persons the fact that transactions or activities are being or have been assessed in accordance with Article 69, that information is being, will be or has been transmitted in accordance with Article 69 or 70 or that a money laundering or terrorist financing analysis is being, or may be, carried out.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "72",
+     "para": "",
+     "label": "Disclosure to FIU",
+     "quote": "Disclosure of information to the FIU in good faith by an obliged entity or by an employee or director of such an obliged entity in accordance with Articles 69 and 70 shall not constitute a breach of any restriction on disclosure of information imposed by contract or by any legislative, regulatory or administrative provision, and shall not involve the obliged entity or its directors or employees in liability of any kind even in circumstances where they were not precisely aware of the underlying criminal activity and regardless of whether illegal activity actually occurred.",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "FATF Recommendation 20 (reporting of suspicious transactions)",
+    "Your national FIU’s guidance and reporting portal"
+   ]
+  },
+  {
+   "id": "dora-mica-primer",
+   "no": 9,
+   "title": "DORA and MiCA: a short primer",
+   "short": "Two other EU rulebooks that apply to payment, e-money and crypto firms, and where they meet AML.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 0
+   },
+   "skill": "reg",
+   "learn": [
+    "What DORA covers and who is accountable",
+    "Incident handling and outsourced ICT in one minute",
+    "MiCA authorisation, and where crypto rules meet AML"
+   ],
+   "explainer": "dora-mica-primer",
+   "risks": {
+    "wrong": [
+     "Treating ICT resilience as an IT-only matter",
+     "Not recording or reporting major ICT incidents",
+     "Relying on an ICT provider without a proper contract and oversight",
+     "Offering crypto-asset services without being authorised or allowed"
+    ],
+    "consequences": [
+     {
+      "text": "DORA has its own administrative penalties and remedial measures.",
+      "cite": {
+       "celex": "32022R2554",
+       "art": "50",
+       "para": ""
+      }
+     },
+     {
+      "text": "MiCA bars crypto-asset services without authorisation (or being an entity allowed to provide them).",
+      "cite": {
+       "celex": "32023R1114",
+       "art": "59",
+       "para": "1"
+      }
+     },
+     {
+      "text": "Primer only: scope and detail depend on your firm and are not fully covered here.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Nobody at board level can describe the ICT risk framework",
+     "Outages are fixed but not recorded or classified",
+     "Critical services run by a supplier with no written terms",
+     "A new crypto service is launched before authorisation is confirmed"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "Which of these firm types is within DORA’s scope?",
+     "options": [
+      "Only banks",
+      "Payment institutions, e-money institutions and crypto-asset service providers, among others",
+      "Only insurers",
+      "Only ICT suppliers"
+     ],
+     "answer": 1,
+     "why": "Article 2(1) lists credit institutions, payment institutions, e-money institutions, crypto-asset service providers and others.",
+     "law": {
+      "celex": "32022R2554",
+      "art": "2",
+      "para": "1"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Who bears ultimate responsibility for managing a financial entity’s ICT risk?",
+     "options": [
+      "The IT department",
+      "The management body",
+      "The ICT supplier",
+      "The supervisor"
+     ],
+     "answer": 1,
+     "why": "The management body defines, approves, oversees and is responsible for the ICT risk management framework and bears ultimate responsibility.",
+     "law": {
+      "celex": "32022R2554",
+      "art": "5",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "You outsource a critical service to an ICT provider. Who remains fully responsible for complying with DORA?",
+     "options": [
+      "The provider",
+      "The financial entity",
+      "Both equally, so neither",
+      "The supervisor"
+     ],
+     "answer": 1,
+     "why": "Financial entities remain fully responsible for compliance and for discharging all obligations under DORA and financial services law.",
+     "law": {
+      "celex": "32022R2554",
+      "art": "28",
+      "para": "1(a)"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Under MiCA, who may provide crypto-asset services in the Union?",
+     "options": [
+      "Anyone who registers a website",
+      "Authorised crypto-asset service providers, and certain regulated entities (for example credit institutions, e-money institutions) that are allowed to do so",
+      "Only banks",
+      "Anyone, if they hold a company licence"
+     ],
+     "answer": 1,
+     "why": "Without authorisation as a crypto-asset service provider, or being an entity allowed under Article 60, you must not provide the services.",
+     "law": {
+      "celex": "32023R1114",
+      "art": "59",
+      "para": "1"
+     }
+    }
+   ],
+   "practice": null,
+   "law": [
+    {
+     "celex": "32022R2554",
+     "art": "1",
+     "para": "1",
+     "label": "Subject matter",
+     "quote": "In order to achieve a high common level of digital operational resilience, this Regulation lays down uniform requirements concerning the security of network and information systems supporting the business processes of financial entities as follows:",
+     "note": ""
+    },
+    {
+     "celex": "32022R2554",
+     "art": "2",
+     "para": "1",
+     "label": "Scope",
+     "quote": "Without prejudice to paragraphs 3 and 4, this Regulation applies to the following entities: (a) credit institutions; (b) payment institutions, including payment institutions exempted pursuant to Directive (EU) 2015/2366; (c) account information service providers; (d) electronic money institutions, including electronic money institutions exempted pursuant to Directive 2009/110/EC; (e) investment firms; (f) crypto-asset service providers",
+     "note": ""
+    },
+    {
+     "celex": "32022R2554",
+     "art": "5",
+     "para": "2",
+     "label": "Governance and organisation",
+     "quote": "The management body of the financial entity shall define, approve, oversee and be responsible for the implementation of all arrangements related to the ICT risk management framework referred to in Article 6(1). For the purposes of the first subparagraph, the management body shall: (a) bear the ultimate responsibility for managing the financial entity’s ICT risk;",
+     "note": ""
+    },
+    {
+     "celex": "32022R2554",
+     "art": "28",
+     "para": "1(a)",
+     "label": "General principles",
+     "quote": "financial entities that have in place contractual arrangements for the use of ICT services to run their business operations shall, at all times, remain fully responsible for compliance with, and the discharge of, all obligations under this Regulation and applicable financial services law;",
+     "note": ""
+    },
+    {
+     "celex": "32023R1114",
+     "art": "59",
+     "para": "1",
+     "label": "Authorisation",
+     "quote": "A person shall not provide crypto-asset services, within the Union, unless that person is: (a) a legal person or other undertaking that has been authorised as crypto-asset service provider in accordance with Article 63; or (b) a credit institution, central securities depository, investment firm, market operator, electronic money institution, UCITS management company, or an alternative investment fund manager that is allowed to provide crypto-asset services pursuant to Article 60.",
+     "note": ""
+    },
+    {
+     "celex": "32023R1113",
+     "art": "14",
+     "para": "1",
+     "label": "Information accompanying transfers of crypto-assets",
+     "quote": "The crypto-asset service provider of the originator shall ensure that transfers of crypto-assets are accompanied by the following information on the originator: (a) the name of the originator;",
+     "note": "The “travel rule” for crypto-asset transfers: information also goes with the beneficiary (paragraph 2)."
+    }
+   ],
+   "reading": []
+  }
+ ]
+}

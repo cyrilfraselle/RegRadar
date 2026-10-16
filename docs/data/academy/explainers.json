@@ -1,0 +1,4011 @@
+{
+ "_meta": {
+  "name": "Academy motion explainers",
+  "version": 1,
+  "note": "Scenes for docs/academy-explainer.js. Every scene carries a plain-text caption so the explainer reads without animation. Facts are taken from docs/data/laws/ (AMLR, AMLD6, AMLAR, DORA, MiCA, TFR). Illustrative lists are labelled as such. CF Bank and all names in examples are fictional.",
+  "canvas": [
+   480,
+   300
+  ]
+ },
+ "explainers": [
+  {
+   "id": "context",
+   "title": "Why AML exists, and how the EU framework works",
+   "scenes": [
+    {
+     "title": "Making dirty money look clean",
+     "caption": "Money laundering means making the proceeds of crime look legitimate so they can be used. Terrorist financing is a separate offence: providing funds that support terrorism. EU law treats the two together, as AML/CFT.",
+     "items": [
+      {
+       "t": "text",
+       "x": 240,
+       "y": 38,
+       "text": "Dirty in, clean out",
+       "tone": "mute",
+       "d": 0
+      },
+      {
+       "t": "box",
+       "x": 20,
+       "y": 130,
+       "w": 110,
+       "h": 70,
+       "text": "Crime\nproceeds",
+       "tone": "crit",
+       "d": 0.3
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        130,
+        165,
+        185,
+        165
+       ],
+       "tone": "mute",
+       "d": 0.8,
+       "dur": 0.7
+      },
+      {
+       "t": "box",
+       "x": 185,
+       "y": 130,
+       "w": 110,
+       "h": 70,
+       "text": "Financial\nsystem",
+       "tone": "mute",
+       "d": 1.0
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        295,
+        165,
+        350,
+        165
+       ],
+       "tone": "mute",
+       "d": 1.4,
+       "dur": 0.7
+      },
+      {
+       "t": "box",
+       "x": 350,
+       "y": 130,
+       "w": 110,
+       "h": 70,
+       "text": "Looks\nlegitimate",
+       "tone": "ok",
+       "d": 1.8
+      },
+      {
+       "t": "token",
+       "x": 75,
+       "y": 95,
+       "to": [
+        405,
+        95
+       ],
+       "text": "€",
+       "tone": "crit",
+       "d": 1.0,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "title": "A common picture: three stages",
+     "caption": "A common way to picture it is three stages. Placement puts the money into the financial system. Layering moves it around to hide where it came from. Integration brings it back as apparently clean wealth. A firm can be used at any stage.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 100,
+       "w": 135,
+       "h": 66,
+       "text": "Stage 1\nPlacement",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        150,
+        133,
+        172,
+        133
+       ],
+       "tone": "mute",
+       "d": 0.8,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 172,
+       "y": 100,
+       "w": 135,
+       "h": 66,
+       "text": "Stage 2\nLayering",
+       "tone": "warn",
+       "d": 1.0
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        307,
+        133,
+        329,
+        133
+       ],
+       "tone": "mute",
+       "d": 1.6,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 329,
+       "y": 100,
+       "w": 135,
+       "h": 66,
+       "text": "Stage 3\nIntegration",
+       "tone": "ok",
+       "d": 1.8
+      },
+      {
+       "t": "text",
+       "x": 82,
+       "y": 198,
+       "text": "money enters",
+       "tone": "mute",
+       "d": 0.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 198,
+       "text": "trail is hidden",
+       "tone": "mute",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 396,
+       "y": 198,
+       "text": "used as clean",
+       "tone": "mute",
+       "d": 2.2
+      },
+      {
+       "t": "token",
+       "x": 60,
+       "y": 66,
+       "to": [
+        420,
+        66
+       ],
+       "text": "€",
+       "tone": "crit",
+       "d": 0.6,
+       "dur": 3.0
+      }
+     ]
+    },
+    {
+     "title": "Typologies: recurring patterns",
+     "caption": "Investigators group laundering methods into typologies. Typical ones include splitting cash into small deposits, using other people's accounts as mules, layering through shell companies, and mixing illicit funds into a genuine business. Learn the patterns, then you can spot them. (Illustrative list.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 30,
+       "w": 215,
+       "h": 90,
+       "text": "Splitting into\nsmall deposits",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 30,
+       "w": 215,
+       "h": 90,
+       "text": "Mule accounts",
+       "tone": "warn",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 150,
+       "w": 215,
+       "h": 90,
+       "text": "Shell company\nlayers",
+       "tone": "violet",
+       "d": 1.6
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 150,
+       "w": 215,
+       "h": 90,
+       "text": "Mixing with a\nreal business",
+       "tone": "brand",
+       "d": 2.3
+      }
+     ]
+    },
+    {
+     "title": "Who writes and enforces the rules",
+     "caption": "The AML Regulation is one directly applicable rulebook for firms. The 6th AML Directive sets up national supervisors and each country's financial intelligence unit, which receives your suspicion reports. The new EU authority, AMLA, coordinates supervision and directly supervises selected high-risk firms.",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 16,
+       "w": 180,
+       "h": 52,
+       "text": "AMLR\nthe rulebook",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 140,
+       "h": 60,
+       "text": "AMLD6\nnational set-up",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 110,
+       "w": 140,
+       "h": 60,
+       "text": "AMLA\nEU authority",
+       "tone": "ok",
+       "d": 1.5
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 110,
+       "w": 140,
+       "h": 60,
+       "text": "FIU\nreceives reports",
+       "tone": "crit",
+       "d": 2.1
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        68,
+        85,
+        110
+       ],
+       "tone": "mute",
+       "d": 0.5,
+       "dur": 0.4
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        68,
+        240,
+        110
+       ],
+       "tone": "mute",
+       "d": 0.6,
+       "dur": 0.4
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        68,
+        395,
+        110
+       ],
+       "tone": "mute",
+       "d": 0.7,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 205,
+       "w": 450,
+       "h": 56,
+       "text": "Your firm: applies the rules, answers to its supervisor",
+       "tone": "mute",
+       "d": 2.8
+      }
+     ]
+    },
+    {
+     "title": "Your firm is a gate",
+     "caption": "Banks, financial institutions and crypto-asset service providers are all obliged entities under the EU's AML Regulation. RegRadar's applicability table (indicative) also lists payment and e-money firms as directly covered. It applies from 10 July 2027.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 32,
+       "y": 100,
+       "s": 44,
+       "tone": "mute",
+       "d": 0
+      },
+      {
+       "t": "text",
+       "x": 54,
+       "y": 168,
+       "text": "Customer",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        95,
+        125,
+        185,
+        125
+       ],
+       "tone": "mute",
+       "d": 0.8,
+       "dur": 0.7
+      },
+      {
+       "t": "box",
+       "x": 185,
+       "y": 70,
+       "w": 110,
+       "h": 110,
+       "text": "Your firm\n(obliged\nentity)",
+       "tone": "brand",
+       "d": 0.5
+      },
+      {
+       "t": "icon",
+       "k": "shield",
+       "x": 222,
+       "y": 26,
+       "s": 38,
+       "tone": "brand",
+       "d": 1.0
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        295,
+        125,
+        375,
+        125
+       ],
+       "tone": "mute",
+       "d": 1.8,
+       "dur": 0.7
+      },
+      {
+       "t": "box",
+       "x": 375,
+       "y": 92,
+       "w": 92,
+       "h": 66,
+       "text": "Payment\nnetwork",
+       "tone": "mute",
+       "d": 1.4
+      },
+      {
+       "t": "icon",
+       "k": "flag",
+       "x": 120,
+       "y": 70,
+       "s": 34,
+       "tone": "crit",
+       "d": 2.6
+      },
+      {
+       "t": "text",
+       "x": 137,
+       "y": 62,
+       "text": "checks",
+       "tone": "crit",
+       "d": 2.6
+      }
+     ]
+    },
+    {
+     "title": "Risks: why it matters",
+     "caption": "Supervisors can impose pecuniary sanctions for serious, repeated or systematic breaches, and administrative measures such as a public statement, limits on the business, or withdrawing the authorisation. Behind the rules is real harm: a firm that looks the other way helps crime reach the economy.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 215,
+       "h": 70,
+       "text": "Fines for serious,\nrepeated breaches",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 28,
+       "w": 215,
+       "h": 70,
+       "text": "Public statement",
+       "tone": "warn",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 118,
+       "w": 215,
+       "h": 70,
+       "text": "Limits on the\nbusiness",
+       "tone": "warn",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 118,
+       "w": 215,
+       "h": 70,
+       "text": "Authorisation\nwithdrawn",
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 226,
+       "text": "Red flag for you:",
+       "tone": "mute",
+       "d": 2.6,
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 252,
+       "text": "\"we have always done it this way\"",
+       "tone": "crit",
+       "d": 3.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "aml-basics",
+   "title": "AML basics and the risk-based approach",
+   "scenes": [
+    {
+     "title": "Four everyday duties",
+     "caption": "In practice the rules come down to four habits: know who your customer is, watch what they do, report what looks suspicious, and keep the records that prove you did all three. Each one has its own module in this path.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 40,
+       "w": 205,
+       "h": 100,
+       "text": "1. Know your\ncustomer",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 255,
+       "y": 40,
+       "w": 205,
+       "h": 100,
+       "text": "2. Watch the\nactivity",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 20,
+       "y": 165,
+       "w": 205,
+       "h": 100,
+       "text": "3. Report\nsuspicion",
+       "tone": "crit",
+       "d": 1.6
+      },
+      {
+       "t": "box",
+       "x": 255,
+       "y": 165,
+       "w": 205,
+       "h": 100,
+       "text": "4. Keep the\nrecords",
+       "tone": "ok",
+       "d": 2.3
+      }
+     ]
+    },
+    {
+     "title": "The rules are risk-based",
+     "caption": "Effort should match risk. A low-risk customer can get lighter checks; a high-risk one gets enhanced due diligence. Either way you must be able to show your supervisor why the measures you took were appropriate.",
+     "items": [
+      {
+       "t": "text",
+       "x": 20,
+       "y": 62,
+       "text": "Lower risk",
+       "tone": "ok",
+       "d": 0.2,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 170,
+       "y": 51,
+       "w": 290,
+       "h": 22,
+       "v": 0.3,
+       "tone": "ok",
+       "d": 0.4
+      },
+      {
+       "t": "text",
+       "x": 20,
+       "y": 132,
+       "text": "Standard",
+       "tone": "brand",
+       "d": 1.0,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 170,
+       "y": 121,
+       "w": 290,
+       "h": 22,
+       "v": 0.6,
+       "tone": "brand",
+       "d": 1.2
+      },
+      {
+       "t": "text",
+       "x": 20,
+       "y": 202,
+       "text": "Higher risk",
+       "tone": "crit",
+       "d": 1.8,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 170,
+       "y": 191,
+       "w": 290,
+       "h": 22,
+       "v": 1.0,
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 255,
+       "text": "More risk, more checking",
+       "tone": "mute",
+       "d": 2.6
+      }
+     ]
+    },
+    {
+     "title": "Assess your own firm first",
+     "caption": "Before rating customers, the firm assesses its own exposure: its activities, products, delivery channels, customers and geographies. This business-wide risk assessment is documented, kept up to date and made available to supervisors. Customer controls are then sized to it.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 120,
+       "h": 44,
+       "text": "Customers",
+       "tone": "mute",
+       "d": 0.1
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 88,
+       "w": 120,
+       "h": 44,
+       "text": "Products",
+       "tone": "mute",
+       "d": 0.5
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 148,
+       "w": 120,
+       "h": 44,
+       "text": "Channels",
+       "tone": "mute",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 208,
+       "w": 120,
+       "h": 44,
+       "text": "Countries",
+       "tone": "mute",
+       "d": 1.3
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        135,
+        50,
+        190,
+        140
+       ],
+       "tone": "mute",
+       "d": 1.5,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        135,
+        110,
+        190,
+        148
+       ],
+       "tone": "mute",
+       "d": 1.7,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        135,
+        170,
+        190,
+        160
+       ],
+       "tone": "mute",
+       "d": 1.9,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        135,
+        230,
+        190,
+        172
+       ],
+       "tone": "mute",
+       "d": 2.1,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 190,
+       "y": 100,
+       "w": 120,
+       "h": 100,
+       "text": "Business-\nwide risk\nassessment",
+       "tone": "brand",
+       "d": 2.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        310,
+        150,
+        352,
+        150
+       ],
+       "tone": "brand",
+       "d": 3.0,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 352,
+       "y": 110,
+       "w": 113,
+       "h": 80,
+       "text": "Controls\nsized to\nrisk",
+       "tone": "ok",
+       "d": 3.4
+      }
+     ]
+    },
+    {
+     "title": "People who answer for it",
+     "caption": "The compliance officer draws up the business-wide risk assessment and the management body approves it. A member of the management body is accountable for compliance, and staff must be trained to recognise operations that may be related to money laundering.",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 20,
+       "w": 180,
+       "h": 56,
+       "text": "Management body\napproves",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 110,
+       "w": 180,
+       "h": 56,
+       "text": "Compliance officer\ndrafts",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 200,
+       "w": 180,
+       "h": 56,
+       "text": "Staff are trained",
+       "tone": "ok",
+       "d": 1.6
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        110,
+        240,
+        78
+       ],
+       "tone": "mute",
+       "d": 1.0,
+       "dur": 0.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        200,
+        240,
+        168
+       ],
+       "tone": "mute",
+       "d": 1.7,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "list",
+       "x": 398,
+       "y": 118,
+       "s": 40,
+       "tone": "mute",
+       "d": 2.2
+      },
+      {
+       "t": "text",
+       "x": 418,
+       "y": 176,
+       "text": "Risk\nassessment",
+       "tone": "mute",
+       "d": 2.2
+      }
+     ]
+    },
+    {
+     "title": "Risks: two ways to get it wrong",
+     "caption": "Miss real laundering and the firm becomes a channel for crime. Block too much and honest customers are refused while real cases hide in the noise. Good compliance holds both risks in view and records why each decision was made.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "scale",
+       "x": 216,
+       "y": 22,
+       "s": 48,
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        72,
+        115,
+        128
+       ],
+       "tone": "mute",
+       "d": 0.6,
+       "dur": 0.5
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        72,
+        365,
+        128
+       ],
+       "tone": "mute",
+       "d": 0.6,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 20,
+       "y": 128,
+       "w": 190,
+       "h": 100,
+       "text": "Missed\nlaundering",
+       "tone": "crit",
+       "d": 1.0
+      },
+      {
+       "t": "box",
+       "x": 270,
+       "y": 128,
+       "w": 190,
+       "h": 100,
+       "text": "Noise and\nover-blocking",
+       "tone": "warn",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 262,
+       "text": "Hold both in view",
+       "tone": "mute",
+       "d": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cdd-kyc",
+   "title": "Customer due diligence and KYC",
+   "scenes": [
+    {
+     "title": "When due diligence applies",
+     "caption": "You apply customer due diligence when you start a business relationship; when you carry out an occasional transaction of EUR 10 000 or more, single or linked (EUR 1 000 for occasional transfers of funds by banks and other financial institutions); whenever you suspect laundering; and when you doubt data you already hold.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 42,
+       "w": 205,
+       "h": 95,
+       "text": "New\nrelationship",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 255,
+       "y": 42,
+       "w": 205,
+       "h": 95,
+       "text": "Occasional\nEUR 10 000+",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 20,
+       "y": 165,
+       "w": 205,
+       "h": 95,
+       "text": "Suspicion of\nlaundering",
+       "tone": "crit",
+       "d": 1.6
+      },
+      {
+       "t": "box",
+       "x": 255,
+       "y": 165,
+       "w": 205,
+       "h": 95,
+       "text": "Doubts about\nold data",
+       "tone": "warn",
+       "d": 2.3
+      }
+     ]
+    },
+    {
+     "title": "The core measures",
+     "caption": "Due diligence is a bundle: identify and verify the customer, identify the beneficial owner, understand why they want the account, check sanctions and politically exposed person status, and keep monitoring.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "check",
+       "x": 24,
+       "y": 34,
+       "s": 32,
+       "tone": "ok",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 50,
+       "text": "Who is the customer?",
+       "tone": "mute",
+       "d": 0.2,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "check",
+       "x": 24,
+       "y": 80,
+       "s": 32,
+       "tone": "ok",
+       "d": 0.9
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 96,
+       "text": "Who really owns it?",
+       "tone": "mute",
+       "d": 0.9,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "check",
+       "x": 24,
+       "y": 126,
+       "s": 32,
+       "tone": "ok",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 142,
+       "text": "Why do they want this?",
+       "tone": "mute",
+       "d": 1.6,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "check",
+       "x": 24,
+       "y": 172,
+       "s": 32,
+       "tone": "ok",
+       "d": 2.3
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 188,
+       "text": "Sanctions and PEP check",
+       "tone": "mute",
+       "d": 2.3,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "check",
+       "x": 24,
+       "y": 218,
+       "s": 32,
+       "tone": "ok",
+       "d": 3.0
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 234,
+       "text": "Keep watching",
+       "tone": "mute",
+       "d": 3.0,
+       "anchor": "start"
+      }
+     ]
+    },
+    {
+     "title": "Know who you are dealing with",
+     "caption": "For a person you collect names, date and place of birth, nationality and address. For a company: legal form and name, registered address, legal representatives and registration number. Then you verify what you collected.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 215,
+       "h": 200,
+       "text": "",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 40,
+       "w": 215,
+       "h": 200,
+       "text": "",
+       "tone": "mute",
+       "d": 0.5
+      },
+      {
+       "t": "text",
+       "x": 122,
+       "y": 68,
+       "text": "Individual",
+       "tone": "brand",
+       "d": 0.4,
+       "s": 19,
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 358,
+       "y": 68,
+       "text": "Company",
+       "tone": "violet",
+       "d": 0.7,
+       "s": 19,
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 30,
+       "y": 112,
+       "text": "Full names",
+       "tone": "mute",
+       "d": 0.9,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 30,
+       "y": 148,
+       "text": "Birth date, place",
+       "tone": "mute",
+       "d": 1.3,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 30,
+       "y": 184,
+       "text": "Nationality",
+       "tone": "mute",
+       "d": 1.7,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 30,
+       "y": 220,
+       "text": "Home address",
+       "tone": "mute",
+       "d": 2.1,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 264,
+       "y": 112,
+       "text": "Legal form + name",
+       "tone": "mute",
+       "d": 1.1,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 264,
+       "y": 148,
+       "text": "Registered office",
+       "tone": "mute",
+       "d": 1.5,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 264,
+       "y": 184,
+       "text": "Representatives",
+       "tone": "mute",
+       "d": 1.9,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 264,
+       "y": 220,
+       "text": "Registration no.",
+       "tone": "mute",
+       "d": 2.3,
+       "anchor": "start"
+      }
+     ]
+    },
+    {
+     "title": "How much is enough?",
+     "caption": "How much you do depends on risk. Where risk is low you may simplify, for example verifying identity after the relationship starts, within 60 days at most. Where it is higher, enhanced measures can include more information, source of funds and wealth, senior management approval and closer monitoring.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 185,
+       "w": 130,
+       "h": 75,
+       "text": "Simplified",
+       "tone": "ok",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 175,
+       "y": 130,
+       "w": 130,
+       "h": 130,
+       "text": "Standard",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 330,
+       "y": 70,
+       "w": 130,
+       "h": 190,
+       "text": "Enhanced",
+       "tone": "crit",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 34,
+       "text": "Effort rises with risk",
+       "tone": "mute",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "Keep it up to date",
+     "caption": "Due diligence is not one-off. Information is refreshed on a schedule based on risk: at the latest every year for higher-risk customers and every five years for all others, and sooner when something relevant changes.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "calendar",
+       "x": 20,
+       "y": 40,
+       "s": 40,
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 60,
+       "text": "Higher risk",
+       "tone": "crit",
+       "d": 0.2,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 76,
+       "y": 80,
+       "w": 380,
+       "h": 20,
+       "v": 0.2,
+       "tone": "crit",
+       "d": 0.5
+      },
+      {
+       "t": "text",
+       "x": 456,
+       "y": 118,
+       "text": "at least every year",
+       "tone": "mute",
+       "d": 0.9,
+       "anchor": "end"
+      },
+      {
+       "t": "icon",
+       "k": "calendar",
+       "x": 20,
+       "y": 150,
+       "s": 40,
+       "tone": "brand",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 170,
+       "text": "Everyone else",
+       "tone": "brand",
+       "d": 1.6,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 76,
+       "y": 190,
+       "w": 380,
+       "h": 20,
+       "v": 1.0,
+       "tone": "brand",
+       "d": 1.9
+      },
+      {
+       "t": "text",
+       "x": 456,
+       "y": 228,
+       "text": "at least every 5 years",
+       "tone": "mute",
+       "d": 2.4,
+       "anchor": "end"
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 266,
+       "text": "Sooner if circumstances change",
+       "tone": "mute",
+       "d": 3.0
+      }
+     ]
+    },
+    {
+     "title": "When you cannot finish",
+     "caption": "If you cannot complete due diligence you must not open the account or carry out the transaction, you must end an existing relationship, and you must consider reporting a suspicious transaction to the financial intelligence unit.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 115,
+       "w": 135,
+       "h": 70,
+       "text": "Due diligence\nincomplete",
+       "tone": "warn",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        150,
+        140,
+        205,
+        92
+       ],
+       "tone": "crit",
+       "d": 0.9,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        150,
+        160,
+        205,
+        208
+       ],
+       "tone": "brand",
+       "d": 1.3,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 205,
+       "y": 56,
+       "w": 170,
+       "h": 70,
+       "text": "Do not onboard\nor transact",
+       "tone": "crit",
+       "d": 1.4
+      },
+      {
+       "t": "icon",
+       "k": "stop",
+       "x": 398,
+       "y": 64,
+       "s": 48,
+       "tone": "crit",
+       "d": 1.8
+      },
+      {
+       "t": "box",
+       "x": 205,
+       "y": 176,
+       "w": 170,
+       "h": 70,
+       "text": "Consider\nreporting to FIU",
+       "tone": "brand",
+       "d": 2.0
+      }
+     ]
+    },
+    {
+     "title": "Risks: red flags at onboarding",
+     "caption": "Warning signs at onboarding include a customer who avoids giving information, documents that do not agree with each other, a structure that is complex without a business reason, and a rushed request to move money. These are prompts to ask more, not proof. Record what you asked and what you concluded. (Illustrative list.)",
+     "items": [
+      {
+       "t": "icon",
+       "k": "flag",
+       "x": 22,
+       "y": 34,
+       "s": 32,
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 70,
+       "y": 50,
+       "text": "Avoids giving information",
+       "tone": "mute",
+       "d": 0.2,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "flag",
+       "x": 22,
+       "y": 84,
+       "s": 32,
+       "tone": "crit",
+       "d": 0.9
+      },
+      {
+       "t": "text",
+       "x": 70,
+       "y": 100,
+       "text": "Documents do not agree",
+       "tone": "mute",
+       "d": 0.9,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "flag",
+       "x": 22,
+       "y": 134,
+       "s": 32,
+       "tone": "crit",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 70,
+       "y": 150,
+       "text": "Complex, no business reason",
+       "tone": "mute",
+       "d": 1.6,
+       "anchor": "start"
+      },
+      {
+       "t": "icon",
+       "k": "flag",
+       "x": 22,
+       "y": 184,
+       "s": 32,
+       "tone": "crit",
+       "d": 2.3
+      },
+      {
+       "t": "text",
+       "x": 70,
+       "y": 200,
+       "text": "Pressure to move money fast",
+       "tone": "mute",
+       "d": 2.3,
+       "anchor": "start"
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 255,
+       "text": "Ask more. Record why.",
+       "tone": "brand",
+       "d": 3.0,
+       "bold": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "beneficial-ownership",
+   "title": "Beneficial ownership",
+   "scenes": [
+    {
+     "title": "Who is a beneficial owner?",
+     "caption": "A beneficial owner is a real person: someone who ultimately owns the company or controls it, directly or through other entities. A name on a register is not enough if a person sits behind it.",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 24,
+       "w": 180,
+       "h": 52,
+       "text": "Company",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 112,
+       "w": 180,
+       "h": 52,
+       "text": "Holding company",
+       "tone": "mute",
+       "d": 0.8
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 216,
+       "y": 204,
+       "s": 48,
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 266,
+       "text": "Real person",
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        202,
+        240,
+        166
+       ],
+       "tone": "brand",
+       "d": 1.8,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        112,
+        240,
+        78
+       ],
+       "tone": "brand",
+       "d": 2.2,
+       "dur": 0.5
+      },
+      {
+       "t": "text",
+       "x": 400,
+       "y": 138,
+       "text": "Look through\nthe layers",
+       "tone": "mute",
+       "d": 2.6
+      }
+     ]
+    },
+    {
+     "title": "The 25 per cent line",
+     "caption": "For ownership the line is 25 per cent or more of the shares, voting rights or other ownership interest, held directly or indirectly. A person at exactly 25 per cent is over the line; one at 24 per cent is not, on ownership alone.",
+     "items": [
+      {
+       "t": "text",
+       "x": 20,
+       "y": 40,
+       "text": "Ana",
+       "tone": "mute",
+       "d": 0.1,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 90,
+       "y": 28,
+       "w": 300,
+       "h": 24,
+       "v": 0.6,
+       "tone": "ok",
+       "d": 0.3
+      },
+      {
+       "t": "text",
+       "x": 470,
+       "y": 40,
+       "text": "30%",
+       "tone": "ok",
+       "d": 0.8,
+       "anchor": "end"
+      },
+      {
+       "t": "text",
+       "x": 20,
+       "y": 110,
+       "text": "Ben",
+       "tone": "mute",
+       "d": 0.1,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 90,
+       "y": 98,
+       "w": 300,
+       "h": 24,
+       "v": 0.48,
+       "tone": "mute",
+       "d": 0.9
+      },
+      {
+       "t": "text",
+       "x": 470,
+       "y": 110,
+       "text": "24%",
+       "tone": "mute",
+       "d": 1.4,
+       "anchor": "end"
+      },
+      {
+       "t": "text",
+       "x": 20,
+       "y": 180,
+       "text": "Cleo",
+       "tone": "mute",
+       "d": 0.1,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 90,
+       "y": 168,
+       "w": 300,
+       "h": 24,
+       "v": 0.5,
+       "tone": "ok",
+       "d": 1.5
+      },
+      {
+       "t": "text",
+       "x": 470,
+       "y": 180,
+       "text": "25%",
+       "tone": "ok",
+       "d": 2.0,
+       "anchor": "end"
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        12,
+        240,
+        208
+       ],
+       "tone": "violet",
+       "d": 2.2,
+       "dur": 0.5,
+       "dash": true
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 236,
+       "text": "25% line",
+       "tone": "violet",
+       "d": 2.4,
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 90,
+       "y": 262,
+       "text": "0%",
+       "tone": "mute",
+       "d": 0
+      },
+      {
+       "t": "text",
+       "x": 390,
+       "y": 262,
+       "text": "50%",
+       "tone": "mute",
+       "d": 0
+      }
+     ]
+    },
+    {
+     "title": "Indirect ownership: multiply, then add",
+     "caption": "Through a chain of companies you multiply the percentages. Dana owns 50 per cent of the Holding, and the Holding owns 60 per cent of the Company, so Dana owns 30 per cent indirectly. Several chains are added together. (Fictional example.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 24,
+       "w": 180,
+       "h": 52,
+       "text": "Company",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 112,
+       "w": 180,
+       "h": 52,
+       "text": "Holding",
+       "tone": "mute",
+       "d": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 216,
+       "y": 204,
+       "s": 48,
+       "tone": "brand",
+       "d": 0.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 266,
+       "text": "Dana",
+       "tone": "brand",
+       "d": 0.6
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        202,
+        240,
+        166
+       ],
+       "tone": "brand",
+       "d": 1.0,
+       "dur": 0.5
+      },
+      {
+       "t": "text",
+       "x": 300,
+       "y": 186,
+       "text": "50%",
+       "tone": "brand",
+       "d": 1.2,
+       "anchor": "start",
+       "bold": true
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        112,
+        240,
+        78
+       ],
+       "tone": "brand",
+       "d": 1.6,
+       "dur": 0.5
+      },
+      {
+       "t": "text",
+       "x": 300,
+       "y": 96,
+       "text": "60%",
+       "tone": "brand",
+       "d": 1.8,
+       "anchor": "start",
+       "bold": true
+      },
+      {
+       "t": "box",
+       "x": 350,
+       "y": 110,
+       "w": 115,
+       "h": 76,
+       "text": "50% × 60%\n= 30%",
+       "tone": "ok",
+       "d": 2.6
+      },
+      {
+       "t": "stamp",
+       "x": 410,
+       "y": 230,
+       "text": "Over 25%",
+       "tone": "ok",
+       "d": 3.4
+      }
+     ]
+    },
+    {
+     "title": "Control without percentages",
+     "caption": "Ownership is only one test. Control can come from other means: a majority of votes, the right to appoint or remove most of the board, or veto rights. It is checked independently, even when nobody reaches 25 per cent.",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 24,
+       "w": 180,
+       "h": 52,
+       "text": "Company",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 112,
+       "w": 180,
+       "h": 52,
+       "text": "Board",
+       "tone": "violet",
+       "d": 0.5
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 216,
+       "y": 204,
+       "s": 48,
+       "tone": "crit",
+       "d": 0.9
+      },
+      {
+       "t": "text",
+       "x": 300,
+       "y": 226,
+       "text": "Karel: 8% of shares",
+       "tone": "mute",
+       "d": 1.0,
+       "anchor": "start"
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        202,
+        240,
+        166
+       ],
+       "tone": "crit",
+       "d": 1.4,
+       "dur": 0.5
+      },
+      {
+       "t": "text",
+       "x": 300,
+       "y": 186,
+       "text": "appoints most",
+       "tone": "crit",
+       "d": 1.6,
+       "anchor": "start"
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        112,
+        240,
+        78
+       ],
+       "tone": "violet",
+       "d": 2.0,
+       "dur": 0.5
+      },
+      {
+       "t": "stamp",
+       "x": 412,
+       "y": 64,
+       "text": "Owner by\ncontrol",
+       "tone": "crit",
+       "d": 2.9
+      }
+     ]
+    },
+    {
+     "title": "Trusts: a list of roles",
+     "caption": "For an express trust the beneficial owners are all of these people: the settlor, the trustees, the protector if there is one, the beneficiaries (special rules apply to classes of beneficiaries), and anyone else with ultimate control. It is a list of roles, not a percentage.",
+     "items": [
+      {
+       "t": "box",
+       "x": 180,
+       "y": 120,
+       "w": 120,
+       "h": 66,
+       "text": "Trust",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 50,
+       "y": 30,
+       "s": 36,
+       "tone": "brand",
+       "d": 0.5
+      },
+      {
+       "t": "text",
+       "x": 68,
+       "y": 86,
+       "text": "Settlor",
+       "tone": "mute",
+       "d": 0.5
+      },
+      {
+       "t": "line",
+       "pts": [
+        86,
+        60,
+        180,
+        130
+       ],
+       "tone": "mute",
+       "d": 0.7,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 394,
+       "y": 30,
+       "s": 36,
+       "tone": "brand",
+       "d": 1.0
+      },
+      {
+       "t": "text",
+       "x": 412,
+       "y": 86,
+       "text": "Trustee",
+       "tone": "mute",
+       "d": 1.0
+      },
+      {
+       "t": "line",
+       "pts": [
+        394,
+        60,
+        300,
+        130
+       ],
+       "tone": "mute",
+       "d": 1.2,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 50,
+       "y": 206,
+       "s": 36,
+       "tone": "brand",
+       "d": 1.5
+      },
+      {
+       "t": "text",
+       "x": 68,
+       "y": 262,
+       "text": "Protector",
+       "tone": "mute",
+       "d": 1.5
+      },
+      {
+       "t": "line",
+       "pts": [
+        86,
+        214,
+        180,
+        176
+       ],
+       "tone": "mute",
+       "d": 1.7,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 394,
+       "y": 206,
+       "s": 36,
+       "tone": "brand",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 412,
+       "y": 262,
+       "text": "Beneficiary",
+       "tone": "mute",
+       "d": 2.0
+      },
+      {
+       "t": "line",
+       "pts": [
+        394,
+        214,
+        300,
+        176
+       ],
+       "tone": "mute",
+       "d": 2.2,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 222,
+       "y": 206,
+       "s": 36,
+       "tone": "crit",
+       "d": 2.5
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 262,
+       "text": "Anyone in control",
+       "tone": "crit",
+       "d": 2.5
+      },
+      {
+       "t": "line",
+       "pts": [
+        240,
+        206,
+        240,
+        186
+       ],
+       "tone": "mute",
+       "d": 2.7,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "title": "Risks: when it cannot be done",
+     "caption": "Red flags: nominee shareholders, circular holdings, chains ending in secrecy, and structures with no commercial reason. If after exhausting all means no owner is found, you record that, identify the senior managing officials, and treat it as a risk. If due diligence cannot be completed, you do not proceed.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 130,
+       "h": 48,
+       "text": "Company",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 106,
+       "w": 130,
+       "h": 48,
+       "text": "Nominee",
+       "tone": "warn",
+       "d": 0.6
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 184,
+       "w": 130,
+       "h": 48,
+       "text": "???",
+       "tone": "crit",
+       "d": 1.0
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        80,
+        106,
+        80,
+        78
+       ],
+       "tone": "mute",
+       "d": 1.2,
+       "dur": 0.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        80,
+        184,
+        80,
+        156
+       ],
+       "tone": "mute",
+       "d": 1.5,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 215,
+       "y": 44,
+       "w": 250,
+       "h": 68,
+       "text": "Record each step\nyou took",
+       "tone": "brand",
+       "d": 2.0
+      },
+      {
+       "t": "box",
+       "x": 215,
+       "y": 138,
+       "w": 250,
+       "h": 68,
+       "text": "Identify senior\nmanaging officials",
+       "tone": "ok",
+       "d": 2.7
+      },
+      {
+       "t": "stamp",
+       "x": 340,
+       "y": 244,
+       "text": "Do not proceed\nif unresolved",
+       "tone": "crit",
+       "d": 3.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "peps",
+   "title": "Politically exposed persons (PEPs)",
+   "scenes": [
+    {
+     "title": "Who is a PEP?",
+     "caption": "A politically exposed person is someone who is, or has been, entrusted with a prominent public function, such as a head of state or a minister. Each Member State lists the exact functions in its national law, and the Commission publishes a single list.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "bank",
+       "x": 216,
+       "y": 22,
+       "s": 48,
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 30,
+       "y": 110,
+       "w": 200,
+       "h": 64,
+       "text": "Minister",
+       "tone": "violet",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 110,
+       "w": 200,
+       "h": 64,
+       "text": "Head of state",
+       "tone": "violet",
+       "d": 1.3
+      },
+      {
+       "t": "box",
+       "x": 30,
+       "y": 196,
+       "w": 200,
+       "h": 64,
+       "text": "Senior official\n(per national list)",
+       "tone": "mute",
+       "d": 1.8
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 196,
+       "w": 200,
+       "h": 64,
+       "text": "International\norganisation role",
+       "tone": "mute",
+       "d": 2.3
+      }
+     ]
+    },
+    {
+     "title": "Not only the person",
+     "caption": "The measures also apply to family members and to persons known to be close associates of a politically exposed person. Money often moves through relatives or business partners, so the check has to look at the people around the PEP too.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 210,
+       "y": 100,
+       "s": 56,
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 180,
+       "text": "PEP",
+       "tone": "violet",
+       "d": 0.2,
+       "bold": true
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 40,
+       "y": 110,
+       "s": 40,
+       "tone": "brand",
+       "d": 1.0
+      },
+      {
+       "t": "text",
+       "x": 60,
+       "y": 172,
+       "text": "Family",
+       "tone": "brand",
+       "d": 1.0
+      },
+      {
+       "t": "line",
+       "pts": [
+        84,
+        130,
+        200,
+        130
+       ],
+       "tone": "mute",
+       "d": 1.3,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 398,
+       "y": 110,
+       "s": 40,
+       "tone": "brand",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 418,
+       "y": 172,
+       "text": "Close\nassociate",
+       "tone": "brand",
+       "d": 1.6
+      },
+      {
+       "t": "line",
+       "pts": [
+        394,
+        130,
+        282,
+        130
+       ],
+       "tone": "mute",
+       "d": 1.9,
+       "dur": 0.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 250,
+       "text": "Same measures apply",
+       "tone": "mute",
+       "d": 2.6
+      }
+     ]
+    },
+    {
+     "title": "What you must do",
+     "caption": "On top of normal due diligence: obtain senior management approval, take adequate measures to establish the source of wealth and source of funds, and conduct enhanced, ongoing monitoring. All three, every time.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 450,
+       "h": 60,
+       "text": "1. Senior management approval",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 115,
+       "w": 450,
+       "h": 60,
+       "text": "2. Source of wealth and source of funds",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 190,
+       "w": 450,
+       "h": 60,
+       "text": "3. Enhanced, ongoing monitoring",
+       "tone": "ok",
+       "d": 1.6
+      }
+     ]
+    },
+    {
+     "title": "After they leave office",
+     "caption": "Being out of office does not end the risk. You keep applying enhanced measures for as long as the risk exists, and in any case for not less than 12 months after the person left the function.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "calendar",
+       "x": 20,
+       "y": 40,
+       "s": 44,
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 76,
+       "y": 64,
+       "text": "Leaves office",
+       "tone": "violet",
+       "d": 0.2,
+       "anchor": "start"
+      },
+      {
+       "t": "meter",
+       "x": 30,
+       "y": 138,
+       "w": 150,
+       "h": 24,
+       "v": 1.0,
+       "tone": "crit",
+       "d": 1.0
+      },
+      {
+       "t": "text",
+       "x": 105,
+       "y": 190,
+       "text": "12 months minimum",
+       "tone": "crit",
+       "d": 1.8
+      },
+      {
+       "t": "meter",
+       "x": 180,
+       "y": 138,
+       "w": 270,
+       "h": 24,
+       "v": 0.5,
+       "tone": "warn",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 315,
+       "y": 190,
+       "text": "as long as risk remains",
+       "tone": "warn",
+       "d": 2.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 255,
+       "text": "Enhanced measures continue",
+       "tone": "mute",
+       "d": 3.0
+      }
+     ]
+    },
+    {
+     "title": "A risk marker, not an accusation",
+     "caption": "Most PEPs are honest officials. Being one does not make a customer suspicious; it means the risk is higher, so the checks are stronger. Do not refuse by reflex and do not wave through by reflex: decide on the facts and document why.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 60,
+       "w": 200,
+       "h": 90,
+       "text": "PEP status",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 260,
+       "y": 60,
+       "w": 200,
+       "h": 90,
+       "text": "Suspicion",
+       "tone": "crit",
+       "d": 0.8
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 106,
+       "text": "≠",
+       "tone": "mute",
+       "d": 1.2,
+       "s": 26
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 200,
+       "text": "Higher risk, stronger checks",
+       "tone": "brand",
+       "d": 1.6,
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 232,
+       "text": "Decide on facts, write down why",
+       "tone": "mute",
+       "d": 2.2
+      }
+     ]
+    },
+    {
+     "title": "Risks: what goes wrong",
+     "caption": "What goes wrong: the PEP is not recognised at onboarding, nobody senior approves, or source of wealth is accepted without evidence. Warning signs include wealth that does not fit the public salary, payments from third parties, and use of relatives' accounts. (Illustrative list.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "PEP not recognised",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "No senior approval",
+       "tone": "crit",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Wealth unexplained",
+       "tone": "crit",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Relatives' accounts",
+       "tone": "warn",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 226,
+       "text": "Red flag: wealth does not fit the role",
+       "tone": "warn",
+       "d": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "transaction-monitoring",
+   "title": "Transaction monitoring and alerts",
+   "scenes": [
+    {
+     "title": "Compare activity with what you know",
+     "caption": "Monitoring means checking that transactions are consistent with what you know about the customer: their business, their risk profile and, where needed, where the money comes from and goes. The profile you set at onboarding is the yardstick.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 40,
+       "w": 170,
+       "h": 90,
+       "text": "What we know\n(profile)",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 290,
+       "y": 40,
+       "w": 170,
+       "h": 90,
+       "text": "What they do\n(activity)",
+       "tone": "violet",
+       "d": 0.8
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        190,
+        85,
+        290,
+        85
+       ],
+       "tone": "mute",
+       "d": 1.2,
+       "dur": 0.5
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 66,
+       "text": "compare",
+       "tone": "mute",
+       "d": 1.4
+      },
+      {
+       "t": "stamp",
+       "x": 240,
+       "y": 200,
+       "text": "Consistent?",
+       "tone": "ok",
+       "d": 2.0,
+       "rot": 0
+      }
+     ]
+    },
+    {
+     "title": "Rules raise alerts",
+     "caption": "The system applies rules to the stream of transactions and raises an alert when something stands out: a sudden spike, many small deposits just under a limit, rapid in-and-out movement, or activity in a high-risk country. Rules are tuned to your own risk. (Illustrative examples.)",
+     "items": [
+      {
+       "t": "token",
+       "x": 20,
+       "y": 70,
+       "to": [
+        200,
+        70
+       ],
+       "text": "€",
+       "tone": "mute",
+       "d": 0.3,
+       "dur": 1.4
+      },
+      {
+       "t": "token",
+       "x": 20,
+       "y": 120,
+       "to": [
+        200,
+        120
+       ],
+       "text": "€",
+       "tone": "mute",
+       "d": 0.7,
+       "dur": 1.4
+      },
+      {
+       "t": "token",
+       "x": 20,
+       "y": 170,
+       "to": [
+        200,
+        170
+       ],
+       "text": "€",
+       "tone": "mute",
+       "d": 1.1,
+       "dur": 1.4
+      },
+      {
+       "t": "token",
+       "x": 20,
+       "y": 220,
+       "to": [
+        200,
+        220
+       ],
+       "text": "€",
+       "tone": "crit",
+       "d": 1.5,
+       "dur": 1.4
+      },
+      {
+       "t": "box",
+       "x": 215,
+       "y": 40,
+       "w": 90,
+       "h": 200,
+       "text": "Rules",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        305,
+        220,
+        370,
+        220
+       ],
+       "tone": "crit",
+       "d": 2.6,
+       "dur": 0.5
+      },
+      {
+       "t": "icon",
+       "k": "bell",
+       "x": 385,
+       "y": 196,
+       "s": 48,
+       "tone": "crit",
+       "d": 3.1
+      },
+      {
+       "t": "text",
+       "x": 410,
+       "y": 258,
+       "text": "Alert",
+       "tone": "crit",
+       "d": 3.1
+      }
+     ]
+    },
+    {
+     "title": "An alert is not a suspicion",
+     "caption": "An alert only says: look here. Most alerts have an innocent explanation. Triage means reading the file quickly and either closing the alert with a recorded reason or investigating further. Closing well is as much a skill as escalating.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 110,
+       "w": 120,
+       "h": 70,
+       "text": "Alert",
+       "tone": "warn",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        140,
+        135,
+        200,
+        90
+       ],
+       "tone": "ok",
+       "d": 0.9,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        140,
+        155,
+        200,
+        205
+       ],
+       "tone": "crit",
+       "d": 1.3,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 200,
+       "y": 60,
+       "w": 150,
+       "h": 62,
+       "text": "Close, with\nreason",
+       "tone": "ok",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 200,
+       "y": 176,
+       "w": 150,
+       "h": 62,
+       "text": "Investigate",
+       "tone": "crit",
+       "d": 1.8
+      },
+      {
+       "t": "text",
+       "x": 412,
+       "y": 91,
+       "text": "most",
+       "tone": "ok",
+       "d": 2.2
+      },
+      {
+       "t": "text",
+       "x": 412,
+       "y": 207,
+       "text": "some",
+       "tone": "crit",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "Investigate: ask the right questions",
+     "caption": "The law points to four features to examine: a transaction that is complex, unusually large, in an unusual pattern, or with no apparent economic or lawful purpose. Then establish the origin and destination of the funds and the purpose.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 32,
+       "w": 215,
+       "h": 60,
+       "text": "Complex",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 32,
+       "w": 215,
+       "h": 60,
+       "text": "Unusually large",
+       "tone": "brand",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 112,
+       "w": 215,
+       "h": 60,
+       "text": "Unusual pattern",
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 112,
+       "w": 215,
+       "h": 60,
+       "text": "No apparent purpose",
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "icon",
+       "k": "search",
+       "x": 208,
+       "y": 192,
+       "s": 44,
+       "tone": "violet",
+       "d": 2.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 255,
+       "text": "Where from? Where to? Why?",
+       "tone": "mute",
+       "d": 2.8
+      }
+     ]
+    },
+    {
+     "title": "Decide and write it down",
+     "caption": "Decide: close, ask the customer for information, escalate, or report. Whatever you decide, record the information and circumstances you considered and the result, whether or not a report is made. That record is what you show a supervisor.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 215,
+       "h": 56,
+       "text": "Close",
+       "tone": "ok",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 40,
+       "w": 215,
+       "h": 56,
+       "text": "Ask the customer",
+       "tone": "brand",
+       "d": 0.7
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 112,
+       "w": 215,
+       "h": 56,
+       "text": "Escalate",
+       "tone": "warn",
+       "d": 1.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 112,
+       "w": 215,
+       "h": 56,
+       "text": "Report",
+       "tone": "crit",
+       "d": 1.7
+      },
+      {
+       "t": "icon",
+       "k": "doc",
+       "x": 212,
+       "y": 190,
+       "s": 40,
+       "tone": "mute",
+       "d": 2.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 258,
+       "text": "Record why",
+       "tone": "mute",
+       "d": 2.6,
+       "bold": true
+      }
+     ]
+    },
+    {
+     "title": "Risks: when monitoring fails",
+     "caption": "Too few alerts and real cases pass unseen; too many and analysts drown and miss them. Stale profiles make everything look odd. Watch for rules never reviewed, backlogs, and alerts closed without a reason. Tune, test and document the rules. (Illustrative list.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Too few alerts",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Too much noise",
+       "tone": "warn",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Stale profiles",
+       "tone": "warn",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Closed, no reason",
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 226,
+       "text": "Red flag: backlog keeps growing",
+       "tone": "warn",
+       "d": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sanctions-screening",
+   "title": "Sanctions screening",
+   "scenes": [
+    {
+     "title": "What targeted sanctions are",
+     "caption": "Targeted financial sanctions mean freezing the assets of designated persons and entities and prohibiting funds or other assets from being made available to them, directly or indirectly. They come from EU Council decisions and regulations, and from the UN.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 110,
+       "w": 150,
+       "h": 80,
+       "text": "Listed person\nor entity",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "icon",
+       "k": "lock",
+       "x": 212,
+       "y": 120,
+       "s": 56,
+       "tone": "crit",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 310,
+       "y": 110,
+       "w": 150,
+       "h": 80,
+       "text": "Funds and\nassets",
+       "tone": "mute",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 70,
+       "text": "Freeze",
+       "tone": "crit",
+       "d": 1.0,
+       "s": 19,
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 246,
+       "text": "No funds made available",
+       "tone": "mute",
+       "d": 1.8
+      }
+     ]
+    },
+    {
+     "title": "Screen at the start and keep screening",
+     "caption": "You verify whether the customer and the beneficial owners are subject to sanctions at onboarding, and then regularly. For banks and financial institutions the check is also repeated on every new designation. Screening is continuous, not a one-time gate.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 140,
+       "h": 66,
+       "text": "Onboarding",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 40,
+       "w": 140,
+       "h": 66,
+       "text": "Regular\nre-check",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 40,
+       "w": 140,
+       "h": 66,
+       "text": "New list\nupdate",
+       "tone": "crit",
+       "d": 1.6
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        85,
+        106,
+        85,
+        170
+       ],
+       "tone": "mute",
+       "d": 1.0,
+       "dur": 0.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        106,
+        240,
+        170
+       ],
+       "tone": "mute",
+       "d": 1.5,
+       "dur": 0.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        395,
+        106,
+        395,
+        170
+       ],
+       "tone": "mute",
+       "d": 2.0,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 170,
+       "w": 450,
+       "h": 60,
+       "text": "Screen customers and beneficial owners",
+       "tone": "ok",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "Look up the ownership chain",
+     "caption": "A company is covered if listed persons control it or hold more than 50 per cent of its proprietary rights or a majority interest, alone or together. So you screen the owners and controllers, not just the name on the account.",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 24,
+       "w": 180,
+       "h": 52,
+       "text": "Customer\ncompany",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 120,
+       "w": 180,
+       "h": 52,
+       "text": "Holding",
+       "tone": "mute",
+       "d": 0.6
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 210,
+       "y": 200,
+       "s": 48,
+       "tone": "crit",
+       "d": 1.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 262,
+       "text": "Listed person: 60%",
+       "tone": "crit",
+       "d": 1.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        198,
+        240,
+        174
+       ],
+       "tone": "crit",
+       "d": 1.6,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        120,
+        240,
+        78
+       ],
+       "tone": "crit",
+       "d": 2.0,
+       "dur": 0.5
+      },
+      {
+       "t": "stamp",
+       "x": 400,
+       "y": 100,
+       "text": "Treated as\nlisted",
+       "tone": "crit",
+       "d": 2.8
+      }
+     ]
+    },
+    {
+     "title": "A hit: true or false?",
+     "caption": "A screening system flags name similarities, and many are false. Compare date of birth, nationality and other identifiers before you decide. If you cannot clear it, stop and escalate at once. Do not let the payment through while a possible match is open.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 115,
+       "w": 120,
+       "h": 66,
+       "text": "Possible\nmatch",
+       "tone": "warn",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        135,
+        135,
+        200,
+        85
+       ],
+       "tone": "ok",
+       "d": 0.9,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        135,
+        160,
+        200,
+        210
+       ],
+       "tone": "crit",
+       "d": 1.3,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 200,
+       "y": 52,
+       "w": 140,
+       "h": 60,
+       "text": "False match\nclear + note",
+       "tone": "ok",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 200,
+       "y": 180,
+       "w": 140,
+       "h": 60,
+       "text": "True or unclear\nescalate now",
+       "tone": "crit",
+       "d": 1.8
+      },
+      {
+       "t": "icon",
+       "k": "stop",
+       "x": 372,
+       "y": 190,
+       "s": 44,
+       "tone": "crit",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "Between a UN listing and the EU rule",
+     "caption": "UN designations can reach you before they are applied in the EU. In that gap you keep records of the funds you manage for the customer, the transactions they attempted and the transactions carried out. Sanctions rules apply in addition to your AML duties.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 100,
+       "w": 130,
+       "h": 60,
+       "text": "UN publishes\nlisting",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 335,
+       "y": 100,
+       "w": 130,
+       "h": 60,
+       "text": "EU applies\nit",
+       "tone": "violet",
+       "d": 1.0
+      },
+      {
+       "t": "line",
+       "pts": [
+        145,
+        130,
+        335,
+        130
+       ],
+       "tone": "mute",
+       "d": 0.6,
+       "dur": 1.0,
+       "dash": true
+      },
+      {
+       "t": "icon",
+       "k": "doc",
+       "x": 216,
+       "y": 40,
+       "s": 44,
+       "tone": "warn",
+       "d": 1.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 102,
+       "text": "keep records",
+       "tone": "warn",
+       "d": 1.8
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 200,
+       "text": "funds held · attempts · transactions",
+       "tone": "mute",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "Risks: evasion and red flags",
+     "caption": "The risk is not only missing a name but non-implementation and evasion: layered ownership, spelling variants, intermediaries and unusual routing. Red flags: ownership changed just after a listing, vague reasons for third-party payments, transactions through odd intermediaries. (Illustrative list.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Ownership shuffled",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Spelling variants",
+       "tone": "warn",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Odd intermediaries",
+       "tone": "warn",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Vague third-party\npayments",
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 226,
+       "text": "Red flag: change right after a listing",
+       "tone": "crit",
+       "d": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "suspicious-transaction-reports",
+   "title": "Suspicious transaction reports (STRs)",
+   "scenes": [
+    {
+     "title": "When you must report",
+     "caption": "You report when you know, suspect or have reasonable grounds to suspect that funds or activities are the proceeds of criminal activity or linked to terrorist financing. The amount does not matter, and attempted transactions are included.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 40,
+       "w": 440,
+       "h": 60,
+       "text": "Know, suspect, or reasonable grounds",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 20,
+       "y": 125,
+       "w": 215,
+       "h": 60,
+       "text": "Any amount",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 245,
+       "y": 125,
+       "w": 215,
+       "h": 60,
+       "text": "Attempts count",
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 235,
+       "text": "Report to the financial intelligence unit",
+       "tone": "mute",
+       "d": 2.0
+      }
+     ]
+    },
+    {
+     "title": "What builds a suspicion",
+     "caption": "A suspicion rests on facts: who the customer and counterparties are, the size and nature of the activity, its patterns, links between transactions, where funds come from and go, and whether it fits what you know of the customer.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 30,
+       "w": 140,
+       "h": 56,
+       "text": "Who",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 30,
+       "w": 140,
+       "h": 56,
+       "text": "How much",
+       "tone": "mute",
+       "d": 0.6
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 30,
+       "w": 140,
+       "h": 56,
+       "text": "Pattern",
+       "tone": "mute",
+       "d": 1.0
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 105,
+       "w": 140,
+       "h": 56,
+       "text": "Links",
+       "tone": "mute",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 105,
+       "w": 140,
+       "h": 56,
+       "text": "Origin\nand use",
+       "tone": "mute",
+       "d": 1.8
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 105,
+       "w": 140,
+       "h": 56,
+       "text": "Fit with\nprofile",
+       "tone": "mute",
+       "d": 2.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        163,
+        240,
+        205
+       ],
+       "tone": "crit",
+       "d": 2.8,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 130,
+       "y": 205,
+       "w": 220,
+       "h": 56,
+       "text": "Reasoned suspicion",
+       "tone": "crit",
+       "d": 3.1
+      }
+     ]
+    },
+    {
+     "title": "Who reports, and where",
+     "caption": "The compliance officer transmits the report to the financial intelligence unit of the Member State where the firm is established. The format is set by EU implementing standards. Everyone else on the team escalates internally.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 30,
+       "y": 100,
+       "s": 40,
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 50,
+       "y": 160,
+       "text": "Analyst",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        86,
+        122,
+        150,
+        122
+       ],
+       "tone": "mute",
+       "d": 0.7,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 90,
+       "w": 130,
+       "h": 64,
+       "text": "Compliance\nofficer",
+       "tone": "brand",
+       "d": 0.8
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        280,
+        122,
+        350,
+        122
+       ],
+       "tone": "crit",
+       "d": 1.5,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 350,
+       "y": 90,
+       "w": 115,
+       "h": 64,
+       "text": "FIU",
+       "tone": "crit",
+       "d": 1.9
+      }
+     ]
+    },
+    {
+     "title": "Write a narrative that stands alone",
+     "caption": "Good practice: state the facts in order. Who is the customer, what happened and when, why it does not fit the profile, what you checked, and why you suspect. Stick to facts and reasons. Leave out speculation and accusations. (Good practice, not a legal template.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 24,
+       "w": 450,
+       "h": 40,
+       "text": "Who is the customer",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 76,
+       "w": 450,
+       "h": 40,
+       "text": "What happened, when, how much",
+       "tone": "brand",
+       "d": 0.7
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 128,
+       "w": 450,
+       "h": 40,
+       "text": "Why it does not fit the profile",
+       "tone": "brand",
+       "d": 1.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 180,
+       "w": 450,
+       "h": 40,
+       "text": "What you checked",
+       "tone": "brand",
+       "d": 1.7
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 232,
+       "w": 450,
+       "h": 40,
+       "text": "Why you suspect: facts, not guesses",
+       "tone": "crit",
+       "d": 2.2
+      }
+     ]
+    },
+    {
+     "title": "Timing, silence and protection",
+     "caption": "Before the report, refrain from carrying out a transaction you know or suspect is criminal. Reply to FIU requests within 5 working days. Never tell the customer: tipping off is prohibited. Reports made in good faith do not breach confidentiality restrictions.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 215,
+       "h": 70,
+       "text": "Hold the\ntransaction",
+       "tone": "warn",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 40,
+       "w": 215,
+       "h": 70,
+       "text": "Answer FIU\nin 5 days",
+       "tone": "brand",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 135,
+       "w": 215,
+       "h": 70,
+       "text": "Do not tell\nthe customer",
+       "tone": "crit",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 135,
+       "w": 215,
+       "h": 70,
+       "text": "Good faith:\nprotected",
+       "tone": "ok",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 250,
+       "text": "The customer must never know",
+       "tone": "crit",
+       "d": 2.6
+      }
+     ]
+    },
+    {
+     "title": "Risks: what goes wrong",
+     "caption": "Failing to report, reporting late, a vague report, or tipping the customer off are all failures. Breaches of the reporting obligations can lead to pecuniary sanctions. Warning signs: sitting on a suspicion because the customer is valuable, or discussing a report with the customer.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Not reported",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Reported late",
+       "tone": "warn",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Vague report",
+       "tone": "warn",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Customer tipped off",
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 226,
+       "text": "Red flag: \"they are a good customer\"",
+       "tone": "crit",
+       "d": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dora-mica-primer",
+   "title": "DORA and MiCA: a short primer",
+   "scenes": [
+    {
+     "title": "Two more rulebooks",
+     "caption": "AML is not the only EU framework for payment, e-money and crypto firms. DORA is about digital operational resilience: keeping ICT systems safe and running. MiCA is about crypto-assets: who may offer services and under what conditions.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 60,
+       "w": 200,
+       "h": 100,
+       "text": "DORA\nICT resilience",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 260,
+       "y": 60,
+       "w": 200,
+       "h": 100,
+       "text": "MiCA\ncrypto-assets",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 215,
+       "text": "Separate from AML, but they overlap",
+       "tone": "mute",
+       "d": 1.8
+      }
+     ]
+    },
+    {
+     "title": "DORA: who and what",
+     "caption": "DORA applies to financial entities including payment institutions, e-money institutions and crypto-asset service providers. It sets uniform requirements for ICT risk management, incident reporting, resilience testing and the management of ICT third-party risk.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 32,
+       "w": 215,
+       "h": 56,
+       "text": "ICT risk management",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 32,
+       "w": 215,
+       "h": 56,
+       "text": "Incident reporting",
+       "tone": "brand",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 106,
+       "w": 215,
+       "h": 56,
+       "text": "Resilience testing",
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 106,
+       "w": 215,
+       "h": 56,
+       "text": "Third-party risk",
+       "tone": "brand",
+       "d": 2.0
+      },
+      {
+       "t": "icon",
+       "k": "server",
+       "x": 208,
+       "y": 184,
+       "s": 40,
+       "tone": "mute",
+       "d": 2.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 250,
+       "text": "Applies from 17 January 2025",
+       "tone": "mute",
+       "d": 2.8
+      }
+     ]
+    },
+    {
+     "title": "DORA: the board owns it",
+     "caption": "The management body defines, approves, oversees and is responsible for the ICT risk management framework, and bears ultimate responsibility for managing ICT risk. It is not something to leave to the IT department alone.",
+     "items": [
+      {
+       "t": "box",
+       "x": 150,
+       "y": 20,
+       "w": 180,
+       "h": 60,
+       "text": "Management body",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        80,
+        240,
+        120
+       ],
+       "tone": "violet",
+       "d": 0.9,
+       "dur": 0.5
+      },
+      {
+       "t": "text",
+       "x": 330,
+       "y": 102,
+       "text": "ultimate\nresponsibility",
+       "tone": "violet",
+       "d": 1.1
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 120,
+       "w": 180,
+       "h": 60,
+       "text": "ICT risk\nframework",
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        240,
+        180,
+        240,
+        215
+       ],
+       "tone": "mute",
+       "d": 2.0,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 150,
+       "y": 215,
+       "w": 180,
+       "h": 50,
+       "text": "IT and control\nfunctions",
+       "tone": "mute",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "DORA: incidents and suppliers",
+     "caption": "Record all ICT-related incidents, classify them, and report major ones to the competent authority. When you outsource ICT services you stay fully responsible: you manage third-party risk and put the key terms in a written contract.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 140,
+       "h": 60,
+       "text": "Incident",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        155,
+        70,
+        185,
+        70
+       ],
+       "tone": "mute",
+       "d": 0.7,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 185,
+       "y": 40,
+       "w": 140,
+       "h": 60,
+       "text": "Record and\nclassify",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        325,
+        70,
+        355,
+        70
+       ],
+       "tone": "mute",
+       "d": 1.5,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 355,
+       "y": 40,
+       "w": 110,
+       "h": 60,
+       "text": "Report\nmajor",
+       "tone": "crit",
+       "d": 1.6
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 140,
+       "w": 200,
+       "h": 60,
+       "text": "ICT supplier",
+       "tone": "mute",
+       "d": 2.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        215,
+        170,
+        265,
+        170
+       ],
+       "tone": "mute",
+       "d": 2.6,
+       "dur": 0.4
+      },
+      {
+       "t": "box",
+       "x": 265,
+       "y": 140,
+       "w": 200,
+       "h": 60,
+       "text": "You stay\nresponsible",
+       "tone": "violet",
+       "d": 2.8
+      }
+     ]
+    },
+    {
+     "title": "MiCA: no authorisation, no service",
+     "caption": "A person must not provide crypto-asset services in the Union unless authorised as a crypto-asset service provider, or an entity such as a credit institution or e-money institution allowed to do so after notifying its authority. MiCA applies in general from 30 December 2024.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 100,
+       "w": 150,
+       "h": 70,
+       "text": "Wants to offer\ncrypto services",
+       "tone": "mute",
+       "d": 0.2
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        170,
+        120,
+        240,
+        70
+       ],
+       "tone": "ok",
+       "d": 0.9,
+       "dur": 0.5
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        170,
+        150,
+        240,
+        205
+       ],
+       "tone": "crit",
+       "d": 1.3,
+       "dur": 0.5
+      },
+      {
+       "t": "box",
+       "x": 240,
+       "y": 40,
+       "w": 225,
+       "h": 60,
+       "text": "Authorised CASP\nor allowed entity",
+       "tone": "ok",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 240,
+       "y": 176,
+       "w": 225,
+       "h": 60,
+       "text": "No authorisation:\nnot allowed",
+       "tone": "crit",
+       "d": 1.9
+      }
+     ]
+    },
+    {
+     "title": "Risks: where AML meets them",
+     "caption": "Crypto-asset service providers are also AML obliged entities, and crypto transfers must carry originator and beneficiary information. Risks: offering services without authorisation, ICT outages or unreported incidents, and weak control of outsourced providers. (Primer only: verify scope for your firm.)",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Unauthorised\nservices",
+       "tone": "crit",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 28,
+       "w": 215,
+       "h": 64,
+       "text": "Unreported\nICT incident",
+       "tone": "crit",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Weak supplier\ncontrol",
+       "tone": "warn",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 108,
+       "w": 215,
+       "h": 64,
+       "text": "Missing transfer\ninformation",
+       "tone": "warn",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 226,
+       "text": "Check scope for your own firm",
+       "tone": "mute",
+       "d": 2.6
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
