@@ -1,0 +1,1394 @@
+{
+ "_meta": {
+  "name": "Policies and procedures library (demo seed)",
+  "version": 1,
+  "org": "CF Bank (fictional)",
+  "generated": "2026-10-16",
+  "disclaimer": "Demo data for the fictional CF Bank: policies, people, versions and acknowledgements are illustrative, not legal advice. Dates are relative to the day you first open the page. Legal references are checked against docs/data/laws."
+ },
+ "teams": [
+  "Compliance",
+  "Executive Committee",
+  "Onboarding",
+  "Payments Operations",
+  "Technology",
+  "Customer Support",
+  "Finance & Treasury"
+ ],
+ "staff": [
+  {
+   "id": "s01",
+   "name": "T. Nguyen",
+   "team": "Compliance",
+   "role": "Compliance Officer"
+  },
+  {
+   "id": "s02",
+   "name": "Sanmi O.",
+   "team": "Compliance",
+   "role": "AML analyst"
+  },
+  {
+   "id": "s03",
+   "name": "M. Van Damme",
+   "team": "Compliance",
+   "role": "KYC quality lead"
+  },
+  {
+   "id": "s04",
+   "name": "L. Peeters",
+   "team": "Executive Committee",
+   "role": "CEO"
+  },
+  {
+   "id": "s05",
+   "name": "R. Haddad",
+   "team": "Executive Committee",
+   "role": "Compliance manager (management body)"
+  },
+  {
+   "id": "s06",
+   "name": "I. Claes",
+   "team": "Onboarding",
+   "role": "Head of Onboarding"
+  },
+  {
+   "id": "s07",
+   "name": "J. Okafor",
+   "team": "Onboarding",
+   "role": "KYC analyst"
+  },
+  {
+   "id": "s08",
+   "name": "E. Mertens",
+   "team": "Onboarding",
+   "role": "KYC analyst"
+  },
+  {
+   "id": "s09",
+   "name": "D. Rossi",
+   "team": "Payments Operations",
+   "role": "Head of Payments Operations"
+  },
+  {
+   "id": "s10",
+   "name": "K. Wouters",
+   "team": "Payments Operations",
+   "role": "Operations analyst"
+  },
+  {
+   "id": "s11",
+   "name": "P. Dubois",
+   "team": "Payments Operations",
+   "role": "Sanctions screening analyst"
+  },
+  {
+   "id": "s12",
+   "name": "A. Singh",
+   "team": "Technology",
+   "role": "Head of Technology"
+  },
+  {
+   "id": "s13",
+   "name": "V. Lambert",
+   "team": "Technology",
+   "role": "Platform engineer"
+  },
+  {
+   "id": "s14",
+   "name": "H. Jacobs",
+   "team": "Customer Support",
+   "role": "Support lead"
+  },
+  {
+   "id": "s15",
+   "name": "N. Fontaine",
+   "team": "Customer Support",
+   "role": "Support agent"
+  },
+  {
+   "id": "s16",
+   "name": "C. Maes",
+   "team": "Finance & Treasury",
+   "role": "Finance controller"
+  }
+ ],
+ "policies": [
+  {
+   "id": "POL-01",
+   "ref": "CFB-AML-01",
+   "title": "AML/CFT policy",
+   "kind": "Policy",
+   "owner": "T. Nguyen",
+   "approver": "R. Haddad",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "*"
+   ],
+   "obligation_ids": [
+    "AMLR-art26",
+    "AMLR-art34"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "9",
+     "quote": "shall cover all the activities of the obliged entity that fall under the scope of this Regulation"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10",
+     "quote": "shall be drawn up by the compliance officer and approved by the management body in its management function"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "18",
+     "quote": "the approval of the obliged entity’s internal policies, procedures and controls pursuant to Article 9"
+    }
+   ],
+   "template": "aml-policy",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -900,
+     "by": "T. Nguyen",
+     "note": "Initial policy.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# AML/CFT policy\n\n## 1. Purpose and scope\nThis policy sets out how CF Bank manages the risk that it is used for money laundering or terrorist financing. It applies to every business line, to all employees, and to agents and outsourced providers acting for the bank.\n\nIt is supported by procedures for customer due diligence, sanctions screening, suspicious-transaction reporting and record keeping.\n\n## 2. Governance\n- The Executive Committee ensures that policies and controls match the bank's risk exposure and are implemented.\n- The Compliance Officer runs the policies, procedures and controls day to day, is the contact point for supervisors and transmits reports to the FIU.\n- Approval of this policy and of the business-wide risk assessment stays with the bank and is never outsourced.\n\n## 3. Business-wide risk assessment\nThe Compliance Officer drafts the business-wide risk assessment each year and the Executive Committee approves it.\n\n## 4. Risk-based approach\n- Customers are assigned a risk tier at onboarding using the scoring model owned by Compliance.\n- Standard due diligence applies to all customers; enhanced measures apply to higher-risk customers and PEPs, as set out in the EDD and PEP procedure.\n- The decision on a customer's risk profile is taken by an employee of the bank, never by a provider.\n\n## 5. Monitoring and reporting\nTransactions are monitored against what the bank knows about the customer. Detection criteria are approved by the Compliance Officer. Staff escalate suspicions as described in the suspicious-transaction reporting procedure.\n\n## 6. Monitoring this policy\nCompliance tests the controls on a schedule set in the controls library. Deficiencies are logged with an owner and a due date until closed. The Compliance Officer reports significant weaknesses to the Executive Committee.\n\n## 7. Approval and review\nThis policy is approved by the Executive Committee member responsible for compliance and reviewed every 24 months.\n",
+     "approvedBy": "L. Peeters",
+     "approvedOff": -894,
+     "selfApproved": false
+    },
+    {
+     "ver": "2.0.0",
+     "dOff": -540,
+     "by": "T. Nguyen",
+     "note": "Aligned to the group risk appetite statement; added a sanctions section.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# AML/CFT policy\n\n## 1. Purpose and scope\nThis policy sets out how CF Bank manages the risk that it is used for money laundering or terrorist financing. It applies to every business line, to all employees, and to agents and outsourced providers acting for the bank.\n\nIt is supported by procedures for customer due diligence, sanctions screening, suspicious-transaction reporting and record keeping.\n\n## 2. Governance\n- The Executive Committee ensures that policies and controls match the bank's risk exposure and are implemented.\n- The Compliance Officer runs the policies, procedures and controls day to day, is the contact point for supervisors and transmits reports to the FIU.\n- Approval of this policy and of the business-wide risk assessment stays with the bank and is never outsourced.\n\n## 3. Business-wide risk assessment\nThe Compliance Officer drafts the business-wide risk assessment each year and the Executive Committee approves it.\n\n## 4. Risk-based approach\n- Customers are assigned a risk tier at onboarding using the scoring model owned by Compliance.\n- Standard due diligence applies to all customers; enhanced measures apply to higher-risk customers and PEPs, as set out in the EDD and PEP procedure.\n- The decision on a customer's risk profile is taken by an employee of the bank, never by a provider.\n\n## 5. Monitoring and reporting\nTransactions are monitored against what the bank knows about the customer. Detection criteria are approved by the Compliance Officer. Staff escalate suspicions as described in the suspicious-transaction reporting procedure.\n\n## 6. Sanctions\nThe bank applies targeted financial sanctions and takes measures against the risk of non-implementation and evasion, as described in the sanctions screening procedure.\n\n## 7. Monitoring this policy\nCompliance tests the controls on a schedule set in the controls library. Deficiencies are logged with an owner and a due date until closed. The Compliance Officer reports significant weaknesses to the Executive Committee.\n\n## 8. Approval and review\nThis policy is approved by the Executive Committee member responsible for compliance and reviewed every 12 months, or sooner after a material change in risk, law or supervisory expectations.\n",
+     "approvedBy": "L. Peeters",
+     "approvedOff": -536,
+     "selfApproved": false
+    },
+    {
+     "ver": "2.1.0",
+     "dOff": -380,
+     "by": "T. Nguyen",
+     "note": "Clarified escalation of significant weaknesses.",
+     "status": "superseded",
+     "reattest": false,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# AML/CFT policy\n\n## 1. Purpose and scope\nThis policy sets out how CF Bank manages the risk that it is used for money laundering or terrorist financing. It applies to every business line, to all employees, and to agents and outsourced providers acting for the bank.\n\nIt is supported by procedures for customer due diligence, sanctions screening, suspicious-transaction reporting and record keeping.\n\n## 2. Governance\n- The Executive Committee member responsible for compliance (the compliance manager) ensures that policies and controls match the bank's risk exposure and are implemented.\n- The Compliance Officer runs the policies, procedures and controls day to day, is the contact point for supervisors and transmits reports to the FIU.\n- Approval of this policy and of the business-wide risk assessment stays with the bank and is never outsourced.\n\n## 3. Business-wide risk assessment\nThe Compliance Officer drafts the business-wide risk assessment each year and the Executive Committee approves it.\n\n## 4. Risk-based approach\n- Customers are assigned a risk tier at onboarding using the scoring model owned by Compliance.\n- Standard due diligence applies to all customers; enhanced measures apply to higher-risk customers and PEPs, as set out in the EDD and PEP procedure.\n- The decision on a customer's risk profile is taken by an employee of the bank, never by a provider.\n\n## 5. Monitoring and reporting\nTransactions are monitored against what the bank knows about the customer. Detection criteria are approved by the Compliance Officer. Staff escalate suspicions as described in the suspicious-transaction reporting procedure.\n\n## 6. Sanctions\nThe bank applies targeted financial sanctions and takes measures against the risk of non-implementation and evasion, as described in the sanctions screening procedure.\n\n## 7. Monitoring this policy\nCompliance tests the controls on a schedule set in the controls library. Deficiencies are logged with an owner and a due date until closed. The Compliance Officer reports significant weaknesses to the compliance manager.\n\n## 8. Approval and review\nThis policy is approved by the Executive Committee member responsible for compliance and reviewed every 12 months, or sooner after a material change in risk, law or supervisory expectations.\n",
+     "approvedBy": "L. Peeters",
+     "approvedOff": -377,
+     "selfApproved": false
+    },
+    {
+     "ver": "3.0.0",
+     "dOff": -200,
+     "by": "T. Nguyen",
+     "note": "Restructured around the business-wide risk assessment; new training and integrity sections; compliance manager role added.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# AML/CFT policy\n\n## 1. Purpose and scope\nThis policy sets out how CF Bank manages the risk that it is used for money laundering or terrorist financing. It applies to every business line, to all employees, and to agents and outsourced providers acting for the bank.\n\nIt is supported by procedures for customer due diligence, enhanced due diligence and PEPs, sanctions screening, suspicious-transaction reporting, record keeping and training.\n\n## 2. Governance\n- The Executive Committee member responsible for compliance (the compliance manager) ensures that policies and controls match the bank's risk exposure and are implemented.\n- The Compliance Officer runs the policies, procedures and controls day to day, is the contact point for supervisors and transmits reports to the FIU.\n- Approval of this policy and of the business-wide risk assessment stays with the bank and is never outsourced.\n\n## 3. Business-wide risk assessment\nThe Compliance Officer drafts the business-wide risk assessment each year. The Executive Committee approves it. It is refreshed earlier when a new product, channel, technology or customer segment is launched, or when an internal or external event changes the bank's exposure.\n\n## 4. Risk-based approach\n- Customers are assigned a risk tier at onboarding using the scoring model owned by Compliance.\n- Standard due diligence applies to all customers; enhanced measures apply to higher-risk customers and PEPs, as set out in the EDD and PEP procedure.\n- The decision on a customer's risk profile is taken by an employee of the bank, never by a provider.\n\n## 5. Monitoring and reporting\nTransactions are monitored against what the bank knows about the customer. Detection criteria are approved by the Compliance Officer. Staff escalate suspicions as described in the suspicious-transaction reporting procedure.\n\n## 6. Sanctions\nThe bank applies targeted financial sanctions and takes measures against the risk of non-implementation and evasion, as described in the sanctions screening procedure.\n\n## 7. Training and integrity\nStaff complete role-based training and confirm that they have read this policy at each new version. Staff in AML/CFT roles are assessed before they start and at regular intervals.\n\n## 8. Monitoring this policy\nCompliance tests the controls on a schedule set in the controls library. Deficiencies are logged with an owner and a due date until closed. The Compliance Officer reports significant weaknesses to the compliance manager.\n\n## 9. Approval and review\nThis policy is approved by the Executive Committee member responsible for compliance and reviewed every 12 months, or sooner after a material change in risk, law or supervisory expectations.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -196,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -196
+  },
+  {
+   "id": "POL-02",
+   "ref": "CFB-CDD-02",
+   "title": "Customer due diligence procedure",
+   "kind": "Procedure",
+   "owner": "I. Claes",
+   "approver": "T. Nguyen",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "Onboarding",
+    "Compliance",
+    "Customer Support"
+   ],
+   "obligation_ids": [
+    "AMLR-art19",
+    "AMLR-art20",
+    "AMLR-art21",
+    "AMLR-art22",
+    "AMLR-art23",
+    "AMLR-art25"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "19"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "21"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "22"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "23"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "25"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "34"
+    }
+   ],
+   "template": "cdd-procedure",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "2.0.0",
+     "dOff": -600,
+     "by": "I. Claes",
+     "note": "Rewrote after the onboarding tool migration.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Customer due diligence procedure\n\n## 1. Purpose and scope\nStep-by-step onboarding and ongoing due diligence for retail and business customers of CF Bank. It is run by Onboarding, with Compliance as second line.\n\n## 2. When due diligence applies\n1. When a business relationship is established.\n2. For an occasional transaction above the applicable threshold.\n3. Whenever money laundering or terrorist financing is suspected, whatever the amount.\n4. When there are doubts about previously collected identification data.\n5. When there are doubts about whether the person you deal with is the customer or an authorised representative.\n\n## 3. Identification and verification\n| Customer type | Minimum data | Verification |\n|---|---|---|\n| Natural person | Name, date of birth, nationality, address | Identity document check, liveness check |\n| Legal entity | Legal name, registration number, registered address, representatives | Registry extract, representative identity check |\n| Representative | As for a natural person plus proof of authority | Mandate document |\n\nVerification is completed before the account is activated. A second analyst checks high-tier business files before activation.\n\n## 4. Purpose and nature of the relationship\nOnboarding records the purpose of the account and the expected activity in the customer file.\n\n## 5. Risk classification\nThe scoring model assigns a tier (standard or high). High-tier files require approval by the Head of Onboarding and are referred to the EDD and PEP procedure.\n\n## 6. If due diligence cannot be completed\nThe account is not opened and no transaction is carried out. For an existing customer the relationship is reviewed for termination. Compliance assesses whether the case must be reported under the suspicious-transaction reporting procedure.\n\n## 7. Ongoing due diligence\n- Standard tier: file refresh every 36 months.\n- High tier: file refresh every 12 months.\n\n## 8. Records and quality assurance\nAll documents and decisions are stored in the customer file and kept as set out in the record keeping policy. The KYC quality lead samples files each month.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -595,
+     "selfApproved": false
+    },
+    {
+     "ver": "2.1.0",
+     "dOff": -400,
+     "by": "I. Claes",
+     "note": "Source of funds and event-driven reviews added to the file standard.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Customer due diligence procedure\n\n## 1. Purpose and scope\nStep-by-step onboarding and ongoing due diligence for retail and business customers of CF Bank. It is run by Onboarding, with Compliance as second line.\n\n## 2. When due diligence applies\n1. When a business relationship is established.\n2. For an occasional transaction above the applicable threshold.\n3. Whenever money laundering or terrorist financing is suspected, whatever the amount.\n4. When there are doubts about previously collected identification data.\n5. When there are doubts about whether the person you deal with is the customer or an authorised representative.\n\n## 3. Identification and verification\n| Customer type | Minimum data | Verification |\n|---|---|---|\n| Natural person | Name, date of birth, nationality, address | Identity document check, liveness check |\n| Legal entity | Legal name, registration number, registered address, representatives | Registry extract, representative identity check |\n| Representative | As for a natural person plus proof of authority | Mandate document |\n\nVerification is completed before the account is activated. A second analyst checks every business file before activation.\n\n## 4. Purpose and nature of the relationship\nOnboarding records the purpose of the account, the expected activity and the source of funds in the customer file. Transaction monitoring compares actual activity against it.\n\n## 5. Risk classification\nThe scoring model assigns a tier (standard or high). High-tier files require approval by the Head of Onboarding and are referred to the EDD and PEP procedure.\n\n## 6. If due diligence cannot be completed\nThe account is not opened and no transaction is carried out. For an existing customer the relationship is reviewed for termination. Compliance assesses whether the case must be reported under the suspicious-transaction reporting procedure.\n\n## 7. Ongoing due diligence\n- Standard tier: file refresh every 36 months.\n- High tier: file refresh every 12 months.\n\n## 8. Records and quality assurance\nAll documents and decisions are stored in the customer file and kept as set out in the record keeping policy. The KYC quality lead samples files each month.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -395,
+     "selfApproved": false
+    },
+    {
+     "ver": "2.2.0",
+     "dOff": -6,
+     "by": "I. Claes",
+     "note": "Adds handling of beneficial-owner register discrepancies (new section 9). Submitted for approval.",
+     "status": "in_review",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Customer due diligence procedure\n\n## 1. Purpose and scope\nStep-by-step onboarding and ongoing due diligence for retail and business customers of CF Bank. It is run by Onboarding, with Compliance as second line.\n\n## 2. When due diligence applies\n1. When a business relationship is established.\n2. For an occasional transaction above the applicable threshold.\n3. Whenever money laundering or terrorist financing is suspected, whatever the amount.\n4. When there are doubts about previously collected identification data.\n5. When there are doubts about whether the person you deal with is the customer or an authorised representative.\n\n## 3. Identification and verification\n| Customer type | Minimum data | Verification |\n|---|---|---|\n| Natural person | Name, date of birth, nationality, address | Identity document check, liveness check |\n| Legal entity | Legal name, registration number, registered address, representatives | Registry extract, representative identity check |\n| Representative | As for a natural person plus proof of authority | Mandate document |\n\nVerification is completed before the account is activated. A second analyst checks every business file before activation.\n\n## 4. Purpose and nature of the relationship\nOnboarding records the purpose of the account, the expected activity and the source of funds in the customer file. Transaction monitoring compares actual activity against it.\n\n## 5. Risk classification\nThe scoring model assigns a tier (standard or high). High-tier files require approval by the Head of Onboarding and are referred to the EDD and PEP procedure.\n\n## 6. If due diligence cannot be completed\nThe account is not opened and no transaction is carried out. For an existing customer the relationship is reviewed for termination. Compliance assesses whether the case must be reported under the suspicious-transaction reporting procedure.\n\n## 7. Ongoing due diligence\n- Standard tier: file refresh every 36 months.\n- High tier: file refresh every 12 months.\n- Event-driven review on trigger events such as a change of ownership or an adverse-media hit.\n\n## 8. Records and quality assurance\nAll documents and decisions are stored in the customer file and kept as set out in the record keeping policy. The KYC quality lead samples files each month.\n\n## 9. Beneficial-owner register discrepancies\nWhen the beneficial ownership information found during due diligence differs from the national beneficial ownership register, the analyst records the difference and escalates it to Compliance, who reports the discrepancy to the register. The case stays open until Compliance confirms the report.\n"
+    }
+   ],
+   "lastReviewedOff": -395
+  },
+  {
+   "id": "POL-03",
+   "ref": "CFB-EDD-03",
+   "title": "Enhanced due diligence and PEP procedure",
+   "kind": "Procedure",
+   "owner": "T. Nguyen",
+   "approver": "R. Haddad",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "Onboarding",
+    "Compliance"
+   ],
+   "obligation_ids": [
+    "AMLR-art34",
+    "AMLR-art42",
+    "AMLR-art46"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "34"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "42"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "46"
+    }
+   ],
+   "template": "edd-pep",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "0.1.0",
+     "dOff": -70,
+     "by": "T. Nguyen",
+     "note": "Outline created from the RegRadar template.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Enhanced due diligence and PEP procedure\n\n## 1. Purpose and scope\nThis procedure applies to customers classified as high risk and to politically exposed persons (PEPs), their family members and known close associates.\n\n## 2. When enhanced due diligence is required\nEnhanced due diligence applies when the risk tier is high, when screening identifies a PEP, or when a transaction is complex, unusually large or has no apparent economic purpose.\n\n> TO ANSWER: Which further situations does CF Bank treat as automatic EDD triggers, and who confirms them?\n\n## 3. Enhanced measures\n- Additional information on the customer and the purpose of the relationship.\n- Verification of source of funds.\n- Enhanced ongoing monitoring with a shorter review cycle.\n\n## 4. Identifying PEPs\n> TO ANSWER: How are PEPs identified at onboarding and afterwards?\n\n## 5. Senior management approval\n> TO ANSWER: Who approves PEP relationships?\n\n## 6. Family members and close associates\n> TO ANSWER: How are family members and known close associates identified, and which PEP measures apply to them?\n\n## 7. Decision records\n> TO ANSWER: Where are approvals and rationale recorded?\n"
+    },
+    {
+     "ver": "0.2.0",
+     "dOff": -40,
+     "by": "T. Nguyen",
+     "note": "Added enhanced measures and a decision-record section.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Enhanced due diligence and PEP procedure\n\n## 1. Purpose and scope\nThis procedure applies to customers classified as high risk and to politically exposed persons (PEPs), their family members and known close associates.\n\n## 2. When enhanced due diligence is required\nEnhanced due diligence applies when the risk tier is high, when screening identifies a PEP, or when a transaction is complex, unusually large or has no apparent economic purpose.\n\n> TO ANSWER: Which further situations does CF Bank treat as automatic EDD triggers, and who confirms them?\n\n## 3. Enhanced measures\n- Additional information on the customer and the purpose of the relationship.\n- Verification of source of funds.\n- Enhanced ongoing monitoring with a shorter review cycle.\n\n## 4. Identifying PEPs\nThe customer, the beneficial owner and any person on whose behalf a transaction is conducted are screened against the PEP list at onboarding and daily afterwards.\n\n## 5. Senior management approval\nNo PEP relationship is opened or continued without approval from a member of senior management. The approver sees the source-of-wealth evidence and the screening results.\n\n> TO ANSWER: Who is the named senior management approver and who deputises?\n\n## 6. Family members and close associates\n> TO ANSWER: How are family members and known close associates identified, and which PEP measures apply to them?\n\n## 7. Decision records\n> TO ANSWER: Where are approvals and rationale recorded?\n"
+    },
+    {
+     "ver": "0.3.0",
+     "dOff": -9,
+     "by": "T. Nguyen",
+     "note": "Added PEP screening, senior management approval and source-of-wealth checks. Four sections still open.",
+     "status": "draft",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Enhanced due diligence and PEP procedure\n\n## 1. Purpose and scope\nThis procedure applies to customers classified as high risk and to politically exposed persons (PEPs), their family members and known close associates.\n\n## 2. When enhanced due diligence is required\nEnhanced due diligence applies when the risk tier is high, when screening identifies a PEP, or when a transaction is complex, unusually large or has no apparent economic purpose.\n\n> TO ANSWER: Which further situations does CF Bank treat as automatic EDD triggers, and who confirms them?\n\n## 3. Enhanced measures\n- Additional information on the customer and the purpose of the relationship.\n- Verification of source of wealth and source of funds.\n- Enhanced ongoing monitoring with a shorter review cycle.\n\n## 4. Identifying PEPs\nThe customer, the beneficial owner and any person on whose behalf a transaction is conducted are screened against the PEP list at onboarding and daily afterwards.\n\n## 5. Senior management approval\nNo PEP relationship is opened or continued without approval from a member of senior management. The approver sees the source-of-wealth evidence and the screening results.\n\n> TO ANSWER: Who is the named senior management approver and who deputises?\n\n## 6. Family members and close associates\n> TO ANSWER: How are family members and known close associates identified, and which PEP measures apply to them?\n\n## 7. Duration of PEP treatment\n> TO ANSWER: How long, and on what basis, is a person still treated as a PEP after leaving office?\n\n## 8. Decision records\nApprovals, rationale and monitoring results are recorded in the customer file.\n"
+    }
+   ],
+   "lastReviewedOff": null
+  },
+  {
+   "id": "POL-04",
+   "ref": "CFB-SAN-04",
+   "title": "Sanctions screening procedure",
+   "kind": "Procedure",
+   "owner": "D. Rossi",
+   "approver": "T. Nguyen",
+   "cycleMonths": 6,
+   "attestDays": 14,
+   "audience": [
+    "Payments Operations",
+    "Onboarding",
+    "Compliance"
+   ],
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "9",
+     "quote": "mitigate and manage the risks of non-implementation and evasion of targeted financial sanctions"
+    },
+    {
+     "celex": "32023R1113",
+     "art": "23",
+     "quote": "shall have in place internal policies, procedures and controls to ensure the implementation of Union and national restrictive measures"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11"
+    }
+   ],
+   "template": "sanctions",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -330,
+     "by": "D. Rossi",
+     "note": "First version.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Sanctions screening procedure\n\n## 1. Purpose and scope\nHow CF Bank screens customers, beneficial owners, representatives, counterparties and payment parties against targeted financial sanctions and other restrictive measures.\n\n## 2. Lists\n- The Union consolidated lists and the applicable national lists are loaded into the screening engine.\n- Payments Operations confirms each list update has been applied within one working day.\n\n## 3. When screening happens\n| Event | Screening |\n|---|---|\n| Onboarding | All parties, before activation |\n| Ongoing | Full rescreen of the customer base weekly |\n| Payments | Every incoming and outgoing payment before release |\n\n## 4. Alert handling\n1. The first-line analyst reviews the alert within one working day and records the evidence.\n2. A potential true match is escalated to the Compliance Officer immediately, and the payment is released only after review.\n3. Only the Compliance Officer can confirm a match and decide on freezing and reporting.\n4. A second analyst reviews closures on request.\n\n## 5. Evasion risk and tuning\nCompliance assesses the risk of non-implementation and evasion of sanctions as part of the business-wide risk assessment. Matching thresholds are changed only after testing and Compliance Officer approval.\n\n## 6. Records\nScreening results, alert decisions and list versions are kept as set out in the record keeping policy.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -326,
+     "selfApproved": false
+    },
+    {
+     "ver": "1.1.0",
+     "dOff": -240,
+     "by": "D. Rossi",
+     "note": "Alert review times tightened.",
+     "status": "superseded",
+     "reattest": false,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Sanctions screening procedure\n\n## 1. Purpose and scope\nHow CF Bank screens customers, beneficial owners, representatives, counterparties and payment parties against targeted financial sanctions and other restrictive measures.\n\n## 2. Lists\n- The Union consolidated lists and the applicable national lists are loaded into the screening engine.\n- Payments Operations confirms each list update has been applied within one working day.\n\n## 3. When screening happens\n| Event | Screening |\n|---|---|\n| Onboarding | All parties, before activation |\n| Ongoing | Full rescreen of the customer base daily |\n| Payments | Every incoming and outgoing payment before release |\n\n## 4. Alert handling\n1. The first-line analyst reviews the alert within four hours and records the evidence.\n2. A potential true match is escalated to the Compliance Officer immediately, and the payment is released only after review.\n3. Only the Compliance Officer can confirm a match and decide on freezing and reporting.\n4. A second analyst reviews closures on request.\n\n## 5. Evasion risk and tuning\nCompliance assesses the risk of non-implementation and evasion of sanctions as part of the business-wide risk assessment. Matching thresholds are changed only after testing and Compliance Officer approval.\n\n## 6. Records\nScreening results, alert decisions and list versions are kept as set out in the record keeping policy.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -236,
+     "selfApproved": false
+    },
+    {
+     "ver": "1.2.0",
+     "dOff": -150,
+     "by": "D. Rossi",
+     "note": "Daily rescreen of the customer base; second-analyst closure review; hold payments on potential match.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Sanctions screening procedure\n\n## 1. Purpose and scope\nHow CF Bank screens customers, beneficial owners, representatives, counterparties and payment parties against targeted financial sanctions and other restrictive measures.\n\n## 2. Lists\n- The Union consolidated lists and the applicable national lists are loaded into the screening engine.\n- Payments Operations confirms each list update has been applied within one working day.\n\n## 3. When screening happens\n| Event | Screening |\n|---|---|\n| Onboarding | All parties, before activation |\n| Ongoing | Full rescreen of the customer base daily |\n| Payments | Every incoming and outgoing payment before release |\n\n## 4. Alert handling\n1. The first-line analyst reviews the alert within four hours and records the evidence.\n2. A potential true match is escalated to the Compliance Officer immediately, and the payment stays on hold.\n3. Only the Compliance Officer can confirm a match and decide on freezing and reporting.\n4. A second analyst reviews every closure of an alert that scored above the high threshold.\n\n## 5. Evasion risk and tuning\nCompliance assesses the risk of non-implementation and evasion of sanctions as part of the business-wide risk assessment. Matching thresholds are changed only after testing and Compliance Officer approval.\n\n## 6. Records\nScreening results, alert decisions and list versions are kept as set out in the record keeping policy.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -148,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -148
+  },
+  {
+   "id": "POL-05",
+   "ref": "CFB-STR-05",
+   "title": "Suspicious transaction reporting procedure",
+   "kind": "Procedure",
+   "owner": "T. Nguyen",
+   "approver": "R. Haddad",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "*"
+   ],
+   "obligation_ids": [
+    "AMLR-art69"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "69"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "71"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "72"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "73",
+     "quote": "shall not disclose to the customer concerned or to other third persons the fact that transactions or activities are being or have been assessed in accordance with Article 69"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "77"
+    }
+   ],
+   "template": "str-procedure",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [
+    {
+     "dOff": -60,
+     "by": "T. Nguyen",
+     "note": "Mid-cycle check against the FIU channel details: no change needed."
+    }
+   ],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -420,
+     "by": "T. Nguyen",
+     "note": "First version.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Suspicious transaction reporting procedure\n\n## 1. Purpose\nHow any employee of CF Bank escalates a suspicion and how the Compliance Officer assesses and reports it.\n\n## 2. Raising a suspicion\nAny employee who knows, suspects or has reasonable grounds to suspect that funds are the proceeds of criminal activity or are related to terrorist financing raises an internal report the same working day, whatever the amount. This includes attempted transactions and cases where due diligence could not be completed.\n\n## 3. Assessment\nThe Compliance Officer assesses the facts against everything the bank knows about the customer, including the risk profile and the expected activity, and records the assessment and its rationale, whether or not a report follows.\n\n## 4. Decision and filing\n- The Compliance Officer decides whether to report and transmits the report to the FIU.\n- The filing reference is recorded in the case.\n\n## 5. Requests from the FIU\nFIU requests for information are logged on receipt with their deadline and answered by the Compliance Officer. The log is reviewed monthly.\n\n## 6. Holding transactions\nWhere a transaction is suspected to be related to criminal proceeds, it is not carried out until the report is submitted and any instructions from the FIU have been followed.\n\n## 7. No disclosure\nEmployees must not tell the customer or any other third person that a transaction is being assessed or that a report has been or will be made.\n\n## 8. Records and reporting\nAssessments and reports are kept as set out in the record keeping policy. The Compliance Officer reports volumes to management each year.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -415,
+     "selfApproved": false
+    },
+    {
+     "ver": "1.1.0",
+     "dOff": -100,
+     "by": "T. Nguyen",
+     "note": "Deputy filer added; FIU request log reviewed weekly; quarterly reporting to the compliance manager.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Suspicious transaction reporting procedure\n\n## 1. Purpose\nHow any employee of CF Bank escalates a suspicion and how the Compliance Officer assesses and reports it.\n\n## 2. Raising a suspicion\nAny employee who knows, suspects or has reasonable grounds to suspect that funds are the proceeds of criminal activity or are related to terrorist financing raises an internal report the same working day, whatever the amount. This includes attempted transactions and cases where due diligence could not be completed.\n\n## 3. Assessment\nThe Compliance Officer assesses the facts against everything the bank knows about the customer, including the risk profile and the expected activity, and records the assessment and its rationale, whether or not a report follows.\n\n## 4. Decision and filing\n- The Compliance Officer decides whether to report and transmits the report to the FIU.\n- A deputy files when the Compliance Officer is absent.\n- The filing reference is recorded in the case.\n\n## 5. Requests from the FIU\nFIU requests for information are logged on receipt with their deadline and answered by the Compliance Officer. The log is reviewed weekly.\n\n## 6. Holding transactions\nWhere a transaction is suspected to be related to criminal proceeds, it is not carried out until the report is submitted and any instructions from the FIU have been followed.\n\n## 7. No disclosure\nEmployees must not tell the customer or any other third person that a transaction is being assessed or that a report has been or will be made.\n\n## 8. Records and reporting\nAssessments and reports are kept as set out in the record keeping policy. The Compliance Officer reports volumes and quality indicators to the compliance manager each quarter.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -98,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -60
+  },
+  {
+   "id": "POL-06",
+   "ref": "CFB-REC-06",
+   "title": "Record keeping and retention policy",
+   "kind": "Policy",
+   "owner": "M. Van Damme",
+   "approver": "T. Nguyen",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "Compliance",
+    "Onboarding",
+    "Payments Operations",
+    "Technology"
+   ],
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "77",
+     "quote": "shall be retained for a period of 5 years commencing on the date of the termination of the business relationship"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "78"
+    },
+    {
+     "celex": "32023R1113",
+     "art": "26",
+     "quote": "for a period of five years"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "76"
+    }
+   ],
+   "template": "record-keeping",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -330,
+     "by": "M. Van Damme",
+     "note": "First version, consolidating retention rules from three documents.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Record keeping and retention policy\n\n## 1. Purpose\nWhat CF Bank keeps, in what form, for how long, and how it produces and deletes records.\n\n## 2. Records kept\n- Copies of documents and information obtained in customer due diligence.\n- The assessment of every suspicion and any report to the FIU, whether or not a report was made.\n- Supporting evidence and records of transactions.\n- Payer and payee information that accompanies transfers of funds.\n\nRecords are kept unredacted.\n\n## 3. Retention\n| Record | Retention | Starts |\n|---|---|---|\n| Customer due diligence file | 5 years | End of the business relationship |\n| Occasional transaction file | 5 years | Date of the transaction |\n| Transfer information | 5 years | Date of the transfer |\n| Suspicion assessments and reports | 5 years | Date of the assessment |\n\nThe Head of Compliance confirms yearly whether national law requires a longer period for any record type.\n\n## 4. Deletion\nWhen the retention period ends, personal data is deleted unless another legal basis requires it to be kept. Technology confirms deletion in writing.\n\n## 5. Producing records\nCompliance is the single contact point for the FIU and supervisors. Enquiries about whether the bank has had a relationship with a person during the last five years are answered through the secure channel.\n\n## 6. Security and access\nAccess to records is limited by role and logged. Records cannot be altered after storage.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -326,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -326
+  },
+  {
+   "id": "POL-07",
+   "ref": "CFB-ICT-07",
+   "title": "ICT risk and operational resilience policy",
+   "kind": "Policy",
+   "owner": "A. Singh",
+   "approver": "R. Haddad",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "Technology",
+    "Executive Committee",
+    "Payments Operations"
+   ],
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32022R2554",
+     "art": "5",
+     "quote": "The management body of the financial entity shall define, approve, oversee and be responsible for the implementation of all arrangements related to the ICT risk management framework"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "6",
+     "quote": "shall be documented and reviewed at least once a year"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "11"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "17"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "19"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "24"
+    }
+   ],
+   "template": "ict-dora",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -300,
+     "by": "A. Singh",
+     "note": "First version.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# ICT risk and operational resilience policy\n\n## 1. Purpose and scope\nHow CF Bank manages ICT risk and keeps critical and important functions available. It forms part of the overall risk management system.\n\n## 2. Management body responsibilities\nThe Executive Committee approves and reviews this policy, the digital operational resilience strategy, the ICT business continuity policy, the ICT audit plan, the ICT budget and the policy on ICT third-party services. It receives a yearly report on major incidents.\n\n## 3. ICT risk management framework\n- The Head of Technology manages and oversees ICT risk.\n- Risk, control and internal audit functions are kept separate.\n- The framework is documented and reviewed at least once a year and after any major incident.\n\n## 4. Identification\nTechnology maintains an inventory of ICT-supported business functions and assets, classifies them, and reviews the classification at least yearly.\n\n## 5. Protection, detection and response\n| Area | Owner | Standard |\n|---|---|---|\n| Access control | Platform engineering | Role-based, reviewed quarterly |\n| Monitoring and alerts | Platform engineering | 24x7 alerting with defined thresholds |\n| Business continuity | Head of Technology | Plans tested yearly |\n| Backup and restore | Platform engineering | Restore tested yearly |\n\n## 6. Incident management\nAll ICT incidents are recorded and classified by severity and criticality of the services affected. The Head of Technology decides whether an incident is major; Compliance notifies the competent authority.\n\n## 7. Resilience testing\nVulnerability scans run twice a year.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -296,
+     "selfApproved": false
+    },
+    {
+     "ver": "2.0.0",
+     "dOff": -14,
+     "by": "A. Singh",
+     "note": "Management body responsibilities, quarterly third-party reporting, annual testing programme and post-incident learning added.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# ICT risk and operational resilience policy\n\n## 1. Purpose and scope\nHow CF Bank manages ICT risk and keeps critical and important functions available. It forms part of the overall risk management system.\n\n## 2. Management body responsibilities\nThe Executive Committee approves and reviews this policy, the digital operational resilience strategy, the ICT business continuity policy, the ICT audit plan, the ICT budget and the policy on ICT third-party services. It receives a quarterly report on third-party arrangements and major incidents.\n\n## 3. ICT risk management framework\n- The Head of Technology manages and oversees ICT risk.\n- Risk, control and internal audit functions are kept separate.\n- The framework is documented and reviewed at least once a year and after any major incident.\n\n## 4. Identification\nTechnology maintains an inventory of ICT-supported business functions and assets, classifies them, and reviews the classification at least yearly.\n\n## 5. Protection, detection and response\n| Area | Owner | Standard |\n|---|---|---|\n| Access control | Platform engineering | Role-based, reviewed quarterly |\n| Monitoring and alerts | Platform engineering | 24x7 alerting with defined thresholds |\n| Business continuity | Head of Technology | Plans tested yearly |\n| Backup and restore | Platform engineering | Restore tested twice a year |\n\n## 6. Incident management\nAll ICT incidents are recorded and classified by severity and criticality of the services affected. The Head of Technology decides whether an incident is major; Compliance notifies the competent authority.\n\n## 7. Resilience testing\nAn annual testing programme covers vulnerability scans, scenario tests and penetration testing. Findings are tracked until closed.\n\n## 8. Learning\nAfter every major incident a review identifies causes and improvements; results are fed back into this framework.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -12,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -12
+  },
+  {
+   "id": "POL-08",
+   "ref": "CFB-OUT-08",
+   "title": "Outsourcing and third-party risk policy",
+   "kind": "Policy",
+   "owner": "A. Singh",
+   "approver": "R. Haddad",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "Technology",
+    "Payments Operations",
+    "Compliance",
+    "Executive Committee",
+    "Finance & Treasury"
+   ],
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32022R2554",
+     "art": "28",
+     "quote": "shall, at all times, remain fully responsible for compliance with, and the discharge of, all obligations under this Regulation and applicable financial services law"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "30"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "18",
+     "quote": "The obliged entity shall remain fully liable for any action, whether an act of commission or omission, connected to the outsourced tasks that are carried out by service providers"
+    },
+    {
+     "celex": "32015L2366",
+     "art": "19"
+    }
+   ],
+   "template": "outsourcing",
+   "demo": true,
+   "retired": null,
+   "draft": {
+    "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Outsourcing and third-party risk policy\n\n## 1. Purpose and scope\nHow CF Bank decides what to outsource, contracts for it, monitors providers and plans exits. It covers ICT services, AML/CFT tasks and agents.\n\n## 2. Principles\n- CF Bank remains fully responsible for the services it outsources.\n- Every arrangement is classified as supporting a critical or important function or not.\n- The management body reviews the risk of arrangements supporting critical or important functions at least yearly.\n\n## 3. Register\nThe Head of Technology keeps a register of all contractual arrangements for ICT services. Arrangements that support critical or important functions are distinguished. The register is provided to the competent authority on request.\n\n## 4. Before contracting\n1. Classify the arrangement.\n2. Identify and assess the risks, including concentration risk.\n3. Run due diligence on the provider and check information security standards.\n4. Identify conflicts of interest.\n5. Obtain approval from the Executive Committee for critical or important functions.\n\n## 5. Contracts\nContracts follow the bank's checklist, which includes service descriptions, locations of processing, data protection, access and recovery, service levels, audit rights and termination rights.\n\n## 6. AML/CFT tasks\nAML/CFT tasks may be outsourced only after the supervisor has been notified. Approval of policies, the risk profile of a customer, the decision to enter a relationship, reporting to the FIU and approval of detection criteria stay in-house, subject to the exceptions in the law.\n\n## 7. Monitoring and exit\nEach provider is reviewed at least yearly, and critical providers at least twice a year. Exit plans exist for every provider supporting a critical or important function.\n",
+    "basedOn": "1.0.0",
+    "dOff": -2
+   },
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -260,
+     "by": "A. Singh",
+     "note": "First version.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# Outsourcing and third-party risk policy\n\n## 1. Purpose and scope\nHow CF Bank decides what to outsource, contracts for it, monitors providers and plans exits. It covers ICT services, AML/CFT tasks and agents.\n\n## 2. Principles\n- CF Bank remains fully responsible for the services it outsources.\n- Every arrangement is classified as supporting a critical or important function or not.\n- The management body reviews the risk of arrangements supporting critical or important functions at least yearly.\n\n## 3. Register\nThe Head of Technology keeps a register of all contractual arrangements for ICT services. Arrangements that support critical or important functions are distinguished. The register is provided to the competent authority on request.\n\n## 4. Before contracting\n1. Classify the arrangement.\n2. Identify and assess the risks, including concentration risk.\n3. Run due diligence on the provider and check information security standards.\n4. Identify conflicts of interest.\n5. Obtain approval from the Executive Committee for critical or important functions.\n\n## 5. Contracts\nContracts follow the bank's checklist, which includes service descriptions, locations of processing, data protection, access and recovery, service levels, audit rights and termination rights.\n\n## 6. AML/CFT tasks\nAML/CFT tasks may be outsourced only after the supervisor has been notified. Approval of policies, the risk profile of a customer, the decision to enter a relationship, reporting to the FIU and approval of detection criteria stay in-house, subject to the exceptions in the law.\n\n## 7. Monitoring and exit\nEach provider is reviewed at least yearly. Exit plans exist for every provider supporting a critical or important function.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -255,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -255
+  },
+  {
+   "id": "POL-09",
+   "ref": "CFB-TRN-09",
+   "title": "AML/CFT training and awareness standard",
+   "kind": "Standard",
+   "owner": "T. Nguyen",
+   "approver": "R. Haddad",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "*"
+   ],
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "12",
+     "quote": "shall be duly documented"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "13"
+    }
+   ],
+   "template": "training",
+   "demo": true,
+   "retired": null,
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -500,
+     "by": "T. Nguyen",
+     "note": "First version.",
+     "status": "superseded",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# AML/CFT training and awareness standard\n\n## 1. Objective\nEveryone who needs to apply AML/CFT requirements understands them, the bank's risks and its procedures.\n\n## 2. Audience\nAll employees, plus agents and distributors, complete the core course. Role-based modules apply to Onboarding, Payments Operations, Compliance, Customer Support and the Executive Committee.\n\n## 3. Frequency\n- Core course within 60 days of joining.\n- Refresher every 12 months.\n- Targeted session after a material change in procedures or risk.\n\n## 4. Documentation\nCompliance records attendance, results and content versions. Records are kept as set out in the record keeping policy.\n\n## 5. Assessment of staff\nStaff in AML/CFT roles are assessed for skills, knowledge, good repute and integrity before they start and at regular intervals.\n\n## 6. Reminders\nCompliance emails staff who have not completed the core course.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -495,
+     "selfApproved": false
+    },
+    {
+     "ver": "1.1.0",
+     "dOff": -90,
+     "by": "T. Nguyen",
+     "note": "Core course within 30 days; acknowledgement of policy versions in RegRadar.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# AML/CFT training and awareness standard\n\n## 1. Objective\nEveryone who needs to apply AML/CFT requirements understands them, the bank's risks and its procedures.\n\n## 2. Audience\nAll employees, plus agents and distributors, complete the core course. Role-based modules apply to Onboarding, Payments Operations, Compliance, Customer Support and the Executive Committee.\n\n## 3. Frequency\n- Core course within 30 days of joining.\n- Refresher every 12 months.\n- Targeted session after a material change in procedures or risk.\n\n## 4. Documentation\nCompliance records attendance, results and content versions. Records are kept as set out in the record keeping policy.\n\n## 5. Assessment of staff\nStaff in AML/CFT roles are assessed for skills, knowledge, good repute and integrity before they start and at regular intervals.\n\n## 6. Policy acknowledgement\nStaff confirm in RegRadar that they have read each new policy version. Compliance chases outstanding acknowledgements after the due date.\n",
+     "approvedBy": "R. Haddad",
+     "approvedOff": -88,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -88
+  },
+  {
+   "id": "POL-10",
+   "ref": "CFB-KYC-10",
+   "title": "KYC refresh procedure (legacy)",
+   "kind": "Procedure",
+   "owner": "I. Claes",
+   "approver": "T. Nguyen",
+   "cycleMonths": 12,
+   "attestDays": 30,
+   "audience": [
+    "Onboarding"
+   ],
+   "obligation_ids": [],
+   "legal_refs": [],
+   "template": "",
+   "demo": true,
+   "retired": {
+    "dOff": -30,
+    "by": "T. Nguyen",
+    "why": "Superseded by the customer due diligence procedure (CFB-CDD-02), which sets the refresh cycle by risk tier."
+   },
+   "draft": null,
+   "reviews": [],
+   "versions": [
+    {
+     "ver": "1.0.0",
+     "dOff": -1000,
+     "by": "I. Claes",
+     "note": "First version.",
+     "status": "approved",
+     "reattest": true,
+     "body": "> Demo document for the fictional CF Bank. Illustrative content only, not legal advice.\n\n# KYC refresh procedure (legacy)\n\n## 1. Purpose\nPeriodic refresh of customer files.\n\n## 2. Procedure\nFiles are refreshed every 24 months regardless of risk tier. Onboarding sends a questionnaire and updates the file on receipt.\n\n## 3. Status\nSuperseded by the customer due diligence procedure, which sets the refresh cycle by risk tier.\n",
+     "approvedBy": "T. Nguyen",
+     "approvedOff": -995,
+     "selfApproved": false
+    }
+   ],
+   "lastReviewedOff": -995
+  }
+ ],
+ "attest": [
+  {
+   "policy": "POL-01",
+   "staff": "s01",
+   "ver": "3.0.0",
+   "dOff": -195,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s02",
+   "ver": "3.0.0",
+   "dOff": -190,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s03",
+   "ver": "3.0.0",
+   "dOff": -192,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s04",
+   "ver": "3.0.0",
+   "dOff": -191,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s05",
+   "ver": "3.0.0",
+   "dOff": -190,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s06",
+   "ver": "3.0.0",
+   "dOff": -188,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s07",
+   "ver": "3.0.0",
+   "dOff": -190,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s09",
+   "ver": "3.0.0",
+   "dOff": -191,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s10",
+   "ver": "3.0.0",
+   "dOff": -187,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s11",
+   "ver": "3.0.0",
+   "dOff": -189,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s12",
+   "ver": "3.0.0",
+   "dOff": -192,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s13",
+   "ver": "3.0.0",
+   "dOff": -191,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s14",
+   "ver": "3.0.0",
+   "dOff": -190,
+   "by": "self"
+  },
+  {
+   "policy": "POL-01",
+   "staff": "s16",
+   "ver": "3.0.0",
+   "dOff": -193,
+   "by": "self"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s01",
+   "ver": "2.1.0",
+   "dOff": -392,
+   "by": "self"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s02",
+   "ver": "2.1.0",
+   "dOff": -393,
+   "by": "self"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s03",
+   "ver": "2.1.0",
+   "dOff": -390,
+   "by": "self"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s06",
+   "ver": "2.1.0",
+   "dOff": -386,
+   "by": "self"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s07",
+   "ver": "2.1.0",
+   "dOff": -392,
+   "by": "self"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s08",
+   "ver": "2.1.0",
+   "dOff": -391,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-02",
+   "staff": "s14",
+   "ver": "2.1.0",
+   "dOff": -390,
+   "by": "self"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s01",
+   "ver": "1.2.0",
+   "dOff": -141,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s02",
+   "ver": "1.2.0",
+   "dOff": -147,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s03",
+   "ver": "1.2.0",
+   "dOff": -147,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s06",
+   "ver": "1.2.0",
+   "dOff": -145,
+   "by": "self"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s07",
+   "ver": "1.2.0",
+   "dOff": -144,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s08",
+   "ver": "1.2.0",
+   "dOff": -144,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s09",
+   "ver": "1.2.0",
+   "dOff": -141,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-04",
+   "staff": "s11",
+   "ver": "1.2.0",
+   "dOff": -139,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s01",
+   "ver": "1.1.0",
+   "dOff": -96,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s02",
+   "ver": "1.1.0",
+   "dOff": -93,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s03",
+   "ver": "1.1.0",
+   "dOff": -94,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s04",
+   "ver": "1.1.0",
+   "dOff": -95,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s05",
+   "ver": "1.1.0",
+   "dOff": -89,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s06",
+   "ver": "1.1.0",
+   "dOff": -92,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s07",
+   "ver": "1.1.0",
+   "dOff": -92,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s08",
+   "ver": "1.1.0",
+   "dOff": -94,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s09",
+   "ver": "1.1.0",
+   "dOff": -93,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s11",
+   "ver": "1.1.0",
+   "dOff": -93,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s12",
+   "ver": "1.1.0",
+   "dOff": -92,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s14",
+   "ver": "1.1.0",
+   "dOff": -89,
+   "by": "self"
+  },
+  {
+   "policy": "POL-05",
+   "staff": "s15",
+   "ver": "1.1.0",
+   "dOff": -89,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s01",
+   "ver": "1.0.0",
+   "dOff": -317,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s02",
+   "ver": "1.0.0",
+   "dOff": -318,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s03",
+   "ver": "1.0.0",
+   "dOff": -319,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s06",
+   "ver": "1.0.0",
+   "dOff": -324,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s07",
+   "ver": "1.0.0",
+   "dOff": -323,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s08",
+   "ver": "1.0.0",
+   "dOff": -318,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s09",
+   "ver": "1.0.0",
+   "dOff": -317,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s10",
+   "ver": "1.0.0",
+   "dOff": -322,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s11",
+   "ver": "1.0.0",
+   "dOff": -317,
+   "by": "self"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s12",
+   "ver": "1.0.0",
+   "dOff": -322,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-06",
+   "staff": "s13",
+   "ver": "1.0.0",
+   "dOff": -319,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-07",
+   "staff": "s05",
+   "ver": "2.0.0",
+   "dOff": -5,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-07",
+   "staff": "s09",
+   "ver": "1.0.0",
+   "dOff": -290,
+   "by": "self"
+  },
+  {
+   "policy": "POL-07",
+   "staff": "s11",
+   "ver": "2.0.0",
+   "dOff": -10,
+   "by": "self"
+  },
+  {
+   "policy": "POL-07",
+   "staff": "s12",
+   "ver": "2.0.0",
+   "dOff": -4,
+   "by": "self"
+  },
+  {
+   "policy": "POL-07",
+   "staff": "s13",
+   "ver": "1.0.0",
+   "dOff": -290,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s01",
+   "ver": "1.0.0",
+   "dOff": -253,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s02",
+   "ver": "1.0.0",
+   "dOff": -247,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s03",
+   "ver": "1.0.0",
+   "dOff": -249,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s05",
+   "ver": "1.0.0",
+   "dOff": -247,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s09",
+   "ver": "1.0.0",
+   "dOff": -246,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s10",
+   "ver": "1.0.0",
+   "dOff": -250,
+   "by": "self"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s11",
+   "ver": "1.0.0",
+   "dOff": -251,
+   "by": "Recorded by T. Nguyen"
+  },
+  {
+   "policy": "POL-08",
+   "staff": "s12",
+   "ver": "1.0.0",
+   "dOff": -253,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s01",
+   "ver": "1.1.0",
+   "dOff": -79,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s02",
+   "ver": "1.1.0",
+   "dOff": -83,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s03",
+   "ver": "1.1.0",
+   "dOff": -85,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s04",
+   "ver": "1.1.0",
+   "dOff": -80,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s05",
+   "ver": "1.1.0",
+   "dOff": -83,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s06",
+   "ver": "1.1.0",
+   "dOff": -79,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s07",
+   "ver": "1.1.0",
+   "dOff": -83,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s08",
+   "ver": "1.1.0",
+   "dOff": -79,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s09",
+   "ver": "1.1.0",
+   "dOff": -85,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s10",
+   "ver": "1.1.0",
+   "dOff": -83,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s11",
+   "ver": "1.1.0",
+   "dOff": -82,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s12",
+   "ver": "1.1.0",
+   "dOff": -86,
+   "by": "self"
+  },
+  {
+   "policy": "POL-09",
+   "staff": "s13",
+   "ver": "1.1.0",
+   "dOff": -79,
+   "by": "self"
+  }
+ ],
+ "reminders": [
+  {
+   "dOff": -20,
+   "by": "T. Nguyen",
+   "staff": "s15",
+   "policies": [
+    "POL-01",
+    "POL-02"
+   ],
+   "note": "Reminder 1: policies overdue."
+  },
+  {
+   "dOff": -3,
+   "by": "T. Nguyen",
+   "staff": "s14",
+   "policies": [
+    "POL-09"
+   ],
+   "note": "Reminder 1: training standard."
+  }
+ ]
+}

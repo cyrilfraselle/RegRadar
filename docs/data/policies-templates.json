@@ -1,0 +1,1541 @@
+{
+ "_meta": {
+  "name": "Starter template outlines",
+  "version": 1,
+  "generated": "2026-10-16",
+  "disclaimer": "Template outline, not legal advice or a finished policy. Sections and questions only: no legal text is generated. Article references are checked against docs/data/laws."
+ },
+ "templates": [
+  {
+   "id": "aml-policy",
+   "title": "AML/CFT policy (framework)",
+   "kind": "Policy",
+   "cycleMonths": 12,
+   "audience": [
+    "*"
+   ],
+   "purpose": "The top-level statement of how the firm manages money laundering and terrorist financing risk, and which procedures sit under it.",
+   "obligation_ids": [
+    "AMLR-art26",
+    "AMLR-art34"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "9"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "12"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "18"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Purpose, scope and applicability",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which legal entities, branches, products and activities does this policy cover?",
+      "Which instruments and supervisory acts does it implement?",
+      "Who must follow it: staff, agents, distributors, outsourced providers?"
+     ]
+    },
+    {
+     "h": "Governance and responsibilities",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "11"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "18"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who is the member of the management body responsible for compliance, and who is the compliance officer?",
+      "What are their duties, authority and reporting lines?",
+      "How do significant weaknesses in policies and controls reach the management body?",
+      "Which tasks does the firm never outsource?"
+     ]
+    },
+    {
+     "h": "Business-wide risk assessment",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "10"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who drafts the business-wide risk assessment and who approves it?",
+      "How often is it refreshed, and which events trigger an earlier update?",
+      "How are new products, channels, technologies and customer segments assessed before launch?"
+     ]
+    },
+    {
+     "h": "Customer due diligence and enhanced measures",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      }
+     ],
+     "obligations": [
+      "AMLR-art19",
+      "AMLR-art34"
+     ],
+     "ask": [
+      "Which procedures set out standard and enhanced due diligence, and who owns them?",
+      "How is the customer risk profile decided and by whom?"
+     ]
+    },
+    {
+     "h": "Ongoing monitoring and reporting of suspicions",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art26",
+      "AMLR-art69"
+     ],
+     "ask": [
+      "How are transactions monitored against what the firm knows about the customer?",
+      "Who approves the criteria used to detect suspicious or unusual activity?",
+      "Which procedure governs internal escalation and reporting to the FIU?"
+     ]
+    },
+    {
+     "h": "Targeted financial sanctions and restrictive measures",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      },
+      {
+       "celex": "32023R1113",
+       "art": "23"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which procedure covers screening, freezing and reporting?",
+      "How does the firm mitigate the risk of non-implementation and evasion of sanctions?"
+     ]
+    },
+    {
+     "h": "Record keeping and personal data",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "76"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which procedure sets retention periods, formats and retrieval?",
+      "Which safeguards apply to special categories of personal data processed for AML/CFT purposes?"
+     ]
+    },
+    {
+     "h": "Training, awareness and employee integrity",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "12"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "13"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who must be trained, how often, and how is training documented?",
+      "How are staff assessed before taking up AML/CFT tasks, and how often is the assessment repeated?"
+     ]
+    },
+    {
+     "h": "Internal reporting of breaches",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "14"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which internal reporting channel can staff use to report breaches?",
+      "How are reporting persons protected?"
+     ]
+    },
+    {
+     "h": "Monitoring of compliance with this policy",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How is compliance with the policies and procedures monitored?",
+      "How are deficiencies identified, tracked and remediated?"
+     ]
+    },
+    {
+     "h": "Approval, review and version control",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "18"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who approves this policy and who must be informed of changes?",
+      "What is the review cycle, and which events trigger an out-of-cycle review?",
+      "How do staff acknowledge each new version?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cdd-procedure",
+   "title": "Customer due diligence procedure",
+   "kind": "Procedure",
+   "cycleMonths": 12,
+   "audience": [
+    "Onboarding",
+    "Compliance",
+    "Customer Support"
+   ],
+   "purpose": "Step-by-step onboarding and ongoing CDD for the teams that run it, mapped to the register's CDD obligations.",
+   "obligation_ids": [
+    "AMLR-art19",
+    "AMLR-art20",
+    "AMLR-art21",
+    "AMLR-art22",
+    "AMLR-art23",
+    "AMLR-art24",
+    "AMLR-art25"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "19"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "21"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "22"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "23"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "24"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "25"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Purpose and scope",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which customer types, products and channels does this procedure cover?",
+      "Which team owns each step?"
+     ]
+    },
+    {
+     "h": "When CDD applies",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "19"
+      }
+     ],
+     "obligations": [
+      "AMLR-art19"
+     ],
+     "ask": [
+      "Which events trigger CDD: new relationship, occasional transaction above a threshold, suspicion, doubts about earlier data, doubts about who you are dealing with?",
+      "Which thresholds apply to which of your products (see the obligation text for the amounts)?"
+     ]
+    },
+    {
+     "h": "Identifying and verifying the customer",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "20"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "22"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "23"
+      }
+     ],
+     "obligations": [
+      "AMLR-art20",
+      "AMLR-art22",
+      "AMLR-art23"
+     ],
+     "ask": [
+      "Which minimum data set do you collect for natural persons, legal entities and persons acting on their behalf?",
+      "Which documents or electronic means do you accept to verify identity?",
+      "When is verification completed relative to establishing the relationship or carrying out the transaction?",
+      "Who checks the file before the customer is activated?"
+     ]
+    },
+    {
+     "h": "Beneficial owners and register discrepancies",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "20"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "24"
+      }
+     ],
+     "obligations": [
+      "AMLR-art20",
+      "AMLR-art24"
+     ],
+     "ask": [
+      "How do you identify and verify beneficial owners and ownership structures?",
+      "What do analysts do when what they find differs from the national beneficial ownership register, and who is told?"
+     ]
+    },
+    {
+     "h": "Purpose and intended nature of the relationship",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "25"
+      }
+     ],
+     "obligations": [
+      "AMLR-art25"
+     ],
+     "ask": [
+      "Which information on purpose and expected activity is captured before onboarding?",
+      "Where is it recorded so that monitoring can compare activity against it?"
+     ]
+    },
+    {
+     "h": "Risk classification and escalation to EDD",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "34"
+      }
+     ],
+     "obligations": [
+      "AMLR-art34"
+     ],
+     "ask": [
+      "Which factors set the customer risk tier, and who decides it?",
+      "Which results force escalation to the enhanced due diligence procedure?",
+      "Is there a second pair of eyes on high-risk approvals?"
+     ]
+    },
+    {
+     "h": "When CDD cannot be completed",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "21"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art21",
+      "AMLR-art69"
+     ],
+     "ask": [
+      "How is onboarding or the transaction stopped, and an existing relationship ended?",
+      "Who assesses whether the failure must also go to the suspicious-transaction reporting procedure?"
+     ]
+    },
+    {
+     "h": "Ongoing due diligence and data refresh",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "26"
+      }
+     ],
+     "obligations": [
+      "AMLR-art26"
+     ],
+     "ask": [
+      "How often is each risk tier reviewed, and which events trigger an earlier review?",
+      "How are changes in customer data captured and verified?"
+     ]
+    },
+    {
+     "h": "Records and quality assurance",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which CDD records are kept, where, and for how long?",
+      "Who samples files for quality and how are findings fed back?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "edd-pep",
+   "title": "Enhanced due diligence and PEP procedure",
+   "kind": "Procedure",
+   "cycleMonths": 12,
+   "audience": [
+    "Onboarding",
+    "Compliance"
+   ],
+   "purpose": "What changes when risk is higher or the customer is a politically exposed person.",
+   "obligation_ids": [
+    "AMLR-art34",
+    "AMLR-art42",
+    "AMLR-art46"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "9"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "34"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "42"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "46"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Purpose and scope",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "34"
+      }
+     ],
+     "obligations": [
+      "AMLR-art34"
+     ],
+     "ask": [
+      "Which relationships fall under this procedure?",
+      "How does it connect to the CDD procedure?"
+     ]
+    },
+    {
+     "h": "When EDD is required",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "34"
+      }
+     ],
+     "obligations": [
+      "AMLR-art34"
+     ],
+     "ask": [
+      "Which higher-risk situations does the firm treat as EDD triggers?",
+      "Who confirms that a trigger applies?"
+     ]
+    },
+    {
+     "h": "Enhanced measures",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "34"
+      }
+     ],
+     "obligations": [
+      "AMLR-art34"
+     ],
+     "ask": [
+      "Which additional information, verification and approvals are required?",
+      "How is enhanced ongoing monitoring set up and by whom?"
+     ]
+    },
+    {
+     "h": "Identifying PEPs",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "42"
+      }
+     ],
+     "obligations": [
+      "AMLR-art42"
+     ],
+     "ask": [
+      "How do you determine whether the customer, a beneficial owner or a person on whose behalf a transaction is conducted is a PEP?",
+      "Which screening sources and which frequency?"
+     ]
+    },
+    {
+     "h": "Senior management approval and source of wealth",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "42"
+      }
+     ],
+     "obligations": [
+      "AMLR-art42"
+     ],
+     "ask": [
+      "Who gives senior management approval and what do they see?",
+      "How do you establish and verify source of wealth and source of funds?"
+     ]
+    },
+    {
+     "h": "Family members and close associates",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "46"
+      }
+     ],
+     "obligations": [
+      "AMLR-art46"
+     ],
+     "ask": [
+      "How are family members and known close associates identified?",
+      "Which of the PEP measures apply to them in your procedure?"
+     ]
+    },
+    {
+     "h": "Duration of PEP treatment",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "42"
+      }
+     ],
+     "obligations": [
+      "AMLR-art42"
+     ],
+     "ask": [
+      "How long, and on what basis, do you keep treating a person as a PEP after they leave office?",
+      "Who approves lifting the status?"
+     ]
+    },
+    {
+     "h": "Decision records",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Where are approvals, rationale and monitoring results recorded?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sanctions",
+   "title": "Sanctions screening procedure",
+   "kind": "Procedure",
+   "cycleMonths": 6,
+   "audience": [
+    "Payments Operations",
+    "Onboarding",
+    "Compliance"
+   ],
+   "purpose": "How the firm applies and screens against targeted financial sanctions and other restrictive measures.",
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "9"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11"
+    },
+    {
+     "celex": "32023R1113",
+     "art": "23"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Purpose and scope",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      },
+      {
+       "celex": "32023R1113",
+       "art": "23"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which parties are screened: customers, beneficial owners, representatives, counterparties, payment parties?",
+      "Which products and flows are in scope?"
+     ]
+    },
+    {
+     "h": "Lists and sources",
+     "refs": [
+      {
+       "celex": "32023R1113",
+       "art": "23"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which Union and national lists do you apply, and who maintains the source of truth?",
+      "How quickly are list updates reflected in screening?"
+     ]
+    },
+    {
+     "h": "Screening points and timing",
+     "refs": [
+      {
+       "celex": "32023R1113",
+       "art": "23"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "When do you screen: onboarding, periodic rescreen, every payment or transfer?",
+      "What happens to a payment while an alert is open?"
+     ]
+    },
+    {
+     "h": "Alert handling",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "11"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who reviews alerts, within what time, and with which evidence?",
+      "Who can close an alert, and when is a second reviewer required?"
+     ]
+    },
+    {
+     "h": "Freezing, reporting and escalation",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "11"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who decides to freeze, and what is reported to which authority?",
+      "How does this connect to the suspicious-transaction reporting procedure?"
+     ]
+    },
+    {
+     "h": "Risk of evasion and system tuning",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "9"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "10"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How do you assess the risk of non-implementation and evasion of sanctions?",
+      "Who tunes matching thresholds and how are changes tested and approved?"
+     ]
+    },
+    {
+     "h": "Records and quality assurance",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which screening results and decisions are kept?",
+      "How is screening quality tested?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "str-procedure",
+   "title": "Suspicious transaction reporting procedure",
+   "kind": "Procedure",
+   "cycleMonths": 12,
+   "audience": [
+    "*"
+   ],
+   "purpose": "How anyone at the firm escalates a suspicion and how the compliance officer assesses and reports it.",
+   "obligation_ids": [
+    "AMLR-art69"
+   ],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "69"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "71"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "72"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "73"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "77"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Purpose and scope",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art69"
+     ],
+     "ask": [
+      "Who does this procedure apply to, including agents and distributors?"
+     ]
+    },
+    {
+     "h": "Internal escalation",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art69"
+     ],
+     "ask": [
+      "How does an employee raise a suspicion, to whom, and how fast?",
+      "Does the procedure cover attempted transactions and suspicions arising when CDD cannot be completed?"
+     ]
+    },
+    {
+     "h": "Assessment",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art69"
+     ],
+     "ask": [
+      "Which facts and information does the compliance officer weigh, and how is the assessment documented?",
+      "How is urgency prioritised?"
+     ]
+    },
+    {
+     "h": "Decision and reporting to the FIU",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "11"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art69"
+     ],
+     "ask": [
+      "Who decides to report and who transmits the report?",
+      "Which FIU and which channel and format do you use, and who keeps that current?"
+     ]
+    },
+    {
+     "h": "Responding to FIU requests",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "69"
+      }
+     ],
+     "obligations": [
+      "AMLR-art69"
+     ],
+     "ask": [
+      "Who answers FIU requests for information and how is the response time tracked against the deadline in the Regulation?"
+     ]
+    },
+    {
+     "h": "Refraining from transactions",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "71"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "When is a transaction held, who decides, and what happens if it cannot be held?"
+     ]
+    },
+    {
+     "h": "No disclosure and protection of staff",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "72"
+      },
+      {
+       "celex": "32024R1624",
+       "art": "73"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "What may staff say to the customer or third parties?",
+      "How are staff who report protected from retaliation?"
+     ]
+    },
+    {
+     "h": "Records",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Where are the assessment, its rationale and any report kept, even when no report is made?"
+     ]
+    },
+    {
+     "h": "Quality assurance and management information",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "11"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "What management information goes to the compliance manager and the management body?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "record-keeping",
+   "title": "Record keeping and retention policy",
+   "kind": "Policy",
+   "cycleMonths": 12,
+   "audience": [
+    "Compliance",
+    "Onboarding",
+    "Payments Operations",
+    "Technology"
+   ],
+   "purpose": "What the firm keeps, for how long, in what form, and how it deletes and produces records.",
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "76"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "77"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "78"
+    },
+    {
+     "celex": "32023R1113",
+     "art": "26"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Scope of records",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which categories of CDD, assessment, transaction and information-sharing records are kept?",
+      "Are records kept unredacted?"
+     ]
+    },
+    {
+     "h": "Copies or references",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "For which categories do you keep references instead of copies, and how do you guarantee immediate retrieval and no alteration?"
+     ]
+    },
+    {
+     "h": "Retention periods and start dates",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      },
+      {
+       "celex": "32023R1113",
+       "art": "26"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "What is the retention period for each record type and when does it start?",
+      "Does national law require anything longer or shorter, and who confirmed it?"
+     ]
+    },
+    {
+     "h": "Deletion at expiry",
+     "refs": [
+      {
+       "celex": "32023R1113",
+       "art": "26"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who deletes personal data when the period ends and how is deletion evidenced?"
+     ]
+    },
+    {
+     "h": "Producing records to authorities",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "78"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How do you answer enquiries from the FIU or supervisors quickly and confidentially?",
+      "Who is the contact point and what is the target response time?"
+     ]
+    },
+    {
+     "h": "Personal data safeguards",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "76"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which safeguards apply to special categories of data and criminal-offence data?",
+      "Who is the data protection contact for AML/CFT processing?"
+     ]
+    },
+    {
+     "h": "Access, security and integrity",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "77"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who can read or change records and how is access logged?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ict-dora",
+   "title": "ICT risk and operational resilience policy (DORA)",
+   "kind": "Policy",
+   "cycleMonths": 12,
+   "audience": [
+    "Technology",
+    "Executive Committee",
+    "Payments Operations"
+   ],
+   "purpose": "Structure for the ICT risk management framework under DORA, with the management body's responsibilities up front.",
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32022R2554",
+     "art": "5"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "6"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "8"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "9"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "10"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "11"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "12"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "13"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "16"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "17"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "19"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "24"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "25"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Applicability and proportionality",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "4"
+      },
+      {
+       "celex": "32022R2554",
+       "art": "16"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which financial-entity category does the firm fall in, and does the simplified ICT risk management framework apply?",
+      "How are proportionality criteria applied?"
+     ]
+    },
+    {
+     "h": "Governance and management body responsibility",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "5"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "What does the management body approve and review, and how often?",
+      "How does it receive information on ICT third-party arrangements and major incidents?"
+     ]
+    },
+    {
+     "h": "ICT risk management framework and control function",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "6"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who is responsible for managing and overseeing ICT risk and how is independence ensured?",
+      "How often is the framework reviewed, and which events trigger an earlier review?"
+     ]
+    },
+    {
+     "h": "Identification of functions, assets and risks",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "8"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Where are ICT-supported business functions and assets documented and classified?",
+      "How often is classification and the risk scenario set reviewed?"
+     ]
+    },
+    {
+     "h": "Protection, prevention and detection",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "9"
+      },
+      {
+       "celex": "32022R2554",
+       "art": "10"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which security policies, tools and monitoring are in place?",
+      "How are detection mechanisms and alert thresholds defined and tested?"
+     ]
+    },
+    {
+     "h": "Business continuity, response and recovery",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "11"
+      },
+      {
+       "celex": "32022R2554",
+       "art": "12"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which critical or important functions does the ICT business continuity policy protect?",
+      "What are the backup scope and frequency, and how are restoration procedures tested?"
+     ]
+    },
+    {
+     "h": "Incident management and reporting",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "17"
+      },
+      {
+       "celex": "32022R2554",
+       "art": "18"
+      },
+      {
+       "celex": "32022R2554",
+       "art": "19"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How are ICT-related incidents detected, recorded, classified and escalated?",
+      "Who decides that an incident is major and who notifies the competent authority?"
+     ]
+    },
+    {
+     "h": "Resilience testing",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "24"
+      },
+      {
+       "celex": "32022R2554",
+       "art": "25"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "What does the testing programme include, how often does each test run, and who tracks findings to closure?"
+     ]
+    },
+    {
+     "h": "Learning and evolving",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "13"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How are post-incident reviews run and fed back into the framework?",
+      "How is ICT security awareness and training delivered?"
+     ]
+    },
+    {
+     "h": "Third-party ICT risk",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "28"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which policy governs ICT third-party providers?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "outsourcing",
+   "title": "Outsourcing and third-party risk policy",
+   "kind": "Policy",
+   "cycleMonths": 12,
+   "audience": [
+    "Technology",
+    "Payments Operations",
+    "Compliance",
+    "Executive Committee",
+    "Finance & Treasury"
+   ],
+   "purpose": "How the firm decides what to outsource, contracts for it, monitors providers and exits, including AML/CFT limits.",
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32022R2554",
+     "art": "28"
+    },
+    {
+     "celex": "32022R2554",
+     "art": "30"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "18"
+    },
+    {
+     "celex": "32015L2366",
+     "art": "19"
+    },
+    {
+     "celex": "32023R1114",
+     "art": "73"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Scope and definitions",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "28"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which arrangements are in scope: ICT services, AML/CFT tasks, agents, other operational functions?",
+      "Who classifies an arrangement as supporting a critical or important function?"
+     ]
+    },
+    {
+     "h": "Governance and register",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "28"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Who owns the register of contractual arrangements and how often is it updated?",
+      "How is the register reported to the management body and to the competent authority on request?"
+     ]
+    },
+    {
+     "h": "Due diligence before contracting",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "28"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which checks run before signing: suitability, risks, concentration, conflicts of interest, information security standards?",
+      "Who approves the decision to contract?"
+     ]
+    },
+    {
+     "h": "Contract content",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "30"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which clauses are mandatory in every contract, and which additional ones apply to critical or important functions?",
+      "Who reviews contracts against the checklist?"
+     ]
+    },
+    {
+     "h": "AML/CFT tasks that can and cannot be outsourced",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "18"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which AML/CFT tasks are outsourced, and was the supervisor notified before they started?",
+      "How does the firm confirm that approval of policies, decisions on risk profile and onboarding, and reporting to the FIU stay in-house, subject to the exceptions in the Regulation?"
+     ]
+    },
+    {
+     "h": "Agents and distributors",
+     "refs": [
+      {
+       "celex": "32015L2366",
+       "art": "19"
+      },
+      {
+       "celex": "32023R1114",
+       "art": "73"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "If the firm uses agents or, as a crypto-asset service provider, outsources operational functions, which additional conditions apply?"
+     ]
+    },
+    {
+     "h": "Ongoing monitoring, audit and termination",
+     "refs": [
+      {
+       "celex": "32022R2554",
+       "art": "28"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How often is each provider reviewed and audited, and who does it?",
+      "Under which circumstances can the contract be terminated, and what is the exit plan?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "training",
+   "title": "AML/CFT training and awareness standard",
+   "kind": "Standard",
+   "cycleMonths": 12,
+   "audience": [
+    "*"
+   ],
+   "purpose": "Who is trained on what, how often, how it is evidenced, and how staff confirm they have read the policies.",
+   "obligation_ids": [],
+   "legal_refs": [
+    {
+     "celex": "32024R1624",
+     "art": "12"
+    },
+    {
+     "celex": "32024R1624",
+     "art": "13"
+    }
+   ],
+   "sections": [
+    {
+     "h": "Objectives and audience",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "12"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Which employees, agents and distributors must be trained, and why?",
+      "How do you know the list is complete?"
+     ]
+    },
+    {
+     "h": "Curriculum by role",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "12"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "What does each role need to be able to recognise and do?",
+      "How is content tied to the firm's own risks and procedures?"
+     ]
+    },
+    {
+     "h": "Frequency and onboarding of new staff",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "12"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How soon after joining, and how often afterwards, must training be completed?"
+     ]
+    },
+    {
+     "h": "Evidence and documentation",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "12"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "Where are attendance, results and content versions recorded?"
+     ]
+    },
+    {
+     "h": "Employee assessment",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "13"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How are skills, knowledge, good repute and integrity assessed for staff who take part in AML/CFT compliance, and how often is it repeated?"
+     ]
+    },
+    {
+     "h": "Policy acknowledgement",
+     "refs": [
+      {
+       "celex": "32024R1624",
+       "art": "12"
+      }
+     ],
+     "obligations": [],
+     "ask": [
+      "How do staff confirm they have read each new policy version, and what happens when they do not?"
+     ]
+    }
+   ]
+  }
+ ]
+}
