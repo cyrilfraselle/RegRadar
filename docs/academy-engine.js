@@ -850,7 +850,12 @@ return {esc, Ownership, Laundromat, Desk};
                      completed:{ at:ISO, score:3, max:4 } } } }
 
    A module is complete when watch, risks, a passed check and law are
-   done. Practice (the simulations) is optional. The game XP/rank lives
+   done. Practice (the simulations) is optional. Lessons that have a
+   Spot it game or a Decide scenario (data/academy/rounds.json) also need
+   'spot' and 'decide': the hub registers that per module with
+   setRequired(id, steps). A module already marked completed stays
+   completed, so nothing a learner finished before is lost.
+     spot:{at,score,max,best,tries}   decide:{at,choice,verdict} The game XP/rank lives
    separately in AcademyShell ('regradar-academy-progress'); nothing in
    that key changes. Everything stays on this device.
    ═══════════════════════════════════════════════════════════════════ */
@@ -859,6 +864,7 @@ window.AcademyProgress = (function(){
 const KEY='regradar-academy-training';
 const REQUIRED=['watch','risks','check','law'];
 let S=null;
+const REQ={};   /* per-module required steps, registered by the hub; default REQUIRED */
 
 function blank(){ return {v:1, updated:null, prefs:{}, modules:{}}; }
 function load(){
@@ -879,7 +885,7 @@ function isComplete(id){ load(); return !!(S.modules[id] && S.modules[id].comple
 function maybeComplete(id){
   const m=mod(id);
   if(m.completed) return false;
-  if(!REQUIRED.every(k=>m.steps[k] && (k!=='check' || m.steps.check.passed))) return false;
+  if(!(REQ[id]||REQUIRED).every(k=>m.steps[k] && (k!=='check' || m.steps.check.passed))) return false;
   const c=m.steps.check;
   m.completed={at:new Date().toISOString(), score:c.best, max:c.max};
   return true;
@@ -904,6 +910,16 @@ function quiz(id, score, max, passed){
   save();
   return {firstPass:!wasPassed && !!passed, completed};
 }
+/* Record one Spot it round. Keeps the best score and the number of tries. */
+function game(id, name, score, max){
+  const m=mod(id), prev=m.steps[name]||{}, first=!m.steps[name];
+  m.steps[name]={at:new Date().toISOString(), score, max, best:Math.max(prev.best||0, score), tries:(prev.tries||0)+1};
+  const completed=maybeComplete(id);
+  save();
+  return {first, completed};
+}
+function setRequired(id, list){ if(Array.isArray(list) && list.length) REQ[id]=list.slice(); }
+function required(id){ return (REQ[id]||REQUIRED).slice(); }
 function get(){
   load();
   const completions=Object.keys(S.modules).filter(id=>S.modules[id].completed).map(id=>{
@@ -932,5 +948,5 @@ function toCSV(titles, order){
   return [head].concat(rows).map(r=>r.map(csvCell).join(',')).join('\r\n')+'\r\n';
 }
 function reset(){ S=blank(); save(); }
-return {KEY, REQUIRED, get, step, quiz, isComplete, stepDone, pref, setPref, toCSV, reset};
+return {KEY, REQUIRED, get, step, quiz, game, setRequired, required, isComplete, stepDone, pref, setPref, toCSV, reset};
 })();
