@@ -55,6 +55,38 @@ page (`index.html`). Shared nav: `site-nav.js`.
    "none" if none). Ask rather than guess on scoring rules, wording that
    makes claims, or anything under "Decisions that belong to the owner".
 
+## Epics (the product: read VISION.md first)
+
+The goal is the full compliance operating system in `VISION.md`, not only
+polish. Developer sessions should spend most of their time here: take the
+next unbuilt slice of an epic and build a working, usable module. Fix
+findings and backlog items in between.
+
+How to build an epic slice:
+- New module = a new `docs/<name>.html` (plus `docs/data/<name>*.json`
+  seeds) using the visual language of `docs/workspace.html` and the
+  device-local data pattern of `docs/controls-data.js`. Cross-link to
+  obligations and controls; do not duplicate them.
+- Domain content (risk factors, thresholds, checklists, templates) must
+  come from cited public sources (EBA risk-factor guidelines, AMLR/AMLD6
+  text in `docs/data/laws/`, FATF guidance). Cite the source in the UI.
+  Where a number is a judgement, label it "default, configure for your
+  firm". Never invent regulatory claims.
+- Every slice must: work end to end in ten minutes with demo data, export
+  something (CSV or print-ready page), have an empty state, keep the
+  quality floor, and pass the smoke ratchet.
+- Wire the new page into `docs/site-nav.js` (under Compliance) and add one
+  short card to the workspace only in a separate small PR.
+
+- [ ] E3 Business-wide risk assessment (BWRA) builder
+- [ ] E4 Customer risk assessment (CRA) engine and onboarding checklists
+- [ ] E5 Monitoring alerts, case file and STR/SAR narrative builder
+- [ ] E6 Policies and procedures library with versions and attestations
+- [ ] E7 Issues and actions tracker (findings, remediation, escalation)
+- [ ] E9 Audit pack, inspection readiness binder, board report
+- [ ] E1 Regulatory change impact analysis (RegWatch item to obligations, controls, policies)
+- [ ] E8 Academy assignments and completion tracking
+
 ## Backlog (highest value first)
 
 ### 0. Quality gates (do these first, then everything else)
