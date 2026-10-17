@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "name": "RegRadar data spine: configuration",
+    "schema_version": 1,
+    "updated": "2026-10-17",
+    "note": "Defaults: configure for your firm. Entity types, statuses, workflows, roles, scales and fields are data, not code: docs/rr-core.js reads them at start. Labels, the order of board columns, the windows on the briefing and every scale below are judgements, not regulatory requirements.",
+    "categories": {
+      "open": "Work not finished",
+      "review": "Waiting for approval or a decision",
+      "active": "In force (not work)",
+      "done": "Finished",
+      "cancelled": "Withdrawn, retired or not relevant"
+    }
+  },
+
+  "firm": {
+    "name": "",
+    "type": "",
+    "type_note": "Firm type ids come from docs/data/applicability.json (bank, pi, emi, casp, invfirm, fund, insurer, other)."
+  },
+
+  "roles": [
+    { "id": "mlro", "label": "MLRO", "description": "Money laundering reporting officer. Dispatches work and approves files.", "can_dispatch": true, "can_approve": true },
+    { "id": "manager", "label": "Compliance manager", "description": "Runs the team day to day. Dispatches work and approves files.", "can_dispatch": true, "can_approve": true },
+    { "id": "analyst", "label": "Analyst", "description": "Does the work: tests, reviews, remediation, cases.", "can_dispatch": false, "can_approve": false },
+    { "id": "board", "label": "Board member", "description": "Reads the overview. Does not take tasks.", "can_dispatch": false, "can_approve": false },
+    { "id": "staff", "label": "Staff member", "description": "Anyone else with a role in a policy or task.", "can_dispatch": false, "can_approve": false }
+  ],
+  "role_keywords": {
+    "_note": "Used only to guess a role for people found in module data (for example 'AML analyst'). Lower-case words; first match wins in this order.",
+    "mlro": ["mlro", "compliance officer"],
+    "manager": ["manager", "head of", "lead"],
+    "board": ["ceo", "board", "director"],
+    "analyst": ["analyst"]
+  },
+
+  "workflows": {
+    "work": {
+      "label": "Work",
+      "states": [
+        { "id": "todo", "label": "To do", "category": "open" },
+        { "id": "in_progress", "label": "In progress", "category": "open", "wip_limit": 6 },
+        { "id": "review", "label": "Waiting for approval", "category": "review" },
+        { "id": "done", "label": "Done", "category": "done" }
+      ]
+    },
+    "control": {
+      "label": "Control",
+      "states": [
+        { "id": "draft", "label": "Draft", "category": "open" },
+        { "id": "pending_review", "label": "In review", "category": "review" },
+        { "id": "approved", "label": "Approved", "category": "active" },
+        { "id": "retired", "label": "Retired", "category": "cancelled" }
+      ]
+    },
+    "test": {
+      "label": "Control test",
+      "states": [
+        { "id": "planned", "label": "Planned", "category": "open" },
+        { "id": "effective", "label": "Effective", "category": "done" },
+        { "id": "needs_improvement", "label": "Needs improvement", "category": "done" },
+        { "id": "failed", "label": "Failed", "category": "done" }
+      ]
+    },
+    "document": {
+      "label": "Document",
+      "states": [
+        { "id": "draft", "label": "Draft", "category": "open" },
+        { "id": "in_review", "label": "In review", "category": "review" },
+        { "id": "approved", "label": "Approved", "category": "active" },
+        { "id": "retired", "label": "Retired", "category": "cancelled" }
+      ]
+    },
+    "case": {
+      "label": "Case",
+      "states": [
+        { "id": "open", "label": "Open", "category": "open" },
+        { "id": "review", "label": "In analyst review", "category": "open" },
+        { "id": "mlro", "label": "Awaiting MLRO decision", "category": "review" },
+        { "id": "filing", "label": "Awaiting filing", "category": "open" },
+        { "id": "filed", "label": "Filed with FIU", "category": "done" },
+        { "id": "closed", "label": "Closed", "category": "done" }
+      ]
+    },
+    "customer_file": {
+      "label": "Customer risk file",
+      "states": [
+        { "id": "pending", "label": "Awaiting decision", "category": "review" },
+        { "id": "escalated", "label": "Escalated", "category": "review" },
+        { "id": "approved", "label": "Approved", "category": "active" },
+        { "id": "rejected", "label": "Rejected", "category": "cancelled" }
+      ]
+    },
+    "reference": {
+      "label": "Reference",
+      "states": [
+        { "id": "scheduled", "label": "Applies from a future date", "category": "active" },
+        { "id": "in_force", "label": "In force", "category": "active" },
+        { "id": "not_applicable", "label": "Not applicable to us", "category": "cancelled" }
+      ]
+    },
+    "reg_change": {
+      "label": "Regulatory change",
+      "states": [
+        { "id": "new", "label": "New", "category": "open" },
+        { "id": "assessing", "label": "Being assessed", "category": "open" },
+        { "id": "assessed", "label": "Assessed", "category": "done" },
+        { "id": "not_relevant", "label": "Not relevant", "category": "cancelled" }
+      ]
+    },
+    "person": {
+      "label": "Person",
+      "states": [
+        { "id": "active", "label": "Active", "category": "active" },
+        { "id": "left", "label": "Left the firm", "category": "cancelled" }
+      ]
+    },
+    "training": {
+      "label": "Training",
+      "states": [
+        { "id": "assigned", "label": "Assigned", "category": "open" },
+        { "id": "completed", "label": "Completed", "category": "done" }
+      ]
+    }
+  },
+
+  "entity_types": {
+    "obligation": { "label": "Obligation", "plural": "Obligations", "workflow": "reference", "id_prefix": "OBL", "reference": true, "fields": [
+      { "id": "legal_basis", "label": "Legal basis", "type": "text" },
+      { "id": "topic", "label": "Topic", "type": "text" },
+      { "id": "who", "label": "Binds firm types", "type": "list" }
+    ]},
+    "regulation": { "label": "Regulation", "plural": "Regulations", "workflow": "reference", "id_prefix": "REG", "reference": true, "fields": [
+      { "id": "full_name", "label": "Full name", "type": "text" },
+      { "id": "celex", "label": "CELEX", "type": "text" }
+    ]},
+    "reg_change": { "label": "Regulatory change", "plural": "Regulatory changes", "workflow": "reg_change", "id_prefix": "RC", "fields": [
+      { "id": "source", "label": "Source", "type": "text" },
+      { "id": "url", "label": "Link", "type": "url" }
+    ]},
+    "control": { "label": "Control", "plural": "Controls", "workflow": "control", "id_prefix": "CTL", "fields": [
+      { "id": "frequency", "label": "Test frequency", "type": "select", "options": ["Monthly", "Quarterly", "Annual", "Per event"] },
+      { "id": "control_type", "label": "Type", "type": "select", "options": ["Preventive", "Detective"] },
+      { "id": "last_tested", "label": "Last tested", "type": "date" }
+    ]},
+    "test": { "label": "Control test", "plural": "Control tests", "workflow": "test", "id_prefix": "TST", "fields": [
+      { "id": "tested_on", "label": "Tested on", "type": "date" },
+      { "id": "note", "label": "Note", "type": "text" }
+    ]},
+    "issue": { "label": "Finding", "plural": "Findings", "workflow": "work", "id_prefix": "ISS", "fields": [
+      { "id": "priority", "label": "Severity", "type": "scale", "scale": "priority" },
+      { "id": "source", "label": "Where it was found", "type": "text" },
+      { "id": "description", "label": "Description", "type": "longtext" }
+    ]},
+    "action": { "label": "Task", "plural": "Tasks", "workflow": "work", "id_prefix": "TSK", "fields": [
+      { "id": "kind", "label": "Kind of work", "type": "select", "options_from": "task_kinds" },
+      { "id": "priority", "label": "Priority", "type": "scale", "scale": "priority" },
+      { "id": "description", "label": "Notes", "type": "longtext" }
+    ]},
+    "policy": { "label": "Policy", "plural": "Policies", "workflow": "document", "id_prefix": "POL", "fields": [
+      { "id": "ref", "label": "Reference", "type": "text" },
+      { "id": "cycle_months", "label": "Review cycle (months)", "type": "number" }
+    ]},
+    "case": { "label": "Case", "plural": "Cases", "workflow": "case", "id_prefix": "CASE", "fields": [
+      { "id": "priority", "label": "Priority", "type": "scale", "scale": "priority" },
+      { "id": "typology", "label": "Typology", "type": "text" }
+    ]},
+    "assessment": { "label": "Risk assessment", "plural": "Risk assessments", "workflow": "document", "id_prefix": "RA", "fields": [
+      { "id": "kind", "label": "Kind", "type": "select", "options": ["Business-wide risk assessment", "Customer risk assessment"] }
+    ]},
+    "customer_file": { "label": "Customer risk file", "plural": "Customer risk files", "workflow": "customer_file", "id_prefix": "CRF", "fields": [] },
+    "person": { "label": "Team member", "plural": "Team", "workflow": "person", "id_prefix": "P", "fields": [
+      { "id": "role", "label": "Role", "type": "select", "options_from": "roles" },
+      { "id": "job_title", "label": "Job title", "type": "text" },
+      { "id": "team", "label": "Team", "type": "text" }
+    ]},
+    "training": { "label": "Training completion", "plural": "Training completions", "workflow": "training", "id_prefix": "TRN", "fields": [
+      { "id": "module", "label": "Module", "type": "text" },
+      { "id": "completed_on", "label": "Completed on", "type": "date" },
+      { "id": "score", "label": "Score", "type": "text" }
+    ]}
+  },
+
+  "link_types": [
+    { "id": "mitigates", "label": "mitigates", "inverse": "is mitigated by", "from": ["control"], "to": ["obligation"] },
+    { "id": "implements", "label": "implements", "inverse": "is implemented by", "from": ["policy"], "to": ["obligation"] },
+    { "id": "tests", "label": "tests", "inverse": "is tested by", "from": ["test"], "to": ["control"] },
+    { "id": "fixes", "label": "fixes", "inverse": "is fixed by", "from": ["action"], "to": ["issue"] },
+    { "id": "addresses", "label": "addresses", "inverse": "is addressed by", "from": ["action", "issue", "case", "assessment"], "to": ["obligation"] },
+    { "id": "concerns", "label": "concerns", "inverse": "is concerned by", "from": ["action", "issue"], "to": ["control", "policy"] },
+    { "id": "affects", "label": "affects", "inverse": "is affected by", "from": ["reg_change", "regulation"], "to": ["obligation", "control", "policy"] },
+    { "id": "evidences", "label": "is evidence for", "inverse": "is evidenced by", "from": ["training", "test"], "to": ["obligation", "control"] }
+  ],
+
+  "scales": {
+    "_note": "Default scales, configure for your firm.",
+    "priority": [
+      { "id": "critical", "label": "Critical", "rank": 0 },
+      { "id": "high", "label": "High", "rank": 1 },
+      { "id": "medium", "label": "Medium", "rank": 2 },
+      { "id": "low", "label": "Low", "rank": 3 }
+    ],
+    "likelihood": [
+      { "id": 1, "label": "Rare" }, { "id": 2, "label": "Unlikely" }, { "id": 3, "label": "Possible" },
+      { "id": 4, "label": "Likely" }, { "id": 5, "label": "Almost certain" }
+    ],
+    "impact": [
+      { "id": 1, "label": "Minor" }, { "id": 2, "label": "Moderate" }, { "id": 3, "label": "Significant" },
+      { "id": 4, "label": "Major" }, { "id": 5, "label": "Severe" }
+    ]
+  },
+
+  "task_kinds": [
+    { "id": "remediation", "label": "Remediation" },
+    { "id": "control_test", "label": "Control test" },
+    { "id": "policy_review", "label": "Policy review" },
+    { "id": "reg_change", "label": "Regulatory change" },
+    { "id": "customer_review", "label": "Customer review" },
+    { "id": "training", "label": "Training" },
+    { "id": "other", "label": "Other" }
+  ],
+
+  "control_frequency_days": { "Monthly": 30, "Quarterly": 91, "Annual": 365 },
+
+  "briefing": {
+    "_note": "Windows and counts are defaults, configure for your firm.",
+    "due_windows": [7, 30],
+    "horizon_months": [3, 6, 12],
+    "horizon_default": 12,
+    "due_kinds": [
+      { "id": "control_test", "label": "Control tests", "types": ["control"] },
+      { "id": "work", "label": "Tasks and findings", "types": ["action", "issue"] },
+      { "id": "policy_review", "label": "Policy reviews", "types": ["policy", "assessment"] },
+      { "id": "case", "label": "Case decisions", "types": ["case"] },
+      { "id": "regulatory", "label": "Regulatory deadlines", "types": ["reg_change", "regulation", "obligation"] }
+    ],
+    "workload_types": ["action", "issue", "case", "control", "policy", "assessment"]
+  },
+
+  "board": {
+    "workflow": "work",
+    "types": ["action", "issue"]
+  },
+
+  "bridge": {
+    "_note": "How the read-only bridge maps statuses found in the existing modules onto the spine's workflows. Configure for your firm.",
+    "issue_status": { "open": "todo", "in_progress": "in_progress", "awaiting_validation": "review", "closed": "done", "risk_accepted": "done" },
+    "action_status": { "open": "todo", "done": "done" },
+    "control_status": { "draft": "draft", "pending_review": "pending_review", "approved": "approved" },
+    "policy_status": { "draft": "draft", "in_review": "in_review", "approved": "approved", "retired": "retired" },
+    "impact_status": { "": "assessing", "action": "assessed", "monitor": "assessed", "no_action": "not_relevant" }
+  }
+}
