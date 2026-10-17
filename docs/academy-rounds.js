@@ -200,7 +200,7 @@ function mount(host, game, opts){
       +'<div class="rr-scorebig" tabindex="-1">'+s+' <small>of '+N+' right</small></div><p class="rr-msg">'+esc(msg)+'</p>';
     if(game.remember&&game.remember.length) h+='<h4>What to remember</h4><ul class="rr-rem">'+game.remember.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ul>';
     if(game.law&&game.law.length) h+='<h4>From the law</h4>'+game.law.map(function(q){
-      return '<figure class="rr-law"><blockquote>'+esc(q.quote)+'</blockquote><figcaption>'+cite(q)+(q.label?' · '+esc(q.label):'')+'</figcaption></figure>'; }).join('');
+      return '<figure class="rr-law"><blockquote>'+esc(q.quote)+'</blockquote><figcaption>'+cite(q)+(q.label?' · '+esc(q.label):'')+(q.note?'<span class="rr-note">Note: '+esc(q.note)+'</span>':'')+'</figcaption></figure>'; }).join('');
     if(miss.length && mode!=='warmup') h+='<details class="rr-others"><summary>Worth another look ('+miss.length+')</summary><ul>'+miss.map(function(r){
       return '<li><b>'+esc(r.card.title||r.card.kicker||r.card.text||'Card')+'.</b> '+esc(r.card.why)+'</li>'; }).join('')+'</ul></details>';
     if(game.reading&&game.reading.length) h+='<p class="rr-read">Further reading (not quoted here): '+game.reading.map(esc).join('; ')+'.</p>';

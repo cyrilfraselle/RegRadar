@@ -117,6 +117,7 @@
 .rr-law{margin:8px 0 0;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
 .rr-law blockquote{padding:10px 14px;font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.55;border-left:4px solid var(--accent);margin:0}
 .rr-law figcaption{padding:6px 14px 8px;font-size:13px;color:var(--text-2)}
+.rr-note{display:block;margin-top:4px}
 .rr-read{margin-top:12px;font-size:13px;color:var(--text-3)}
 
 /* coach overlay */

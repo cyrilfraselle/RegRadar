@@ -388,14 +388,15 @@ function watchP(t,list){
     +'<p class="fine" style="margin-top:10px">Red-flag lists are illustrative, not exhaustive, and are not legal statements. Legal consequences cite the text.</p>'
     +footer(t,'watch',list,{note:'Fictional examples. The law text is in the last beat.'});
 }
+function appliesNote(){ return RMETA.applies? '<p class="fine" style="margin-top:6px">'+esc(RMETA.applies)+'</p>' : ''; }
 /* 2. spot it */
 function spotP(t,list){
   var g=GAMES[t.id], s=(AP.get().modules[t.id]||{steps:{}}).steps.spot;
-  return '<h2 id="pnH">'+numOf(t,'spot')+'. Spot it: '+esc(g.title)+'</h2><p class="lede">'+esc(g.intro)+' About '+(g.minutes||2)+' min.'+(s?' Your best: '+s.best+' of '+s.max+'.':'')+'</p><div id="rrHost"></div>';
+  return '<h2 id="pnH">'+numOf(t,'spot')+'. Spot it: '+esc(g.title)+'</h2><p class="lede">'+esc(g.intro)+' About '+(g.minutes||2)+' min.'+(s?' Your best: '+s.best+' of '+s.max+'.':'')+'</p>'+appliesNote()+'<div id="rrHost"></div>';
 }
 /* 3. decide */
 function decideP(t,list){
-  return '<h2 id="pnH">'+numOf(t,'decide')+'. Decide: what would you do?</h2><p class="lede">One situation, a real choice, and what happens next. About a minute. Fictional.</p><div id="rrHost"></div>';
+  return '<h2 id="pnH">'+numOf(t,'decide')+'. Decide: what would you do?</h2><p class="lede">One situation, a real choice, and what happens next. About a minute. Fictional.</p>'+appliesNote()+'<div id="rrHost"></div>';
 }
 /* 4. check */
 function checkP(t,list){
