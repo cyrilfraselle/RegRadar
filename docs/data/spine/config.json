@@ -228,11 +228,11 @@
     "horizon_months": [3, 6, 12],
     "horizon_default": 12,
     "due_kinds": [
-      { "id": "control_test", "label": "Control tests", "types": ["control"] },
-      { "id": "work", "label": "Tasks and findings", "types": ["action", "issue"] },
-      { "id": "policy_review", "label": "Policy reviews", "types": ["policy", "assessment"] },
-      { "id": "case", "label": "Case decisions", "types": ["case"] },
-      { "id": "regulatory", "label": "Regulatory deadlines", "types": ["reg_change", "regulation", "obligation"] }
+      { "id": "control_test", "label": "Control tests", "one": "Control test", "types": ["control"] },
+      { "id": "work", "label": "Tasks and findings", "one": "Task or finding", "types": ["action", "issue"] },
+      { "id": "policy_review", "label": "Policy and assessment reviews", "one": "Review", "types": ["policy", "assessment"] },
+      { "id": "case", "label": "Case decisions", "one": "Case decision", "types": ["case"] },
+      { "id": "regulatory", "label": "Regulatory deadlines", "one": "Regulatory deadline", "types": ["reg_change", "regulation", "obligation"] }
     ],
     "workload_types": ["action", "issue", "case", "control", "policy", "assessment"]
   },

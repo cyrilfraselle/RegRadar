@@ -34,7 +34,8 @@
    spine. It never writes or deletes those keys. Mirrored records are
    read-only in the spine until their module is migrated onto it.
 
-   No DOM, no network: works in the browser and in plain Node (tests).
+   No DOM. The only network use is RR.boot() (pages only), which fetches
+   same-origin repo JSON. Everything else runs in plain Node (tests).
    ═══════════════════════════════════════════════════════════════ */
 (function (root, factory) {
   var RR = factory();
@@ -113,11 +114,13 @@
   /* ═════════════════ adapters ═════════════════ */
 
   // Shared shape: each table is { id: record } except events (an array).
-  function tableAdapter(name, readTable, writeTable, wipe) {
+  // `shared`: storage another tab may also write (localStorage). Each write
+  // re-reads the table first so a record written elsewhere is never dropped.
+  function tableAdapter(name, readTable, writeTable, wipe, shared) {
     var cache = {};
-    function get(t) {
+    function get(t, fresh) {
       if (TABLES.indexOf(t) === -1) throw new Error('Unknown table: ' + t);
-      if (!cache[t]) cache[t] = readTable(t) || (t === 'events' ? [] : {});
+      if (!cache[t] || (fresh && shared)) cache[t] = readTable(t) || (t === 'events' ? [] : {});
       return cache[t];
     }
     function rows(t) { var x = get(t); return t === 'events' ? x.slice() : Object.keys(x).map(function (k) { return x[k]; }); }
@@ -130,13 +133,13 @@
         return attempt(function () {
           if (t === 'events') throw new Error('The event log is append-only: use append().');
           if (!rec || !rec.id) throw new Error('A record needs an id.');
-          get(t)[rec.id] = clone(rec); writeTable(t, get(t));
+          var tbl = get(t, true); tbl[rec.id] = clone(rec); writeTable(t, tbl);
         });
       },
       append: function (t, rec) {
         return attempt(function () {
           if (t !== 'events') throw new Error('append() is only for the event log.');
-          var ev = get(t);
+          var ev = get(t, true);
           for (var i = ev.length - 1; i >= 0; i--) if (ev[i].id === rec.id) throw new Error('Event ' + rec.id + ' already exists: the log is append-only.');
           ev.push(clone(rec)); writeTable(t, ev);
         });
@@ -174,7 +177,7 @@
     return tableAdapter('localStorage',
       function (t) { var raw = ls.getItem(prefix + t); return raw ? JSON.parse(raw) : null; },
       function (t, v) { ls.setItem(prefix + t, JSON.stringify(v)); },
-      function () { TABLES.forEach(function (t) { ls.removeItem(prefix + t); }); });
+      function () { TABLES.forEach(function (t) { ls.removeItem(prefix + t); }); }, true);
   }
 
   /* Postgres adapter: DOCUMENTED STUB, not wired.
@@ -971,6 +974,37 @@
     dates: dates,
     util: { csv: csv, csvCell: csvCell, slug: slug, stable: stable, hash: fnv, clone: clone },
     current: null,
+    /* Browser helper used by home.html and board.html (the only function here
+       that fetches, and only same-origin repo files). Opens the device spine,
+       adds the repo reference data and runs the read-only bridge with the SAME
+       inputs on every page, so mirrored records never flip between pages. */
+    boot: async function (o) {
+      o = o || {};
+      var base = o.base || 'data/';
+      function get(p, fb) { return fetch(base + p, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : fb; }).catch(function () { return fb; }); }
+      var r = await Promise.all([get('spine/config.json', null), get('obligations.json', null), get('applicability.json', null),
+        get('controls.json', null), get('academy/curriculum.json', null), o.items ? get('items.json', []) : Promise.resolve([])]);
+      if (!r[0]) throw new Error('Could not load the spine configuration (data/spine/config.json).');
+      var storageOk = true, adapter, ls = null;
+      try { ls = window.localStorage; ls.getItem('regradar-spine-meta'); adapter = localStorageAdapter(); }
+      catch (e) { storageOk = false; adapter = memoryAdapter(); }
+      var asof = null;
+      try { asof = new URLSearchParams(location.search).get('asof'); } catch (e) { /* no location */ }
+      var s = await RR.open({ config: r[0], adapter: adapter, today: dates.valid(asof) ? asof : undefined });
+      s.addReference(reference.obligations(r[1]));
+      s.addReference(reference.regulations(r[2]));
+      if (o.items) s.addReference(reference.regChanges(r[5]));
+      var titles = {}; ((r[4] && r[4].tracks) || []).forEach(function (t) { titles[t.id] = t.title; });
+      var report = s.importModules(function (k) { return ls ? ls.getItem(k) : null; }, { controls: r[3], academyTitles: titles });
+      var actor = s.getSetting('actor');
+      if (actor && s.get(actor)) s.setActor(actor);
+      // Another tab (say the board) wrote to the spine: tell the page so it can re-open.
+      if (o.onExternalChange && !RR._listening && typeof window !== 'undefined') {
+        RR._listening = true;
+        window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('regradar-spine-') === 0) o.onExternalChange(); });
+      }
+      return { spine: s, report: report, storageOk: storageOk, applicability: r[2], obligationsMeta: r[1] && r[1]._meta };
+    },
     // Open the page's spine and make its methods available as RR.get, RR.list, ...
     open: async function (opts) {
       var s = createSpine(opts);
