@@ -1,4 +1,4 @@
-# One learning path (design, not yet built)
+# One learning path (built on epic/academy-path; see the PR for what is verified)
 
 Principle: one path, one "Next" button, short beats, and never more than
 about three minutes of the same format in a row.

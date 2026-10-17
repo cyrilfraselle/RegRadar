@@ -272,7 +272,8 @@ function mount(host, game, opts){
     b.innerHTML='<div class="rr-coach-k">How to play · '+(st.coach+1)+' of '+steps.length+'</div><h4 id="'+hid+'" tabindex="-1">'+esc(s.title)+'</h4><p>'+esc(s.text)+'</p>'
       +'<div class="rr-coach-act"><button type="button" class="btn sm" data-rr="cskip">Skip</button><button type="button" class="btn pri sm" data-rr="cnext">'+(last?'Got it, play':'Next')+'</button></div>';
     (tgt.closest('.rr-top,.rr-act')||tgt).insertAdjacentElement('afterend', b);   /* never inside a flex row */
-    var hh=b.querySelector('h4'); hh.focus({preventScroll:true}); scrollIn(tgt);
+    var hh=b.querySelector('h4'); hh.focus({preventScroll:true});
+    try{ b.scrollIntoView({block:'center', behavior: reduced()?'auto':'smooth'}); }catch(e){}   /* the explanation must be on screen, even on a phone */
   }
 
   /* ── events ── */
@@ -338,11 +339,19 @@ function mount(host, game, opts){
   }
   root.addEventListener('click', onClick);
   root.addEventListener('keydown', onKey);
+  /* number keys also work before the learner has tabbed into the round (focus on the page heading) */
+  function onDocKey(e){
+    if(root.contains(e.target) || !/^[1-9]$/.test(e.key)) return;
+    var tg=e.target, tn=(tg.tagName||'').toLowerCase();
+    if(tg!==document.body && !/^h[1-3]$/.test(tn)) return;
+    onKey(e);
+  }
+  document.addEventListener('keydown', onDocKey);
 
   draw();
   var firstTut=tutOf(card());
   if(mode==='game' && firstTut && firstTut.coach && !(opts.coachSeen && opts.coachSeen(gtype))) startCoach();
-  return {destroy:function(){ st.dead=true; root.removeEventListener('click', onClick); root.removeEventListener('keydown', onKey); }, focus:focusFirst};
+  return {destroy:function(){ st.dead=true; root.removeEventListener('click', onClick); root.removeEventListener('keydown', onKey); document.removeEventListener('keydown', onDocKey); }, focus:focusFirst};
 }
 
 window.AcademyRounds={mount:mount, misses:misses, esc:esc};

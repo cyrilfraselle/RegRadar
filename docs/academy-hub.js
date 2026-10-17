@@ -166,6 +166,8 @@ function render(focusMain){
   if(focusMain!==false){
     var h=APP.querySelector('h1'); if(h){ h.setAttribute('tabindex','-1'); h.focus({preventScroll:false}); }
     window.scrollTo(0,0);
+    /* a first-run coach is a modal step: it takes focus (and scrolls into view) */
+    var ch=APP.querySelector('.rr-coach h4'); if(ch) ch.focus();
   }
 }
 

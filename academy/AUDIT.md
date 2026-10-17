@@ -106,5 +106,6 @@ Not verifiable from the repo (left, flagged): references to EU Regulations 269/2
 | `regradar-theme` | all themed tools | `light` or `dark` |
 | **new** `regradar-academy-training` | `AcademyProgress` (academy-engine.js) | learning-path completions: module id, date, score, steps (shape documented in the file) |
 | **new** `regradar-ex-static` | academy-explainer.js | learner chose static frames instead of animation |
+| **new** `regradar-academy-misses` | academy-rounds.js (`AcademyRounds.misses`) | missed Spot it cards, check questions and risky Decide choices, replayed in the warm-up: `{v:1, items:[{id, module, kind, at, n}]}`, capped at 40 |
 
-No existing key changes shape. The shell key only gains a `learn` module entry.
+No existing key changes shape. The shell key only gains a `learn` module entry. `regradar-academy-training` gains `spot` and `decide` steps and prefs (`coach_<type>`, `shifts`); lessons already marked complete stay complete.
