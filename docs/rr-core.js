@@ -106,7 +106,7 @@
   /* ───────── CSV (formula-injection safe, like the module exports) ───────── */
   function csvCell(v) {
     var s = String(v == null ? '' : v);
-    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    if (/^[=+\-@\t\r]/.test(s) && !/^-?\d+(\.\d+)?$/.test(s)) s = "'" + s; // plain numbers stay numbers
     return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   }
   function csv(rows) { return rows.map(function (r) { return r.map(csvCell).join(','); }).join('\r\n'); }
@@ -699,7 +699,7 @@
       var l = { id: id, type: type, from: from, to: to, origin: o.origin || (o._bridge ? 'module:' + (o.module || '') : (a.origin === 'demo' ? 'demo' : 'spine')),
         created_at: now, created_by: S.actor, ended_at: null, rev: cur ? (cur.rev || 1) + 1 : 1 };
       storeLink(l);
-      if (!o.silent) logEvent('link', a, { link: { id: id, type: type, from: from, to: to }, note: a.title + ' ' + lt.label + ' ' + b.title });
+      if (!o.silent) logEvent('link', a, { link: { id: id, type: type, from: from, to: to }, note: a.title + ' ' + lt.label + ' ' + (b.type === 'obligation' && b.data.legal_basis ? b.data.legal_basis : b.title) });
       return l;
     }
     function unlink(linkId, o) {
@@ -724,6 +724,11 @@
 
     /* ---------- the read-only bridge, applied ---------- */
     function importModules(read, ref) {
+      var who = S.actor;
+      S.actor = 'system:bridge'; // everything the bridge writes is attributed to the module import
+      try { return importModulesAs(read, ref); } finally { S.actor = who; }
+    }
+    function importModulesAs(read, ref) {
       var c = collect(read, ref, cfg, S.today);
       var res = { created: 0, updated: 0, archived: 0, people: 0, links: 0, errors: [], modules: c.report };
       // overlays on reference obligations

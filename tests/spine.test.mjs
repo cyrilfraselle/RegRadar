@@ -272,6 +272,8 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.equal(s.list('issue').length, 1);
   assert.equal(s.list('issue', { archived: true }).length, 2);
   assert.deepEqual(s.history('ISS:ISS-001').map((e) => e.action), ['import', 'link', 'sync']);
+  assert.equal(s.history('ISS:ISS-001')[0].actor, 'system:bridge', 'imports are attributed to the bridge');
+  assert.equal(s.history('person:t-nguyen')[0].actor, 'system:bridge');
 
   // an unreadable key is reported and its records are kept, not archived
   const st3 = fakeStorage(Object.assign({}, FIX, { 'regradar-actions': '{broken' }), MODULE_KEYS);
@@ -348,6 +350,7 @@ await test('reference: obligation and regulation dates carry their source', () =
 
 await test('utilities: csv guards formulas, dates handle month ends and working days', () => {
   assert.equal(RR.util.csv([['=1+1', 'a,b', 'say "hi"']]), "'=1+1,\"a,b\",\"say \"\"hi\"\"\"");
+  assert.equal(RR.util.csv([[-30, '-2.5', '-x']]), "-30,-2.5,'-x", 'numbers are not treated as formulas');
   assert.equal(RR.dates.addMonths('2026-01-31', 1), '2026-02-28');
   assert.equal(RR.dates.addMonths('2026-11-15', 3), '2027-02-15');
   assert.equal(RR.dates.addWorkingDays('2026-10-16', 1), '2026-10-19');
