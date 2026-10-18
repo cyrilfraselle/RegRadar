@@ -34,6 +34,12 @@
    spine. It never writes or deletes those keys. Mirrored records are
    read-only in the spine until their module is migrated onto it.
 
+   A MIGRATED module leaves the bridge: its records live in the spine
+   (writable everywhere), and a one-time, idempotent import (RR.migrations,
+   run by RR.boot) copies what the module kept under its old localStorage
+   key. The old key is left untouched as a backup. Migrated so far:
+   Issues and actions (docs/actions-store.js).
+
    No DOM. The only network use is RR.boot() (pages only), which fetches
    same-origin repo JSON. Everything else runs in plain Node (tests).
    ═══════════════════════════════════════════════════════════════ */
@@ -239,7 +245,6 @@
   /* ═════════════════ the read-only bridge ═════════════════ */
   var MODULES = [
     { id: 'controls', key: 'regradar-controls-mine', label: 'Controls (Compliance workspace)', page: 'workspace.html?view=controls' },
-    { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html' },
     { id: 'policies', key: 'regradar-policies', label: 'Policies', page: 'policies.html' },
     { id: 'cases', key: 'regradar-cases', label: 'Cases and STR', page: 'cases.html' },
     { id: 'bwra', key: 'regradar-bwra', label: 'Business risk', page: 'risk-assessment.html' },
@@ -249,7 +254,16 @@
     { id: 'profile', key: 'regradar-profile', label: 'Firm profile', page: 'workspace.html' },
     { id: 'academy', key: 'regradar-academy-training', label: 'Academy training', page: 'academy.html' }
   ];
-  function moduleById(id) { for (var i = 0; i < MODULES.length; i++) if (MODULES[i].id === id) return MODULES[i]; return null; }
+  // Modules that have moved onto the spine: no longer bridged, but still named in records and the log.
+  var MIGRATED = [
+    { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html', migrated: true }
+  ];
+  function moduleById(id) {
+    var i;
+    for (i = 0; i < MODULES.length; i++) if (MODULES[i].id === id) return MODULES[i];
+    for (i = 0; i < MIGRATED.length; i++) if (MIGRATED[i].id === id) return MIGRATED[i];
+    return null;
+  }
 
   function guessRole(text, cfg) {
     var t = String(text || '').toLowerCase(), kw = (cfg && cfg.role_keywords) || {};
@@ -328,30 +342,6 @@
         });
       });
       report(m, r, n, r.found ? '' : 'library from docs/data/controls.json; no device changes');
-    })();
-
-    /* issues and actions */
-    (function () {
-      var m = moduleById('actions'), r = parse(m), n = 0;
-      if (!r.found || r.error || !r.value || !Array.isArray(r.value.issues)) { report(m, r, 0); return; }
-      r.value.issues.forEach(function (i) {
-        var id = 'ISS:' + i.id;
-        add(m, { id: id, type: 'issue', title: i.title || i.id, status: (bmap.issue_status || {})[i.status] || 'todo',
-          owner: person(i.owner, { module: m.id }), due: i.due_on,
-          data: { ref: i.id, priority: i.severity || '', source: i.source || '', source_ref: i.source_ref || '', description: i.description || '',
-            module_status: i.status || '', opened_on: i.opened_on || '', demo: !!i.demo } }, i.id);
-        n++;
-        (i.obligation_ids || []).forEach(function (ob) { link('addresses', id, 'OBL:' + ob, m); });
-        (i.control_ids || []).forEach(function (c) { link('concerns', id, 'CTL:' + c, m); });
-        (i.actions || []).forEach(function (a) {
-          var aid = 'TSK:' + i.id + ':' + a.id;
-          add(m, { id: aid, type: 'action', title: a.title || a.id, status: (bmap.action_status || {})[a.status] || 'todo',
-            owner: person(a.owner, { module: m.id }), due: a.due_on,
-            data: { ref: i.id + '/' + a.id, kind: 'remediation', priority: i.severity || '', evidence: a.evidence || '', demo: !!i.demo } }, i.id + '/' + a.id);
-          link('fixes', aid, id, m); n++;
-        });
-      });
-      report(m, r, n);
     })();
 
     /* policies (staff, versions, review cycle) */
@@ -773,7 +763,10 @@
       Object.keys(S.ents).forEach(function (k) {
         var e = S.ents[k], mid = String(e.origin || '').indexOf('module:') === 0 ? e.origin.slice(7) : null;
         if (mid && !seen[k] && !e.archived && !failed[mid]) {
-          update(k, { archived: true }, { _bridge: true, action: 'archive', note: 'No longer found on the ' + moduleById(mid).label + ' page' });
+          var mm = moduleById(mid);
+          update(k, { archived: true }, { _bridge: true, action: 'archive', note: mm && mm.migrated
+            ? 'The ' + mm.label + ' page now keeps its records in the spine: this mirrored copy is retired'
+            : 'No longer found on the ' + (mm ? mm.label : mid) + ' page' });
           res.archived++;
         }
       });
@@ -821,7 +814,8 @@
       });
       if (!S.settings.firm_name) setSetting('firm_name', demo.firm && demo.firm.name);
       if (!S.settings.firm_type && demo.firm && demo.firm.type) setSetting('firm_type', demo.firm.type);
-      function hasModule(type) { return list(type).some(function (e) { return String(e.origin).indexOf('module:') === 0; }); }
+      // The firm's own records (mirrored from a module, or kept in the spine by a migrated one) win over demo ones.
+      function hasModule(type) { return list(type).some(function (e) { return e.origin !== 'demo'; }); }
       var groups = [['issue', demo.issues], ['action', demo.tasks], ['policy', demo.policies], ['case', demo.cases], ['assessment', demo.assessments], ['training', demo.training], ['test', demo.tests]];
       groups.forEach(function (g) {
         var type = g[0], rows = g[1] || [];
@@ -829,7 +823,9 @@
         rows.forEach(function (x) {
           var id = (typeDef(type).id_prefix || type) + ':demo-' + x.key;
           ids[x.key] = id;
-          put(type, id, { title: x.title, status: x.status, owner: ids[x.owner] || null, due: off(x.due_off), data: Object.assign({}, x.data || {}) });
+          var xd = Object.assign({}, x.data || {});
+          if (x.opened_off != null) xd.opened_on = off(x.opened_off);
+          put(type, id, { title: x.title, status: x.status, owner: ids[x.owner] || null, due: off(x.due_off), data: xd });
           (x.links || []).forEach(function (l) {
             var to = ids[l.to] || l.to;
             if (get(to)) { try { link(l.type, id, to, { origin: 'demo' }); } catch (e) { /* skip a link the config does not allow */ } }
@@ -975,7 +971,22 @@
     createSpine: createSpine,
     adapters: { memory: memoryAdapter, localStorage: localStorageAdapter, postgres: postgresAdapter },
     reference: reference,
-    bridge: { collect: collect, modules: MODULES, guessRole: guessRole },
+    bridge: { collect: collect, modules: MODULES, migrated: MIGRATED, guessRole: guessRole },
+    /* One-time imports for modules that moved onto the spine. A module file (for example
+       docs/actions-store.js) registers { id, label, run(spine, read) } here; RR.boot runs every
+       registered migration after the bridge. run() must be idempotent, must never write or delete
+       the module's old key (it stays as a backup) and returns a small report. */
+    migrations: [],
+    runMigrations: function (spine, read) {
+      var who = spine.actor(), out = [];
+      RR.migrations.forEach(function (m) {
+        spine.setActor('system:bridge'); // imports are attributed to the module import, like the bridge
+        try { out.push(Object.assign({ id: m.id }, m.run(spine, read))); }
+        catch (e) { out.push({ id: m.id, status: 'error', error: String(e && e.message || e) }); }
+      });
+      spine.setActor(who);
+      return out;
+    },
     dates: dates,
     util: { csv: csv, csvCell: csvCell, slug: slug, stable: stable, hash: fnv, clone: clone },
     current: null,
@@ -1001,6 +1012,7 @@
       if (o.items) s.addReference(reference.regChanges(r[5]));
       var titles = {}; ((r[4] && r[4].tracks) || []).forEach(function (t) { titles[t.id] = t.title; });
       var report = s.importModules(function (k) { return ls ? ls.getItem(k) : null; }, { controls: r[3], academyTitles: titles });
+      var migrations = RR.runMigrations(s, function (k) { return ls ? ls.getItem(k) : null; });
       var actor = s.getSetting('actor');
       if (actor && s.get(actor)) s.setActor(actor);
       // Another tab (say the board) wrote to the spine: tell the page so it can re-open.
@@ -1008,7 +1020,7 @@
         RR._listening = true;
         window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('regradar-spine-') === 0) o.onExternalChange(); });
       }
-      return { spine: s, report: report, storageOk: storageOk, applicability: r[2], obligationsMeta: r[1] && r[1]._meta };
+      return { spine: s, report: report, migrations: migrations, storageOk: storageOk, applicability: r[2], obligationsMeta: r[1] && r[1]._meta };
     },
     // Open the page's spine and make its methods available as RR.get, RR.list, ...
     open: async function (opts) {

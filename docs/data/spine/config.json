@@ -243,7 +243,7 @@
   },
 
   "bridge": {
-    "_note": "How the read-only bridge maps statuses found in the existing modules onto the spine's workflows. Configure for your firm.",
+    "_note": "How statuses found in the existing modules map onto the spine's workflows: the read-only bridge uses these for the modules it still mirrors, and issue_status / action_status are also the table the Issues and actions page uses (docs/actions-store.js, checked by tests/spine.test.mjs). Configure for your firm.",
     "issue_status": { "open": "todo", "in_progress": "in_progress", "awaiting_validation": "review", "closed": "done", "risk_accepted": "done" },
     "action_status": { "open": "todo", "done": "done" },
     "control_status": { "draft": "draft", "pending_review": "pending_review", "approved": "approved" },
