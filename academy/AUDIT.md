@@ -107,5 +107,7 @@ Not verifiable from the repo (left, flagged): references to EU Regulations 269/2
 | **new** `regradar-academy-training` | `AcademyProgress` (academy-engine.js) | learning-path completions: module id, date, score, steps (shape documented in the file) |
 | **new** `regradar-ex-static` | academy-explainer.js | learner chose static frames instead of animation |
 | **new** `regradar-academy-misses` | academy-rounds.js (`AcademyRounds.misses`) | missed Spot it cards, check questions and risky Decide choices, replayed in the warm-up: `{v:1, items:[{id, module, kind, at, n}]}`, capped at 40 |
+| **new** `regradar-academy-learner` | `AcademyEvidence` (academy-evidence.js), certificate page | optional name, role and firm typed by the learner: `{v:1, name, role, firm}`; never sent anywhere; cleared by "Clear my data" |
+| **new** `regradar-academy-register-config` | `AcademyEvidence`, team register page | the compliance officer's required-lesson set and refresher interval: `{v:1, required:[ids]\|null, months, dueSoonDays}`; cleared by "Clear my data" or "Reset rules" |
 
-No existing key changes shape. The shell key only gains a `learn` module entry. `regradar-academy-training` gains `spot` and `decide` steps and prefs (`coach_<type>`, `shifts`); lessons already marked complete stay complete.
+No existing key changes shape. The shell key only gains a `learn` module entry. `regradar-academy-training` gains `spot` and `decide` steps and prefs (`coach_<type>`, `shifts`); lessons already marked complete stay complete. New completions also record `completed.cv`, the curriculum `content_version` at the time (completions made earlier have none and print as "not recorded").

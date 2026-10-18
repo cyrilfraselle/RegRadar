@@ -246,6 +246,12 @@ function hubView(){
     +'<div class="tools"><button type="button" class="btn sm" data-act="csv">Export completions (CSV)</button>'
     +'<button type="button" class="btn sm" data-act="reset">Clear training records on this device</button></div></div></section>';
 
+  /* evidence: certificate and team register */
+  html+='<section class="sec" aria-labelledby="evH"><h2 id="evH">Evidence</h2><div class="rooms">'
+    +room('academy-certificate.html','Your certificate','Print or save a record of the lessons you completed, with dates, scores and an integrity code. Self-attested.')
+    +room('academy-register.html','Team register','For compliance officers: merge several learners\' files, see who is overdue, print an evidence pack.')
+    +'</div><p class="fine" style="margin-top:10px">Documented training is what AMLR Art. 12 asks for. These records are self-attested, kept on the learner\'s device and are not an accredited or regulator-approved certificate.</p></section>';
+
   html+='<section class="sec"><details class="more"><summary>What is not built yet</summary><div>Planned, not available: a Spot it game and a Decide scenario for the DORA and MiCA primer, a hands-on STR drafting simulation, a supervisor-inspection simulation, and per-firm assignments.</div></details></section>';
   APP.innerHTML=html;
   var cur=APP.querySelector('.row .nd.now'), row=APP.querySelector('.row');
@@ -620,6 +626,8 @@ Promise.all([getJSON('data/academy/curriculum.json'), getJSON('data/academy/expl
     (R.games||[]).forEach(function(g){ if(BYID[g.module]){ GAMES[g.module]=g; GBYID[g.id]=g; } });
     (R.decide||[]).forEach(function(d){ if(BYID[d.module]) DEC[d.module]=d; });
   }
+  /* new completions record the content version they were done on (certificates and the team register print it) */
+  AP.setContentVersion(CUR_META.content_version);
   /* completion rule per lesson: the old four steps, plus Spot it and Decide where they exist.
      Lessons already marked complete stay complete (AcademyProgress keeps the flag). */
   TR.forEach(function(t){
