@@ -841,8 +841,10 @@ await test('controls: the workspace operations (add, edit, map, unmap, test, rem
   assert.equal(c.last_tested, today); assert.equal(c.effectiveness, 'needs_improvement');
   assert.equal(s.get('CTL:local-new').due, RR.dates.addDays(today, 365), 'next due from the Annual cycle');
   const t = CS.read(s).tests['local-new'];
-  assert.deepEqual(t, [{ date: today, result: 'needs_improvement', note: 'sampled 10 files', evidence: 'https://example.org/evidence/1' }]);
-  CS.recordTest(s, 'local-new', 'effective', '');
+  assert.deepEqual(t, [{ date: today, result: 'needs_improvement', note: 'sampled 10 files', evidence: 'https://example.org/evidence/1', evidence_url: 'https://example.org/evidence/1' }]);
+  CS.recordTest(s, 'local-new', 'effective', '', 'Signed checklist ref QA-7, see https://example.org/qa7 for the file');
+  assert.equal(CS.read(s).tests['local-new'][0].evidence_url, 'https://example.org/qa7', 'free text and a link in one field: both kept');
+  assert.equal(CS.read(s).tests['local-new'][0].evidence.startsWith('Signed checklist'), true);
   assert.deepEqual(CS.read(s).tests['local-new'].map((x) => x.result), ['effective', 'needs_improvement'], 'newest first');
   assert.equal(s.get('TST:local-new:1').status, 'effective');
   // unmap a library mapping and map it again
@@ -851,8 +853,12 @@ await test('controls: the workspace operations (add, edit, map, unmap, test, rem
   assert.ok(!ctl(s, lib.id).obligation_ids.includes(first));
   CS.mapControl(s, first, lib.id);
   assert.deepEqual(ctl(s, lib.id).obligation_ids, lib.obligation_ids, 'a mapping drawn again returns to its place');
-  // the library cannot be removed; an own control can, with its tests
-  CS.removeControl(s, 'ctl-01'); assert.ok(ctl(s, 'ctl-01'));
+  // any control can be taken off the list: archived with its tests, never deleted, history kept; the library does not bring it back
+  CS.removeControl(s, 'ctl-01');
+  assert.equal(ctl(s, 'ctl-01'), undefined); assert.equal(s.get('CTL:ctl-01').archived, true);
+  assert.ok(s.history('CTL:ctl-01').some((e) => e.action === 'archive'), 'the archive is in the log');
+  assert.equal(CS.syncLibrary(s, CTL), 0); assert.equal(ctl(s, 'ctl-01'), undefined, 'syncLibrary does not resurrect an archived library control');
+  assert.equal(s.linked('CTL:ctl-01', 'mitigates').length > 0, true, 'its mappings are kept for the record');
   CS.removeControl(s, 'local-new');
   assert.equal(ctl(s, 'local-new'), undefined); assert.equal(s.get('CTL:local-new').archived, true);
   assert.equal(CS.read(s).tests['local-new'], undefined);
