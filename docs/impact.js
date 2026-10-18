@@ -56,6 +56,8 @@ function loadProfile() { try { var p = JSON.parse(lsGet(PKEY) || 'null'); if (p)
 function saveProfile() { var base = {}; try { base = JSON.parse(lsGet(PKEY) || 'null') || {}; } catch (e) { base = {}; } base.entity = PROFILE.entity; base.acts = PROFILE.acts; lsSet(PKEY, JSON.stringify(base)); }
 function loadPolicies() {
   POLS = [];
+  // Policies live in the data spine now (docs/policies-store.js); the old key is read only until the one-time import has run.
+  if (window.PolicyStore) { try { POLS = window.PolicyStore.listFromStorage(lsGet); } catch (e) { /* tolerate absence */ } return; }
   try { var s = JSON.parse(lsGet(POLKEY) || 'null'); if (s && Array.isArray(s.policies)) POLS = s.policies.map(function (p) { return { id: p.id, ref: p.ref || '', title: p.title || p.id, owner: p.owner || '', obligation_ids: p.obligation_ids || [], legal_refs: p.legal_refs || [], retired: !!p.retired }; }); } catch (e) { /* tolerate absence */ }
 }
 

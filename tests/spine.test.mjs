@@ -15,6 +15,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 const RR = require(path.join(root, 'docs', 'rr-core.js'));
 const CS = require(path.join(root, 'docs', 'controls-store.js'));
+const PS = require(path.join(root, 'docs', 'policies-store.js'));
 const AS = require(path.join(root, 'docs', 'actions-store.js'));
 const J = (p) => JSON.parse(fs.readFileSync(path.join(root, 'docs', p), 'utf8'));
 const CFG = J('data/spine/config.json');
@@ -226,12 +227,9 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.ok(!RR.bridge.modules.some((m) => m.id === 'actions'), 'actions is not in the bridge module list');
   assert.ok(RR.bridge.migrated.some((m) => m.id === 'actions'));
   assert.ok(!r.modules.some((m) => m.module === 'actions'), 'no report line for a migrated module');
-  // policies
-  assert.equal(s.get('POL:POL-01').status, 'in_review', 'a version in review makes the file wait for approval');
-  assert.equal(s.get('POL:POL-01').due, '2026-11-01');
-  assert.equal(s.get('POL:POL-02').due, '2026-09-01');
-  assert.equal(s.get('POL:POL-03').status, 'retired');
-  assert.equal(s.get('person:t-nguyen').data.role, 'mlro', 'role guessed from "Compliance Officer"');
+  // policies have left the bridge too (their own migration: see the "policies:" tests)
+  assert.equal(s.list(['policy', 'policy_version', 'attestation']).length, 0, 'the bridge no longer mirrors regradar-policies');
+  assert.ok(!RR.bridge.modules.some((m) => m.id === 'policies') && RR.bridge.migrated.some((m) => m.id === 'policies'));
   // cases: 10 working days from 9 Oct 2026 with 19 Oct as a holiday -> 26 Oct
   assert.equal(s.get('CASE:CASE-1').due, '2026-10-26');
   assert.equal(s.get('CASE:CASE-2').due, null);
@@ -275,7 +273,7 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.equal(s.list('case', { archived: true }).length, 2);
   assert.deepEqual(s.history('CASE:CASE-1').map((e) => e.action), ['import', 'sync']);
   assert.equal(s.history('CASE:CASE-1')[0].actor, 'system:bridge', 'imports are attributed to the bridge');
-  assert.equal(s.history('person:t-nguyen')[0].actor, 'system:bridge');
+  assert.equal(s.history('person:analyst-a')[0].actor, 'system:bridge');
 
   // an unreadable key is reported and its records are kept, not archived
   const st3 = fakeStorage(Object.assign({}, FIX, { 'regradar-cases': '{broken' }), MODULE_KEYS);
@@ -325,9 +323,14 @@ await test('demo: skips policies/cases (and findings) when the modules already h
   const s = await spine();
   s.importModules((k) => st.getItem(k), { controls: CTL });
   let r = s.loadDemo(DEMO);
-  assert.ok(r.skipped.includes('Policies') && r.skipped.includes('Cases'));
+  assert.ok(r.skipped.includes('Cases'));
+  assert.ok(!r.skipped.includes('Policies'), 'policies are not mirrored any more: only a migrated library makes them the firm\'s own');
   assert.ok(!r.skipped.includes('Findings'), 'findings are no longer mirrored: only a migrated register makes them the firm\'s own');
-  assert.equal(s.list('policy').filter((p) => p.origin === 'demo').length, 0);
+  // once the policies library is on the spine, it wins over the demo policies
+  const sp = await spine();
+  assert.equal(PS.migrate(sp, (k) => st.getItem(k)).status, 'migrated');
+  assert.ok(sp.loadDemo(DEMO).skipped.includes('Policies'));
+  assert.equal(sp.list('policy').filter((p) => p.origin === 'demo').length, 0);
   // once the Issues and actions register is on the spine, its findings win over the demo ones
   const s2 = await spine();
   s2.importModules((k) => st.getItem(k), { controls: CTL });
@@ -414,8 +417,8 @@ await test('migration: legacy key in, spine records out (findings, tasks, people
   const before = st.getItem(LEG_KEY);
   const all = RR.runMigrations(s, read, REF);
   await s.flush();
-  assert.deepEqual(all.map((m) => m.id), ['controls', 'actions'], 'controls first: findings link to them');
-  const rep = all[1];
+  assert.deepEqual(all.map((m) => m.id), ['controls', 'policies', 'actions'], 'controls first: policies and findings link to them');
+  const rep = all[2];
   assert.equal(rep.status, 'migrated');
   assert.equal(rep.issues, 4);
   assert.equal(rep.tasks, 2);
@@ -921,6 +924,191 @@ await test('controls: ControlsData keeps its interface (load, mutators, coverage
     CD.removeControl('local-z');
     assert.equal((await CD.load()).controls.some((c) => c.id === 'local-z'), false);
   } finally { globalThis.fetch = realFetch; RR.current = null; }
+});
+
+/* ═════════════════ Policies: migration onto the spine ═════════════════ */
+const PSEED = J('data/policies-seed.json');
+const PKEY = 'regradar-policies';
+function loadPD(spineObj) {
+  const win = { RR, PolicyStore: PS };
+  const doc = { currentScript: null, createElement: () => ({}), head: { appendChild() {} } };
+  RR.current = spineObj; RR._sharedP = null;
+  new Function('window', 'document', fs.readFileSync(path.join(root, 'docs', 'policies-data.js'), 'utf8'))(win, doc);
+  return win.PolicyData;
+}
+const j = (x) => JSON.parse(JSON.stringify(x));
+function derived(PD, st) {
+  const t = PD.today();
+  return { status: st.policies.map((p) => [p.id, PD.statusOf(p), PD.nextReview(p), (PD.liveVersion(p) || {}).ver, (PD.latestVersion(p) || {}).ver]), sum: (() => { const x = PD.attestSummary(st, t); return Object.assign({}, x, { perPolicy: x.perPolicy.map((q) => [q.p.id, q.total, q.done, q.outstanding, q.overdue, q.due, q.req && q.req.v.ver]) }); })(),
+    cov: PD.coverage(st, OBL.obligations, [], t).counts, out: PD.outstandingByPerson(st, t).map((o) => [o.staff.id, o.items.length]),
+    remind: st.staff.map((x) => PD.lastReminderOn(st, x.id)) };
+}
+async function polDevice(raw) {
+  const st = fakeStorage(raw ? { [PKEY]: raw } : {}, [PKEY]);
+  const s = await spine({ adapter: RR.adapters.localStorage({ storage: st }) });
+  return { st, s, read: (k) => st.getItem(k) };
+}
+
+await test('policies: the seeded library migrates to records; the page state reads back exactly (display parity); key untouched; idempotent', async () => {
+  const { s: s0 } = await polDevice();
+  const PD0 = loadPD(s0);
+  const legacy = PD0.fromSeed(PSEED);
+  const raw = JSON.stringify(legacy);
+  const { st, s, read } = await polDevice(raw);
+  const r = mig(s, read, 'policies');
+  await s.flush();
+  assert.equal(r.status, 'migrated'); assert.equal(r.policies, PSEED.policies.length); assert.equal(r.staff, PSEED.staff.length);
+  // records
+  const p1 = s.get('POL:POL-01');
+  assert.equal(p1.type, 'policy'); assert.equal(p1.origin, 'demo', 'a demo policy keeps demo origin'); assert.equal(p1.data.pid, 'POL-01'); assert.equal(p1.data.ref, 'CFB-AML-01');
+  assert.deepEqual(s.linked('POL:POL-01', 'implements').map((e) => e.id).sort(), ['OBL:AMLR-art26', 'OBL:AMLR-art34']);
+  const vs = s.linked('POL:POL-01', 'version_of', 'in');
+  assert.equal(vs.length, legacy.policies[0].versions.length);
+  assert.ok(vs.every((v) => v.type === 'policy_version' && /^POLV:POL-01:/.test(v.id) && v.data.body !== undefined));
+  assert.equal(s.list('person').filter((e) => e.data.staff_id).length, PSEED.staff.length, 'the roster is team members');
+  assert.equal(s.get('person:t-nguyen').data.staff_id, 's01');
+  const nAck = Object.values(legacy.attest).reduce((n, o) => n + Object.values(o).reduce((m, l) => m + l.length, 0), 0);
+  assert.equal(s.list('attestation').length, nAck, 'acknowledgements are records');
+  const a0 = s.list('attestation')[0];
+  assert.equal(a0.status, 'recorded'); assert.ok(a0.owner && s.get(a0.owner).type === 'person'); assert.deepEqual(s.linked(a0.id, 'evidences').map((e) => e.type), ['policy']);
+  assert.equal(s.getSetting(PS.META).org, 'CF Bank (fictional)');
+  assert.equal(s.getSetting(PS.REM).length, PSEED.reminders.length);
+  // the audit trail became events: same lines, same order, acting person and original time kept
+  const PD = loadPD(s);
+  const back = PS.read(s);
+  assert.equal(back.log.length, legacy.log.length);
+  assert.deepEqual(back.log.map((e) => [e.t.slice(0, 10), e.policy, e.action, e.detail]), legacy.log.map((e) => [new Date(e.t).toISOString().slice(0, 10), e.policy, e.action, e.detail]));
+  assert.deepEqual(back.log.map((e) => e.who), legacy.log.map((e) => e.who));
+  assert.equal(s.verifyLog().ok, true);
+  // the page's state: same policies, versions, staff, acknowledgements, reminders ...
+  assert.deepEqual(back.staff, legacy.staff); assert.deepEqual(back.teams, legacy.teams); assert.equal(back.me, legacy.me); assert.equal(back.org, legacy.org); assert.equal(back.demo, true);
+  assert.deepEqual(back.reminders, legacy.reminders);
+  assert.deepEqual(back.attest, legacy.attest);
+  assert.deepEqual(back.policies.map((p) => p.id), legacy.policies.map((p) => p.id));
+  for (const lp of legacy.policies) {
+    const bp = back.policies.find((p) => p.id === lp.id);
+    for (const k of ['ref', 'title', 'kind', 'owner', 'approver', 'cycleMonths', 'attestDays', 'audience', 'obligation_ids', 'legal_refs', 'template', 'retired', 'draft', 'reviews', 'lastReviewed']) assert.deepEqual(bp[k], lp[k], `${lp.id}.${k}`);
+    assert.deepEqual(bp.versions.map((v) => [v.ver, v.status, v.date, v.by, v.note, v.body, v.approvedOn, v.approvedBy, v.reattest]), lp.versions.map((v) => [v.ver, v.status, v.date, v.by, v.note, v.body, v.approvedOn, v.approvedBy, v.reattest !== false]), `${lp.id}.versions`);
+  }
+  // ... and the page's own derived views agree (status, next review, coverage, acknowledgements, outstanding people)
+  { const a = derived(PD, back), b = derived(PD, legacy); for (const k of Object.keys(b)) assert.deepEqual(a[k], b[k], 'derived ' + k); }
+  // entity status and due date are the derived ones, like the old bridge's
+  for (const lp of legacy.policies) { const e = s.get('POL:' + lp.id); assert.equal(e.status, PD.statusOf(lp) === 'approved' && PD.pendingVersion(lp) && PD.pendingVersion(lp).status === 'in_review' ? 'in_review' : PD.statusOf(lp), 'a version waiting for approval shows the file as in review on the briefing'); assert.equal(e.due, PD.nextReview(lp)); }
+  // idempotent; key untouched; only spine keys written
+  const nEv = s.events().length;
+  assert.equal(mig(s, read, 'policies').status, 'already'); assert.equal(s.events().length, nEv);
+  assert.equal(st.getItem(PKEY), raw);
+  assert.ok(st.writes.every((k) => k.startsWith('regradar-spine-')));
+  const s2 = await spine(); const again = (mig(s2, read, 'policies'), s2.setSetting(PS.DONE, null), mig(s2, read, 'policies'));
+  assert.equal(again.status, 'migrated'); assert.equal(s2.list('policy').length, PSEED.policies.length, 'a repeated import adds no duplicates');
+  assert.equal(s2.list('attestation').length, nAck);
+  RR.current = null;
+});
+
+await test('policies: the page works on the spine (open, seed, edit, publish, approve, acknowledge, remind, review, retire) and reloads the same', async () => {
+  const { s } = await polDevice();
+  const PD = loadPD(s);
+  await PD.open();
+  assert.equal(PD.loadLocal(), null, 'nothing yet: the page offers the demo seed');
+  let ST = PD.fromSeed(PSEED);
+  assert.equal(PD.save(ST), true);
+  const nPol = s.list('policy').length;
+  assert.equal(nPol, PSEED.policies.length);
+  let back = PD.loadLocal();
+  assert.deepEqual(derived(PD, back), derived(PD, ST));
+  assert.equal(back.log.length, ST.log.length);
+  // a new policy, a draft (no audit event), publish, review, approve by someone else
+  const me = ST.staff[0], appr = ST.staff.find((x) => x.id !== me.id);
+  ST.me = me.id;
+  const p = PD.createPolicy(ST, { title: 'Gifts and hospitality', owner: me.name, approver: appr.name, by: me.name, obligation_ids: ['AMLR-art26'], kind: 'Procedure' });
+  assert.equal(PD.save(ST), true);
+  assert.equal(s.get('POL:' + p.id).status, 'draft'); assert.equal(s.get('POL:' + p.id).owner, 'person:' + RR.util.slug(me.name));
+  const ev0 = s.events().length;
+  PD.setDraft(ST, p, '# Gifts\n\nNever accept gifts above 50 euro.'); PD.save(ST);
+  assert.equal(s.events().length, ev0, 'typing a draft writes no audit event');
+  assert.equal(PD.loadLocal().policies.find((x) => x.id === p.id).draft.body.startsWith('# Gifts'), true);
+  assert.equal(PD.publish(ST, p, { by: me.name, note: 'First version', kind: 'minor' }).error, undefined);
+  PD.save(ST);
+  assert.equal(s.get('POL:' + p.id).status, 'in_review');
+  assert.equal(s.get('POL:' + p.id).data.pending_version, '0.2.0');
+  assert.equal(PD.approve(ST, p, appr.name, 'ok').error, undefined);
+  PD.save(ST);
+  const e = s.get('POL:' + p.id);
+  assert.equal(e.status, 'approved'); assert.equal(e.data.live_version, '0.2.0'); assert.ok(e.due, 'next review date set');
+  assert.equal(s.get('POLV:' + p.id + ':0.1.0').status, 'superseded');
+  assert.equal(s.get('POLV:' + p.id + ':0.2.0').status, 'approved'); assert.equal(s.get('POLV:' + p.id + ':0.2.0').data.approvedBy, appr.name);
+  // acknowledgement, reminder, periodic review, mapping
+  PD.acknowledge(ST, p, me.id, me.name); PD.remind(ST, appr.id, [p.id], me.name, 'please read'); PD.recordReview(ST, p, me.name, 'Reviewed, no change'); PD.save(ST);
+  assert.equal(s.list('attestation').filter((a) => a.data.policy === p.id).length, 1);
+  assert.equal(s.getSetting(PS.REM).length, PSEED.reminders.length + 1);
+  ST.policies.find((x) => x.id === p.id).obligation_ids.push('AMLR-art34'); PD.logEntry(ST, me.name, p.id, 'mapped', 'AMLR-art34'); PD.save(ST);
+  assert.deepEqual(s.linked('POL:' + p.id, 'implements').map((x) => x.id).sort(), ['OBL:AMLR-art26', 'OBL:AMLR-art34']);
+  // the audit trail is the event log: acting person, action, note
+  const log = PD.loadLocal().log.filter((x) => x.policy === p.id).map((x) => [x.who, x.action]);
+  assert.deepEqual(log.slice(0, 7), [[me.name, 'mapped'], [me.name, 'reviewed'], [me.name, 'reminded'], [me.name, 'acknowledged'], [appr.name, 'approved'], [me.name, 'published'], [me.name, 'created']]);
+  const apprEv = s.history('POL:' + p.id).find((x) => x.action === 'approved');
+  assert.equal(apprEv.actor, 'person:' + RR.util.slug(appr.name)); assert.match(apprEv.note, /v0\.2\.0/);
+  // retire and reinstate; staff added and removed; "acting as"
+  PD.retire(ST, p, me.name, 'superseded by the group policy'); PD.save(ST);
+  assert.equal(s.get('POL:' + p.id).status, 'retired'); assert.equal(s.get('POL:' + p.id).due, null);
+  PD.reinstate(ST, p, me.name, 'still needed'); PD.save(ST);
+  assert.equal(s.get('POL:' + p.id).status, 'approved');
+  assert.equal(s.get('POL:' + p.id).data.live_version, '0.2.0');
+  const ns = PD.addStaff(ST, 'New Joiner', 'Onboarding', 'Analyst'); ST.me = ns.id; PD.save(ST);
+  assert.equal(s.get('person:new-joiner').data.staff_id, ns.id); assert.equal(s.getSetting(PS.META).me, ns.id);
+  PD.removeStaff(ST, ns.id); PD.save(ST);
+  assert.equal(PD.loadLocal().staff.some((x) => x.id === ns.id), false); assert.equal(s.get('person:new-joiner').data.staff_id, '', 'a removed person stays a team member of the spine, off the roster');
+  // reload: the same state, derived views included; the chain is intact; edits of fields (title, owner) are events
+  ST.policies.find((x) => x.id === p.id).title = 'Gifts, hospitality and conflicts'; PD.save(ST);
+  assert.ok(s.history('POL:' + p.id).some((x) => x.action === 'update' && x.changes.title));
+  back = PD.loadLocal();
+  { const a = derived(PD, back), b = derived(PD, ST); for (const k of Object.keys(b)) assert.deepEqual(a[k], b[k], 'derived ' + k); }
+  assert.equal(back.log.length, ST.log.length);
+  assert.equal(s.verifyLog().ok, true);
+  // a state that did not come from loadLocal REPLACES the library (reload demo / start empty / restore backup)
+  const e1 = s.events().length;
+  const empty = PD.emptyState(); empty.org = 'Your firm';
+  assert.equal(PD.save(empty), true);
+  assert.equal(s.list('policy').length, 0, 'policies archived, kept in the log');
+  assert.equal(s.list('attestation').length, 0); assert.equal(s.list('policy_version').length, 0);
+  const afterEmpty = PD.loadLocal();
+  assert.ok(afterEmpty && afterEmpty.policies.length === 0 && afterEmpty.log.length === 0, 'an empty library stays empty (the demo is not re-seeded) and its log starts again');
+  assert.ok(s.events().length > e1);
+  const reseed = PD.fromSeed(PSEED); PD.save(reseed);
+  assert.equal(PD.loadLocal().log.length, reseed.log.length, 'the page\'s log shows only the new library\'s lines');
+  assert.equal(s.list('policy').length, PSEED.policies.length);
+  assert.equal(s.verifyLog().ok, true);
+  RR.current = null;
+});
+
+await test('policies: mirrors made by the old bridge are adopted (same ids); the briefing demo is not doubled; the impact and Ask pages read the spine', async () => {
+  const s = await spine();
+  s.create('policy', { id: 'POL:POL-01', title: 'Mirrored', status: 'in_review', due: '2026-11-01', data: { ref: 'X-1' } }, { origin: 'module:policies', _bridge: true, action: 'import' });
+  s.link('implements', 'POL:POL-01', 'OBL:AMLR-art26', { _bridge: true, module: 'policies', silent: true });
+  const raw = FIX['regradar-policies'];
+  const rep = mig(s, (k) => (k === PKEY ? raw : null), 'policies');
+  assert.equal(rep.status, 'migrated');
+  const e = s.get('POL:POL-01');
+  assert.equal(e.origin, 'spine'); assert.equal(e.title, 'AML policy'); assert.equal(e.status, 'in_review', 'a version in review makes the file wait for approval'); assert.equal(e.due, '2026-11-01');
+  assert.ok(s.isWritable(e)); assert.ok(s.history('POL:POL-01').some((x) => x.action === 'adopt'));
+  assert.equal(s.get('POL:POL-02').due, '2026-09-01'); assert.equal(s.get('POL:POL-03').status, 'retired');
+  assert.equal(s.get('person:t-nguyen').data.role, 'mlro', 'role guessed from "Compliance Officer"'); assert.equal(s.get('person:i-claes').data.team, 'Onboarding');
+  assert.equal(s.importModules(() => null, REF).archived, 0, 'the bridge leaves adopted records alone');
+  // the Ask page's register reader and the impact page's list read the spine once migrated
+  const st = fakeStorage({}, []);
+  const s2 = await spine({ adapter: RR.adapters.localStorage({ storage: st }) });
+  mig(s2, (k) => (k === PKEY ? raw : null), 'policies'); await s2.flush();
+  const AI = require(path.join(root, 'docs', 'ai.js'));
+  const reg = AI.readLocalRegister({ getItem: (k) => st.getItem(k) }, []);
+  assert.deepEqual(reg.policies.policies.map((p) => p.id).sort(), ['POL-01', 'POL-02', 'POL-03']);
+  const list = PS.listFromStorage((k) => st.getItem(k));
+  assert.deepEqual(list.map((p) => [p.id, p.ref, p.title, p.owner, p.retired]).sort(), [['POL-01', 'X-1', 'AML policy', 'T. Nguyen', false], ['POL-02', '', 'CDD procedure', 'I. Claes', false], ['POL-03', '', 'Retired one', 'I. Claes', true]]);
+  assert.deepEqual(list.find((p) => p.id === 'POL-01').obligation_ids, ['AMLR-art26']);
+  // before the import the old key is read
+  const st0 = fakeStorage({ [PKEY]: raw });
+  assert.equal(PS.listFromStorage((k) => st0.getItem(k)).length, 3);
+  assert.equal(PS.migrate(await spine(), () => '{broken').status, 'unreadable');
+  assert.equal(PS.migrate(await spine(), () => null).status, 'none');
 });
 
 await test('owners: only people become team members; boards, committees and functions stay plain text', async () => {

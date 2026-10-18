@@ -38,7 +38,8 @@
    (writable everywhere), and a one-time, idempotent import (RR.migrations,
    run by RR.boot) copies what the module kept under its old localStorage
    key. The old key is left untouched as a backup. Migrated so far:
-   Controls (docs/controls-store.js, behind docs/controls-data.js) and
+   Controls (docs/controls-store.js, behind docs/controls-data.js),
+   Policies (docs/policies-store.js, behind docs/policies-data.js) and
    Issues and actions (docs/actions-store.js). RR.boot loads the files in
    RR.migrationFiles by itself, so a page needs no extra script tag.
 
@@ -247,7 +248,6 @@
 
   /* ═════════════════ the read-only bridge ═════════════════ */
   var MODULES = [
-    { id: 'policies', key: 'regradar-policies', label: 'Policies', page: 'policies.html' },
     { id: 'cases', key: 'regradar-cases', label: 'Cases and STR', page: 'cases.html' },
     { id: 'bwra', key: 'regradar-bwra', label: 'Business risk', page: 'risk-assessment.html' },
     { id: 'cra', key: 'regradar-cra', label: 'Customer risk', page: 'customer-risk.html' },
@@ -259,6 +259,7 @@
   // Modules that have moved onto the spine: no longer bridged, but still named in records and the log.
   var MIGRATED = [
     { id: 'controls', key: 'regradar-controls-mine', label: 'Controls (Compliance workspace)', page: 'workspace.html?view=controls', migrated: true },
+    { id: 'policies', key: 'regradar-policies', label: 'Policies', page: 'policies.html', migrated: true },
     { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html', migrated: true }
   ];
   function moduleById(id) {
@@ -313,28 +314,6 @@
     }
     function link(type, from, to, m) { out.links.push({ type: type, from: from, to: to, module: m.id }); }
     function report(m, r, n, note) { out.report.push({ module: m.id, key: m.key, label: m.label, page: m.page, found: !!r.found, error: r.error || '', records: n || 0, note: note || '' }); }
-
-    /* policies (staff, versions, review cycle) */
-    (function () {
-      var m = moduleById('policies'), r = parse(m), n = 0, st = r.value;
-      if (!r.found || r.error || !st || !Array.isArray(st.policies)) { report(m, r, 0); return; }
-      (st.staff || []).forEach(function (s) { person(s.name, { module: m.id, role: s.role, team: s.team }); });
-      st.policies.forEach(function (p) {
-        var vs = p.versions || [], live = null, latest = null, k;
-        for (k = vs.length - 1; k >= 0; k--) if (vs[k].status === 'approved') { live = vs[k]; break; }
-        for (k = vs.length - 1; k >= 0; k--) if (vs[k].status !== 'withdrawn') { latest = vs[k]; break; }
-        var status = p.retired ? 'retired' : (latest && latest.status === 'in_review') ? 'in_review' : live ? 'approved' : 'draft';
-        var due = (!p.retired && live && dates.valid(String(p.lastReviewed || '').slice(0, 10))) ? dates.addMonths(String(p.lastReviewed).slice(0, 10), p.cycleMonths || 12) : null;
-        var id = 'POL:' + p.id;
-        add(m, { id: id, type: 'policy', title: p.title || p.id, status: (bmap.policy_status || {})[status] || status,
-          owner: person(p.owner, { module: m.id }), due: due,
-          data: { ref: p.ref || p.id, cycle_months: p.cycleMonths || 12, live_version: live ? live.ver : '', pending_version: latest && latest.status === 'in_review' ? latest.ver : '',
-            approver: p.approver || '', date_source: due ? 'last reviewed ' + String(p.lastReviewed).slice(0, 10) + ' + ' + (p.cycleMonths || 12) + '-month cycle (Policies page)' : '' } }, p.id);
-        n++;
-        (p.obligation_ids || []).forEach(function (ob) { link('implements', id, 'OBL:' + ob, m); });
-      });
-      report(m, r, n);
-    })();
 
     /* cases (decision target in working days, as set on the Cases page) */
     (function () {
@@ -481,7 +460,8 @@
     function logEvent(action, ent, extra) {
       extra = extra || {};
       S.seq++;
-      var ev = { id: 'ev-' + Date.parse(clock()).toString(36) + '-' + S.seq, seq: S.seq, at: clock(), actor: extra.actor || S.actor, action: action,
+      var at = extra.at && !isNaN(Date.parse(extra.at)) ? new Date(extra.at).toISOString() : clock();   // an import may keep the original time
+      var ev = { id: 'ev-' + Date.parse(at).toString(36) + '-' + S.seq, seq: S.seq, at: at, actor: extra.actor || S.actor, action: action,
         entity: ent ? ent.id : (extra.entity || null), entity_type: ent ? ent.type : (extra.entity_type || null), title: ent ? ent.title : (extra.title || ''),
         changes: extra.changes || null, link: extra.link || null, note: extra.note || '', prev: S.lastHash };
       ev.hash = hashOf(ev);
@@ -609,7 +589,7 @@
         origin: o.origin || 'spine', src: input.src || null, src_hash: input.src_hash || null,
         created_at: now, updated_at: now, created_by: S.actor, rev: 1, archived: false };
       store(ent);
-      logEvent(o.action || 'create', ent, { note: o.note });
+      if (!o.silent) logEvent(o.action || 'create', ent, { note: o.note });
       return ent;
     }
     function diffOf(cur, next) {
@@ -641,6 +621,7 @@
       if (!Object.keys(ch).length && !('src_hash' in patch)) return cur;
       next.rev = (cur.rev || 1) + 1; next.updated_at = clock();
       store(next);
+      if (o.silent) return next;   // a working copy (a draft being typed) is stored without an audit event
       var keys = Object.keys(ch), action = o.action;
       if (!action) action = keys.length === 1 && keys[0] === 'status' ? 'move' : keys.length === 1 && keys[0] === 'owner' ? 'assign' : keys.length === 1 && keys[0] === 'archived' ? (next.archived ? 'archive' : 'restore') : 'update';
       if (keys.length || o.action) logEvent(action, next, { changes: keys.length ? ch : null, note: o.note });
@@ -905,7 +886,7 @@
       assign: function (id, owner, o) { return update(id, { owner: owner }, Object.assign({ action: 'assign' }, o || {})); },
       archive: function (id, o) { return update(id, { archived: true }, Object.assign({ action: 'archive' }, o || {})); },
       link: link, unlink: unlink,
-      log: function (action, entityId, note) { return logEvent(action, entityId ? get(entityId) : null, { note: note }); },
+      log: function (action, entityId, note, extra) { return logEvent(action, entityId ? get(entityId) : null, Object.assign({}, extra || {}, { note: note })); },
       // reference, bridge, demo
       addReference: addReference, importModules: importModules, adopt: adopt,
       loadDemo: loadDemo, clearDemo: clearDemo, hasDemo: hasDemo,
@@ -1000,7 +981,7 @@
     /* The module files that hold a migration. RR.boot loads any that is not on the page yet (same
        folder as rr-core.js), so pages that only open the spine need no extra script tag. `order`
        matters: controls first, because findings and policies link to them. */
-    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'actions', file: 'actions-store.js' }],
+    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'policies', file: 'policies-store.js' }, { id: 'actions', file: 'actions-store.js' }],
     runMigrations: function (spine, read, ref) {
       var who = spine.actor(), out = [];
       RR.migrations.slice().sort(function (a, b) { return (a.order || 100) - (b.order || 100); }).forEach(function (m) {
@@ -1072,7 +1053,16 @@
           window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('regradar-spine-') === 0) RR._listeners.slice().forEach(function (f) { try { f(); } catch (x) { /* listener error */ } }); });
         }
       }
+      RR._sharedP = Promise.resolve(s);
       return { spine: s, report: report, migrations: migrations, storageOk: storageOk, applicability: r[2], obligationsMeta: r[1] && r[1]._meta };
+    },
+    /* One spine per page: code that needs "the" spine (ControlsData, PolicyData) shares the page's instance
+       instead of opening a second one (two writers would break the event log's hash chain). */
+    shared: function (o) {
+      if (RR._sharedP) return RR._sharedP;
+      RR._sharedP = RR.current ? Promise.resolve(RR.current) : RR.boot(o || {}).then(function (b) { return b.spine; });
+      RR._sharedP.catch(function () { RR._sharedP = null; });
+      return RR._sharedP;
     },
     // Open the page's spine and make its methods available as RR.get, RR.list, ...
     open: async function (opts) {

@@ -1,12 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════
    RegRadar: policies and procedures data layer (epic E6)
 
-   Everything the policies page knows lives in ONE device-local
-   document (localStorage key 'regradar-policies'): the policies and
-   their versions, review dates, the staff roster, acknowledgements,
-   reminders and an audit trail. The demo seed (CF Bank, fictional) is
-   copied in on first visit; swap load/save for a backend later without
-   touching the page.
+   Everything the policies page knows is ONE in-memory state: the
+   policies and their versions, review dates, the staff roster,
+   acknowledgements, reminders and an audit trail. It is stored in the
+   data spine (docs/rr-core.js, through docs/policies-store.js): policies
+   and versions are records, staff are team members, acknowledgements are
+   records, the audit trail is the event log. The old device-local key
+   'regradar-policies' is imported once and kept as a backup. The demo
+   seed (CF Bank, fictional) is copied in on first visit.
 
    Pure logic only: dates, semantic versions, review cycles,
    acknowledgement status, obligation coverage, a small markdown
@@ -69,21 +71,40 @@ window.PolicyData = (function () {
     return p.versions.reduce(function (m, v) { return !m || semCmp(v.ver, m) > 0 ? v.ver : m; }, null);
   }
 
-  /* ---------- persistence ---------- */
+  /* ---------- persistence: the data spine (docs/rr-core.js), through docs/policies-store.js ---------- */
+  // The page keeps ONE in-memory state; save() writes what changed to the spine (policies and versions as records,
+  // staff as team members, acknowledgements as records, the log as events). The old key 'regradar-policies' is
+  // imported once by the spine (RR.boot) and kept as a backup. Call open() first: it opens the spine.
+  var SELF = (document.currentScript && document.currentScript.src) || "";
+  var SPINE = null;
+  function ensureRR() {
+    if (window.RR) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var el = document.createElement("script"), dir = SELF.replace(/[?#].*$/, "").replace(/[^\/]*$/, "");
+      el.src = dir + "rr-core.js" + (SELF.indexOf("?") !== -1 ? SELF.slice(SELF.indexOf("?")) : "");
+      el.onload = resolve; el.onerror = function () { reject(new Error("rr-core.js could not be loaded")); };
+      document.head.appendChild(el);
+    });
+  }
+  function open() {
+    return ensureRR().then(function () { return window.RR.shared(); }).then(function (sp) {
+      if (!window.PolicyStore) throw new Error("policies-store.js is not loaded");
+      SPINE = sp; return sp;
+    });
+  }
   function loadLocal() {
-    try {
-      var s = JSON.parse(localStorage.getItem(KEY) || "null");
-      if (s && s.v === 1 && Array.isArray(s.policies) && Array.isArray(s.staff)) {
-        s.attest = s.attest || {}; s.reminders = s.reminders || []; s.log = s.log || []; s.teams = s.teams || [];
-        return s;
-      }
-    } catch (e) { /* unreadable: fall back to the seed */ }
-    return null;
+    if (!SPINE || !window.PolicyStore) return null;
+    try { return window.PolicyStore.read(SPINE); } catch (e) { return null; }
   }
   function save(st) {
-    try { localStorage.setItem(KEY, JSON.stringify(st)); return true; } catch (e) { return false; }
+    if (!SPINE || !window.PolicyStore) return false;
+    try {
+      var r = window.PolicyStore.commit(SPINE, st);
+      if (r.errors.length) { if (window.console) console.error(r.errors); return false; }
+      return SPINE.saveOk();
+    } catch (e) { return false; }
   }
-  function clear() { try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } }
+  function clear() { save(emptyState()); }
 
   function logEntry(st, who, pid, action, detail) {
     st.log.unshift({ t: new Date().toISOString(), who: who || "", policy: pid || "", action: action, detail: detail || "" });
@@ -583,7 +604,7 @@ window.PolicyData = (function () {
   return {
     KEY: KEY, today: today, iso: iso, parse: parse, addDays: addDays, addMonths: addMonths, diffDays: diffDays, fmt: fmt, fmtTime: fmtTime,
     clone: clone, esc: esc, semCmp: semCmp, semBump: semBump, highestVersion: highestVersion,
-    loadLocal: loadLocal, save: save, clear: clear, emptyState: emptyState, fromSeed: fromSeed, logEntry: logEntry,
+    open: open, loadLocal: loadLocal, save: save, clear: clear, emptyState: emptyState, fromSeed: fromSeed, logEntry: logEntry,
     getPolicy: getPolicy, getStaff: getStaff, staffByName: staffByName, liveVersion: liveVersion, latestVersion: latestVersion,
     pendingVersion: pendingVersion, findVersion: findVersion, verIdx: verIdx, statusOf: statusOf, STATUS_LABEL: STATUS_LABEL,
     nextReview: nextReview, reviewState: reviewState,

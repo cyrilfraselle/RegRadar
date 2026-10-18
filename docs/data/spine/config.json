@@ -121,6 +121,22 @@
         { "id": "assigned", "label": "Assigned", "category": "open" },
         { "id": "completed", "label": "Completed", "category": "done" }
       ]
+    },
+    "version": {
+      "label": "Document version",
+      "states": [
+        { "id": "draft", "label": "Draft", "category": "open" },
+        { "id": "in_review", "label": "In review", "category": "review" },
+        { "id": "approved", "label": "Approved", "category": "active" },
+        { "id": "superseded", "label": "Superseded", "category": "cancelled" },
+        { "id": "withdrawn", "label": "Withdrawn", "category": "cancelled" }
+      ]
+    },
+    "attestation": {
+      "label": "Acknowledgement",
+      "states": [
+        { "id": "recorded", "label": "Recorded", "category": "done" }
+      ]
     }
   },
 
@@ -175,6 +191,15 @@
       { "id": "job_title", "label": "Job title", "type": "text" },
       { "id": "team", "label": "Team", "type": "text" }
     ]},
+    "policy_version": { "label": "Policy version", "plural": "Policy versions", "workflow": "version", "id_prefix": "POLV", "fields": [
+      { "id": "ver", "label": "Version", "type": "text" },
+      { "id": "note", "label": "Change note", "type": "text" },
+      { "id": "date", "label": "Created on", "type": "date" }
+    ]},
+    "attestation": { "label": "Policy acknowledgement", "plural": "Policy acknowledgements", "workflow": "attestation", "id_prefix": "ATT", "fields": [
+      { "id": "ver", "label": "Version read", "type": "text" },
+      { "id": "on", "label": "Acknowledged on", "type": "date" }
+    ]},
     "training": { "label": "Training completion", "plural": "Training completions", "workflow": "training", "id_prefix": "TRN", "fields": [
       { "id": "module", "label": "Module", "type": "text" },
       { "id": "completed_on", "label": "Completed on", "type": "date" },
@@ -190,7 +215,8 @@
     { "id": "addresses", "label": "addresses", "inverse": "is addressed by", "from": ["action", "issue", "case", "assessment"], "to": ["obligation"] },
     { "id": "concerns", "label": "concerns", "inverse": "is concerned by", "from": ["action", "issue"], "to": ["control", "policy"] },
     { "id": "affects", "label": "affects", "inverse": "is affected by", "from": ["reg_change", "regulation"], "to": ["obligation", "control", "policy"] },
-    { "id": "evidences", "label": "is evidence for", "inverse": "is evidenced by", "from": ["training", "test"], "to": ["obligation", "control"] }
+    { "id": "evidences", "label": "is evidence for", "inverse": "is evidenced by", "from": ["training", "test", "attestation"], "to": ["obligation", "control", "policy"] },
+    { "id": "version_of", "label": "is a version of", "inverse": "has the version", "from": ["policy_version"], "to": ["policy"] }
   ],
 
   "scales": {

@@ -33,7 +33,8 @@ window.ControlsData = (function () {
   function onExternal() { STALE = true; }
   async function spine() {
     await ensureRR();
-    if (!window.RR.current || !window.ControlsStore || STALE) { STALE = false; await window.RR.boot({ onExternalChange: onExternal }); }
+    if (STALE) { STALE = false; await window.RR.boot({ onExternalChange: onExternal }); return window.RR.current; }   // another tab changed the spine
+    await window.RR.shared({ onExternalChange: onExternal });
     return window.RR.current;
   }
   function sp() {
