@@ -449,7 +449,9 @@ await test('migration: legacy key in, spine records out (findings, tasks, people
   const a2 = s.get('TSK-ISS-001-A2');
   assert.equal(a2.type, 'action');
   assert.equal(a2.status, 'done');
-  assert.equal(a2.owner, 'person:it-change-board');
+  assert.equal(a2.owner, null, '"IT Change Board" is not a person: it stays plain text on the task');
+  assert.equal(a2.data.owner_text, 'IT Change Board');
+  assert.equal(s.get('person:it-change-board'), null);
   assert.equal(a2.data.evidence, 'Attendance log');
   assert.equal(a2.data.done_on, '2026-09-18');
   assert.equal(a2.data.kind, 'remediation');
@@ -702,6 +704,55 @@ await test('page model: new issues and impact-created findings continue the old 
   assert.equal(AS.savePrefs(s, R2, { cfg: { dueSoon: 5 }, saved: [], dismissed: {}, report: { commentary: 'x', by: '' } }), true);
   assert.equal(AS.savePrefs(s, R2, { cfg: { dueSoon: 5 }, saved: [], dismissed: {}, report: { commentary: 'x', by: '' } }), false, 'unchanged prefs write nothing');
   assert.equal(AS.read(s).prefs.cfg.dueSoon, 5);
+});
+
+await test('owners: only people become team members; boards, committees and functions stay plain text', async () => {
+  for (const n of ['T. Nguyen', 'Priya K.', 'Sanmi O.', 'M. Van Damme', 'Jean-Luc Dupont', 'R. Haddad']) assert.equal(AS.looksLikePerson(n), true, n);
+  for (const n of ['IT Change Board', 'Risk Committee', 'Onboarding team', 'HR', 'KYC', 'Steering group', 'Third party vendor', 'Finance department', '12345']) assert.equal(AS.looksLikePerson(n), false, n);
+  const s = await spine();
+  s.create('person', { id: 'person:hr', title: 'HR', data: { role: 'staff' } });   // a team member with that name is that person
+  const ids = AS.createFindings(s, [{ title: 'Owners', owner: 'Risk Committee', actions: [
+    { title: 'a', owner: 'IT Change Board' }, { title: 'b', owner: 'Priya K.' }, { title: 'c', owner: 'HR' }, { title: 'd', owner: 'Unassigned' }] }]);
+  const f = s.get(ids[0]);
+  assert.equal(f.owner, null); assert.equal(f.data.owner_text, 'Risk Committee');
+  const t = (k) => s.get('TSK-' + ids[0] + '-A' + k);
+  assert.equal(t(1).owner, null); assert.equal(t(1).data.owner_text, 'IT Change Board');
+  assert.equal(t(2).owner, 'person:priya-k'); assert.equal(t(2).data.owner_text, '');
+  assert.equal(t(3).owner, 'person:hr', 'an existing team member of that name wins');
+  assert.equal(t(4).owner, null); assert.equal(t(4).data.owner_text, '');
+  assert.deepEqual(s.people().map((p) => p.title).sort(), ['HR', 'Priya K.'], 'no team member invented for a board or a committee');
+  // the page reads the text back, and editing the owner switches between the two forms
+  const R = AS.read(s), i = R.issues[0];
+  assert.equal(i.owner, 'Risk Committee');
+  assert.deepEqual(i.actions.map((a) => a.owner), ['IT Change Board', 'Priya K.', 'HR', '']);
+  i.owner = 'R. Haddad'; i.actions[0].owner = 'Sanmi O.'; i.actions[1].owner = 'Audit Committee';
+  AS.commit(s, R, {});
+  assert.equal(s.get(ids[0]).owner, 'person:r-haddad'); assert.equal(s.get(ids[0]).data.owner_text, '');
+  assert.equal(t(1).owner, 'person:sanmi-o'); assert.equal(t(1).data.owner_text, '');
+  assert.equal(t(2).owner, null); assert.equal(t(2).data.owner_text, 'Audit Committee');
+  assert.deepEqual(AS.read(s).issues[0].actions.map((a) => a.owner), ['Sanmi O.', 'Audit Committee', 'HR', '']);
+});
+
+await test('demo: the tracker demo register has demo origin, so "Remove demo data" clears it and the briefing demo is not doubled', async () => {
+  const s = await spine();
+  s.importModules(() => null, { controls: CTL });
+  const ids = AS.createFindings(s, [{ id: 'ISS-001', title: 'Demo finding', demo: true, severity: 'high', owner: 'T. Nguyen', actions: [{ title: 'Fix it', owner: 'IT Change Board' }], history: [{ d: '2026-10-01', t: 'Opened (demo data)' }] }],
+    { action: 'import', seed: true, origin: 'demo', note: 'Demo data (fictional)' });
+  assert.equal(s.get(ids[0]).origin, 'demo');
+  assert.equal(s.get('TSK-ISS-001-A1').origin, 'demo');
+  assert.equal(s.hasDemo(), true);
+  assert.equal(AS.read(s).issues[0].demo, true);
+  const r = s.loadDemo(DEMO);
+  assert.ok(r.skipped.includes('Findings'), 'the briefing demo does not add a second set of findings');
+  assert.equal(s.list('issue').length, 1);
+  assert.ok(s.clearDemo() >= 2);
+  assert.equal(AS.read(s).issues.length, 0, 'the tracker no longer shows them');
+  assert.equal(s.get('ISS-001').archived, true);
+  // after removal the briefing demo loads its own findings again
+  s.loadDemo(DEMO);
+  assert.equal(s.list('issue').length, DEMO.issues.length);
+  assert.equal(AS.read(s).issues.length, DEMO.issues.length, 'and the tracker shows those, in its own fields');
+  assert.equal(s.verifyLog().ok, true);
 });
 
 await test('page model: peek counts issues on the device before and after the migration', async () => {

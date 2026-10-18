@@ -815,7 +815,8 @@
       if (!S.settings.firm_name) setSetting('firm_name', demo.firm && demo.firm.name);
       if (!S.settings.firm_type && demo.firm && demo.firm.type) setSetting('firm_type', demo.firm.type);
       // The firm's own records (mirrored from a module, or kept in the spine by a migrated one) win over demo ones.
-      function hasModule(type) { return list(type).some(function (e) { return e.origin !== 'demo'; }); }
+      // (The tracker's own demo register has origin 'demo' too: it counts, so the story is not loaded twice.)
+      function hasModule(type) { return list(type).some(function (e) { return e.origin !== 'demo' || String(e.id).indexOf(':demo-') === -1; }); }
       var groups = [['issue', demo.issues], ['action', demo.tasks], ['policy', demo.policies], ['case', demo.cases], ['assessment', demo.assessments], ['training', demo.training], ['test', demo.tests]];
       groups.forEach(function (g) {
         var type = g[0], rows = g[1] || [];

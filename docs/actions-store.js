@@ -65,6 +65,17 @@
   function isTask(e) { return e && e.type === 'action'; }
 
   /* ───────── people: owners are team members, matched by name ───────── */
+  // A simple rule for "is this a person?": a boards, committees, teams, departments, vendors and bare
+  // acronyms ("IT Change Board", "HR") are not people. Such an owner stays plain text on the record
+  // (data.owner_text); anything that reads like a name becomes a team member. A name that already
+  // matches a team member is always that person.
+  var NOT_PEOPLE = /\b(board|committee|team|group|department|dept|division|office|council|desk|unit|forum|panel|vendor|supplier|provider|steering|management|function|committee|third party|outsourc\w*)\b/i;
+  function looksLikePerson(n) {
+    if (NOT_PEOPLE.test(n)) return false;
+    if (/^[A-Z0-9&\/-]{2,6}$/.test(n)) return false;          // HR, IT, KYC, MLRO: a function, not a name
+    if (n.split(/\s+/).length > 5) return false;
+    return /[A-Za-z]/.test(n);
+  }
   function ownerId(sp, name) {
     var n = str(name).trim();
     if (!n || /^unassigned$/i.test(n)) return null;
@@ -72,6 +83,7 @@
     if (p && p.type === 'person') return id;
     var low = n.toLowerCase(), hit = sp.people().filter(function (x) { return x.title.toLowerCase() === low; })[0];
     if (hit) return hit.id;
+    if (!looksLikePerson(n)) return null;
     sp.create('person', { id: id, title: n, status: 'active', data: { role: RR.bridge.guessRole(n, sp.config()), job_title: '', team: '' }, src: { module: 'actions', ref: n } },
       { origin: 'discovered', action: 'import', note: 'Found in Issues and actions' });
     return id;
@@ -81,6 +93,8 @@
     var p = sp.get(id);
     return p ? p.title : id;
   }
+  // The owner as plain text, for an owner who is not a team member (empty when the owner is a person).
+  function ownerText(sp, name, id) { var n = str(name).trim(); return id || !n || /^unassigned$/i.test(n) ? '' : n; }
 
   /* ───────── the model <-> the spine ───────── */
   // Clean up one issue as the page (or an old save) holds it. Never throws on odd data.
@@ -157,7 +171,7 @@
     var status = viewStatus(e);
     var i = {
       id: e.id, title: e.title, description: str(d.description), source: str(d.source) || 'self_identified', source_ref: str(d.source_ref),
-      severity: SEV.indexOf(d.priority) !== -1 ? d.priority : 'medium', root_cause: str(d.root_cause), owner: ownerName(sp, e.owner), lod: str(d.lod) || '1LOD', status: status,
+      severity: SEV.indexOf(d.priority) !== -1 ? d.priority : 'medium', root_cause: str(d.root_cause), owner: ownerName(sp, e.owner) || str(d.owner_text), lod: str(d.lod) || '1LOD', status: status,
       opened_on: validDate(d.opened_on) || localDate(e.created_at), due_on: e.due || '', closed_on: validDate(d.closed_on), closed_by: str(d.closed_by), closure_note: str(d.closure_note),
       submitted_on: validDate(d.submitted_on), accepted: d.accepted && typeof d.accepted === 'object' ? clone(d.accepted) : null,
       control_ids: idsOf(sp, e, 'concerns', 'CTL:', un.controls), obligation_ids: idsOf(sp, e, 'addresses', 'OBL:', un.obligations),
@@ -169,7 +183,7 @@
     if (!i.due_on) i.due_on = (o && o.defaultDue) ? o.defaultDue(i) : '';
     i.actions = taskEntities(sp, e.id, false).map(function (t) {
       var td = t.data || {}, done = t.status === 'done';
-      return { id: str(td.ref) || t.id, title: t.title, owner: ownerName(sp, t.owner), due_on: t.due || i.due_on, status: done ? 'done' : 'open',
+      return { id: str(td.ref) || t.id, title: t.title, owner: ownerName(sp, t.owner) || str(td.owner_text), due_on: t.due || i.due_on, status: done ? 'done' : 'open',
         done_on: done ? (validDate(td.done_on) || localDate(t.updated_at)) : '', evidence: str(td.evidence), _eid: t.id, _o: [taskRefNum(td.ref), t.created_at || '', t.id] };
     }).sort(function (a, b) { return a._o[0] - b._o[0] || (a._o[1] < b._o[1] ? -1 : a._o[1] > b._o[1] ? 1 : a._o[2] < b._o[2] ? -1 : 1); });
     rebase(i);
@@ -187,10 +201,12 @@
     var eid = taskEid(i.id, a.id), cur = sp.get(eid);
     var done = a.status === 'done';
     var data = { kind: 'remediation', priority: i.severity, evidence: a.evidence, done_on: a.done_on, ref: a.id, demo: !!i.demo };
-    var input = { title: a.title, status: done ? 'done' : 'todo', owner: ownerId(sp, a.owner), due: validDate(a.due_on) || validDate(i.due_on) || null, data: data };
+    var oid = ownerId(sp, a.owner);
+    data.owner_text = ownerText(sp, a.owner, oid);
+    var input = { title: a.title, status: done ? 'done' : 'todo', owner: oid, due: validDate(a.due_on) || validDate(i.due_on) || null, data: data };
     var ent;
     if (cur && isTask(cur) && cur.archived) ent = sp.update(eid, Object.assign({ archived: false }, input), { replaceData: true, action: 'restore', note: o.taskNote });
-    else ent = sp.create('action', Object.assign({ id: eid, src: { module: 'actions', ref: i.id + '/' + a.id } }, input), { action: o.action || 'create', note: o.taskNote });
+    else ent = sp.create('action', Object.assign({ id: eid, src: { module: 'actions', ref: i.id + '/' + a.id } }, input), { action: o.action || 'create', note: o.taskNote, origin: o.origin });
     try { sp.link('fixes', eid, i.id, { silent: true }); } catch (e) { /* the issue is always written first */ }
     a._eid = eid;
     return ent;
@@ -204,12 +220,14 @@
   function createIssue(sp, i, o) {
     o = o || {};
     var cur = sp.get(i.id);
-    var input = { title: i.title, status: TO_ENTITY[i.status] || 'todo', owner: ownerId(sp, i.owner), due: validDate(i.due_on) || null, data: issueData(sp, i) };
+    var oid = ownerId(sp, i.owner), data = issueData(sp, i);
+    data.owner_text = ownerText(sp, i.owner, oid);
+    var input = { title: i.title, status: TO_ENTITY[i.status] || 'todo', owner: oid, due: validDate(i.due_on) || null, data: data };
     if (cur && cur.type === 'issue' && cur.archived) sp.update(i.id, Object.assign({ archived: false }, input), { replaceData: true, action: 'restore', note: o.note });
-    else sp.create('issue', Object.assign({ id: i.id, src: { module: 'actions', ref: i.id } }, input), { action: o.action || 'create', note: o.note });
+    else sp.create('issue', Object.assign({ id: i.id, src: { module: 'actions', ref: i.id } }, input), { action: o.action || 'create', note: o.note, origin: o.origin });
     syncLinks(sp, i.id, i.control_ids, 'concerns', 'CTL:');
     syncLinks(sp, i.id, i.obligation_ids, 'addresses', 'OBL:');
-    i.actions.forEach(function (a) { createTask(sp, i, a, { action: o.action || 'create', taskNote: o.action === 'import' ? 'Imported with ' + i.id : 'Action added: ' + a.title }); });
+    i.actions.forEach(function (a) { createTask(sp, i, a, { action: o.action || 'create', origin: o.origin, taskNote: o.action === 'import' ? 'Imported with ' + i.id : 'Action added: ' + a.title }); });
     return i;
   }
   /* Create findings from page-shaped issues (the tracker's demo register, the impact page).
@@ -226,7 +244,7 @@
       if (!i.due_on) i.due_on = RR.dates.addDays(i.opened_on, 30);
       var first = !o.seed && raw && raw.history && raw.history[0] && raw.history[0].t;
       if (!o.seed) i.history_seed = [];
-      createIssue(sp, i, { action: o.action || 'create', note: o.note || first || 'Opened' });
+      createIssue(sp, i, { action: o.action || 'create', origin: o.origin, note: o.note || first || 'Opened' });
       ids.push(i.id);
     });
     return ids;
@@ -257,7 +275,7 @@
     var w = wireIssue(i), keys = changedKeys(w, i._b), patch = {}, data = {}, used = false;
     keys.forEach(function (k) {
       if (k === 'title') patch.title = i.title.trim() || cur.title;
-      else if (k === 'owner') patch.owner = ownerId(sp, i.owner);
+      else if (k === 'owner') { patch.owner = ownerId(sp, i.owner); data.owner_text = ownerText(sp, i.owner, patch.owner); }
       else if (k === 'due_on') patch.due = validDate(i.due_on) || null;
       else if (k === 'status') { if (TO_ENTITY[i.status] !== cur.status) patch.status = TO_ENTITY[i.status]; data.module_status = i.status; }
       else if (ISSUE_DATA[k]) data[ISSUE_DATA[k]] = k === 'accepted' ? (i.accepted || null) : i[k];
@@ -283,7 +301,7 @@
       var tk = changedKeys(wireTask(a), a._b), tp = {}, td = {};
       tk.forEach(function (k) {
         if (k === 'title') tp.title = a.title;
-        else if (k === 'owner') tp.owner = ownerId(sp, a.owner);
+        else if (k === 'owner') { tp.owner = ownerId(sp, a.owner); td.owner_text = ownerText(sp, a.owner, tp.owner); }
         else if (k === 'due_on') tp.due = validDate(a.due_on) || null;
         else if (k === 'status') { var want = a.status === 'done' ? 'done' : (t.status === 'done' ? 'todo' : t.status); if (want !== t.status) tp.status = want; }
         else if (k === 'done_on') td.done_on = a.done_on;
@@ -424,6 +442,6 @@
     KEY: KEY, DONE: DONE, PREFS: PREFS, SEEDED: SEEDED,
     TO_ENTITY: TO_ENTITY, FROM_ENTITY: FROM_ENTITY,
     migrate: migrate, read: read, commit: commit, savePrefs: savePrefs, createFindings: createFindings, history: history, peek: peek,
-    normIssue: normIssue, ownerId: ownerId, nextSeq: maxSeq, issueId: issueId
+    normIssue: normIssue, ownerId: ownerId, looksLikePerson: looksLikePerson, nextSeq: maxSeq, issueId: issueId
   };
 });

@@ -175,7 +175,7 @@ function demoIssues(seed) {
   });
 }
 function seedDemo(seed) {
-  AS.createFindings(SP, demoIssues(seed), { action: 'import', seed: true, note: 'Demo data (fictional)' });
+  AS.createFindings(SP, demoIssues(seed), { action: 'import', seed: true, origin: 'demo', note: 'Demo data (fictional)' });   // origin 'demo': the briefing's "Remove demo data" clears these too
   if (seed.firm && !SP.getSetting('firm_name')) SP.setSetting('firm_name', seed.firm);
   SP.setSetting(AS.SEEDED, TODAY);
 }
