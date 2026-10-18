@@ -708,7 +708,7 @@ await test('page model: new issues and impact-created findings continue the old 
 
 await test('owners: only people become team members; boards, committees and functions stay plain text', async () => {
   for (const n of ['T. Nguyen', 'Priya K.', 'Sanmi O.', 'M. Van Damme', 'Jean-Luc Dupont', 'R. Haddad']) assert.equal(AS.looksLikePerson(n), true, n);
-  for (const n of ['IT Change Board', 'Risk Committee', 'Onboarding team', 'HR', 'KYC', 'Steering group', 'Third party vendor', 'Finance department', '12345']) assert.equal(AS.looksLikePerson(n), false, n);
+  for (const n of ['IT Change Board', 'Risk Committee', 'Onboarding team', 'HR', 'KYC', 'Steering group', 'Third party vendor', 'Finance department', 'IT Operations', 'Procurement', 'Customer Service', '12345']) assert.equal(AS.looksLikePerson(n), false, n);
   const s = await spine();
   s.create('person', { id: 'person:hr', title: 'HR', data: { role: 'staff' } });   // a team member with that name is that person
   const ids = AS.createFindings(s, [{ title: 'Owners', owner: 'Risk Committee', actions: [

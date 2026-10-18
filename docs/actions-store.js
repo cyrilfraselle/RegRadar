@@ -70,9 +70,12 @@
   // (data.owner_text); anything that reads like a name becomes a team member. A name that already
   // matches a team member is always that person.
   var NOT_PEOPLE = /\b(board|committee|team|group|department|dept|division|office|council|desk|unit|forum|panel|vendor|supplier|provider|steering|management|function|committee|third party|outsourc\w*)\b/i;
+  var FUNCTION_WORDS = ['it', 'of', 'the', 'and', 'operations', 'procurement', 'finance', 'legal', 'compliance', 'security', 'audit', 'risk', 'engineering', 'support', 'infrastructure',
+    'technology', 'treasury', 'payments', 'onboarding', 'sales', 'marketing', 'product', 'data', 'digital', 'customer', 'service', 'services', 'change', 'monitoring', 'screening', 'fraud', 'hr', 'people', 'senior', 'executive', 'ceo', 'cfo', 'cro', 'coo', 'cto', 'mlro'];
   function looksLikePerson(n) {
     if (NOT_PEOPLE.test(n)) return false;
     if (/^[A-Z0-9&\/-]{2,6}$/.test(n)) return false;          // HR, IT, KYC, MLRO: a function, not a name
+    if (n.toLowerCase().split(/[\s,&\/-]+/).filter(Boolean).every(function (w) { return FUNCTION_WORDS.indexOf(w) !== -1; })) return false;   // "IT Operations", "Procurement"
     if (n.split(/\s+/).length > 5) return false;
     return /[A-Za-z]/.test(n);
   }
