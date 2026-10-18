@@ -397,9 +397,10 @@ var MARK=[[1210,499],[2570,650],[3760,520]].map(function(m){
   return {x:TRAIL[best][0],y:TRAIL[best][1],t:lo};
 });
 var CONTROLS=[
-  {stage:'01 · PLACEMENT',name:['Customer','due diligence'],acr:'CDD',desc:['Who pays in?','Where is the cash from?']},
-  {stage:'02 · LAYERING',name:['Transaction','monitoring'],acr:'TM',desc:['Spots the splits,','the hops and the loops.']},
-  {stage:'03 · INTEGRATION',name:['Suspicious','transaction report'],acr:'STR',desc:['Takes what you found','to the FIU.']}
+  /* Ledger rows 6 to 9: each control is labelled by what it does, never by a stage. */
+  {tag:'ONBOARDING AND ONGOING',short:'CUSTOMER',name:['Customer','due diligence'],acr:'CDD',desc:['Who the customer is, who owns it,','where the money comes from.']},
+  {tag:'EVERY TRANSACTION',short:'TRANSACTIONS',name:['Transaction','monitoring'],acr:'TM',desc:['Flags unusual patterns,','like the splits and the hops.']},
+  {tag:'WHEN THERE IS SUSPICION',short:'SUSPICION',name:['Suspicious','transaction report'],acr:'STR',desc:['Sent to the Financial','Intelligence Unit (FIU).']}
 ];
 
 /* Camera keyframes: x, y (world centre), z (zoom). Zoom is interpolated in log space. */
@@ -435,7 +436,7 @@ var CAPS=[
   {t0:10,t1:15.2,html:'<b>Layering.</b> The money hops between companies and countries, dressed up as invoices, loans and trade payments, until the trail is tangled.'},
   {t0:15.2,t1:19,html:'Each company is owned by another one. Behind the shells, the <b>beneficial owner</b>, the natural person who ultimately owns or controls the company, can stay hidden.'},
   {t0:19,t1:25,html:'<b>Integration.</b> The money comes back looking legitimate: an apartment, a motor yacht, a healthy business balance.'},
-  {t0:25,t1:28.8,html:'<b>Customer due diligence</b> checks who the customer is, who owns it and where the money comes from. <b>Transaction monitoring</b> flags unusual patterns, like the splits and the hops. A <b>suspicious transaction report</b> sends what you suspect to the Financial Intelligence Unit.'},
+  {t0:25,t1:28.8,html:'<b>Customer due diligence</b> checks who the customer is, who owns it and where the money comes from. <b>Transaction monitoring</b> flags unusual patterns, like the splits and the hops. A <b>suspicious transaction report</b> sends what you suspect to the Financial Intelligence Unit. These controls work across all three stages.'},
   {t0:28.8,t1:1e9,html:'<b>Every stage leaves a trail.</b> In the EU, the main rules for firms are in the AMLR, Regulation (EU) 2024/1624, which applies from 10 July 2027.'}
 ];
 var CHAPTERS=[{t:0,n:'Hook'},{t:4,n:'Placement'},{t:10,n:'Layering'},{t:19,n:'Integration'},{t:25,n:'Detection'},{t:29,n:'End card'}];
@@ -748,30 +749,38 @@ function trail(a){
 function w2s(x,y){var c=CAMNOW;return [(x-c.x)*c.z+W/2,(y-c.y)*c.z+H/2]}
 function detectionCards(){
   var out=EZ.inCubic(seg(t,28.55,28.95));
-  var xs=[300,800,1300],cw=440,ch=232,cy=598;
+  var xs=[300,800,1300],cw=440,ch=232,cy=598,by=566;
+  /* One bracket spans the whole trail: every control works across all three stages (ledger row 9). */
+  var bp=EZ.site(seg(t,MARK[0].t-.1,MARK[0].t+.7))*(1-out);
+  if(bp>0){
+    var l=w2s(TRAIL[0][0],TRAIL[0][1])[0],r=w2s(TRAIL[TRAIL.length-1][0],TRAIL[TRAIL.length-1][1])[0],mid=(l+r)/2,hw=(r-l)/2*bp;
+    var lab='ACROSS ALL THREE STAGES',ls=sm?26:md?18:14,f=F(ls,600,MONO);ctx.font=f;var lw=layout(f,lab,'char',2).w+24;
+    ga(bp);ctx.strokeStyle=rgba(COOL,.55);ctx.lineWidth=1.5;ctx.beginPath();
+    ctx.moveTo(mid-hw,by-10);ctx.lineTo(mid-hw,by);ctx.lineTo(mid-Math.min(hw,lw/2),by);
+    ctx.moveTo(mid+Math.min(hw,lw/2),by);ctx.lineTo(mid+hw,by);ctx.lineTo(mid+hw,by-10);ctx.stroke();
+    txt(lab,mid,by+ls*.36,ls,600,MONO,COOL,bp*.95,'center',2);
+  }
   CONTROLS.forEach(function(C,i){
     var show=EZ.site(seg(t,25.55+i*.12,26.3+i*.12));if(show<=0)return;
     var lit=EZ.outCubic(seg(t,MARK[i].t,MARK[i].t+.5));
     var a=show*(1-out),x=xs[i]-cw/2,y=cy+(1-show)*30+out*16;
-    /* connector from the map to the card */
-    var m=w2s(MARK[i].x,MARK[i].y);
-    if(lit>0){ga(a);ctx.strokeStyle=rgba(COOL,.7*lit);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(m[0],m[1]+14);
-      var ey=lerp(m[1]+14,y,lit);ctx.bezierCurveTo(m[0],(m[1]+y)/2,xs[i],(m[1]+y)/2,lerp(m[0],xs[i],lit),ey);ctx.stroke()}
+    /* connector from the whole-trail bracket to the card */
+    if(lit>0&&bp>0){var cx0=xs[i];ga(a);ctx.strokeStyle=rgba(COOL,.7*lit);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(cx0,by);ctx.lineTo(cx0,lerp(by,y,lit));ctx.stroke()}
     ctx.save();ga(a);
     if(lit>0){ctx.shadowColor=rgba(COOL,.55*lit);ctx.shadowBlur=30*lit}
     ctx.fillStyle=rgba(mix(CARD,[20,33,61],lit),.94);rr(x,y,cw,ch,16);ctx.fill();
     ctx.shadowBlur=0;ctx.lineWidth=1.6;ctx.strokeStyle=rgba(mix(T3,COOL,lit),.35+.6*lit);ctx.stroke();
     ctx.restore();
     if(sm){
-      txt(C.stage.slice(0,2),x+28,y+62,40,600,MONO,mix(T3,COOL,lit),a);
+      txt(C.short,x+28,y+62,36,600,MONO,mix(T3,COOL,lit),a);
       txt(C.acr,x+28,y+176,96,750,SANS,mix(T2,HI,lit),a);
     }else{
-      txt(C.stage,x+28,y+44,md?22:16,600,MONO,mix(T3,COOL,lit),a,'left',2);
+      txt(C.tag,x+28,y+44,md?20:16,600,MONO,mix(T3,COOL,lit),a,'left',2);
       var ns=md?36:31;
       txt(C.name[0],x+28,y+(md?96:90),ns,700,SANS,mix(T2,HI,lit),a);
       txt(C.name[1],x+28,y+(md?136:126),ns,700,SANS,mix(T2,HI,lit),a);
       if(!md){txt(C.desc[0],x+28,y+176,19,500,SANS,T2,a*(.55+.45*lit));txt(C.desc[1],x+28,y+202,19,500,SANS,T2,a*(.55+.45*lit))}
-      else txt(C.acr,x+cw-28,y+44,24,700,MONO,mix(T3,COOL,lit),a,'right');
+      else txt(C.acr,x+28,y+196,30,700,MONO,mix(T3,COOL,lit),a);
     }
   });
 }
