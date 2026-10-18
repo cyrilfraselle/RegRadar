@@ -49,7 +49,7 @@ function hrefFor(e) {
   if (e.type === 'regulation') return d.celex ? 'law.html?celex=' + encodeURIComponent(d.celex) : null;
   if (e.type === 'reg_change' && !src) return /^https?:\/\//.test(d.url || '') ? d.url : null;
   if (src === 'controls' && e.type === 'control') return 'workspace.html?control=' + encodeURIComponent(d.ref || '');
-  if (src) { var m = RR.MODULES.filter(function (x) { return x.id === src; })[0]; return m ? m.page : null; }
+  if (src) { var m = RR.MODULES.concat(RR.bridge.migrated).filter(function (x) { return x.id === src; })[0]; return m ? m.page + (m.migrated ? '#' + encodeURIComponent(e.type === 'action' ? String(e.src.ref || '').split('/')[0] : e.id) : '') : null; }
   if (R.config().board.types.indexOf(e.type) !== -1) return 'board.html?open=' + encodeURIComponent(e.id);
   return null;
 }

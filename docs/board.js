@@ -9,8 +9,10 @@
    from a dialog that shows each person's load. Every change is an
    event in the spine's append-only log.
 
-   Cards mirrored from the Issues and actions page are read-only here
-   until that module is migrated onto the spine.
+   Findings and remediation actions of the Issues and actions page live in
+   the spine (docs/actions-store.js), so they are ordinary cards here and
+   edits show on that page. Cards mirrored from modules that have not
+   moved onto the spine yet stay read-only.
    ═══════════════════════════════════════════════════════════════ */
 (function () {
 'use strict';
@@ -45,7 +47,7 @@ function scaleLabel(id) { var s = R.scale('priority').filter(function (x) { retu
 function scaleRank(id) { var s = R.scale('priority').filter(function (x) { return x.id === id; })[0]; return s ? s.rank : 9; }
 function kindLabel(id) { var k = R.taskKinds().filter(function (x) { return x.id === id; })[0]; return k ? k.label : ''; }
 function isDemo(e) { return e.origin === 'demo' || (e.data && e.data.demo === true); }
-function modulePage(e) { var m = RR.MODULES.filter(function (x) { return x.id === (e.src && e.src.module); })[0]; return m; }
+function modulePage(e) { var m = RR.MODULES.concat(RR.bridge.migrated).filter(function (x) { return x.id === (e.src && e.src.module); })[0]; return m; }
 function dueText(days) { return days < 0 ? plural(-days, 'day') + ' overdue' : days === 0 ? 'Due today' : days === 1 ? 'Due tomorrow' : 'Due ' + D.fmt(D.addDays(TODAY, days)); }
 function refLabel(e) {
   if (!e) return '';
@@ -140,6 +142,7 @@ function eventText(ev) {
     case 'sync': return 'Module import updated ' + t + (ev.note ? ' (' + ev.note + ')' : '');
     case 'demo': return who + ': ' + ev.title + (ev.note ? ' (' + ev.note + ')' : '');
     case 'settings': return who + ' changed the setting “' + ev.title + '”';
+    case 'comment': return who + ' noted on ' + t + ': ' + ev.note;
     default: return who + ' ' + ev.action + ' ' + t;
   }
 }
