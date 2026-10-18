@@ -1,0 +1,212 @@
+{
+ "_meta": {
+  "name": "Demo learners for the team register",
+  "note": "Four fictional learners so the team register can be tried without real files. Dates are days before the day the demo is loaded, so the demo always shows a mix of current, due soon and overdue. Names and the firm are invented.",
+  "fictional": true
+ },
+ "learners": [
+  {
+   "name": "Alex Verbeke (fictional)",
+   "role": "Onboarding analyst",
+   "firm": "CF Bank (fictional)",
+   "completions": [
+    {
+     "module": "context",
+     "daysAgo": 20,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "aml-basics",
+     "daysAgo": 29,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "cdd-kyc",
+     "daysAgo": 38,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "beneficial-ownership",
+     "daysAgo": 47,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "peps",
+     "daysAgo": 56,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "transaction-monitoring",
+     "daysAgo": 65,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "sanctions-screening",
+     "daysAgo": 74,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "suspicious-transaction-reports",
+     "daysAgo": 83,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "dora-mica-primer",
+     "daysAgo": 92,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    }
+   ]
+  },
+  {
+   "name": "Chloé Martin (fictional)",
+   "role": "Transaction monitoring analyst",
+   "firm": "CF Bank (fictional)",
+   "completions": [
+    {
+     "module": "context",
+     "daysAgo": 410,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "aml-basics",
+     "daysAgo": 413,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "cdd-kyc",
+     "daysAgo": 416,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "beneficial-ownership",
+     "daysAgo": 419,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "peps",
+     "daysAgo": 422,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "transaction-monitoring",
+     "daysAgo": 425,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "sanctions-screening",
+     "daysAgo": 345,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "suspicious-transaction-reports",
+     "daysAgo": 340,
+     "score": 3,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    }
+   ]
+  },
+  {
+   "name": "Sam Okafor (fictional)",
+   "role": "MLRO",
+   "firm": "CF Bank (fictional)",
+   "completions": [
+    {
+     "module": "context",
+     "daysAgo": 100,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "aml-basics",
+     "daysAgo": 94,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "cdd-kyc",
+     "daysAgo": 88,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "beneficial-ownership",
+     "daysAgo": 82,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    },
+    {
+     "module": "peps",
+     "daysAgo": 76,
+     "score": 4,
+     "max": 4,
+     "contentVersion": "1.0.0"
+    }
+   ]
+  },
+  {
+   "name": "",
+   "role": "Agent",
+   "firm": "CF Bank (fictional)",
+   "completions": [
+    {
+     "module": "context",
+     "daysAgo": 60,
+     "score": 3,
+     "max": 4,
+     "contentVersion": null
+    },
+    {
+     "module": "aml-basics",
+     "daysAgo": 55,
+     "score": 3,
+     "max": 4,
+     "contentVersion": null
+    },
+    {
+     "module": "cdd-kyc",
+     "daysAgo": 50,
+     "score": 3,
+     "max": 4,
+     "contentVersion": null
+    }
+   ]
+  }
+ ]
+}
