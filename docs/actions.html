@@ -433,7 +433,7 @@ dialog::backdrop{background:rgba(5,8,12,.62)}
 
   <section class="panel" id="panel-report" role="tabpanel" aria-labelledby="tab-report" hidden></section>
 
-  <p class="note">Demo data for a fictional firm (CF Bank). Everything you change stays on this device (key regradar-actions). Severity SLAs and escalation thresholds are defaults, configure for your firm. Management information, not legal advice or an audit opinion.</p>
+  <p class="note">Demo data for a fictional firm (CF Bank). Everything you change stays on this device, in the shared data spine (keys regradar-spine-*). Issues saved here before are copied in once; the old copy (key regradar-actions) is kept as a backup. Severity SLAs and escalation thresholds are defaults, configure for your firm. Management information, not legal advice or an audit opinion.</p>
 </main>
 
 <dialog id="dlgIssue" class="mid" aria-labelledby="sheetTitle"></dialog>
@@ -444,6 +444,8 @@ dialog::backdrop{background:rgba(5,8,12,.62)}
 <div class="toast" id="toast" role="status"></div>
 
 <script src="controls-data.js?v=20261015"></script>
-<script src="actions.js?v=20261016"></script>
+<script src="rr-core.js?v=20261017b"></script>
+<script src="actions-store.js?v=20261017b"></script>
+<script src="actions.js?v=20261017b"></script>
 </body>
 </html>

@@ -1,10 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════
    RegRadar: Issues and actions tracker (E7) with board reporting (E9 slice)
 
-   Device-local data layer (key 'regradar-actions'), same pattern as
-   controls-data.js. Reads controls (docs/data/controls.json plus the
-   device-local overlay 'regradar-controls-mine' via ControlsData) and
-   obligations (docs/data/obligations.json) to link and to suggest issues.
+   Data: the shared data spine (docs/rr-core.js) through docs/actions-store.js.
+   Issues are spine findings, remediation actions are spine tasks linked to
+   their finding, status changes and comments go to the event log, owners are
+   team members. This file keeps the page's working model in memory and writes
+   back only what changed (ActionsStore.commit). The old device-local key
+   'regradar-actions' is imported once by the store and left as a backup.
+   Reads controls (docs/data/controls.json plus the device-local overlay
+   'regradar-controls-mine' via ControlsData) and obligations
+   (docs/data/obligations.json) to link and to suggest issues.
 
    Demo data (docs/data/actions-demo.json) is fictional (CF Bank).
    SLA days and escalation thresholds are defaults: configure for your firm.
@@ -13,7 +18,7 @@
 'use strict';
 
 /* ───────── constants ───────── */
-var KEY = 'regradar-actions';
+var AS = window.ActionsStore;
 var SEV = [
   { id: 'critical', label: 'Critical', rank: 0 }, { id: 'high', label: 'High', rank: 1 },
   { id: 'medium', label: 'Medium', rank: 2 }, { id: 'low', label: 'Low', rank: 3 }
@@ -94,6 +99,9 @@ var F = defaultFilter();
 var UI = { tab: 'register', months: 6, lastId: null };
 var SH = null;           // open issue sheet {id, W, isNew, invoker}
 var storageOk = true;
+var SP = null, BOOT = null;   // the data spine and what RR.boot returned
+var PEND = {};                // history lines (notes) logged since the last save, by issue id
+var STALE = false;            // another tab changed the register while a dialog was open
 
 function freshState() { return { v: 1, seq: 0, issues: [], cfg: defaultCfg(), saved: [], dismissed: {}, report: { commentary: '', by: '' }, firm: '' }; }
 
@@ -108,27 +116,41 @@ function mergeCfg(c) {
   if (c.shortcuts === false) d.shortcuts = false;
   return d;
 }
-function loadState() {
-  var raw = null;
-  try { raw = localStorage.getItem(KEY); } catch (e) { storageOk = false; }
-  if (!raw) return null;
-  try {
-    var p = JSON.parse(raw), s = Object.assign(freshState(), p);
-    s.cfg = mergeCfg(p.cfg);
-    s.issues = Array.isArray(p.issues) ? p.issues : [];
-    s.saved = Array.isArray(p.saved) ? p.saved : [];
-    return s;
-  } catch (e) { return null; }
+function prefsOf(st) { return { cfg: st.cfg, saved: st.saved, dismissed: st.dismissed, report: st.report }; }
+/* Build the page's working state from the spine. */
+function stateFromSpine() {
+  var pcfg = mergeCfg((SP.getSetting(AS.PREFS) || {}).cfg);
+  var reg = AS.read(SP, { defaultDue: function (i) { return addDays(i.opened_on || TODAY, (pcfg.sla[i.severity] || pcfg.sla.medium).sla); } });
+  var st = Object.assign(freshState(), reg), p = reg.prefs || {};
+  st.cfg = mergeCfg(p.cfg);
+  st.saved = Array.isArray(p.saved) ? p.saved : [];
+  st.dismissed = p.dismissed && typeof p.dismissed === 'object' && !Array.isArray(p.dismissed) ? p.dismissed : {};
+  st.report = Object.assign({ commentary: '', by: '' }, p.report && typeof p.report === 'object' ? p.report : {});
+  st._prefs = RR.util.stable(prefsOf(st));   // baseline: only a real change writes the settings
+  return st;
 }
+/* Write what changed to the spine: issues and actions as records, notes as events, settings. */
 function persist() {
-  try { localStorage.setItem(KEY, JSON.stringify(S)); storageOk = true; return true; }
-  catch (e) { storageOk = false; toast('Could not save on this device (storage blocked or full). Changes last until you close the page.'); return false; }
+  if (!SP || !S) return false;
+  var res;
+  try { res = AS.commit(SP, S, PEND); AS.savePrefs(SP, S, prefsOf(S)); }
+  catch (e) { res = { errors: [e.message] }; }
+  PEND = {};
+  if (res.errors.length) { console.error(res.errors); toast('Could not save everything (' + res.errors[0] + '). Reload the page to see what was kept.'); return false; }
+  return true;
 }
+var prefsT = null;
+function flushPrefs() {
+  clearTimeout(prefsT); prefsT = null;
+  if (SP && S) { try { AS.savePrefs(SP, S, prefsOf(S)); } catch (e) { /* reported by the spine's error hook */ } }
+}
+function schedulePrefs() { clearTimeout(prefsT); prefsT = setTimeout(flushPrefs, 800); }
+window.addEventListener('pagehide', flushPrefs);
+document.addEventListener('visibilitychange', function () { if (document.hidden) flushPrefs(); });
 
-function materialize(seed) {
-  var s = freshState();
-  s.firm = seed.firm || '';
-  seed.issues.forEach(function (x) {
+/* The fictional CF Bank register, offered on a device that has no issues yet. Dates are offsets from today. */
+function demoIssues(seed) {
+  return seed.issues.map(function (x) {
     var i = {
       id: x.id, title: x.title, description: x.description || '', source: x.source, source_ref: x.source_ref || '',
       severity: x.severity, root_cause: x.root_cause || '', owner: x.owner, lod: x.lod || '1LOD', status: x.status,
@@ -149,10 +171,13 @@ function materialize(seed) {
     if (i.accepted) i.history.push({ d: i.accepted.on, t: 'Risk accepted by ' + i.accepted.by + ' until ' + fmt(i.accepted.until) });
     if (i.closed_on) i.history.push({ d: i.closed_on, t: 'Closed. Validated by ' + i.closed_by });
     i.history.sort(function (a, b) { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
-    s.issues.push(i);
-    s.seq = Math.max(s.seq, parseInt(String(x.id).replace(/\D/g, ''), 10) || 0);
+    return i;
   });
-  return s;
+}
+function seedDemo(seed) {
+  AS.createFindings(SP, demoIssues(seed), { action: 'import', seed: true, note: 'Demo data (fictional)' });
+  if (seed.firm && !SP.getSetting('firm_name')) SP.setSetting('firm_name', seed.firm);
+  SP.setSetting(AS.SEEDED, TODAY);
 }
 
 /* ───────── derived values ───────── */
@@ -193,6 +218,7 @@ function oblShort(id) { var o = obl(id); return o ? o.legal_basis : id; }
 function ctlLabel(id) { var c = ctl(id); return c ? id + ' · ' + c.name : id + ' (not found)'; }
 function owners() {
   var a = [];
+  if (SP) SP.people().forEach(function (p) { if (p.id !== 'person:me') a.push(p.title); });   // team members of the spine
   CONTROLS.forEach(function (c) { a.push(c.owner); });
   S.issues.forEach(function (i) { a.push(i.owner); i.actions.forEach(function (x) { a.push(x.owner); }); if (i.closed_by) a.push(i.closed_by); });
   return uniq(a.filter(function (x) { return x && !/^unassigned$/i.test(x); })).sort();
@@ -202,7 +228,7 @@ function owners() {
 function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('on'); }, 2600); }
 
 /* ───────── mutation ───────── */
-function log(i, t) { i.history.push({ d: TODAY, t: t }); }
+function log(i, t) { (PEND[i.id] = PEND[i.id] || []).push(t); }   // becomes a note on the event written by the next save
 function nextId() { S.seq++; return 'ISS-' + (S.seq < 100 ? ('00' + S.seq).slice(-3) : S.seq); }
 function slaDue(sev, opened) { return addDays(opened || TODAY, sevCfg(sev).sla); }
 function blankIssue(over) {
@@ -210,10 +236,10 @@ function blankIssue(over) {
   return Object.assign({
     id: '', title: '', description: '', source: 'self_identified', source_ref: '', severity: sev, root_cause: '', owner: '', lod: '1LOD',
     status: 'open', opened_on: TODAY, due_on: slaDue(sev, TODAY), closed_on: '', closed_by: '', closure_note: '', submitted_on: '',
-    accepted: null, control_ids: [], obligation_ids: [], actions: [], history: [], demo: false
+    accepted: null, control_ids: [], obligation_ids: [], actions: [], demo: false
   }, over || {});
 }
-function addIssue(i) { i.id = nextId(); i.history = [{ d: TODAY, t: 'Opened' }]; S.issues.push(i); return i; }
+function addIssue(i) { i.id = nextId(); log(i, 'Opened'); S.issues.push(i); return i; }
 function touch() { recompute(); persist(); renderAll(); if (SH && !SH.isNew) renderSheetParts(); }
 
 /* ───────── filtering ───────── */
@@ -748,7 +774,7 @@ function renderOutcome() {
 }
 function renderHist() {
   var i = issue(SH.id);
-  $('shHist').innerHTML = '<ol class="hist">' + i.history.slice().reverse().map(function (h) { return '<li><span class="d">' + esc(fmt(h.d)) + '</span><span>' + esc(h.t) + '</span></li>'; }).join('') + '</ol>';
+  $('shHist').innerHTML = '<ol class="hist">' + AS.history(SP, i).reverse().map(function (h) { return '<li><span class="d">' + esc(fmt(h.d)) + '</span><span>' + esc(h.t) + '</span></li>'; }).join('') + '</ol>';
 }
 function renderSheetParts(fk) {
   if (!SH) return;
@@ -1110,7 +1136,7 @@ function applyImport(res) {
     } else {
       if (!it.id || issue(it.id)) it.id = nextId();
       else { var num = parseInt(it.id.replace(/\D/g, ''), 10); if (num > S.seq) S.seq = num; }
-      it.history = [{ d: TODAY, t: 'Imported from CSV' }]; S.issues.push(it); n++;
+      log(it, 'Imported from CSV'); S.issues.push(it); n++;
     }
   });
   touch();
@@ -1225,7 +1251,7 @@ document.addEventListener('click', function (e) {
     case 'sugg-create': var sg = SUGG[+b.getAttribute('data-k')]; if (sg) newIssue(Object.assign({}, sg.draft, { fromSugg: sg.key, due_on: slaDue(sg.draft.severity, TODAY) })); break;
     case 'sugg-dismiss': var sd = SUGG[+b.getAttribute('data-k')]; if (sd) { S.dismissed[sd.key] = TODAY; persist(); renderSuggestions(); toast('Suggestion dismissed until the next test result'); } break;
     case 'cleardemo': decide({ title: 'Remove demo issues', intro: 'This removes the fictional CF Bank demo issues from this device. Issues you created or imported stay. This cannot be undone.', fields: [], submit: 'Remove demo issues', danger: true,
-      onSubmit: function () { S.issues = S.issues.filter(function (i) { return !i.demo; }); if (/fictional/i.test(S.firm)) S.firm = ''; touch(); toast('Demo issues removed'); return null; } }); break;
+      onSubmit: function () { S.issues.forEach(function (i) { if (i.demo) log(i, 'Demo data removed'); }); S.issues = S.issues.filter(function (i) { return !i.demo; }); if (/fictional/i.test(S.firm)) S.firm = ''; touch(); toast('Demo issues removed'); return null; } }); break;
     case 'usesla': { var f = $('issueForm'); f.elements.due_on.value = slaDue(f.elements.severity.value, f.elements.opened_on.value || TODAY); onFormChange('due_on'); break; }
     case 'unlink': unlinkTo(b.getAttribute('data-kind'), id); break;
     case 'flow': flowTo(b.getAttribute('data-to')); break;
@@ -1240,7 +1266,7 @@ document.addEventListener('click', function (e) {
     case 'act-del': { var ii = issue(SH.id), ad = by(ii.actions, id);
       decide({ title: 'Remove this action?', intro: ad.title, fields: [], submit: 'Remove action', danger: true, onSubmit: function () { ii.actions = ii.actions.filter(function (x) { return x.id !== id; }); log(ii, 'Action removed: ' + ad.title); touch(); return null; } }); break; }
     case 'del-issue': { var di = issue(SH.id);
-      decide({ title: 'Delete ' + di.id + '?', intro: 'The issue, its actions and its history are removed from this device. This cannot be undone. To keep the record, close the issue or export a CSV first.', fields: [], submit: 'Delete issue', danger: true,
+      decide({ title: 'Delete ' + di.id + '?', intro: 'The issue and its actions are removed from the register. The deletion stays in the event log, but you cannot bring the issue back from this page. To keep a readable record, close the issue or export a CSV first.', fields: [], submit: 'Delete issue', danger: true,
         onSubmit: function () { S.issues = S.issues.filter(function (x) { return x.id !== di.id; }); var d = $('dlgIssue'); d.onclose = null; d.close(); SH = null; UI.lastId = null; touch(); toast(di.id + ' deleted'); $('qaTitle').focus(); return null; } }); break; }
     case 'export-issues': download('regradar-issues-' + TODAY + '.csv', issuesCSV()); toast('Issues exported'); break;
     case 'export-actions': download('regradar-actions-' + TODAY + '.csv', actionsCSV()); toast('Actions exported'); break;
@@ -1293,7 +1319,7 @@ document.addEventListener('change', function (e) {
 document.addEventListener('input', function (e) {
   var t = e.target;
   if (t.id === 'fq') { F.q = t.value; renderList(); renderFilters_presetsOnly(); }
-  if (t.id === 'repComm') { S.report.commentary = t.value; persist(); $('repCommPrint').textContent = t.value || 'No commentary added.'; }
+  if (t.id === 'repComm') { S.report.commentary = t.value; schedulePrefs(); $('repCommPrint').textContent = t.value || 'No commentary added.'; }
 });
 function renderFilters_presetsOnly() {
   var btns = document.querySelectorAll('#presets [aria-pressed]');
@@ -1356,14 +1382,50 @@ window.toggleTheme = function () {
 
 /* ═══════════ boot ═══════════ */
 async function fetchJSON(url) { var r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw new Error(url); return r.json(); }
+/* Another tab (the work board, the briefing) changed the spine: re-read it, unless a dialog is open. */
+function reloadFromSpine() {
+  flushPrefs();
+  return RR.boot({}).then(function (b) {
+    BOOT = b; SP = b.spine; hookSpine();
+    S = stateFromSpine(); PEND = {}; recompute(); renderAll();
+  }).catch(function () { /* keep what is on screen */ });
+}
+function externalChange() {
+  if (!SP || document.querySelector('dialog[open]')) { STALE = true; return; }
+  reloadFromSpine();
+}
+document.addEventListener('close', function () {
+  if (STALE && !document.querySelector('dialog[open]')) { STALE = false; reloadFromSpine(); }
+}, true);
+function hookSpine() {
+  SP.onError(function () {
+    storageOk = false;
+    toast('Could not save on this device (storage blocked or full). Changes last until you close the page.');
+  });
+}
+function cannotOpen(msg) {
+  S = freshState(); recompute();
+  $('list').innerHTML = '<li class="empty"><b>The register could not be opened</b>' + esc(msg) + ' Reload the page to try again. Nothing was changed.</li>';
+  $('count').textContent = '';
+  document.querySelectorAll('[data-act="new"],[data-act="io"],[data-act="settings"]').forEach(function (b) { b.disabled = true; });
+}
 async function boot() {
   var loadErr = [];
   try { OBS = (await fetchJSON('data/obligations.json')).obligations || []; } catch (e) { loadErr.push('obligations'); }
   try { var cd = await window.ControlsData.load(); CONTROLS = cd.controls; TESTS = cd.tests || {}; } catch (e) { loadErr.push('controls'); }
-  S = loadState();
-  if (!S) {
-    try { S = materialize(await fetchJSON('data/actions-demo.json')); persist(); } catch (e) { S = freshState(); }
+  try { BOOT = await RR.boot({ onExternalChange: externalChange }); SP = BOOT.spine; }
+  catch (e) { cannotOpen(e.message || 'The shared data could not be loaded.'); return; }
+  hookSpine();
+  if (!BOOT.storageOk) toast('Could not save on this device (storage blocked or full). Changes last until you close the page.');
+  // The one-time import of the old device-local register ran inside RR.boot (docs/actions-store.js).
+  var mig = (BOOT.migrations || []).filter(function (m) { return m.id === 'actions'; })[0] || {};
+  var hadData = SP.getSetting(AS.DONE) || SP.getSetting(AS.SEEDED) || SP.list('issue', { archived: true }).length;
+  if (mig.status === 'unreadable') toast('The issues saved on this device could not be read, so they were left untouched. Nothing was imported or overwritten.');
+  else if (mig.status === 'error') toast('The saved issues could not be moved to the shared register (' + mig.error + '). They were left untouched.');
+  else if (!hadData) {
+    try { seedDemo(await fetchJSON('data/actions-demo.json')); } catch (e) { /* start empty */ }
   }
+  S = stateFromSpine();
   recompute();
   if (loadErr.length) toast('Could not load ' + loadErr.join(' and ') + ': links and suggestions are limited.');
   var p = new URLSearchParams(location.search);
@@ -1378,7 +1440,7 @@ async function boot() {
     if (p.get('obligation') && obl(p.get('obligation')) && !(dr.obligation_ids || []).length) dr.obligation_ids = [p.get('obligation')];
     newIssue(dr);
     try { var q = new URLSearchParams(location.search); q.delete('new'); history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); } catch (e) {}
-  } else if (/^ISS-|^[A-Za-z0-9._-]+$/.test(hash) && issue(hash)) openSheet(hash);
+  } else if (hash && issue(hash)) openSheet(hash);
   fetchJSON('data/laws/32024R1624_EN.json').then(function (l) { LAW = l; if (SH) renderSheetParts(); renderAll(); }).catch(function () {});
 }
 if (window.innerWidth < 861) $('fdet').open = false;
