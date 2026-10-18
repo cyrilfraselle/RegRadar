@@ -5,7 +5,9 @@
 // rounds.json (Spot it games, Decide scenarios, Shifts) has a bad answer, a missing reason, a
 // citation to an article that does not exist, a law quote that is not verbatim, a round type
 // without its tutorial, a lesson without the data its beats need, or a card that is missing from
-// the claim ledger academy/FACTCHECK-rounds.md.
+// the claim ledger academy/FACTCHECK-rounds.md; the curriculum has no content_version/content_date or its
+// AMLR Art. 12 evidence quote is not verbatim; the certificate and register pages are missing.
+// (The merge/overdue/hash logic has its own test: node academy/evidence.test.mjs)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -71,6 +73,25 @@ if (map && obl) {
   const ids = new Set(obl.obligations.map((o) => o.id));
   for (const [m, v] of Object.entries(map.modules)) for (const id of v.obligations) if (!ids.has(id)) err(`module-map ${m}: obligation ${id} is not in obligations.json`);
   if (cur) for (const t of cur.tracks) if (!map.modules[t.id]) err(`module-map: no entry for ${t.id}`);
+}
+
+
+/* ── training evidence: content version, Art. 12 quote, pages ─────────── */
+if (cur) {
+  const m = cur._meta || {};
+  if (!/^\d+\.\d+\.\d+$/.test(m.content_version || '')) err('curriculum _meta.content_version must be a semantic version like 1.0.0');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(m.content_date || '') || isNaN(Date.parse(m.content_date))) err('curriculum _meta.content_date must be YYYY-MM-DD');
+  const a12 = m.evidence && m.evidence.art12;
+  if (!a12) err('curriculum _meta.evidence.art12 is missing');
+  else {
+    const a = article(a12.celex, a12.art);
+    if (!a) err(`evidence.art12: no article ${a12.celex} Art. ${a12.art}`);
+    else if (!norm(a.text).includes(norm(a12.quote))) err('evidence.art12: quote is not verbatim in the law text');
+  }
+  if (!(m.evidence && m.evidence.refresher_months_default > 0)) err('curriculum _meta.evidence.refresher_months_default is missing');
+}
+for (const f of ['academy-evidence.js', 'academy-certificate.html', 'academy-certificate.js', 'academy-register.html', 'academy-register.js', 'academy-evidence.css']) {
+  if (!fs.existsSync(path.join(docs, f))) err(`missing docs/${f}`);
 }
 
 

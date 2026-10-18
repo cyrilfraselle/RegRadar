@@ -3,6 +3,19 @@
   "name": "Academy curriculum",
   "version": 1,
   "purpose": "One learning path of 9 short modules. Each module: explainer, risks, check questions, optional practice link, and what the law says.",
+  "content_version": "1.0.0",
+  "content_date": "2026-10-18",
+  "content_version_note": "Semantic version of the teaching content (lessons, checks, law quotes). Bump it whenever a lesson, a check question or a law quote changes in substance. New completions record this version (AcademyProgress, key regradar-academy-training); certificates and the team register print it. Completions made before the field existed show 'not recorded'.",
+  "evidence": {
+    "art12": {
+      "celex": "32024R1624",
+      "art": "12",
+      "para": "second paragraph",
+      "quote": "specific, ongoing training programmes to help them recognise operations which may be related to money laundering or terrorist financing and to instruct them as to how to proceed in such cases. Such training programmes shall be appropriate to their functions or activities and to the risks of money laundering and terrorist financing to which the obliged entity is exposed, and shall be duly documented."
+    },
+    "refresher_months_default": 12,
+    "refresher_note": "Default, configure for your firm. AMLR Art. 12 asks for ongoing training and does not set an interval."
+  },
   "honesty": "Legal text is quoted verbatim from docs/data/laws/ (checked by academy/verify.mjs and again in the browser). Minute estimates, the pass mark and XP are default values. Practice cases and CF Bank are fictional. Not legal advice.",
   "defaults": {
    "pass_mark": 0.75,

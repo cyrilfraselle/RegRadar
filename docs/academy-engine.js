@@ -840,14 +840,19 @@ return {esc, Ownership, Laundromat, Desk};
 
      AcademyProgress.get()
        -> { version, updated,
-            completions:[{module, completedAt, score, max, steps}],  // modules fully done
+            completions:[{module, completedAt, score, max, contentVersion, steps}],  // modules fully done
             modules:{ <id>:{steps:{watch,risks,check,law,practice}, completed} } }
 
    Stored under 'regradar-academy-training':
      { v:1, updated:ISO, prefs:{budget:30}, modules:{
          'cdd-kyc':{ steps:{ watch:{at}, risks:{at}, check:{at,score,max,best,tries,passed},
                              law:{at}, practice:{at,auto} },
-                     completed:{ at:ISO, score:3, max:4 } } } }
+                     completed:{ at:ISO, score:3, max:4, cv:'1.0.0' } } } }
+
+   'cv' is the curriculum content version (data/academy/curriculum.json
+   _meta.content_version) at the moment the module was completed. The hub
+   registers it with setContentVersion(). Completions made before this
+   field existed have no 'cv' and are reported with contentVersion:null.
 
    A module is complete when watch, risks, a passed check and law are
    done. Practice (the simulations) is optional. Lessons that have a
@@ -865,6 +870,7 @@ const KEY='regradar-academy-training';
 const REQUIRED=['watch','risks','check','law'];
 let S=null;
 const REQ={};   /* per-module required steps, registered by the hub; default REQUIRED */
+let CV=null;    /* curriculum content version, registered by the hub; recorded in new completions */
 
 function blank(){ return {v:1, updated:null, prefs:{}, modules:{}}; }
 function load(){
@@ -888,6 +894,7 @@ function maybeComplete(id){
   if(!(REQ[id]||REQUIRED).every(k=>m.steps[k] && (k!=='check' || m.steps.check.passed))) return false;
   const c=m.steps.check;
   m.completed={at:new Date().toISOString(), score:c.best, max:c.max};
+  if(CV) m.completed.cv=CV;
   return true;
 }
 /* Mark a step done. Returns {first:boolean, completed:boolean}: first =
@@ -918,6 +925,7 @@ function game(id, name, score, max){
   save();
   return {first, completed};
 }
+function setContentVersion(v){ CV=v? String(v) : null; }
 function setRequired(id, list){ if(Array.isArray(list) && list.length) REQ[id]=list.slice(); }
 function required(id){ return (REQ[id]||REQUIRED).slice(); }
 function get(){
@@ -925,7 +933,7 @@ function get(){
   const completions=Object.keys(S.modules).filter(id=>S.modules[id].completed).map(id=>{
     const m=S.modules[id];
     return {module:id, completedAt:m.completed.at, score:m.completed.score, max:m.completed.max,
-            steps:Object.keys(m.steps)};
+            contentVersion:m.completed.cv||null, steps:Object.keys(m.steps)};
   }).sort((a,b)=>a.completedAt<b.completedAt?-1:1);
   return JSON.parse(JSON.stringify({version:1, updated:S.updated, completions, modules:S.modules}));
 }
@@ -948,5 +956,5 @@ function toCSV(titles, order){
   return [head].concat(rows).map(r=>r.map(csvCell).join(',')).join('\r\n')+'\r\n';
 }
 function reset(){ S=blank(); save(); }
-return {KEY, REQUIRED, get, step, quiz, game, setRequired, required, isComplete, stepDone, pref, setPref, toCSV, reset};
+return {KEY, REQUIRED, get, step, quiz, game, setRequired, setContentVersion, required, isComplete, stepDone, pref, setPref, toCSV, reset};
 })();
