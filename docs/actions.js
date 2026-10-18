@@ -218,7 +218,7 @@ function oblShort(id) { var o = obl(id); return o ? o.legal_basis : id; }
 function ctlLabel(id) { var c = ctl(id); return c ? id + ' · ' + c.name : id + ' (not found)'; }
 function owners() {
   var a = [];
-  if (SP) SP.people().forEach(function (p) { if (p.id !== 'person:me') a.push(p.title); });   // team members of the spine
+  if (SP) SP.people().forEach(function (p) { if (p.id !== 'person:me' && p.status === 'active') a.push(p.title); });   // team members of the spine
   CONTROLS.forEach(function (c) { a.push(c.owner); });
   S.issues.forEach(function (i) { a.push(i.owner); i.actions.forEach(function (x) { a.push(x.owner); }); if (i.closed_by) a.push(i.closed_by); });
   return uniq(a.filter(function (x) { return x && !/^unassigned$/i.test(x); })).sort();

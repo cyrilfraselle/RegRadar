@@ -66,7 +66,7 @@
   function aeid(pid, sid, k) { return 'ATT:' + pid + ':' + sid + ':' + k; }
   function personIdFor(sp, s, taken) {
     var base = 'person:' + slug(s.name), hit = sp.get(base);
-    if (hit && hit.type === 'person' && (!hit.data.staff_id || hit.data.staff_id === s.id)) return base;
+    if (hit && hit.type === 'person' && (!hit.data.staff_id || hit.data.staff_id === s.id || hit.status === 'left')) return base;   // a returning person is the same team member
     if (!hit) return base;
     return base + '-' + slug(s.id);
   }
@@ -161,7 +161,8 @@
       // staff
       var rosterIds = {};
       st.staff.forEach(function (s, n) { attempt('staff ' + s.name, function () { rosterIds[staffPerson(sp, s, st.demo && /^s\d\d$/.test(s.id) ? true : false, n)] = s.id; }); });
-      sp.list('person').forEach(function (e) { if (e.data && e.data.staff_id && !rosterIds[e.id]) attempt('staff ' + e.title, function () { sp.update(e.id, { data: { staff_id: '' } }, { action: 'sync' }); }); });
+      // a person removed from the roster becomes an INACTIVE team member (status 'left'): not offered for new work, name kept in every record and in the audit trail
+      sp.list('person').forEach(function (e) { if (e.data && e.data.staff_id && !rosterIds[e.id] && e.status === 'active') attempt('staff ' + e.title, function () { sp.update(e.id, { status: 'left' }, { action: 'update', note: 'Removed from the policies roster: inactive team member' }); }); });
       var sidToPerson = {}; Object.keys(rosterIds).forEach(function (pid) { sidToPerson[rosterIds[pid]] = pid; });
       // policies, their versions and obligations
       st.policies.forEach(function (p, idx) {

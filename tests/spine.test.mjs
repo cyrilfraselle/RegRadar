@@ -1062,8 +1062,18 @@ await test('policies: the page works on the spine (open, seed, edit, publish, ap
   assert.equal(s.get('POL:' + p.id).data.live_version, '0.2.0');
   const ns = PD.addStaff(ST, 'New Joiner', 'Onboarding', 'Analyst'); ST.me = ns.id; PD.save(ST);
   assert.equal(s.get('person:new-joiner').data.staff_id, ns.id); assert.equal(s.getSetting(PS.META).me, ns.id);
-  PD.removeStaff(ST, ns.id); PD.save(ST);
-  assert.equal(PD.loadLocal().staff.some((x) => x.id === ns.id), false); assert.equal(s.get('person:new-joiner').data.staff_id, '', 'a removed person stays a team member of the spine, off the roster');
+  PD.logEntry(ST, ns.name, p.id, 'acknowledged', 'New Joiner read v0.2.0'); PD.acknowledge(ST, p, ns.id, ns.name); PD.save(ST);
+  PD.removeStaff(ST, ns.id); ST.me = me.id; PD.save(ST);
+  assert.equal(PD.loadLocal().staff.some((x) => x.id === ns.id), false, 'off the roster');
+  assert.equal(s.get('person:new-joiner').status, 'left', 'a removed person stays a team member of the spine, as an inactive one');
+  assert.equal(s.get('person:new-joiner').data.staff_id, ns.id);
+  assert.equal(PD.loadLocal().log.some((x) => x.who === 'New Joiner'), true, 'the name stays in the audit trail');
+  assert.equal(s.list('attestation').some((a) => a.owner === 'person:new-joiner' && a.title.startsWith('New Joiner')), true, 'and on the acknowledgements they gave');
+  assert.equal(PD.loadLocal().attest[p.id][ns.id].length, 1);
+  assert.equal(s.people().find((x) => x.id === 'person:new-joiner').title, 'New Joiner');
+  const back2 = PD.addStaff(ST, 'New Joiner', 'Onboarding', 'Analyst'); PD.save(ST);
+  assert.equal(s.get('person:new-joiner').status, 'active', 'adding the same person again re-activates them'); assert.equal(s.get('person:new-joiner').data.staff_id, back2.id);
+  PD.removeStaff(ST, back2.id); PD.save(ST);
   // reload: the same state, derived views included; the chain is intact; edits of fields (title, owner) are events
   ST.policies.find((x) => x.id === p.id).title = 'Gifts, hospitality and conflicts'; PD.save(ST);
   assert.ok(s.history('POL:' + p.id).some((x) => x.action === 'update' && x.changes.title));
