@@ -36,7 +36,7 @@
   var Store = factory(RR);
   if (typeof module === 'object' && module.exports) module.exports = Store; else root.ActionsStore = Store;
   if (RR && RR.migrations && !RR.migrations.some(function (m) { return m.id === 'actions'; })) {
-    RR.migrations.push({ id: 'actions', label: 'Issues and actions', run: Store.migrate });
+    RR.migrations.push({ id: 'actions', label: 'Issues and actions', order: 20, run: Store.migrate });
   }
 })(typeof self !== 'undefined' ? self : this, function (RR) {
   'use strict';
@@ -65,32 +65,8 @@
   function isTask(e) { return e && e.type === 'action'; }
 
   /* ───────── people: owners are team members, matched by name ───────── */
-  // A simple rule for "is this a person?": a boards, committees, teams, departments, vendors and bare
-  // acronyms ("IT Change Board", "HR") are not people. Such an owner stays plain text on the record
-  // (data.owner_text); anything that reads like a name becomes a team member. A name that already
-  // matches a team member is always that person.
-  var NOT_PEOPLE = /\b(board|committee|team|group|department|dept|division|office|council|desk|unit|forum|panel|vendor|supplier|provider|steering|management|function|committee|third party|outsourc\w*)\b/i;
-  var FUNCTION_WORDS = ['it', 'of', 'the', 'and', 'operations', 'procurement', 'finance', 'legal', 'compliance', 'security', 'audit', 'risk', 'engineering', 'support', 'infrastructure',
-    'technology', 'treasury', 'payments', 'onboarding', 'sales', 'marketing', 'product', 'data', 'digital', 'customer', 'service', 'services', 'change', 'monitoring', 'screening', 'fraud', 'hr', 'people', 'senior', 'executive', 'ceo', 'cfo', 'cro', 'coo', 'cto', 'mlro'];
-  function looksLikePerson(n) {
-    if (NOT_PEOPLE.test(n)) return false;
-    if (/^[A-Z0-9&\/-]{2,6}$/.test(n)) return false;          // HR, IT, KYC, MLRO: a function, not a name
-    if (n.toLowerCase().split(/[\s,&\/-]+/).filter(Boolean).every(function (w) { return FUNCTION_WORDS.indexOf(w) !== -1; })) return false;   // "IT Operations", "Procurement"
-    if (n.split(/\s+/).length > 5) return false;
-    return /[A-Za-z]/.test(n);
-  }
-  function ownerId(sp, name) {
-    var n = str(name).trim();
-    if (!n || /^unassigned$/i.test(n)) return null;
-    var id = 'person:' + RR.util.slug(n), p = sp.get(id);
-    if (p && p.type === 'person') return id;
-    var low = n.toLowerCase(), hit = sp.people().filter(function (x) { return x.title.toLowerCase() === low; })[0];
-    if (hit) return hit.id;
-    if (!looksLikePerson(n)) return null;
-    sp.create('person', { id: id, title: n, status: 'active', data: { role: RR.bridge.guessRole(n, sp.config()), job_title: '', team: '' }, src: { module: 'actions', ref: n } },
-      { origin: 'discovered', action: 'import', note: 'Found in Issues and actions' });
-    return id;
-  }
+  // Owners: a team member when the name reads like a person, plain text otherwise (rule in RR.owners).
+  function ownerId(sp, name) { return RR.owners.resolve(sp, name, 'Found in Issues and actions'); }
   function ownerName(sp, id) {
     if (!id) return '';
     var p = sp.get(id);
@@ -445,6 +421,6 @@
     KEY: KEY, DONE: DONE, PREFS: PREFS, SEEDED: SEEDED,
     TO_ENTITY: TO_ENTITY, FROM_ENTITY: FROM_ENTITY,
     migrate: migrate, read: read, commit: commit, savePrefs: savePrefs, createFindings: createFindings, history: history, peek: peek,
-    normIssue: normIssue, ownerId: ownerId, looksLikePerson: looksLikePerson, nextSeq: maxSeq, issueId: issueId
+    normIssue: normIssue, ownerId: ownerId, looksLikePerson: function (n) { return RR.owners.looksLikePerson(n); }, nextSeq: maxSeq, issueId: issueId
   };
 });

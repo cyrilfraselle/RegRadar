@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 const RR = require(path.join(root, 'docs', 'rr-core.js'));
+const CS = require(path.join(root, 'docs', 'controls-store.js'));
 const AS = require(path.join(root, 'docs', 'actions-store.js'));
 const J = (p) => JSON.parse(fs.readFileSync(path.join(root, 'docs', p), 'utf8'));
 const CFG = J('data/spine/config.json');
@@ -22,12 +23,13 @@ const OBL = J('data/obligations.json');
 const APP = J('data/applicability.json');
 const CTL = J('data/controls.json');
 const TODAY = '2026-10-17';
+const REF = { controls: CTL };
 
 let n = 0, failed = 0;
 async function test(name, fn) {
   n++;
   try { await fn(); console.log('ok   ' + name); }
-  catch (e) { failed++; console.log('FAIL ' + name + '\n     ' + (e && e.stack ? e.stack.split('\n').slice(0, 3).join('\n     ') : e)); }
+  catch (e) { failed++; console.log('FAIL ' + name + '\n     ' + (e && e.stack ? e.stack.split('\n').slice(0, 7).join('\n     ') : e)); }
 }
 function clockFrom(start) { let t = Date.parse(start); return () => new Date((t += 1000)).toISOString(); }
 async function spine(opts = {}) {
@@ -214,18 +216,15 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.deepEqual(r.errors, []);
   assert.ok(r.modules.every((m) => m.found), 'every fixture key was found');
 
-  // controls: library + device overlay, mappings, tests, due from frequency
-  assert.equal(s.list('control').length, CTL.controls.length + 1);
-  assert.equal(s.get('CTL:ctl-03').owner, 'person:j-okafor', 'override applied');
-  assert.ok(!s.linked('CTL:ctl-01', 'mitigates').some((e) => e.id === 'OBL:AMLR-art19'), 'removed mapping honoured');
-  assert.ok(s.linked('CTL:ctl-02', 'mitigates').some((e) => e.id === 'OBL:AMLR-art42'), 'extra mapping honoured');
-  assert.equal(s.get('CTL:ctl-01').due, '2026-10-02', 'Monthly = 30 days after last_tested 2026-09-02');
-  assert.equal(s.linked('CTL:ctl-01', 'tests').length, 2);
-  assert.equal(s.get('TST:ctl-01:1').status, 'failed', 'newest test gets the highest index');
+  // controls have left the bridge too (see "controls: ..." tests): nothing is mirrored for them any more
+  assert.equal(s.list('control').length, 0, 'the bridge no longer mirrors the controls library');
+  assert.equal(s.list('test').length, 0);
+  assert.ok(!RR.bridge.modules.some((m) => m.id === 'controls'));
+  assert.ok(RR.bridge.migrated.some((m) => m.id === 'controls'));
   // issues and actions have left the bridge: they are imported once by their own migration, not mirrored
   assert.equal(s.list(['issue', 'action']).length, 0, 'the bridge no longer mirrors regradar-actions');
   assert.ok(!RR.bridge.modules.some((m) => m.id === 'actions'), 'actions is not in the bridge module list');
-  assert.equal(RR.bridge.migrated[0].id, 'actions');
+  assert.ok(RR.bridge.migrated.some((m) => m.id === 'actions'));
   assert.ok(!r.modules.some((m) => m.module === 'actions'), 'no report line for a migrated module');
   // policies
   assert.equal(s.get('POL:POL-01').status, 'in_review', 'a version in review makes the file wait for approval');
@@ -286,17 +285,17 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.equal(s.verifyLog().ok, true);
 });
 
-await test('bridge: no module data -> only the controls library and nothing invented', async () => {
+await test('bridge: no module data -> nothing invented', async () => {
   const s = await spine();
   const r = s.importModules(() => null, { controls: CTL });
   assert.equal(r.modules.filter((m) => m.found).length, 0);
-  assert.equal(s.list(['issue', 'action', 'policy', 'case', 'assessment', 'customer_file', 'training']).length, 0);
-  assert.equal(s.list('control').length, CTL.controls.length);
+  assert.equal(s.list(['issue', 'action', 'policy', 'case', 'assessment', 'customer_file', 'training', 'control', 'test']).length, 0);
 });
 
 await test('demo: loads a labelled fictional team of 4 and work, removes and reloads cleanly', async () => {
   const s = await spine();
-  s.importModules(() => null, { controls: CTL });
+  RR.runMigrations(s, () => null, REF);   // the controls library (the demo links to its controls)
+  s.importModules(() => null, REF);
   const r = s.loadDemo(DEMO);
   assert.deepEqual(r.skipped, []);
   const team = s.people().filter((p) => p.origin === 'demo' || (p.data && p.data.role));
@@ -393,6 +392,8 @@ const LEGACY = {
   ]
 };
 const LEG_KEY = 'regradar-actions';
+function mig(s, read, id = 'actions') { return RR.runMigrations(s, read, REF).find((m) => m.id === id); }
+const onlyAct = (v) => (k) => (k === LEG_KEY ? v : null);
 async function onDevice(extra = {}) {
   const st = fakeStorage(Object.assign({ [LEG_KEY]: JSON.stringify(LEGACY) }, extra), [LEG_KEY]);
   const s = await spine({ adapter: RR.adapters.localStorage({ storage: st }) });
@@ -411,12 +412,13 @@ await test('actions: the store maps the page statuses onto the work workflow exa
 await test('migration: legacy key in, spine records out (findings, tasks, people, links, log, settings)', async () => {
   const { st, s, read } = await onDevice();
   const before = st.getItem(LEG_KEY);
-  const rep = RR.runMigrations(s, read);
+  const all = RR.runMigrations(s, read, REF);
   await s.flush();
-  assert.equal(rep.length, 1);
-  assert.equal(rep[0].status, 'migrated');
-  assert.equal(rep[0].issues, 4);
-  assert.equal(rep[0].tasks, 2);
+  assert.deepEqual(all.map((m) => m.id), ['controls', 'actions'], 'controls first: findings link to them');
+  const rep = all[1];
+  assert.equal(rep.status, 'migrated');
+  assert.equal(rep.issues, 4);
+  assert.equal(rep.tasks, 2);
   // findings and statuses on the work workflow, the page's finer status kept
   const f1 = s.get('ISS-001');
   assert.equal(f1.type, 'issue');
@@ -480,21 +482,21 @@ await test('migration: legacy key in, spine records out (findings, tasks, people
 
 await test('migration: idempotent (second run, lost marker, reopened spine) and the old key stays', async () => {
   const { st, s, read } = await onDevice();
-  RR.runMigrations(s, read);
+  mig(s, read);
   await s.flush();
   const nEv = s.events().length, nEnt = s.list(null, { archived: true }).length;
-  assert.equal(RR.runMigrations(s, read)[0].status, 'already');
+  assert.equal(mig(s, read).status, 'already');
   assert.equal(s.events().length, nEv, 'a second run writes nothing');
   // a fresh spine over the same storage (page reload) does nothing either
   const s2 = await spine({ adapter: RR.adapters.localStorage({ storage: st }) });
-  assert.equal(RR.runMigrations(s2, read)[0].status, 'already');
+  assert.equal(mig(s2, read).status, 'already');
   assert.equal(s2.list('issue').length, 4);
   // even if the "done" marker were lost, no record is duplicated or overwritten
   const s3 = await spine();
-  RR.runMigrations(s3, read);
+  mig(s3, read);
   s3.update('ISS-001', { title: 'Edited after the import' });
   s3.setSetting(AS.DONE, null);
-  const again = RR.runMigrations(s3, read)[0];
+  const again = mig(s3, read);
   assert.equal(again.issues, 0);
   assert.equal(again.skipped, 4);
   assert.equal(s3.get('ISS-001').title, 'Edited after the import', 'user edits survive a repeated import');
@@ -505,19 +507,19 @@ await test('migration: idempotent (second run, lost marker, reopened spine) and 
 
 await test('migration: nothing to import, unreadable data, empty register, blocked storage', async () => {
   const s = await spine();
-  assert.equal(RR.runMigrations(s, () => null)[0].status, 'none');
+  assert.equal(mig(s, () => null).status, 'none');
   assert.equal(s.getSetting(AS.DONE), null, 'no legacy data -> no marker, nothing invented');
   assert.equal(s.list(['issue', 'action']).length, 0);
-  assert.equal(RR.runMigrations(s, () => '{broken')[0].status, 'unreadable');
-  assert.equal(RR.runMigrations(s, () => '[1,2]')[0].status, 'unreadable');
+  assert.equal(mig(s, onlyAct('{broken')).status, 'unreadable');
+  assert.equal(mig(s, onlyAct('[1,2]')).status, 'unreadable');
   assert.equal(s.getSetting(AS.DONE), null, 'unreadable data is not marked done, so it is retried and never lost');
-  assert.equal(RR.runMigrations(s, () => { throw new Error('blocked'); })[0].status, 'blocked');
+  assert.equal(mig(s, () => { throw new Error('blocked'); }).status, 'blocked');
   // an empty register (all issues removed) is a real state: mark it done so the demo is not re-seeded
-  assert.equal(RR.runMigrations(s, () => JSON.stringify({ v: 1, seq: 3, issues: [] }))[0].status, 'migrated');
+  assert.equal(mig(s, onlyAct(JSON.stringify({ v: 1, seq: 3, issues: [] }))).status, 'migrated');
   assert.equal(s.getSetting(AS.DONE).seq, 3);
   // odd old data does not throw: unknown severity/status, missing ids and titles
   const s2 = await spine();
-  const r = RR.runMigrations(s2, () => JSON.stringify({ issues: [{ severity: 'urgent', status: 'weird', actions: [{}] }, null, { id: 'X-9', title: 'Plain', due_on: 'not a date' }] }))[0];
+  const r = mig(s2, onlyAct(JSON.stringify({ issues: [{ severity: 'urgent', status: 'weird', actions: [{}] }, null, { id: 'X-9', title: 'Plain', due_on: 'not a date' }] })));
   assert.equal(r.status, 'migrated');
   assert.equal(s2.list('issue').length, 3);
   assert.equal(s2.get('ISS-001').data.priority, 'medium');
@@ -533,7 +535,7 @@ await test('migration: an id already used by another record gets a new one; old 
   s.create('issue', { id: 'ISS:ISS-009', title: 'Old mirror', status: 'todo' }, { origin: 'module:actions', _bridge: true, action: 'import' });
   s.create('action', { id: 'TSK:ISS-009:A1', title: 'Old mirrored action', status: 'todo' }, { origin: 'module:actions', _bridge: true, action: 'import' });
   s.link('fixes', 'TSK:ISS-009:A1', 'ISS:ISS-009', { _bridge: true, module: 'actions', silent: true });
-  const rep = RR.runMigrations(s, () => JSON.stringify(LEGACY))[0];
+  const rep = mig(s, onlyAct(JSON.stringify(LEGACY)));
   assert.equal(rep.renamed.length, 1);
   assert.deepEqual(rep.renamed[0], ['ISS-001', 'ISS-008'], 'new id continues after the old sequence');
   assert.equal(s.get('ISS-001').title, 'Created on the board', 'the existing record is untouched');
@@ -549,7 +551,7 @@ await test('migration: an id already used by another record gets a new one; old 
 
 await test('migration: the board (any spine client) can now edit the records, and the page sees it', async () => {
   const { s, read } = await onDevice();
-  RR.runMigrations(s, read);
+  mig(s, read);
   const mlro = 'person:t-nguyen';
   // what board.js does: move, assign, update, link, archive
   assert.equal(s.move('ISS-005', 'review').status, 'review');
@@ -582,7 +584,7 @@ await test('migration: the board (any spine client) can now edit the records, an
 
 await test('page model: reads back exactly what the old page held (display parity)', async () => {
   const { s, read } = await onDevice();
-  RR.runMigrations(s, read);
+  mig(s, read);
   const R = AS.read(s);
   assert.equal(R.seq, 7);
   assert.equal(R.firm, 'CF Bank (fictional)');
@@ -606,7 +608,7 @@ await test('page model: reads back exactly what the old page held (display parit
 
 await test('page model: edits write only what changed, with notes in the event log; the board\'s changes are not overwritten', async () => {
   const { s, read } = await onDevice();
-  RR.runMigrations(s, read);
+  mig(s, read);
   const R = AS.read(s);
   const get = (id) => R.issues.find((i) => i.id === id);
   const n0 = s.events().length;
@@ -679,7 +681,7 @@ await test('page model: edits write only what changed, with notes in the event l
 
 await test('page model: new issues and impact-created findings continue the old numbering; prefs and firm are saved', async () => {
   const { s, read } = await onDevice();
-  RR.runMigrations(s, read);
+  mig(s, read);
   const R = AS.read(s);
   // the impact page's flow: page-shaped issue without an id
   const ids = AS.createFindings(s, [{ title: 'Review EBA guideline', severity: 'high', owner: 'R. Haddad', lod: '2LOD', status: 'open', source: 'self_identified', source_ref: 'RegWatch item abc12345', due_on: '2026-11-30', control_ids: ['ctl-01'], obligation_ids: ['AMLR-art26'], actions: [], impact_ref: 'abc12345', history: [{ d: '2026-10-17', t: 'Opened from regulatory impact assessment (RegWatch item abc12345)' }] }]);
@@ -704,6 +706,221 @@ await test('page model: new issues and impact-created findings continue the old 
   assert.equal(AS.savePrefs(s, R2, { cfg: { dueSoon: 5 }, saved: [], dismissed: {}, report: { commentary: 'x', by: '' } }), true);
   assert.equal(AS.savePrefs(s, R2, { cfg: { dueSoon: 5 }, saved: [], dismissed: {}, report: { commentary: 'x', by: '' } }), false, 'unchanged prefs write nothing');
   assert.equal(AS.read(s).prefs.cfg.dueSoon, 5);
+});
+
+/* ═════════════════ Controls: migration onto the spine ═════════════════ */
+const CKEY = 'regradar-controls-mine';
+const LEG_CTL = { extra: [{ id: 'local-abc', name: 'Sanctions list update check', owner: 'IT Operations', frequency: 'Quarterly', type: 'Detective', status: 'approved', last_tested: '2026-09-20', effectiveness: 'effective', obligation_ids: ['AMLR-art42', 'AMLR-nope'], note_field: 'kept' }],
+  extraMappings: { 'AMLR-art42': ['ctl-02'] }, removedMappings: { 'AMLR-art19': ['ctl-01'] },
+  overrides: { 'ctl-03': { owner: 'J. Okafor', status: 'pending_review' }, 'ctl-01': { frequency: 'Weekly', custom_flag: true } },
+  tests: { 'ctl-01': [{ date: '2026-10-01', result: 'failed', note: 'newest' }, { date: '2026-09-02', result: 'effective', note: 'older' }], 'local-abc': [{ date: '2026-09-20', result: 'needs_improvement', note: 'x' }] } };
+async function ctlDevice(local = LEG_CTL, extra = {}) {
+  const init = Object.assign(local ? { [CKEY]: JSON.stringify(local) } : {}, extra);
+  const st = fakeStorage(init, [CKEY]);
+  const s = await spine({ adapter: RR.adapters.localStorage({ storage: st }) });
+  return { st, s, read: (k) => st.getItem(k) };
+}
+const ctl = (s, id) => CS.read(s).controls.find((c) => c.id === id);
+
+await test('controls: the shipped library is seeded as control records when the device has nothing', async () => {
+  const { s, read } = await ctlDevice(null);
+  const r = mig(s, read, 'controls');
+  assert.equal(r.status, 'seeded');
+  assert.equal(r.controls, CTL.controls.length);
+  assert.equal(s.list('control').length, CTL.controls.length);
+  const c1 = s.get('CTL:ctl-01'), lib = CTL.controls[0];
+  assert.equal(c1.type, 'control'); assert.equal(c1.title, lib.name); assert.equal(c1.status, 'approved'); assert.equal(c1.origin, 'spine');
+  assert.equal(c1.owner, 'person:t-nguyen');
+  assert.equal(c1.due, RR.dates.addDays(lib.last_tested, 30), 'next test = last tested + the Monthly cycle from the config');
+  assert.match(c1.data.date_source, /control_frequency_days/);
+  assert.deepEqual(s.linked(c1.id, 'mitigates').map((e) => e.id).sort(), lib.obligation_ids.map((o) => 'OBL:' + o).sort(), 'mappings are typed links');
+  // the page model equals the library, exactly as ControlsData.load() used to return it
+  const R = CS.read(s);
+  assert.deepEqual(R.controls.map((c) => c.id), CTL.controls.map((c) => c.id));
+  for (const l of CTL.controls) {
+    const got = R.controls.find((c) => c.id === l.id);
+    for (const k of ['name', 'owner', 'frequency', 'type', 'status', 'last_tested', 'effectiveness', 'source']) assert.equal(got[k], l[k], `${l.id}.${k}`);
+    assert.deepEqual(got.obligation_ids, l.obligation_ids, `${l.id}.obligation_ids`);
+  }
+  assert.deepEqual(R.tests, {});
+  assert.deepEqual(s.getSetting(CS.LIB), CTL.controls.map((c) => c.id));
+  assert.equal(mig(s, read, 'controls').status, 'already');
+});
+
+await test('controls: legacy overlay in, control/test records out; idempotent; old key untouched; display parity', async () => {
+  const { st, s, read } = await ctlDevice();
+  const before = st.getItem(CKEY);
+  const r = mig(s, read, 'controls');
+  await s.flush();
+  assert.equal(r.status, 'migrated'); assert.equal(r.tests, 3);
+  // same merge as the old ControlsData.load()
+  const R = CS.read(s), by = (id) => R.controls.find((c) => c.id === id);
+  assert.deepEqual(R.controls.map((c) => c.id), [...CTL.controls.map((c) => c.id), 'local-abc'], 'library order, then the controls added here');
+  assert.deepEqual(by('ctl-01').obligation_ids, CTL.controls[0].obligation_ids.filter((o) => o !== 'AMLR-art19'), 'removed mapping honoured');
+  assert.ok(by('ctl-02').obligation_ids.includes('AMLR-art42'), 'extra mapping honoured');
+  assert.equal(by('ctl-03').owner, 'J. Okafor'); assert.equal(by('ctl-03').status, 'pending_review');
+  assert.equal(by('ctl-01').frequency, 'Weekly', 'a frequency the config does not know is kept, not lost');
+  assert.equal(by('ctl-01').custom_flag, true, 'unknown override keys are kept');
+  const loc = by('local-abc');
+  assert.equal(loc.source, 'local'); assert.equal(loc.owner, 'IT Operations'); assert.equal(loc.note_field, 'kept');
+  assert.deepEqual(loc.obligation_ids, ['AMLR-art42', 'AMLR-nope'], 'an obligation id not in the register is kept too');
+  assert.equal(s.get('CTL:local-abc').owner, null, '"IT Operations" is not a person: plain text on the record');
+  assert.equal(s.get('CTL:ctl-03').owner, 'person:j-okafor');
+  assert.equal(s.get('CTL:ctl-03').status, 'pending_review'); assert.equal(s.get('CTL:ctl-03').due, null, 'only approved controls have a next test date');
+  assert.equal(s.get('CTL:local-abc').due, '2026-12-20', 'quarterly = 91 days from 2026-09-20');
+  // tests: newest first, the oldest gets index 0; they link to the control and carry note and evidence
+  assert.deepEqual(R.tests['ctl-01'].map((t) => [t.date, t.result, t.note]), [['2026-10-01', 'failed', 'newest'], ['2026-09-02', 'effective', 'older']]);
+  assert.equal(s.get('TST:ctl-01:1').status, 'failed'); assert.equal(s.get('TST:ctl-01:0').data.note, 'older');
+  assert.ok(s.get('TST:ctl-01:1').data.evidence === '');
+  assert.deepEqual(s.linked('CTL:ctl-01', 'tests', 'in').map((t) => t.id).sort(), ['TST:ctl-01:0', 'TST:ctl-01:1']);
+  assert.equal(s.verifyLog().ok, true);
+  assert.ok(s.history('CTL:ctl-01').every((e) => e.actor === 'system:bridge'));
+  assert.equal(st.getItem(CKEY), before, 'the old key is untouched');
+  assert.ok(st.writes.every((k) => k.startsWith('regradar-spine-')));
+  // idempotent
+  const nEv = s.events().length;
+  assert.equal(mig(s, read, 'controls').status, 'already');
+  assert.equal(s.events().length, nEv);
+  const s2 = await spine();
+  mig(s2, read, 'controls'); s2.update('CTL:ctl-01', { title: 'Edited' }); s2.setSetting(CS.DONE, null);
+  const again = mig(s2, read, 'controls');
+  assert.equal(again.controls, 0); assert.equal(again.skipped, CTL.controls.length + 1);
+  assert.equal(s2.get('CTL:ctl-01').title, 'Edited', 'a repeated import never overwrites');
+  assert.equal(s2.list('test').length, 3);
+  // unreadable / deferred / blocked
+  const s3 = await spine();
+  assert.equal(mig(s3, () => '{broken', 'controls').status, 'unreadable');
+  assert.equal(RR.runMigrations(s3, () => null, {}).find((m) => m.id === 'controls').status, 'deferred', 'library not loaded: try again later, nothing marked');
+  assert.equal(s3.getSetting(CS.DONE), null);
+});
+
+await test('controls: mirrors the old bridge made are adopted (same ids, links survive) and become writable', async () => {
+  // what an older build of the bridge left behind for the controls library
+  const s2 = await spine();
+  s2.create('control', { id: 'CTL:ctl-01', title: 'Mirrored', status: 'approved', data: { ref: 'ctl-01' } }, { origin: 'module:controls', _bridge: true, action: 'import' });
+  s2.link('mitigates', 'CTL:ctl-01', 'OBL:AMLR-art20', { _bridge: true, module: 'controls', silent: true });
+  s2.create('issue', { id: 'ISS-777', title: 'Links to the control' });
+  s2.link('concerns', 'ISS-777', 'CTL:ctl-01');
+  assert.throws(() => s2.update('CTL:ctl-01', { title: 'x' }), /Managed on/, 'a mirror is read-only until it is adopted');
+  const rep = RR.runMigrations(s2, (k) => (k === CKEY ? JSON.stringify({ tests: { 'ctl-01': [{ date: '2026-10-01', result: 'failed', note: 'n' }] } }) : null), REF).find((m) => m.id === 'controls');
+  assert.equal(rep.status, 'migrated');
+  const c = s2.get('CTL:ctl-01');
+  assert.equal(c.origin, 'spine'); assert.equal(c.src.migrated, true); assert.equal(c.title, CTL.controls[0].name, 'the library value replaces the stale mirror');
+  assert.ok(s2.isWritable(c)); s2.update('CTL:ctl-01', { title: 'Now editable' });
+  assert.deepEqual(s2.linked('ISS-777', 'concerns').map((e) => e.id), ['CTL:ctl-01'], 'the finding still links to the same id');
+  assert.ok(s2.history('CTL:ctl-01').some((e) => e.action === 'adopt'));
+  const imp = s2.importModules(() => null, REF);
+  assert.equal(imp.archived, 0, 'the bridge leaves adopted records alone');
+  assert.equal(s2.get('CTL:ctl-01').archived, false);
+  assert.equal(s2.verifyLog().ok, true);
+});
+
+await test('controls: the workspace operations (add, edit, map, unmap, test, remove) go through the spine with an audit trail', async () => {
+  const { s, read } = await ctlDevice(null);
+  mig(s, read, 'controls');
+  const n0 = s.events().length;
+  // add a control and map it
+  CS.addControl(s, { id: 'local-new', name: 'New control', owner: 'Unassigned', frequency: 'Monthly', type: 'Preventive', status: 'draft', last_tested: null, effectiveness: 'not_tested', obligation_ids: [] });
+  CS.mapControl(s, 'AMLR-art19', 'local-new');
+  let c = ctl(s, 'local-new');
+  assert.equal(c.source, 'local'); assert.deepEqual(c.obligation_ids, ['AMLR-art19']); assert.equal(c.owner, 'Unassigned'); assert.equal(c.last_tested, null);
+  assert.equal(CS.read(s).controls.at(-1).id, 'local-new', 'new controls go last');
+  assert.equal(s.get('CTL:local-new').owner, null);
+  // status flow and edits: events in the log, due date follows
+  CS.updateControl(s, 'local-new', { status: 'pending_review' });
+  CS.updateControl(s, 'local-new', { status: 'approved' });
+  assert.deepEqual(s.history('CTL:local-new').filter((e) => e.action === 'move').map((e) => e.changes.status), [['draft', 'pending_review'], ['pending_review', 'approved']]);
+  CS.updateControl(s, 'local-new', { owner: 'Priya K.', frequency: 'Annual', type: 'Detective', name: 'Renamed' });
+  c = ctl(s, 'local-new');
+  assert.equal(c.owner, 'Priya K.'); assert.equal(c.frequency, 'Annual'); assert.equal(c.type, 'Detective'); assert.equal(c.name, 'Renamed');
+  assert.equal(s.get('CTL:local-new').owner, 'person:priya-k');
+  // record a test: a test record with its note, the control's last_tested/effectiveness and next-due move
+  const today = new Date().toISOString().slice(0, 10);
+  assert.equal(CS.recordTest(s, 'local-new', 'needs_improvement', 'sampled 10 files', 'https://example.org/evidence/1'), today);
+  c = ctl(s, 'local-new');
+  assert.equal(c.last_tested, today); assert.equal(c.effectiveness, 'needs_improvement');
+  assert.equal(s.get('CTL:local-new').due, RR.dates.addDays(today, 365), 'next due from the Annual cycle');
+  const t = CS.read(s).tests['local-new'];
+  assert.deepEqual(t, [{ date: today, result: 'needs_improvement', note: 'sampled 10 files', evidence: 'https://example.org/evidence/1' }]);
+  CS.recordTest(s, 'local-new', 'effective', '');
+  assert.deepEqual(CS.read(s).tests['local-new'].map((x) => x.result), ['effective', 'needs_improvement'], 'newest first');
+  assert.equal(s.get('TST:local-new:1').status, 'effective');
+  // unmap a library mapping and map it again
+  const lib = CTL.controls[1], first = lib.obligation_ids[0];
+  CS.unmapControl(s, first, lib.id);
+  assert.ok(!ctl(s, lib.id).obligation_ids.includes(first));
+  CS.mapControl(s, first, lib.id);
+  assert.deepEqual(ctl(s, lib.id).obligation_ids, lib.obligation_ids, 'a mapping drawn again returns to its place');
+  // the library cannot be removed; an own control can, with its tests
+  CS.removeControl(s, 'ctl-01'); assert.ok(ctl(s, 'ctl-01'));
+  CS.removeControl(s, 'local-new');
+  assert.equal(ctl(s, 'local-new'), undefined); assert.equal(s.get('CTL:local-new').archived, true);
+  assert.equal(CS.read(s).tests['local-new'], undefined);
+  assert.throws(() => CS.recordTest(s, 'local-new', 'effective', ''), /Unknown control/);
+  assert.ok(s.events().length > n0 + 10);
+  assert.equal(s.verifyLog().ok, true);
+  // coverage and due-date maths stay in ControlsData; the spine's due date and the page's agree
+  assert.equal(CS.days(s, 'Quarterly'), 91);
+});
+
+await test('controls: findings link to the same control ids, the briefing sees real due dates, the Ask page reads migrated controls', async () => {
+  const { st, s, read } = await onDevice({ [CKEY]: JSON.stringify(LEG_CTL) });
+  mig(s, read);   // controls first, then the tracker
+  await s.flush();
+  assert.deepEqual(s.linked('ISS-001', 'concerns').map((e) => e.id), ['CTL:ctl-01']);
+  assert.equal(s.get('ISS-001').data.unresolved_links.controls[0], 'ctl-gone');
+  // due dates: approved controls carry their next test date
+  const due = s.list('control', { status: 'approved' }).filter((c) => c.due);
+  assert.ok(due.length >= 3); assert.ok(due.every((c) => /^\d{4}-\d{2}-\d{2}$/.test(c.due)));
+  // the Ask page's register reader prefers the spine's controls once migrated
+  const AI = require(path.join(root, 'docs', 'ai.js'));
+  const reg = AI.readLocalRegister({ getItem: (k) => st.getItem(k) }, CTL.controls);
+  assert.equal(reg.controls.length, CTL.controls.length + 1);
+  assert.equal(reg.controls.find((c) => c.id === 'ctl-03').owner, 'J. Okafor');
+  assert.equal(reg.controls.find((c) => c.id === 'local-abc').owner, 'IT Operations');
+  // before the migration the old key is still read
+  const st0 = fakeStorage({ [CKEY]: JSON.stringify(LEG_CTL) });
+  assert.equal(AI.readLocalRegister({ getItem: (k) => st0.getItem(k) }, CTL.controls).controls.find((c) => c.id === 'ctl-03').owner, 'J. Okafor');
+});
+
+await test('controls: ControlsData keeps its interface (load, mutators, coverage, nextDue, isOverdue) on top of the spine', async () => {
+  const { s, read } = await ctlDevice();
+  mig(s, read, 'controls');
+  RR.current = s;
+  const win = { RR, ControlsStore: CS };
+  const doc = { currentScript: null, createElement: () => ({}), head: { appendChild() {} } };
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({ ok: true, json: async () => CTL });
+  try {
+    new Function('window', 'document', fs.readFileSync(path.join(root, 'docs', 'controls-data.js'), 'utf8'))(win, doc);
+    const CD = win.ControlsData;
+    assert.deepEqual(Object.keys(CD).sort(), ['LKEY', 'addControl', 'coverage', 'isOverdue', 'load', 'mapControl', 'nextDue', 'recordTest', 'removeControl', 'unmapControl', 'updateControl']);
+    const d = await CD.load();
+    assert.equal(d.meta.name, 'Controls library');
+    assert.equal(d.controls.length, CTL.controls.length + 1);
+    assert.equal(d.tests['ctl-01'].length, 2);
+    // the page's own date maths, on the config's cycle
+    const c2 = d.controls.find((c) => c.last_tested && CFG.control_frequency_days[c.frequency]);
+    const due = CD.nextDue(c2);
+    assert.equal(due.toISOString().slice(0, 10), RR.dates.addDays(c2.last_tested, CFG.control_frequency_days[c2.frequency]));
+    assert.equal(CD.isOverdue(c2, new Date('2030-01-01')), true);
+    assert.equal(CD.nextDue({ frequency: 'Per event', last_tested: '2026-01-01' }), null);
+    // coverage is computed from the controls the page holds, as before
+    const cov = CD.coverage(OBL.obligations, d.controls);
+    assert.equal(cov.total, OBL.obligations.length);
+    assert.ok(cov.mappedCount > 0);
+    // mutators work on the spine once load() has run, and the next load() shows them
+    CD.addControl({ id: 'local-z', name: 'Z', owner: 'Unassigned', frequency: 'Monthly', type: 'Preventive', status: 'draft', last_tested: null, effectiveness: 'not_tested', obligation_ids: [] });
+    CD.mapControl('AMLR-art19', 'local-z');
+    CD.recordTest('local-z', 'effective', 'ok');
+    CD.updateControl('local-z', { status: 'approved' });
+    const d2 = await CD.load();
+    const z = d2.controls.find((c) => c.id === 'local-z');
+    assert.deepEqual(z.obligation_ids, ['AMLR-art19']); assert.equal(z.status, 'approved'); assert.equal(d2.tests['local-z'][0].note, 'ok');
+    assert.equal(CD.coverage(OBL.obligations, d2.controls).byObligation['AMLR-art19'].includes('local-z'), true);
+    CD.removeControl('local-z');
+    assert.equal((await CD.load()).controls.some((c) => c.id === 'local-z'), false);
+  } finally { globalThis.fetch = realFetch; RR.current = null; }
 });
 
 await test('owners: only people become team members; boards, committees and functions stay plain text', async () => {
@@ -759,7 +976,7 @@ await test('page model: peek counts issues on the device before and after the mi
   const { st, s, read } = await onDevice();
   let p = AS.peek(read);
   assert.equal(p.exists, true); assert.equal(p.n, 4); assert.equal(p.migrated, false); assert.ok(p.ids['ISS-003']);
-  RR.runMigrations(s, read);
+  mig(s, read);
   await s.flush();
   p = AS.peek(read);
   assert.equal(p.migrated, true); assert.equal(p.n, 4); assert.ok(p.ids['ISS-001']);

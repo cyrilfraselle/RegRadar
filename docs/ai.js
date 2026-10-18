@@ -426,6 +426,21 @@
     (local.extra || []).forEach(function (c) { map[c.id] = Object.assign({}, c); });
     Object.keys(local.overrides || {}).forEach(function (id) { if (map[id]) Object.assign(map[id], local.overrides[id]); });
     input.controls = Object.keys(map).map(function (id) { return map[id]; });
+    // Controls moved onto the data spine (docs/controls-store.js): once migrated on this device, the spine's records are the register.
+    var meta = get('regradar-spine-meta'), ents = get('regradar-spine-entities'), links = get('regradar-spine-links') || {};
+    if (ents && meta && meta.settings && meta.settings.values && meta.settings.values['migrated.controls']) {
+      var spineCtl = [];
+      Object.keys(ents).forEach(function (k) {
+        var e = ents[k]; if (!e || e.type !== 'control' || e.archived) return;
+        var d = e.data || {}, ids = [];
+        Object.keys(links).forEach(function (lk) { var l = links[lk]; if (l && l.type === 'mitigates' && l.from === e.id && !l.ended_at && String(l.to).indexOf('OBL:') === 0) ids.push(l.to.slice(4)); });
+        (d.unresolved_obligations || []).forEach(function (x) { if (ids.indexOf(x) === -1) ids.push(x); });
+        spineCtl.push({ id: d.ref || String(e.id).replace(/^CTL:/, ''), name: e.title, owner: (e.owner && ents[e.owner] ? ents[e.owner].title : d.owner_text) || 'Unassigned', frequency: d.frequency || '', type: d.control_type || '',
+          status: e.status, last_tested: d.last_tested || null, effectiveness: d.effectiveness || 'not_tested', obligation_ids: ids, _o: d.order != null ? d.order : 1e9 });
+      });
+      spineCtl.sort(function (a, b) { return a._o - b._o; });
+      input.controls = spineCtl.map(function (c) { delete c._o; return c; });
+    }
     var mine = get('regradar-obligations-mine') || {};
     input.obligationNotes = mine.notes || {};
     input.policies = get('regradar-policies');
