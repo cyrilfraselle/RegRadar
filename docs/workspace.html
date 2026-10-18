@@ -166,7 +166,7 @@ textarea.in{width:100%;min-height:76px;resize:vertical}
 </main>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="controls-data.js?v=20261018d"></script>
+<script src="controls-data.js?v=20261018e"></script>
 <script>
 (function(){
 'use strict';
@@ -360,15 +360,15 @@ function renderCtlDetail(c){
     '<div class="field"><label for="f-type">Type</label><select class="sel" id="f-type" data-f="type">'+['Preventive','Detective'].map(function(x){return '<option'+(x===c.type?' selected':'')+'>'+x+'</option>'}).join('')+'</select></div>'+
     '<div class="field"><label>Next test due</label><div class="in" style="background:var(--surface-2)">'+(due?esc(fmt(due.toISOString())):(c.frequency==='Per event'?'On each event':'Not scheduled'))+'</div></div></div>';
   h+='<div class="blk"><h3>Record a test</h3><div class="newrow"><select class="sel" id="tres" aria-label="Test result"><option value="effective">Effective</option><option value="needs_improvement">Needs improvement</option><option value="failed">Failed</option></select>'+
-    '<input class="in" id="tnote" placeholder="What was tested? (optional)" aria-label="Test note"><button class="btn pri sm" data-act="test" data-c="'+esc(c.id)+'">Log test today</button></div>'+
-    (hist.length?'<div class="hist">'+hist.slice(0,6).map(function(t){return '<div><span class="d">'+esc(t.date)+'</span><b>'+esc(String(t.result).replace('_',' '))+'</b><span>'+esc(t.note||'')+'</span></div>'}).join('')+'</div>':'<div class="s" style="margin-top:10px;color:var(--text-3)">No tests logged yet.'+(c.last_tested?' Last recorded: '+esc(c.last_tested)+'.':'')+'</div>')+'</div>';
+    '<input class="in" id="tnote" placeholder="What was tested? (optional)" aria-label="Test note"><input class="in" id="tevid" placeholder="Evidence: link or reference (optional)" aria-label="Evidence, a link or a reference"><button class="btn pri sm" data-act="test" data-c="'+esc(c.id)+'">Log test today</button></div>'+
+    (hist.length?'<div class="hist">'+hist.slice(0,6).map(function(t){return '<div><span class="d">'+esc(t.date)+'</span><b>'+esc(String(t.result).replace('_',' '))+'</b><span>'+esc(t.note||'')+'</span>'+(t.evidence?'<span class="s">Evidence: '+(/^https?:\/\//i.test(t.evidence_url||'')?'<a href="'+esc(t.evidence_url)+'" rel="noopener">'+esc(t.evidence)+'</a>':esc(t.evidence))+'</span>':'')+'</div>'}).join('')+'</div>':'<div class="s" style="margin-top:10px;color:var(--text-3)">No tests logged yet.'+(c.last_tested?' Last recorded: '+esc(c.last_tested)+'.':'')+'</div>')+'</div>';
   var ids=c.obligation_ids||[];
   h+='<div class="blk"><h3>Obligations covered <span class="count">'+ids.length+'</span></h3>'+
     (ids.length?'<div class="card-list">'+ids.map(function(id){var o=ob(id);if(!o)return '';
       return '<div class="card"><button class="open" data-act="goob" data-id="'+esc(id)+'"><div class="t">'+esc(o.legal_basis)+': '+esc(titleOf(o))+'</div></button><button class="btn sm" data-act="unlink" data-o="'+esc(id)+'" data-c="'+esc(c.id)+'" aria-label="Unlink '+esc(o.legal_basis)+'">Unlink</button></div>';
     }).join('')+'</div>':'<div class="gapnote">This control is not mapped to any obligation yet.</div>')+
     '<div class="row-actions"><button class="btn sm pri" data-act="picker" data-k="ctl" data-id="'+esc(c.id)+'">'+(S.picker==='ctl:'+c.id?'Close':'Map to an obligation')+'</button>'+
-    (c.source==='local'?'<button class="btn sm danger" data-act="remove" data-c="'+esc(c.id)+'">Remove control</button>':'')+'</div>'+pickerHtml('ctl',c.id)+'</div>';
+    '<button class="btn sm danger" data-act="remove" data-c="'+esc(c.id)+'">'+(c.source==='local'?'Remove control':'Archive control')+'</button>'+'</div>'+pickerHtml('ctl',c.id)+'</div>';
   return h;
 }
 function renderDetail(){
@@ -414,7 +414,7 @@ document.addEventListener('click',async function(e){
     ControlsData.addControl({id:id2,name:'New control',owner:'Unassigned',frequency:'Monthly',type:'Preventive',status:'draft',last_tested:null,effectiveness:'not_tested',obligation_ids:[]});
     S.view='controls';S.sel=id2;S.picker=null;await refresh();var n=document.querySelector('.nameinput');if(n){n.focus();n.select()}return}
   if(a==='status'){ControlsData.updateControl(b.dataset.c,{status:b.dataset.to});await refresh();toast('Status: '+SLABEL[b.dataset.to]);return}
-  if(a==='test'){ControlsData.recordTest(b.dataset.c,$('tres').value,($('tnote').value||'').trim());await refresh();toast('Test logged');return}
+  if(a==='test'){ControlsData.recordTest(b.dataset.c,$('tres').value,($('tnote').value||'').trim(),($('tevid').value||'').trim());await refresh();toast('Test logged');return}
   if(a==='remove'){ControlsData.removeControl(b.dataset.c);S.sel=null;await refresh();selectFirst();toast('Control removed');return}
   if(a==='pin'){var i=MINE.pinned.indexOf(b.dataset.id);if(i>=0)MINE.pinned.splice(i,1);else MINE.pinned.push(b.dataset.id);saveMine();renderAll();return}
   if(a==='dismiss'){if(MINE.dismissed[b.dataset.id])delete MINE.dismissed[b.dataset.id];else MINE.dismissed[b.dataset.id]=true;saveMine();renderAll();return}

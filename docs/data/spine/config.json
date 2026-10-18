@@ -162,7 +162,8 @@
     "test": { "label": "Control test", "plural": "Control tests", "workflow": "test", "id_prefix": "TST", "fields": [
       { "id": "tested_on", "label": "Tested on", "type": "date" },
       { "id": "note", "label": "Note", "type": "text" },
-      { "id": "evidence", "label": "Evidence (link or reference)", "type": "text" }
+      { "id": "evidence", "label": "Evidence (link or reference)", "type": "text" },
+      { "id": "evidence_url", "label": "Evidence link", "type": "url" }
     ]},
     "issue": { "label": "Finding", "plural": "Findings", "workflow": "work", "id_prefix": "ISS", "fields": [
       { "id": "priority", "label": "Severity", "type": "scale", "scale": "priority" },

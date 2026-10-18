@@ -117,7 +117,8 @@
   function putTest(sp, cid, k, t, controlTitle, o) {
     var id = 'TST:' + cid + ':' + k, cur = sp.get(id);
     var res = has(RESULTS, t.result) ? t.result : 'effective';
-    var data = { tested_on: validDate(t.date), note: str(t.note), evidence: str(t.evidence), control: cid };
+    var ev = str(t.evidence).trim(), url = (/https?:\/\/[^\s<>"']+/i.exec(ev) || [''])[0];   // evidence: free text, a link, or both
+    var data = { tested_on: validDate(t.date), note: str(t.note), evidence: ev, evidence_url: url, control: cid };
     if (cur && String(cur.origin || '').indexOf('module:') === 0) {
       sp.adopt(id);
       sp.update(id, { title: 'Test of ' + controlTitle, status: res, data: data }, { replaceData: true, action: 'import', note: o.note });
@@ -150,7 +151,7 @@
       var list = sp.linked(e.id, 'tests', 'in').filter(function (t) { return t.type === 'test'; }).sort(function (a, b) {
         var ka = +(/:(\d+)$/.exec(a.id) || [0, 0])[1], kb = +(/:(\d+)$/.exec(b.id) || [0, 0])[1]; return kb - ka;
       });
-      if (list.length) tests[cidOf(e)] = list.map(function (t) { return { date: str(t.data.tested_on), result: t.status, note: str(t.data.note), evidence: str(t.data.evidence) }; });
+      if (list.length) tests[cidOf(e)] = list.map(function (t) { return { date: str(t.data.tested_on), result: t.status, note: str(t.data.note), evidence: str(t.data.evidence), evidence_url: str(t.data.evidence_url) }; });
     });
     return { controls: controls, tests: tests };
   }
@@ -188,9 +189,10 @@
   function removeControl(sp, cid) {
     var e = sp.get(eid(cid));
     if (!e || e.type !== 'control' || e.archived) return;
-    if (str(e.data && e.data.source) !== 'local') return;                         // the shipped library cannot be removed (as before)
-    sp.linked(e.id, 'tests', 'in').forEach(function (t) { sp.archive(t.id, { note: 'Control removed' }); });
-    sp.archive(e.id, { note: 'Removed in the Compliance workspace' });
+    // Any control, shipped or own, can be taken off the list: it is archived (never deleted), with its tests, and the
+    // event log keeps its history. An archived library control is not brought back by syncLibrary.
+    sp.linked(e.id, 'tests', 'in').forEach(function (t) { sp.archive(t.id, { note: 'Control archived' }); });
+    sp.archive(e.id, { note: 'Archived in the Compliance workspace' });
   }
   function mapControl(sp, oid, cid) {
     var e = need(sp, cid), un = (e.data.unresolved_obligations || []).filter(function (x) { return x !== oid; });
