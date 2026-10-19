@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="640" viewBox="0 0 390 640" font-family="Arial, Helvetica, sans-serif">
+<rect width="390" height="640" fill="#ffffff"/>
+<text x="195" y="22" text-anchor="middle" font-size="13" fill="#555">Mockup, illustrative</text>
+<rect x="12" y="34" width="366" height="594" rx="8" fill="#f6f7f9" stroke="#999"/>
+<text x="26" y="62" font-size="18" font-weight="bold" fill="#111">Inspection pack</text>
+<text x="26" y="82" font-size="13" fill="#444">Demo Pay EMI (demo data) · as of 19 Oct 2026</text>
+<rect x="26" y="94" width="338" height="64" rx="6" fill="#fff4e0" stroke="#c77700"/>
+<text x="38" y="116" font-size="14" font-weight="bold" fill="#5a3600">Not yet evidenced: 4 gaps</text>
+<text x="38" y="136" font-size="13" fill="#5a3600">Fix these before a supervisor asks.</text>
+<text x="26" y="184" font-size="14" font-weight="bold" fill="#111">Gaps</text>
+<g font-size="13" fill="#111">
+<rect x="26" y="194" width="338" height="40" rx="6" fill="#fff" stroke="#bbb"/><text x="38" y="218">BWRA never approved</text><text x="326" y="218" fill="#0a5">Open</text>
+<rect x="26" y="242" width="338" height="40" rx="6" fill="#fff" stroke="#bbb"/><text x="38" y="266">3 policies without attestation</text><text x="326" y="266" fill="#0a5">Open</text>
+<rect x="26" y="290" width="338" height="40" rx="6" fill="#fff" stroke="#bbb"/><text x="38" y="314">2 customer reviews overdue</text><text x="326" y="314" fill="#0a5">Open</text>
+<rect x="26" y="338" width="338" height="40" rx="6" fill="#fff" stroke="#bbb"/><text x="38" y="362">No training recorded this year</text><text x="326" y="362" fill="#0a5">Open</text>
+</g>
+<text x="26" y="406" font-size="14" font-weight="bold" fill="#111">Sections in the pack</text>
+<g font-size="13" fill="#111">
+<text x="26" y="430">1  Obligations and coverage       12 of 12 mapped</text>
+<text x="26" y="454">2  Business-wide risk assessment   Draft</text>
+<text x="26" y="478">3  Customer risk and reviews        9 customers</text>
+<text x="26" y="502">4  Policies and attestations        5 policies</text>
+<text x="26" y="526">5  Cases and STR log                 3 cases</text>
+<text x="26" y="550">6  Actions and findings             7 open</text>
+<text x="26" y="574">7  Training                              0 sessions</text>
+</g>
+<rect x="26" y="586" width="338" height="30" rx="6" fill="#1a56db"/>
+<text x="195" y="606" text-anchor="middle" font-size="14" fill="#fff">Print / save as PDF</text>
+</svg>
