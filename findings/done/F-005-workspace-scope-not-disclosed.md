@@ -4,12 +4,12 @@ title: Coverage dashboard does not say it covers only 12 AMLR articles, while th
 area: compliance
 severity: P1
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/workspace.html
 found: 2026-10-19
-fixed_by:
+fixed_by: fix/F-005-workspace-scope
 ---
 
 ## Evidence

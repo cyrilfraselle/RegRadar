@@ -45,6 +45,9 @@ button{cursor:pointer}
 .btn.sm{min-height:36px;padding:0 12px;font-size:12.5px}
 .btn.danger:hover{border-color:var(--crit);color:var(--crit)}
 
+.scope-note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--crit);border-radius:var(--radius);padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--text-2);line-height:1.5}
+.scope-note strong{color:var(--text)}
+.scope-note:empty{display:none}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;gap:14px;align-items:center;min-width:0}
 .kpi .n{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1}
@@ -146,6 +149,7 @@ textarea.in{width:100%;min-height:76px;resize:vertical}
     </div>
   </header>
 
+  <div class="scope-note" id="scopeNote" role="note"></div>
   <section class="kpis" id="kpis" aria-label="Summary"></section>
 
   <div class="grid">
@@ -204,7 +208,7 @@ async function boot(){
       fetch('data/applicability.json',{cache:'no-store'}).then(function(x){return x.json()}).catch(function(){return null}),
       fetch('data/laws/32024R1624_EN.json').then(function(x){return x.json()}).catch(function(){return null})
     ]);
-    OBS=r[0].obligations||[];CONTROLS=r[1].controls;TESTS=r[1].tests;APP=r[2];LAW=r[3];
+    META=r[0]._meta||{};OBS=r[0].obligations||[];CONTROLS=r[1].controls;TESTS=r[1].tests;APP=r[2];LAW=r[3];
   }catch(e){
     $('detail').innerHTML='<div class="empty">Could not load the workspace data. Check your connection and reload.</div>';return;
   }
@@ -218,6 +222,23 @@ async function boot(){
   entitySelect();renderAll();
   if(!S.sel)selectFirst();
 }
+var META={};
+function uncovered(){
+  var have={};OBS.forEach(function(o){have[String(o.id).split('-')[0]]=1});
+  var regs=(APP&&APP.regulations)||[];
+  return regs.filter(function(g){
+    if(have[g.id])return false;
+    if(!ENTITY)return true;
+    var a=g.applies&&g.applies[ENTITY];return a==='direct'||a==='conditional';
+  });
+}
+function scopeText(){
+  var n=META.count||OBS.length,u=uncovered().map(function(g){return g.name});
+  return 'This register contains '+n+' obligations from AMLR only'+(META.scope?' ('+META.scope+')':'')+'. '+(u.length?u.join(', ')+' '+(ENTITY?'apply to the selected firm type but ':'')+'are not yet in the register; ':'')+'coverage figures do not speak to them.';
+}
+function renderScope(){
+  $('scopeNote').innerHTML='<strong>Scope of this register.</strong> '+esc(scopeText());
+}
 function selectFirst(){var l=visible();if(l.length){S.sel=l[0].id;renderDetail();renderItems()}}
 
 function entitySelect(){
@@ -227,6 +248,7 @@ function entitySelect(){
 
 /* ---------- KPIs ---------- */
 function renderKpis(){
+  renderScope();
   var sc=scope(),cov=ControlsData.coverage(sc,CONTROLS);
   var pct=cov.total?Math.round(100*cov.mappedCount/cov.total):0;
   var gaps=sc.filter(function(o){return !cov.byObligation[o.id].length});
@@ -386,7 +408,7 @@ async function refresh(){var cd=await ControlsData.load();CONTROLS=cd.controls;T
 
 /* ---------- actions ---------- */
 function csv(){
-  var cov=ControlsData.coverage(OBS,CONTROLS),rows=[['Obligation','Title','Topic','Criticality','Applies from','Status','Controls']];
+  var cov=ControlsData.coverage(OBS,CONTROLS),rows=[['Scope: '+scopeText()],['Obligation','Title','Topic','Criticality','Applies from','Status','Controls']];
   scope().forEach(function(o){var cs=ctlsFor(o.id);rows.push([o.legal_basis,titleOf(o),o.topic,o.criticality||o.priority,o.deadline||'',cs.length?'Covered':'Gap',cs.map(function(c){return c.name}).join('; ')])});
   var t=rows.map(function(r){return r.map(function(x){return '"'+String(x==null?'':x).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
   var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='regradar_coverage_report.csv';a.click();toast('Report exported');
