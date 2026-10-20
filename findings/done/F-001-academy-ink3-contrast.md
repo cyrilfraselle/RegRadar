@@ -4,14 +4,14 @@ title: Academy pages use a grey (#8B9099) that fails text contrast on 3 pages (3
 area: academy
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/shift.html
   - docs/triage.html
   - docs/casefile.html
 found: 2026-10-19
-fixed_by:
+fixed_by: fix/F-001-academy-ink3-contrast
 ---
 
 ## Evidence
