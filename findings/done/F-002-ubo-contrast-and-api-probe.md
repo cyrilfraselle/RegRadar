@@ -4,12 +4,12 @@ title: ubo.html probes a non-existent /api/config on the hosted site and fails c
 area: shared
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/ubo.html
 found: 2026-10-19
-fixed_by:
+fixed_by: fix/F-002-ubo-contrast-api-probe
 ---
 
 ## Evidence
