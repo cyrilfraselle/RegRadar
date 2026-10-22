@@ -276,7 +276,7 @@ function verdictFor(reg,entity,acts){
 function badgeLabel(status,instrument){
   if(status==='conditional') return 'Conditional';
   if(status==='na') return 'Not applicable';
-  return instrument==='Directive' ? 'Applies · via BE law' : 'Directly applicable';
+  return instrument==='Directive' ? 'Applies · check national transposition' : 'Directly applicable';
 }
 function inScopeRegs(){
   if(!APP||!ENTITY) return [];

@@ -4,12 +4,12 @@ title: RegWatch badge "Applies · via BE law" asserts a Belgian transposition th
 area: regwatch
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/regwatch.html
 found: 2026-10-22
-fixed_by:
+fixed_by: fix/F-008-regwatch-via-be-law
 ---
 
 ## Evidence
