@@ -18,7 +18,25 @@ window.ControlsData = (function () {
       return Object.assign(EMPTY(), m || {});
     } catch (e) { return EMPTY(); }
   }
-  function saveLocal(d) { try { localStorage.setItem(LKEY, JSON.stringify(d)); } catch (e) {} }
+  var onSaveError = null;
+  function saveLocal(d) {
+    try { localStorage.setItem(LKEY, JSON.stringify(d)); return true; }
+    catch (e) { if (typeof onSaveError === "function") onSaveError(e); return false; }
+  }
+  function isObj(v) { return v && typeof v === "object" && !Array.isArray(v); }
+  /* Whole device-local overlay as a JSON-able object, for backup. */
+  function exportBackup() {
+    return { app: "regradar-controls", version: 1, saved: new Date().toISOString(), data: loadLocal() };
+  }
+  /* Validates shape, then replaces the overlay. Returns { ok, error }. */
+  function restoreBackup(b) {
+    var d = b && b.app === "regradar-controls" ? b.data : null;
+    if (!isObj(d) || !Array.isArray(d.extra) || !["extraMappings", "removedMappings", "overrides", "tests"].every(function (k) { return isObj(d[k]); }))
+      return { ok: false, error: "This file is not a RegRadar controls backup." };
+    var clean = EMPTY();
+    Object.keys(clean).forEach(function (k) { clean[k] = d[k]; });
+    return saveLocal(clean) ? { ok: true } : { ok: false, error: "Browser storage is blocked or full." };
+  }
   function has(arr, v) { return arr.indexOf(v) !== -1; }
 
   async function load() {
@@ -137,5 +155,7 @@ window.ControlsData = (function () {
 
   return { load: load, addControl: addControl, updateControl: updateControl, removeControl: removeControl,
     mapControl: mapControl, unmapControl: unmapControl, recordTest: recordTest,
+    exportBackup: exportBackup, restoreBackup: restoreBackup,
+    setSaveErrorHandler: function (fn) { onSaveError = fn; },
     coverage: coverage, nextDue: nextDue, isOverdue: isOverdue, LKEY: LKEY };
 })();
