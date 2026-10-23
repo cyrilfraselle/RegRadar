@@ -3,6 +3,10 @@
 Dated notes from strategy conversations between the owner and the assistant.
 Newest first. Each entry: context, what we decided, what we deferred, next.
 
+## 2026-10-23: weekly brief
+
+Brief written (strategy/briefs/2026-10-23.md). Four small fixes merged this week; big Phase 1 branches (data spine, migrations, Academy) have no pull requests. Owner actions: PR #17, PR #11, finding F-004 decision, ask for a spine PR. Open question: obligations vs. spine first (recommended: obligations).
+
 ## 2026-10-16 (later): answers to the four strategy questions
 
 1. First buyer: a team; MLRO and managers dispatch work and need a clear
