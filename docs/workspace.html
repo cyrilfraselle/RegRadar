@@ -145,6 +145,8 @@ textarea.in{width:100%;min-height:76px;resize:vertical}
       <label for="entitySel" style="font-size:13px;color:var(--text-2)">Firm type</label>
       <select class="sel" id="entitySel" data-act="entity"></select>
       <button class="btn" data-act="export">Export report (CSV)</button>
+      <button class="btn" data-act="backup">Download backup</button>
+      <button class="btn" data-act="restore">Restore backup</button><input type="file" id="restoreFile" accept="application/json,.json" hidden aria-label="Backup file">
       <button class="btn pri" data-act="newctl-top">New control</button>
     </div>
   </header>
@@ -441,9 +443,16 @@ document.addEventListener('click',async function(e){
   if(a==='pin'){var i=MINE.pinned.indexOf(b.dataset.id);if(i>=0)MINE.pinned.splice(i,1);else MINE.pinned.push(b.dataset.id);saveMine();renderAll();return}
   if(a==='dismiss'){if(MINE.dismissed[b.dataset.id])delete MINE.dismissed[b.dataset.id];else MINE.dismissed[b.dataset.id]=true;saveMine();renderAll();return}
   if(a==='export'){csv();return}
+  if(a==='restore'){$('restoreFile').click();return}
+  if(a==='backup'){var u=URL.createObjectURL(new Blob([JSON.stringify(ControlsData.exportBackup(),null,2)],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='regradar_controls_backup_'+new Date().toISOString().slice(0,10)+'.json';l.click();toast('Backup downloaded (controls, links, test log; notes are not included)');return}
 });
-document.addEventListener('change',function(e){
+ControlsData.setSaveErrorHandler(function(){toast('Could not save: browser storage is blocked or full. Download a backup.')});
+document.addEventListener('change',async function(e){
   var t=e.target;
+  if(t.id==='restoreFile'){var f=t.files&&t.files[0];t.value='';if(!f)return;
+    if(!confirm('Restoring replaces the controls, links and test log on this device with the file. Continue?'))return;
+    var r;try{r=ControlsData.restoreBackup(JSON.parse(await f.text()))}catch(x){r={ok:false,error:'This file is not valid JSON.'}}
+    if(r.ok){await refresh();toast('Backup restored')}else toast(r.error);return}
   if(t.id==='entitySel'){ENTITY=t.value;saveProfile();S.sel=null;renderAll();selectFirst();return}
   if(t.id==='note'&&S.sel){var v=t.value.trim();if(v)MINE.notes[S.sel]=v;else delete MINE.notes[S.sel];saveMine();toast('Note saved');return}
   if(t.dataset&&t.dataset.f&&S.view==='controls'&&S.sel){var p={};p[t.dataset.f]=t.value.trim()||t.value;ControlsData.updateControl(S.sel,p);refresh();toast('Saved')}
