@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-10-24T10:13:18.233175",
+  "last_updated": "2026-10-25T10:38:24.439721",
   "last_run_counts": {
-    "total": 2,
+    "total": 4,
     "critical": 0,
-    "important": 2,
+    "important": 4,
     "info": 0
   },
-  "archive_size": 616,
+  "archive_size": 618,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,28 +14,28 @@
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 68
+      "days_away": 67
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 69
+      "days_away": 68
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 248
+      "days_away": 247
     },
     {
       "date": "2027-07-10",
       "event": "AMLR applies; AMLD6 transposition deadline",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 259
+      "days_away": 258
     }
   ],
   "trends": [
@@ -218,6 +218,27 @@
       "weeks": 6
     },
     {
+      "theme": "General",
+      "this_week": 2,
+      "avg": 2.9,
+      "pct": -30,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "▁█▁▃▂▁▁▁",
+      "values": [
+        1,
+        9,
+        1,
+        4,
+        3,
+        1,
+        1,
+        2
+      ],
+      "weeks": 8
+    },
+    {
       "theme": "MiCA/Crypto",
       "this_week": 1,
       "avg": 2.1,
@@ -255,27 +276,6 @@
         1,
         1,
         3,
-        1
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "General",
-      "this_week": 1,
-      "avg": 2.9,
-      "pct": -65,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁█▁▃▂▁▁▁",
-      "values": [
-        1,
-        9,
-        1,
-        4,
-        3,
-        1,
-        1,
         1
       ],
       "weeks": 8
@@ -485,7 +485,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-10-24T10:12:47.118006",
+      "newest": "2026-10-25T10:37:41.752696",
       "status": "ok"
     },
     {
@@ -512,7 +512,7 @@
       "country": "GLOBAL",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-10-21T01:25:00",
+      "newest": "2026-10-24T11:00:00",
       "status": "ok"
     },
     {
@@ -557,7 +557,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-22T17:22:15",
+      "newest": "2026-10-20T17:05:32",
       "status": "ok"
     },
     {
@@ -565,8 +565,8 @@
       "name": "GNews — Data Protection",
       "country": "EU",
       "kind": "news",
-      "fetched": 78,
-      "newest": "2026-09-13T07:00:00",
+      "fetched": 77,
+      "newest": "2026-10-24T03:30:37",
       "status": "ok"
     },
     {
@@ -593,7 +593,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-23T14:41:36",
+      "newest": "2026-10-25T06:33:13",
       "status": "ok"
     },
     {
@@ -602,7 +602,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-23T09:00:49",
+      "newest": "2026-10-25T02:08:59",
       "status": "ok"
     },
     {
@@ -619,7 +619,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 51,
+      "fetched": 50,
       "newest": "2026-10-08T07:00:00",
       "status": "ok"
     },
@@ -628,8 +628,8 @@
       "name": "GNews — Fintech / Licensing",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-10-15T14:32:02",
+      "fetched": 31,
+      "newest": "2026-10-24T03:12:47",
       "status": "ok"
     },
     {
@@ -646,8 +646,8 @@
       "name": "GNews — Major FI Watch",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-10-22T21:14:32",
+      "fetched": 36,
+      "newest": "2026-10-23T15:36:49",
       "status": "ok"
     },
     {
@@ -665,7 +665,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-23T12:24:52",
+      "newest": "2026-10-24T16:45:00",
       "status": "ok"
     },
     {
@@ -674,7 +674,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-21T07:00:00",
+      "newest": "2026-10-22T07:00:00",
       "status": "ok"
     }
   ]
