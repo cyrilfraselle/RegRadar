@@ -4,7 +4,7 @@ title: RegWatch and the Analyst workstation load Google Fonts, a third-party req
 area: shared
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/regwatch.html
