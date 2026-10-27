@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-10-26T12:11:56.494394",
+  "last_updated": "2026-10-27T11:33:39.481085",
   "last_run_counts": {
-    "total": 10,
-    "critical": 5,
+    "total": 13,
+    "critical": 8,
     "important": 5,
     "info": 0
   },
-  "archive_size": 620,
+  "archive_size": 626,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,31 +14,73 @@
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 66
+      "days_away": 65
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 67
+      "days_away": 66
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 246
+      "days_away": 245
     },
     {
       "date": "2027-07-10",
       "event": "AMLR applies; AMLD6 transposition deadline",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 257
+      "days_away": 256
     }
   ],
   "trends": [
+    {
+      "theme": "Sanctions",
+      "this_week": 5,
+      "avg": 1.3,
+      "pct": 289,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▁▁▁▄▁█",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        5
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "AML/CFT",
+      "this_week": 8,
+      "avg": 2.6,
+      "pct": 211,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▃▁▂▅▅█",
+      "values": [
+        1,
+        1,
+        3,
+        1,
+        2,
+        5,
+        5,
+        8
+      ],
+      "weeks": 8
+    },
     {
       "theme": "Market Infrastructure",
       "this_week": 3,
@@ -61,44 +103,23 @@
       "weeks": 8
     },
     {
-      "theme": "AML/CFT",
+      "theme": "General",
       "this_week": 5,
-      "avg": 2.6,
-      "pct": 94,
+      "avg": 3.0,
+      "pct": 67,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁▄▁▂███",
+      "spark": "█▁▃▂▁▁▁▄",
       "values": [
+        9,
         1,
-        1,
+        4,
         3,
         1,
+        1,
         2,
-        5,
-        5,
         5
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "Capital/CRR",
-      "this_week": 2,
-      "avg": 2.0,
-      "pct": 0,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "█▁█▄▄▁▄▄",
-      "values": [
-        3,
-        1,
-        3,
-        2,
-        2,
-        1,
-        2,
-        2
       ],
       "weeks": 8
     },
@@ -141,23 +162,23 @@
       "weeks": 8
     },
     {
-      "theme": "General",
-      "this_week": 2,
-      "avg": 3.0,
-      "pct": -33,
+      "theme": "Capital/CRR",
+      "this_week": 1,
+      "avg": 2.0,
+      "pct": -50,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "█▁▃▂▁▁▁▁",
+      "spark": "█▁█▄▄▁▄▁",
       "values": [
-        9,
-        1,
-        4,
         3,
         1,
+        3,
+        2,
+        2,
         1,
         2,
-        2
+        1
       ],
       "weeks": 8
     },
@@ -300,27 +321,6 @@
       "weeks": 3
     },
     {
-      "theme": "Sanctions",
-      "this_week": 0,
-      "avg": 1.3,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁▁▁▁█▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        3,
-        1
-      ],
-      "weeks": 8
-    },
-    {
       "theme": "Tax Transparency",
       "this_week": 0,
       "avg": 1.4,
@@ -415,7 +415,7 @@
       "country": "BE",
       "kind": "primary",
       "fetched": 20,
-      "newest": "2026-10-19T08:30:00",
+      "newest": "2026-10-27T09:00:00",
       "status": "ok"
     },
     {
@@ -442,7 +442,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-10-26T09:00:00",
+      "newest": "2026-10-27T00:00:00",
       "status": "ok"
     },
     {
@@ -487,7 +487,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-10-26T12:10:36.040867",
+      "newest": "2026-10-27T11:32:09.578862",
       "status": "ok"
     },
     {
@@ -496,7 +496,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-10-25T23:00:00",
+      "newest": "2026-10-26T23:00:00",
       "status": "ok"
     },
     {
@@ -505,7 +505,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-10-26T11:05:54",
+      "newest": "2026-10-27T11:14:37",
       "status": "ok"
     },
     {
@@ -540,8 +540,8 @@
       "name": "GNews — AML / Financial Crime",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-10-22T14:25:01",
+      "fetched": 30,
+      "newest": "2026-10-26T15:06:26",
       "status": "ok"
     },
     {
@@ -550,7 +550,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-21T16:27:18",
+      "newest": "2026-10-26T13:41:17",
       "status": "ok"
     },
     {
@@ -559,7 +559,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-26T00:50:55",
+      "newest": "2026-10-27T05:49:49",
       "status": "ok"
     },
     {
@@ -577,7 +577,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-19T18:59:22",
+      "newest": "2026-10-20T10:23:45",
       "status": "ok"
     },
     {
@@ -585,8 +585,8 @@
       "name": "GNews — EIOPA",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-10-06T12:38:09",
+      "fetched": 17,
+      "newest": "2026-10-01T05:31:46",
       "status": "ok"
     },
     {
@@ -595,7 +595,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-25T06:33:13",
+      "newest": "2026-10-27T04:00:00",
       "status": "ok"
     },
     {
@@ -604,7 +604,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-25T02:08:59",
+      "newest": "2026-10-22T07:00:00",
       "status": "ok"
     },
     {
@@ -612,8 +612,8 @@
       "name": "GNews — Enforcement BE",
       "country": "BE",
       "kind": "news",
-      "fetched": 73,
-      "newest": "2026-10-22T04:41:15",
+      "fetched": 32,
+      "newest": "2026-10-19T09:32:06",
       "status": "ok"
     },
     {
@@ -621,7 +621,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 50,
+      "fetched": 14,
       "newest": "2026-10-08T07:00:00",
       "status": "ok"
     },
@@ -639,7 +639,7 @@
       "name": "GNews — Fraud / Market Abuse",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
+      "fetched": 34,
       "newest": "2026-10-26T08:35:07",
       "status": "ok"
     },
@@ -649,7 +649,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-22T21:14:32",
+      "newest": "2026-10-27T05:00:28",
       "status": "ok"
     },
     {
@@ -666,8 +666,8 @@
       "name": "GNews — Sanctions",
       "country": "EU",
       "kind": "news",
-      "fetched": 33,
-      "newest": "2026-10-26T10:30:49",
+      "fetched": 100,
+      "newest": "2026-10-27T11:21:40",
       "status": "ok"
     },
     {
@@ -675,8 +675,8 @@
       "name": "GNews — Tax Transparency",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-10-22T07:00:00",
+      "fetched": 29,
+      "newest": "2026-10-27T09:23:00",
       "status": "ok"
     }
   ]
