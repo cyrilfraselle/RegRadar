@@ -4,12 +4,12 @@ title: Landing page "Escalate" label is white on mint (1.63:1) on mobile and wit
 area: landing
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/index.html
 found: 2026-10-26
-fixed_by:
+fixed_by: fix/F-010-landing-escalate-contrast
 ---
 
 ## Evidence
