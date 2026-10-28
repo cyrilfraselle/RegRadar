@@ -43,7 +43,7 @@
   var CONSENT_POINTS = [
     'When you ask the model, your question (after personal-data redaction) and the retrieved passages leave this device and go directly from your browser to the provider you chose. RegRadar has no server and sees nothing.',
     'If you tick "include my register" for a question, the matching entries from your device-local register are sent too. They are never sent otherwise.',
-    'Your API key is stored in this browser only (localStorage). Anyone with access to this browser profile or to the page code running here could read it. Use a key with a spend limit, and use "Forget key" when done.',
+    'Your API key is kept in this browser tab only (sessionStorage) unless you tick "Remember on this device", which stores it in localStorage. Either way, anyone with access to this browser profile or to the page code running here could read it. Use a key with a spend limit, and use "Forget key" when done.',
     'You are responsible for the cost of the calls and for the provider\'s terms and data-handling policy. Model output is AI-assisted and can be wrong; the citation check only tests quotes, not reasoning. Not legal advice.'
   ];
 
@@ -817,7 +817,8 @@
   }
 
   /* ------------------------------------------------------------------ device-local store */
-  function createStore(storage) {
+  function createStore(storage, sessionStorageArg) {
+    var sess = sessionStorageArg || null;
     var K = { settings: 'regradar-ai-settings', consent: 'regradar-ai-consent', history: 'regradar-ai-history', key: function (p) { return 'regradar-ai-key-' + p; } };
     function get(k) { try { return JSON.parse(storage.getItem(k) || 'null'); } catch (e) { return null; } }
     function set(k, v) { try { storage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
@@ -827,9 +828,29 @@
       hasConsent: function () { var c = get(K.consent); return !!(c && c.version === CONSENT_VERSION); },
       giveConsent: function () { return set(K.consent, { version: CONSENT_VERSION, at: new Date().toISOString() }); },
       revokeConsent: function () { try { storage.removeItem(K.consent); } catch (e) {} },
-      getKey: function (p) { try { return storage.getItem(K.key(p || 'anthropic')) || ''; } catch (e) { return ''; } },
-      setKey: function (p, key) { try { storage.setItem(K.key(p || 'anthropic'), String(key).trim()); return true; } catch (e) { return false; } },
-      forgetKey: function (p) { try { storage.removeItem(K.key(p || 'anthropic')); } catch (e) {} },
+      getKey: function (p) {
+        var n = K.key(p || 'anthropic');
+        try { var v = sess && sess.getItem(n); if (v) return v; } catch (e) {}
+        try { return storage.getItem(n) || ''; } catch (e) { return ''; }
+      },
+      keyWhere: function (p) {
+        var n = K.key(p || 'anthropic');
+        try { if (sess && sess.getItem(n)) return 'session'; } catch (e) {}
+        try { if (storage.getItem(n)) return 'device'; } catch (e) {}
+        return '';
+      },
+      setKey: function (p, key, remember) {
+        var n = K.key(p || 'anthropic'), v = String(key).trim();
+        var target = remember || !sess ? storage : sess, other = target === storage ? sess : storage;
+        try { target.setItem(n, v); } catch (e) { return false; }
+        try { if (other) other.removeItem(n); } catch (e) {}
+        return true;
+      },
+      forgetKey: function (p) {
+        var n = K.key(p || 'anthropic');
+        try { storage.removeItem(n); } catch (e) {}
+        try { if (sess) sess.removeItem(n); } catch (e) {}
+      },
       history: function () { var h = get(K.history); return Array.isArray(h) ? h : []; },
       addHistory: function (entry) {
         var h = (get(K.history) || []).filter(function (x) { return x.q !== entry.q; });

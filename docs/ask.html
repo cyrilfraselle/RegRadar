@@ -203,6 +203,7 @@ dialog li{margin-bottom:4px}
   <div class="field"><label class="lbl" for="setModel">Model ID</label><input type="text" id="setModel" list="modelList"><datalist id="modelList"></datalist>
     <p class="small" id="modelNote"></p></div>
   <div class="field"><label class="lbl" for="setKey">API key</label><input type="password" id="setKey" autocomplete="off" spellcheck="false">
+    <label class="chk"><input type="checkbox" id="setRemember"> Remember on this device (otherwise the key is kept for this tab only)</label>
     <p class="small" id="keyState"></p></div>
   <div class="field"><label class="lbl" for="setNames">Names to redact before sending (one per line)</label><textarea id="setNames" style="min-height:64px" placeholder="Client or colleague names"></textarea>
     <p class="small">Emails, IBANs, phone numbers and long digit strings are always redacted. You see the redacted text before anything is sent.</p></div>
@@ -235,7 +236,7 @@ dialog li{margin-bottom:4px}
 (function(){
 'use strict';
 var AI=window.RegAI, $=function(id){return document.getElementById(id)};
-var store=AI.createStore(window.localStorage);
+var store=AI.createStore(window.localStorage,window.sessionStorage);
 var ix=AI.createIndex(), CATALOG=[], SCOPE=[], LAST=null, CTL_BASE=[], busy=false, abortCtl=null;
 var EXAMPLES=[
   'When must customer due diligence be applied to an occasional transaction?',
@@ -566,7 +567,8 @@ function syncProv(){
   var dl=$('modelList');dl.textContent='';
   if(pv==='anthropic')AI.MODEL_CHOICES.forEach(function(m){var o=document.createElement('option');o.value=m.id;o.label=m.note;dl.appendChild(o)});
   $('modelNote').textContent=pv==='anthropic'?'Default claude-sonnet-5-5, the ID listed in the provider’s models overview when this was built. IDs change over time: if you get a 404, check the provider’s list.':'Experimental. The endpoint must allow requests from this page (CORS).';
-  $('keyState').textContent=store.getKey(pv)?'A key is stored on this device. Leave the field empty to keep it.':'No key stored.';
+  var kw=store.keyWhere(pv);$('setRemember').checked=kw==='device';
+  $('keyState').textContent=kw==='device'?'A key is stored on this device. Leave the field empty to keep it.':kw==='session'?'A key is held for this tab only. Leave the field empty to keep it.':'No key stored.';
   $('setKey').value='';
 }
 function openSettings(){fillSettings();$('dlgSettings').showModal()}
@@ -577,7 +579,7 @@ function saveSettings(){
   var key=$('setKey').value.trim();
   if(key){
     if(!$('setConsent').checked){toast('Tick the box to accept before saving a key.');$('setConsent').focus();return}
-    store.giveConsent();store.setKey(pv,key);
+    store.giveConsent();store.setKey(pv,key,$('setRemember').checked);
   }else if($('setConsent').checked)store.giveConsent();else store.revokeConsent();
   if(pv==='openai'&&!patch.retrievalOnly&&(!patch.openaiBase||!/^https:\/\//.test(patch.openaiBase))){toast('The base URL must start with https://');return}
   store.setSettings(patch);
