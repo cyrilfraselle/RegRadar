@@ -596,6 +596,8 @@ document.addEventListener('click', function (e) {
   var act = b.getAttribute('data-act'), id = b.getAttribute('data-id'), fk = b.getAttribute('data-fk') || '';
   switch (act) {
     case 'pick': OPENER = b; select(id, true); var d = $('dTitle'); if (d) { if (window.innerWidth < 981) d.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth', block: 'start' }); d.focus({ preventScroll: true }); } break;
+    case 'backup': { var n = Object.keys(STORE.assessments).length; if (!n) { toast('Nothing to back up yet: no assessment has been saved on this device'); break; } download('regradar-impact-backup-' + TODAY + '.json', JSON.stringify({ kind: 'regradar-impact-backup', v: 1, exported: new Date().toISOString(), assessments: STORE.assessments }, null, 2), 'application/json'); toast('Backup of ' + plural(n, 'assessment') + ' downloaded'); break; }
+    case 'restore': $('restoreFile').value = ''; $('restoreFile').click(); break;
     case 'more': SHOWN += LIMIT; renderList(); break;
     case 'act': var k = PROFILE.acts.indexOf(id); if (k === -1) PROFILE.acts.push(id); else PROFILE.acts.splice(k, 1); saveProfile(); profileChanged(); break;
     case 'tog': var g = b.getAttribute('data-g'); var cur = b.getAttribute('aria-pressed') === 'true'; A.over[g][id] = !cur; touch(); refresh(fk); break;
@@ -666,5 +668,23 @@ async function boot() {
   else { renderEmpty(); if (new URLSearchParams(location.search).get('item')) toast('That item is not in the current RegWatch data'); }
   if (want) { var row = document.querySelector('.item[aria-current="true"]'); if (row && row.scrollIntoView) row.scrollIntoView({ block: 'nearest' }); }
 }
+$('restoreFile').addEventListener('change', function (e) {
+  var f = e.target.files && e.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onerror = function () { toast('Could not read that file'); };
+  rd.onload = function () {
+    var p; try { p = JSON.parse(String(rd.result)); } catch (x) { p = null; }
+    var src = p && p.assessments, ok = src && typeof src === 'object' && !Array.isArray(src), next = {}, n = 0;
+    if (ok) Object.keys(src).forEach(function (k) { var a = src[k]; if (a && typeof a === 'object' && !Array.isArray(a) && String(a.itemId) === k) { next[k] = a; n++; } });
+    if (!ok || !n) { toast('That file is not a RegRadar impact backup, so nothing was changed'); return; }
+    var have = Object.keys(STORE.assessments).length;
+    if (!window.confirm('Restore ' + plural(n, 'assessment') + ' from this file? It replaces the ' + plural(have, 'assessment') + ' now on this device.')) return;
+    STORE = { v: 1, assessments: next };
+    if (!saveStore()) return;
+    A = null; SEL = null; computeMatches(); renderKpis(); renderList(); renderEmpty();
+    toast('Restored ' + plural(n, 'assessment'));
+  };
+  rd.readAsText(f);
+});
 boot();
 })();
