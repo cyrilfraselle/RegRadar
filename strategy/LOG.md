@@ -3,6 +3,10 @@
 Dated notes from strategy conversations between the owner and the assistant.
 Newest first. Each entry: context, what we decided, what we deferred, next.
 
+## 2026-10-30: weekly brief
+
+Brief written (strategy/briefs/2026-10-30.md). Merged this week: F-010, F-011, F-014 and two audits. Waiting on owner: PRs #22, #17, #25, #11, #18 and finding F-004. Epic branches and ideation/prototyper silent since Oct 18-19. Question raised: point agents at obligation content (12 verified) before more polish.
+
 ## 2026-10-16 (later): answers to the four strategy questions
 
 1. First buyer: a team; MLRO and managers dispatch work and need a clear
