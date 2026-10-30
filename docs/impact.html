@@ -211,6 +211,9 @@ dialog.dlg[open]{display:flex;flex-direction:column}
       <p>Pick a regulatory change and see what it means for you: affected obligations, controls, policies and customer segments, the deadline, and a prioritised task list you can send to the issues tracker.</p>
     </div>
     <div class="head-tools">
+      <button type="button" class="btn" data-act="backup">Back up all assessments</button>
+      <button type="button" class="btn" data-act="restore">Restore from file</button>
+      <input type="file" id="restoreFile" accept="application/json,.json" hidden aria-label="Choose an assessments backup file">
       <a class="btn" href="regwatch.html">Back to RegWatch</a>
     </div>
   </header>
