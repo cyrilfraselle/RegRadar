@@ -4,12 +4,12 @@ title: Workspace coverage CSV writes user-entered control names without the spre
 area: compliance
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/workspace.html
 found: 2026-11-02
-fixed_by:
+fixed_by: fix/F-018-csv-formula-guard
 ---
 
 ## Evidence
