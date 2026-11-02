@@ -410,8 +410,8 @@ async function refresh(){var cd=await ControlsData.load();CONTROLS=cd.controls;T
 function csv(){
   var cov=ControlsData.coverage(OBS,CONTROLS),rows=[['Scope: '+scopeText()],['Obligation','Title','Topic','Criticality','Applies from','Status','Controls']];
   scope().forEach(function(o){var cs=ctlsFor(o.id);rows.push([o.legal_basis,titleOf(o),o.topic,o.criticality||o.priority,o.deadline||'',cs.length?'Covered':'Gap',cs.map(function(c){return c.name}).join('; ')])});
-  var t=rows.map(function(r){return r.map(function(x){return '"'+String(x==null?'':x).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
-  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='regradar_coverage_report.csv';a.click();toast('Report exported');
+  var t=rows.map(function(r){return r.map(function(x){var v=String(x==null?'':x);if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+t],{type:'text/csv;charset=utf-8'}));a.download='regradar_coverage_report.csv';a.click();toast('Report exported');
 }
 document.addEventListener('click',async function(e){
   var b=e.target.closest('[data-act]');if(!b||b.tagName==='SELECT')return;
