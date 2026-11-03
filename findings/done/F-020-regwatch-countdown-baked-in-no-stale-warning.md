@@ -4,12 +4,12 @@ title: RegWatch "Coming up" day counts are frozen at pipeline time and there is 
 area: regwatch
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/regwatch.html
 found: 2026-11-02
-fixed_by:
+fixed_by: fix/F-020-regwatch-live-countdown
 ---
 
 ## Evidence

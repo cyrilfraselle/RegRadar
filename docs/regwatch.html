@@ -369,10 +369,21 @@ function filtered(themes){
   // "Needs attention" above is for.
   return list.sort((a,b)=>new Date(b.date)-new Date(a.date));
 }
+// Days until a YYYY-MM-DD date, counted in UTC calendar days from today,
+// so the countdown never freezes at pipeline time.
+function daysUntil(dateStr){
+  const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(dateStr||'');
+  if(!m) return null;
+  const t=new Date();
+  return Math.round((Date.UTC(+m[1],m[2]-1,+m[3])-Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate()))/864e5);
+}
 function deadlineRow(d){
-  const soon=(d.days_away||999)<45;
+  const n=daysUntil(d.date);
+  const passed=n!=null&&n<0;
+  const soon=n!=null&&n>=0&&n<45;
+  const label=n==null?'':passed?'passed':n===0?'today':n===1?'1 day':n+' days';
   return `<div class="dl ${soon?'soon':''}">
-    <div class="dt"><span>${fmt(d.date)}</span><span class="dd">${d.days_away!=null?d.days_away+' days':''}</span></div>
+    <div class="dt"><span>${fmt(d.date)}</span><span class="dd">${label}</span></div>
     <div class="de">${esc(d.event)}</div></div>`;
 }
 
@@ -643,6 +654,16 @@ async function load(){
     const d=new Date(META.last_updated);
     document.getElementById('upd').textContent=
       `Belgian & EU regulators · updated ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}, ${d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`;
+    // pipeline timestamps carry no zone; they are written in UTC
+    const ts=/(Z|[+-]\d\d:?\d\d)$/.test(META.last_updated)?META.last_updated:META.last_updated+'Z';
+    const age=Math.floor((Date.now()-new Date(ts))/864e5);
+    if(age>=3){
+      const w=document.createElement('div');
+      w.setAttribute('role','status');
+      w.style.cssText='margin-top:6px;font-weight:600;color:var(--warn,var(--ink));';
+      w.textContent=`Feed last refreshed ${age} days ago: items and deadlines may be out of date.`;
+      document.getElementById('upd').appendChild(w);
+    }
   }
   paintWho();
 }
