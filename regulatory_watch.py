@@ -647,14 +647,14 @@ MOTS_CLES = {
     # than the launch set — a compliance-officer audience of this feed
     # cares about the full BE/EU regulatory perimeter, not just AML.
     "themes": {
-        "DORA": ["DORA", "Digital Operational Resilience", "ICT risk", "operational resilience", "TLPT", "third-party ICT", "incident reporting", "cyber resilience", "cyber incident"],
+        "DORA": ["DORA", "Digital Operational Resilience", "ICT risk", "operational resilience", "TLPT", "third-party ICT", "incident reporting", "cyber resilience", "cyber incident", "third-party risk", "third party risk", "ICT third-party", "outsourcing", "critical ICT", "register of information", "major ICT-related incident"],
         "SFDR/ESG": ["SFDR", "Sustainable Finance Disclosure", "PAI", "Principal Adverse", "CSRD", "ESG", "taxonomy", "taxonomie", "sustainability", "sustainable finance", "greenwashing", "climate risk", "biodiversity"],
         "MiFID/MiFIR": ["MiFID", "MiFIR", "investment firm", "best execution", "suitability", "product governance", "investor protection"],
         "AML/CFT": ["AML", "AMLR", "money laundering", "blanchiment", "AMLA", "CFT", "terrorist financing", "KYC", "due diligence", "beneficial owner", "UBO", "suspicious transaction", "STR", "SAR"],
         "Sanctions": ["sanctions", "sanction regime", "asset freeze", "sanctions list", "OFAC", "restrictive measures", "export control", "sanctions evasion", "sanctions breach", "sanctions violation"],
         "Capital/CRR": ["CRR", "CRD", "Basel", "Bâle", "capital", "own funds", "SREP", "CRR3", "CRD6", "leverage ratio", "liquidity", "risk weight", "prudential"],
         "MiCA/Crypto": ["MiCA", "crypto", "digital assets", "stablecoin", "crypto-asset", "DLT", "digital euro", "virtual asset", "CASP"],
-        "Payments": ["PSD2", "PSD3", "payment institution", "e-money", "open banking", "instant payment", "payment services", "acquirer", "payment initiation"],
+        "Payments": ["PSD2", "PSD3", "payment institution", "e-money", "open banking", "instant payment", "payment services", "acquirer", "payment initiation", "payments", "SEPA", "IBAN", "verification of payee", "instant payments regulation", "payment fraud", "payment account", "payment card", "card scheme", "interchange"],
         "FIDA/OpenFinance": ["FIDA", "open finance", "financial data access", "data sharing"],
         "Retail Investment": ["Retail Investment", "PRIIPs", "KID", "KIID", "retail investor"],
         "Solvency/Insurance": ["Solvency", "Omnibus", "insurance", "assurance", "EIOPA", "reinsurance", "insurer"],
