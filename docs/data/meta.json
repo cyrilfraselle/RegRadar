@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-11-03T13:32:44.995512",
+  "last_updated": "2026-11-04T13:44:35.949013",
   "last_run_counts": {
-    "total": 3,
-    "critical": 0,
-    "important": 3,
+    "total": 11,
+    "critical": 5,
+    "important": 6,
     "info": 0
   },
-  "archive_size": 669,
+  "archive_size": 679,
   "exec_summary": "",
   "timeline": [
     {
@@ -14,31 +14,93 @@
       "event": "CSRD first-wave reporting (FY2025) due",
       "theme": "SFDR/ESG",
       "type": "report",
-      "days_away": 58
+      "days_away": 57
     },
     {
       "date": "2027-01-01",
       "event": "CRR3 phased own-funds provisions continue",
       "theme": "Capital/CRR",
       "type": "application",
-      "days_away": 59
+      "days_away": 58
     },
     {
       "date": "2027-06-29",
       "event": "MiCA — Commission full review",
       "theme": "MiCA/Crypto",
       "type": "report",
-      "days_away": 238
+      "days_away": 237
     },
     {
       "date": "2027-07-10",
       "event": "AMLR applies; AMLD6 transposition deadline",
       "theme": "AML/CFT",
       "type": "application",
-      "days_away": 249
+      "days_away": 248
     }
   ],
   "trends": [
+    {
+      "theme": "Payments",
+      "this_week": 2,
+      "avg": 1.0,
+      "pct": 100,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▁▁▁▁█",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "weeks": 7
+    },
+    {
+      "theme": "General",
+      "this_week": 3,
+      "avg": 1.9,
+      "pct": 62,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁█▅▁▁▃▁▅",
+      "values": [
+        1,
+        4,
+        3,
+        1,
+        1,
+        2,
+        1,
+        3
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Market Infrastructure",
+      "this_week": 2,
+      "avg": 1.3,
+      "pct": 56,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▁▁▁█▁▁▄",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2
+      ],
+      "weeks": 8
+    },
     {
       "theme": "Sanctions",
       "this_week": 2,
@@ -59,6 +121,41 @@
         2
       ],
       "weeks": 8
+    },
+    {
+      "theme": "AML/CFT",
+      "this_week": 4,
+      "avg": 2.9,
+      "pct": 40,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▁▄▁▂██▄▆",
+      "values": [
+        1,
+        3,
+        1,
+        2,
+        5,
+        5,
+        3,
+        4
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "FIDA/OpenFinance",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁",
+      "values": [
+        1
+      ],
+      "weeks": 1
     },
     {
       "theme": "Data Protection",
@@ -94,27 +191,6 @@
         1,
         1,
         2,
-        1,
-        1
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "Market Infrastructure",
-      "this_week": 1,
-      "avg": 1.3,
-      "pct": -22,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁▁▁█▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
         1,
         1
       ],
@@ -163,27 +239,6 @@
       "weeks": 8
     },
     {
-      "theme": "General",
-      "this_week": 1,
-      "avg": 1.9,
-      "pct": -46,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁█▅▁▁▃▁▁",
-      "values": [
-        1,
-        4,
-        3,
-        1,
-        1,
-        2,
-        1,
-        1
-      ],
-      "weeks": 8
-    },
-    {
       "theme": "MiCA/Crypto",
       "this_week": 1,
       "avg": 2.1,
@@ -200,27 +255,6 @@
         2,
         1,
         2,
-        1
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "AML/CFT",
-      "this_week": 1,
-      "avg": 2.9,
-      "pct": -65,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▄▁▂██▄▁",
-      "values": [
-        1,
-        3,
-        1,
-        2,
-        5,
-        5,
-        3,
         1
       ],
       "weeks": 8
@@ -354,25 +388,6 @@
         1
       ],
       "weeks": 1
-    },
-    {
-      "theme": "Payments",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 6
     }
   ],
   "sources": [
@@ -382,7 +397,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 30,
-      "newest": "2026-10-30T11:44:58",
+      "newest": "2026-11-04T13:28:06",
       "status": "ok"
     },
     {
@@ -408,27 +423,27 @@
       "name": "BNB / NBB",
       "country": "BE",
       "kind": "primary",
-      "fetched": 20,
-      "newest": "2026-10-30T14:00:00",
-      "status": "ok"
+      "fetched": 0,
+      "newest": null,
+      "status": "error"
     },
     {
       "id": "bnb_publications",
       "name": "BNB / NBB — Publications",
       "country": "BE",
       "kind": "primary",
-      "fetched": 20,
-      "newest": "2026-10-27T09:00:00",
-      "status": "ok"
+      "fetched": 0,
+      "newest": null,
+      "status": "error"
     },
     {
       "id": "bnb_circulaires",
       "name": "BNB — Supervision (circulars, decisions)",
       "country": "BE",
       "kind": "primary",
-      "fetched": 10,
-      "newest": "2026-10-21T00:00:00",
-      "status": "ok"
+      "fetched": 0,
+      "newest": null,
+      "status": "error"
     },
     {
       "id": "eba_rss",
@@ -445,7 +460,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-11-02T09:30:00",
+      "newest": "2026-11-04T00:00:00",
       "status": "ok"
     },
     {
@@ -481,7 +496,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-03T13:31:58.713489",
+      "newest": "2026-11-04T13:43:16.219374",
       "status": "ok"
     },
     {
@@ -490,7 +505,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-11-03T13:32:10.590298",
+      "newest": "2026-11-04T13:43:20.010236",
       "status": "ok"
     },
     {
@@ -499,7 +514,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 100,
-      "newest": "2026-11-02T23:00:00",
+      "newest": "2026-11-03T23:00:00",
       "status": "ok"
     },
     {
@@ -508,7 +523,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-03T10:55:23",
+      "newest": "2026-11-04T11:26:13",
       "status": "ok"
     },
     {
@@ -517,7 +532,7 @@
       "country": "GLOBAL",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-10-29T15:08:42",
+      "newest": "2026-11-03T15:00:00",
       "status": "ok"
     },
     {
@@ -543,8 +558,8 @@
       "name": "GNews — AML / Financial Crime",
       "country": "EU",
       "kind": "news",
-      "fetched": 32,
-      "newest": "2026-11-03T08:13:25",
+      "fetched": 31,
+      "newest": "2026-11-04T11:45:45",
       "status": "ok"
     },
     {
@@ -553,7 +568,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-10-30T19:05:32",
+      "newest": "2026-11-04T13:00:06",
       "status": "ok"
     },
     {
@@ -561,8 +576,8 @@
       "name": "GNews — Consumer Protection",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-11-02T07:30:30",
+      "fetched": 31,
+      "newest": "2026-11-04T11:45:48",
       "status": "ok"
     },
     {
@@ -571,7 +586,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 78,
-      "newest": "2026-11-02T15:17:37",
+      "newest": "2026-11-03T23:02:06",
       "status": "ok"
     },
     {
@@ -579,8 +594,8 @@
       "name": "GNews — EBA",
       "country": "EU",
       "kind": "news",
-      "fetched": 10,
-      "newest": "2026-11-03T12:09:59",
+      "fetched": 100,
+      "newest": "2026-11-02T17:37:50",
       "status": "ok"
     },
     {
@@ -588,7 +603,7 @@
       "name": "GNews — EIOPA",
       "country": "EU",
       "kind": "news",
-      "fetched": 14,
+      "fetched": 13,
       "newest": "2026-10-01T05:31:46",
       "status": "ok"
     },
@@ -597,7 +612,7 @@
       "name": "GNews — ESMA",
       "country": "EU",
       "kind": "news",
-      "fetched": 9,
+      "fetched": 100,
       "newest": "2026-11-03T12:20:21",
       "status": "ok"
     },
@@ -606,7 +621,7 @@
       "name": "GNews — EU Frameworks",
       "country": "EU",
       "kind": "news",
-      "fetched": 38,
+      "fetched": 100,
       "newest": "2026-11-03T02:16:45",
       "status": "ok"
     },
@@ -615,8 +630,8 @@
       "name": "GNews — Enforcement BE",
       "country": "BE",
       "kind": "news",
-      "fetched": 33,
-      "newest": "2026-10-19T07:00:00",
+      "fetched": 74,
+      "newest": "2026-10-21T07:00:00",
       "status": "ok"
     },
     {
@@ -624,7 +639,7 @@
       "name": "GNews — FSMA / BNB",
       "country": "BE",
       "kind": "news",
-      "fetched": 13,
+      "fetched": 54,
       "newest": "2026-10-08T07:00:00",
       "status": "ok"
     },
@@ -633,8 +648,8 @@
       "name": "GNews — Fintech / Licensing",
       "country": "EU",
       "kind": "news",
-      "fetched": 75,
-      "newest": "2026-10-15T14:32:02",
+      "fetched": 30,
+      "newest": "2026-11-04T10:36:23",
       "status": "ok"
     },
     {
@@ -642,8 +657,8 @@
       "name": "GNews — Fraud / Market Abuse",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-10-27T20:53:15",
+      "fetched": 29,
+      "newest": "2026-10-21T16:27:18",
       "status": "ok"
     },
     {
@@ -652,7 +667,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-11-03T07:08:59",
+      "newest": "2026-11-04T12:25:00",
       "status": "ok"
     },
     {
@@ -660,8 +675,8 @@
       "name": "GNews — Major Global",
       "country": "GLOBAL",
       "kind": "news",
-      "fetched": 30,
-      "newest": "2026-11-02T18:23:25",
+      "fetched": 26,
+      "newest": "2026-11-04T00:00:00",
       "status": "ok"
     },
     {
@@ -670,7 +685,7 @@
       "country": "EU",
       "kind": "news",
       "fetched": 100,
-      "newest": "2026-11-03T10:47:22",
+      "newest": "2026-11-03T15:23:59",
       "status": "ok"
     },
     {
@@ -678,8 +693,8 @@
       "name": "GNews — Tax Transparency",
       "country": "EU",
       "kind": "news",
-      "fetched": 100,
-      "newest": "2026-11-02T09:00:00",
+      "fetched": 29,
+      "newest": "2026-11-04T12:48:29",
       "status": "ok"
     }
   ]
