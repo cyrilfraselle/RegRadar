@@ -4,12 +4,12 @@ title: Triage page text is 9-11px and its dark-theme footer fails contrast (3.85
 area: academy
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/triage.html
 found: 2026-11-05
-fixed_by:
+fixed_by: fix/F-021-triage-contrast
 ---
 
 ## Evidence
