@@ -4,13 +4,13 @@ title: Casefile and Shift academy pages use 9-11px text in 51 declarations
 area: academy
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/casefile.html
   - docs/shift.html
 found: 2026-11-05
-fixed_by:
+fixed_by: fix/F-022-casefile-shift-text
 ---
 
 ## Evidence
