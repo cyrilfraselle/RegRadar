@@ -32,3 +32,8 @@ Decided: capture it in VISION.md and ROADMAP.md; make the shared entity graph
 calendar and import wizards in Phase 1.
 
 Deferred (owner): first buyer and size, backend and hosting, first connectors.
+
+## 2026-11-06: weekly brief (agent-written)
+
+Brief: strategy/briefs/2026-11-06.md. 4 fixes merged this week; 7 PRs open (oldest 18 days); epics, ideation and prototyper silent for 3 weeks; verified obligations still 12.
+Recommendation put to owner: clear the PR queue, pause UI polish, point agents at obligation content (F-013, F-015) and the data spine. F-004 definition of "Covered" still needs the owner.
