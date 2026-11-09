@@ -173,9 +173,11 @@
   @media(max-width:720px){.intro h1{font-size:28px}.nav{overflow-x:auto;margin-left:0}.logo-sub{display:none}
     .kv{grid-template-columns:1fr}}
 </style>
+<style>.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#000;padding:8px 14px;z-index:99999;font:600 14px sans-serif}.skip:focus{left:8px;top:8px}main{display:contents}</style>
 </head>
 <body>
 <script src="site-nav.js?v=20261015"></script>
+<a class="skip" href="#main">Skip to content</a>
 
 <div class="topbar"><div class="topbar-inner">
   <div class="logo"><span class="logo-mark">R</span>RegRadar</div>
@@ -196,6 +198,7 @@
   <a href="shift.html">Night Shift</a>
 </div></div>
 
+<main id="main">
 <div class="wrap">
 
   <section id="intro" class="intro">
@@ -329,6 +332,8 @@
     <span>Cases are composites · figures illustrative</span>
   </footer>
 </div>
+
+</main>
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════

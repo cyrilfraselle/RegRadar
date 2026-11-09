@@ -179,9 +179,12 @@ h2.bl{font-weight:400}
 <script src="academy-shell.js?v=20261016"></script>
 <script src="academy-engine.js?v=20261016"></script>
 <script src="glossary.js?v=20261015"></script>
+<style>.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#000;padding:8px 14px;z-index:99999;font:600 14px sans-serif}.skip:focus{left:8px;top:8px}main{display:contents}</style>
 </head>
 <body>
 <script src="site-nav.js?v=20261015"></script>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
 
 <!-- HOME -->
 <div class="view on" id="vHome"><div class="pad">
@@ -240,6 +243,8 @@ h2.bl{font-weight:400}
     <button type="button" class="ghost" onclick="replay()">REDO THIS FILE</button>
   </div>
 </div></div>
+
+</main>
 
 <script>
 AcademyShell.mount("ownership");

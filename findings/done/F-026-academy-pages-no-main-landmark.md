@@ -4,7 +4,7 @@ title: Five Academy pages have no main landmark, so screen-reader users cannot j
 area: academy
 severity: P2
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/casefile.html
@@ -13,7 +13,7 @@ files:
   - docs/shift.html
   - docs/triage.html
 found: 2026-11-09
-fixed_by:
+fixed_by: fix/F-026-academy-main-landmark
 ---
 
 ## Evidence
