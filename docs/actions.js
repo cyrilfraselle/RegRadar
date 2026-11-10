@@ -113,16 +113,19 @@ function loadState() {
   try { raw = localStorage.getItem(KEY); } catch (e) { storageOk = false; }
   if (!raw) return null;
   try {
-    var p = JSON.parse(raw), s = Object.assign(freshState(), p);
-    s.cfg = mergeCfg(p.cfg);
-    s.issues = Array.isArray(p.issues) ? p.issues : [];
-    s.saved = Array.isArray(p.saved) ? p.saved : [];
-    return s;
+    return hydrate(JSON.parse(raw));
   } catch (e) { return null; }
+}
+function hydrate(p) {
+  var s = Object.assign(freshState(), p);
+  s.cfg = mergeCfg(p.cfg);
+  s.issues = Array.isArray(p.issues) ? p.issues : [];
+  s.saved = Array.isArray(p.saved) ? p.saved : [];
+  return s;
 }
 function persist() {
   try { localStorage.setItem(KEY, JSON.stringify(S)); storageOk = true; return true; }
-  catch (e) { storageOk = false; toast('Could not save on this device (storage blocked or full). Changes last until you close the page.'); return false; }
+  catch (e) { storageOk = false; toast('Could not save on this device (storage blocked or full). Changes last until you close the page. Use Import and export to download a backup.'); return false; }
 }
 
 function materialize(seed) {
@@ -987,6 +990,11 @@ function download(name, text) {
   a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
   setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
+function downloadJSON(name, text) {
+  var blob = new Blob([text], { type: 'application/json' }), a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
 function parseCSV(text) {
   if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
   var first = '', q0 = false, k, c;
@@ -1121,6 +1129,10 @@ function ioDialog() {
   dlg.innerHTML = '<div class="dlg-h"><h2 id="ioTitle">Import and export</h2><button type="button" class="btn x" data-act="io-close" aria-label="Close dialog">×</button></div>' +
     '<div class="dlg-b"><section class="sec"><h3>Export</h3><p class="muted" style="margin-bottom:8px">CSV opens in Excel and Sheets. Values that start with = + - or @ are prefixed with an apostrophe so spreadsheets do not run them as formulas.</p>' +
     '<div class="flow"><button type="button" class="btn" data-act="export-issues">Issues (CSV, ' + S.issues.length + ' rows)</button><button type="button" class="btn" data-act="export-actions">Remediation actions (CSV, ' + S.issues.reduce(function (n, i) { return n + i.actions.length; }, 0) + ' rows)</button><button type="button" class="btn" data-act="export-template">Import template (CSV)</button></div></section>' +
+    '<section class="sec"><h3>Full backup (JSON)</h3><p class="muted" style="margin-bottom:8px">Your issues, actions, audit history and settings live in this browser only. The backup keeps everything, including who accepted a risk and who validated a closure; the CSV files do not keep the history. Restoring replaces what is on this device.</p>' +
+    '<div class="flow"><button type="button" class="btn" data-act="export-backup">Download backup (JSON)</button></div>' +
+    '<div class="field" style="margin-top:10px"><label for="bkFile">Restore from a backup</label><input class="in" id="bkFile" type="file" accept="application/json,.json"></div>' +
+    '<div id="bkResult" aria-live="polite" style="margin-top:12px"></div></section>' +
     '<section class="sec"><h3>Import issues from CSV</h3><p class="muted" style="margin-bottom:8px">The first row holds column headers; only <b>title</b> is required. Comma, semicolon or tab separated. Dates as YYYY-MM-DD or DD/MM/YYYY. Rows whose id matches an existing issue update it; others are added. Actions go in one column as <span class="mono">title ~ owner ~ due ~ done|open ~ evidence</span>, separated by <span class="mono">||</span>.</p>' +
     '<div class="field"><label for="ioFile">CSV file</label><input class="in" id="ioFile" type="file" accept=".csv,text/csv,text/plain"></div>' +
     '<div class="field" style="margin-top:10px"><label for="ioText">Or paste CSV text</label><textarea class="in" id="ioText" rows="4" placeholder="title,severity,owner,due_on"></textarea></div>' +
@@ -1133,7 +1145,22 @@ function ioDialog() {
     if (f.size > 1500000) { $('ioResult').innerHTML = '<p class="err">The file is larger than 1.5 MB.</p>'; return; }
     var rd = new FileReader(); rd.onload = function () { $('ioText').value = String(rd.result); checkImport(); }; rd.readAsText(f);
   });
+  $('bkFile').addEventListener('change', function (e) {
+    var f = e.target.files[0], out = $('bkResult'); if (!f) return;
+    if (f.size > 5000000) { out.innerHTML = '<p class="err">The file is larger than 5 MB.</p>'; return; }
+    var rd = new FileReader();
+    rd.onload = function () {
+      try {
+        var d = JSON.parse(String(rd.result));
+        if (!d || typeof d !== 'object' || !Array.isArray(d.issues)) throw new Error('shape');
+        BACKUP = d;
+        out.innerHTML = '<p>This backup holds <b>' + d.issues.length + '</b> issues. Restoring replaces the <b>' + S.issues.length + '</b> issues on this device.</p><div class="flow"><button type="button" class="btn danger" data-act="bk-apply">Replace with this backup</button></div>';
+      } catch (err) { BACKUP = null; out.innerHTML = '<p class="err">That file is not a RegRadar issues backup. Nothing was changed.</p>'; toast('That file is not a RegRadar issues backup'); }
+    };
+    rd.readAsText(f);
+  });
 }
+var BACKUP = null;
 var IMPORT = null;
 function checkImport() {
   var text = $('ioText').value;
@@ -1243,6 +1270,8 @@ document.addEventListener('click', function (e) {
       decide({ title: 'Delete ' + di.id + '?', intro: 'The issue, its actions and its history are removed from this device. This cannot be undone. To keep the record, close the issue or export a CSV first.', fields: [], submit: 'Delete issue', danger: true,
         onSubmit: function () { S.issues = S.issues.filter(function (x) { return x.id !== di.id; }); var d = $('dlgIssue'); d.onclose = null; d.close(); SH = null; UI.lastId = null; touch(); toast(di.id + ' deleted'); $('qaTitle').focus(); return null; } }); break; }
     case 'export-issues': download('regradar-issues-' + TODAY + '.csv', issuesCSV()); toast('Issues exported'); break;
+    case 'export-backup': downloadJSON('regradar-actions-backup-' + TODAY + '.json', JSON.stringify(S, null, 1)); toast('Backup downloaded'); break;
+    case 'bk-apply': if (BACKUP) { S = hydrate(BACKUP); BACKUP = null; SH = null; UI.lastId = null; touch(); $('bkResult').innerHTML = '<p><b>Restored:</b> ' + S.issues.length + ' issues.</p>'; toast('Backup restored'); } break;
     case 'export-actions': download('regradar-actions-' + TODAY + '.csv', actionsCSV()); toast('Actions exported'); break;
     case 'export-template': download('regradar-issues-template.csv', CSV_COLS.join(',') + '\r\n' + ['', 'Example: access reviews not completed', 'Quarterly access reviews missed for two systems', 'Internal audit', 'IA-2026-12', 'High', 'Process design', 'T. Nguyen', '1LOD', 'Open', TODAY, addDays(TODAY, 60), '', '', '', 'ctl-01', 'AMLR-art19', '', '', '', 'Complete the reviews ~ T. Nguyen ~ ' + addDays(TODAY, 30) + ' ~ open ~ '].map(csvCell).join(',')); break;
     case 'io-check': checkImport(); break;
