@@ -4,7 +4,7 @@ title: 13 user-facing pages have no meta description, so shared links and search
 area: shared
 severity: P3
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/actions.html
@@ -21,7 +21,7 @@ files:
   - docs/triage.html
   - docs/workspace.html
 found: 2026-11-05
-fixed_by:
+fixed_by: fix/F-024-meta-descriptions
 ---
 
 ## Evidence
