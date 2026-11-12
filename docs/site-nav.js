@@ -38,6 +38,7 @@
     { id: "country", label: "Country Risk", href: "country-risk.html" },
     { id: "academy", label: "Academy", items: [
       { href: "academy.html",     t: "Overview",            d: "How the training works" },
+      { href: "film-follow-the-money.html", t: "Film: Follow the money", d: "30-second explainer, first lesson" },
       { href: "workstation.html", t: "Analyst workstation", d: "The full simulation" },
       { sep: "Practice modules" },
       { href: "laundromat.html",  t: "01 · Laundromat",     d: "Spot the red flags" },
@@ -55,7 +56,7 @@
     "policies.html": "compliance", "actions.html": "compliance", "impact.html": "compliance", "ask.html": "compliance",
     "controls.html": "compliance", "dashboard.html": "compliance",
     "country-risk.html": "country", "glossary.html": "academy",
-    "academy.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
+    "academy.html": "academy", "film-follow-the-money.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
     "ownership.html": "academy", "desk.html": "academy", "shift.html": "academy",
     "triage.html": "academy", "casefile.html": "academy",
   };
