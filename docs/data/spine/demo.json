@@ -4,7 +4,8 @@
     "version": 1,
     "fictional": true,
     "disclaimer": "Fictional demo data for the fictional firm CF Bank (a real US 'CFBank' exists; this is not it). The team, tasks, findings, cases, dates and scores are invented to show the briefing and the work board working. Names reuse the fictional people of the other RegRadar demos. Not real audit, inspection or case output.",
-    "dates": "due_off is an offset in days from the day you load the demo (negative = overdue), so the demo always looks current.",
+    "dates": "due_off and opened_off are offsets in days from the day you load the demo (negative = overdue or in the past), so the demo always looks current.",
+    "findings": "Findings use the same fields as the Issues and actions page (source and root-cause ids, line of defence), so they read the same on both pages.",
     "links": "OBL:<id> refers to docs/data/obligations.json and CTL:<id> to docs/data/controls.json; other link targets are keys in this file."
   },
   "firm": { "name": "CF Bank (fictional)", "type": "emi" },
@@ -15,14 +16,14 @@
     { "key": "an2", "name": "M. Van Damme", "role": "analyst", "job_title": "KYC quality lead", "team": "Compliance" }
   ],
   "issues": [
-    { "key": "i1", "title": "Onboarding files missing proof of identity verification (demo)", "status": "in_progress", "owner": "an2", "due_off": -6,
-      "data": { "priority": "high", "source": "Internal quality review (demo)", "description": "Fictional finding: 4 of 30 sampled onboarding files had no stored verification record." },
+    { "key": "i1", "title": "Onboarding files missing proof of identity verification (demo)", "status": "in_progress", "owner": "an2", "opened_off": -41, "due_off": -6,
+      "data": { "priority": "high", "source": "internal_audit", "source_ref": "Internal quality review (demo)", "lod": "1LOD", "root_cause": "Process design", "description": "Fictional finding: 4 of 30 sampled onboarding files had no stored verification record." },
       "links": [ { "type": "addresses", "to": "OBL:AMLR-art22" }, { "type": "concerns", "to": "CTL:ctl-01" } ] },
-    { "key": "i2", "title": "PEP book monitoring not evidenced for one quarter (demo)", "status": "todo", "owner": "an1", "due_off": 21,
-      "data": { "priority": "medium", "source": "Control test (demo)", "description": "Fictional finding raised from a control test." },
+    { "key": "i2", "title": "PEP book monitoring not evidenced for one quarter (demo)", "status": "todo", "owner": "an1", "opened_off": -9, "due_off": 21,
+      "data": { "priority": "medium", "source": "control_test", "source_ref": "Control test ctl-07 (demo)", "lod": "1LOD", "root_cause": "Resourcing", "description": "Fictional finding raised from a control test." },
       "links": [ { "type": "addresses", "to": "OBL:AMLR-art46" }, { "type": "concerns", "to": "CTL:ctl-07" } ] },
-    { "key": "i3", "title": "Transaction monitoring rule thresholds not reviewed after product launch (demo)", "status": "review", "owner": "an1", "due_off": 3,
-      "data": { "priority": "high", "source": "Self-identified (demo)", "description": "Fictional finding: remediation done, waiting for MLRO validation." },
+    { "key": "i3", "title": "Transaction monitoring rule thresholds not reviewed after product launch (demo)", "status": "review", "owner": "an1", "opened_off": -26, "due_off": 3,
+      "data": { "priority": "high", "source": "self_identified", "source_ref": "Raised by the monitoring team (demo)", "lod": "2LOD", "root_cause": "Policy or procedure gap", "description": "Fictional finding: remediation done, waiting for MLRO validation." },
       "links": [ { "type": "addresses", "to": "OBL:AMLR-art26" }, { "type": "concerns", "to": "CTL:ctl-05" } ] }
   ],
   "tasks": [
