@@ -112,7 +112,7 @@ function renderBoard() {
   }).join('');
 }
 function renderSelects() {
-  var people = R.people().filter(function (p) { return !(p.data && p.data.role === 'board'); });
+  var people = R.people().filter(function (p) { return !(p.data && p.data.role === 'board') && (p.status === 'active' || loadOf(p.id).open || p.id === UI.assignee); });   // inactive people only while they still hold cards
   var un = R.list(CFG.board.types, function (e) { return !e.owner && isOpenCard(e); }).length;
   $('asgSel').innerHTML = '<option value="">Everyone</option><option value="__none"' + (UI.assignee === '__none' ? ' selected' : '') + '>Unassigned (' + un + ' open)</option>' +
     people.map(function (p) { var l = loadOf(p.id); return '<option value="' + esc(p.id) + '"' + (p.id === UI.assignee ? ' selected' : '') + '>' + esc(p.title + ' (' + l.open + ' open)') + '</option>'; }).join('');
@@ -191,7 +191,7 @@ function closeDialog(d) { if (d.open) d.close(); }
   });
 });
 function personOptions(sel, withLoad) {
-  return '<option value="">Unassigned</option>' + R.people().filter(function (p) { return !(p.data && p.data.role === 'board'); }).map(function (p) {
+  return '<option value="">Unassigned</option>' + R.people().filter(function (p) { return !(p.data && p.data.role === 'board') && (p.status === 'active' || p.id === sel); }).map(function (p) {
     var r = R.role(p.data && p.data.role), l = loadOf(p.id);
     var t = p.title + (r ? ', ' + r.label : '') + (withLoad ? ' (' + l.open + ' open' + (l.overdue ? ', ' + l.overdue + ' overdue' : '') + ')' : '');
     return '<option value="' + esc(p.id) + '"' + (p.id === sel ? ' selected' : '') + '>' + esc(t) + '</option>';

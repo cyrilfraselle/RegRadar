@@ -444,6 +444,12 @@
     var mine = get('regradar-obligations-mine') || {};
     input.obligationNotes = mine.notes || {};
     input.policies = get('regradar-policies');
+    // Policies moved onto the data spine (docs/policies-store.js): once migrated on this device, the spine's records are the register.
+    if (meta && ents && meta.settings && meta.settings.values && meta.settings.values['migrated.policies']) {
+      var spinePol = [];
+      Object.keys(ents).forEach(function (k) { var e = ents[k]; if (e && e.type === 'policy' && !e.archived && e.data && e.data.pid) spinePol.push({ id: e.data.pid, title: e.title }); });
+      input.policies = { policies: spinePol };
+    }
     return input;
   }
 
