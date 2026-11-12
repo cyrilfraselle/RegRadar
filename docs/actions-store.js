@@ -398,6 +398,63 @@
     return rep;
   }
 
+  /* ───────── full backup and restore (F-025, adapted to the spine) ─────────
+     exportBackup: the register as the page shows it, with each issue's readable history (old lines and the
+     event log), the page's settings and the firm name (version 2). restoreBackup makes the register equal to
+     a backup through commit(): changed fields become updates in the event log, issues missing from the file
+     are archived (never deleted), new ones are created with their history lines. It accepts the version 2
+     file, the F-025 file (the page state) and the old 'regradar-actions' value written before the spine. */
+  var PAGE_KEYS = ['title', 'description', 'source', 'source_ref', 'severity', 'root_cause', 'owner', 'lod', 'status', 'opened_on', 'due_on', 'closed_on', 'closed_by',
+    'closure_note', 'submitted_on', 'accepted', 'control_ids', 'obligation_ids', 'demo', 'impact_ref'];
+  function exportBackup(sp, o) {
+    var R = read(sp, o);
+    var issues = R.issues.map(function (i) {
+      var x = { id: i.id };
+      PAGE_KEYS.forEach(function (k) { x[k] = clone(i[k]); });
+      x.actions = i.actions.map(function (a) { return { id: a.id, title: a.title, owner: a.owner, due_on: a.due_on, status: a.status, done_on: a.done_on, evidence: a.evidence }; });
+      x.history = history(sp, i);
+      return x;
+    });
+    var out = { app: 'regradar-actions', version: 2, exported: new Date().toISOString(), seq: R.seq, firm: R.firm, issues: issues };
+    ['cfg', 'saved', 'dismissed', 'report'].forEach(function (k) { if (R.prefs && R.prefs[k] != null) out[k] = clone(R.prefs[k]); });
+    return out;
+  }
+  function restoreBackup(sp, b, o) {
+    if (!b || typeof b !== 'object' || Array.isArray(b) || !Array.isArray(b.issues) || (b.app != null && b.app !== 'regradar-actions'))
+      return { ok: false, error: 'That file is not a RegRadar issues backup. Nothing was changed.', errors: [] };
+    var R = read(sp, o), cur = {}, seen = {}, list = [], n = 0;
+    R.issues.forEach(function (i) { cur[i.id] = i; });
+    b.issues.forEach(function (x, k) {
+      var i = normIssue(x, k);
+      if (seen[i.id]) return;
+      seen[i.id] = 1;
+      var have = cur[i.id];
+      if (!have) {
+        var other = sp.get(i.id);
+        if (other && other.type !== 'issue') return;      // the id belongs to another kind of record
+        list.push(i); n++; return;
+      }
+      PAGE_KEYS.forEach(function (key) { have[key] = clone(i[key]); });
+      var old = {};
+      have.actions.forEach(function (a) { old[a.id] = a; });
+      have.actions = i.actions.map(function (a) {
+        var m = old[a.id];
+        if (!m) return a;
+        ['title', 'owner', 'due_on', 'status', 'done_on', 'evidence'].forEach(function (key) { m[key] = a[key]; });
+        return m;
+      });
+      list.push(have); n++;
+    });
+    R.issues = list;
+    if (typeof b.firm === 'string') R.firm = b.firm.trim();
+    var res = commit(sp, R, {});
+    var prefs = clone(R.prefs || {}), touched = false;
+    ['cfg', 'saved', 'dismissed', 'report'].forEach(function (k) { if (b[k] != null && typeof b[k] === 'object') { prefs[k] = clone(b[k]); touched = true; } });
+    if (touched) savePrefs(sp, R, prefs);
+    sp.log('import', null, 'Issues and actions: backup restored (' + n + ' issues).');
+    return { ok: true, issues: n, errors: res.errors };
+  }
+
   /* A light look at the device (no spine needed): how many issues exist, and their ids. Used by the impact page. */
   function peek(getItem) {
     var out = { exists: false, n: 0, ids: {}, unreadable: false, migrated: false };
@@ -420,7 +477,7 @@
   return {
     KEY: KEY, DONE: DONE, PREFS: PREFS, SEEDED: SEEDED,
     TO_ENTITY: TO_ENTITY, FROM_ENTITY: FROM_ENTITY,
-    migrate: migrate, read: read, commit: commit, savePrefs: savePrefs, createFindings: createFindings, history: history, peek: peek,
+    migrate: migrate, read: read, commit: commit, savePrefs: savePrefs, exportBackup: exportBackup, restoreBackup: restoreBackup, createFindings: createFindings, history: history, peek: peek,
     normIssue: normIssue, ownerId: ownerId, looksLikePerson: function (n) { return RR.owners.looksLikePerson(n); }, nextSeq: maxSeq, issueId: issueId
   };
 });

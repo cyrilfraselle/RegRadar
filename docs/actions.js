@@ -116,11 +116,16 @@ function mergeCfg(c) {
   if (c.shortcuts === false) d.shortcuts = false;
   return d;
 }
+/* How the store reads issues for this page: an issue with no due date gets the SLA default. */
+function readOpts(pcfg) {
+  pcfg = pcfg || mergeCfg((SP.getSetting(AS.PREFS) || {}).cfg);
+  return { defaultDue: function (i) { return addDays(i.opened_on || TODAY, (pcfg.sla[i.severity] || pcfg.sla.medium).sla); } };
+}
 function prefsOf(st) { return { cfg: st.cfg, saved: st.saved, dismissed: st.dismissed, report: st.report }; }
 /* Build the page's working state from the spine. */
 function stateFromSpine() {
   var pcfg = mergeCfg((SP.getSetting(AS.PREFS) || {}).cfg);
-  var reg = AS.read(SP, { defaultDue: function (i) { return addDays(i.opened_on || TODAY, (pcfg.sla[i.severity] || pcfg.sla.medium).sla); } });
+  var reg = AS.read(SP, readOpts(pcfg));
   var st = Object.assign(freshState(), reg), p = reg.prefs || {};
   st.cfg = mergeCfg(p.cfg);
   st.saved = Array.isArray(p.saved) ? p.saved : [];
@@ -1013,6 +1018,11 @@ function download(name, text) {
   a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
   setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
+function downloadJSON(name, text) {
+  var blob = new Blob([text], { type: 'application/json' }), a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
 function parseCSV(text) {
   if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
   var first = '', q0 = false, k, c;
@@ -1147,6 +1157,10 @@ function ioDialog() {
   dlg.innerHTML = '<div class="dlg-h"><h2 id="ioTitle">Import and export</h2><button type="button" class="btn x" data-act="io-close" aria-label="Close dialog">×</button></div>' +
     '<div class="dlg-b"><section class="sec"><h3>Export</h3><p class="muted" style="margin-bottom:8px">CSV opens in Excel and Sheets. Values that start with = + - or @ are prefixed with an apostrophe so spreadsheets do not run them as formulas.</p>' +
     '<div class="flow"><button type="button" class="btn" data-act="export-issues">Issues (CSV, ' + S.issues.length + ' rows)</button><button type="button" class="btn" data-act="export-actions">Remediation actions (CSV, ' + S.issues.reduce(function (n, i) { return n + i.actions.length; }, 0) + ' rows)</button><button type="button" class="btn" data-act="export-template">Import template (CSV)</button></div></section>' +
+    '<section class="sec"><h3>Full backup (JSON)</h3><p class="muted" style="margin-bottom:8px">Your issues, actions, audit history and settings live in this browser only. The backup keeps everything, including who accepted a risk and who validated a closure; the CSV files do not keep the history. Restoring replaces what is on this device.</p>' +
+    '<div class="flow"><button type="button" class="btn" data-act="export-backup">Download backup (JSON)</button></div>' +
+    '<div class="field" style="margin-top:10px"><label for="bkFile">Restore from a backup</label><input class="in" id="bkFile" type="file" accept="application/json,.json"></div>' +
+    '<div id="bkResult" aria-live="polite" style="margin-top:12px"></div></section>' +
     '<section class="sec"><h3>Import issues from CSV</h3><p class="muted" style="margin-bottom:8px">The first row holds column headers; only <b>title</b> is required. Comma, semicolon or tab separated. Dates as YYYY-MM-DD or DD/MM/YYYY. Rows whose id matches an existing issue update it; others are added. Actions go in one column as <span class="mono">title ~ owner ~ due ~ done|open ~ evidence</span>, separated by <span class="mono">||</span>.</p>' +
     '<div class="field"><label for="ioFile">CSV file</label><input class="in" id="ioFile" type="file" accept=".csv,text/csv,text/plain"></div>' +
     '<div class="field" style="margin-top:10px"><label for="ioText">Or paste CSV text</label><textarea class="in" id="ioText" rows="4" placeholder="title,severity,owner,due_on"></textarea></div>' +
@@ -1159,7 +1173,22 @@ function ioDialog() {
     if (f.size > 1500000) { $('ioResult').innerHTML = '<p class="err">The file is larger than 1.5 MB.</p>'; return; }
     var rd = new FileReader(); rd.onload = function () { $('ioText').value = String(rd.result); checkImport(); }; rd.readAsText(f);
   });
+  $('bkFile').addEventListener('change', function (e) {
+    var f = e.target.files[0], out = $('bkResult'); if (!f) return;
+    if (f.size > 5000000) { out.innerHTML = '<p class="err">The file is larger than 5 MB.</p>'; return; }
+    var rd = new FileReader();
+    rd.onload = function () {
+      try {
+        var d = JSON.parse(String(rd.result));
+        if (!d || typeof d !== 'object' || !Array.isArray(d.issues)) throw new Error('shape');
+        BACKUP = d;
+        out.innerHTML = '<p>This backup holds <b>' + d.issues.length + '</b> issues. Restoring replaces the <b>' + S.issues.length + '</b> issues on this device.</p><div class="flow"><button type="button" class="btn danger" data-act="bk-apply">Replace with this backup</button></div>';
+      } catch (err) { BACKUP = null; out.innerHTML = '<p class="err">That file is not a RegRadar issues backup. Nothing was changed.</p>'; toast('That file is not a RegRadar issues backup'); }
+    };
+    rd.readAsText(f);
+  });
 }
+var BACKUP = null;
 var IMPORT = null;
 function checkImport() {
   var text = $('ioText').value;
@@ -1269,6 +1298,15 @@ document.addEventListener('click', function (e) {
       decide({ title: 'Delete ' + di.id + '?', intro: 'The issue and its actions are removed from the register. The deletion stays in the event log, but you cannot bring the issue back from this page. To keep a readable record, close the issue or export a CSV first.', fields: [], submit: 'Delete issue', danger: true,
         onSubmit: function () { S.issues = S.issues.filter(function (x) { return x.id !== di.id; }); var d = $('dlgIssue'); d.onclose = null; d.close(); SH = null; UI.lastId = null; touch(); toast(di.id + ' deleted'); $('qaTitle').focus(); return null; } }); break; }
     case 'export-issues': download('regradar-issues-' + TODAY + '.csv', issuesCSV()); toast('Issues exported'); break;
+    case 'export-backup': persist(); flushPrefs(); downloadJSON('regradar-actions-backup-' + TODAY + '.json', JSON.stringify(AS.exportBackup(SP, readOpts()), null, 1)); toast('Backup downloaded'); break;
+    case 'bk-apply': if (BACKUP) {
+      persist(); flushPrefs();
+      var br; try { br = AS.restoreBackup(SP, BACKUP, readOpts()); } catch (x) { br = { ok: false, errors: [x.message] }; }
+      BACKUP = null; SH = null; UI.lastId = null; PEND = {};
+      S = stateFromSpine(); touch();
+      if (br.ok && !br.errors.length) { $('bkResult').innerHTML = '<p><b>Restored:</b> ' + S.issues.length + ' issues.</p>'; toast('Backup restored'); }
+      else { $('bkResult').innerHTML = '<p class="err">' + esc(br.error || ('Restored with problems: ' + (br.errors || []).join('; '))) + '</p>'; toast(br.error || 'Backup restored with problems'); }
+    } break;
     case 'export-actions': download('regradar-actions-' + TODAY + '.csv', actionsCSV()); toast('Actions exported'); break;
     case 'export-template': download('regradar-issues-template.csv', CSV_COLS.join(',') + '\r\n' + ['', 'Example: access reviews not completed', 'Quarterly access reviews missed for two systems', 'Internal audit', 'IA-2026-12', 'High', 'Process design', 'T. Nguyen', '1LOD', 'Open', TODAY, addDays(TODAY, 60), '', '', '', 'ctl-01', 'AMLR-art19', '', '', '', 'Complete the reviews ~ T. Nguyen ~ ' + addDays(TODAY, 30) + ' ~ open ~ '].map(csvCell).join(',')); break;
     case 'io-check': checkImport(); break;

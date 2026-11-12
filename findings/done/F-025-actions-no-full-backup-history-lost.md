@@ -4,12 +4,12 @@ title: Issues and actions tracker has no full backup or restore, and its CSV exp
 area: compliance
 severity: P2
 risk: medium
-status: open
+status: fixed
 effort: S
 files:
   - docs/actions.js
 found: 2026-11-09
-fixed_by:
+fixed_by: fix/F-025-actions-backup
 ---
 
 ## Evidence

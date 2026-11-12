@@ -1221,6 +1221,52 @@ await test('demo: the tracker demo register has demo origin, so "Remove demo dat
   assert.equal(s.verifyLog().ok, true);
 });
 
+await test('actions: backup and restore (F-025) work on the spine: round trip with history, archive not delete, old files accepted', async () => {
+  const { st, s, read } = await onDevice();
+  mig(s, read);
+  await s.flush();
+  const before = st.getItem(LEG_KEY);
+  const strip = (b) => b.issues.map((i) => { const x = Object.assign({}, i); delete x.history; return x; });
+  const b = JSON.parse(JSON.stringify(AS.exportBackup(s)));
+  assert.equal(b.app, 'regradar-actions'); assert.equal(b.version, 2);
+  assert.equal(b.issues.length, AS.read(s).issues.length);
+  assert.ok(b.issues.every((i) => Array.isArray(i.history)) && b.issues.some((i) => i.history.length), 'each issue carries its readable history');
+  assert.ok(b.issues.every((i) => !Object.keys(i).some((k) => k.startsWith('_'))), 'no page internals in the file');
+  // restoring an unchanged backup changes no record
+  const nRec = s.events().filter((e) => e.action !== 'import' && e.action !== 'comment').length;
+  let r = AS.restoreBackup(s, b);
+  assert.equal(r.ok, true); assert.deepEqual(r.errors, []);
+  assert.equal(s.events().filter((e) => e.action !== 'import' && e.action !== 'comment').length, nRec);
+  // change the register after the backup, then restore
+  const R = AS.read(s), first = R.issues[0];
+  first.title = 'Changed after backup';
+  first.actions.push({ id: 'A9', title: 'Added later', owner: 'Priya K.', due_on: '2026-12-01', status: 'open', done_on: '', evidence: '' });
+  const gone = R.issues[1].id;
+  R.issues = R.issues.filter((i) => i.id !== gone);
+  R.issues.push(AS.normIssue({ id: 'ISS-099', title: 'Added later' }, 0));
+  assert.deepEqual(AS.commit(s, R, {}).errors, []);
+  r = AS.restoreBackup(s, b);
+  assert.equal(r.ok, true); assert.deepEqual(r.errors, []);
+  assert.deepEqual(strip(JSON.parse(JSON.stringify(AS.exportBackup(s)))), strip(b), 'the register reads back exactly as backed up');
+  assert.equal(s.get('ISS-099').archived, true, 'an issue not in the file is archived, not deleted');
+  assert.equal(s.get(gone).archived, false, 'an issue in the file comes back');
+  assert.equal(s.verifyLog().ok, true);
+  assert.equal(st.getItem(LEG_KEY), before, 'the old key is never written');
+  // into an empty spine: the old register value (pre-spine) and the version 2 file both restore, with history lines
+  for (const file of [LEGACY, b]) {
+    const s2 = await spine();
+    r = AS.restoreBackup(s2, JSON.parse(JSON.stringify(file)));
+    assert.equal(r.ok, true); assert.deepEqual(r.errors, []);
+    assert.equal(AS.read(s2).issues.length, file.issues.length);
+    const i0 = AS.read(s2).issues.find((i) => i.id === file.issues[0].id);
+    assert.ok(AS.history(s2, i0).length >= (file.issues[0].history || []).length);
+  }
+  // anything else is refused and changes nothing
+  const n2 = s.events().length;
+  for (const bad of [null, [], {}, { issues: 'x' }, { app: 'regradar-controls', issues: [] }]) assert.equal(AS.restoreBackup(s, bad).ok, false);
+  assert.equal(s.events().length, n2);
+});
+
 await test('page model: peek counts issues on the device before and after the migration', async () => {
   const { st, s, read } = await onDevice();
   let p = AS.peek(read);
