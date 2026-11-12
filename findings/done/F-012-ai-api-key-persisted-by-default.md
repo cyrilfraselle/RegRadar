@@ -4,13 +4,13 @@ title: Ask the law stores the user's model API key in localStorage permanently, 
 area: shared
 severity: P2
 risk: medium
-status: open
+status: fixed
 effort: S
 files:
   - docs/ai.js
   - docs/ask.html
 found: 2026-10-26
-fixed_by:
+fixed_by: fix/F-012-ai-key-session-default
 ---
 
 ## Evidence
