@@ -127,3 +127,16 @@ Reviewer name: ______________________  Role / qualification: ___________________
 Date: ____________  Signature: ______________________
 
 After sign-off: build (gate step 5), then re-read the captions and transcript against the ledger (step 6). If the law text in `docs/data/laws/` changes, the film is marked "needs review" (step 7).
+
+## Sign-off record
+
+| Film | Decision | By | Date | How |
+|---|---|---|---|---|
+| 02 · Effort follows risk | Approved to build | Project owner | 2026-11-12 | Written confirmation in the project chat |
+| 03 · Know who, know why | Approved to build | Project owner | 2026-11-12 | Written confirmation in the project chat |
+| 04 · Look through | Approved to build | Project owner | 2026-11-12 | Written confirmation in the project chat |
+
+Scope: free, public prototype content; no client data and no sale. Before any
+paid use, a named qualified reviewer must sign these sheets (name,
+qualification, date) and the scripts must be re-checked against the then
+current law text.
