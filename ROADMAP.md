@@ -155,3 +155,41 @@ explainer player are merged:
 - Later, paid: MP4 export and voice-over.
 Risk: a video that misstates the policy is worse than no video; hence
 citations, human approval and the out-of-date flag.
+
+## Feature: AI-assisted gap assessment (owner idea, 2026-10-18)
+
+A tool that compares a firm's own documents with a reference and lists the
+gaps, cited and confirmed by a human. Partly planned already as A4
+"Reviewer" (checks one policy, control or file against obligation text);
+this is the broader product.
+
+**What it compares**
+- A firm policy or procedure against regulation (AMLR articles, later DORA,
+  MiCA, national rules), against supervisory guidance (EBA guidelines, FATF
+  guidance: to be added to the library, with sources), or against another
+  policy (group policy vs local procedure, old version vs new, firm vs a
+  template).
+
+**How it works (grounded, verifiable, human decides)**
+1. Choose a source document (from the policy library or pasted) and a
+   reference set (a list of requirements, each with its article text).
+2. For every requirement the AI proposes covered / partly covered / missing
+   and quotes the exact passage of the policy that supports it, plus the
+   exact reference text. A checker rejects any quote that is not a verbatim
+   substring of the document, as in the Ask-the-law evals.
+3. The reviewer confirms or overrides each row. Confirmed gaps become actions
+   in the tracker, linked to the obligation and the policy; the assessment
+   (who, when, version of both documents) is stored as evidence.
+4. Re-run when the law or the policy changes; show what changed.
+
+**Dependencies:** AI core (built), policy library and data spine (built),
+requirement sets beyond the 12 AMLR obligations (to build: AMLR full text is
+already in the library; guidance documents need sourcing), evals for gap
+precision and recall on a small golden set.
+
+**Why it matters:** it turns policy review (usually Word and Excel) into
+repeatable, evidenced work, and it feeds the training wedge: the same engine
+that finds gaps can propose what a tailored training module should cover.
+
+**Open question:** whether it should come before or after the training wedge;
+see strategy/market-study-training.md when merged.
