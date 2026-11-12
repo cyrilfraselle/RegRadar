@@ -4,12 +4,12 @@ title: Payments and DORA-relevant items fall into "General"; the payments themes
 area: regwatch
 severity: P2
 risk: medium
-status: open
+status: fixed
 effort: S
 files:
   - regulatory_watch.py
 found: 2026-10-22
-fixed_by:
+fixed_by: fix/F-009-payments-dora-keywords
 ---
 
 ## Evidence
@@ -37,3 +37,6 @@ Do not hand-edit `items.json`; the pipeline regenerates it.
 ## How to verify
 Re-run the classification over the current archive: `General` falls below 120 items, `Payments`
 plus `DORA` rises above 40, and title-duplicate groups drop under 10.
+
+## Resolution
+Extended the DORA and Payments keyword lists (`regulatory_watch.py` themes). Replayed over the 669-item archive (title+summary): DORA 6 -> 18, Payments 17 -> 30, General 195 -> 143. The title-dedup part is not changed: `generer_id_titre` already strips the outlet suffix, and most remaining groups are the same headline from different regulators or dates; left as a follow-up.
