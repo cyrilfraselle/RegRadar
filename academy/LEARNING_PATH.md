@@ -34,7 +34,12 @@ Desk: monitoring, sanctions, STR drafting. Workstation: Shifts and capstone.
 
 ## Product tie-ins
 - Completion records feed training evidence in the Compliance workspace
-  (module, date, score; anonymous by default).
+  (module, date, score; anonymous by default). Built: a self-attested
+  certificate (`academy-certificate.html`: print, JSON, CSV, integrity code)
+  and a no-backend team register (`academy-register.html`: import several
+  learners' files, overdue/outstanding against a required set and refresher
+  interval, printable evidence pack). Bump `content_version` in
+  `curriculum.json` `_meta` when lesson content changes; completions record it.
 - Managers see assignments and completion; the MLRO can assign a path to a
   role (analyst, manager, board) and switch modules on or off.
 - Later: lessons generated from the firm's own policies, with the same
