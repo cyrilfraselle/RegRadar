@@ -77,17 +77,28 @@
      "name": "Tom Declerck",
      "type": "person",
      "juris": "BE"
+    },
+    {
+     "id": "other",
+     "name": "Other shareholders",
+     "type": "other",
+     "juris": "—"
     }
    ],
    "edges": [
     {
      "from": "hold",
      "to": "cible",
-     "pct": 60
+     "pct": 50
     },
     {
      "from": "tom",
      "to": "hold",
+     "pct": 50
+    },
+    {
+     "from": "other",
+     "to": "cible",
      "pct": 50
     }
    ],
@@ -98,21 +109,21 @@
      "label": "50%"
     },
     {
-     "id": "60",
-     "label": "60%"
+     "id": "100",
+     "label": "100%"
     },
     {
-     "id": "30",
-     "label": "30%"
+     "id": "25",
+     "label": "25%"
     },
     {
-     "id": "110",
-     "label": "110%"
+     "id": "0",
+     "label": "0%"
     }
    ],
-   "answer": "30",
-   "explain": "60% × 50% = 30%. Percentages are multiplied along the chain — not added, and not simply the lower of the two.",
-   "principle": "Each layer dilutes. Tom controls half of a company that holds 60% of the target — so his indirect stake is 30%."
+   "answer": "25",
+   "explain": "50% × 50% = 25%: right on the threshold, so Tom is a beneficial owner. Percentages are multiplied along the chain, not added, and not simply the lower of the two. This works because no company in the chain controls the next one (50% is not 50% plus one). When one does, Article 54 applies instead: see the Ownership lesson.",
+   "principle": "Each layer dilutes. Tom holds half of a company that holds half of the target, so his indirect stake is 25%. AMLR Art. 52(1): multiply along the chain and add the chains, unless Article 54 applies."
   },
   {
    "id": "P3",
@@ -135,23 +146,34 @@
      "name": "Rita Moens",
      "type": "person",
      "juris": "BE"
+    },
+    {
+     "id": "other",
+     "name": "Other shareholders",
+     "type": "other",
+     "juris": "—"
     }
    ],
    "edges": [
     {
      "from": "hold",
      "to": "cible",
-     "pct": 60
+     "pct": 40
     },
     {
      "from": "rita",
      "to": "hold",
-     "pct": 20
+     "pct": 40
     },
     {
      "from": "rita",
      "to": "cible",
      "pct": 15
+    },
+    {
+     "from": "other",
+     "to": "cible",
+     "pct": 45
     }
    ],
    "question": "Does Rita reach the 25% threshold?",
@@ -161,16 +183,16 @@
      "label": "No — she only holds 15% directly"
     },
     {
-     "id": "non12",
-     "label": "No — 12% indirect is below the threshold"
+     "id": "non16",
+     "label": "No — 16% indirect is below the threshold"
     },
     {
      "id": "oui",
-     "label": "Yes — 27% in total"
+     "label": "Yes — 31% in total"
     }
    ],
    "answer": "oui",
-   "explain": "15% direct, plus 60% × 20% = 12% indirect. Total 27%. Neither path crosses the threshold on its own — which is exactly what makes this case dangerous.",
+   "explain": "15% direct, plus 40% × 40% = 16% indirect. Total 31%. Neither path crosses the threshold on its own, which is exactly what makes this case dangerous. (No company here controls the next one, so multiplying and adding is the right method.)",
    "principle": "Paths are additive. A structure designed to evade detection spreads ownership across several branches, none of which exceeds the threshold on its own. Looking at branches one at a time is the single most common mistake."
   },
   {
@@ -234,7 +256,7 @@
    "title": "A holding company and two partners",
    "subject": "Kortrijk Textiles NV · corporate client · 25% threshold",
    "threshold": 25,
-   "brief": "An operating company held by a holding company, itself split between two partners. Nothing is hidden. The question is who crosses the threshold — and who falls just short of it.",
+   "brief": "An operating company held by a holding company, itself split between two partners. Nothing is hidden. The question is who counts, and the obvious arithmetic gives the wrong answer for one of them.",
    "budget": 3,
    "entities": [
     {
@@ -310,7 +332,8 @@
    "requests": [],
    "answer": {
     "ubos": [
-     "mina"
+     "mina",
+     "bram"
     ],
     "cannot_determine": false
    },
@@ -319,10 +342,14 @@
     "bram": 24.0,
     "ines": 20.0
    },
-   "why": "Mina holds 80% × 70% = 56%, well above the threshold. Bram reaches 80% × 30% = 24% — one point short of the threshold, and therefore not a beneficial owner on ownership grounds. Inès tops out at 20% direct.",
-   "trap": "Bram at 24% is the trap in this case. The temptation is to round up, or to treat 'almost 25%' as close enough. That isn't an analyst's call to make — a threshold is a threshold. What does warrant a check is that a brother and sister together hold 80% of a holding company: it's worth verifying whether an agreement exists between them — which the extract confirms it doesn't, and that's exactly why it was read.",
-   "law": "AMLR Arts 51–52 — beneficial owners; an ownership interest is 25% or more of the shares, voting rights or other ownership interest.",
-   "lesson": "The calculation is trivial; the discipline isn't. A percentage just under the threshold is not a beneficial owner, and writing that down plainly in the file is worth more than including them 'to be safe' — including everyone amounts to identifying no one."
+   "why": "KT Holding owns 80% of Kortrijk Textiles, so it controls it (50% plus one, Art. 53(2)(c)). When a company in the chain controls the next one, Article 54 applies instead of multiplying: the natural persons with an ownership interest of 25% or more in the controlling company are beneficial owners. Mina (70%) and Bram (30%) both qualify. Inès tops out at 20% direct, with no control.",
+   "trap": "Bram is the trap. Multiplying gives 80% × 30% = 24%, one point short, and the temptation is to stop there. But the multiplication rule applies 'unless Article 54 applies' (Art. 52(1)). Because the holding controls the client, Bram's 30% of the holding makes him a beneficial owner. A threshold is still a threshold: Inès, at 20% direct, is not one.",
+   "law": "AMLR Arts 51–54 — an ownership interest is 25% or more (Art. 52(1)); control through ownership is 50% plus one (Art. 53(2)(c)); where a company in the chain controls the next one, Art. 54 decides, not multiplication.",
+   "lesson": "Know when the arithmetic applies. Multiplying along the chain is the rule only where no company in the chain controls the next one; where one does, look at who holds 25% or more of the controlling company. Write the basis down in the file.",
+   "basis": {
+    "mina": "Art. 54",
+    "bram": "Art. 54"
+   }
   },
   {
    "id": "OWN-02",
@@ -364,13 +391,19 @@
      "name": "Victor Gerard",
      "type": "person",
      "juris": "BE"
+    },
+    {
+     "id": "minor",
+     "name": "Various minority holders",
+     "type": "other",
+     "juris": "—"
     }
    ],
    "edges": [
     {
      "from": "holdA",
      "to": "cible",
-     "pct": 55,
+     "pct": 50,
      "doc": "d1"
     },
     {
@@ -388,13 +421,13 @@
     {
      "from": "victor",
      "to": "holdA",
-     "pct": 70,
+     "pct": 50,
      "doc": "d2"
     },
     {
      "from": "lena",
      "to": "holdA",
-     "pct": 20,
+     "pct": 30,
      "doc": "d2"
     },
     {
@@ -402,18 +435,23 @@
      "to": "holdB",
      "pct": 10,
      "doc": "d3"
+    },
+    {
+     "from": "minor",
+     "to": "cible",
+     "pct": 5
     }
    ],
    "documents": [
     {
      "id": "d1",
      "name": "Shareholder register — Namur Logistique",
-     "body": "Ardenne Invest SPRL 55%, Sambre Participations 30%, Lena Gerard 15%. The remaining 0% corresponds to treasury shares cancelled in 2024."
+     "body": "Ardenne Invest SPRL 50%, Sambre Participations 30%, Lena Gerard 15%, various minority holders 5%."
     },
     {
      "id": "d2",
      "name": "CBE extract — Ardenne Invest SPRL",
-     "body": "Victor Gerard 70%, Lena Gerard 20%, various minority holders 10%. Victor is the managing director."
+     "body": "Victor Gerard 50%, Lena Gerard 30%, various minority holders 20%. Victor is the managing director. No shareholders' agreement on file."
     },
     {
      "id": "d3",
@@ -430,12 +468,12 @@
     "cannot_determine": false
    },
    "computed": {
-    "victor": 38.5,
-    "lena": 29.0
+    "victor": 25.0,
+    "lena": 33.0
    },
-   "why": "Victor: 55% × 70% = 38.5%. Lena accumulates three paths — 15% direct, 55% × 20% = 11%, and 30% × 10% = 3%. Total 29%. None of her three branches crosses the threshold on its own.",
+   "why": "No company in this structure controls the next one (none holds more than 50%), so indirect ownership is multiplied along each chain and the chains are added. Victor: 50% × 50% = 25%, right on the threshold. Lena accumulates three paths: 15% direct, 50% × 30% = 15%, and 30% × 10% = 3%. Total 33%. None of her three branches crosses the threshold on its own.",
    "trap": "This is the case analysts miss most often. Working through the chart branch by branch, you see 15%, then 20% of one holding company, then 10% of another — three figures, all below the threshold, and it's easy to conclude too quickly. Aggregating by person, not by branch, is the only way to see Lena.",
-   "law": "AMLR Art. 52(1) — indirect ownership is calculated by multiplying along each chain and adding the chains together.",
+   "law": "AMLR Art. 52(1) — indirect ownership is calculated by multiplying along each chain and adding the chains together, unless Article 54 applies (a company in the chain controlling the next one).",
    "lesson": "Spreading a stake across several vehicles, none of which crosses the threshold, is the simplest concealment technique there is, and it works against anyone reading a chart top to bottom. The countermeasure is methodological: calculate by person, not by branch."
   },
   {
@@ -771,10 +809,13 @@
     "sara": 38.0,
     "omar": 22.0
    },
-   "why": "Sara holds 60% × 50% = 30% via the holding company, plus 8% direct, for 38%. Omar stays at 22% direct, below the threshold. Gand Maritime's cross-shareholding in its own holding company doesn't propagate — it's logged as a loop and the traversal stops there.",
+   "why": "Schelde Holding owns 60% of Gand Maritime, so it controls it (50% plus one). Article 54 then applies: the natural persons with 25% or more of the controlling holding are beneficial owners, and Sara holds 50% of it (she also holds 8% directly). Omar stays at 22% direct, below the threshold. Gand Maritime's cross-shareholding in its own holding company doesn't propagate: it's logged as a loop and the traversal stops there.",
    "trap": "Two ways to get this wrong. Running the loop and artificially inflating the percentages — the calculation converges mathematically but no longer describes anything real. Or treating the cross-shareholding as an additional shareholder and diluting the others. A cross-shareholding dilutes the real economic interest of external shareholders; it belongs in the file as a flag, not in the calculation.",
-   "law": "AMLR Art. 51 — beneficial owners are natural persons; a circular shareholding creates no additional beneficial owner.",
-   "lesson": "When a chain loops back to an entity already traversed, stop and note it. The fact is worth flagging — cross-shareholdings are also used to obscure real economic interest — but it isn't something you calculate."
+   "law": "AMLR Art. 51 — beneficial owners are natural persons; Art. 54 — where a company in the chain controls the next one, the persons with an ownership interest in the controlling company are beneficial owners. A circular shareholding creates no additional beneficial owner.",
+   "lesson": "When a chain loops back to an entity already traversed, stop and note it. The fact is worth flagging — cross-shareholdings are also used to obscure real economic interest — but it isn't something you calculate.",
+   "basis": {
+    "sara": "Art. 54"
+   }
   },
   {
    "id": "OWN-06",

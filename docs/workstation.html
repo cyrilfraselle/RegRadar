@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="academy-engine.css?v=20261015">
 <link rel="stylesheet" href="glossary.css?v=20261015">
 <script src="academy-shell.js?v=20261016"></script>
-<script src="academy-engine.js?v=20261016"></script>
+<script src="academy-engine.js?v=20261018"></script>
 <script src="glossary.js?v=20261015"></script>
 <style>
 :root{
@@ -1697,7 +1697,8 @@ function renderActiveCase(caseObj){
     uboText = caseObj.answer.ubos.map(id=>{
       const ent = caseObj.entities.find(e=>e.id===id);
       const pct = caseObj.computed ? caseObj.computed[id] : null;
-      return ent ? ent.name + (pct!=null?` — ${pct}% indirect`:'') : id;
+      const basis = caseObj.basis ? caseObj.basis[id] : null;   /* e.g. Art. 54: not a multiplied percentage */
+      return ent ? ent.name + (basis?` — ${basis}`:pct!=null?` — ${pct}% indirect`:'') : id;
     }).join(', ');
   }
   document.getElementById('cif-ubo').textContent = uboText;

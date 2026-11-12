@@ -338,7 +338,9 @@ const Ownership = (function(){
          notes), so each host maps this onto its own class names. */
       const kind = should&&did?'ok':should&&!did?'miss':!should&&did?'extra':'neutral';
       const verdict = should&&did?'CORRECT':should&&!did?'MISSED':!should&&did?'WRONGLY':'—';
-      const ctrl = should && pct<threshold ? ' (control)' : '';
+      /* 'basis' (case data) names the rule when it is not the multiplied percentage, e.g. Art. 54 */
+      const basis = caseObj.basis && caseObj.basis[e.id];
+      const ctrl = basis ? ' ('+basis+')' : should && pct<threshold ? ' (control)' : '';
       return {id:e.id, name:names[e.id], pct, kind, verdict, ctrl};
     });
     const stamp = correct?'CORRECT':missed.length?'BENEFICIAL OWNER MISSED':'OVER-DESIGNATION';
@@ -472,7 +474,7 @@ const Laundromat = (function(){
    {id:'shells', stage:'layering', n:'Shell company loop', cap:4000000, fee:0.05, base:0.0153, amp:0.85, weeks:2,
     juris:['pa','ky','lu','ch'], d:'Funds tour a ring of companies that exist as filing-cabinet folders, then come home as "intercompany".',
     flag:'No identifiable beneficial owner behind the chain', art:'Art. 51 & 52', artTitle:'Identification of beneficial owners',
-    detects:'Every EU counterparty must resolve the chain to a natural person — ownership through layers is computed through the layers, per Art. 52. A loop that resolves to nobody is not private, it is reportable.'},
+    detects:'Every EU counterparty must resolve the chain to a natural person — ownership is traced through the layers, per Arts 52 to 54. A loop that resolves to nobody is not private, it is reportable.'},
    {id:'mules', stage:'layering', n:'Money mule network', cap:1800000, fee:0.12, base:0.0195, amp:1.05, weeks:1,
     juris:['be','ee','hk'], d:'Dozens of recruited accounts each pass a small slice along, fast.',
     flag:'Fan-out / fan-in velocity pattern', art:'Art. 26 & 69', artTitle:'Monitoring of transactions / Reporting of suspicions',
