@@ -31,10 +31,17 @@ window.ControlsData = (function () {
     });
   }
   function onExternal() { STALE = true; }
+  var onSaveError = null, hooked = null;
+  function hookErrors(s) {   // storage failures (blocked or full) reach the page instead of being lost silently (F-006)
+    if (!s || hooked === s || typeof s.onError !== "function") return;
+    hooked = s;
+    s.onError(function (e) { if (typeof onSaveError === "function") onSaveError(e); });
+  }
   async function spine() {
     await ensureRR();
-    if (STALE) { STALE = false; await window.RR.boot({ onExternalChange: onExternal }); return window.RR.current; }   // another tab changed the spine
+    if (STALE) { STALE = false; await window.RR.boot({ onExternalChange: onExternal }); hookErrors(window.RR.current); return window.RR.current; }   // another tab changed the spine
     await window.RR.shared({ onExternalChange: onExternal });
+    hookErrors(window.RR.current);
     return window.RR.current;
   }
   function sp() {
@@ -57,6 +64,21 @@ window.ControlsData = (function () {
   function mapControl(obligationId, controlId) { window.ControlsStore.mapControl(sp(), obligationId, controlId); }
   function unmapControl(obligationId, controlId) { window.ControlsStore.unmapControl(sp(), obligationId, controlId); }
   function recordTest(cid, result, note, evidence) { return window.ControlsStore.recordTest(sp(), cid, result, note, evidence); }
+
+  /* Backup and restore (F-006). The controls live in the spine now: the backup is the controls, links and
+     test log as this page shows them; a restore goes through the spine (logged, nothing deleted). Older
+     backups written before the spine (version 1, the device-local overlay) are still accepted. */
+  function exportBackup() { return window.ControlsStore.exportBackup(sp()); }
+  async function restoreBackup(b) {
+    var base = null, s = await spine();
+    if (b && b.app === "regradar-controls" && b.version !== 2) {
+      try { base = await (await fetch("data/controls.json", { cache: "no-store" })).json(); } catch (e) { base = null; }
+    }
+    var r = window.ControlsStore.restoreBackup(s, b, base);
+    if (r.ok && typeof s.flush === "function") await s.flush();
+    if (r.ok && typeof s.saveOk === "function" && s.saveOk() === false) return { ok: false, error: "Browser storage is blocked or full." };
+    return r;
+  }
 
   function coverage(obligations, controls) {
     var byObligation = {};
@@ -91,5 +113,7 @@ window.ControlsData = (function () {
 
   return { load: load, addControl: addControl, updateControl: updateControl, removeControl: removeControl,
     mapControl: mapControl, unmapControl: unmapControl, recordTest: recordTest,
+    exportBackup: exportBackup, restoreBackup: restoreBackup,
+    setSaveErrorHandler: function (fn) { onSaveError = fn; },
     coverage: coverage, nextDue: nextDue, isOverdue: isOverdue, LKEY: LKEY };
 })();

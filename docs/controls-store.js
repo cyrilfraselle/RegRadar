@@ -231,6 +231,87 @@
   }
   function withLib(c) { return Object.assign({}, c, { __lib: (c.obligation_ids || []).slice() }); }
 
+  /* the same merge the old ControlsData.load() did: shipped library + the old device-local overlay */
+  function mergeLegacy(base, local) {
+    var L = Object.assign({ extra: [], extraMappings: {}, removedMappings: {}, overrides: {}, tests: {} }, local || {});
+    var list = base.controls.map(function (c) { return Object.assign({}, c, { obligation_ids: (c.obligation_ids || []).slice(), __lib: (c.obligation_ids || []).slice() }); })
+      .concat((Array.isArray(L.extra) ? L.extra : []).map(function (c) { return Object.assign({}, c, { source: 'local', obligation_ids: (c.obligation_ids || []).slice() }); }));
+    var byId = {}; list.forEach(function (c) { byId[c.id] = c; });
+    list.forEach(function (c) { Object.assign(c, (L.overrides || {})[c.id] || {}); });
+    Object.keys(L.extraMappings || {}).forEach(function (ob) { (L.extraMappings[ob] || []).forEach(function (cid) { var c = byId[cid]; if (c && !has(c.obligation_ids, ob)) c.obligation_ids.push(ob); }); });
+    Object.keys(L.removedMappings || {}).forEach(function (ob) { (L.removedMappings[ob] || []).forEach(function (cid) { var c = byId[cid]; if (c) c.obligation_ids = c.obligation_ids.filter(function (x) { return x !== ob; }); }); });
+    return { L: L, list: list, byId: byId };
+  }
+
+  /* ───────── backup and restore (F-006, adapted to the spine) ─────────
+     exportBackup: the controls, their obligation links and test log as the page sees them (version 2).
+     restoreBackup: replaces what the workspace shows with the file, through the spine, so every change is
+     an event in the log and nothing is deleted: controls missing from the file are archived, a test log that
+     differs is archived and rewritten. It also accepts the version 1 file the pre-spine page wrote (the old
+     device-local overlay), merged over the shipped library exactly as the migration does. */
+  function isObj(v) { return !!v && typeof v === 'object' && !Array.isArray(v); }
+  function exportBackup(sp) {
+    var r = read(sp);
+    return { app: 'regradar-controls', version: 2, saved: new Date().toISOString(), controls: r.controls, tests: r.tests };
+  }
+  var BAD = 'This file is not a RegRadar controls backup.';
+  function backupContent(b, base) {
+    if (!isObj(b) || b.app !== 'regradar-controls') return null;
+    if (b.version === 2) {
+      if (!Array.isArray(b.controls) || (b.tests != null && !isObj(b.tests))) return null;
+      if (!b.controls.every(function (c) { return isObj(c) && c.id && typeof c.id === 'string'; })) return null;
+      return { list: b.controls, tests: b.tests || {} };
+    }
+    var d = b.data;
+    if (!isObj(d) || !Array.isArray(d.extra) || !['extraMappings', 'removedMappings', 'overrides', 'tests'].every(function (k) { return isObj(d[k]); })) return null;
+    if (!base || !Array.isArray(base.controls)) return { needLibrary: true };
+    var M = mergeLegacy(base, d);
+    return { list: M.list.filter(function (c) { return c && c.id; }), tests: M.L.tests || {} };
+  }
+  var PAGE_FIELDS = ['name', 'owner', 'frequency', 'type', 'status', 'last_tested', 'effectiveness'];
+  function restoreBackup(sp, b, base) {
+    var got = backupContent(b, base);
+    if (!got) return { ok: false, error: BAD };
+    if (got.needLibrary) return { ok: false, error: 'The controls library could not be loaded, so this older backup cannot be read. Try again.' };
+    var note = 'Restored from a controls backup', want = {}, rep = { ok: true, controls: 0, archived: 0, tests: 0 };
+    got.list.forEach(function (c) { want[c.id] = 1; });
+    sp.list('control').forEach(function (e) { var cid = cidOf(e); if (!want[cid]) { removeControl(sp, cid); rep.archived++; } });
+    var now = read(sp), cur = {};
+    now.controls.forEach(function (c) { cur[c.id] = c; });
+    got.list.forEach(function (c, k) {
+      var have = cur[c.id], order = str(c.source) === 'local' ? 1000 + k : k;
+      if (!have) {
+        var e0 = sp.get(eid(c.id));
+        if (e0 && e0.type !== 'control') return;   // the id belongs to another kind of record: leave it
+        putControl(sp, Object.assign({}, c, { obligation_ids: (c.obligation_ids || []).slice() }), order, { action: 'import', note: note });
+        rep.controls++;
+      } else {
+        var patch = {};
+        PAGE_FIELDS.forEach(function (f) { if (f in c && JSON.stringify(c[f]) !== JSON.stringify(have[f])) patch[f] = c[f]; });
+        Object.keys(c).forEach(function (f) { if (PAGE_FIELDS.indexOf(f) === -1 && KNOWN.indexOf(f) === -1 && f.indexOf('__') !== 0 && JSON.stringify(c[f]) !== JSON.stringify(have[f])) patch[f] = c[f]; });
+        var changed = Object.keys(patch).length > 0;
+        if (changed) updateControl(sp, c.id, patch);
+        var ids = (c.obligation_ids || []).slice();
+        if (JSON.stringify(ids.slice().sort()) !== JSON.stringify((have.obligation_ids || []).slice().sort())) {
+          var un = syncMappings(sp, eid(c.id), ids);
+          sp.update(eid(c.id), { data: { unresolved_obligations: un.length ? un : null } }, { action: 'sync', note: note });
+          changed = true;
+        }
+        if (changed) rep.controls++;
+      }
+      // the test log: rewritten only when it differs (old entries archived, never deleted)
+      var arr = Array.isArray(got.tests[c.id]) ? got.tests[c.id] : [];
+      var mine = read(sp).tests[c.id] || [];
+      var same = arr.length === mine.length && arr.every(function (t, i) { return str(t.date) === mine[i].date && str(t.result) === mine[i].result && str(t.note) === mine[i].note && str(t.evidence) === mine[i].evidence; });
+      if (same) return;
+      sp.linked(eid(c.id), 'tests', 'in').forEach(function (t) { if (t.type === 'test') sp.archive(t.id, { note: 'Replaced by a restored backup' }); });
+      var start = nextTestIndex(sp, c.id), title = (sp.get(eid(c.id)) || {}).title || c.id;
+      for (var i = 0; i < arr.length; i++) if (putTest(sp, c.id, start + i, arr[arr.length - 1 - i] || {}, title, { action: 'import', note: note })) rep.tests++;
+    });
+    sp.log('import', null, 'Controls: backup restored (' + rep.controls + ' controls written, ' + rep.archived + ' archived, ' + rep.tests + ' tests)');
+    return rep;
+  }
+
   /* ───────── the one-time import from the old localStorage key ───────── */
   function migrate(sp, read0, ref) {
     if (sp.getSetting(DONE)) return { status: 'already' };
@@ -243,14 +324,7 @@
       if (!local || typeof local !== 'object' || Array.isArray(local)) return { status: 'unreadable' };
     }
     if (!base) return { status: 'deferred' };               // the library could not be loaded: try again next time
-    var L = Object.assign({ extra: [], extraMappings: {}, removedMappings: {}, overrides: {}, tests: {} }, local || {});
-    // the same merge the old ControlsData.load() did
-    var list = base.controls.map(function (c) { return Object.assign({}, c, { obligation_ids: (c.obligation_ids || []).slice(), __lib: (c.obligation_ids || []).slice() }); })
-      .concat((Array.isArray(L.extra) ? L.extra : []).map(function (c) { return Object.assign({}, c, { source: 'local', obligation_ids: (c.obligation_ids || []).slice() }); }));
-    var byId = {}; list.forEach(function (c) { byId[c.id] = c; });
-    list.forEach(function (c) { Object.assign(c, (L.overrides || {})[c.id] || {}); });
-    Object.keys(L.extraMappings || {}).forEach(function (ob) { (L.extraMappings[ob] || []).forEach(function (cid) { var c = byId[cid]; if (c && !has(c.obligation_ids, ob)) c.obligation_ids.push(ob); }); });
-    Object.keys(L.removedMappings || {}).forEach(function (ob) { (L.removedMappings[ob] || []).forEach(function (cid) { var c = byId[cid]; if (c) c.obligation_ids = c.obligation_ids.filter(function (x) { return x !== ob; }); }); });
+    var M = mergeLegacy(base, local), L = M.L, list = M.list, byId = M.byId;
     var rep = { status: local ? 'migrated' : 'seeded', controls: 0, tests: 0, skipped: 0 }, libIds = base.controls.map(function (c) { return c.id; });
     var orderOf = {}; list.forEach(function (c, k) { orderOf[c.id] = c.source === 'local' ? 1000 + k : k; });
     list.forEach(function (c) {
@@ -293,5 +367,6 @@
   }
 
   return { KEY: KEY, DONE: DONE, LIB: LIB, migrate: migrate, syncLibrary: syncLibrary, read: read, addControl: addControl, updateControl: updateControl,
-    removeControl: removeControl, mapControl: mapControl, unmapControl: unmapControl, recordTest: recordTest, fromStorage: fromStorage, days: days };
+    removeControl: removeControl, mapControl: mapControl, unmapControl: unmapControl, recordTest: recordTest, fromStorage: fromStorage, days: days,
+    exportBackup: exportBackup, restoreBackup: restoreBackup };
 });

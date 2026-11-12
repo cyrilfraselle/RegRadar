@@ -903,7 +903,7 @@ await test('controls: ControlsData keeps its interface (load, mutators, coverage
   try {
     new Function('window', 'document', fs.readFileSync(path.join(root, 'docs', 'controls-data.js'), 'utf8'))(win, doc);
     const CD = win.ControlsData;
-    assert.deepEqual(Object.keys(CD).sort(), ['LKEY', 'addControl', 'coverage', 'isOverdue', 'load', 'mapControl', 'nextDue', 'recordTest', 'removeControl', 'unmapControl', 'updateControl']);
+    assert.deepEqual(Object.keys(CD).sort(), ['LKEY', 'addControl', 'coverage', 'exportBackup', 'isOverdue', 'load', 'mapControl', 'nextDue', 'recordTest', 'removeControl', 'restoreBackup', 'setSaveErrorHandler', 'unmapControl', 'updateControl']);
     const d = await CD.load();
     assert.equal(d.meta.name, 'Controls library');
     assert.equal(d.controls.length, CTL.controls.length + 1);
@@ -930,6 +930,51 @@ await test('controls: ControlsData keeps its interface (load, mutators, coverage
     CD.removeControl('local-z');
     assert.equal((await CD.load()).controls.some((c) => c.id === 'local-z'), false);
   } finally { globalThis.fetch = realFetch; RR.current = null; }
+});
+
+const jj = (x) => JSON.parse(JSON.stringify(x));
+await test('controls: backup and restore (F-006) work on the spine: round trip, logged, nothing deleted, old v1 files accepted', async () => {
+  const { st, s, read } = await ctlDevice();
+  mig(s, read, 'controls');
+  await s.flush();
+  const before = st.getItem(CKEY);
+  const b = jj(CS.exportBackup(s));
+  assert.equal(b.app, 'regradar-controls'); assert.equal(b.version, 2);
+  assert.deepEqual(b.controls, jj(CS.read(s).controls)); assert.deepEqual(b.tests, jj(CS.read(s).tests));
+  // restoring an unchanged backup writes nothing but the log line
+  const n0 = s.events().length;
+  let r = CS.restoreBackup(s, b, CTL);
+  assert.equal(r.ok, true); assert.equal(r.controls, 0); assert.equal(r.archived, 0); assert.equal(r.tests, 0);
+  assert.equal(s.events().length, n0 + 1);
+  // change things after the backup, then restore: the page reads back the backup exactly
+  CS.updateControl(s, 'ctl-03', { name: 'Changed after backup', owner: 'Priya K.' });
+  CS.unmapControl(s, b.controls.find((c) => c.id === 'ctl-02').obligation_ids[0], 'ctl-02');
+  CS.recordTest(s, 'ctl-01', 'effective', 'after backup');
+  CS.addControl(s, { id: 'local-later', name: 'Later', owner: 'Unassigned', frequency: 'Monthly', type: 'Preventive', status: 'draft', last_tested: null, effectiveness: 'not_tested', obligation_ids: [] });
+  CS.removeControl(s, 'local-abc');
+  r = CS.restoreBackup(s, b, CTL);
+  assert.equal(r.ok, true); assert.ok(r.archived >= 1); assert.ok(r.tests >= 2);
+  const R = jj(CS.read(s));
+  assert.deepEqual(R.controls.map((c) => c.id), b.controls.map((c) => c.id), 'same controls, same order');
+  for (const c of b.controls) assert.deepEqual(R.controls.find((x) => x.id === c.id), c, c.id);
+  assert.deepEqual(R.tests, b.tests, 'same test log');
+  assert.equal(s.get('CTL:local-later').archived, true, 'a control not in the file is archived, not deleted');
+  assert.ok(s.list('test', { archived: true }).some((t) => t.archived && t.data.note === 'after backup'), 'replaced tests are archived, not deleted');
+  assert.equal(s.verifyLog().ok, true);
+  assert.ok(s.events().some((e) => /backup restored/.test(e.note || '')));
+  assert.equal(st.getItem(CKEY), before, 'the old key is still never written');
+  // a version 1 file (pre-spine page) is merged over the library like the migration does
+  const s2 = (await ctlDevice(null)).s; mig(s2, () => null, 'controls');
+  r = CS.restoreBackup(s2, { app: 'regradar-controls', version: 1, saved: '2026-10-20T00:00:00Z', data: LEG_CTL }, CTL);
+  assert.equal(r.ok, true);
+  assert.equal(ctl(s2, 'ctl-03').owner, 'J. Okafor'); assert.ok(ctl(s2, 'local-abc'));
+  assert.deepEqual(CS.read(s2).tests['ctl-01'].map((t) => t.note), ['newest', 'older']);
+  assert.equal(CS.restoreBackup(s2, { app: 'regradar-controls', version: 1, data: LEG_CTL }, null).ok, false, 'v1 needs the library');
+  // anything else is refused and changes nothing
+  const n2 = s2.events().length;
+  for (const bad of [null, {}, { app: 'other', version: 2, controls: [] }, { app: 'regradar-controls', version: 2, controls: [{ name: 'no id' }] }, { app: 'regradar-controls', version: 1, data: { extra: 'x' } }])
+    assert.equal(CS.restoreBackup(s2, bad, CTL).ok, false);
+  assert.equal(s2.events().length, n2);
 });
 
 /* ═════════════════ Policies: migration onto the spine ═════════════════ */

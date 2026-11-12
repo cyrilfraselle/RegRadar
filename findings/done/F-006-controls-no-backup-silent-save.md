@@ -4,7 +4,7 @@ title: Control edits, mappings and test evidence are lost silently and cannot be
 area: compliance
 severity: P2
 risk: medium
-status: open
+status: fixed
 effort: S
 files:
   - docs/controls-data.js
