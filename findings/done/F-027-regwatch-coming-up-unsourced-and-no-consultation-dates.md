@@ -4,13 +4,13 @@ title: RegWatch "Coming up" is a hand-typed 4-line list with no sources, and no 
 area: regwatch
 severity: P1
 risk: medium
-status: open
+status: fixed (items 1-2; consultation closing dates remain, see follow-up)
 effort: S
 files:
   - intelligence_v4.py
   - docs/regwatch.html
 found: 2026-11-12
-fixed_by:
+fixed_by: fix/F-027-regwatch-sourced-dates
 ---
 
 ## Evidence

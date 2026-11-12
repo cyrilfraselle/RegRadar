@@ -384,7 +384,7 @@ function deadlineRow(d){
   const label=n==null?'':passed?'passed':n===0?'today':n===1?'1 day':n+' days';
   return `<div class="dl ${soon?'soon':''}">
     <div class="dt"><span>${fmt(d.date)}</span><span class="dd">${label}</span></div>
-    <div class="de">${esc(d.event)}</div></div>`;
+    <div class="de">${esc(d.event)}${d.source&&/^https:\/\//.test(d.source)?` <a href="${esc(d.source)}" target="_blank" rel="noopener">Source${d.basis?' ('+esc(d.basis)+')':''}</a>`:''}</div></div>`;
 }
 
 function vPage(){
@@ -393,7 +393,7 @@ function vPage(){
   const attention=attentionList(themes.size?mine:ITEMS);
   const list=filtered(themes);
   LIVE_N=list.length;
-  const dates=(META.timeline||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const dates=(META.timeline||[]).filter(d=>d.source).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
   const topics={}; ITEMS.forEach(i=>(i.themes||[]).forEach(t=>topics[t]=(topics[t]||0)+1));
   const tks=Object.keys(topics).sort((a,b)=>a.localeCompare(b));
   const cnt=f=>ITEMS.filter(f).length;
