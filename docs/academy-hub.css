@@ -226,7 +226,7 @@ details.more div{padding:0 14px 12px;color:var(--text-2);font-size:14px}
 .nd.open .dot{background:var(--surface);border-color:var(--accent);color:var(--accent)}
 .nd.done .dot{background:var(--ok-bg);border-color:var(--ok);border-style:solid;color:var(--ok)}
 .nd.now .dot{background:var(--accent);border-color:var(--accent);border-style:solid;color:var(--on-accent);box-shadow:0 0 0 5px var(--accent-bg)}
-.nd.locked .dot{opacity:.75}
+.nd.locked .dot{background:var(--surface-2)}   /* no opacity: keeps text contrast >= 4.5:1 */
 .nd .lbl{font-size:12.5px;line-height:1.25;max-width:11ch}
 .nd.now .lbl{color:var(--text);font-weight:700}
 .nd a:hover .dot{border-color:var(--accent)}

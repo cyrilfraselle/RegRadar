@@ -257,12 +257,13 @@ function rowNodes(nt){
     var done=isComplete(t), open=unlocked(i), isNext=nt&&nt.kind==='beat'&&nt.n.t===t;
     var cls='nd'+(done?' done':isNext?' now':open?' open':' locked')+(prevDone&&i>0?' lit':'');
     var state=done?'complete':isNext?'next up':open?beatsDone(t)+' of '+beats(t).length+' beats':'locked';
-    out.push('<li class="'+cls+'"><a href="'+hrefFor(t)+'" aria-label="Lesson '+t.no+': '+esc(t.title)+', '+state+'"'+(isNext?' aria-current="step"':'')+'><span class="dot" aria-hidden="true">'+(done?'✓':t.no)+'</span><span class="lbl" aria-hidden="true">'+esc(label(t))+'</span></a></li>');
+    /* the accessible name starts with the visible label (axe label-content-name-mismatch), then adds the state */
+    out.push('<li class="'+cls+'"><a href="'+hrefFor(t)+'"'+(isNext?' aria-current="step"':'')+'><span class="dot" aria-hidden="true">'+(done?'✓':t.no)+'</span><span class="lbl">'+esc(label(t))+'</span><span class="sr">: lesson '+t.no+', '+state+'</span></a></li>');
     prevDone=done;
     if((i+1)%3===0){
       var s=SHIFTS[(i+1)/3-1]; if(!s) return;
       var sd=shiftDone(s), so=shiftOpen(s), sn=nt&&nt.kind==='shift'&&nt.s===s;
-      out.push('<li class="nd shift'+(sd?' done':sn?' now':so?' open':' locked')+(prevDone?' lit':'')+'"><a href="#/shift/'+s.no+'" aria-label="Shift '+s.no+': '+esc(s.room)+', '+(sd?'worked':sn?'next up':so?'open':'opens after lesson '+t.no)+'"'+(sn?' aria-current="step"':'')+'><span class="dot" aria-hidden="true">'+(sd?'✓':'S'+s.no)+'</span><span class="lbl" aria-hidden="true">Shift '+s.no+'</span></a></li>');
+      out.push('<li class="nd shift'+(sd?' done':sn?' now':so?' open':' locked')+(prevDone?' lit':'')+'"><a href="#/shift/'+s.no+'"'+(sn?' aria-current="step"':'')+'><span class="dot" aria-hidden="true">'+(sd?'✓':'S'+s.no)+'</span><span class="lbl">Shift '+s.no+'</span><span class="sr">: '+esc(s.room)+', '+(sd?'worked':sn?'next up':so?'open':'opens after lesson '+t.no)+'</span></a></li>');
       prevDone=prevDone&&sd;
     }
   });
