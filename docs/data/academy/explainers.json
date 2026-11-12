@@ -1642,107 +1642,200 @@
      ]
     },
     {
-     "title": "Indirect ownership: multiply, then add",
-     "caption": "Through a chain of companies you multiply the percentages. Dana owns 50 per cent of the Holding, and the Holding owns 60 per cent of the Company, so Dana owns 30 per cent indirectly. Several chains are added together. (Fictional example.)",
+     "title": "Through a chain: multiply, unless a company controls",
+     "caption": "Through a chain of companies you usually multiply: Ella owns 50 per cent of Holding A, which owns 50 per cent of the Company, so 25 per cent, and she is an owner. But when a company in the chain controls the next one (50 per cent plus one), you do not multiply: the people with 25 per cent or more of that controlling company count. Holding B owns 60 per cent of the Company, so Dana's 30 per cent of B makes her an owner, although 30 × 60 would give only 18. (Fictional example.)",
      "items": [
       {
        "t": "box",
-       "x": 150,
-       "y": 24,
-       "w": 180,
-       "h": 52,
+       "x": 30,
+       "y": 12,
+       "w": 170,
+       "h": 40,
        "text": "Company",
        "tone": "mute",
        "d": 0.2
       },
       {
        "t": "box",
-       "x": 150,
-       "y": 112,
-       "w": 180,
-       "h": 52,
-       "text": "Holding",
+       "x": 30,
+       "y": 84,
+       "w": 170,
+       "h": 40,
+       "text": "Holding A",
        "tone": "mute",
        "d": 0.4
       },
       {
        "t": "icon",
        "k": "person",
-       "x": 216,
-       "y": 204,
-       "s": 48,
+       "x": 97,
+       "y": 150,
+       "s": 36,
        "tone": "brand",
        "d": 0.6
       },
       {
        "t": "text",
-       "x": 240,
-       "y": 266,
-       "text": "Dana",
+       "x": 115,
+       "y": 208,
+       "text": "Ella",
        "tone": "brand",
        "d": 0.6
       },
       {
        "t": "arrow",
        "pts": [
-        240,
-        202,
-        240,
-        166
+        115,
+        150,
+        115,
+        126
        ],
        "tone": "brand",
-       "d": 1.0,
-       "dur": 0.5
+       "d": 0.9,
+       "dur": 0.4
       },
       {
        "t": "text",
-       "x": 300,
-       "y": 186,
+       "x": 126,
+       "y": 144,
        "text": "50%",
        "tone": "brand",
-       "d": 1.2,
+       "d": 1.0,
        "anchor": "start",
        "bold": true
       },
       {
        "t": "arrow",
        "pts": [
-        240,
-        112,
-        240,
-        78
+        115,
+        84,
+        115,
+        54
        ],
        "tone": "brand",
-       "d": 1.6,
-       "dur": 0.5
+       "d": 1.2,
+       "dur": 0.4
       },
       {
        "t": "text",
-       "x": 300,
-       "y": 96,
-       "text": "60%",
+       "x": 126,
+       "y": 76,
+       "text": "50%",
        "tone": "brand",
-       "d": 1.8,
+       "d": 1.3,
        "anchor": "start",
        "bold": true
       },
       {
        "t": "box",
-       "x": 350,
-       "y": 110,
-       "w": 115,
-       "h": 76,
-       "text": "50% × 60%\n= 30%",
+       "x": 10,
+       "y": 222,
+       "w": 210,
+       "h": 66,
+       "text": "50% × 50% = 25%\nmultiply: owner",
        "tone": "ok",
+       "d": 1.8
+      },
+      {
+       "t": "box",
+       "x": 280,
+       "y": 12,
+       "w": 170,
+       "h": 40,
+       "text": "Company",
+       "tone": "mute",
+       "d": 2.4
+      },
+      {
+       "t": "box",
+       "x": 280,
+       "y": 84,
+       "w": 170,
+       "h": 40,
+       "text": "Holding B",
+       "tone": "violet",
        "d": 2.6
       },
       {
-       "t": "stamp",
-       "x": 410,
-       "y": 230,
-       "text": "Over 25%",
+       "t": "icon",
+       "k": "person",
+       "x": 347,
+       "y": 150,
+       "s": 36,
+       "tone": "brand",
+       "d": 2.8
+      },
+      {
+       "t": "text",
+       "x": 365,
+       "y": 208,
+       "text": "Dana",
+       "tone": "brand",
+       "d": 2.8
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        365,
+        150,
+        365,
+        126
+       ],
+       "tone": "brand",
+       "d": 3.1,
+       "dur": 0.4
+      },
+      {
+       "t": "text",
+       "x": 376,
+       "y": 144,
+       "text": "30%",
+       "tone": "brand",
+       "d": 3.2,
+       "anchor": "start",
+       "bold": true
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        365,
+        84,
+        365,
+        54
+       ],
+       "tone": "violet",
+       "d": 3.4,
+       "dur": 0.4
+      },
+      {
+       "t": "text",
+       "x": 376,
+       "y": 76,
+       "text": "60%",
+       "tone": "violet",
+       "d": 3.5,
+       "anchor": "start",
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 354,
+       "y": 76,
+       "text": "controls",
+       "tone": "violet",
+       "d": 3.5,
+       "anchor": "end",
+       "bold": true
+      },
+      {
+       "t": "box",
+       "x": 260,
+       "y": 222,
+       "w": 210,
+       "h": 66,
+       "text": "B controls, so her\n30% of B counts",
        "tone": "ok",
-       "d": 3.4
+       "d": 4.0
       }
      ]
     },

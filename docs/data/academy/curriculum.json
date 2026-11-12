@@ -675,7 +675,7 @@
       "10%"
      ],
      "answer": 2,
-     "why": "Indirect ownership is calculated by multiplying along the chain: 40% × 50% = 20%. Several chains are added together. 20% is below 25%, so check control before you conclude.",
+     "why": "Indirect ownership is calculated by multiplying along the chain: 40% × 50% = 20%. Several chains are added together. That works here because no company in the chain controls the next one; where one does, Art. 54 applies instead. 20% is below 25%, so check control before you conclude.",
      "law": {
       "celex": "32024R1624",
       "art": "52",
@@ -740,8 +740,8 @@
      "art": "52",
      "para": "1",
      "label": "Beneficial ownership through ownership interest",
-     "quote": "For the purpose of Article 51, first paragraph, point (a), ‘an ownership interest in the corporate entity’ shall mean direct or indirect ownership of 25 % or more of the shares or voting rights or other ownership interest in the corporate entity, including rights to a share of profits, other internal resources or liquidation balance. The indirect ownership shall be calculated by multiplying the shares or voting rights or other ownership interests held by the intermediate entities in the chain of entities in which the beneficial owner holds shares or voting rights and by adding together the results from those various chains",
-     "note": ""
+     "quote": "For the purpose of Article 51, first paragraph, point (a), ‘an ownership interest in the corporate entity’ shall mean direct or indirect ownership of 25 % or more of the shares or voting rights or other ownership interest in the corporate entity, including rights to a share of profits, other internal resources or liquidation balance. The indirect ownership shall be calculated by multiplying the shares or voting rights or other ownership interests held by the intermediate entities in the chain of entities in which the beneficial owner holds shares or voting rights and by adding together the results from those various chains, unless Article 54 applies.",
+     "note": "Article 54: where a company in the chain controls the next one, the natural persons with an ownership interest in that controlling company are beneficial owners, so you do not multiply through it."
     },
     {
      "celex": "32024R1624",
