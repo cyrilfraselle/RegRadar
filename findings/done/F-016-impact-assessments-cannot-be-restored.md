@@ -4,13 +4,13 @@ title: Change-impact assessments live only in one browser and cannot be restored
 area: compliance
 severity: P2
 risk: medium
-status: open
+status: fixed
 effort: S
 files:
   - docs/impact.js
   - docs/impact.html
 found: 2026-10-29
-fixed_by:
+fixed_by: fix/F-016-impact-backup
 ---
 
 ## Evidence
