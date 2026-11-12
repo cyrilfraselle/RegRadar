@@ -246,6 +246,14 @@ function hubView(){
     +'<div class="tools"><button type="button" class="btn sm" data-act="csv">Export completions (CSV)</button>'
     +'<button type="button" class="btn sm" data-act="reset">Clear training records on this device</button></div></div></section>';
 
+  /* films: motion explainers */
+  html+='<section class="sec" aria-labelledby="flH"><h2 id="flH">Films</h2><div class="rooms">'
+    +room('film-follow-the-money.html','Follow the money (30 s)','Live. How laundering moves through placement, layering and integration, and where a compliance team catches it. One fictional example.')
+    +'<div class="room" aria-disabled="true"><b>Effort follows risk (about 1 min)</b><span>In production. Script fact-checked and approved. The risk-based approach.</span></div>'
+    +'<div class="room" aria-disabled="true"><b>Know who, know why (about 1 min)</b><span>In production. Script fact-checked and approved. Customer due diligence.</span></div>'
+    +'<div class="room" aria-disabled="true"><b>Look through (about 1 min)</b><span>In production. Script fact-checked and approved. Beneficial ownership.</span></div>'
+    +'</div></section>';
+
   /* evidence: certificate and team register */
   html+='<section class="sec" aria-labelledby="evH"><h2 id="evH">Evidence</h2><div class="rooms">'
     +room('academy-certificate.html','Your certificate','Print or save a record of the lessons you completed, with dates, scores and an integrity code. Self-attested.')

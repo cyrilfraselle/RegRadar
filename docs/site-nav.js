@@ -24,7 +24,7 @@
     { id: "compliance", label: "Compliance", items: [
       { href: "home.html",            t: "Briefing",             d: "What is due, waiting for approval, coming up" },
       { href: "board.html",           t: "Work board",           d: "Tasks and findings: assign, move, track" },
-      { href: "workspace.html",       t: "Workspace",            d: "Obligations, law, controls, coverage" },
+      { href: "workspace.html",       t: "Max",            d: "Obligations, law, controls, coverage" },
       { sep: "Assess" },
       { href: "risk-assessment.html", t: "Business risk",        d: "Firm-wide ML/TF risk assessment" },
       { href: "customer-risk.html",   t: "Customer risk",        d: "Scoring, onboarding checklists, reviews" },
