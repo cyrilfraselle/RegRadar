@@ -38,7 +38,9 @@
    (writable everywhere), and a one-time, idempotent import (RR.migrations,
    run by RR.boot) copies what the module kept under its old localStorage
    key. The old key is left untouched as a backup. Migrated so far:
-   Issues and actions (docs/actions-store.js).
+   Controls (docs/controls-store.js, behind docs/controls-data.js) and
+   Issues and actions (docs/actions-store.js). RR.boot loads the files in
+   RR.migrationFiles by itself, so a page needs no extra script tag.
 
    No DOM. The only network use is RR.boot() (pages only), which fetches
    same-origin repo JSON. Everything else runs in plain Node (tests).
@@ -51,6 +53,7 @@
   'use strict';
 
   var VERSION = '1.0.0';
+  var SELF = (typeof document !== 'undefined' && document.currentScript && document.currentScript.src) || '';
   var SCHEMA_VERSION = 1;
   var TABLES = ['meta', 'entities', 'links', 'events'];
 
@@ -244,7 +247,6 @@
 
   /* ═════════════════ the read-only bridge ═════════════════ */
   var MODULES = [
-    { id: 'controls', key: 'regradar-controls-mine', label: 'Controls (Compliance workspace)', page: 'workspace.html?view=controls' },
     { id: 'policies', key: 'regradar-policies', label: 'Policies', page: 'policies.html' },
     { id: 'cases', key: 'regradar-cases', label: 'Cases and STR', page: 'cases.html' },
     { id: 'bwra', key: 'regradar-bwra', label: 'Business risk', page: 'risk-assessment.html' },
@@ -256,6 +258,7 @@
   ];
   // Modules that have moved onto the spine: no longer bridged, but still named in records and the log.
   var MIGRATED = [
+    { id: 'controls', key: 'regradar-controls-mine', label: 'Controls (Compliance workspace)', page: 'workspace.html?view=controls', migrated: true },
     { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html', migrated: true }
   ];
   function moduleById(id) {
@@ -283,7 +286,6 @@
     var out = { entities: [], links: [], people: [], overlay: { obligations: {}, firm_type: '' }, report: [] };
     var people = {};
     var bmap = cfg.bridge || {};
-    var freq = cfg.control_frequency_days || {};
 
     function parse(m) {
       var raw = null;
@@ -311,38 +313,6 @@
     }
     function link(type, from, to, m) { out.links.push({ type: type, from: from, to: to, module: m.id }); }
     function report(m, r, n, note) { out.report.push({ module: m.id, key: m.key, label: m.label, page: m.page, found: !!r.found, error: r.error || '', records: n || 0, note: note || '' }); }
-
-    /* controls: docs/data/controls.json plus the device overlay (same merge as controls-data.js) */
-    (function () {
-      var m = moduleById('controls'), r = parse(m), n = 0;
-      var local = Object.assign({ extra: [], extraMappings: {}, removedMappings: {}, overrides: {}, tests: {} }, (r.value && typeof r.value === 'object') ? r.value : {});
-      var base = (ref.controls && ref.controls.controls) || [];
-      if (!base.length && !r.found) { report(m, r, 0, 'no controls library loaded'); return; }
-      var list = base.map(function (c) { return Object.assign({}, c, { obligation_ids: (c.obligation_ids || []).slice() }); })
-        .concat((local.extra || []).map(function (c) { return Object.assign({}, c, { source: 'local', obligation_ids: (c.obligation_ids || []).slice() }); }));
-      var byId = {}; list.forEach(function (c) { byId[c.id] = c; });
-      list.forEach(function (c) { Object.assign(c, (local.overrides || {})[c.id] || {}); });
-      Object.keys(local.extraMappings || {}).forEach(function (ob) { (local.extraMappings[ob] || []).forEach(function (cid) { var c = byId[cid]; if (c && c.obligation_ids.indexOf(ob) === -1) c.obligation_ids.push(ob); }); });
-      Object.keys(local.removedMappings || {}).forEach(function (ob) { (local.removedMappings[ob] || []).forEach(function (cid) { var c = byId[cid]; if (c) c.obligation_ids = c.obligation_ids.filter(function (x) { return x !== ob; }); }); });
-      list.forEach(function (c) {
-        var days = freq[c.frequency], due = days && dates.valid(c.last_tested) ? dates.addDays(c.last_tested, days) : null;
-        var id = 'CTL:' + c.id;
-        add(m, { id: id, type: 'control', title: c.name || c.id, status: (bmap.control_status || {})[c.status] || 'draft',
-          owner: person(c.owner, { module: m.id }), due: c.status === 'approved' ? due : null,
-          data: { ref: c.id, frequency: c.frequency || '', control_type: c.type || '', last_tested: c.last_tested || '', effectiveness: c.effectiveness || '',
-            date_source: due ? 'last tested ' + c.last_tested + ' + ' + c.frequency + ' cycle (config control_frequency_days)' : '' } }, c.id);
-        n++;
-        (c.obligation_ids || []).forEach(function (ob) { link('mitigates', id, 'OBL:' + ob, m); });
-        var tests = (local.tests || {})[c.id] || [];
-        tests.forEach(function (t, i) {
-          var k = tests.length - 1 - i, tid = 'TST:' + c.id + ':' + k;
-          add(m, { id: tid, type: 'test', title: 'Test of ' + (c.name || c.id), status: ['effective', 'needs_improvement', 'failed'].indexOf(t.result) !== -1 ? t.result : 'effective',
-            data: { tested_on: t.date || '', note: t.note || '' } }, c.id + '#' + k);
-          link('tests', tid, id, m); n++;
-        });
-      });
-      report(m, r, n, r.found ? '' : 'library from docs/data/controls.json; no device changes');
-    })();
 
     /* policies (staff, versions, review cycle) */
     (function () {
@@ -703,6 +673,27 @@
       return l;
     }
 
+    /* ---------- adopting a mirrored record ---------- */
+    // When a module moves onto the spine, records the bridge mirrored earlier keep their ids (so links to them
+    // survive) and become ordinary, writable records of the spine. Their links come along.
+    function adopt(id, o) {
+      o = o || {};
+      var cur = S.ents[id];
+      if (!cur) throw new Error('Not found: ' + id);
+      if (String(cur.origin || '').indexOf('module:') !== 0) return cur;
+      var mod = cur.origin.slice(7), m = moduleById(mod);
+      var next = clone(cur);
+      next.origin = 'spine'; next.src = Object.assign({}, cur.src || {}, { module: mod, migrated: true }); next.src_hash = null;
+      next.rev = (cur.rev || 1) + 1; next.updated_at = clock();
+      store(next);
+      Object.keys(S.links).forEach(function (k) {
+        var l = S.links[k];
+        if (l.from === id && l.origin === cur.origin) storeLink(Object.assign(clone(l), { origin: 'spine', rev: (l.rev || 1) + 1 }));
+      });
+      logEvent('adopt', next, { note: o.note || 'Now kept in the spine: the ' + (m ? m.label : mod) + ' page moved onto it' });
+      return next;
+    }
+
     /* ---------- reference data ---------- */
     function addReference(list2) {
       (list2 || []).forEach(function (e) {
@@ -916,7 +907,7 @@
       link: link, unlink: unlink,
       log: function (action, entityId, note) { return logEvent(action, entityId ? get(entityId) : null, { note: note }); },
       // reference, bridge, demo
-      addReference: addReference, importModules: importModules,
+      addReference: addReference, importModules: importModules, adopt: adopt,
       loadDemo: loadDemo, clearDemo: clearDemo, hasDemo: hasDemo,
       // settings and actor
       getSetting: getSetting, setSetting: setSetting,
@@ -964,6 +955,34 @@
     return api;
   }
 
+  /* ═════════════════ owners of migrated records ═════════════════ */
+  // A simple rule for "is this a person?": boards, committees, teams, departments, vendors, functions and bare
+  // acronyms ("IT Change Board", "IT Operations", "HR") are not people. A name that already matches a team
+  // member is always that person.
+  var NOT_PEOPLE = /\b(board|committee|team|group|department|dept|division|office|council|desk|unit|forum|panel|vendor|supplier|provider|steering|management|function|third party|outsourc\w*)\b/i;
+  var FUNCTION_WORDS = ['it', 'of', 'the', 'and', 'operations', 'procurement', 'finance', 'legal', 'compliance', 'security', 'audit', 'risk', 'engineering', 'support', 'infrastructure',
+    'technology', 'treasury', 'payments', 'onboarding', 'sales', 'marketing', 'product', 'data', 'digital', 'customer', 'service', 'services', 'change', 'monitoring', 'screening', 'fraud', 'hr', 'people', 'senior', 'executive', 'ceo', 'cfo', 'cro', 'coo', 'cto', 'mlro'];
+  function looksLikePerson(n) {
+    n = String(n || '').trim();
+    if (!n || NOT_PEOPLE.test(n)) return false;
+    if (/^[A-Z0-9&\/-]{2,6}$/.test(n)) return false;
+    if (n.toLowerCase().split(/[\s,&\/-]+/).filter(Boolean).every(function (w) { return FUNCTION_WORDS.indexOf(w) !== -1; })) return false;
+    if (n.split(/\s+/).length > 5) return false;
+    return /[A-Za-z]/.test(n);
+  }
+  function resolveOwner(sp, name, note) {
+    var n = String(name == null ? '' : name).trim();
+    if (!n || /^unassigned$/i.test(n)) return null;
+    var id = 'person:' + slug(n), p = sp.get(id);
+    if (p && p.type === 'person') return id;
+    var low = n.toLowerCase(), hit = sp.people().filter(function (x) { return x.title.toLowerCase() === low; })[0];
+    if (hit) return hit.id;
+    if (!looksLikePerson(n)) return null;
+    var cfg = sp.config();
+    sp.create('person', { id: id, title: n, status: 'active', data: { role: guessRole(n, cfg), job_title: '', team: '' } }, { origin: 'discovered', action: 'import', note: note || 'Found in a module' });
+    return id;
+  }
+
   /* ═════════════════ the global ═════════════════ */
   var RR = {
     version: VERSION,
@@ -978,15 +997,36 @@
        registered migration after the bridge. run() must be idempotent, must never write or delete
        the module's old key (it stays as a backup) and returns a small report. */
     migrations: [],
-    runMigrations: function (spine, read) {
+    /* The module files that hold a migration. RR.boot loads any that is not on the page yet (same
+       folder as rr-core.js), so pages that only open the spine need no extra script tag. `order`
+       matters: controls first, because findings and policies link to them. */
+    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'actions', file: 'actions-store.js' }],
+    runMigrations: function (spine, read, ref) {
       var who = spine.actor(), out = [];
-      RR.migrations.forEach(function (m) {
+      RR.migrations.slice().sort(function (a, b) { return (a.order || 100) - (b.order || 100); }).forEach(function (m) {
         spine.setActor('system:bridge'); // imports are attributed to the module import, like the bridge
-        try { out.push(Object.assign({ id: m.id }, m.run(spine, read))); }
+        try { out.push(Object.assign({ id: m.id }, m.run(spine, read, ref || {}))); }
         catch (e) { out.push({ id: m.id, status: 'error', error: String(e && e.message || e) }); }
       });
       spine.setActor(who);
       return out;
+    },
+    loadMigrations: function () {
+      if (typeof document === 'undefined' || !SELF) return Promise.resolve();
+      var q = SELF.indexOf('?') !== -1 ? SELF.slice(SELF.indexOf('?')) : '', dir = SELF.replace(/[?#].*$/, '').replace(/[^\/]*$/, '');
+      return Promise.all(RR.migrationFiles.filter(function (f) { return !RR.migrations.some(function (m) { return m.id === f.id; }); }).map(function (f) {
+        return new Promise(function (resolve) {
+          var el = document.createElement('script');
+          el.src = dir + f.file + q; el.onload = resolve; el.onerror = function () { resolve(); };   // a missing file just means no migration
+          document.head.appendChild(el);
+        });
+      }));
+    },
+    /* Who owns a record: a team member when the name reads like a person, plain text otherwise
+       ("IT Change Board", "HR"). Used by migrated modules. Returns the person id or null. */
+    owners: {
+      looksLikePerson: function (n) { return looksLikePerson(n); },
+      resolve: function (sp, name, note) { return resolveOwner(sp, name, note); }
     },
     dates: dates,
     util: { csv: csv, csvCell: csvCell, slug: slug, stable: stable, hash: fnv, clone: clone },
@@ -1012,14 +1052,25 @@
       s.addReference(reference.regulations(r[2]));
       if (o.items) s.addReference(reference.regChanges(r[5]));
       var titles = {}; ((r[4] && r[4].tracks) || []).forEach(function (t) { titles[t.id] = t.title; });
-      var report = s.importModules(function (k) { return ls ? ls.getItem(k) : null; }, { controls: r[3], academyTitles: titles });
-      var migrations = RR.runMigrations(s, function (k) { return ls ? ls.getItem(k) : null; });
+      var read = function (k) { return ls ? ls.getItem(k) : null; };
+      var ref = { controls: r[3], academyTitles: titles };
+      // Migrated modules first: they take over (adopt) what the bridge mirrored earlier, then the bridge mirrors the rest.
+      await RR.loadMigrations();
+      var migrations = RR.runMigrations(s, read, ref);
+      var report = s.importModules(read, ref);
       var actor = s.getSetting('actor');
       if (actor && s.get(actor)) s.setActor(actor);
       // Another tab (say the board) wrote to the spine: tell the page so it can re-open.
-      if (o.onExternalChange && !RR._listening && typeof window !== 'undefined') {
-        RR._listening = true;
-        window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('regradar-spine-') === 0) o.onExternalChange(); });
+      if (o.onExternalChange && typeof window !== 'undefined') {
+        RR._listeners = RR._listeners || [];
+        // a page that re-opens the spine builds a new closure each time: keep one listener per source text
+        var src = String(o.onExternalChange);
+        RR._listeners = RR._listeners.filter(function (f) { return String(f) !== src; });
+        RR._listeners.push(o.onExternalChange);
+        if (!RR._listening) {
+          RR._listening = true;
+          window.addEventListener('storage', function (e) { if (e.key && e.key.indexOf('regradar-spine-') === 0) RR._listeners.slice().forEach(function (f) { try { f(); } catch (x) { /* listener error */ } }); });
+        }
       }
       return { spine: s, report: report, migrations: migrations, storageOk: storageOk, applicability: r[2], obligationsMeta: r[1] && r[1]._meta };
     },

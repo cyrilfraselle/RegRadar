@@ -1412,9 +1412,10 @@ function cannotOpen(msg) {
 async function boot() {
   var loadErr = [];
   try { OBS = (await fetchJSON('data/obligations.json')).obligations || []; } catch (e) { loadErr.push('obligations'); }
-  try { var cd = await window.ControlsData.load(); CONTROLS = cd.controls; TESTS = cd.tests || {}; } catch (e) { loadErr.push('controls'); }
+  // The spine first: ControlsData (the controls library lives in it) then shares this page's instance.
   try { BOOT = await RR.boot({ onExternalChange: externalChange }); SP = BOOT.spine; }
   catch (e) { cannotOpen(e.message || 'The shared data could not be loaded.'); return; }
+  try { var cd = await window.ControlsData.load(); CONTROLS = cd.controls; TESTS = cd.tests || {}; } catch (e) { loadErr.push('controls'); }
   hookSpine();
   if (!BOOT.storageOk) toast('Could not save on this device (storage blocked or full). Changes last until you close the page.');
   // The one-time import of the old device-local register ran inside RR.boot (docs/actions-store.js).
