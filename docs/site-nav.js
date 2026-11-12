@@ -22,6 +22,8 @@
     { id: "regwatch", label: "RegWatch", href: "regwatch.html" },
     // Standalone tools: plain links.
     { id: "compliance", label: "Compliance", items: [
+      { href: "home.html",            t: "Briefing",             d: "What is due, waiting for approval, coming up" },
+      { href: "board.html",           t: "Work board",           d: "Tasks and findings: assign, move, track" },
       { href: "workspace.html",       t: "Workspace",            d: "Obligations, law, controls, coverage" },
       { sep: "Assess" },
       { href: "risk-assessment.html", t: "Business risk",        d: "Firm-wide ML/TF risk assessment" },
@@ -39,6 +41,7 @@
     { id: "academy", label: "Academy", items: [
       { href: "academy.html",     t: "Learning path",       d: "Nine short modules, your next step" },
       { href: "film-follow-the-money.html", t: "Film: Follow the money", d: "30-second explainer, first lesson" },
+      { href: "academy-register.html", t: "Training evidence", d: "Certificates, team register, evidence pack" },
       { href: "workstation.html", t: "Analyst workstation", d: "The full simulation" },
       { sep: "Practice modules" },
       { href: "laundromat.html",  t: "01 · Laundromat",     d: "Spot the red flags" },
@@ -51,12 +54,13 @@
 
   var GROUP_OF = {
     "regwatch.html": "regwatch",
+    "home.html": "compliance", "board.html": "compliance",
     "workspace.html": "compliance", "law.html": "compliance", "obligations.html": "compliance",
     "risk-assessment.html": "compliance", "customer-risk.html": "compliance", "cases.html": "compliance",
     "policies.html": "compliance", "actions.html": "compliance", "impact.html": "compliance", "ask.html": "compliance",
     "controls.html": "compliance", "dashboard.html": "compliance",
     "country-risk.html": "country", "glossary.html": "academy",
-    "academy.html": "academy", "film-follow-the-money.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
+    "academy.html": "academy", "film-follow-the-money.html": "academy", "academy-certificate.html": "academy", "academy-register.html": "academy", "workstation.html": "academy", "laundromat.html": "academy",
     "ownership.html": "academy", "desk.html": "academy", "shift.html": "academy",
     "triage.html": "academy", "casefile.html": "academy",
   };
