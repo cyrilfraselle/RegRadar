@@ -1811,10 +1811,20 @@
        "t": "text",
        "x": 376,
        "y": 76,
-       "text": "60%: controls",
+       "text": "60%",
        "tone": "violet",
        "d": 3.5,
        "anchor": "start",
+       "bold": true
+      },
+      {
+       "t": "text",
+       "x": 354,
+       "y": 76,
+       "text": "controls",
+       "tone": "violet",
+       "d": 3.5,
+       "anchor": "end",
        "bold": true
       },
       {
