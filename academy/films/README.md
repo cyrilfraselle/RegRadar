@@ -6,9 +6,9 @@ through the script review gate (`academy/SCRIPT_REVIEW.md`) **before** anything 
 | Film | Module | Title | Length | Gate status |
 |---|---|---|---|---|
 | 01 | `context` | Follow the money | 30 s | Built as a lab prototype (`docs/labs/010-follow-the-money/`, branch `lab/010-follow-the-money`); ledger `FACTCHECK.md` there |
-| 02 | `aml-basics` | Effort follows risk | 58 s | Script v1 · [`aml-basics.script.md`](aml-basics.script.md) · independent check pending |
-| 03 | `cdd-kyc` | Know who, know why | 60 s | Script v1 · [`cdd-kyc.script.md`](cdd-kyc.script.md) · independent check pending |
-| 04 | `beneficial-ownership` | Look through | 60 s | Script v1 · [`beneficial-ownership.script.md`](beneficial-ownership.script.md) · independent check pending |
+| 02 | `aml-basics` | Effort follows risk | 58 s | Script v2 · [`aml-basics.script.md`](aml-basics.script.md) · independent check done, fixes applied · owner sign-off pending ([`SIGNOFF.md`](SIGNOFF.md)) |
+| 03 | `cdd-kyc` | Know who, know why | 60 s | Script v2 · [`cdd-kyc.script.md`](cdd-kyc.script.md) · independent check done, fixes applied · owner sign-off pending ([`SIGNOFF.md`](SIGNOFF.md)) |
+| 04 | `beneficial-ownership` | Look through | 60 s | Script v2 · [`beneficial-ownership.script.md`](beneficial-ownership.script.md) · independent check done, fixes applied · owner sign-off pending ([`SIGNOFF.md`](SIGNOFF.md)) |
 
 Each `<id>.script.md` holds the brief, the scene-by-scene storyboard (timecodes, visual, kinetic
 type, caption) and the numbered claim ledger. When a film is built, its ledger moves next to the
