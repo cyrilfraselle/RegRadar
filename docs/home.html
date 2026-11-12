@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar: Briefing</title>
+<meta name="description" content="What is due, what waits for approval, who carries the work, and which new obligations are coming.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="home.css?v=20261017">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the briefing</a>
+<script src="site-nav.js?v=20261015"></script>
+
+<main id="main" class="wrap">
+  <header class="head">
+    <div>
+      <p class="eyebrow" id="dateline">Briefing</p>
+      <h1>Briefing</h1>
+      <p class="lead" id="headline">Reading your data on this device…</p>
+    </div>
+    <div class="head-tools">
+      <label for="whoSel">Show</label>
+      <select class="sel" id="whoSel"><option value="">Whole team</option></select>
+      <a class="btn" href="board.html">Open the work board</a>
+      <button class="btn" type="button" data-act="csv">Download CSV</button>
+    </div>
+  </header>
+
+  <div id="banners"></div>
+
+  <div class="cols">
+    <section class="pane" aria-labelledby="h-due">
+      <div class="pane-h"><h2 id="h-due">Due and overdue</h2><span class="hint" id="due-scope"></span></div>
+      <div id="due"></div>
+    </section>
+
+    <section class="pane" aria-labelledby="h-files">
+      <div class="pane-h"><h2 id="h-files">Files to review <span class="count" id="files-count"></span></h2><span class="hint">Waiting for approval or a decision</span></div>
+      <div id="files"></div>
+    </section>
+
+    <section class="pane" aria-labelledby="h-load">
+      <div class="pane-h"><h2 id="h-load">Team workload</h2><a class="btn" href="board.html?dispatch=1">Dispatch work</a></div>
+      <div id="load"></div>
+    </section>
+
+    <section class="pane" aria-labelledby="h-hz">
+      <div class="pane-h">
+        <h2 id="h-hz">New obligations</h2>
+        <fieldset class="seg" id="hzSeg"><legend class="sr">Look ahead</legend></fieldset>
+      </div>
+      <div class="row-actions" style="margin:-4px 0 12px">
+        <label class="lbl" for="firmSel">Firm type</label>
+        <select class="sel" id="firmSel"><option value="">All firm types</option></select>
+      </div>
+      <div id="hz"></div>
+    </section>
+  </div>
+
+  <p class="note" id="footnote">Prototype, not legal advice. Everything stays in this browser. Regulatory dates come from the repository data and are labelled with their source.</p>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="rr-core.js?v=20261017"></script>
+<script src="home.js?v=20261017"></script>
+</body>
+</html>

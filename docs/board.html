@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar: Work board</title>
+<meta name="description" content="Tasks and findings for the compliance team: dispatch, assign, move, and keep a trail.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="home.css?v=20261017">
+<link rel="stylesheet" href="board.css?v=20261017">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<script src="site-nav.js?v=20261015"></script>
+
+<main id="main" class="wrap">
+  <header class="head">
+    <div>
+      <p class="eyebrow"><a href="home.html">Briefing</a> / Work board</p>
+      <h1>Work board</h1>
+      <p class="sub">Tasks and findings for the team. Drag a card to another column, or use the move buttons on each card. Every change goes into the event log.</p>
+    </div>
+    <div class="head-tools">
+      <button class="btn pri" type="button" data-act="dispatch">Dispatch work</button>
+      <button class="btn" type="button" data-act="csv">Download CSV</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="tool"><label for="asgSel">Assignee</label><select class="sel" id="asgSel"></select></div>
+    <div class="tool"><label for="actorSel">Acting as</label><select class="sel" id="actorSel"></select></div>
+    <p class="hint tool-note">"Acting as" stands in for sign-in until accounts exist: it names who did what in the event log.</p>
+  </div>
+
+  <div id="banners"></div>
+
+  <div class="board" id="board" tabindex="-1" aria-label="Work board"></div>
+
+  <section class="pane activity" aria-labelledby="h-act">
+    <div class="pane-h"><h2 id="h-act">Activity</h2><button class="btn" type="button" data-act="csv-log">Download event log (CSV)</button></div>
+    <div id="activity"></div>
+  </section>
+
+  <p class="note">Prototype, not legal advice. Everything stays in this browser. Cards from the Issues and actions page are shown read-only here until that module moves onto the shared data spine; change them on that page.</p>
+</main>
+
+<div class="sr" id="live" aria-live="polite" aria-atomic="true"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<dialog id="dlg-card" aria-labelledby="dlg-card-h"></dialog>
+<dialog id="dlg-dispatch" aria-labelledby="dlg-dispatch-h"></dialog>
+
+<script src="rr-core.js?v=20261017"></script>
+<script src="board.js?v=20261017"></script>
+</body>
+</html>

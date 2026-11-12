@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "name": "Data spine demo (briefing and work board)",
+    "version": 1,
+    "fictional": true,
+    "disclaimer": "Fictional demo data for the fictional firm CF Bank (a real US 'CFBank' exists; this is not it). The team, tasks, findings, cases, dates and scores are invented to show the briefing and the work board working. Names reuse the fictional people of the other RegRadar demos. Not real audit, inspection or case output.",
+    "dates": "due_off is an offset in days from the day you load the demo (negative = overdue), so the demo always looks current.",
+    "links": "OBL:<id> refers to docs/data/obligations.json and CTL:<id> to docs/data/controls.json; other link targets are keys in this file."
+  },
+  "firm": { "name": "CF Bank (fictional)", "type": "emi" },
+  "people": [
+    { "key": "mlro", "name": "T. Nguyen", "role": "mlro", "job_title": "Compliance Officer (MLRO)", "team": "Compliance" },
+    { "key": "mgr", "name": "R. Haddad", "role": "manager", "job_title": "Compliance manager", "team": "Compliance" },
+    { "key": "an1", "name": "Sanmi O.", "role": "analyst", "job_title": "AML analyst", "team": "Compliance" },
+    { "key": "an2", "name": "M. Van Damme", "role": "analyst", "job_title": "KYC quality lead", "team": "Compliance" }
+  ],
+  "issues": [
+    { "key": "i1", "title": "Onboarding files missing proof of identity verification (demo)", "status": "in_progress", "owner": "an2", "due_off": -6,
+      "data": { "priority": "high", "source": "Internal quality review (demo)", "description": "Fictional finding: 4 of 30 sampled onboarding files had no stored verification record." },
+      "links": [ { "type": "addresses", "to": "OBL:AMLR-art22" }, { "type": "concerns", "to": "CTL:ctl-01" } ] },
+    { "key": "i2", "title": "PEP book monitoring not evidenced for one quarter (demo)", "status": "todo", "owner": "an1", "due_off": 21,
+      "data": { "priority": "medium", "source": "Control test (demo)", "description": "Fictional finding raised from a control test." },
+      "links": [ { "type": "addresses", "to": "OBL:AMLR-art46" }, { "type": "concerns", "to": "CTL:ctl-07" } ] },
+    { "key": "i3", "title": "Transaction monitoring rule thresholds not reviewed after product launch (demo)", "status": "review", "owner": "an1", "due_off": 3,
+      "data": { "priority": "high", "source": "Self-identified (demo)", "description": "Fictional finding: remediation done, waiting for MLRO validation." },
+      "links": [ { "type": "addresses", "to": "OBL:AMLR-art26" }, { "type": "concerns", "to": "CTL:ctl-05" } ] }
+  ],
+  "tasks": [
+    { "key": "t1", "title": "Back-fill verification records on the 4 sampled files", "status": "in_progress", "owner": "an2", "due_off": -3,
+      "data": { "kind": "remediation", "priority": "high" }, "links": [ { "type": "fixes", "to": "i1" }, { "type": "concerns", "to": "CTL:ctl-01" } ] },
+    { "key": "t2", "title": "Retest: CDD identification and verification at onboarding", "status": "todo", "owner": "an1", "due_off": -1,
+      "data": { "kind": "control_test", "priority": "high" }, "links": [ { "type": "concerns", "to": "CTL:ctl-01" }, { "type": "addresses", "to": "OBL:AMLR-art22" } ] },
+    { "key": "t3", "title": "Validate the new monitoring thresholds and sign off", "status": "review", "owner": "mlro", "due_off": 2,
+      "data": { "kind": "remediation", "priority": "high" }, "links": [ { "type": "fixes", "to": "i3" } ] },
+    { "key": "t4", "title": "Quarterly beneficial-owner register reconciliation", "status": "todo", "owner": "an2", "due_off": 5,
+      "data": { "kind": "control_test", "priority": "medium" }, "links": [ { "type": "concerns", "to": "CTL:ctl-03" }, { "type": "addresses", "to": "OBL:AMLR-art24" } ] },
+    { "key": "t5", "title": "Evidence PEP book monitoring for Q3", "status": "todo", "owner": "an1", "due_off": 12,
+      "data": { "kind": "remediation", "priority": "medium" }, "links": [ { "type": "fixes", "to": "i2" }, { "type": "concerns", "to": "CTL:ctl-07" } ] },
+    { "key": "t6", "title": "Map AMLR Art. 26 duties to the monitoring controls", "status": "in_progress", "owner": "mgr", "due_off": 18,
+      "data": { "kind": "reg_change", "priority": "medium", "description": "Prepare for the AMLR application date shown on the briefing." }, "links": [ { "type": "addresses", "to": "OBL:AMLR-art26" } ] },
+    { "key": "t7", "title": "Periodic review of three high-risk customer files", "status": "todo", "owner": "an2", "due_off": 9,
+      "data": { "kind": "customer_review", "priority": "high" }, "links": [ { "type": "addresses", "to": "OBL:AMLR-art34" } ] },
+    { "key": "t8", "title": "Adverse-media screening sample test", "status": "todo", "owner": "an1", "due_off": 27,
+      "data": { "kind": "control_test", "priority": "low" }, "links": [ { "type": "concerns", "to": "CTL:ctl-08" } ] },
+    { "key": "t9", "title": "Assign AML refresher training to the onboarding team", "status": "todo", "owner": "mgr", "due_off": 40,
+      "data": { "kind": "training", "priority": "low" } },
+    { "key": "t10", "title": "Draft the STR procedure update for the board pack", "status": "review", "owner": "mgr", "due_off": 6,
+      "data": { "kind": "policy_review", "priority": "medium" }, "links": [ { "type": "addresses", "to": "OBL:AMLR-art69" } ] },
+    { "key": "t11", "title": "Close out last quarter's four-eyes onboarding sample", "status": "done", "owner": "an1", "due_off": -10,
+      "data": { "kind": "control_test", "priority": "medium" }, "links": [ { "type": "concerns", "to": "CTL:ctl-06" } ] },
+    { "key": "t12", "title": "Annual business-wide risk assessment: update scenario scores", "status": "in_progress", "owner": "mlro", "due_off": 24,
+      "data": { "kind": "other", "priority": "medium" } }
+  ],
+  "policies": [
+    { "key": "p1", "title": "AML/CFT policy (demo)", "status": "approved", "owner": "mlro", "due_off": 19,
+      "data": { "ref": "CFB-AML-01", "cycle_months": 12 }, "links": [ { "type": "implements", "to": "OBL:AMLR-art26" }, { "type": "implements", "to": "OBL:AMLR-art34" } ] },
+    { "key": "p2", "title": "Customer due diligence procedure (demo)", "status": "in_review", "owner": "an2", "due_off": -4,
+      "data": { "ref": "CFB-AML-02", "cycle_months": 12 }, "links": [ { "type": "implements", "to": "OBL:AMLR-art19" }, { "type": "implements", "to": "OBL:AMLR-art22" } ] },
+    { "key": "p3", "title": "Suspicious transaction reporting procedure (demo)", "status": "approved", "owner": "mgr", "due_off": 75,
+      "data": { "ref": "CFB-AML-05", "cycle_months": 12 }, "links": [ { "type": "implements", "to": "OBL:AMLR-art69" } ] }
+  ],
+  "cases": [
+    { "key": "c1", "title": "Rapid in-and-out transfers on a new e-money account (demo)", "status": "mlro", "owner": "mlro", "due_off": 2,
+      "data": { "priority": "high", "typology": "pass-through" }, "links": [ { "type": "addresses", "to": "OBL:AMLR-art69" } ] },
+    { "key": "c2", "title": "Cash-funded top-ups below a reporting threshold (demo)", "status": "review", "owner": "an1", "due_off": 8,
+      "data": { "priority": "medium", "typology": "structuring" } }
+  ],
+  "assessments": [
+    { "key": "a1", "title": "Business-wide risk assessment 2026 (demo)", "status": "in_review", "owner": "mlro", "due_off": 45,
+      "data": { "kind": "Business-wide risk assessment" } }
+  ],
+  "tests": [
+    { "key": "x1", "title": "Test of CDD identification and verification at onboarding (demo)", "status": "failed",
+      "data": { "note": "Fictional: 4 of 30 files without verification record." }, "links": [ { "type": "tests", "to": "CTL:ctl-01" } ] },
+    { "key": "x2", "title": "Test of transaction monitoring rule tuning (demo)", "status": "effective",
+      "data": { "note": "Fictional sample test." }, "links": [ { "type": "tests", "to": "CTL:ctl-05" } ] }
+  ],
+  "training": [
+    { "key": "r1", "title": "Academy: Customer due diligence and KYC (demo)", "status": "completed", "owner": "an1", "data": { "module": "cdd-kyc", "score": "4/4" } },
+    { "key": "r2", "title": "Academy: Customer due diligence and KYC (demo)", "status": "completed", "owner": "an2", "data": { "module": "cdd-kyc", "score": "3/4" } },
+    { "key": "r3", "title": "Academy: Suspicious transaction reports (STRs) (demo)", "status": "assigned", "owner": "mgr", "due_off": 30, "data": { "module": "suspicious-transaction-reports" } },
+    { "key": "r4", "title": "Academy: Beneficial ownership (demo)", "status": "assigned", "owner": "an1", "due_off": 14, "data": { "module": "beneficial-ownership" } }
+  ]
+}
