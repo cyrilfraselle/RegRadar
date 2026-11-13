@@ -4,12 +4,12 @@ title: Ask the law says "Found 8 articles in 9 instruments" when it only means 9
 area: shared
 severity: P3
 risk: low
-status: open
+status: fixed
 effort: S
 files:
   - docs/ask.html
 found: 2026-11-12
-fixed_by:
+fixed_by: fix/F-030-ask-status-count
 ---
 
 ## Evidence
