@@ -495,14 +495,14 @@ window.MAX_PREVIEW = true;
     this.tail.setAttribute('d', taper(tp, lerp(5.4, 4.2, e), lerp(3, 3.4, e)));
     var self = this;
     M.legs.forEach(function (L, i) {
-      var h = [lerp(L.hip[0], M.c[0], e * 0.6), lerp(L.hip[1], M.c[1] + 6, e * 0.6)];
-      var k = [lerp(L.knee[0], h[0], e), lerp(L.knee[1], h[1], e)], f = [lerp(L.foot[0], h[0], e), lerp(L.foot[1], h[1], e)];
+      var e2 = clamp(e * 1.6, 0, 1), h = [lerp(L.hip[0], M.c[0], e2 * 0.8), lerp(L.hip[1], M.c[1] + 4, e2 * 0.8)];
+      var k = [lerp(L.knee[0], h[0], e2), lerp(L.knee[1], h[1], e2)], f = [lerp(L.foot[0], h[0], e2), lerp(L.foot[1], h[1], e2)];
       self.legEls[i].setAttribute('d', 'M' + f1(h[0]) + ' ' + f1(h[1]) + 'L' + f1(k[0]) + ' ' + f1(k[1]) + 'L' + f1(f[0]) + ' ' + f1(f[1]));
-      self.legEls[i].setAttribute('stroke-width', f1(LEGS[i].w * (1 - e)));
-      self.thEls[i].setAttribute('transform', 'translate(' + f1((h[0] + k[0]) / 2) + ' ' + f1((h[1] + k[1]) / 2) + ') scale(' + f1(1 - e) + ')');
+      self.legEls[i].setAttribute('stroke-width', f1(LEGS[i].w * (1 - e2)));
+      self.thEls[i].setAttribute('transform', 'translate(' + f1((h[0] + k[0]) / 2) + ' ' + f1((h[1] + k[1]) / 2) + ') scale(' + f1(1 - e2) + ')');
       self.shEls[i].setAttribute('opacity', f1(0.8 * (1 - e)));
     });
-    this.rim.setAttribute('opacity', f1(1 - e));
+    this.rim.setAttribute('opacity', f1(clamp(1 - e * 2.5, 0, 1)));
     this.bshadow.setAttribute('opacity', f1(1 - e));
     this.g.setAttribute('transform', 'translate(' + f1(this.x * (1 - e)) + ' 0)');
     this.sq.setAttribute('transform', 'translate(' + f1(M.c[0]) + ' ' + f1(M.c[1]) + ') scale(' + f1(sx) + ' ' + f1(sy) + ') translate(' + f1(-M.c[0]) + ' ' + f1(-M.c[1]) + ')');
@@ -717,9 +717,9 @@ window.MAX_PREVIEW = true;
     btn.classList.add('mx-on');
     anim(glass, [{ transform: 'scale(.15)', opacity: 0 }, { transform: 'scale(1.12)', opacity: 1, offset: 0.45 },
       { transform: 'scale(.96)', offset: 0.7 }, { transform: 'scale(1.015)', offset: 0.86 }, { transform: 'scale(1)', opacity: 1 }],
-      { duration: 760, easing: 'cubic-bezier(.25,.7,.3,1)' });
+      { duration: 760, delay: 240, fill: 'backwards', easing: 'cubic-bezier(.25,.7,.3,1)' });
     anim(btn.querySelector('.mx-glow2'), [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 0.85, transform: 'scale(1.15)', offset: 0.35 }, { opacity: 0, transform: 'scale(1.5)' }],
-      { duration: 900, easing: 'ease-out' });
+      { duration: 900, delay: 240, fill: 'backwards', easing: 'ease-out' });
   }
   function finishArrival() {
     removeWalker();
