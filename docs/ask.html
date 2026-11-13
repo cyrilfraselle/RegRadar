@@ -317,7 +317,8 @@ async function run(){
     var r=ix.search(q,{k:settings().topK,celexes:SCOPE,includeRegister:useReg});
     LAST={q:q,res:r,useReg:useReg,answer:null};
     renderResults();
-    setStatus(r.hits.length?('Found '+r.hits.length+' articles in '+SCOPE.filter(function(c){return ix.laws[c]}).length+' instruments.'):'No passage matched.');
+    var hitLaws={};r.hits.forEach(function(h){if(h.celex)hitLaws[h.celex]=1});
+    setStatus(r.hits.length?('Found '+r.hits.length+' articles in '+Object.keys(hitLaws).length+' of '+SCOPE.filter(function(c){return ix.laws[c]}).length+' instruments searched.'):'No passage matched.');
     store.addHistory({q:q,hits:r.hits.slice(0,3).map(function(h){return h.name+(h.art?' Art. '+h.art:'')}),state:null});
     renderHistory();
     $('useReg').checked=false;
