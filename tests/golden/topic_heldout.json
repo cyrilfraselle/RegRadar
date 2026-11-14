@@ -1,0 +1,402 @@
+{
+ "_meta": {
+  "purpose": "Held-out set: labelled after the tag rules were written and NOT used to tune them. Its score is the honest out-of-sample estimate; tests/test_topic_precision.py reports it and fails only below the looser held-out thresholds.",
+  "labelled_by": "scraper-v2 agent, 2026-11-14, title text only, same rule as topic_golden.json; ambiguous titles (TFR Art. 9, 13, 18, 22, 33; AMLD6 Art. 24, 36) left out",
+  "thresholds": {
+   "precision": 0.85,
+   "recall": 0.6
+  },
+  "count": 62
+ },
+ "cases": [
+  {
+   "text": "Subject matter",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 1 title",
+   "expected": []
+  },
+  {
+   "text": "Scope",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 2 title",
+   "expected": []
+  },
+  {
+   "text": "Definitions",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 3 title",
+   "expected": []
+  },
+  {
+   "text": "Information accompanying transfers of funds",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 4 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Transfers of funds within the Union",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 5 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Transfers of funds to outside the Union",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 6 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Detection of missing information on the payer or the payee",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 7 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Transfers of funds with missing or incomplete information on the payer or the payee",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 8 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Retention of information on the payer and the payee accompanying the transfer",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 10 title",
+   "expected": [
+    "record-keeping",
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Detection of missing information on the payer or the payee",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 11 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Transfers of funds with missing information on the payer or the payee",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 12 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Information accompanying transfers of crypto-assets",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 14 title",
+   "expected": [
+    "transfers-of-funds",
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Batch file transfers of crypto-assets",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 15 title",
+   "expected": [
+    "transfers-of-funds",
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Detection of missing information on the originator or the beneficiary",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 16 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Transfers of crypto-assets with missing or incomplete information on the originator or the beneficiary",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 17 title",
+   "expected": [
+    "transfers-of-funds",
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Retention of information on the originator and the beneficiary accompanying the transfer",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 19 title",
+   "expected": [
+    "record-keeping",
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Detection of missing information on the originator or the beneficiary",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 20 title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Transfers of crypto-assets with missing information on the originator or the beneficiary",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 21 title",
+   "expected": [
+    "transfers-of-funds",
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Internal policies, procedures and controls to ensure implementation of restrictive measures",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 23 title",
+   "expected": [
+    "governance-risk-assessment",
+    "sanctions"
+   ]
+  },
+  {
+   "text": "Data protection",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 25 title",
+   "expected": []
+  },
+  {
+   "text": "Record retention",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 26 title",
+   "expected": [
+    "record-keeping"
+   ]
+  },
+  {
+   "text": "Administrative sanctions and measures",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 28 title",
+   "expected": []
+  },
+  {
+   "text": "Publication of sanctions and measures",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 30 title",
+   "expected": []
+  },
+  {
+   "text": "Application of sanctions and measures by competent authorities",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 31 title",
+   "expected": []
+  },
+  {
+   "text": "Reporting of breaches",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 32 title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Committee procedure",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 34 title",
+   "expected": []
+  },
+  {
+   "text": "Repeal",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 39 title",
+   "expected": []
+  },
+  {
+   "text": "Entry into force",
+   "source": "TFR (Regulation (EU) 2023/1113) Art. 40 title",
+   "expected": []
+  },
+  {
+   "text": "Subject matter",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 1 title",
+   "expected": []
+  },
+  {
+   "text": "Definitions",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 2 title",
+   "expected": []
+  },
+  {
+   "text": "Checks on the senior management and beneficial owners of certain obliged entities",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 6 title",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Risk assessment at Union level",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 7 title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "National risk assessment",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 8 title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Statistics",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 9 title",
+   "expected": []
+  },
+  {
+   "text": "Central beneficial ownership registers",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 10 title",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "General rules regarding access to beneficial ownership registers by competent authorities, self-regulatory bodies and obliged entities",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 11 title",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Specific access rules to beneficial ownership registers for persons with legitimate interest",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 12 title",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Procedure for the verification and mutual recognition of a legitimate interest to access beneficial ownership information",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 13 title",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Exceptions to the access rules to beneficial ownership registers",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 15 title",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Bank account registers and electronic data retrieval systems",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 16 title",
+   "expected": []
+  },
+  {
+   "text": "Single access point to real estate information",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 18 title",
+   "expected": []
+  },
+  {
+   "text": "Establishment of the FIU",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 19 title",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Responses to requests for information",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 22 title",
+   "expected": []
+  },
+  {
+   "text": "Instructions to monitor transactions or activities",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 25 title",
+   "expected": [
+    "ongoing-monitoring"
+   ]
+  },
+  {
+   "text": "FIU annual report",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 27 title",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Feedback by FIU",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 28 title",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Cooperation between FIUs",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 29 title",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Exchange of information between FIUs",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 31 title",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Powers and resources of national supervisors",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 37 title",
+   "expected": []
+  },
+  {
+   "text": "Risk-based supervision",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 40 title",
+   "expected": []
+  },
+  {
+   "text": "Disclosure to FIUs",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 42 title",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Exchange of information in relation to implementation of group-wide policies in third countries",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 48 title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Pecuniary sanctions",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 55 title",
+   "expected": []
+  },
+  {
+   "text": "Administrative measures",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 56 title",
+   "expected": []
+  },
+  {
+   "text": "Periodic penalty payments",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 57 title",
+   "expected": []
+  },
+  {
+   "text": "Publication of pecuniary sanctions, administrative measures and periodic penalty payments",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 58 title",
+   "expected": []
+  },
+  {
+   "text": "Reporting of breaches and protection of reporting persons",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 60 title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Cooperation with authorities in charge of implementing targeted financial sanctions",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 66 title",
+   "expected": [
+    "sanctions"
+   ]
+  },
+  {
+   "text": "Processing of certain categories of personal data",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 70 title",
+   "expected": []
+  },
+  {
+   "text": "Transposition",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 78 title",
+   "expected": []
+  },
+  {
+   "text": "Entry into force",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 79 title",
+   "expected": []
+  },
+  {
+   "text": "Addressees",
+   "source": "AMLD6 (Directive (EU) 2024/1640) Art. 80 title",
+   "expected": []
+  }
+ ]
+}
