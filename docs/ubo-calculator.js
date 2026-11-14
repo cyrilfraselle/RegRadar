@@ -445,7 +445,7 @@
       return '<tr data-i="' + i + '"><td data-l="Name"><input class="in" data-f="name" aria-label="Name of party ' + (i + 1) + '" value="' + esc(p.name) + '" maxlength="120"></td>' +
         '<td data-l="Type"><select class="sel" data-f="type" aria-label="Type of ' + esc(p.name || 'party ' + (i + 1)) + '"><option value="entity"' + (p.type === 'entity' ? ' selected' : '') + '>Legal entity</option><option value="person"' + (p.type === 'person' ? ' selected' : '') + '>Natural person</option></select></td>' +
         '<td data-l="Customer"><label class="cust"><input type="radio" name="cust" data-f="cust"' + (M.customer === p.id ? ' checked' : '') + (p.type === 'person' ? ' disabled' : '') + '> <span>Customer</span></label></td>' +
-        '<td data-l=""><button class="btn sm danger" type="button" data-act="del" aria-label="Remove ' + esc(p.name || 'party ' + (i + 1)) + '">Remove</button></td></tr>';
+        '<td data-l=""><button class="btn danger" type="button" data-act="del" aria-label="Remove ' + esc(p.name || 'party ' + (i + 1)) + '">Remove</button></td></tr>';
     }).join('');
   }
   function renderHoldings() {
@@ -453,7 +453,7 @@
       return '<tr data-i="' + i + '"><td data-l="Holder"><select class="sel" data-f="from" aria-label="Holder, row ' + (i + 1) + '">' + partyOpts(h.from) + '</select></td>' +
         '<td data-l="Holds shares in"><select class="sel" data-f="to" aria-label="Entity held, row ' + (i + 1) + '">' + partyOpts(h.to, 'entity') + '</select></td>' +
         '<td data-l="Percent"><input class="in num" data-f="pct" type="number" inputmode="decimal" min="0" max="100" step="any" aria-label="Percentage of shares or voting rights, row ' + (i + 1) + '" value="' + (h.pct == null ? '' : h.pct) + '"></td>' +
-        '<td data-l=""><button class="btn sm danger" type="button" data-act="del" aria-label="Remove holding row ' + (i + 1) + '">Remove</button></td></tr>';
+        '<td data-l=""><button class="btn danger" type="button" data-act="del" aria-label="Remove holding row ' + (i + 1) + '">Remove</button></td></tr>';
     }).join('') || '<tr><td colspan="4" class="hint">No holdings yet. Add the first one.</td></tr>';
   }
   function renderControls() {
@@ -461,7 +461,7 @@
       return '<tr data-i="' + i + '"><td data-l="Controller"><select class="sel" data-f="from" aria-label="Controller, row ' + (i + 1) + '">' + partyOpts(c.from) + '</select></td>' +
         '<td data-l="Controls"><select class="sel" data-f="to" aria-label="Entity controlled, row ' + (i + 1) + '">' + partyOpts(c.to, 'entity') + '</select></td>' +
         '<td data-l="Means of control"><select class="sel" data-f="basis" aria-label="Means of control, row ' + (i + 1) + '">' + BASIS_ORDER.map(function (b) { return '<option value="' + b + '"' + (c.basis === b ? ' selected' : '') + '>' + esc(EXTRACTS[BASIS[b].key].label + ': ' + BASIS[b].label) + '</option>'; }).join('') + '</select></td>' +
-        '<td data-l=""><button class="btn sm danger" type="button" data-act="del" aria-label="Remove control row ' + (i + 1) + '">Remove</button></td></tr>';
+        '<td data-l=""><button class="btn danger" type="button" data-act="del" aria-label="Remove control row ' + (i + 1) + '">Remove</button></td></tr>';
     }).join('') || '<tr><td colspan="4" class="hint">No control by other means recorded.</td></tr>';
   }
 

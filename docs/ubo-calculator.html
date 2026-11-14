@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRadar: UBO calculator</title>
+<meta name="description" content="Find the beneficial owners of a company under the AMLR (Arts 51 to 54): multiply along chains, add, apply the 25% threshold, control and the Art. 54 rule. Runs in your browser; nothing is sent anywhere.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<style>
+/* UBO calculator: layout only. Colours, type, buttons, pills and tables come from rr-ui.css. */
+.wrap{padding-bottom:var(--rr-8)}
+[hidden]{display:none!important}
+.head > div:first-child{flex:1 1 320px}
+.stack{display:grid;gap:var(--rr-5)}
+.stack > *{min-width:0}
+.ed{display:grid;gap:var(--rr-5)}
+.ed h3{font-size:var(--rr-t-h3);margin-bottom:var(--rr-1)}
+.ed .hint{margin-bottom:var(--rr-2)}
+.cust{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600}
+.cust input{flex:0 0 auto}
+.btns.top{margin-top:var(--rr-3)}
+.lim{max-width:78ch;color:var(--rr-text-2)}
+.lim li{margin:var(--rr-1) 0 var(--rr-1) var(--rr-5)}
+
+/* editable tables become stacked cards on a phone */
+.rr-table td .in,.rr-table td .sel{width:100%;min-width:9ch}
+@media (max-width:700px){
+  .rr-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .rr-table,.rr-table tbody,.rr-table tr,.rr-table td{display:block;width:100%}
+  .rr-table tr{padding:var(--rr-3);border-bottom:1px solid var(--rr-line)}
+  .rr-table td{padding:var(--rr-1) 0;border:0}
+  .rr-table td[data-l]:not([data-l=""])::before{content:attr(data-l);display:block;font-size:var(--rr-t-micro);font-weight:600;color:var(--rr-text-3)}
+}
+.issues{margin-bottom:var(--rr-4)}
+.iss{grid-template-columns:auto minmax(0,1fr);align-items:start}
+.iss.error{color:var(--rr-risk)}
+
+.pcard{display:grid;gap:var(--rr-3)}
+.pcard .pane-h{margin:0}
+.big{font-size:clamp(28px,4vw,36px);font-weight:700;letter-spacing:var(--rr-track-tight);line-height:1.1}
+.big small{font-size:var(--rr-t-small);font-weight:500;letter-spacing:0;color:var(--rr-text-2)}
+.steps{margin-left:var(--rr-5);display:grid;gap:var(--rr-2);max-width:80ch}
+.law summary,details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;color:var(--rr-accent)}
+.cite{margin:var(--rr-2) 0 var(--rr-3)}
+.cite figcaption{font-size:var(--rr-t-small);margin-bottom:var(--rr-1);display:flex;flex-wrap:wrap;gap:0 var(--rr-3);align-items:center}
+.cite a{display:inline-flex;align-items:center;min-height:44px}
+.results{display:grid;gap:var(--rr-4)}
+.gwrap{overflow-x:auto;padding:var(--rr-3);background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r)}
+.gwrap svg{display:block;margin:0 auto;max-width:none}
+.glist{margin:var(--rr-3) 0 0 var(--rr-5);color:var(--rr-text-2)}
+.tool-row{display:flex;flex-wrap:wrap;gap:var(--rr-2) var(--rr-3);align-items:center}
+.tool-row .sel{flex:1 1 220px;min-width:0;max-width:420px}
+.thr{width:8ch}
+#printTitle{display:none}
+@media print{
+  .rrn,.rrf,.skip,.noprint,.btns,.head-tools,#editor,#toast{display:none!important}
+  #printTitle{display:block;font-size:18px;font-weight:700;margin-bottom:12px}
+  .rr-band{display:none}
+  .rr-card,.pane,.rr-stat,.banner{box-shadow:none;break-inside:avoid}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#result">Skip to the result</a>
+<script src="site-nav.js?v=20261114a"></script>
+
+<main id="main" class="wrap">
+  <header class="head rr-band">
+    <div>
+      <h1>UBO calculator</h1>
+      <p class="lead">Who are the beneficial owners of a company? Build the structure, pick the customer, and see the arithmetic and the article for each person.</p>
+    </div>
+    <div class="head-tools">
+      <a class="btn" href="law.html?celex=32024R1624&amp;art=51">Read Arts 51 to 54</a>
+    </div>
+  </header>
+
+  <div id="uboApp" class="stack">
+    <div class="banner demo">
+      <p><b>Teaching tool, not legal advice.</b> It works only in your browser: nothing is sent to a server and nothing is looked up. Registers can differ from what you enter, and the reading of Art. 54 below needs a lawyer to confirm. Read the limits at the bottom.</p>
+    </div>
+
+    <section class="pane rr-card noprint" id="editor" aria-labelledby="hEd">
+      <div class="pane-h"><h2 id="hEd">1. The structure</h2></div>
+      <div class="tool-row" role="group" aria-label="Examples, new, save and load">
+        <label class="sr" for="example">Worked example</label>
+        <select class="sel" id="example"></select>
+        <button class="btn" type="button" id="loadExample">Load example</button>
+        <button class="btn" type="button" id="newBtn">New structure</button>
+        <button class="btn" type="button" id="btnSave">Save to this device</button>
+        <button class="btn" type="button" id="btnLoad">Load a saved file</button>
+        <input type="file" id="fileIn" accept="application/json,.json" hidden>
+      </div>
+
+      <div class="ed" style="margin-top:var(--rr-5)">
+        <div>
+          <h3>Parties</h3>
+          <p class="hint">Legal entities and natural persons. Choose one legal entity as the customer.</p>
+          <div class="rr-table-wrap"><table class="rr-table"><thead><tr><th scope="col">Name</th><th scope="col">Type</th><th scope="col">Customer</th><th scope="col"><span class="sr">Remove</span></th></tr></thead><tbody id="partyRows"></tbody></table></div>
+          <div class="btns top"><button class="btn" type="button" id="addParty">Add a party</button></div>
+        </div>
+        <div>
+          <h3>Shareholdings</h3>
+          <p class="hint">Percentage of shares or voting rights (or other ownership interest) the holder owns in the entity.</p>
+          <div class="rr-table-wrap"><table class="rr-table"><thead><tr><th scope="col">Holder</th><th scope="col">Holds shares in</th><th scope="col">Percent</th><th scope="col"><span class="sr">Remove</span></th></tr></thead><tbody id="holdRows"></tbody></table></div>
+          <div class="btns top"><button class="btn" type="button" id="addHold">Add a shareholding</button></div>
+        </div>
+        <div>
+          <h3>Control by other means</h3>
+          <p class="hint">Art. 53(3) and (4): for example a right to appoint a majority of the board, set by an agreement. The controller can be a person or an entity.</p>
+          <div class="rr-table-wrap"><table class="rr-table"><thead><tr><th scope="col">Controller</th><th scope="col">Controls</th><th scope="col">Means of control</th><th scope="col"><span class="sr">Remove</span></th></tr></thead><tbody id="ctrlRows"></tbody></table></div>
+          <div class="btns top"><button class="btn" type="button" id="addCtrl">Add a control relationship</button></div>
+        </div>
+        <div class="field">
+          <label for="threshold">Ownership threshold, percent</label>
+          <input class="in num thr" id="threshold" type="number" inputmode="decimal" min="1" max="25" step="any" value="25" aria-describedby="thrHelp">
+          <p class="help" id="thrHelp">25 under Art. 52(1). Art. 52(2) allows a lower threshold (at most 15, or below 25) for risky categories only after delegated acts; use it as a scenario.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="hRes" id="result-section">
+      <div class="rr-section-h"><h2 id="hRes">2. The result</h2>
+        <div class="btns noprint"><button class="btn pri" type="button" id="btnPrint">Print the result</button><button class="btn" type="button" id="btnCsv">Download CSV</button></div>
+      </div>
+      <p id="printTitle"></p>
+      <div id="issues" hidden role="status" aria-live="polite"></div>
+      <div id="result" class="results" tabindex="-1"></div>
+    </section>
+
+    <section aria-labelledby="hGr">
+      <div class="rr-section-h"><h2 id="hGr">3. The structure as a graph</h2><p>Owners above, the customer at the bottom. Solid lines are shareholdings, dashed lines control by other means.</p></div>
+      <div class="gwrap" id="graph" role="region" aria-label="Ownership graph, scrolls sideways on small screens" tabindex="0"></div>
+      <ul class="glist" id="graphList" aria-label="The same structure as a list"></ul>
+    </section>
+
+    <section aria-labelledby="hLim" class="rr-card">
+      <h2 id="hLim" style="font-size:var(--rr-t-h3)">Limits of this tool</h2>
+      <ul class="lim">
+        <li>It is a teaching tool, not legal advice. A lawyer must confirm any conclusion about a real customer.</li>
+        <li>Registers and documents can disagree with what you enter. Verify the information and report discrepancies as the AMLR requires; this tool does not.</li>
+        <li>The 25% threshold is the one in Art. 52(1). Member States may end up with lower thresholds for some categories of entity after delegated acts under Art. 52(2); change the threshold above to test a scenario.</li>
+        <li>Nominee arrangements and trusts and similar arrangements (Arts 55 to 58) are not computed. Use the control table to record what you know and read those articles.</li>
+        <li>Art. 54 is applied to the customer's direct holders, and nested cases are worked out step by step. The reading of the article used here is explained in each result and needs a legal fact-check before you rely on it.</li>
+        <li>Control by other means is what you tell the tool. It cannot see agreements, family ties or influence that you do not enter.</li>
+      </ul>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+<script src="ubo-calculator.js?v=20261114a"></script>
+</body>
+</html>
