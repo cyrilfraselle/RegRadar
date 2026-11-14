@@ -9,49 +9,17 @@
 <title>RegRadar: Business-wide risk assessment</title>
 <meta name="description" content="Build, version and sign off a business-wide ML/TF risk assessment: scenarios, control effectiveness, residual risk heat maps and a board report. Prototype, not legal advice.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
 <style>
-:root{
-  --bg:#0E1117;--surface:#151A21;--surface-2:#1A2029;--border:#232B36;--border-strong:#2E3845;
-  --text:#E6EDF3;--text-2:#AAB4C6;--text-3:#8A93A0;--accent:#6D9BFF;--accent-bg:#14213D;--on-accent:#06101F;
-  --crit:#F0616D;--crit-bg:#2A1518;--imp:#E3A008;--imp-bg:#2A2008;--ok:#2EBD85;--ok-bg:#0F2018;
-  --b0-bg:#123325;--b0-fg:#7BE0B0;--b1-bg:#3A2D08;--b1-fg:#F2C24A;--b2-bg:#47230F;--b2-fg:#FFAA78;--b3-bg:#4D161A;--b3-fg:#FF9298;
-  --pat:rgba(230,237,243,.22);
-  --radius:12px;--radius-sm:8px;
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:'SF Mono',ui-monospace,Menlo,monospace;
-  --serif:Georgia,'Times New Roman',serif;
-}
-html[data-theme="light"]{
-  --bg:#F5F6F8;--surface:#FFFFFF;--surface-2:#F4F6F9;--border:#E3E6EC;--border-strong:#CDD3DD;
-  --text:#16202C;--text-2:#455163;--text-3:#5F6B7A;--accent:#0A4FD6;--accent-bg:#E7EEFC;--on-accent:#FFFFFF;
-  --crit:#B3261E;--crit-bg:#FCEBE9;--imp:#8A4B00;--imp-bg:#FBF0DB;--ok:#0B6E4C;--ok-bg:#E3F4EC;
-  --b0-bg:#D9F2E6;--b0-fg:#0A5338;--b1-bg:#FBEFC9;--b1-fg:#5E3B00;--b2-bg:#FBD9C2;--b2-fg:#7A2D00;--b3-bg:#F6C6C2;--b3-fg:#7E140D;
-  --pat:rgba(22,32,44,.22);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-button,input,select,textarea{font:inherit;color:inherit}
-button{cursor:pointer}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
-::selection{background:var(--accent);color:var(--on-accent)}
+/* Page layout only. Tokens and components come from rr-ui.css. */
+.pane{padding:18px 20px}
+@media(max-width:620px){.pane{padding:14px}}
+:root{--b0-bg:#D9F2E6;--b0-fg:#0A5338;--b1-bg:#FBEFC9;--b1-fg:#5E3B00;--b2-bg:#FBD9C2;--b2-fg:#7A2D00;--b3-bg:#F6C6C2;--b3-fg:#7E140D;--pat:rgba(22,32,44,.22)}
+html[data-theme="dark"]{--b0-bg:#123325;--b0-fg:#7BE0B0;--b1-bg:#3A2D08;--b1-fg:#F2C24A;--b2-bg:#47230F;--b2-fg:#FFAA78;--b3-bg:#4D161A;--b3-fg:#FF9298;--pat:rgba(230,237,243,.22)}
 h1,h2,h3,h4{line-height:1.25}
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-.wrap{max-width:1320px;margin:0 auto;padding:0 20px}
-.skip{position:absolute;left:-9999px;background:var(--accent);color:var(--on-accent);padding:8px 14px;z-index:99}
-.skip:focus{left:8px;top:8px}
 [hidden]{display:none!important}
 
 /* header */
-.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 0 14px}
-.head h1{font-size:26px;letter-spacing:-.025em}
-.head p{color:var(--text-2);margin-top:4px;max-width:66ch}
-.head-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.sel,.in{padding:8px 11px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);min-height:40px;max-width:100%}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--text);text-decoration:none;font-weight:600;font-size:13px}
-.btn:hover{border-color:var(--accent);color:var(--accent)}
-.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.btn.pri:hover{filter:brightness(1.08);color:var(--on-accent)}
-.btn.sm{min-height:36px;padding:0 12px;font-size:12.5px}
-.btn.danger:hover{border-color:var(--crit);color:var(--crit)}
 .lnk{background:none;border:0;padding:6px 0;min-height:36px;text-align:left;font-weight:700;color:var(--text);text-decoration:underline;text-decoration-color:var(--border-strong);text-underline-offset:3px}
 .lnk:hover{color:var(--accent);text-decoration-color:var(--accent)}
 a.lnk{display:inline-block;text-decoration:underline}
@@ -65,14 +33,9 @@ sub{font-size:12px}
 .banner.warn{border-color:var(--imp);background:var(--imp-bg)}
 
 /* tabs */
-.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--border);margin:6px 0 18px;padding-bottom:0;scrollbar-width:thin}
-.tabs button{border:0;background:transparent;min-height:44px;padding:0 14px;font-weight:600;color:var(--text-2);border-bottom:3px solid transparent;white-space:nowrap;border-radius:6px 6px 0 0}
-.tabs button:hover{color:var(--text)}
-.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
 .tabs .cnt{font-family:var(--mono);font-size:12px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:1px 7px;margin-left:5px;color:var(--text-2)}
 
 /* cards */
-.pane{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;min-width:0}
 .pane h2{font-size:16px;letter-spacing:-.01em;margin-bottom:4px}
 .pane h3{font-size:13.5px;margin:16px 0 8px}
 .pane .sub{color:var(--text-2);font-size:13px;margin-bottom:12px;max-width:70ch}
@@ -80,19 +43,9 @@ sub{font-size:12px}
 .stack{display:flex;flex-direction:column;gap:16px;margin-bottom:60px}
 .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:16px}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;min-width:0}
-.kpi .n{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
-.kpi .l{font-size:13px;color:var(--text-2);margin-top:4px}
-.kpi .s{font-size:12.5px;color:var(--text-3);margin-top:2px}
-.kpi.warn{border-color:var(--crit)}
 .kpi.amber{border-color:var(--imp)}
 
 /* chips and bands */
-.chip{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:14px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);white-space:nowrap;display:inline-block}
-button.chip{min-height:36px;cursor:pointer}
-button.chip[aria-pressed="true"]{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
-.chip.crit{background:var(--crit-bg);color:var(--crit);border-color:transparent}
-.chip.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
-.chip.imp{background:var(--imp-bg);color:var(--imp);border-color:transparent}
 .band{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:6px;border:1px solid currentColor;white-space:nowrap;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .band .sc{font-family:var(--mono)}
 .b0{background:var(--b0-bg);color:var(--b0-fg)}
@@ -156,7 +109,6 @@ table.mini td.num,table.mini th.num{text-align:right;font-family:var(--mono)}
 .attn h3{margin-top:0}
 .muted{color:var(--text-2)}
 .small{font-size:12.5px}
-.empty{padding:28px 16px;text-align:center;color:var(--text-2)}
 
 /* register */
 .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
@@ -183,15 +135,12 @@ table.reg .flags{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
 /* forms */
 .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .field label,.field .lbl{display:block;font-size:12.5px;font-weight:700;color:var(--text-2);margin-bottom:4px}
-.field .in,.field .sel{width:100%}
 .field.full{grid-column:1/-1}
-textarea.in{width:100%;min-height:76px;resize:vertical}
 .hint{font-size:12.5px;color:var(--text-2);margin-top:3px}
 .err{color:var(--crit);font-weight:600;font-size:13px;margin-top:4px}
 
 /* dialogs */
 dialog{margin:auto;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);color:var(--text);padding:0;width:min(760px,calc(100vw - 24px));max-height:calc(100vh - 24px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
-dialog::backdrop{background:rgba(5,8,14,.6)}
 dialog[open]{display:flex;flex-direction:column}
 .dlg-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border)}
 .dlg-h h2{font-size:18px;letter-spacing:-.015em}
@@ -241,9 +190,6 @@ details.calc summary{cursor:pointer;font-weight:700;min-height:28px}
 .quote p{margin:0 0 6px}
 .src{display:grid;gap:8px}
 .src li{margin-left:18px}
-.note{font-size:12.5px;color:var(--text-3);text-align:center;margin:8px 0 40px}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:13.5px;z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s;max-width:90vw;text-align:center}
-.toast.on{opacity:1}
 .methods p{margin:6px 0;max-width:78ch}
 .methods ul,.methods ol{margin:6px 0 6px 20px;max-width:78ch}
 .methods li{margin:3px 0}
@@ -263,7 +209,6 @@ details.calc summary{cursor:pointer;font-weight:700;min-height:28px}
   .sign{grid-template-columns:1fr}
 }
 @media screen and (max-width:720px){
-  .wrap{padding:0 16px}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fields,.so-grid{grid-template-columns:1fr}
   .cats li{grid-template-columns:1fr 1fr}
@@ -274,7 +219,6 @@ details.calc summary{cursor:pointer;font-weight:700;min-height:28px}
   .cell .cd{display:none}
   table.hm .nm{display:none}
   .hm-key{display:block}
-  .pane{padding:14px}
   .report table.mini,.report table.mini tbody,.report table.mini tr,.report table.mini td,.report table.mini th{display:block;width:100%}
   .report table.mini thead{position:absolute;left:-9999px}
   .report table.mini tr{border-bottom:1px solid var(--border-strong);padding:6px 0}
@@ -299,11 +243,9 @@ details.calc summary{cursor:pointer;font-weight:700;min-height:28px}
   @page{size:A4;margin:14mm}
   html,html[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#F4F6F9;--border:#E3E6EC;--border-strong:#CDD3DD;--text:#16202C;--text-2:#455163;--text-3:#5F6B7A;--accent:#0A4FD6;--accent-bg:#E7EEFC;--crit:#B3261E;--ok:#0B6E4C;--imp:#8A4B00;
     --b0-bg:#D9F2E6;--b0-fg:#0A5338;--b1-bg:#FBEFC9;--b1-fg:#5E3B00;--b2-bg:#FBD9C2;--b2-fg:#7A2D00;--b3-bg:#F6C6C2;--b3-fg:#7E140D;--pat:rgba(22,32,44,.3)}
-  body{background:#fff;font-size:12px}
   .rrn,.rrf,.skip,.toast,.head,#banners,.tabs,.note,dialog,.rtools{display:none!important}
   main > *:not(#panel-report){display:none!important}
   #panel-report,#panel-report[hidden]{display:block!important}
-  .wrap{max-width:none;padding:0}
   .report{border:0;padding:0;margin:0;max-width:none;border-radius:0}
   .report h2{break-after:avoid;margin-top:18px}
   .report .keep,.report table,.report .hm2 > div,.sign{break-inside:avoid}
@@ -320,7 +262,7 @@ details.calc summary{cursor:pointer;font-weight:700;min-height:28px}
 <a class="skip" href="#main">Skip to the risk assessment</a>
 
 <main id="main" class="wrap">
-  <header class="head">
+  <header class="head rr-band">
     <div>
       <h1>Business-wide risk assessment</h1>
       <p>Identify your money laundering and terrorist financing risks, link the controls that answer them, see the residual risk, and put a signed, dated version in front of the board.</p>

@@ -160,7 +160,7 @@ img,svg{max-width:100%}
   padding:clamp(32px,5vw,64px) 0 clamp(28px,4vw,44px);margin-bottom:clamp(20px,3vw,32px)}
 .head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--rr-4) var(--rr-6);flex-wrap:wrap}
 .head h1{font-size:var(--rr-t-display);line-height:1.02;letter-spacing:var(--rr-track-tight);max-width:18ch}
-.head .lead,.head > div > p:not(.eyebrow){margin-top:var(--rr-3);font-size:var(--rr-t-lead);line-height:1.45;color:var(--rr-text-2);max-width:62ch;font-weight:500}
+.head .lead,.head > div > p:not(.eyebrow),.head > p:not(.eyebrow){margin-top:var(--rr-3);font-size:var(--rr-t-lead);line-height:1.45;color:var(--rr-text-2);max-width:62ch;font-weight:500}
 .head .eyebrow{font-size:var(--rr-t-small);font-weight:600;color:var(--rr-text-3);margin-bottom:var(--rr-2)}
 .head .sub{color:var(--rr-text-2);margin-top:var(--rr-2);max-width:70ch}
 .head-tools{display:flex;gap:var(--rr-2) var(--rr-3);align-items:center;flex-wrap:wrap}
@@ -235,7 +235,7 @@ button.chip::after,a.chip::after{content:"";position:absolute;inset:-4px 0}
 button.chip:hover,a.chip:hover{border-color:var(--rr-text-3);color:var(--rr-text)}
 button.chip[aria-pressed="true"],.chip.on{background:var(--rr-primary);border-color:var(--rr-primary);color:var(--rr-on-primary)}
 /* status: live (in force / active), review (waiting), risk (gap, overdue), done (covered, closed) */
-.pill,.st{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:var(--rr-r-pill);
+.pill,.st.gap,.st.cov,.st.rev,.st.drf{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:var(--rr-r-pill);
   background:var(--rr-surface-2);color:var(--rr-text-2);white-space:nowrap;line-height:1.4}
 .pill.live,.chip.acc{background:var(--rr-live-bg);color:var(--rr-live);border-color:transparent}
 .pill.review,.st.rev,.chip.imp{background:var(--rr-review-bg);color:var(--rr-review);border-color:transparent}
