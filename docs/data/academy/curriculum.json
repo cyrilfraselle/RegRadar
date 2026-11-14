@@ -2,19 +2,19 @@
  "_meta": {
   "name": "Academy curriculum",
   "version": 1,
-  "purpose": "One learning path of 9 short modules. Each module: explainer, risks, check questions, optional practice link, and what the law says.",
-  "content_version": "1.0.0",
-  "content_date": "2026-10-18",
+  "purpose": "The AMLR programme: short topics in three levels (see programme.json). Each topic: film or explainer, risks, questions, Spot it, Decide and what the law says.",
+  "content_version": "1.1.0",
+  "content_date": "2026-11-14",
   "content_version_note": "Semantic version of the teaching content (lessons, checks, law quotes). Bump it whenever a lesson, a check question or a law quote changes in substance. New completions record this version (AcademyProgress, key regradar-academy-training); certificates and the team register print it. Completions made before the field existed show 'not recorded'.",
   "evidence": {
-    "art12": {
-      "celex": "32024R1624",
-      "art": "12",
-      "para": "second paragraph",
-      "quote": "specific, ongoing training programmes to help them recognise operations which may be related to money laundering or terrorist financing and to instruct them as to how to proceed in such cases. Such training programmes shall be appropriate to their functions or activities and to the risks of money laundering and terrorist financing to which the obliged entity is exposed, and shall be duly documented."
-    },
-    "refresher_months_default": 12,
-    "refresher_note": "Default, configure for your firm. AMLR Art. 12 asks for ongoing training and does not set an interval."
+   "art12": {
+    "celex": "32024R1624",
+    "art": "12",
+    "para": "second paragraph",
+    "quote": "specific, ongoing training programmes to help them recognise operations which may be related to money laundering or terrorist financing and to instruct them as to how to proceed in such cases. Such training programmes shall be appropriate to their functions or activities and to the risks of money laundering and terrorist financing to which the obliged entity is exposed, and shall be duly documented."
+   },
+   "refresher_months_default": 12,
+   "refresher_note": "Default, configure for your firm. AMLR Art. 12 asks for ongoing training and does not set an interval."
   },
   "honesty": "Legal text is quoted verbatim from docs/data/laws/ (checked by academy/verify.mjs and again in the browser). Minute estimates, the pass mark and XP are default values. Practice cases and CF Bank are fictional. Not legal advice.",
   "defaults": {
@@ -229,10 +229,191 @@
    ]
   },
   {
-   "id": "aml-basics",
+   "id": "who-is-covered",
    "no": 2,
-   "title": "AML basics and the risk-based approach",
-   "short": "Four duties, risk-based effort and the business-wide risk assessment.",
+   "title": "Who is covered: obliged entities",
+   "short": "Which firms and professions the AMLR applies to, and when lawyers, insurers and other professionals are in scope.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 2
+   },
+   "skill": "reg",
+   "learn": [
+    "The obliged entities listed in Article 3: credit institutions, financial institutions and a list of professions and businesses",
+    "When notaries, lawyers and other independent legal professionals are covered, and the limits of their reporting exemption",
+    "Where insurers, investment firms and crypto-asset service providers fit in the definition of financial institution"
+   ],
+   "explainer": "who-is-covered",
+   "risks": {
+    "wrong": [
+     "Assuming AML rules are only for banks",
+     "Not checking which of your activities, matters or products fall within Article 3",
+     "Treating legal professional privilege as a general exemption from all AML duties"
+    ],
+    "consequences": [
+     {
+      "text": "Member States must ensure that pecuniary sanctions are imposed on obliged entities for serious, repeated or systematic breaches of the AMLR's rules on internal controls, customer due diligence, reporting and record retention.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": "1"
+      }
+     },
+     {
+      "text": "Member States may apply all or part of the AMLR to entities in other sectors they find exposed to risk, so national law can reach further than Article 3.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "3",
+       "para": "1"
+      }
+     },
+     {
+      "text": "Business effect (judgement): work taken on without the checks it needed has to be reviewed later, at a cost. Not quantified here.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Nobody in the firm can say which activities make it an obliged entity",
+     "A new service line (for example setting up companies or holding client money) starts without an AML review",
+     "Staff say AML is the bank's job, not theirs"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "A small regional bank takes deposits and grants loans. Is it an obliged entity under the AMLR?",
+     "options": [
+      "Yes: credit institutions are the first category listed in Article 3",
+      "Only if it has more than 250 staff",
+      "Only if it offers crypto-asset services",
+      "No: small banks are supervised only under banking law"
+     ],
+     "answer": 0,
+     "why": "Article 3 lists credit institutions first, with no size condition. Size matters for how the rules are applied (proportionate policies and controls), not for whether they apply.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "3",
+      "para": ""
+     },
+     "scenario": "Scenario (fictional bank)."
+    },
+    {
+     "type": "mcq",
+     "q": "A lawyer helps a client buy a company and holds the client money for the deal. Which statement is right?",
+     "options": [
+      "Lawyers are never obliged entities because of legal privilege",
+      "For this work the lawyer is an obliged entity: buying business entities and managing client money are listed transactions",
+      "Only the client's bank has AML duties here",
+      "The lawyer is covered only if the price is above EUR 10 000"
+     ],
+     "answer": 1,
+     "why": "Notaries, lawyers and other independent legal professionals are obliged entities where they act for a client in a financial or real estate transaction, or assist in planning or carrying out listed transactions, including buying and selling business entities and managing client money. The text sets no amount for these transactions.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "3",
+      "para": ""
+     },
+     "scenario": "Scenario (fictional law firm)."
+    },
+    {
+     "type": "mcq",
+     "q": "An insurer sells motor insurance and unit-linked life policies. How far does the AMLR definition of financial institution reach it?",
+     "options": [
+      "Not at all: insurers are outside the AMLR",
+      "For everything it sells, motor insurance included",
+      "Insofar as it carries out life or other investment-related assurance activities",
+      "Only for policies sold to companies"
+     ],
+     "answer": 2,
+     "why": "An insurance undertaking is a financial institution insofar as it carries out life or other investment-related assurance activities. National law may still apply AML rules to other sectors, so check your Member State.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "2",
+      "para": "1, point (6)(b)"
+     },
+     "scenario": "Scenario (fictional insurer)."
+    },
+    {
+     "type": "mcq",
+     "q": "A lawyer learns something worrying while advising a client on their legal position in a dispute. What does the AMLR say about the duty to report suspicions for that information?",
+     "options": [
+      "The duty applies in full, like for any other information",
+      "The lawyer is exempt for that information, unless the lawyer takes part in laundering or its predicate offences, advises for that purpose or knows the client seeks advice for that purpose (your Member State may narrow the exemption further)",
+      "The lawyer must report it to the client's bank instead",
+      "Lawyers never have a reporting duty"
+     ],
+     "answer": 1,
+     "why": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors are exempted from the duty to report suspicions (Art. 69(1)) for information they receive or obtain in the course of ascertaining a client's legal position or defending or representing them in, or concerning, judicial proceedings. The exemption does not apply where they take part in money laundering, its predicate offences or terrorist financing, give legal advice for those purposes, or know the client seeks legal advice for those purposes. Member States may also remove the exemption for certain higher-risk types of transaction (Art. 70(3)).",
+     "law": {
+      "celex": "32024R1624",
+      "art": "70",
+      "para": "2"
+     },
+     "scenario": "Scenario (fictional)."
+    }
+   ],
+   "practice": null,
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "3",
+     "para": "points (1) and (2)",
+     "label": "Obliged entities",
+     "quote": "The following entities are to be considered obliged entities for the purposes of this Regulation: (1) credit institutions; (2) financial institutions;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "3",
+     "para": "point (3)(b)",
+     "label": "Obliged entities: legal professionals",
+     "quote": "notaries, lawyers and other independent legal professionals, where they participate, whether by acting on behalf of and for their client in any financial or real estate transaction, or by assisting in the planning or carrying out of transactions for their client concerning any of the following: (i) buying and selling of real property or business entities; (ii) managing of client money, securities or other assets, including crypto-assets;",
+     "note": "The list continues with bank and crypto-asset accounts, contributions for companies, and setting up trusts, companies or foundations."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "2",
+     "para": "1, point (6)(b)",
+     "label": "Definition of financial institution: insurers",
+     "quote": "‘financial institution’ means: […] an insurance undertaking as defined in Article 13, point (1), of Directive 2009/138/EC […] insofar as it carries out life or other investment-related assurance activities covered by that Directive",
+     "note": "Insurance intermediaries are covered in point (6)(c) under conditions; read the full definition."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "70",
+     "para": "2",
+     "label": "Reporting by legal professionals",
+     "quote": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors shall be exempted from the requirements laid down in Article 69(1) to the extent that such exemption relates to information that they receive from, or obtain on a client, in the course of ascertaining the legal position of that client, or performing their task of defending or representing that client in, or concerning, judicial proceedings […]",
+     "note": "The exemption does not apply where the professional takes part in money laundering, its predicate offences or terrorist financing, or gives or knowingly serves legal advice for those purposes (second subparagraph). Member States may remove it for certain higher-risk types of transaction (Art. 70(3))."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "90",
+     "para": "",
+     "label": "Entry into force and application",
+     "quote": "It shall apply from 10 July 2027, except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), to which it shall apply from 10 July 2029.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "70",
+     "para": "3",
+     "label": "Member States may narrow the exemption",
+     "quote": "Member States may decide that the exemption referred to in paragraph 2, first subparagraph, does not apply to those types of transactions",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "FATF Recommendations 22 and 23 (designated non-financial businesses and professions)"
+   ]
+  },
+  {
+   "id": "aml-basics",
+   "no": 3,
+   "title": "Internal policies, risk assessment and controls",
+   "short": "The risk-based approach, the business-wide risk assessment, and the policies, controls and people that make it work.",
    "minutes": {
     "watch": 2,
     "risks": 1,
@@ -244,7 +425,7 @@
    "learn": [
     "The four everyday duties of an obliged entity",
     "What risk-based means in practice, and why you must be able to show it",
-    "The business-wide risk assessment: who drafts it, who approves it"
+    "The business-wide risk assessment, internal policies and controls, and who is responsible for them"
    ],
    "explainer": "aml-basics",
    "risks": {
@@ -358,6 +539,22 @@
    "law": [
     {
      "celex": "32024R1624",
+     "art": "9",
+     "para": "1",
+     "label": "Scope of internal policies, procedures and controls",
+     "quote": "Obliged entities shall have in place internal policies, procedures and controls in order to ensure compliance with this Regulation, Regulation (EU) 2023/1113 and any administrative act issued by any supervisor",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "9",
+     "para": "1",
+     "label": "Proportionate to the business",
+     "quote": "The policies, procedures and controls referred to in the first subparagraph shall be proportionate to the nature of the business, including its risks and complexity, and the size of the obliged entity and shall cover all the activities of the obliged entity that fall under the scope of this Regulation.",
+     "note": "A small firm needs policies too; they can be simpler where its business is simpler."
+    },
+    {
+     "celex": "32024R1624",
      "art": "10",
      "para": "1",
      "label": "Business-wide risk assessment",
@@ -403,6 +600,14 @@
      "label": "Awareness of requirements",
      "quote": "The measures referred to in the first paragraph shall include the participation of employees or persons in comparable positions, including agents and distributors, in specific, ongoing training programmes to help them recognise operations which may be related to money laundering or terrorist financing and to instruct them as to how to proceed in such cases.",
      "note": "Ongoing training is itself a legal requirement. Completion records from this Academy can serve as training evidence."
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11",
+     "para": "1",
+     "label": "Compliance functions",
+     "quote": "Obliged entities shall appoint one member of the management body in its management function who shall be responsible for ensuring compliance with this Regulation, Regulation (EU) 2023/1113 and any administrative act issued by any supervisor (‘compliance manager’).",
+     "note": "Day-to-day work sits with the compliance officer (Art. 11(2))."
     }
    ],
    "reading": [
@@ -412,7 +617,7 @@
   },
   {
    "id": "cdd-kyc",
-   "no": 3,
+   "no": 4,
    "title": "Customer due diligence and KYC",
    "short": "When CDD applies, what it includes, how much is enough and what happens if you cannot finish.",
    "minutes": {
@@ -481,7 +686,7 @@
       "art": "19",
       "para": "2"
      },
-     "scenario": "Scenario (fictional)."
+     "scenario": "Scenario (fictional). The example assumes a payment firm, which is a financial institution."
     },
     {
      "type": "mcq",
@@ -557,7 +762,7 @@
      "para": "2",
      "label": "Application of customer due diligence measures",
      "quote": "In addition to the circumstances referred to in paragraph 1, credit institutions and financial institutions, with the exception of crypto-asset service providers, shall apply customer due diligence measures when initiating or executing an occasional transaction that constitutes a transfer of funds as defined in Article 3, point (9), of Regulation (EU) 2023/1113, that amounts to a value of at least EUR 1 000, or the equivalent in national currency",
-     "note": "Particularly relevant to payment firms. Check the full article for crypto-asset service providers."
+     "note": "Applies to credit and financial institutions other than crypto-asset service providers, for example banks and payment firms. Other obliged entities apply the general triggers in paragraph 1."
     },
     {
      "celex": "32024R1624",
@@ -607,7 +812,7 @@
   },
   {
    "id": "beneficial-ownership",
-   "no": 4,
+   "no": 5,
    "title": "Beneficial ownership",
    "short": "Who really owns or controls a customer: the 25% line, indirect chains, control and trusts.",
    "minutes": {
@@ -787,7 +992,7 @@
   },
   {
    "id": "peps",
-   "no": 5,
+   "no": 6,
    "title": "Politically exposed persons (PEPs)",
    "short": "Who counts as a PEP, family and close associates, the three required measures, and the time after leaving office.",
    "minutes": {
@@ -951,7 +1156,7 @@
   },
   {
    "id": "transaction-monitoring",
-   "no": 6,
+   "no": 7,
    "title": "Transaction monitoring and alerts",
    "short": "Compare activity with the profile, triage alerts, investigate and document.",
    "minutes": {
@@ -1126,186 +1331,6 @@
    "reading": [
     "EBA Guidelines on ML/TF risk factors (EBA/GL/2021/02)",
     "FATF Recommendation 10 (ongoing due diligence)"
-   ]
-  },
-  {
-   "id": "sanctions-screening",
-   "no": 7,
-   "title": "Sanctions screening",
-   "short": "Targeted financial sanctions, when to screen, the 50% ownership rule and handling a hit.",
-   "minutes": {
-    "watch": 2,
-    "risks": 1,
-    "check": 3,
-    "law": 3,
-    "practice": 12
-   },
-   "skill": "sanctions",
-   "learn": [
-    "What targeted financial sanctions are",
-    "When to screen and re-screen, and why ownership matters",
-    "How to handle a possible match, and the UN interim rule"
-   ],
-   "explainer": "sanctions-screening",
-   "risks": {
-    "wrong": [
-     "Screening only the account holder and not the owners and controllers",
-     "Screening once at onboarding and never again after list updates",
-     "Clearing a name match without comparing identifiers"
-    ],
-    "consequences": [
-     {
-      "text": "The AMLR makes managing the risk of non-implementation and evasion of targeted financial sanctions part of the firm’s own risk assessment and controls.",
-      "cite": {
-       "celex": "32024R1624",
-       "art": "9",
-       "para": "1"
-      }
-     },
-     {
-      "text": "Failures in customer due diligence, which includes the sanctions check, can be fined when serious, repeated or systematic.",
-      "cite": {
-       "celex": "32024L1640",
-       "art": "55",
-       "para": ""
-      }
-     },
-     {
-      "text": "The sanctions regulations themselves carry their own national penalties. They are not reproduced here; check your national authority.",
-      "cite": null
-     }
-    ],
-    "redflags": [
-     "Ownership changed shortly after a listing",
-     "Spelling variants or transliterations of listed names",
-     "Payments routed through unusual intermediaries",
-     "Vague reasons for third-party payments"
-    ]
-   },
-   "questions": [
-    {
-     "type": "mcq",
-     "q": "What do targeted financial sanctions consist of?",
-     "options": [
-      "Fines on the customer",
-      "Asset freezing and a ban on making funds or assets available to designated persons and entities",
-      "A ban on all trade with a country",
-      "Increased reporting for the customer"
-     ],
-     "answer": 1,
-     "why": "This is the definition in AMLR Article 2(49).",
-     "law": {
-      "celex": "32024R1624",
-      "art": "2",
-      "para": "49"
-     }
-    },
-    {
-     "type": "mcq",
-     "q": "A customer company is 60% owned by a person on a sanctions list. How should you treat the company?",
-     "options": [
-      "Normally: it is not itself listed",
-      "As covered by the screening duty: more than 50% held by a listed person is in scope",
-      "Only if the customer is a bank",
-      "Only if the 60% is held directly"
-     ],
-     "answer": 1,
-     "why": "Due diligence must verify whether listed persons control the entity or hold more than 50% of its proprietary rights or a majority interest, alone or together. Always escalate and follow the sanctions regulation itself.",
-     "law": {
-      "celex": "32024R1624",
-      "art": "20",
-      "para": "1(d)"
-     },
-     "scenario": "Fictional example."
-    },
-    {
-     "type": "mcq",
-     "q": "When must a bank or financial institution re-verify its client base against sanctions?",
-     "options": [
-      "Only at onboarding",
-      "Regularly, and also upon any new designation",
-      "Once a year",
-      "Only when a customer asks"
-     ],
-     "answer": 1,
-     "why": "The frequency must match your exposure, and for credit and financial institutions also upon any new designation. This does not replace stricter obligations under other EU or national law.",
-     "law": {
-      "celex": "32024R1624",
-      "art": "26",
-      "para": "4"
-     }
-    },
-    {
-     "type": "mcq",
-     "q": "Screening flags a possible match on a name. You cannot clear it with date of birth or nationality. What now?",
-     "options": [
-      "Let the payment through and look later",
-      "Stop, do not process, and escalate immediately",
-      "Delete the alert",
-      "Ask the customer to explain by email"
-     ],
-     "answer": 1,
-     "why": "An unresolved possible match is escalated at once. Do not let funds move while the match is open. Freezing and reporting follow the sanctions regulation and your national authority.",
-     "law": {
-      "celex": "32024R1624",
-      "art": "26",
-      "para": "4"
-     },
-     "scenario": "Good-practice guidance, shown as default."
-    }
-   ],
-   "practice": {
-    "href": "workstation.html",
-    "label": "AML Investigation: a sanctions-related case (INV-301)",
-    "minutes": 12,
-    "module": null,
-    "why": "Open the workstation, then AML Investigation, and look for the case about a shareholder just under the line. Fictional case. Desktop only."
-   },
-   "law": [
-    {
-     "celex": "32024R1624",
-     "art": "2",
-     "para": "(49)",
-     "label": "Definitions",
-     "quote": "‘targeted financial sanctions’ means both asset freezing and prohibitions to make funds or other assets available, directly or indirectly, for the benefit of designated persons and entities pursuant to Council Decisions adopted on the basis of Article 29 TEU and Council Regulations adopted on the basis of Article 215 TFEU;",
-     "note": ""
-    },
-    {
-     "celex": "32024R1624",
-     "art": "20",
-     "para": "1(d)",
-     "label": "Customer due diligence measures",
-     "quote": "verifying whether the customer or the beneficial owners are subject to targeted financial sanctions, and, in the case of a customer or party to a legal arrangement who is a legal entity, whether natural or legal persons subject to targeted financial sanctions control the legal entity or have more than 50 % of the proprietary rights of that legal entity or majority interest in it, whether individually or collectively;",
-     "note": ""
-    },
-    {
-     "celex": "32024R1624",
-     "art": "26",
-     "para": "4",
-     "label": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
-     "quote": "In addition to the ongoing monitoring referred to in paragraph 1 of this Article, obliged entities shall regularly verify whether the conditions laid down in Article 20(1), point (d), are met. The frequency of that verification shall be commensurate with the exposure of the obliged entity and the business relationship to risks of non-implementation and evasion of targeted financial sanctions. For credit institutions and financial institutions, the verification referred to in the first subparagraph shall also be carried out upon any new designation in relation to targeted financial sanctions.",
-     "note": ""
-    },
-    {
-     "celex": "32024R1624",
-     "art": "27",
-     "para": "1",
-     "label": "Temporary measures for customers subject to UN financial sanctions",
-     "quote": "In respect of customers that are subject to UN financial sanctions or that are controlled by natural or legal persons or entities subject to UN financial sanctions, or in which natural or legal persons or entities that are subject to UN financial sanctions have more than 50 % of the proprietary rights or majority interest, whether individually or collectively, obliged entities shall keep records of: (a) the funds or other assets that they manage for the customer at the time when UN financial sanctions are made public; (b) the transactions attempted by the customer; (c) the transactions carried out for the customer.",
-     "note": ""
-    },
-    {
-     "celex": "32024R1624",
-     "art": "10",
-     "para": "1",
-     "label": "Business-wide risk assessment",
-     "quote": "as well as the risks of non-implementation and evasion of targeted financial sanctions",
-     "note": ""
-    }
-   ],
-   "reading": [
-    "EU sanctions regulations and the consolidated list: not in the RegRadar law library, read at the source",
-    "FATF Recommendations 6 and 7 (targeted financial sanctions)"
    ]
   },
   {
@@ -1512,10 +1537,190 @@
    ]
   },
   {
-   "id": "dora-mica-primer",
+   "id": "sanctions-screening",
    "no": 9,
+   "title": "Sanctions screening",
+   "short": "Targeted financial sanctions, when to screen, the 50% ownership rule and handling a hit.",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 12
+   },
+   "skill": "sanctions",
+   "learn": [
+    "What targeted financial sanctions are",
+    "When to screen and re-screen, and why ownership matters",
+    "How to handle a possible match, and the UN interim rule"
+   ],
+   "explainer": "sanctions-screening",
+   "risks": {
+    "wrong": [
+     "Screening only the account holder and not the owners and controllers",
+     "Screening once at onboarding and never again after list updates",
+     "Clearing a name match without comparing identifiers"
+    ],
+    "consequences": [
+     {
+      "text": "The AMLR makes managing the risk of non-implementation and evasion of targeted financial sanctions part of the firm’s own risk assessment and controls.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "9",
+       "para": "1"
+      }
+     },
+     {
+      "text": "Failures in customer due diligence, which includes the sanctions check, can be fined when serious, repeated or systematic.",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "The sanctions regulations themselves carry their own national penalties. They are not reproduced here; check your national authority.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Ownership changed shortly after a listing",
+     "Spelling variants or transliterations of listed names",
+     "Payments routed through unusual intermediaries",
+     "Vague reasons for third-party payments"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "What do targeted financial sanctions consist of?",
+     "options": [
+      "Fines on the customer",
+      "Asset freezing and a ban on making funds or assets available to designated persons and entities",
+      "A ban on all trade with a country",
+      "Increased reporting for the customer"
+     ],
+     "answer": 1,
+     "why": "This is the definition in AMLR Article 2(49).",
+     "law": {
+      "celex": "32024R1624",
+      "art": "2",
+      "para": "49"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "A customer company is 60% owned by a person on a sanctions list. How should you treat the company?",
+     "options": [
+      "Normally: it is not itself listed",
+      "As covered by the screening duty: more than 50% held by a listed person is in scope",
+      "Only if the customer is a bank",
+      "Only if the 60% is held directly"
+     ],
+     "answer": 1,
+     "why": "Due diligence must verify whether listed persons control the entity or hold more than 50% of its proprietary rights or a majority interest, alone or together. Always escalate and follow the sanctions regulation itself.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "20",
+      "para": "1(d)"
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "When must a bank or financial institution re-verify its client base against sanctions?",
+     "options": [
+      "Only at onboarding",
+      "Regularly, and also upon any new designation",
+      "Once a year",
+      "Only when a customer asks"
+     ],
+     "answer": 1,
+     "why": "The frequency must match your exposure, and for credit and financial institutions also upon any new designation. This does not replace stricter obligations under other EU or national law.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "26",
+      "para": "4"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Screening flags a possible match on a name. You cannot clear it with date of birth or nationality. What now?",
+     "options": [
+      "Let the payment through and look later",
+      "Stop, do not process, and escalate immediately",
+      "Delete the alert",
+      "Ask the customer to explain by email"
+     ],
+     "answer": 1,
+     "why": "An unresolved possible match is escalated at once. Do not let funds move while the match is open. Freezing and reporting follow the sanctions regulation and your national authority.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "26",
+      "para": "4"
+     },
+     "scenario": "Good-practice guidance, shown as default."
+    }
+   ],
+   "practice": {
+    "href": "workstation.html",
+    "label": "AML Investigation: a sanctions-related case (INV-301)",
+    "minutes": 12,
+    "module": null,
+    "why": "Open the workstation, then AML Investigation, and look for the case about a shareholder just under the line. Fictional case. Desktop only."
+   },
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "2",
+     "para": "(49)",
+     "label": "Definitions",
+     "quote": "‘targeted financial sanctions’ means both asset freezing and prohibitions to make funds or other assets available, directly or indirectly, for the benefit of designated persons and entities pursuant to Council Decisions adopted on the basis of Article 29 TEU and Council Regulations adopted on the basis of Article 215 TFEU;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "20",
+     "para": "1(d)",
+     "label": "Customer due diligence measures",
+     "quote": "verifying whether the customer or the beneficial owners are subject to targeted financial sanctions, and, in the case of a customer or party to a legal arrangement who is a legal entity, whether natural or legal persons subject to targeted financial sanctions control the legal entity or have more than 50 % of the proprietary rights of that legal entity or majority interest in it, whether individually or collectively;",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "26",
+     "para": "4",
+     "label": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
+     "quote": "In addition to the ongoing monitoring referred to in paragraph 1 of this Article, obliged entities shall regularly verify whether the conditions laid down in Article 20(1), point (d), are met. The frequency of that verification shall be commensurate with the exposure of the obliged entity and the business relationship to risks of non-implementation and evasion of targeted financial sanctions. For credit institutions and financial institutions, the verification referred to in the first subparagraph shall also be carried out upon any new designation in relation to targeted financial sanctions.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "27",
+     "para": "1",
+     "label": "Temporary measures for customers subject to UN financial sanctions",
+     "quote": "In respect of customers that are subject to UN financial sanctions or that are controlled by natural or legal persons or entities subject to UN financial sanctions, or in which natural or legal persons or entities that are subject to UN financial sanctions have more than 50 % of the proprietary rights or majority interest, whether individually or collectively, obliged entities shall keep records of: (a) the funds or other assets that they manage for the customer at the time when UN financial sanctions are made public; (b) the transactions attempted by the customer; (c) the transactions carried out for the customer.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "10",
+     "para": "1",
+     "label": "Business-wide risk assessment",
+     "quote": "as well as the risks of non-implementation and evasion of targeted financial sanctions",
+     "note": ""
+    }
+   ],
+   "reading": [
+    "EU sanctions regulations and the consolidated list: not in the RegRadar law library, read at the source",
+    "FATF Recommendations 6 and 7 (targeted financial sanctions)"
+   ]
+  },
+  {
+   "id": "dora-mica-primer",
+   "no": 10,
    "title": "DORA and MiCA: a short primer",
-   "short": "Two other EU rulebooks that apply to payment, e-money and crypto firms, and where they meet AML.",
+   "short": "Two other EU rulebooks for the financial sector, and where they meet AML.",
    "minutes": {
     "watch": 2,
     "risks": 1,
