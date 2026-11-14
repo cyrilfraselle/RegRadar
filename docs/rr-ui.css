@@ -271,8 +271,8 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--rr-accent);width:1
 .rr-filters .in[type="search"]{flex:1 1 220px}
 
 /* segmented control (two to four choices) */
-.seg{display:inline-flex;gap:2px;background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r-pill);padding:3px}
-.seg > button,.seg span{border:0;background:transparent;min-height:38px;padding:0 14px;border-radius:var(--rr-r-pill);font-weight:600;color:var(--rr-text-2);display:inline-flex;align-items:center;justify-content:center}
+.seg{display:inline-flex;gap:2px;background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r-pill);padding:2px}
+.seg > button,.seg span{border:0;background:transparent;min-height:44px;padding:0 14px;border-radius:var(--rr-r-pill);font-weight:600;color:var(--rr-text-2);display:inline-flex;align-items:center;justify-content:center}
 .seg > button[aria-selected="true"],.seg > button[aria-pressed="true"],.seg input:checked + span{background:var(--rr-surface);color:var(--rr-text);box-shadow:0 1px 3px rgba(0,0,0,.14)}
 
 /* ── 9. Tabs (landing nav underline) ───────────────────────────── */
