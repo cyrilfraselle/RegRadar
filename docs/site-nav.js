@@ -41,6 +41,7 @@
       { href: "academy-register.html", t: "Evidence",   d: "Certificates and the team register" }
     ]},
     { id: "regwatch", label: "RegWatch",     href: "regwatch.html" },
+    { id: "calendar", label: "Calendar",     href: "calendar.html" },
     { id: "country",  label: "Country risk", href: "country-risk.html" },
     { id: "law",      label: "Read the law", href: "law.html" }
   ];
@@ -49,7 +50,7 @@
     "home.html": "max", "topics.html": "max", "board.html": "max", "workspace.html": "max", "obligations.html": "max",
     "controls.html": "max", "dashboard.html": "max", "policies.html": "max", "risk-assessment.html": "max",
     "customer-risk.html": "max", "cases.html": "max", "actions.html": "max", "impact.html": "max", "ask.html": "max",
-    "regwatch.html": "regwatch", "country-risk.html": "country", "law.html": "law",
+    "regwatch.html": "regwatch", "calendar.html": "calendar", "country-risk.html": "country", "law.html": "law",
     "glossary.html": "academy", "academy.html": "academy", "academy-register.html": "academy",
     "academy-certificate.html": "academy", "film-follow-the-money.html": "academy", "workstation.html": "academy",
     "laundromat.html": "academy", "ownership.html": "academy", "desk.html": "academy", "shift.html": "academy",

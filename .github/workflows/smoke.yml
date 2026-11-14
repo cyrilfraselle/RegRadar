@@ -55,6 +55,9 @@ jobs:
       - name: RegWatch data adapter checks
         run: node tests/regwatch.test.mjs
 
+      - name: Deadlines calendar tests
+        run: node tests/calendar.test.mjs
+
       - run: node smoke.mjs
         working-directory: tests
         env:

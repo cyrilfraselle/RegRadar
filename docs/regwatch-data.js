@@ -233,10 +233,15 @@
     });
   }
   function icsEscape(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/([,;])/g, '\\$1'); }
-  function fold(line) {   // RFC 5545: lines of at most 75 octets
-    var out = [], s = line;
-    while (s.length > 74) { out.push(s.slice(0, 74)); s = ' ' + s.slice(74); }
-    out.push(s); return out.join('\r\n');
+  function fold(line) {   // RFC 5545: lines of at most 75 octets (UTF-8), continuation lines start with a space
+    var out = [], cur = '', bytes = 0, limit = 75;
+    var cps = Array.from(line);
+    for (var i = 0; i < cps.length; i++) {
+      var cp = cps[i].codePointAt(0), b = cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
+      if (bytes + b > limit) { out.push(cur); cur = ' '; bytes = 1; limit = 75; }
+      cur += cps[i]; bytes += b;
+    }
+    out.push(cur); return out.join('\r\n');
   }
   function ics(list, stamp) {
     var ts = (stamp || new Date().toISOString()).replace(/[-:]/g, '').replace(/\.\d+/, '').slice(0, 15) + 'Z';
