@@ -6,36 +6,18 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RegRadar — Read the Law</title>
+<title>RegRadar: Read the law</title>
 <meta name="description" content="Read EU AML legal texts with definitions and article navigation, from official EUR-Lex sources. Prototype, not legal advice.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<link rel="stylesheet" href="rr-legacy.css?v=20261114a">
 <style>
-  :root {
-    --bg: #0E1117; --surface: #151A21; --surface-2: #1A2029; --border: #232B36;
-    --border-strong: #2E3845; --text: #E6EDF3; --text-2: #9AA7B4; --text-3: #8D9299;
-    --accent: #4D8DFF; --accent-bg: #14213D; --on-accent: #0A0A0A;
-    --crit: #F0616D; --imp: #E3A008; --info: #5DA9E9; --ok: #2EBD85; --purple: #9D7BD8;
-    --radius: 10px; --radius-sm: 6px;
-    --font: "Helvetica Neue",Helvetica,Arial,"Liberation Sans",system-ui,sans-serif;
-    --mono: 'SF Mono',ui-monospace,Menlo,Consolas,monospace;
-    --reading: 'Georgia','Times New Roman',serif;
-  }
-  html[data-theme="light"] {
-    --bg: #F7F8FA; --surface: #FFFFFF; --surface-2: #F8FAFC; --border: #E6E9EF;
-    --border-strong: #D5DAE2; --text: #16202C; --text-2: #5A6675; --text-3: #646A74;
-    --accent: #0039A6; --accent-bg: #E7EDFB; --on-accent: #FFFFFF;
-    --crit: #C13515; --imp: #8A5F00; --info: #1E6FB8; --ok: #0F8A5F; --purple: #6B2D8B;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  :root { --reading: var(--rr-serif); }
   a { color: inherit; text-decoration: none; }
   button { font-family: inherit; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-  .lib { padding: 28px 0 60px; }
-  .lib h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .lib .sub { color: var(--text-2); font-size: 14px; margin-bottom: 24px; }
+  .lib { padding: 0 0 60px; }
   .law-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 14px; }
   .law-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: border-color .12s; }
   a.law-card:hover { border-color: var(--accent); }
@@ -149,12 +131,8 @@
 </style>
 
 
-  <link rel="stylesheet" href="regradar.css">
 <style id="law-overrides">
-  /* Loaded AFTER regradar.css: contrast tokens + rules regradar.css would otherwise win. */
-  html[data-theme="light"], :root { --text-3: #646A74; --imp: #8A5F00; --on-accent: #FFFFFF; --t-caption: 12px; }
-  html[data-theme="dark"] { --text-3: #8D9299; --on-accent: #0A0A0A; --t-caption: 12px; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Reader layout overrides (regradar.css retired here: rr-ui.css + rr-legacy.css). */
   .law-sticky { border-bottom: 0; }
   .toc-art { padding: 3px 0 3px 12px; }
   .toc-art:hover, .toc-art:focus-visible { color: var(--accent); }
@@ -180,7 +158,6 @@
     .art-nav-btn { padding: 8px 10px; }
   }
   @media (max-width: 520px) {
-    .wrap { padding: 0 16px; }
     .art-nav-pos { font-size: 12px; }
   }
 </style>
@@ -190,8 +167,12 @@
 
 <main class="wrap" id="main">
   <div class="lib" id="library">
-    <h1>EU Regulatory Library</h1>
-    <p class="sub">Read key EU financial regulations in a clean, structured viewer. Open a regulation to start reading.</p>
+    <header class="head rr-band">
+      <div>
+        <h1>Read the law</h1>
+        <p class="lead">Key EU financial regulations, word for word from EUR-Lex. Open one to start reading.</p>
+      </div>
+    </header>
     <div class="law-grid" id="lawGrid"><div class="loading">Loading library…</div></div>
   </div>
 
