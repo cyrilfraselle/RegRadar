@@ -196,23 +196,28 @@ Further reading named, not quoted: FATF Recommendation 20 (reporting of suspicio
 ## Game `g-scope-sort`: Covered or not? (sort, topic `who-is-covered`, added 2026-11-14)
 
 Self-checked by the author against `docs/data/laws/32024R1624_EN.json` and `32024L1640_EN.json`.
-Independent check (gate step 3): **pending**.
+Independent check (gate step 3): **done 2026-11-14** by a reviewer who did not write the content: 27 ok, 7 reword, 0 wrong. Every reword was re-checked against the law text and applied (rows say "after review"). Owner sign-off: pending.
 
 | Key | Wording on screen | Citation shown | Source checked | Verdict |
 |---|---|---|---|---|
-| `g-scope-sort/p` | Crypto-asset service providers are named in the definition of financial institution, and financial institutions are obliged entities. | Art. 2 para. 1, point (6)(i) | AMLR Art. 2(1)(6)(i) "a crypto-asset service provider"; Art. 3, point (2) "financial institutions" | ok |
-| `g-scope-sort/c1` | Credit institutions are the first category of obliged entities in Article 3. There is no size condition. | Art. 3 | AMLR Art. 3, point (1) "credit institutions"; no size condition in Art. 3 | ok |
-| `g-scope-sort/c2` | Lawyers are obliged entities where they assist in listed transactions, including buying and selling real property and managing client money. | Art. 3 | AMLR Art. 3, point (3)(b)(i) and (ii) | ok |
-| `g-scope-sort/c3` | An insurance undertaking is a financial institution insofar as it carries out life or other investment-related assurance activities. | Art. 2 para. 1, point (6)(b) | AMLR Art. 2(1)(6)(b), verbatim in meaning; unit-linked life policies are life assurance (teaching example) | ok |
-| `g-scope-sort/c4` | The definition covers insurers insofar as they carry out life or other investment-related assurance, which motor insurance is not. A Member State may still extend AML rules to other sectors: check national law. | Art. 2 para. 1, point (6)(b) | AMLR Art. 2(1)(6)(b) ("insofar as"); AMLD6 Art. 3(1) (Member States may apply the AMLR to other sectors) | interpretation: reading of "insofar as"; owner or legal reviewer to confirm |
-| `g-scope-sort/c5` | Estate agents are covered as intermediaries in real estate transactions, including lettings where the monthly rent is at least EUR 10 000. | Art. 3 | AMLR Art. 3, point (3)(d) | ok; amount fictional |
-| `g-scope-sort/c6` | For lettings, the text covers transactions with a monthly rent of at least EUR 10 000. Sales and other real estate intermediation by the same agent are a separate question. | Art. 3 | AMLR Art. 3, point (3)(d): lettings "for transactions for which the monthly rent amounts to at least EUR 10 000" | interpretation: the bucket says "not in the list for this activity"; owner or legal reviewer to confirm |
+| `g-scope-sort/p` | Crypto-asset service providers are named in the definition of financial institution, and financial institutions are obliged entities. | Art. 2 para. 1, point (6)(i) | AMLR Art. 2(1)(6)(i) "a crypto-asset service provider"; Art. 3, point (2) "financial institutions" | ok (independent check) |
+| `g-scope-sort/c1` | Credit institutions are the first category of obliged entities in Article 3. There is no size condition. | Art. 3 | AMLR Art. 3, point (1) "credit institutions"; no size condition in Art. 3 | ok (independent check) |
+| `g-scope-sort/c2` | Lawyers are obliged entities where they assist in listed transactions, including buying and selling real property and managing client money. | Art. 3 | AMLR Art. 3, point (3)(b)(i) and (ii) | ok (independent check) |
+| `g-scope-sort/c3` | An insurance undertaking is a financial institution insofar as it carries out life or other investment-related assurance activities. | Art. 2 para. 1, point (6)(b) | AMLR Art. 2(1)(6)(b), verbatim in meaning; unit-linked life policies are life assurance (teaching example) | ok (independent check) |
+| `g-scope-sort/c4` | The definition reaches insurers only insofar as they carry out life or other investment-related assurance. Motor insurance is general (non-life) insurance, so a motor-only insurer is not in the AMLR list. A Member State may still extend AML rules to other sectors (AMLD6 Art. 3(1)): check national law. | Art. 2 para. 1, point (6)(b) | AMLR Art. 2(1)(6)(b) ("insofar as"); AMLD6 Art. 3(1) (Member States may apply the AMLR to other sectors) | ok after review: interpretation (reading of "insofar as"), natural reading per reviewer; wording made firmer |
+| `g-scope-sort/c5` | Estate agents are covered as intermediaries in real estate transactions, including lettings where the monthly rent is at least EUR 10 000 or the equivalent in national currency. | Art. 3 | AMLR Art. 3, point (3)(d) | ok after review ("or the equivalent in national currency" added) |
+| `g-scope-sort/c6` | For lettings, Article 3(3)(d) names only those where the monthly rent is at least EUR 10 000 (or the equivalent in national currency). A letting at EUR 1 500 is therefore not in the list. Sales and other real estate intermediation by the same agent are a separate question. | Art. 3 | AMLR Art. 3, point (3)(d): lettings "for transactions for which the monthly rent amounts to at least EUR 10 000" | ok after review: defensible interpretation, reviewer's softer wording applied |
 
-Summary text (What to remember): Art. 3 lists obliged entities; lawyers and notaries are covered for listed
-transactions; some categories carry conditions (rent, transaction value, type of insurance); Member States may
-add sectors (AMLD6 Art. 3(1)); the AMLR applies from 10 July 2027.
+Summary text (What to remember), after review: Art. 3 lists obliged entities; lawyers and notaries are covered when acting for a
+client in a financial or real estate transaction or assisting in the listed transactions (Art. 3(3)(b), both limbs); Member States may
+exempt some gambling, football clubs and occasional financial activity (Arts 4 to 6); some categories carry conditions (rent, transaction value, type of insurance); Member States may
+add sectors (AMLD6 Art. 3(1)); the AMLR applies from 10 July 2027 (10 July 2029 for Art. 3(3)(n) and (o)).
 
 Law quotes in the summary (verbatim, checked by verify.mjs): AMLR Art. 3, points (1) and (2); AMLD6 Art. 3(1).
+
+Lesson and explainer items of the topic (not rounds; checked by the same reviewer on 2026-11-14, rewordings applied): Art. 70(2) paraphrase now names auditors, external accountants and tax advisors, the predicate-offence exception and Art. 70(3) (quote cut visibly with […]; Art. 70(3) excerpt added); explainer scene 4 names both limbs of Art. 3(3)(b); explainer scene 2 names payment services, issuing electronic money and currency exchange under Art. 2(1)(6)(a), account information services excluded; the sanctions consequence follows AMLD6 Art. 55(1) ("Member States shall ensure"); scene 6 adds 10 July 2029 and Arts 4 to 6 exemptions.
+
+Not verified in this repository: the content of Annex I to Directive 2013/36/EU (which points cover payment services and issuing electronic money). The AMLR text refers to its points (2) to (12), (14) and (15) and excludes PSD2 Annex I point (8); no point numbers are shown on screen. Re-check on EUR-Lex.
 
 ## Decide scenarios
 
@@ -227,17 +232,17 @@ Situation (fictional): Your third day in a new role at a fictional obliged entit
 | `d-context/b` | Wait a few weeks to see whether it happens again | poor | Reports are made promptly when there is a suspicion or reasonable grounds to suspect. Waiting for certainty is not the test. | Art. 69 para. 1(a) | AMLR Art. 69(1)(a): "knows, suspects or has reasonable grounds to suspect", reported promptly | ok |
 | `d-context/c` | Let it go: the amount is small | poor | The reporting duty applies regardless of the amount involved. | Art. 69 para. 1(a) | AMLR Art. 69(1)(a): "regardless of the amount involved" | ok |
 
-### `d-scope`: 'AML is for banks' (topic `who-is-covered`, added 2026-11-14)
+### `d-scope`: 'AML is for banks' (topic `who-is-covered`, added 2026-11-14, independent check done 2026-11-14)
 
 Situation (fictional): A small law firm (fictional). A new client asks the firm to set up a company and to hold the client money for buying an office building. One partner says: 'AML is for banks, we are lawyers.' What do you do?
 
-Independent check (gate step 3): **pending**.
+Independent check (gate step 3): **done 2026-11-14** (a reviewer who did not write it): all three options ok; option a reworded after review.
 
 | Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
 |---|---|---|---|---|---|---|
-| `d-scope/a` | Treat the matter as covered and apply customer due diligence under the firm's procedure before acting | best | Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship. | Art. 3 | AMLR Art. 3, point (3)(b)(ii) and (v); Art. 19(1)(a) | ok |
-| `d-scope/b` | Agree: legal privilege covers all of a lawyer's work | poor | Privilege limits the reporting duty in defined situations, such as ascertaining a client's legal position or proceedings. It does not take this transaction work outside the AMLR. | Art. 70 para. 2 | AMLR Art. 70(2): exemption from Art. 69(1) for information obtained in the course of ascertaining the legal position or in judicial proceedings; Art. 3, point (3)(b) | ok |
-| `d-scope/c` | Decline the matter without asking anything | ok | A firm may decline work, and nothing here requires it to. If it takes the matter, the AMLR requires due diligence when the business relationship is established. | Art. 19 para. 1(a) | AMLR Art. 19(1)(a); "may decline" is a statement of commercial freedom, not a legal claim | ok, practice wording |
+| `d-scope/a` | Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship, and also when participating in the creation of a legal entity, irrespective of the value (Art. 19(1)(c)). | best | Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship. | Art. 3 | AMLR Art. 3, point (3)(b)(ii) and (v); Art. 19(1)(a) | ok after review (Art. 19(1)(c) added) |
+| `d-scope/b` | Privilege limits the reporting duty in defined situations, such as ascertaining a client's legal position or proceedings. It does not take this transaction work outside the AMLR. | poor | Privilege limits the reporting duty in defined situations, such as ascertaining a client's legal position or proceedings. It does not take this transaction work outside the AMLR. | Art. 70 para. 2 | AMLR Art. 70(2): exemption from Art. 69(1) for information obtained in the course of ascertaining the legal position or in judicial proceedings; Art. 3, point (3)(b) | ok (independent check) |
+| `d-scope/c` | A firm may decline work, and nothing here requires it to. If it takes the matter, the AMLR requires due diligence when the business relationship is established. | ok | A firm may decline work, and nothing here requires it to. If it takes the matter, the AMLR requires due diligence when the business relationship is established. | Art. 19 para. 1(a) | AMLR Art. 19(1)(a); "may decline" is a statement of commercial freedom, not a legal claim | ok, practice wording (independent check) |
 
 ### `d-basics`: A launch next month (lesson `aml-basics`)
 

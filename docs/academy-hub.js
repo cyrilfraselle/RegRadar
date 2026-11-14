@@ -625,7 +625,7 @@ function lawVerify(law){
       var el=document.querySelector('.q[data-q="'+k+'"] [data-ver]'); if(!el) return;
       var ok=false;
       if(L){ var a=L.articles.filter(function(x){ return String(x.id)===String(c.art); })[0];
-        if(a){ var txt=norm(a.text); ok=c.quote.split(' […] ').every(function(p){ return txt.indexOf(norm(p))>=0; }); } }
+        if(a){ var txt=norm(a.text); ok=c.quote.replace(/^\[…\]\s*|\s*\[…\]$/g,'').split(' […] ').every(function(p){ return txt.indexOf(norm(p))>=0; }); } }
       el.textContent= L? (ok? 'Verified against the source text' : 'Could not verify this excerpt: use the link') : 'Source file not loaded: use the link';
       el.className='ver '+(ok?'ok':'no');
     });

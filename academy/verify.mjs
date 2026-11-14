@@ -53,7 +53,7 @@ if (cur && exp) {
       const a = article(c.celex, c.art);
       if (!a) { err(`${w} law[${i}]: no article ${c.celex} Art. ${c.art}`); continue; }
       const txt = norm(a.text);
-      for (const part of c.quote.split(' […] ')) if (!txt.includes(norm(part))) err(`${w} law[${i}] (${c.celex} Art. ${c.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
+      for (const part of c.quote.replace(/^\[…\]\s*|\s*\[…\]$/g, '').split(' […] ')) if (!txt.includes(norm(part))) err(`${w} law[${i}] (${c.celex} Art. ${c.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
     }
   }
   for (const e of exp.explainers) {
@@ -111,7 +111,7 @@ if (rnd && cur) {
     if (!a) return err(`${where}: no article ${q.celex} Art. ${q.art}`);
     if (!q.quote) return err(`${where}: law entry without a quote`);
     const txt = norm(a.text);
-    for (const part of q.quote.split(' […] ')) if (!txt.includes(norm(part))) err(`${where} (${q.celex} Art. ${q.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
+    for (const part of q.quote.replace(/^\[…\]\s*|\s*\[…\]$/g, '').split(' […] ')) if (!txt.includes(norm(part))) err(`${where} (${q.celex} Art. ${q.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
     nRQ++;
   };
   const checkCard = (g, c, where, practice) => {
@@ -222,7 +222,7 @@ if (pg && cur) {
     (s.law || []).forEach((q, i) => {
       const a = article(q.celex, q.art), where = `programme coming_soon ${id} law[${i}]`;
       if (!a) return err(`${where}: no article ${q.celex} Art. ${q.art}`);
-      for (const part of String(q.quote || '').split(' […] ')) if (!part || !norm(a.text).includes(norm(part))) err(`${where}: quote is not verbatim: "${part.slice(0, 60)}…"`);
+      for (const part of String(q.quote || '').replace(/^\[…\]\s*|\s*\[…\]$/g, '').split(' […] ')) if (!part || !norm(a.text).includes(norm(part))) err(`${where}: quote is not verbatim: "${part.slice(0, 60)}…"`);
     });
     for (const o of s.related || []) if (obl && !obl.obligations.some((x) => x.id === o)) err(`programme coming_soon ${id}: obligation ${o} is not in obligations.json`);
   }

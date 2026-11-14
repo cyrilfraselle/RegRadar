@@ -233,7 +233,7 @@
           "kicker": "Example 4",
           "text": "An insurer whose only business is motor insurance.",
           "answer": "notlisted",
-          "why": "The definition covers insurers insofar as they carry out life or other investment-related assurance, which motor insurance is not. A Member State may still extend AML rules to other sectors: check national law.",
+          "why": "The definition reaches insurers only insofar as they carry out life or other investment-related assurance. Motor insurance is general (non-life) insurance, so a motor-only insurer is not in the AMLR list. A Member State may still extend AML rules to other sectors (AMLD6 Art. 3(1)): check national law.",
           "cite": {
             "celex": "32024R1624",
             "art": "2",
@@ -245,7 +245,7 @@
           "kicker": "Example 5",
           "text": "An estate agent arranging the letting of a property at a monthly rent of EUR 12 000.",
           "answer": "covered",
-          "why": "Estate agents are covered as intermediaries in real estate transactions, including lettings where the monthly rent is at least EUR 10 000.",
+          "why": "Estate agents are covered as intermediaries in real estate transactions, including lettings where the monthly rent is at least EUR 10 000 or the equivalent in national currency.",
           "cite": {
             "celex": "32024R1624",
             "art": "3",
@@ -257,7 +257,7 @@
           "kicker": "Example 6",
           "text": "The same estate agent arranging a letting at a monthly rent of EUR 1 500.",
           "answer": "notlisted",
-          "why": "For lettings, the text covers transactions with a monthly rent of at least EUR 10 000. Sales and other real estate intermediation by the same agent are a separate question.",
+          "why": "For lettings, Article 3(3)(d) names only those where the monthly rent is at least EUR 10 000 (or the equivalent in national currency). A letting at EUR 1 500 is therefore not in the list. Sales and other real estate intermediation by the same agent are a separate question.",
           "cite": {
             "celex": "32024R1624",
             "art": "3",
@@ -267,10 +267,10 @@
       ],
       "remember": [
         "Obliged entities are listed in Article 3: credit institutions, financial institutions and a list of professions and businesses.",
-        "Lawyers and notaries are covered for listed transactions, not for every piece of legal work.",
+        "Lawyers and notaries are covered when they act for a client in a financial or real estate transaction, or help plan or carry out the listed transactions (such as buying and selling property or companies, managing client money, setting up companies or trusts), not for every piece of legal work.",
         "Some categories have conditions in the text, such as a rent or transaction value or the type of insurance.",
-        "Member States may apply AML rules to other sectors, so check your national law.",
-        "The rules quoted here are the AMLR, which applies from 10 July 2027."
+        "Member States may apply AML rules to other sectors, so check your national law. Member States may also exempt some low-risk gambling providers, some football clubs and occasional, very limited financial activities (Articles 4 to 6).",
+        "The AMLR applies from 10 July 2027 (from 10 July 2029 for football agents and professional football clubs)."
       ],
       "law": [
         {
@@ -790,7 +790,7 @@
           "id": "a",
           "label": "Treat the matter as covered and apply customer due diligence under the firm's procedure before acting",
           "verdict": "best",
-          "consequence": "Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship.",
+          "consequence": "Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship, and also when participating in the creation of a legal entity, irrespective of the value (Art. 19(1)(c)).",
           "cite": {
             "celex": "32024R1624",
             "art": "3",

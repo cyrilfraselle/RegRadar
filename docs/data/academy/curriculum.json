@@ -254,11 +254,11 @@
     ],
     "consequences": [
      {
-      "text": "Supervisors can impose pecuniary sanctions for serious, repeated or systematic breaches.",
+      "text": "Member States must ensure that pecuniary sanctions are imposed on obliged entities for serious, repeated or systematic breaches of the AMLR's rules on internal controls, customer due diligence, reporting and record retention.",
       "cite": {
        "celex": "32024L1640",
        "art": "55",
-       "para": ""
+       "para": "1"
       }
      },
      {
@@ -340,12 +340,12 @@
      "q": "A lawyer learns something worrying while advising a client on their legal position in a dispute. What does the AMLR say about the duty to report suspicions for that information?",
      "options": [
       "The duty applies in full, like for any other information",
-      "The lawyer is exempt for that information, unless the lawyer takes part in laundering, advises for that purpose or knows the client seeks advice for that purpose",
+      "The lawyer is exempt for that information, unless the lawyer takes part in laundering or its predicate offences, advises for that purpose or knows the client seeks advice for that purpose (your Member State may narrow the exemption further)",
       "The lawyer must report it to the client's bank instead",
       "Lawyers never have a reporting duty"
      ],
      "answer": 1,
-     "why": "Legal professionals are exempted from the reporting duty for information received in the course of ascertaining the legal position of a client or defending or representing them in judicial proceedings. The exemption does not apply where they take part in money laundering or terrorist financing, give advice for those purposes, or know the client seeks advice for those purposes.",
+     "why": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors are exempted from the duty to report suspicions (Art. 69(1)) for information they receive or obtain in the course of ascertaining a client's legal position or defending or representing them in, or concerning, judicial proceedings. The exemption does not apply where they take part in money laundering, its predicate offences or terrorist financing, give legal advice for those purposes, or know the client seeks legal advice for those purposes. Member States may also remove the exemption for certain higher-risk types of transaction (Art. 70(3)).",
      "law": {
       "celex": "32024R1624",
       "art": "70",
@@ -385,8 +385,8 @@
      "art": "70",
      "para": "2",
      "label": "Reporting by legal professionals",
-     "quote": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors shall be exempted from the requirements laid down in Article 69(1) to the extent that such exemption relates to information that they receive from, or obtain on a client, in the course of ascertaining the legal position of that client, or performing their task of defending or representing that client in, or concerning, judicial proceedings",
-     "note": "The exemption has limits (second subparagraph): read the full article."
+     "quote": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors shall be exempted from the requirements laid down in Article 69(1) to the extent that such exemption relates to information that they receive from, or obtain on a client, in the course of ascertaining the legal position of that client, or performing their task of defending or representing that client in, or concerning, judicial proceedings […]",
+     "note": "The exemption does not apply where the professional takes part in money laundering, its predicate offences or terrorist financing, or gives or knowingly serves legal advice for those purposes (second subparagraph). Member States may remove it for certain higher-risk types of transaction (Art. 70(3))."
     },
     {
      "celex": "32024R1624",
@@ -394,6 +394,14 @@
      "para": "",
      "label": "Entry into force and application",
      "quote": "It shall apply from 10 July 2027, except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), to which it shall apply from 10 July 2029.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "70",
+     "para": "3",
+     "label": "Member States may narrow the exemption",
+     "quote": "Member States may decide that the exemption referred to in paragraph 2, first subparagraph, does not apply to those types of transactions",
      "note": ""
     }
    ],

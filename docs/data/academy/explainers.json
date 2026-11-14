@@ -561,7 +561,7 @@
     },
     {
      "title": "Financial institutions",
-     "caption": "Financial institutions are defined in Article 2. Among others they include investment firms, insurers insofar as they carry out life or other investment-related assurance, crypto-asset service providers, and undertakings carrying out certain listed financial activities, including currency exchange offices. Illustrative, not the full list.",
+     "caption": "Financial institutions are defined in Article 2. Among others they include investment firms, insurers insofar as they carry out life or other investment-related assurance, crypto-asset service providers, and undertakings carrying out certain listed financial activities (Article 2(1), point (6)(a)), such as payment services, issuing electronic money and currency exchange. Account information services alone are excluded. Illustrative, not the full list.",
      "items": [
       {
        "t": "box",
@@ -599,7 +599,7 @@
        "y": 150,
        "w": 215,
        "h": 90,
-       "text": "Other listed\nfinancial activities",
+       "text": "Payment, e-money,\ncurrency exchange",
        "tone": "ok",
        "d": 2.0
       },
@@ -615,7 +615,7 @@
     },
     {
      "title": "Professions and businesses",
-     "caption": "Point (3) covers, among others, auditors, external accountants and tax advisors; notaries, lawyers and other independent legal professionals for listed transactions; trust or company service providers; estate agents; dealers in precious metals, stones and high-value goods; gambling and crowdfunding providers.",
+     "caption": "Point (3) covers, among others, auditors, external accountants and tax advisors; notaries, lawyers and other independent legal professionals in the situations set out in point (3)(b); trust or company service providers; estate agents acting as intermediaries; persons trading, as a regular or principal professional activity, in precious metals, stones and high-value goods; gambling and crowdfunding providers.",
      "items": [
       {
        "t": "box",
@@ -689,7 +689,7 @@
     },
     {
      "title": "Lawyers: covered for listed work",
-     "caption": "A lawyer or notary is covered where they act for a client in a financial or real estate transaction, or help plan or carry out listed transactions: for example buying or selling property or companies, managing client money, or setting up companies or trusts. Other legal work is not in that list.",
+     "caption": "A lawyer or notary is covered when acting for a client in any financial or real estate transaction, or when helping to plan or carry out listed transactions: for example buying or selling property or companies, managing client money, or setting up companies or trusts. Legal work outside these situations, such as advising on a client's legal position, is not covered by this point.",
      "items": [
       {
        "t": "box",
@@ -737,7 +737,7 @@
     },
     {
      "title": "Privilege has limits",
-     "caption": "Legal professionals are exempt from the reporting duty for information received while ascertaining a client's legal position or representing them in proceedings. The exemption does not apply if they take part in laundering, advise for that purpose, or know the client seeks advice for that purpose.",
+     "caption": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors are exempt from the reporting duty for information obtained while ascertaining a client's legal position or representing them in proceedings. The exemption does not apply if they take part in laundering, its predicate offences or terrorist financing, or advise for those purposes, or know the client seeks advice for them. Member States may narrow it (Article 70(3)).",
      "items": [
       {
        "t": "box",
@@ -787,7 +787,7 @@
     },
     {
      "title": "When it applies",
-     "caption": "The AMLR applies from 10 July 2027 (Article 90), and from 10 July 2029 for football agents and professional football clubs. Member States may also apply it to other sectors they find exposed to risk, so check your national rules.",
+     "caption": "The AMLR applies from 10 July 2027 (Article 90), and from 10 July 2029 for football agents and professional football clubs. Member States may exempt some low-risk gambling providers, some football clubs and occasional, very limited financial activities (Articles 4 to 6), and may apply the rules to other sectors they find exposed to risk. Check your national rules.",
      "items": [
       {
        "t": "box",
