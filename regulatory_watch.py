@@ -700,8 +700,21 @@ def charger_vus() -> set:
     return set()
  
 def sauvegarder_vus(vus: set):
-    """Sauvegarde les IDs traités. Garde les 2000 derniers pour éviter un fichier infini."""
-    liste = list(vus)[-2000:]
+    """Sauvegarde les IDs traités. Garde les 5000 plus récents pour éviter un fichier infini.
+
+    A set has no order, so `list(vus)[-2000:]` dropped arbitrary ids once
+    the cap was reached and let old items back in as duplicates. Keep the
+    file's existing order and append this run's new ids at the end, so the
+    cap always evicts the oldest."""
+    anciens = []
+    if SEEN_FILE.exists():
+        try:
+            anciens = json.loads(SEEN_FILE.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            anciens = []
+    deja = set(anciens)
+    liste = [i for i in anciens if i in vus] + sorted(i for i in vus if i not in deja)
+    liste = liste[-5000:]
     with open(SEEN_FILE, "w", encoding="utf-8") as f:
         json.dump(liste, f)
  

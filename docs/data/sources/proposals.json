@@ -1,0 +1,3577 @@
+{
+ "_meta": {
+  "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
+  "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
+  "generated": "2026-11-14T08:24:53+00:00",
+  "count": 46
+ },
+ "proposals": [
+  {
+   "id": "prop-nbb-aml-guidance-966dd0c52e75-5c834c29",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-966dd0c52e75",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Transfers of funds",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/transfers-funds",
+   "type": "guideline",
+   "status": "final",
+   "change": "changed",
+   "what_changed": {
+    "summary": "5 paragraphs added, 0 removed",
+    "removed_samples": []
+   },
+   "topics": [
+    "transfers-of-funds"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "transfers-of-funds"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "ESAs Joint Guidelines of 16 January 2018 under Article 25 of Regulation (EU) 2015/847 on the measures payment service providers should take to detect missing or incomplete information on the payer or the payee, and the procedures they should put in place to manage a transfer of funds lacking the required information",
+     "loc": "Other reference documents, para 1",
+     "topics": [
+      "transfers-of-funds",
+      "payments-emoney"
+     ],
+     "why": "normative wording (should) on transfers-of-funds, payments-emoney"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-b6d5a68dd3d2-bea95df0",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-b6d5a68dd3d2",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Due diligence requirements and compliance with other legislation",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/due-diligence-requirements-and-compliance-other-legislation",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Credit institutions should ensure that their customer acceptance policies and internal procedures are compatible with Article VII 55/12 of the Code of Economic Law, which grants payment institutions objective, non-discriminatory and proportionate access to credit institutions‘ payment account services.",
+     "loc": "4. Access by payment institutions to credit institutions' payment account servic, para 1",
+     "topics": [
+      "payments-emoney"
+     ],
+     "why": "normative wording (should) on payments-emoney"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-13c47f42acd7-c6e98b7a",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-13c47f42acd7",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Protection of reporting persons",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions/protection-reporting-persons",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Article 57 of the Anti-Money Laundering Law provides on the one hand that the disclosure of information in good faith to CTIF-CFI shall not constitute a breach of any restriction on disclosure of information imposed by contract and shall not lead to any adverse or discriminatory employment action. On the other hand, immunity remains intact even if the reporting person was not precisely and clearly aware of the predicate criminal activity, and even if it appears a posteriori that no illegal activity is related to the transaction that was reported to CTIF-CFI.",
+     "loc": "1. Exemption from liability for reporting persons, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "It should be specified however that the reporting must be considered to have been made in good faith. This means that the reporting may not have been carried out with the intention of harming the customer and that it may not be based on information that the entity knew was incorrect. Good faith also implies that the obliged entity has not committed any manifest breach of the obligation of careful examination provided for in Article 35, § 1, 1° of the Anti-Money Laundering Law, or of its obligation to analyse atypical transactions, in accordance with Article 45, § 1 of that Law. Good faith implies, in particular, that it cannot be considered that the reporting financial institution should have known or, in any case, could not have been unaware that the transactions for which suspicions were reported, were not related to money laundering or terrorist financing. This presupposes that, in their examination of the transaction concerned, the AMLCOs of the financial institutions take appropriate account of all relevant information relating to the customer, the business relationship and the transaction held by the financial institution. See in this regard the page “ Analysis of atypical fa",
+     "loc": "1. Exemption from liability for reporting persons, para 3",
+     "topics": [
+      "ongoing-monitoring"
+     ],
+     "why": "normative wording (should) on ongoing-monitoring"
+    },
+    {
+     "text": "In addition, the anonymity of AMLCOs who report suspicious transaction and of the financial institutions that employ them is further strengthened by Article 59 of the Anti-Money Laundering Law, which provides that the supervisory authorities competent for investigations and prosecutions, such as CTIF-CFI or the Public Prosecutor‘s Offices, shall take specific measures to ensure that the AMLCOs are not exposed to possible threats or hostile actions. Please refer to the Explanatory Memorandum of the Anti-Money Laundering Law for more information on this subject.",
+     "loc": "2. Anonymity of reporting persons, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "The protection of AMLCOs who report suspicious transactions and of the financial institutions that employ them is further strengthened by Article 59 of the Anti-Money Laundering Law, which provides that the authorities competent for investigations and prosecutions, such as CTIF-CFI or the Public Prosecutor‘s Offices, should take specific measures to ensure that reporting persons are legally protected from any threats, retaliatory measures or hostile actions.",
+     "loc": "3. Protection of judicial authorities, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-a2ddb91ba23e-76609b9d",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-a2ddb91ba23e",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Financial embargoes and assets freezing: Comments and recommendations by the NBB",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/financial-embargoes-and-asset-freezing/financial-embargoes-and-assets-freezing-comments-and-recommendations-nbb",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "beneficial-ownership",
+    "reporting-str",
+    "governance-risk-assessment",
+    "sanctions",
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "beneficial-ownership",
+     "reporting-str",
+     "governance-risk-assessment",
+     "sanctions",
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "A financial sanctions regime is an instrument used by international or European institutions or the Belgian government for various purposes, including foreign policy, the fight against terrorism and its financing or the fight against the proliferation of weapons of mass destruction. Although financial institutions must comply with all financial sanctions, this web page focuses mainly on financial embargoes and assets freezing measures related to the fight against terrorism and its financing, and to the fight against the proliferation of weapons of mass destruction. For the specific due diligence obligations relating to the fight against the proliferation of weapons of mass destruction, see the page Due diligence on business relationships and occasional transactions and detection of atypical facts and transactions , where it is recalled that transactions that could be related to the proliferation of weapons of mass destruction should also be considered atypical because of the intrinsic characteristics of these transactions or of the persons acting as customers, agents, beneficial owners or counterparties in these transactions, in particular because of their links with the countries ",
+     "loc": "1. Context, para 2",
+     "topics": [
+      "cdd",
+      "beneficial-ownership",
+      "sanctions"
+     ],
+     "why": "normative wording (must) on cdd, beneficial-ownership, sanctions"
+    },
+    {
+     "text": "Financial institutions are subject to certain obligations regarding financial embargoes and assets freezing. This web page sets out (i) the context of financial embargoes and assets freezing measures, (ii) the different financial embargo and assets freezing mechanisms that financial institutions must comply with, (iii) the obligation to have a monitoring system, (iv) the other organisational and operational measures that financial institutions must take with regard to financial embargoes and assets freezes, (v) the practical implementation of freezing measures and the consequences thereof, in particular the obligation to report to the FPS Finance - Treasury Department and (vi) the internal control measures recommended by the NBB in this area.",
+     "loc": "s1, para 1",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (must) on governance-risk-assessment, sanctions"
+    },
+    {
+     "text": "Pursuant to Article 8, § 1, 3°, the obliged entities should develop and implement policies, procedures and internal control measures that are efficient and commensurate with their nature and size in order to comply with the mandatory provisions on financial embargoes.",
+     "loc": "3. Obligation to have a monitoring system, para 1",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, sanctions"
+    },
+    {
+     "text": "on the other hand, the counterparties of outgoing financial transactions carried out by a customer or an agent whose surname, first name or alias or company name are identical to the data included in an official list of sanctions applicable in Belgium (N.B.: the NBB also considers it useful that the monitoring system allows for the detection of the originators of incoming financial transactions. If it appears that the originator (and only the originator) of the incoming financial transaction is included on an official list of sanctions applicable in Belgium, the execution of the incoming financial transaction would not lead to assets being made available to such a person or entity and therefore would not infringe the rules on financial embargoes and assets freezing; however, from the perspective of ML/FT prevention, such a transaction should be considered as atypical or even suspicious and a review of the risk profile of the customer and related persons may be required, where appropriate accompanied by a reporting of suspicions to CTIF-CFI - see point 5.4. below).",
+     "loc": "3.1.2. Setting up of the monitoring system, para 3",
+     "topics": [
+      "reporting-str",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on reporting-str, sanctions"
+    },
+    {
+     "text": "In practice, as indicated on the page Policies, procedures, processes and internal control measures , the NBB recommends that financial institutions set out in the \"customer acceptance policy\" section of their AML/CFTP policy the basic principles that should be included in the procedures for implementing the mandatory financial embargo provisions that apply when entering into a relationship. The customer acceptance policy should enable each financial institution to ensure that it complies with its obligations with regard to financial embargoes, including its obligations with regard to the freezing of the assets of certain persons and entities as part of the fight against terrorism.",
+     "loc": "4.1. Customer acceptance policy, para 2",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, sanctions"
+    },
+    {
+     "text": "As indicated on the page Policies, procedures, processes and internal control measures , this or these procedure(s) shall cover at least the following aspects with regard to financial embargoes and assets freezes:",
+     "loc": "4.2. Development of one or more monitoring procedures for financial embargoes an, para 2",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on governance-risk-assessment, sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-5f8b542c5834-3370375b",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-5f8b542c5834",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Risk classification",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/risk-classification",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "simplified-edd",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art34",
+      "why": [
+       "topic EDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "simplified-edd",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Based on the above, the risk classification should in theory include at least two risk categories (high and standard risk) and possibly a third one (low risk). However, it is important to note that this classification must ensure that appropriate due diligence measures are implemented in each situation. Regardless of the classification technique used, each financial institution must be able to demonstrate that its risk classification permits this objective to be attained (Art. 17, paragraph 2 of the Law). Hence it may be useful to classify situations which require identical due diligence measures in the same risk category. In that case, the number of risk categories will correspond to the number of risk situations requiring different risk mitigation measures. Thus, if several risks considered as high require different risk mitigation measures, depending on the nature of the risks concerned, it would be useful, in practice, to create the same number of corresponding risk categories. However, according to this principle, a risk classification comprising only two risk classes (high and standard risk) would only be relevant in the case of a financial institution whose overall risk asse",
+     "loc": "Comments and recommendations by the NBB, para 2",
+     "topics": [
+      "cdd",
+      "simplified-edd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, simplified-edd, governance-risk-assessment"
+    },
+    {
+     "text": "From this perspective, it should be noted that, in accordance with Article 4 of the NBB Regulation, financial institutions should ensure that the risk categories they define enable them, if necessary, to classify a customer in a risk category other than that in which he should in theory be classified, if they identify, in the context of the individual risk assessment carried out in accordance with Article 19, § 2 of the Anti-Money Laundering Law, cases of high risk or cases of low risk. The definition of risk categories should also allow financial institutions to take into account the cases of enhanced due diligence referred to in Articles 37 to 41 of the Law.",
+     "loc": "Comments and recommendations by the NBB, para 3",
+     "topics": [
+      "cdd",
+      "simplified-edd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, simplified-edd, governance-risk-assessment"
+    },
+    {
+     "text": "As an extension of the overall assessment of ML/FT risks , which must be performed in accordance with Article 16 of the Anti-Money Laundering Law, financial institutions are required, pursuant to Article 4 of the Anti-Money Laundering Regulation of the NBB, to define different risk categories and to apply appropriate due diligence measures specific to each category. These risk categories must specifically reflect each risk identified in the above-mentioned overall risk assessment and be based on objective risk factors that are combined in a consistent manner (cf. in particular the variables and risk factors referred to in Annexes I to III of the Law).",
+     "loc": "Comments and recommendations by the NBB, para 1",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (must) on cdd, governance-risk-assessment"
+    },
+    {
+     "text": "Finally, each risk class must be matched by appropriate measures to manage the ML/FT risks thus identified and classified. These measures include, in particular, the customer acceptance policy and the due diligence measures (see page “ Policies, procedures, processes and internal control measures ”).",
+     "loc": "Comments and recommendations by the NBB, para 5",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (must) on cdd, governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-1afceb0721b5-e864150f",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-1afceb0721b5",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Training and education of staff",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/training-and-education-staff",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "ongoing-monitoring",
+    "governance-risk-assessment",
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "topic Transaction Monitoring"
+      ]
+     }
+    ],
+    "topics": [
+     "ongoing-monitoring",
+     "governance-risk-assessment",
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In addition to general education, the AMLCO should ensure that (theoretical and practical) AML/CFTP training is provided to guarantee that the persons concerned by AML/CFTP risks are effectively able to implement the AML/CFTP measures in effect within the financial institution. The NBB recommends that, insofar as possible, this training be provided by the AMLCO or members of the latter’s team, where appropriate, in cooperation with the department in charge of staff training. Nevertheless, if this task is outsourced to a third party, the AMLCO should ensure that (i) the subcontractor has the required AML/CFTP knowledge to guarantee the quality of the training to be provided, (ii) the management conditions of the outsourcing are set and respected, and (iii) the content of the training is adapted to the specific features of the financial institution concerned and the field experience of the institution’s AMLCO is properly reflected in the training (see below).",
+     "loc": "2. Training, para 1",
+     "topics": [
+      "training",
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on training, outsourcing-reliance"
+    },
+    {
+     "text": "As regards the ratione personae scope , training should be provided to all staff (regardless of their status) of the financial institution who are concerned by ML/FT risks, as well as its independent agents (not brokers) and, if the financial institution is an electronic money institution, its distributors.",
+     "loc": "2. Training, para 3",
+     "topics": [
+      "training",
+      "payments-emoney"
+     ],
+     "why": "normative wording (should) on training, payments-emoney"
+    },
+    {
+     "text": "persons working for the compliance function under the responsibility of the AMLCO: training should be thorough and cover all AML/CFTP aspects, thus enabling the financial institution to comply with all its AML/CFTP obligations;",
+     "loc": "2. Training, para 6",
+     "topics": [
+      "governance-risk-assessment",
+      "training"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, training"
+    },
+    {
+     "text": "persons in contact with customers or tasked with carrying out their transactions (employees, agents and distributors): training should enable them to detect atypical transactions effectively and to alert the AMLCO as soon as possible in accordance with internal procedures;",
+     "loc": "2. Training, para 7",
+     "topics": [
+      "ongoing-monitoring",
+      "training"
+     ],
+     "why": "normative wording (should) on ongoing-monitoring, training"
+    },
+    {
+     "text": "The AMLCO should educate the financial institution’s staff about the ML/FT risks to which it is exposed, taking into account the broader national and international environment in which it operates, and why it is necessary to reduce these risks. Education thus consists of disseminating general AML/CFTP information to all staff members . This information can take various forms: company letters, intranet publications, meetings, etc. Through this process, staff are and will remain informed of the ML/FT risks, including methods, trends and typologies, as well as the risk-based approach implemented by the financial institution to reduce and manage these risks.",
+     "loc": "1. Education, para 1",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "persons responsible for developing procedures or software or other tools applicable to activities that are sensitive to ML/FT risks: training must enable them to adequately integrate AML/CFTP issues.",
+     "loc": "2. Training, para 8",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (must) on training"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-b583341af431-b9c9a585",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-b583341af431",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Belgian subsidiaries and branches",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-groups/belgian-subsidiaries-and-branches",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment",
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment",
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "For this purpose, the Belgian entity (a subsidiary governed by Belgian Law or a branch established in Belgium) should analyse the compliance of the group policies and procedures with the legal and regulatory AML/CFTP provisions applicable in Belgium (see point 1) and ensure that its parent company, if necessary, takes certain measures guaranteeing its permanent ability to comply with these provisions (see point 2). If all or some of the tasks of the Belgian entity’s AMLCO are outsourced to the parent company or to another entity of the group, particular attention should also be paid to the recommendations by the NBB in this area (see point 3).",
+     "loc": "Comments and recommendations by the NBB, para 2",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    },
+    {
+     "text": "in case of partial outsourcing, the analysis should be performed by the Belgian entity’s AMLCO with regard to all his tasks and should be completed by an impact analysis of this outsourcing which demonstrates that it does not impair compliance with the legal and regulatory AML/CFTP provisions applicable in Belgium;",
+     "loc": "3. Outsourcing of tasks of the Belgian entity’s AMLCO within the group, para 3",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    },
+    {
+     "text": "if all tasks of the Belgian entity’s AMLCO are outsourced to the parent company or to another entity of the same group, the aforementioned compliance and impact analyses of the outsourcing should be performed, as the case may be, by the AMLCO or by the senior officer acting as AMLCO, where appropriate assisted by the liaison on the Belgian entity’s payroll. This analysis should be retained within the Belgian entity and should be available for submission to the NBB at its first request.",
+     "loc": "3. Outsourcing of tasks of the Belgian entity’s AMLCO within the group, para 4",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-39835c904ef8-183f1a6c",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-39835c904ef8",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "Recommended actions in the event of credible publications of mass fraud or ML/FT cases in the press",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/recommended-actions-event-credible-publications",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "If this proves to be the case, financial institutions should take the published information into account when applying their risk-based approach (see the page Risk-based approach and overall risk assessment ), in particular by updating the data or information available to them in the context of their business relationships and, where appropriate, by also carrying out a new individual risk assessment on the basis of the published information (see in particular point 2 of the page Due diligence on business relationships and occasional transactions and detection of atypical facts and transactions ).",
+     "loc": "s1, para 2",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, governance-risk-assessment"
+    },
+    {
+     "text": "Furthermore, affected financial institutions should detect and analyse atypical facts and transactions in view of the published information (see the pages Due diligence on business relationships and occasional transactions and detection of atypical facts and transactions and Analysis of atypical facts and transactions ).",
+     "loc": "s1, para 3",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (should) on cdd"
+    },
+    {
+     "text": "Finally, where necessary, financial institutions should report (additional) suspicions to CTIF‑CFI (see the page Reporting of suspicions ).",
+     "loc": "s1, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-nbb-aml-guidance-e016dccae34d-a5cd27c6",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "nbb-aml-guidance-e016dccae34d",
+   "source": "nbb-aml-guidance",
+   "authority": "NBB",
+   "title": "New institutions: Comments and recommendations",
+   "url": "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/new-institutions/new-institutions-comments-and-recommendations",
+   "type": "guideline",
+   "status": "final",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Financial institutions governed by the law of another EEA Member State or of a third country that have undertaken to establish a subsidiary or branch in Belgium should provide proof that the AML/CFTP policy drawn up at group level which is applicable in the subsidiary or branch has been reviewed for compliance with Belgian legal and regulatory requirements (see the page “ Belgian subsidiaries and branches ”). In addition, the NBB considers that the AMLCO of a branch in Belgium should be appointed among employees that are physically based in that branch (see point 2.2.2. of the page “ Governance ” and point 3. of the page “ Belgian subsidiaries and branches ”).",
+     "loc": "s1, para 8",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2397-ae3d016a",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "celex-32026D2397",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2397 of 26 October 2026 amending Decision 2010/573/CFSP concerning restrictive measures against the leadership of the Transnistrian region of the Republic of Moldova",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2397",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On the basis of a review of Decision 2010/573/CFSP, the restrictive measures set out therein should be extended until 31 October 2027.",
+     "loc": "amending Decision 2010/573/CFSP concerning restrictive measures against the lead, para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision 2010/573/CFSP should therefore be amended accordingly,",
+     "loc": "amending Decision 2010/573/CFSP concerning restrictive measures against the lead, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2375-4b78d9fb",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "celex-32026D2375",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2375 of 26 October 2026 amending Decision (CFSP) 2025/609 on an assistance measure under the European Peace Facility to support the Armed Forces of Mauritania",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2375",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Complementary support, including technical naval assistance, needs to be provided for a period beyond the current end date of the implementation period of Decision (CFSP) 2025/609. Therefore, the duration of the assistance measures should be extended by 24 months from 24 March 2028 to 23 March 2030.",
+     "loc": "amending Decision (CFSP) 2025/609 on an assistance measure under the European Pe, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2025/609 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2025/609 on an assistance measure under the European Pe, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2363-959af39b",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "celex-32026D2363",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2363 of 26 October 2026 amending Decision (CFSP) 2023/927 on an assistance measure under the European Peace Facility to support the Ukrainian Armed Forces through the provision of ammunition",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2363",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On the basis of the implementation data for the assistance measure under Decision (CFSP) 2023/927, the financial reference amount set out in that Decision should be amended so that it corresponds to the financial impact for the EPF of the eligible orders for ammunition deliveries to Ukraine.",
+     "loc": "amending Decision (CFSP) 2023/927 on an assistance measure under the European Pe, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "In light of the ongoing war of aggression by the Russian Federation against Ukraine, the remainder of the financial reference amount set out in Decision (CFSP) 2023/927, namely EUR 670 971 859,54, should be allocated to the assistance measure under Council Decision (CFSP) 2022/338 ( 3 ) to cover the financing of the provision of military equipment designed to deliver lethal force.",
+     "loc": "amending Decision (CFSP) 2023/927 on an assistance measure under the European Pe, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2023/927 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2023/927 on an assistance measure under the European Pe, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "paragraph 3 is replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions following the adoption of this Decision, up to EUR 329 028 140,46. The funds called by the administrator for assistance measures shall only be used to pay expenditure within the limits approved by the Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the assistance measure.’.",
+     "loc": "Article 1, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2364-8a1a0206",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "celex-32026D2364",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2364 of 26 October 2026 amending Decision (CFSP) 2022/338 on an assistance measure under the European Peace Facility for the supply to the Ukrainian Armed Forces of military equipment, and platforms, designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2364",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On 26 October 2026, the Council adopted Decision (CFSP) 2026/2363 ( 4 ) , amending the financial reference amount set out in Decision (CFSP) 2023/927 ( 5 ) , and noted that the remainder of the initial financial reference amount set out in Decision (CFSP) 2023/927 should be allocated to the assistance measure under Decision (CFSP) 2022/338 to cover the financing of the provision of military equipment designed to deliver lethal force.",
+     "loc": "amending Decision (CFSP) 2022/338 on an assistance measure under the European Pe, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "In light of the ongoing war of aggression by the Russian Federation against Ukraine, the financial reference amount of the assistance measure under Decision (CFSP) 2022/338 should therefore be increased by an additional EUR 1 798 856 325,22 intended to cover the financing of the provision to the Armed Forces of Ukraine of military equipment designed to deliver lethal force.",
+     "loc": "amending Decision (CFSP) 2022/338 on an assistance measure under the European Pe, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2022/338 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2022/338 on an assistance measure under the European Pe, para 20",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "paragraphs 3 and 4 are replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 5 918 856 325,22 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the Assistance Measure. 4. Expenditure related to the implementation of the Assistance Measure shall be eligible from 1 January 2022 and until a date to be determined by the Council: (a) the maximum eligible expenditure incurred before 11 March 2022 shall be EUR 446 374 895,54; (b) the maximum amount eligible for the period from 11 March 2022 to 20 July 2022 shall be EUR 1 386 484 776,34; (c) the maximum amount eligible for the period between 21 July 2022 and 30 November 2022 shall be EUR 654 326 601,50; (d) the maximum amount eligible for the period from 1 December 2022 to 10 February 2023 shall be EUR 473 000 113,21; (e) the maximum amount eligible for the period from 11 Febru",
+     "loc": "Article 1, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-43d001486f81-2e846f76",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-library-43d001486f81",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Annex VI to CP draft ITS under Art. 31(2) AMLD - Cross-Border Dissemination",
+   "url": "https://www.amla.europa.eu/document/download/87ebc12f-2eec-4ebf-ab1f-44eb8000a755_en?filename=Annex%20VI%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Cross-Border%20Dissemination.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Fields marked with * are mandatory, and must always be completed, while fields marked with ** are conditional mandatory and must be completed only when relevant or when the related information is available to the disclosing FIU. Fields marked with *** shall be replicated as necessary on a case-by-case basis.",
+     "loc": "p. 2, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "More than one option can be selected. For each option selected (Criminal investigation, Hit on sanctions list, Hit on crime list, or Adverse media), the corresponding information must be provided.",
+     "loc": "p. 8, para 5",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (must) on sanctions"
+    },
+    {
+     "text": "More than one option can be selected. For each option selected (Criminal investigation, Hit on sanctions list, Hit on crime list, or Adverse media), the corresponding information must be provided. URL: _____________ Link with attachment: _________________",
+     "loc": "p. 12, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (must) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-ed5e2388851d-6dd7893d",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-library-ed5e2388851d",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Annex V to CP draft ITS under Art. 31(2) AMLD - Cross-Border Report",
+   "url": "https://www.amla.europa.eu/document/download/d88d6273-815c-4469-a486-c5303a1ac296_en?filename=Annex%20V%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Cross-Border%20Report.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "beneficial-ownership",
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "beneficial-ownership",
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Fields marked with * are mandatory, and must always be completed, while fields marked with ** are conditional mandatory and must be completed only when relevant or when the related information is available to the disclosing FIU. Fields marked with *** shall be replicated as necessary on a case-by-case basis.",
+     "loc": "p. 2, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "Data in this section should concern the natural persons of interest in the original report of suspicions.",
+     "loc": "p. 3, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "Data in this section should concern the legal persons of interest in the original report of suspicions.",
+     "loc": "p. 7, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-148273efc0e5-15c53299",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-library-148273efc0e5",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Annex IV to CP draft ITS under Art. 31(2) AMLD - Provision of Feedback",
+   "url": "https://www.amla.europa.eu/document/download/89b2d7b0-f86e-4757-9064-9751333af2cb_en?filename=Annex%20IV%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Provision%20of%20Feedback.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "3 Fields marked with * are mandatory, and must always be completed, while fields marked with ** are conditional mandatory and must be completed only when relevant or when the related information is available to the disclosing FIU. Fields marked with *** shall be replicated as necessary on a case-by-case basis.",
+     "loc": "p. 3, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "“To FIUs”: data of the FIU(s) that received the information to which feedback is provided (this should include the FIU providing the feedback).",
+     "loc": "p. 3, para 9",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "Reference number identifying the feedback that is provided. This should be a unique identifier allowing to trace the exchange back to each FIU's case file. * Date of the information received: Date when the information to which feedback is provided has been received (Format DD-MM-YYYY).",
+     "loc": "p. 3, para 11",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-533bd851ab13-2559ff22",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-instruments-533bd851ab13",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Implementing Technical Standards on cooperation within the AML/CFT supervisory system for the purposes of direct supervision.",
+   "url": "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The ITS establishes a sequential approach whereby, in a first step, the population of eligible obliged entities is identified, and, in a second step, only those entities that are eligible are required to report the data points necessary for the risk assessment underpinning the selection process. In addition, following the feedback received during the consultation process, AMLA refined the framework by introducing an exemption from the collection of eligibility information in cases where supervisors can determine, on the basis of existing information, that entities are non-eligible. Taken together, these elements enhance operational efficiency, reduce duplication of reporting, and ensure that the framework remains both proportionate and effective while supporting simplification.",
+     "loc": "p. 4, para 9",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (are required to) on governance-risk-assessment"
+    },
+    {
+     "text": "(4) Financial supervisors should collect data in 2026 to identify the first obliged entities to be assessed during the first selection process that will start no later than 1 July 2027. From the second selection process in 2030, the financial supervisors should, to the extent possible, use data that has been collected for other purposes, such as periodic risk assessment at the national level, to reduce the reporting burden on obliged entities and simplify the process. Where such data is not available, up to date or suitable, a dedicated data collection should be carried out.",
+     "loc": "p. 8, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-35ef3aab82cb-9f0dc900",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-instruments-35ef3aab82cb",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
+   "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd-natural-person",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd-natural-person",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "▪ Particular provisions should apply to natural persons that are not themselves obliged entities. This includes senior management and the management body in its supervisory function.",
+     "loc": "p. 5, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "(5) An important indicator for classifying the level of gravity of breaches is the conduct of the natural person or of the legal person, including its senior management and its management body in its supervisory function. Supervisors should pay particular attention to situations where the natural person or legal person appears to have had knowledge of the breach and took no action, or where their action directly contributed to the breach.",
+     "loc": "p. 9, para 2",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "(b) the conduct of the natural person or the legal person held responsible since the breach has been identified either by the natural person or legal person itself or by the supervisor. Supervisors shall consider, in particular, whether the natural person or legal person held responsible has taken effective and timely remedial actions to end the breach or has taken voluntary adequate measures to effectively prevent similar breaches in the future;",
+     "loc": "p. 12, para 9",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-51a0aec27558-bec36d16",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-instruments-51a0aec27558",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Implementing Technical Standards on FIU reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/document/download/180688e2-9cbc-4b40-84ea-1f9121f4d32f_en?filename=Final%20Report%20-%20ITS%20under%20Article%2081%281%29%20AMLR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Section 6: Financial Analysis M/D Field names Instructions M Network of financial flows from source to destination (e.g. wire transfers, remittances, crypto-asset transfers, cash) and the main individual transactions identified (e.g. their types, timing, and the financial institutions involved), as revealed by the analysis. FIUs shall provide the detailed results of the financial analysis.",
+     "loc": "p. 17, para 9",
+     "topics": [
+      "reporting-str",
+      "crypto-assets",
+      "transfers-of-funds"
+     ],
+     "why": "normative wording (shall) on reporting-str, crypto-assets, transfers-of-funds"
+    },
+    {
+     "text": "A M L A R E G U L A R U S E 3 1 Executive Summary Article 81(1) of Regulation (EU) 2024/1624 (AMLR) requires FIUs of Member States participating in the enhanced cooperation on the establishment of the EPPO to report to the EPPO without undue delay the results of their analyses and additional relevant information where there are reasonable grounds to suspect that offences within the competence of the EPPO have been committed. AMLA shall, in consultation with the EPPO, develop a draft ITS to specify the format for reporting.",
+     "loc": "p. 3, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "2.1 Legal framework Article 24 of Regulation (EU) 2017/1939 (EPPOR) requires national authorities of the 24 Member States participating in the enhanced cooperation of the EPPO (Denmark and Ireland do not participate, Hungary has notified the European Commission of its intention to participate) to report without undue delay to the EPPO any criminal conduct in respect of which it could exercise its competence. Article 81(1) of Regulation (EU) 2024/1624 (AMLR) requires FIUs of these Member States to report without undue delay the results of analyses and additional relevant information where there are reasonable grounds to suspect that offences within the competence of the EPPO have been committed. According to Article 81(1) AMLR, second subparagraph, AMLA shall, in consultation with the EPPO, develop a draft ITS to specify the format to be used by FIUs for reporting information to the EPPO.",
+     "loc": "p. 4, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "To preserve the ability of AMLA and FIUs to integrate the reporting requirements into FIU.net and into existing national IT systems, the ITS provides a sample reporting template rather than imposing a single mandatory template. However, FIUs must ensure that reports are machinereadable, so that information can be processed automatically by the EPPO. Automatic completion and retrieval of key data points in structured fields reduce the need for manual entries and review. To facilitate machine-readability, fields must be completed in accordance with the instructions contained in the sample template. Thereby, the EPPO will be enabled to automatically process the transmitted information and integrate it into its case‑management systems. To enable FIUs and the EPPO to adapt their IT systems to machine-readable reporting templates and to develop the processes required for their automated use, the application of the provisions requiring the transmission of machine-readable templates is postponed for one year to 10 July 2028.",
+     "loc": "p. 5, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "2.5 Restrictions of Use When transmitting information to the EPPO, FIUs shall indicate how that information may be used. The reporting template contains a dedicated field to specify whether the provided report may only be used for judicial purposes, intelligence purposes, cooperation in criminal matters or is subject to additional restrictions. This approach supports trust between FIUs and the EPPO and ensures that sensitive information is handled in a manner fully aligned with the applicable legal requirements.",
+     "loc": "p. 6, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "(4) A sample reporting template is provided to promote consistency in the structure and content of the information transmitted to the EPPO. Reports of FIUs should follow the structure and content of the sample reporting template to ensure uniformity of reporting. To preserve the ability of FIUs to integrate the reporting requirements into existing national IT systems and channels of communication, the ITS provides a sample reporting template defining the content and structure of FIU reporting. FIUs must ensure that reports are disseminated in a machine-readable format, so that information can be processed automatically by the EPPO. For this reason, consistent application of the field names and instructions in the sample reporting template is essential.",
+     "loc": "p. 8, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-04b1e9cef1d4-8db9b799",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-instruments-04b1e9cef1d4",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Implementing Technical Standards on AMLA reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/document/download/993e4d38-eeef-4d9d-a3ec-85ff59f82d61_en?filename=Final%20Report%20-%20ITS%20under%20Article%2041%282%29%20AMLAR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Section 6: Financial Analysis M/D Field names Instructions M Network of financial flows from source to destination (e.g. wire transfers, remittances, crypto-asset transfers, cash) and the main individual transactions identified (e.g. their types, timing, and the financial institutions involved), as revealed by the analysis. AMLA shall provide the detailed results of the financial analysis.",
+     "loc": "p. 16, para 9",
+     "topics": [
+      "crypto-assets",
+      "transfers-of-funds"
+     ],
+     "why": "normative wording (shall) on crypto-assets, transfers-of-funds"
+    },
+    {
+     "text": "To preserve the ability of AMLA to integrate the reporting requirements into FIU.net and into existing national IT systems, the ITS provides a sample reporting template rather than imposing a single mandatory template. However, AMLA must ensure that reports are machine-readable, so that information can be processed automatically by the EPPO. Automatic completion and retrieval of key data points in structured fields reduce the need for manual entries and review. To facilitate machine-readability, fields must be completed in accordance with the instructions contained in the sample template. Thereby, the EPPO will be enabled to automatically process the transmitted information and integrate it into its case‑management systems. To enable AMLA and the EPPO to adapt their IT systems to machine-readable reporting templates and to develop the processes required for their automated use, the application of the provisions requiring the transmission of machine-readable templates is postponed for one year to 10 July 2028. Simplification is a core component of AMLA’s mandate. In line with the Commission’s wider agenda on simplification and better regulation, this draft ITS creates a coherent fra",
+     "loc": "p. 4, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "2.4 Restrictions of Use When transmitting information to the EPPO, AMLA shall indicate how that information may be used. The reporting template contains a dedicated field to specify whether the provided report may only be used for judicial purposes, intelligence purposes, cooperation in criminal matters or is subject to additional restrictions. This approach supports trust between AMLA, the FIUs participating in joint analyses and the EPPO and ensures that sensitive information is handled in a manner fully aligned with the applicable legal requirements.",
+     "loc": "p. 5, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "Section 1: General information 1.1. AMLA contact point M/D Field names Instructions M AMLA joint analyses coordinator [name / designation] AMLA shall provide general information, including contact details, case reference number and the FIUs involved in the joint analyses.",
+     "loc": "p. 11, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "M Phone number: [phone number] M E-mail address: [e-mail address] M AMLA case reference: [reference number] M National FIUs involved in the case: [FIU Member State] 1.2. National criminal investigation M Criminal investigation initiated by national authorities? [Yes / No / Don’t Know] AMLA shall indicate whether a criminal investigation has already been initiated by the national authorities and, where applicable, give further details on the proceedings and specify whether an EDP is involved.",
+     "loc": "p. 11, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "Section 9: Urgent Measures M/D Field names Instructions D Freezing or postponement measures taken by FIUs participating in joint analysis, suspended accounts and transactions, as well as the relevant deadlines, such as those related to the execution of suspected transactions. Urgent actions required to prevent the imminent loss of evidence or the outflow of illicit funds. AMLA shall indicate any urgent measures that require immediate attention.",
+     "loc": "p. 17, para 9",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-consultations-bf1be08fd1a2-2302fa08",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-consultations-bf1be08fd1a2",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft ITS on the format for reporting suspicions and providing transaction records",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "This draft ITS establishes the format to be used for the reporting of suspicions and for the provision of transaction records to FIUs. In particular, it provides templates for reporting suspicions adapted to different types of obliged entities, as well as templates for the provision of transaction records by credit and financial institutions. The templates shall be implemented by all FIUs and by all obliged entities wishing to internally automate the process for reporting instead of using the reporting platforms of FIUs, under the conditions set by the draft ITS.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-consultations-24380b371f7c-e230a0c6",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "amla-consultations-24380b371f7c",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft Guidelines on ongoing monitoring of a business relationship",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-ongoing-monitoring-business-relationship_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "ongoing-monitoring"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "cites AMLR Art. 26",
+       "topic Transaction Monitoring"
+      ]
+     }
+    ],
+    "topics": [
+     "ongoing-monitoring"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Ongoing monitoring is a core requirement of the AMLR. Obliged entities must continuously monitor and review their business relationships to detect any unusual or suspicious transactions or activities. AMLA's draft guidelines under Article 26(5) AMLR support obliged entities in implementing their ongoing and transaction monitoring duties. They set out core principles applicable across both financial and non-financial sectors.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "ongoing-monitoring",
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on ongoing-monitoring, reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-att-4e5972d2d913-32b1fa83",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "att-4e5972d2d913",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Eurofi Views Magazine",
+   "url": "https://www.eurofi.net/wp-content/uploads/2026/09/eurofi-views-dublin-web.pdf#page=306",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "crypto-assets"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "crypto-assets"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Second, public balance sheets cannot be expected to meet Europe’s investment needs. More private capital needs to be channeled towards productive investments. Deeper and more integrated European capital markets are therefore essential. Progress on the Savings and Investments Union, including the Market Integration and Supervision Package, and the Banking Union are key in thata regard. Third, simplification of EU financial regulation can support these objectives by reducing unnecessary burdens and strengthening the competitiveness of the banking sector. However, simplification should not come at the expense of resilience. Core regulation must be preserved, including strong capital and liquidity requirements. The lessons of past crises remain highly relevant. At the same time, regulation and supervision should focus more strongly on banks’ material risks and taking a risk-based approach. This includes addressing European banks’ sovereign exposures and encouraging prudent diversification over time, while avoiding abrupt adjustments that could themselves create instability. It also includes monitoring og addressing the growing importance of NBFIs, including in government bond markets.",
+     "loc": "p. 34, para 9",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "The recently launched unitary patent system reduces the legal fragmentation that has made cross-border IP lending structurally uncertain. Broader use of IP assets in bank lending would make debt finance accessible at the scale-up stage, bridging the Valley of Death - the phase when a firm has demonstrated viability but cannot access the credit to scale and consequently relocates outside Europe or goes bankrupt. Any enabling environment must begin with valuation. Under the EU Startup and Scaleup Strategy, a framework for IP valuation is under development: standardised methods, automated screening tools, a network of accredited valuers, and capacity-building programmes for the financial community. 7 The SME Fund already subsidises IP registration costs; a successor instrument, the Innova Fund will extend support to the commercialisation stage, covering IP valuation, due diligence and the expert assistance firms need to translate IP portfolios into the language that credit committees recognise.",
+     "loc": "p. 39, para 5",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (must) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-eba-news-9e1e23e0ddaa-7f291bed",
+   "created": "2026-11-14T08:18:34+00:00",
+   "doc_id": "eba-news-9e1e23e0ddaa",
+   "source": "eba-news",
+   "authority": "EBA",
+   "title": "The EBA classifies USDC as the first significant e-money token in the European Union",
+   "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-classifies-usdc-first-significant-e-money-token-european-union",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "crypto-assets"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "crypto-assets"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The EBA is responsible for classifying ARTs and EMTs as significant (MiCA Articles 43 and 56). It annually assesses whether tokens should be considered significant or continue to meet applicable criteria. Commission Delegated Regulation (EU) 2024/1506 specifies the indicators to be used for this significance assessment (see also EBA Decision EBA/DC/558 ). Issuers of significant Asset-referenced tokens (ARTs) are placed under EBA supervision while issuers of significant EMTs are subject to the dual supervision of the EBA and the relevant national competent authority (MiCA article 117). The EBA exercises its powers in close cooperation with other competent authorities (MiCA Articles 117(5) and 128) and the supervisory colleges established (MiCA Article 119).",
+     "loc": "​Legal basis ​, para 1",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on crypto-assets"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2449-e000cc22",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "celex-32026D2449",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2449 of 29 October 2026 on an assistance measure under the European Peace Facility to support the Armed Forces of Mauritania",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2449",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The assistance measure shall also finance related supplies, infrastructure works and services, including training, where needed.",
+     "loc": "Article 1, para 17",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (shall) on training"
+    },
+    {
+     "text": "2. All expenditure shall be managed in accordance with Decision (CFSP) 2021/509 and in line with the rules for the implementation of revenue and expenditure financed under the EPF.",
+     "loc": "Article 2, para 2",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "1. The High Representative shall be responsible for ensuring the implementation of this Decision in accordance with Decision (CFSP) 2021/509, and in line with the rules for the implementation of revenue and expenditure financed under the EPF and with the Integrated Methodological Framework for assessing and identifying the required measures and controls for assistance measures under the EPF.",
+     "loc": "Article 4, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "2. The implementation of the activities referred to in Article 1 of this Decision shall be carried out by the Economat des Armées (EdA) in accordance with Article 37 of Decision (CFSP) 2021/509.",
+     "loc": "Article 4, para 2",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "During the period of implementation, the High Representative shall provide the PSC with six-monthly reports on the implementation of the assistance measure, in accordance with Article 63 of Decision (CFSP) 2021/509. The administrator for assistance measures shall regularly inform the Facility Committee established by Decision (CFSP) 2021/509 on the implementation of revenue and expenditure in accordance with Article 38 of that Decision, including by providing information on the suppliers and subcontractors involved.",
+     "loc": "Article 6, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R0046-2a0d661f",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "celex-32026R0046",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Commission Delegated Regulation (EU) 2026/46 of 3 December 2025 amending Delegated Regulation (EU) 2016/1675 to add Russia to the list of high-risk third countries with strategic deficiencies",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R0046",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "high-risk-countries"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "high-risk-countries"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The assessment has identified a number of strategic deficiencies, notably relating to Russia’s laws and policies in the area of the independence of the Financial Intelligence Unit and its ability to cooperate with counterparts in other countries, Russia’s laws and policies in the area of beneficial ownership transparency and information availability and accuracy, and Russia’s laws and policies in the area of applying AML/CFT regulation to crypto-assets. Such deficiencies expose the Single Market to ML/TF risks which should be mitigated.",
+     "loc": "(Text with EEA relevance), para 16",
+     "topics": [
+      "beneficial-ownership",
+      "reporting-str",
+      "crypto-assets",
+      "high-risk-countries"
+     ],
+     "why": "normative wording (should) on beneficial-ownership, reporting-str, crypto-assets, high-risk-countries"
+    },
+    {
+     "text": "The Union must effectively protect the integrity and proper functioning of its financial system and the internal market against money laundering and terrorist financing. Directive (EU) 2015/849 therefore provides that the Commission is to identify third country jurisdictions that have strategic deficiencies in their anti-money laundering and countering the financing of terrorism (AML/CFT) regimes that pose significant threats to the Union’s financial system (‘high-risk third countries’).",
+     "loc": "(Text with EEA relevance), para 6",
+     "topics": [
+      "high-risk-countries"
+     ],
+     "why": "normative wording (must) on high-risk-countries"
+    },
+    {
+     "text": "The Commission therefore concludes that Russia is to be identified as a high-risk third country and should be added to the Annex to Delegated Regulation (EU) 2016/1675. As Russia does not fit into any of the categories of high-risk third countries set out in the Annex to Delegated Regulation (EU) 2016/1675, a new category should be added to that Annex for high-risk third countries which are not identified as being subject to calls for action or increased monitoring by the FATF, but whose membership in that international standard-setter is suspended.",
+     "loc": "(Text with EEA relevance), para 18",
+     "topics": [
+      "high-risk-countries"
+     ],
+     "why": "normative wording (should) on high-risk-countries"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R0083-aaefa41e",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "celex-32026R0083",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Commission Delegated Regulation (EU) 2026/83 of 4 December 2025 amending Delegated Regulation (EU) 2016/1675 to add Bolivia and the British Virgin Islands to the list of high-risk third countries which have provided a written high-level political commitment to address the identified deficiencies and have developed an action plan with the FATF, and to remove Burkina Faso, Mali, Mozambique, Nigeria, South Africa and Tanzania from that list",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R0083",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "beneficial-ownership",
+    "sanctions",
+    "high-risk-countries"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     }
+    ],
+    "topics": [
+     "beneficial-ownership",
+     "sanctions",
+     "high-risk-countries"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The British Virgin Islands made a high-level political commitment in June 2025 to work with the FATF and the Caribbean Financial Action Task Force (CFATF), which is its FSRB, to strengthen the effectiveness of its AML/CFT regime. Since the adoption of its MER in November 2023, the British Virgin Islands has made significant progress on certain actions recommended in the MER, including increasing requests for international cooperation; establishing a CFT strategy and enhancing the analytical processes to identify TF cases; conducting a risk assessment of the non-profit organisations (NPO) sector and identifying the specific NPOs at risk of TF abuse; improving coordination, outreach and training to implement TF and PF-related targeted financial sanctions; and enhancing supervision and monitoring of implementation of targeted financial sanctions by financial institutions and designated non-financial businesses and professions (DNFBPs). The British Virgin Islands will continue to work with the FATF to implement its FATF action plan by enhancing risk-based supervision of trust and company service providers (TCSPs), investment businesses and virtual asset service providers (VASPs); ensur",
+     "loc": "(Text with EEA relevance), para 18",
+     "topics": [
+      "beneficial-ownership",
+      "reporting-str",
+      "governance-risk-assessment",
+      "sanctions",
+      "crypto-assets",
+      "high-risk-countries",
+      "training"
+     ],
+     "why": "normative wording (should) on beneficial-ownership, reporting-str, governance-risk-assessment, sanctions, crypto-assets, high-risk-countries, training"
+    },
+    {
+     "text": "Bolivia made a high-level political commitment in June 2025 to work with the FATF and the Grupo de Acción Financiera de Latinoamérica (GAFILAT), which is its FATF-style regional body (FSRB), to strengthen the effectiveness of its AML/CFT regime. Since the adoption of its mutual evaluation report (MER) in December 2023, Bolivia has made significant progress on certain actions recommended in the MER, including enhancing its money laundering (ML) and terrorism financing (TF) risk understanding; enhancing the production and dissemination of operational and strategic financial intelligence; strengthening the seizure and forfeiture of criminal proceeds; increasing capacity to investigate TF offences; and improving its process to implement targeted financial sanctions on TF and proliferation financing (PF). Bolivia will continue to work with the FATF to implement its FATF action plan by ensuring that relevant special investigative techniques can be used in ML investigations; implementing risk-based supervision of real estate agents, lawyers, accountants and dealers in precious metals and stones (DPMS); ensuring that beneficial ownership information is accurate and up-to-date and breaches ",
+     "loc": "(Text with EEA relevance), para 16",
+     "topics": [
+      "beneficial-ownership",
+      "sanctions",
+      "high-risk-countries"
+     ],
+     "why": "normative wording (should) on beneficial-ownership, sanctions, high-risk-countries"
+    },
+    {
+     "text": "The Union must effectively protect the integrity and proper functioning of its financial system and the internal market against money laundering and terrorist financing. Directive (EU) 2015/849 provides that the Commission is to identify third-country jurisdictions that have strategic deficiencies in their national anti-money laundering and countering the financing of terrorism (AML/CFT) regimes that pose significant threats to the Union’s financial system (‘high-risk third countries’).",
+     "loc": "(Text with EEA relevance), para 6",
+     "topics": [
+      "high-risk-countries"
+     ],
+     "why": "normative wording (must) on high-risk-countries"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32025Y06342-62f6f811",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "celex-32025Y06342",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Recommendation of the European Systemic Risk Board of 25 September 2025 on third-country multi-issuer stablecoin schemes (ESRB/2025/9)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025Y06342",
+   "type": "legislation",
+   "status": "published in OJ",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment",
+    "crypto-assets"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment",
+     "crypto-assets"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The EBA should continue to foster convergence in supervisory approaches towards third-country multi-issuer stablecoin schemes across the Union, during the authorisation procedure and throughout ongoing supervision, leveraging on the existing non-targeted provisions in MiCAR. Recommendation F is designed to ensure that EBA guidelines and other relevant regulatory standards clarify supervisory practices across the Union to address the specific financial stability risks of third-country multi-issuer stablecoin schemes. It focuses on enforcing prudential requirements proportionate to the risks, based on a thorough risk assessment. Furthermore, it encourages supervisory authorities to leverage on the existing framework to enforce prudential requirements that are proportionate to the associated risks.",
+     "loc": "(ESRB/2025/9), para 44",
+     "topics": [
+      "governance-risk-assessment",
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, crypto-assets"
+    },
+    {
+     "text": "Crypto-assets represent a rapidly growing segment of finance, increasingly interlinked with traditional assets and creating a channel of contagion that requires monitoring to protect financial stability. This segment is characterised by speculative behaviours, limited transparency and extreme price volatility as well as the frequent occurrence of illicit practices. Stablecoins, a subset of crypto-assets designed to maintain a steady value relative to specific reference assets or a basket of assets, have also expanded and are mainly used to access and exit crypto-markets. Stablecoins are typically backed by reserves such as cash or highly liquid financial instruments held by the issuer, including deposits held at credit institutions, but the composition and riskiness of such reserves vary across issuers and jurisdictions. These reserves are crucial as they have to be monetised quickly by issuers should the need to meet redemption requests submitted by token holders arise. Therefore, reserves contribute to maintaining trust in the stablecoin’s value. However, the privately issued nature of stablecoins, along with concerns about the quality and transparency of the reserves backing the",
+     "loc": "(ESRB/2025/9), para 10",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (have to) on crypto-assets"
+    },
+    {
+     "text": "If, on the other hand, the schemes continue to operate, they should be subject to a dedicated framework providing for safeguards adequate to their risks. Recommendation B is designed to ensure that a framework is established to assess the equivalence of third countries’ stablecoin regulations with MiCAR’s requirements. The lack of regulatory alignment between the Union and third countries creates enforcement gaps that undermine the safeguards to financial stability and to the smooth operation of payment systems. Without equivalence, third-country issuers could undermine Union safeguards, increasing the likelihood of destabilising spillovers into the Union financial system. Establishing equivalence is thus essential to enhance reserve rebalancing mechanisms under both normal and stressed conditions. This is in line with the Commission’s mandate under Article 140(2), point (v), of MiCAR.",
+     "loc": "(ESRB/2025/9), para 36",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on crypto-assets"
+    },
+    {
+     "text": "Recommendation H is designed to address operational risks by requiring Union issuers to demonstrate that financial institutions supporting the operations of third-country issuers are capable of executing asset sales, processing cross-border fund transfers, and maintaining access to international payment systems. Supervisory authorities should verify this evidence and, where legally permitted, collect additional information to ensure effective oversight and safeguard the stability of third-country multi-issuer stablecoin schemes.",
+     "loc": "(ESRB/2025/9), para 48",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on crypto-assets"
+    },
+    {
+     "text": "establish, as a matter of urgency, a framework for the assessment of the equivalence of third-country regulatory and supervisory regimes governing entities that provide crypto-asset services as well as issuers of stablecoins with characteristics similar to asset-referenced tokens and to e-money tokens. This framework should take into account the risks arising from third-country multi-issuer stablecoin schemes. For a third-country regime to be assessed as equivalent to that of the Union, and to ensure that it is no less stringent than those required under MiCAR, the following aspects should be considered: prudential and supervisory requirements; risk management standards – including stress testing – applicable to the issuer; the right of holders to redeem at par value and with no fees, except in crisis scenarios; the composition of reserves; crisis management frameworks (recovery and redemption plans) and anti-money laundering safeguards. The third-country’s banking legislation should also be assessed, specifically the aspects relating to third-country multi-issuer stablecoin schemes. In particular, banks involved in stablecoin issuance should not be exempt from leverage ratio, risk",
+     "loc": "Recommendation B – Establishing a framework for assessing the equivalence of thi, para 4",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on crypto-assets"
+    },
+    {
+     "text": "Union centralised supervision of third-country multi-issuer stablecoin schemes is, under a proportionality assessment, necessary to address the specific financial stability risks stemming from the schemes. Therefore, this criterion should be considered alongside the other existing criteria to assess significance and, in certain circumstances, warrant the supervision being transferred to the EBA. The EBA should contribute to the development of such a criterion.",
+     "loc": "Recommendation E – Amending the criteria for classification as significant, para 2",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on crypto-assets"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32025R2088-c171dd2b",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "celex-32025R2088",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Regulation (EU) 2025/2088 of the European Parliament and of the Council of 8 October 2025 amending Regulations (EU) No 1092/2010, (EU) No 1093/2010, (EU) No 1094/2010, (EU) No 1095/2010, (EU) No 806/2014, (EU) 2021/523 and (EU) 2024/1620 as regards certain reporting requirements in the fields of financial services and investment support (Text with EEA relevance)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R2088",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd-natural-person"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd-natural-person"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "in Article 15, the following paragraphs are added: ‘8. The ESRB shall share, on a regular or case-by-case basis, information that it obtained from one of the other authorities when carrying out its duties and that stems from the application and implementation of Union law, with the other authorities upon request, provided that the requesting authority is entitled to obtain that information from financial institutions or the other authorities pursuant to Union law. 9. A request to exchange information pursuant to paragraph 8 of this Article shall indicate the legal basis under Union law that entitles the requesting authority to obtain the information from financial institutions or the other authorities. The requesting authority and the ESRB shall be subject to the obligations of professional secrecy and data protection laid down in Article 8 and in sectoral legislation which apply to the sharing of information between the financial institution or the other authorities and the requesting authority, and between the other authorities and the ESRB. 10. Where the ESRB exchanges information pursuant to paragraph 8, it shall, without undue delay, inform each authority from which it obtaine",
+     "loc": "Article 1, para 3",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    },
+    {
+     "text": "the following articles are inserted: ‘Article 35a Exchange of information between authorities and with other entities 1. The Authority and the European Central Bank as referred to in Article 4, point (2)(i), shall share, on a regular or case-by-case basis, information that they obtained from financial institutions or the other authorities when carrying out their duties and that stems from the application and implementation of Union law, with the other authorities upon request, provided that the requesting authority is entitled to obtain that information from financial institutions or the other authorities pursuant to Union law. 2. The Authority and the European Central Bank as referred to in Article 4, point (2)(i), shall request information from any of the other authorities that have obtained that information, instead of requesting it directly from financial institutions, provided that the Authority or the European Central Bank, as applicable, is entitled to obtain that information pursuant to Union law. The first subparagraph of this paragraph shall be without prejudice to the powers of the Authority or the European Central Bank as referred to in Article 4, point (2)(i), to obtai",
+     "loc": "Article 2, para 15",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    },
+    {
+     "text": "the following articles are inserted: ‘Article 35a Exchange of information between authorities and with other entities 1. The Authority shall share, on a regular or case-by-case basis, information that it obtained from financial institutions or the other authorities when carrying out its duties and that stems from the application and implementation of Union law, with the other authorities upon request, provided that the requesting authority is entitled to obtain that information from financial institutions or the other authorities pursuant to Union law. 2. The Authority shall request information from any of the other authorities that have obtained that information, instead of requesting it directly from financial institutions, provided that the Authority is entitled to obtain that information pursuant to Union law. The first subparagraph shall be without prejudice to the powers of the Authority to obtain the requested information from financial institutions where the other authority is unable to share the information, where urgent action is needed or where obtaining the information directly from financial institutions is necessary for the performance of the Authority’s tasks pursuan",
+     "loc": "Article 3, para 9",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    },
+    {
+     "text": "the following articles are inserted: ‘Article 35a Exchange of information between authorities and with other entities 1. The Authority shall share, on a regular or case-by-case basis, information that it obtained from financial institutions or the other authorities when carrying out its duties and that stems from the application and implementation of Union law, with the other authorities upon request, provided that the requesting authority is entitled to obtain that information from financial institutions or the other authorities pursuant to Union law. 2. The Authority shall request information from any of the other authorities that have obtained that information, instead of requesting it directly from financial institutions, provided that the Authority is entitled to obtain that information pursuant to Union law. The first subparagraph shall be without prejudice to the powers of the Authority to obtain the requested information from financial institutions where the other authority is unable to share the information, where urgent action is needed or where obtaining the information directly from financial institutions is necessary for the performance of the Authority’s tasks pursuan",
+     "loc": "Article 4, para 8",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    },
+    {
+     "text": "the following article is inserted: ‘Article 31a Exchange of information between authorities and with other entities 1. The Board shall share, on a regular or case-by-case basis, information that it obtained from financial institutions or the other authorities when carrying out its duties, and that stems from the application and implementation of Union law, with the other authorities upon request, provided that the requesting authority is entitled to obtain that information from financial institutions or the other authorities pursuant to Union law. 2. The Board shall request information from any of the other authorities that have obtained that information, instead of requesting it directly from financial institutions, provided that the Board is entitled to obtain that information pursuant to Union law. The first subparagraph shall be without prejudice to the powers of the Board to obtain the requested information from financial institutions where the other authority is unable to share the information, where urgent action is needed or where obtaining the information directly from financial institutions is necessary for the performance of the Board’s tasks pursuant to Union law. 3. A ",
+     "loc": "Article 5, para 2",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    },
+    {
+     "text": "the following Article is inserted: ‘Article 92a Exchange of information between authorities and with other entities 1. The Authority shall share, on a regular or case-by-case basis, information that it obtained from obliged entities or the other authorities when carrying out its duties, and that stems from the application and implementation of Union law, with the other authorities upon request, provided that the requesting authority is entitled to obtain that information from obliged entities or the other authorities pursuant to Union law. 2. The Authority shall request information from any of the other authorities that have obtained that information, instead of requesting it directly from obliged entities, provided that the Authority is entitled to obtain that information pursuant to Union law. The first subparagraph of this paragraph shall be without prejudice to the powers of the Authority to obtain the requested information from obliged entities where the other authority is unable to share the information, where urgent action is needed or where obtaining information directly from obliged entities is necessary for the performance of the Authority’s tasks pursuant to Union law. 3",
+     "loc": "Article 7, para 9",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-2a00943677fd-770b959f",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "amla-library-2a00943677fd",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Interpretative Note - draft ITS under Article 69(3) AMLR",
+   "url": "https://www.amla.europa.eu/document/download/3e3f0ec6-bd1d-42fc-9d87-b64666fafd31_en?filename=Interpretative%20Note%20draft%20RTS%20under%20Article%2069%283%29%20AMLR.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "cdd-natural-person",
+    "cdd-legal-entity",
+    "pep",
+    "beneficial-ownership",
+    "reporting-str",
+    "sanctions",
+    "crypto-assets",
+    "transfers-of-funds",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "cdd-natural-person",
+     "cdd-legal-entity",
+     "pep",
+     "beneficial-ownership",
+     "reporting-str",
+     "sanctions",
+     "crypto-assets",
+     "transfers-of-funds",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "5. Financial sector (aligned with risk assessment methodology): Payment Accounts Virtual IBANs Prepaid Cards Lending/ Factoring Life Insurance Contracts Currency Exchange Involving Cash Custody of Crypto Assets Investment Services Money Remittance Wealth Management Correspondent Services Trade Finance E-money TCSP Services Crypto Services (exchange, transfer) Management of UCITS Management of AIFs Crypto FIAT Cards Safe Custody Services Crowdfunding Cash Transactions DP0702 product or service date Date on which the product or service was sought or provided Date format DATE: YYYY-MM-DD This date shall correspond to the first contact established in order to seek or provide the product or service. It is distinct from the the report date reference. DP0703 product or service identification number The unique identification number assigned to the product or service by the obliged entity Free text This number shall correspond to any reference allocated to a product or service, where available. It distinguishes from unique customer number. For Football players transfers, FIFA TMS information can be provided here – for other types such as sponsorship or ownership investments, a standardised ",
+     "loc": "p. 40, para 3",
+     "topics": [
+      "governance-risk-assessment",
+      "crypto-assets",
+      "payments-emoney"
+     ],
+     "why": "normative wording (shall) on governance-risk-assessment, crypto-assets, payments-emoney"
+    },
+    {
+     "text": "This data points shall be completed for any natural person known or suspected to be a PEP or related to a PEP according to the values provided as well as for beneficial owners of customer's entities, and should be linked accordingly to the relevant persons. It shall be completed in case of a full match if the list contains only the names of the person, and also in case of partial match if the list provides the date of birth of the person.",
+     "loc": "p. 29, para 6",
+     "topics": [
+      "pep",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (shall) on pep, beneficial-ownership"
+    },
+    {
+     "text": "This Note does not create, amend or supersede any legally binding requirement and does not provide legal assurance. In the event of any inconsistency, the applicable Union legal acts (including Regulations and delegated/implementing acts, such as RTS/ITS) shall prevail. Scope of the Note and future updates This Interpretative Note supports only the reporting of suspicions and the provision of transaction records as required by FIUs under EU and national applicable laws, whose format is developed in the draft ITS pursuant to Article 69(3) AMLR.",
+     "loc": "p. 3, para 10",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "Section 1: reports of suspicions Data points are organised in various categories which should be reported depending on the type of activity carried out by the reporting obliged entity and the type of suspicion reported. The dependencies between data points and the relations with the type of obliged entity are described in the annexes of the draft ITS pursuant to Article 69(3) AMLR.",
+     "loc": "p. 5, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "Free text (alphanumeri c) This number must be unique per report and is distinct from the number assigned by the FIU.",
+     "loc": "p. 6, para 6",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "- \"allegedly connected The appreciation whether two reports are subsequent or allegedly connected should be based on a case-by-case basis and within a reasonable timeframe that can be limited by the FIU.",
+     "loc": "p. 6, para 11",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-1b17f68f9277-ccab9e1c",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "amla-instruments-1b17f68f9277",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on Home-Host Supervisory Cooperation",
+   "url": "https://www.amla.europa.eu/document/download/86561c3a-0910-445d-beb7-8f0a43360de0_en?filename=Final%20Report%20-%20RTS%20under%20Article%2046%284%29%20AMLD.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "beneficial-ownership",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     }
+    ],
+    "topics": [
+     "beneficial-ownership",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(8) Cooperation between supervisors of the home and host Member States may involve conducting inquiries on behalf of a requesting supervisor, or facilitating the conduct of such inquiries. Inquiries include a single request or several requests. Inquiries may include but are not limited to (a) requests by home supervisors to establish how a subsidiary applies group-wide policies, procedures and controls, and requests by supervisors to supervise the compliance of the establishments located in their Member State with Regulations (EU) 2024/1624 and (EU) 2023/1113 of the European Parliament and of the Council of 31 May 2023 on information accompanying transfers of funds and certain crypto-assets and amending Directive (EU) 2015/8495, and (b) requests by supervisors in relation with requests from other comptetent bodies in their Member State, under the conditions of Article 68(3) of Directive (EU) 2024/1640. Supervisors should cooperate when conducting or",
+     "loc": "p. 9, para 7",
+     "topics": [
+      "governance-risk-assessment",
+      "crypto-assets",
+      "transfers-of-funds"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, crypto-assets, transfers-of-funds"
+    },
+    {
+     "text": "2.4 Information exchange, inquiries and coordinated supervisory approaches Articles 4 to 6 of the draft RTS specify the modalities of information exchange between home and host supervisors. In addition to exchanges on request, both home and host supervisors have to share information on their own initiative where that information could significantly influence the assessment of the inherent or residual risk exposure of an obliged entity in another Member State. Specific categories of information are identified for this purpose, including risk assessments, supervisory findings, relevant regulatory developments, and information relating to the imposition of sanctions or administrative measures. The latter must be shared before the concerned entity is notified of the beginning of the relevant procedure. Before submitting a request for information, supervisors are expected to assess whether the information sought is already available through existing registers or databases, including beneficial ownership registers, central bank account registers, and the central AML/CFT database under AMLAR. Such provision reflects a simplified and resource-conscious approach to cooperation: by drawing f",
+     "loc": "p. 7, para 2",
+     "topics": [
+      "beneficial-ownership",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (have to) on beneficial-ownership, governance-risk-assessment"
+    },
+    {
+     "text": "(10) Information provided in accordance with this Regulation should be bound by professional secrecy and confidentiality requirements for all parties involved in the exchange of that information. Hence, specific provisions should be set out in this Regulation as to how this information can be further disclosed. In order to ensure the effective and efficient functioning of cooperation and information exchange between supervisors, information exchanged pursuant to Article 46 of Directive (EU) 2024/1640 may, where justified and except for information originating from thirdcountry counterparts, be disclosed without prior consent to supervisors, including the Authority where it acts as a supervisor, or to the public authorities referred to in Article 52 of Directive (EU) 2024/1640, provided that the supervisor from which the information originated is notified accordingly. Information exchanged pursuant to Article 46 of Directive (EU) 2024/1640 may also be disclosed without the prior consent of the supervisor from which the information originated in other cases where such disclosure is authorised or required under Union law. This includes, in particular, disclosure to Financial Intellige",
+     "loc": "p. 10, para 3",
+     "topics": [
+      "reporting-str",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on reporting-str, sanctions"
+    },
+    {
+     "text": "1. Supervisors specified in Article 1 shall exchange information by using protected channels of communication that ensure an appropriate level of confidentiality, security, access controls and access logs. Where available they shall use collaborative and integrated solutions designed to support structured workflows, secure data exchanges and record keeping.",
+     "loc": "p. 11, para 6",
+     "topics": [
+      "record-keeping"
+     ],
+     "why": "normative wording (shall) on record-keeping"
+    },
+    {
+     "text": "1. Prior to submitting a request for information, supervisors specified in Article 1 shall verify whether the requested information is already available and accessible. It includes, where relevant, assessing whether such information is included in the data contained in the central beneficial ownership registers established under Article 10 of Directive (EU) 2024/1640, in the central bank account registers or electronic data retrieval systems referred to in Article 16 of Directive (EU) 2024/1640 and in any other registers held by the European Supervisory Authorities or the European Central Bank. Supervisors may also consider requesting access to data contained in the central AML/CFT database established under Article 11 of Regulation (EU) 2024/1620.",
+     "loc": "p. 12, para 6",
+     "topics": [
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (shall) on beneficial-ownership"
+    },
+    {
+     "text": "EN 19 EN The baseline scenario would foresee the application of a number of provisions on the cooperation between home and host supervisors for the purposes of AML/CFT supervision of groups, as specified in Article 46 of Directive (EU) 2024/1640. In particular, Article 46(1) requires Member States to ensure that supervisors of the home Member State and those of the host Member State cooperate with each other to the greatest extent possible, and cooperate with AMLA when acting as a supervisor. Furthermore, under Article 46(2), Member States must ensure that home supervisors supervise the effective implementation of the group-wide policies, procedures and controls, while host Member State supervisors supervise the compliance of the establishments located in their territory. Moreover, Article 46(3) requires Member States to ensure that supervisors provide one another with any information necessary for the exercise of their supervisory tasks – whether on request or on their own initiative – and especially any information necessary for the assessment of the inherent or residual risk exposure of an obliged entity in another Member State. Lastly, Member States shall ensure that the same p",
+     "loc": "p. 19, para 1",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (must) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-2c9307a49c44-8fcd76e3",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "amla-instruments-2c9307a49c44",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on group-wide minimum requirements and additional measures for subsidiaries and branches in third countries",
+   "url": "https://www.amla.europa.eu/document/download/ffcb26fd-0a0e-4f4f-9c3d-9f3ce0a283b5_en?filename=Final%20Report%20-%20draft%20RTS%2016%284%29%20and%2017%283%29%20AMLR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "cdd-legal-entity",
+    "beneficial-ownership",
+    "ongoing-monitoring",
+    "reporting-str",
+    "governance-risk-assessment",
+    "sanctions",
+    "training",
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "cites AMLR Art. 20",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "cites AMLR Art. 26",
+       "topic Transaction Monitoring"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "cdd-legal-entity",
+     "beneficial-ownership",
+     "ongoing-monitoring",
+     "reporting-str",
+     "governance-risk-assessment",
+     "sanctions",
+     "training",
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(5) A list of information that, when considered relevant for the purposes of the prevention of money laundering, terrorist financing and the risk of the non-implementation or evasion of targeted financial sanctions, can be shared is provided in Annex I to this Regulation. The type of information to be shared within the group should include, among other types, information on customers, transactions, services and activities, risk assessments, internal controls, independent audit functions, external audits, suspicious transactions or activity reporting, group-wide policies, procedures and controls, and interactions with supervisors and competent authorities. In any case, information sharing should take into account the requirements set out in Regulation (EU) 2024/1624, Regulation (EU) 2023/1113 of the European Parliament and of the Council of 31 May 2023 on information accompanying transfers of funds and certain crypto-assets and amending Directive (EU) 2015/8492 and any administrative act of the supervisors.",
+     "loc": "p. 11, para 3",
+     "topics": [
+      "reporting-str",
+      "governance-risk-assessment",
+      "sanctions",
+      "crypto-assets",
+      "transfers-of-funds"
+     ],
+     "why": "normative wording (should) on reporting-str, governance-risk-assessment, sanctions, crypto-assets, transfers-of-funds"
+    },
+    {
+     "text": "5. Information sharing within the group shall not affect the individual responsibility of each obliged entity to comply with AML/CFT requirements and to prevent the risk of the nonimplementation or evasion of targeted financial sanctions. Each obliged entity of the group shall remain fully responsible for complying with due diligence requirements and performing its own risk assessments and making its own risk-related decisions, even when such decisions are based on information shared at the group level and taking into account any outsourcing, reliance on other obliged entities or other third-party arrangement in place.",
+     "loc": "p. 19, para 11",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment",
+      "sanctions",
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (shall) on cdd, governance-risk-assessment, sanctions, outsourcing-reliance"
+    },
+    {
+     "text": "(18) The provisions of this Regulation should also be without prejudice to the enhanced due diligence measures obliged entities are required to take when dealing with natural persons or legal entities established in countries identified by the Commission as having significant strategic deficiencies in their national AML/CFT regimes, weaknesses in their national AML/CFT regimes or posing a specific and serious threat to the Union’s financial system pursuant to Articles 29, 30 and 31 of Regulation (EU) 2024/1624.",
+     "loc": "p. 13, para 4",
+     "topics": [
+      "cdd",
+      "simplified-edd",
+      "high-risk-countries"
+     ],
+     "why": "normative wording (should) on cdd, simplified-edd, high-risk-countries"
+    },
+    {
+     "text": "(1) Regulation (EU) 2024/1624 aims for the harmonisation of the measures to be put in place to prevent money laundering, its predicate offences, terrorist financing and the risk of the non-implementation or evasion of targeted financial sanctions at the Union level, including when such measures are designed and implemented in groups or in structures other than groups when such structures fulfil the conditions set out in this Regulation. Minimum requirements for group-wide policies, procedures and controls should be developed, implemented and applied at the group level in an adequate and consistent manner, while avoiding any risks of compromising anti-money laundering, counterterrorism financing as well as preventing the risk of the non-implementation or evasion of targeted financial sanctions.",
+     "loc": "p. 10, para 4",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, sanctions"
+    },
+    {
+     "text": "(6) Obliged entities should use the information shared by other entities in the group to make, among other things, informed decisions on customers, transactions and risk assessments, and to potentially restrict or refuse to enter into a new relationship, terminate existing business relationships or restrict or refuse to carry out the execution of occasional transactions in accordance with Regulation (EU) 2024/1624. Furthermore, the information shared within the group should be used to prevent and mitigate money laundering, terrorist financing and the risk of the non-implementation or evasion of targeted financial sanctions and to inform the parent undertaking in the Union of the group-wide-level risk assessment.",
+     "loc": "p. 11, para 4",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, sanctions"
+    },
+    {
+     "text": "(32) Obliged entities of the structure should identify one obliged entity that has sufficient powers and controls to ensure that group-wide requirements apply to the obliged entities of the structure. In duly justified circumstances and to ensure a proportionate application of the requirements set out in this Regulation, obliged entities of the structure should be able to ask for a permission to the supervisors not to identify a head of the structure. Obliged entities should appoint a coordinating obliged entity in charge of the notification to the supervisor. In case the permission is granted, the application of group-wide requirements should be limited to certain minimum group-wide requirements provided in this Regulation that do not necessitate an obliged entity acting as head of the structure. Obliged entities in the structure should adopt common policies, procedures, and controls for managing the money laundering, terrorist financing, and targeted financial sanctions risks, including risks arising from the non-implementation, circumvention, or evasion of targeted financial sanctions and mutually ensure compliance with these minimum groupwide requirements. Certain conditions sh",
+     "loc": "p. 15, para 7",
+     "topics": [
+      "governance-risk-assessment",
+      "sanctions"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-cfde034916be-a803a801",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "amla-instruments-cfde034916be",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on Customer Due Diligence.",
+   "url": "https://www.amla.europa.eu/document/download/e15ab2e5-4074-4de8-bb9d-613dd8b7fdd1_en?filename=Final%20Report%20-%20draft%20RTS%2028%281%29%20AMLR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "cdd-natural-person",
+    "cdd-legal-entity",
+    "pep",
+    "beneficial-ownership",
+    "simplified-edd",
+    "ongoing-monitoring",
+    "reporting-str",
+    "governance-risk-assessment",
+    "sanctions",
+    "training",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "cites AMLR Art. 19",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "cites AMLR Art. 20",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "cites AMLR Art. 22",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "cites AMLR Art. 25",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "cites AMLR Art. 26",
+       "topic Transaction Monitoring"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art34",
+      "why": [
+       "cites AMLR Art. 34",
+       "topic EDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "cdd-natural-person",
+     "cdd-legal-entity",
+     "pep",
+     "beneficial-ownership",
+     "simplified-edd",
+     "ongoing-monitoring",
+     "reporting-str",
+     "governance-risk-assessment",
+     "sanctions",
+     "training",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "1) Risk-based approach and flexibility Respondents from the financial and non-financial sector raised concerns that some requirements, notably those containing lists of information to be collected for identifying the purpose and intended nature of a business relationship or occasional transaction, verification of the beneficial owner and for enhanced due diligence, might be interpreted as too prescriptive and requiring the systematic collection and verification of information irrespective of the ML/TF risk exposure. Respondents therefore stressed the need for greater clarity confirming that the provisions of the draft RTS should not be applied as mandatory checklists and that the extent of information gathered should remain commensurate with the risk profile.",
+     "loc": "p. 47, para 5",
+     "topics": [
+      "cdd",
+      "beneficial-ownership",
+      "simplified-edd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, beneficial-ownership, simplified-edd, governance-risk-assessment"
+    },
+    {
+     "text": "The mandate also requires AMLA to specify risk factors that supervisors must consider when determining the extent to which certain electronic money instruments may be exempted from some customer due diligence (CDD) measures and which reliable and independent sources of information obliged entities may use to verify the identity of natural or legal persons for the purposes of Article 22(6) and (7) AMLR. The mandate further covers the attributes which electronic identification means, and relevant qualified trust services referred to in Article 22(6), point (b), AMLR must feature to fulfil the requirements of Article 20(1), points (a) and (b), AMLR in the case of standard, simplified and enhanced due diligence.",
+     "loc": "p. 3, para 4",
+     "topics": [
+      "cdd",
+      "simplified-edd",
+      "payments-emoney"
+     ],
+     "why": "normative wording (must) on cdd, simplified-edd, payments-emoney"
+    },
+    {
+     "text": "To further ensure that customer due diligence (CDD) measures are applied in the same way, Article 28(1) AMLR requires the Authority for Anti-Money Laundering and Countering the Financing of Terrorism (AMLA) to develop draft Regulatory Technical Standards (RTS) setting out the requirements and information to be collected for standard customer due diligence, simplified due diligence (SDD) and enhanced due diligence (EDD) purposes. That mandate also requires AMLA to specify risk factors that supervisors must take into account when determining the extent to which certain electronic money instruments may be exempted from some customer due diligence measures and which reliable and independent sources of information obliged entities may use to verify the identity of natural or legal persons for the purposes of Article 22(6) and (7) AMLR. The mandate also specifies the attributes which electronic identification means, and relevant qualified trust services referred to in Article 22(6), point (b), AMLR must feature in order to fulfil the requirements of Article 20(1), points (a) and (b), of the AMLR in the case of standard, simplified and enhanced due diligence.",
+     "loc": "p. 4, para 4",
+     "topics": [
+      "cdd",
+      "simplified-edd",
+      "payments-emoney"
+     ],
+     "why": "normative wording (must) on cdd, simplified-edd, payments-emoney"
+    },
+    {
+     "text": "(16) Regulation (EU) 2024/1624 requires specific measures to be applied to transactions or business relationships with politically exposed persons (PEPs). The focus of this Regulation is on measures for the identification, by obliged entities of PEPs, their family members or persons known to be close associates. PEP screening measures should apply to the customer, its beneficial owner and the person on whose behalf or for the benefit of whom a transaction or activity is being carried out. These measures are important because once a PEP, family member or person known to be close associate is identified, the obliged entity should apply specific and additional customer due diligence measures in relation to that customer.",
+     "loc": "p. 12, para 3",
+     "topics": [
+      "cdd",
+      "pep",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (should) on cdd, pep, beneficial-ownership"
+    },
+    {
+     "text": "SECTION 1 GENERAL PROVISIONS Article 1 Proportionality and risk-based approach This Commission Delegated Regulation (‘Regulation’) shall be applied in line with the risk-based approach. The extent and the nature of the information to be obtained and the measures to be applied by obliged entities shall be proportionate to the type and level of risk identified and shall enable obliged entities to manage and mitigate that risk appropriately, including through the application of simplified due diligence measures in situations of low risk. SECTION 2 INFORMATION TO BE COLLECTED FOR IDENTIFICATION AND VERIFICATION PURPOSES Article 2 Information to be obtained in relation to names",
+     "loc": "p. 14, para 3",
+     "topics": [
+      "cdd",
+      "simplified-edd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (shall) on cdd, simplified-edd, governance-risk-assessment"
+    },
+    {
+     "text": "(14) Understanding the purpose and intended nature of a business relationship or occasional transaction enables obliged entities to develop a holistic understanding of the customer. This allows them to assess whether the service or product requested is aligned with the customer’s profile and to conduct meaningful ongoing monitoring. To this end, the type and amount of information collected may vary depending on the product or service and should be proportionate to the risks sought to be mitigated. This also means that certain information will not always be relevant. Information on the source of funds, where needed, may provide reassurance that the funds to be used are derived from a legitimate source. However, the extent of information needed on the source of funds, if at all, should be commensurate to the risk to be mitigated. To avoid unnecessary processing of information, obliged entities should consider whether information already at their disposal contributes to understanding the purpose and intended nature of the business relationship or occasional transaction.",
+     "loc": "p. 11, para 5",
+     "topics": [
+      "cdd",
+      "ongoing-monitoring"
+     ],
+     "why": "normative wording (should) on cdd, ongoing-monitoring"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-d2114c2e15ee-34dfea9f",
+   "created": "2026-11-14T08:14:47+00:00",
+   "doc_id": "amla-instruments-d2114c2e15ee",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on criteria for identifying business relationships, occasional and linked transactions and lower thresholds.",
+   "url": "https://www.amla.europa.eu/document/download/32e5aea0-52dc-4b0c-b93a-b0dd373fcd0f_en?filename=Final%20Report%20-%20draft%20RTS%20under%20Article%2019%289%29%20AMLR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "beneficial-ownership",
+    "governance-risk-assessment",
+    "crypto-assets",
+    "transfers-of-funds",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "cites AMLR Art. 19",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "beneficial-ownership",
+     "governance-risk-assessment",
+     "crypto-assets",
+     "transfers-of-funds",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(2) All obliged entities are required to have internal policies and procedures in place to ensure compliance with the obligations regarding customer due diligence in Chapter III of Regulation (EU) 2024/1624. These internal policies and procedures should be proportionate to the nature of the business – including its risks and complexity – and the size of the obliged entity. In the context of this Regulation, this includes internal policies and procedures to ensure that obliged entities can properly identify business relationships, occasional transactions and linked transactions for the purpose of the application of customer due diligence measures. Such internal policies and procedures could include the identification and verification of the customer, regardless of the value of the transaction.",
+     "loc": "p. 9, para 4",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (are required to) on cdd, governance-risk-assessment"
+    },
+    {
+     "text": "F I N A L R E P O R T – D R A F T R T S U N D E R A R T I C L E 19( 9 ) O F R E G U L A T I O N ( E U ) 2 0 2 4 / 1 6 2 4 18 regulatory arbitrage, as criminals might exploit jurisdictions with more permissive interpretations. Article 19(9) of Regulation (EU) 2024/1624 therefore requires AMLA to develop dedicated draft RTS specifying the criteria to be taken into account for identifying occasional transactions and business relationships; as well as the criteria for identifying linked transactions. Although the EUR 10 000 threshold, or the equivalent in national currency, applies to most occasional transactions, obliged entities operating in sectors or carrying out transactions exposed to higher ML/TF risks should be required to apply CDD measures at lower thresholds, in line with the risk-based approach. Regulation (EU) 2024/1624 establishes lower thresholds for occasional transactions in certain situations due to their higher exposure to ML/TF risks. It also empowers AMLA to further identify the obliged entities, sectors or transactions that warrant lower thresholds, through the development of draft RTS.",
+     "loc": "p. 19, para 1",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, governance-risk-assessment"
+    },
+    {
+     "text": "F I N A L R E P O R T – D R A F T R T S U N D E R A R T I C L E 19( 9 ) O F R E G U L A T I O N ( E U ) 2 0 2 4 / 1 6 2 4 23 Policy issue 3: Lower occasional transaction thresholds Article 19(9), points (a) and (b), of Regulation (EU) 2024/1624 mandate AMLA to develop a draft RTS identifying obliged entities, sectors or transactions associated with higher ML/TF risk to which lower CDD thresholds for occasional transactions should apply. To do so, AMLA must take due account of the inherent risk of different business models and of the Union-level risk assessment conducted pursuant to Article 7 of Directive (EU) 2024/1640.",
+     "loc": "p. 24, para 1",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, governance-risk-assessment"
+    },
+    {
+     "text": "4) Sector specific criteria for identifying business relationships (money remitters, currency exchange, CASP) A substantial number of respondents commented on the operation of Article 2(3) and Recital 9, which use three transactions within a twelve-month period as an indicator of repetition for certain obliged entities from the financial sector. Respondents from payment institutions, remittance providers, crypto-asset service providers and other financial institutions considered that the criterion may be overly rigid and insufficiently sensitive to risk. Many argued that transaction frequency alone does not adequately capture the existence of an ongoing relationship and may generate unnecessary compliance burdens and false positives. Stakeholders frequently suggested complementing transaction counts with additional indicators such as transaction value, transaction purpose, customer risk profile or other qualitative factors. Several respondents also emphasised that the criterion should remain sector-specific and not be applied by analogy to obliged entities for which it was not designed.",
+     "loc": "p. 30, para 4",
+     "topics": [
+      "crypto-assets",
+      "payments-emoney"
+     ],
+     "why": "normative wording (should) on crypto-assets, payments-emoney"
+    },
+    {
+     "text": "b) high-risk obliged entities, sectors or transactions to which a lower threshold for customer due diligence (‘CDD’) measures should apply.",
+     "loc": "p. 3, para 4",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (should) on cdd"
+    },
+    {
+     "text": "F I N A L R E P O R T – D R A F T R T S U N D E R A R T I C L E 19( 9 ) O F R E G U L A T I O N ( E U ) 2 0 2 4 / 1 6 2 4 4 The mandate in Article 19(9) AMLR also aims to ensure that higher money laundering and terrorist financing (‘ML/TF’) risks connected with occasional transactions are addressed effectively. In general, obliged entities are required to perform CDD for occasional transactions with a value of at least 10 000 EUR. Lower thresholds for CDD may be introduced for specific sectors or transactions that pose higher ML/TF risks2 . Given the evolving nature of ML/TF risks, AMLA is mandated to specify additional lower thresholds for obliged entities, sectors or transactions with higher ML/TF risks.",
+     "loc": "p. 5, para 1",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (are required to) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-ec-aml-eu-level-d4656a188233-993ffe21",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "ec-aml-eu-level-d4656a188233",
+   "source": "ec-aml-eu-level",
+   "authority": "European Commission (DG FISMA)",
+   "title": "Anti-money laundering and countering the financing of terrorism at EU level",
+   "url": "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-eu-level_en",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "cdd-legal-entity",
+    "reporting-str",
+    "governance-risk-assessment",
+    "crypto-assets",
+    "transfers-of-funds"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "cdd-legal-entity",
+     "reporting-str",
+     "governance-risk-assessment",
+     "crypto-assets",
+     "transfers-of-funds"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The European Commission carries out risk assessments in order to identify and respond to risks affecting the EU internal market.The European Union adopted robust legislation to fight against money laundering and terrorist financing (AML) . The first anti-money laundering Directive was adopted in 1990 in order to prevent the misuse of the financial system for the purpose of money laundering. It provides that obliged entities shall apply customer due diligence requirements when entering into a business relationship (i.e. identify and verify the identity of clients, monitor transactions and report suspicious transactions).",
+     "loc": "What the EU is doing and why, para 2",
+     "topics": [
+      "cdd",
+      "reporting-str",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (shall) on cdd, reporting-str, governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2508-c2e81dc6",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "celex-32026D2508",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2508 of 9 November 2026 amending Decision (CFSP) 2022/1968 on a European Union Military Assistance Mission in support of Ukraine (EUMAM Ukraine)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2508",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions",
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions",
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Article 11 is amended as follows: (a) in paragraph 2, point (b) is replaced by the following: ‘(b) the following incremental costs are to be funded in common by the EPF: (i) operational costs for support to the UAF trainees and trainers (transportation from the Ukrainian border to the training facilities and return, and on, around and between training facilities; real life support; medical support and evacuations); (ii) operational costs necessary for the training activities (petroleum, oil and lubricants, maintenance of vehicles used in training; interpreters; and personal training kits, where not provided by Ukraine); (iii) operational costs necessary for the co-financing of partnership programmes aimed at facilitating the cooperation between Member States’ training centres and Ukraine’s training centres; the criteria for co-financing shall be established by the European Peace Facility Committee.’ ; (b) the following paragraph is added: ‘7. The financial reference amount for the common costs of EUMAM Ukraine for the period from 16 November 2026 to 15 November 2028 shall be EUR 292,6 million. The percentage of the reference amount referred to in Article 51(2) of Decision (CFSP) 20",
+     "loc": "Article 1, para 16",
+     "topics": [
+      "sanctions",
+      "training"
+     ],
+     "why": "normative wording (shall) on sanctions, training"
+    },
+    {
+     "text": "On 3 September 2026, the Political and Security Committee (PSC) agreed, in the context of a strategic review of EUMAM Ukraine, that EUMAM Ukraine should be extended until 15 November 2028. The PSC reaffirmed the importance of continued Union military support for Ukraine and welcomed the results achieved by EUMAM Ukraine. Furthermore, the PSC stressed the need to coordinate closely with the ongoing work led by the Coalition of the Willing, as well as with NATO within the framework of the NATO Security Assistance and Training for Ukraine (NSATU), in an inclusive and non-discriminatory way.",
+     "loc": "amending Decision (CFSP) 2022/1968 on a European Union Military Assistance Missi, para 10",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (should) on training"
+    },
+    {
+     "text": "Decision (CFSP) 2022/1968 should be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2022/1968 on a European Union Military Assistance Missi, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Article 1 is amended as follows: (a) in paragraph 3, the following points are added: ‘(e) a structured and robust mechanism for lessons identified and lessons learned, complementing and reinforcing training efforts, to systematically capture, analyse and disseminate lessons from the battlefield; (f) advisory and educational activities to support Ukraine’s defence reform agenda based on Ukraine’s requests; the areas to be covered by those activities shall include Ukraine’s Ministry of Defence human capital reforms, with an initial focus on the modernisation of professional military education.’ ; (b) paragraph 5 is replaced by the following: ‘5. EUMAM Ukraine shall operate in the territory of the Member States, as well as, exclusively for the purpose of direct coordination and of carrying out the tasks set out in Article 1(3), points (e) and (f), in the territory of Ukraine.’ ;",
+     "loc": "Article 1, para 2",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (shall) on training"
+    },
+    {
+     "text": "in paragraph 3, the following points are added: ‘(e) a structured and robust mechanism for lessons identified and lessons learned, complementing and reinforcing training efforts, to systematically capture, analyse and disseminate lessons from the battlefield; (f) advisory and educational activities to support Ukraine’s defence reform agenda based on Ukraine’s requests; the areas to be covered by those activities shall include Ukraine’s Ministry of Defence human capital reforms, with an initial focus on the modernisation of professional military education.’ ;",
+     "loc": "Article 1, para 4",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (shall) on training"
+    },
+    {
+     "text": "in Article 5, paragraph 1 is replaced by the following: ‘1. Under the responsibility of the Council and of the HR, the PSC shall exercise the political control and strategic direction of EUMAM Ukraine. The Council hereby authorises the PSC to take relevant decisions in accordance with Article 38 of the Treaty on European Union (TEU). That authorisation shall include the powers to amend the planning documents of EUMAM Ukraine, including the Mission Plan, and the Chain of Command. That authorisation shall also include the powers to take decisions on the appointment of the EU Commanders, namely the Combined Arms Training Commander, the Special Training Commander, and any other EU Training Commanders. The powers of decision with respect to the objectives and termination of EUMAM Ukraine shall remain vested in the Council. The decisions of the PSC regarding the appointment of the EU Commanders shall be published in the Official Journal of the European Union .’ ;",
+     "loc": "Article 1, para 11",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (shall) on training"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2507-2c0f797b",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "celex-32026D2507",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2507 of 9 November 2026 amending Decision (CFSP) 2024/2840 on an assistance measure under the European Peace Facility to strengthen the capacities of the Navy of the Republic of the Congo in the framework of the Yaoundé Architecture",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2507",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2024/2840 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2024/2840 on an assistance measure under the European P, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D1814-97c0d519",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "celex-32026D1814",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Commission Delegated Decision (EU) 2026/1814 of 24 July 2026 amending and correcting Directive 2005/36/EC of the European Parliament and of the Council as regards evidence of formal qualifications and the titles of training courses (notified under document C(2026) 5051)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D1814",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Following the notification from Italy, Commission Delegated Decision (EU) 2021/2183 ( 2 ) added Biochimica as the title of a training course in specialised medicine to point 5.1.3 of Annex V to Directive 2005/36/EC. In line with the explanations from Italy, this title should not have been added to Directive 2005/36/EC. That error should therefore be corrected by deleting the title from Annex V to Directive 2005/36/EC.",
+     "loc": "(Text with EEA relevance), para 12",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (should) on training"
+    },
+    {
+     "text": "Annex V to Directive 2005/36/EC should therefore be amended and corrected accordingly. For reasons of clarity and legal certainty, all relevant points of Annex V to Directive 2005/36/EC on evidence of formal qualifications and the titles of training courses, this is to say, points 5.1.1 to 5.1.4, 5.2.2., 5.3.2, 5.3.3, 5.4.2, 5.5.2, 5.6.2 and 5.7.1, should be replaced.",
+     "loc": "(Text with EEA relevance), para 14",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (should) on training"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R2490-f18c23d6",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "celex-32026R2490",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Commission Implementing Regulation (EU) 2026/2490 of 3 November 2026 amending for the 364th time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2490",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On 24 October 2026, the Sanctions Committee of the United Nations Security Council pursuant to Resolutions 1267(1999), 1989(2011) and 2253(2015) decided to remove three entries from the list of persons, groups and entities to whom the restrictive measures should apply.",
+     "loc": "amending for the 364th time Council Regulation (EC) No 881/2002 imposing certain, para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "On 26 October 2026, the Sanctions Committee of the United Nations Security Council pursuant to Resolutions 1267(1999), 1989(2011) and 2253(2015) decided to amend the identifying data for three entries in the list of persons, groups and entities to whom the restrictive measures should apply.",
+     "loc": "amending for the 364th time Council Regulation (EC) No 881/2002 imposing certain, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R2354-32a652e1",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "celex-32026R2354",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Commission Implementing Regulation (EU) 2026/2354 of 16 October 2026 on formats for submitting beneficial ownership information",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2354",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd-natural-person",
+    "cdd-legal-entity",
+    "beneficial-ownership",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd-natural-person",
+     "cdd-legal-entity",
+     "beneficial-ownership",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Where a legal entity or a legal arrangement submitting beneficial ownership information is a part of a complex structure that includes multiple legal entities or legal arrangements with links to the same beneficial owner or owners, a visual representation of the ownership or control structure (‘organisational chart’) should be submitted, as it is the most user-friendly and accessible way to understand the corporate structure the legal entity or legal arrangement belongs to. That organisational chart should contain a comprehensive record of all the composite elements of such structures, with indications of their nature and the links between them. In particular, an organisational chart should contain the names and the legal form of all legal entities and legal arrangements that own or control the legal entity or legal arrangement, as well as the nature and extent of such ownership or control, and a visual representation of the relationship between the beneficial owners of the legal entity or legal arrangement and all the legal entities and arrangements that are part of the ownership and control structure. Instead of such organisational charts, the entities in charge of central regist",
+     "loc": "(Text with EEA relevance), para 20",
+     "topics": [
+      "cdd-legal-entity",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (should) on cdd-legal-entity, beneficial-ownership"
+    },
+    {
+     "text": "To reduce administrative burdens while contributing to a more seamless experience for the registrants and the central registers, it is necessary to provide for certain derogations related to data that is already present in other registers and is to be collected by the entities in charge of central registers. That should apply to certain items of information, including names, addresses, dates of birth, but potentially also to items including ownership interests and various types of basic data about legal entities and legal arrangements. Where the data sought is already retrievable from another register, the format requirements may be waived. Central registers may indicate the source of such data when displaying search results to users.",
+     "loc": "(Text with EEA relevance), para 22",
+     "topics": [
+      "cdd-legal-entity",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (should) on cdd-legal-entity, beneficial-ownership"
+    },
+    {
+     "text": "In terms of the date as of which the beneficial interest is held, certain roles in legal arrangements may pose challenges. All parties to a legal arrangement should be registered, as those parties are all considered beneficial owners under Regulation (EU) 2024/1624. To avoid different interpretations of that Regulation in respect of defining the time at which the parties’ beneficial interest came into being, the date of the beneficial interest for a settlor should be the date when the trust formally comes into existence. For a trustee, it should be the date of their appointment. For the beneficiaries, it should be the date on which they are declared beneficiaries in the deed or identified by the trustee of a discretionary trust. For a protector, it should be the date of their appointment.",
+     "loc": "(Text with EEA relevance), para 26",
+     "topics": [
+      "cdd-legal-entity",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (should) on cdd-legal-entity, beneficial-ownership"
+    },
+    {
+     "text": "To provide further clarification on the registration of certain deceased beneficial owners, where the beneficial owner of a legal arrangement is deceased, that fact may be indicated in the relevant data points. However, any data that was submitted when the beneficial owner was alive should continue to be kept in the register in accordance with the data retention provisions laid down in Article 10(20) of Directive (EU) 2024/1640.",
+     "loc": "(Text with EEA relevance), para 28",
+     "topics": [
+      "cdd-legal-entity",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (should) on cdd-legal-entity, beneficial-ownership"
+    },
+    {
+     "text": "for discretionary trusts where objects of a power or default takers can be identified, individually or as classes: (i) names and surnames of natural persons that were identified as objects of a power: the format shall be in accordance with the specifications in Article 1, paragraph 1, points (a) and (b); (ii) names of legal entities and arrangements that were identified as objects of a power: the format shall be the same as specified in: (1) Article 2, paragraph 1, points (a), (b) and (e), for legal entities; (2) this Article and paragraph, points (a) and (b), for legal arrangements; (iii) description of the objects of a power which are classes: a sequence of characters, letters or numbers; (iv) names and surnames of natural persons that were identified as default takers: the format shall be in accordance with the specifications in paragraph 1, points (a) and (b); (v) names of legal entities and arrangements that were identified as default takers: the format shall be the same as specified in: (1) Article 2, paragraph 1, points (a), (b) and (e), for legal entities; (2) this Article and paragraph, points (a) and (b), for legal arrangements; (vi) description of default takers that are",
+     "loc": "Article 3, para 41",
+     "topics": [
+      "cdd-natural-person",
+      "cdd-legal-entity"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person, cdd-legal-entity"
+    },
+    {
+     "text": "the nature and extent of ownership or control over the legal entity or legal arrangement, including information on whether it is: (1) direct or indirect; (2) by means of ownership interest or other means which shall be specified accordingly; (3) where applicable, the percentage, allowing two decimal points, of ownership interest.",
+     "loc": "Description of ownership and control structure, para 10",
+     "topics": [
+      "cdd-legal-entity",
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (shall) on cdd-legal-entity, beneficial-ownership"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-b322780192c5-f544d9de",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "amla-library-b322780192c5",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Final Report on the draft RTS under Article 12(7) of Regulation (EU) 2024/1620",
+   "url": "https://www.amla.europa.eu/document/download/1c8bca18-fb5e-4b5e-afee-848111754238_en?filename=2.1_20251216_Final%20report%20-%20RTS%20under%20art.%2012%287%29%20AMLAR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "pep",
+    "beneficial-ownership",
+    "ongoing-monitoring",
+    "reporting-str",
+    "record-keeping",
+    "governance-risk-assessment",
+    "sanctions",
+    "crypto-assets",
+    "training",
+    "outsourcing-reliance",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "cites AMLR Art. 20",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "topic Transaction Monitoring"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "pep",
+     "beneficial-ownership",
+     "ongoing-monitoring",
+     "reporting-str",
+     "record-keeping",
+     "governance-risk-assessment",
+     "sanctions",
+     "crypto-assets",
+     "training",
+     "outsourcing-reliance",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Category Data Points CI CP LI EMI PI BC IF AMC CASP O identified, in relation to the transactions carried out by the customer (Y/N) Average number of days between the date of identification of potential suspicious transactions (prior to the analysis of the transaction) and the date when the transaction is reported to the FIU (after the analysis of the transaction) during the last calendar year x x x x x x x x x x Total number of STRs submitted to the FIU during the last calendar year x x x x x x x x x x 6 - Targeted Financial Sanctions and Compliance with Fund Transfers Regulation Maximum number of hours between the publication of the TFS by the authorities and the implementation of these changes in the institution's screening tools x x x x x x x x x x Number of outbound transfers for which requests were received from a counterparty in the transfer chain for information that is missing, incomplete or provided using inadmissible characters in the last calendar year x x x x x x Total number of outbound transfers in the last calendar year x x x x x x % of outbound transfers rejected or returned by the counterparty in the transfer chain due to information that is missing, incomplete or",
+     "loc": "p. 33, para 1",
+     "topics": [
+      "reporting-str",
+      "governance-risk-assessment",
+      "sanctions",
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on reporting-str, governance-risk-assessment, sanctions, crypto-assets"
+    },
+    {
+     "text": "Category Data Points CI CP LI EMI PI BC IF AMC CASP O % of jurisdictions in which the group is established covered by reviews (including access to customer and transaction level data) performed by the group AML/CFT compliance function in the last three calendar years. (applies only to groups that have been existing for more than 3 years and should only be filled in by the parent company) x x x x x x x x x x Number of group entities for which deficiencies were identified by competent AML/CFT supervisors in the last calendar year (should only be filled in by the parent company)",
+     "loc": "p. 34, para 1",
+     "topics": [
+      "governance-risk-assessment",
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, crypto-assets"
+    },
+    {
+     "text": "Adjustments to entity-level ML/TF risk scores should be strictly limited to prevent arbitrage and ensure a level playing field. For this reason, the option to modify inherent risk scores based on national specificities or other supervisory considerations, available under the entity-level risk assessment methodology in Article 40(2) AMLD, has been excluded from the methodology for assessing eligible credit and financial institutions under Article 12(7)(b) AMLAR. The draft RTS also introduces a methodology for calculating a group-wide ML/TF risk score. This score is derived from a weighted average of entity-level residual risk scores, reflecting each entity’s significance within the group. The approach ensures that entities with higher ML/TF risk,",
+     "loc": "p. 5, para 5",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "(5) To avoid that, as an effect of the aggregation of the entity-level score, the ML/TF risk profile of a high ML/TF risk group being unduly reduced because some of its components have a low risk profile, the group-wide methodology for the purposes of selection should reflect the relative importance of each entity within the group, in terms of size and risk, and attribute a higher weight to the most important entities.",
+     "loc": "p. 9, para 4",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "1. The methodology for assessing and classifying the inherent and residual risk profile of a credit institution or financial institution as referred to in Article 12, paragraphs (5) and (6), of Regulation (EU) 2024/1640 as low, medium, substantial or high, shall consist of the following sequential steps:",
+     "loc": "p. 10, para 11",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (shall) on governance-risk-assessment"
+    },
+    {
+     "text": "4. The result of the aggregation carried out in accordance paragraph 2 shall be converted into a numerical group-wide residual risk score with two decimal places, ranging between 1, that corresponds to the lowest level of risk, to 4, that corresponds to the highest level of risk.",
+     "loc": "p. 15, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (shall) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-35ef3aab82cb-9f0dc900",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "amla-library-35ef3aab82cb",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Final Report - RTS under Article 53(10) AMLD",
+   "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd-natural-person",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd-natural-person",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "▪ Particular provisions should apply to natural persons that are not themselves obliged entities. This includes senior management and the management body in its supervisory function.",
+     "loc": "p. 5, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "(5) An important indicator for classifying the level of gravity of breaches is the conduct of the natural person or of the legal person, including its senior management and its management body in its supervisory function. Supervisors should pay particular attention to situations where the natural person or legal person appears to have had knowledge of the breach and took no action, or where their action directly contributed to the breach.",
+     "loc": "p. 9, para 2",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "(b) the conduct of the natural person or the legal person held responsible since the breach has been identified either by the natural person or legal person itself or by the supervisor. Supervisors shall consider, in particular, whether the natural person or legal person held responsible has taken effective and timely remedial actions to end the breach or has taken voluntary adequate measures to effectively prevent similar breaches in the future;",
+     "loc": "p. 12, para 9",
+     "topics": [
+      "cdd-natural-person"
+     ],
+     "why": "normative wording (shall) on cdd-natural-person"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-533bd851ab13-2559ff22",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "amla-library-533bd851ab13",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Final report - ITS under Article 15(3) AMLAR",
+   "url": "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The ITS establishes a sequential approach whereby, in a first step, the population of eligible obliged entities is identified, and, in a second step, only those entities that are eligible are required to report the data points necessary for the risk assessment underpinning the selection process. In addition, following the feedback received during the consultation process, AMLA refined the framework by introducing an exemption from the collection of eligibility information in cases where supervisors can determine, on the basis of existing information, that entities are non-eligible. Taken together, these elements enhance operational efficiency, reduce duplication of reporting, and ensure that the framework remains both proportionate and effective while supporting simplification.",
+     "loc": "p. 4, para 9",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (are required to) on governance-risk-assessment"
+    },
+    {
+     "text": "(4) Financial supervisors should collect data in 2026 to identify the first obliged entities to be assessed during the first selection process that will start no later than 1 July 2027. From the second selection process in 2030, the financial supervisors should, to the extent possible, use data that has been collected for other purposes, such as periodic risk assessment at the national level, to reduce the reporting burden on obliged entities and simplify the process. Where such data is not available, up to date or suitable, a dedicated data collection should be carried out.",
+     "loc": "p. 8, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-bf1be08fd1a2-2302fa08",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "amla-instruments-bf1be08fd1a2",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Implementing Technical Standards on the format for reporting suspicions and providing transaction records",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
+   "type": "rts_its_draft",
+   "status": "draft (consultation closed)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "This draft ITS establishes the format to be used for the reporting of suspicions and for the provision of transaction records to FIUs. In particular, it provides templates for reporting suspicions adapted to different types of obliged entities, as well as templates for the provision of transaction records by credit and financial institutions. The templates shall be implemented by all FIUs and by all obliged entities wishing to internally automate the process for reporting instead of using the reporting platforms of FIUs, under the conditions set by the draft ITS.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-consultations-e2858896d8ea-04aaac2e",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "amla-consultations-e2858896d8ea",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft RTS on criteria for identifying business relationships, occasional and linked transactions and lower thresholds",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-criteria-identifying-business-relationships-occasional-and-linked_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "This draft RTS establishes criteria for identifying business relationships, occasional transactions, and linked transactions. Distinguishing between business relationships and occasional transactions is a fundamental step in applying the AML/CFT framework. For business relationships, obliged entities must always perform customer due diligence (CDD). For occasional transactions, CDD is required only when the transaction value exceeds certain thresholds . Identifying linked transactions is equally important, as it prevents criminals from circumventing these thresholds by structuring their activities across multiple smaller transactions.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (must) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-consultations-b525c753d55c-52b9a662",
+   "created": "2026-11-14T08:12:28+00:00",
+   "doc_id": "amla-consultations-b525c753d55c",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft RTS on Customer Due Diligence",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-customer-due-diligence_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The new Anti-Money Laundering Regulation (Regulation (EU) 2024/1624) sets out directly applicable requirements on obliged entities, including customer due diligence requirements. AMLA is required to develop draft Regulatory Technical Standards that specify, in more detail, how those customer due diligence requirements should be applied, including the information and documents to be collected.",
+     "loc": "Why we are consulting, para 1",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (is required to) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  }
+ ]
+}
