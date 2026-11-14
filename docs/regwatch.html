@@ -4,654 +4,232 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RegRadar: RegWatch</title>
-<meta name="description" content="RegWatch: daily monitoring of Belgian and EU financial regulators. See binding rules, consultations and deadlines, filtered to what applies to your firm.">
+<meta name="description" content="RegWatch: what EU and Belgian authorities published, primary documents first. AMLA, EBA, ESMA, the Commission, the Official Journal, NBB and FSMA, with status, topics and deadlines.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <script>
 (function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>
 <link rel="stylesheet" href="rr-ui.css?v=20261114a">
 <style>
-/* ═══════════════════════════════════════════════════════════════
-   RegWatch — regulatory intelligence workspace
-   Light-first: compliance work happens in daylight, in long
-   sessions, next to legal texts. Dark is supported, not assumed.
-   ═══════════════════════════════════════════════════════════════ */
-:root,html[data-theme],.rr-band{
-  --warn:var(--rr-review); --warn-bg:var(--rr-review-bg);
-  --crit-br:color-mix(in srgb,var(--rr-risk) 45%,transparent);
-  --warn-br:color-mix(in srgb,var(--rr-review) 45%,transparent);
-  --ok-br:color-mix(in srgb,var(--rr-done) 45%,transparent);
-  --accent-2:var(--rr-accent); --accent-br:color-mix(in srgb,var(--rr-accent) 40%,transparent);
-  --sidebar:var(--rr-surface); --shadow:var(--rr-shadow-1); --shadow-md:var(--rr-shadow-2);
-  --sans:var(--rr-font); --r:12px; --r-sm:10px; --ease:var(--rr-ease);
+/* RegWatch: layout only. Colours, type, buttons, chips and pills come
+   from rr-ui.css. Mobile first: one column; from 1100 px the deadlines
+   sit in a sticky column beside the documents. */
+.wrap{padding-bottom:var(--rr-8)}
+[hidden]{display:none!important}
+.head > div:first-child{flex:1 1 320px}
+.band-stats{flex:1 1 100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--rr-2);margin-top:var(--rr-2)}
+.band-stats .rr-stat{padding:var(--rr-3)}
+.band-stats .rr-stat .n{font-size:clamp(26px,3vw,36px)}
+.band-meta{flex:1 1 100%;font-size:var(--rr-t-small);color:var(--rr-text-2);display:flex;flex-wrap:wrap;gap:var(--rr-1) var(--rr-3);align-items:center}
+.band-meta .stale{color:var(--rr-review);font-weight:600}
+@media (min-width:760px){.band-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.rw{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rr-6);align-items:start}
+.rw > *{min-width:0}
+@media (min-width:1100px){
+  .rw{grid-template-columns:minmax(0,1fr) 380px;grid-template-areas:"docs dl" "news dl";column-gap:var(--rr-6)}
+  #s-docs{grid-area:docs} #s-dl{grid-area:dl;position:sticky;top:var(--rr-4);max-height:calc(100vh - 32px);overflow:auto;overscroll-behavior:contain} #s-news{grid-area:news}
 }
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:none;cursor:pointer}
-.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);
-  clip-path:inset(50%);white-space:nowrap;border:0}
-[tabindex="-1"]:focus{outline:none}
+.rw .rr-section{margin:0}
+.rr-section-h h2{font-size:var(--rr-t-h2)}
+.sec-sub{color:var(--rr-text-2);font-size:var(--rr-t-small);margin:-8px 0 var(--rr-4)}
 
-/* ── page ─────────────────────────────────────────────────────────
-   One page, read top to bottom: what needs attention, everything else
-   (searchable), and the dates ahead in a side column. The profile —
-   "what applies to me" — lives in a side panel, not a page of its own. */
-.wrap{padding-bottom:64px}
-.pg-h .sub{font-size:var(--rr-t-lead);color:var(--rr-text-2);margin-top:var(--rr-3);font-weight:500}
-.prof{display:flex;align-items:center;gap:9px;min-height:44px;padding:7px 12px 7px 8px;border-radius:var(--r);
-  border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);text-align:left}
-.prof:hover{border-color:var(--accent-br)}
-.prof .av{width:28px;height:28px;border-radius:var(--r-sm);background:var(--accent);color:var(--on-accent);
-  display:grid;place-items:center;font-size:13px;flex:0 0 auto}
-.prof b{display:block;font-size:12.5px;font-weight:600}
-.prof span.s{display:block;font-size:12px;color:var(--text-3)}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;column-gap:28px;align-items:start}
-.blk-att{grid-column:1;grid-row:1}
-.blk-feed{grid-column:1;grid-row:2;margin-top:26px}
-.side-col{grid-column:2;grid-row:1 / span 2;position:sticky;top:16px}
-.side-col .dl{grid-template-columns:1fr;gap:4px;padding:12px 14px}
-.side-col .dl .dt{display:flex;justify-content:space-between;gap:8px}
-.side-col .dl .de{font-size:13px;line-height:1.45}
-.more{display:block;width:100%;min-height:44px;padding:12px;font-size:13px;font-weight:600;color:var(--accent);
-  border-top:1px solid var(--border)}
-.more:hover{background:var(--surface-2)}
-.more:focus-visible{outline-offset:-3px}
-select.topic{min-height:40px;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface);
-  color:var(--text-2);font:500 12.5px var(--sans)}
-@media(max-width:900px){
-  .wrap{padding-bottom:50px}
-  .layout{grid-template-columns:1fr}
-  /* DOM order is attention → deadlines → feed, so on a phone the dates
-     come before the long log without any reordering trick. */
-  .blk-att,.blk-feed,.side-col{grid-column:1;grid-row:auto}
-  .side-col{position:static;margin-top:26px}
-}
+/* filters */
+.rr-filters{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--rr-3)}
+.rr-filters .in[type="search"]{width:100%}
+.f-top{display:flex;flex-wrap:wrap;gap:var(--rr-2) var(--rr-3);align-items:center}
+.f-top .in{flex:1 1 220px}
+.f-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--rr-2) var(--rr-3)}
+.f-grid .field label{margin-bottom:4px}
+@media (min-width:760px){.f-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.f-foot{display:flex;flex-wrap:wrap;gap:var(--rr-2);align-items:center;justify-content:space-between}
+.views{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.views .vw{display:inline-flex;align-items:center}
+.views .vw .chip{border-top-right-radius:0;border-bottom-right-radius:0}
+.views .vw .del{min-height:36px;min-width:36px;border:1px solid var(--rr-line);border-left:0;border-radius:0 var(--rr-r-pill) var(--rr-r-pill) 0;background:var(--rr-surface-2);color:var(--rr-text-2);position:relative}
+.views .vw .del::after{content:"";position:absolute;inset:-4px 0}
+.saveform{display:flex;gap:var(--rr-2);flex-wrap:wrap;align-items:center}
+.saveform .in{flex:1 1 160px;min-width:0}
+.result-line{display:flex;justify-content:space-between;gap:var(--rr-3);flex-wrap:wrap;align-items:center;margin:var(--rr-4) 0 var(--rr-3);font-size:var(--rr-t-small);color:var(--rr-text-2)}
 
-/* ── primitives ────────────────────────────────────────────────── */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
-.sec-t{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3)}
-h2.sec-t,h3.sec-t{display:block}
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-  flex-wrap:wrap;margin:26px 0 12px}
-.sec-h:first-child{margin-top:0}
-.sec-h .d{font-size:12.5px;color:var(--text-3)}
-.lnk{font-size:12.5px;font-weight:600;color:var(--accent);min-height:32px;padding:0 6px;margin:-6px -6px}
-.lnk:hover{text-decoration:underline}
+/* document cards */
+.docs{list-style:none;display:flex;flex-direction:column;gap:var(--rr-3)}
+.doc{padding:var(--rr-4) var(--rr-4) var(--rr-3)}
+@media (min-width:760px){.doc{padding:var(--rr-5) var(--rr-5) var(--rr-4)}}
+.doc h3{font-size:var(--rr-t-h3);line-height:1.35;letter-spacing:-.015em;overflow-wrap:anywhere}
+.doc h3 a{color:var(--rr-text);text-decoration:none}
+.doc h3 a:hover{text-decoration:underline}
+.doc h3 .ext{color:var(--rr-text-3);font-weight:500;white-space:nowrap}
+.doc .who{margin-top:6px;font-size:var(--rr-t-small);color:var(--rr-text-2);display:flex;flex-wrap:wrap;gap:2px 8px;align-items:center}
+.doc .who b{color:var(--rr-text);font-weight:600}
+.doc .who .sep{color:var(--rr-text-3)}
+.doc .state{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--rr-3);align-items:center}
+.doc .dates{font-size:var(--rr-t-micro);color:var(--rr-text-3);font-variant-numeric:tabular-nums}
+.doc .snip{margin-top:var(--rr-2);font-size:var(--rr-t-small);color:var(--rr-text-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.doc .chg{margin-top:var(--rr-3);font-size:var(--rr-t-small);color:var(--rr-text);background:var(--rr-review-bg);border-radius:var(--rr-r-sm);padding:8px 12px}
+.doc .chg b{color:var(--rr-review)}
+.doc .dls{list-style:none;margin-top:var(--rr-3);display:flex;flex-direction:column;gap:6px}
+.doc .dls li{font-size:var(--rr-t-small);display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline}
+.doc .dls .d{font-weight:700;font-variant-numeric:tabular-nums}
+.doc .dls q{color:var(--rr-text-2);font-style:italic;flex:1 1 100%}
+.doc .tags{margin-top:var(--rr-3)}
+.doc .also{margin-top:var(--rr-3);padding-top:var(--rr-3);border-top:1px solid var(--rr-line)}
+.doc .also h4{font-size:var(--rr-t-micro);font-weight:600;color:var(--rr-text-3);letter-spacing:0}
+.doc .also ul{list-style:none;margin-top:4px}
+.doc .also li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;padding:6px 0;font-size:var(--rr-t-small);align-items:baseline}
+.doc .also li + li{border-top:1px solid var(--rr-line)}
+.doc .also .src{font-weight:600;color:var(--rr-text-2);white-space:nowrap}
+.doc .also a{overflow-wrap:anywhere}
+.more-wrap{display:flex;justify-content:center;margin-top:var(--rr-4)}
 
-.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;
-  padding:2px 8px;border-radius:20px;border:1px solid var(--border);color:var(--text-3);white-space:nowrap}
-.pill.crit{background:var(--crit-bg);color:var(--crit);border-color:var(--crit-br)}
-.pill.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-br)}
-.pill.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-br)}
-.pill.acc{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-br)}
+/* deadlines */
+.strip{position:relative;height:56px;margin:var(--rr-2) 0 var(--rr-4)}
+.strip .track{position:absolute;left:0;right:0;top:18px;height:4px;border-radius:2px;background:var(--rr-surface-2);border:1px solid var(--rr-line)}
+.strip .tick{position:absolute;top:30px;font-size:var(--rr-t-micro);color:var(--rr-text-3);transform:translateX(-50%);white-space:nowrap}
+.strip .tick::before{content:"";position:absolute;left:50%;top:-12px;width:1px;height:8px;background:var(--rr-line-strong)}
+.strip .tick.first{transform:none}.strip .tick.first::before{left:0}
+.strip .mk{position:absolute;top:12px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--rr-accent);border:2px solid var(--rr-surface)}
+.strip .mk.soon{background:var(--rr-risk)}
+.strip .now{position:absolute;top:30px;left:0;font-size:var(--rr-t-micro);font-weight:700;color:var(--rr-text-2)}
+.dl-list{list-style:none}
+.dl-list li{border-bottom:1px solid var(--rr-line)}
+.dl-list li:last-child{border-bottom:0}
+.dl-row{display:grid;grid-template-columns:auto 58px minmax(0,1fr);gap:var(--rr-3);padding:var(--rr-3) 0;align-items:start;cursor:pointer}
+.dl-row input{margin-top:4px}
+.dl-date{text-align:center;line-height:1.1;font-variant-numeric:tabular-nums}
+.dl-date b{display:block;font-size:22px;letter-spacing:-.02em}
+.dl-date span{font-size:var(--rr-t-micro);color:var(--rr-text-2);font-weight:600}
+.dl-body{min-width:0;font-size:var(--rr-t-small)}
+.dl-body .t{font-weight:600;color:var(--rr-text);overflow-wrap:anywhere;display:block}
+.dl-body .m{display:flex;flex-wrap:wrap;gap:4px 8px;margin-top:4px;align-items:center;color:var(--rr-text-2)}
+.dl-body q{display:block;margin-top:4px;color:var(--rr-text-2);font-style:italic}
+.dl-src{margin:-10px 0 var(--rr-2) calc(18px + 58px + 2 * var(--rr-3));font-size:var(--rr-t-small)}
+.dl-src a{display:inline-flex;align-items:center;min-height:44px}
+.dl-foot{display:flex;flex-wrap:wrap;gap:var(--rr-2);align-items:center;margin-top:var(--rr-3)}
+.dl-pane{padding:var(--rr-4)}
+@media (min-width:760px){.dl-pane{padding:var(--rr-5)}}
 
-/* ── item rows ─────────────────────────────────────────────────── */
-.rows{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
-  overflow:hidden;box-shadow:var(--shadow)}
-.row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
-  width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;border-radius:0;
-  padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;
-  transition:background 120ms var(--ease)}
-.row:focus-visible{outline-offset:-3px}
-.row>*{display:block;min-width:0}
-.row .ttl{display:block}
-.row:last-child{border-bottom:none}
-.row:hover{background:var(--surface-2)}
-.row .dot{width:7px;height:7px;border-radius:50%;margin-top:7px;flex:0 0 auto;background:var(--text-3)}
-.row .dot.i3{background:var(--crit)} .row .dot.i2{background:var(--warn)} .row .dot.i1{background:var(--accent)}
-.row .ttl{font-size:14px;font-weight:550;line-height:1.45;letter-spacing:-.006em}
-.row .snip{font-size:12.5px;color:var(--text-2);margin-top:4px;line-height:1.5;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.row .meta{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;align-items:center}
-.row .src{font-family:var(--mono);font-size:12px;color:var(--text-3);font-weight:500}
-.row .when{font-family:var(--mono);font-size:12px;color:var(--text-3);white-space:nowrap;text-align:right}
-.row.rel{background:linear-gradient(90deg,var(--accent-bg) 0 3px,transparent 3px)}
-.row.rel:hover{background:linear-gradient(90deg,var(--accent-bg) 0 3px,var(--surface-2) 3px)}
+/* news: collapsed, clearly secondary */
+.news > summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--rr-3);min-height:44px;padding:var(--rr-3) var(--rr-4);font-weight:700;font-size:var(--rr-t-h3)}
+.news > summary::-webkit-details-marker{display:none}
+.news > summary .hint{font-weight:500}
+.news > summary::after{content:"+";font-size:22px;font-weight:500;color:var(--rr-text-2)}
+.news[open] > summary::after{content:"\2212"}
+.news .news-in{padding:0 var(--rr-4) var(--rr-4)}
+.news .docs{gap:0}
+.news .doc.plain{padding:var(--rr-4) 0;border-top:1px solid var(--rr-line)}
 
-.empty{padding:44px 24px;text-align:center;color:var(--text-3);font-size:13.5px}
-.empty b{display:block;color:var(--text-2);font-size:14.5px;font-weight:600;margin-bottom:6px}
-
-/* ── filter bar ────────────────────────────────────────────────── */
-.filters{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.chip{font-size:12.5px;font-weight:500;min-height:36px;padding:6px 13px;border-radius:20px;
-  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
-  transition:all 120ms var(--ease);white-space:nowrap}
-.chip:hover{border-color:var(--border-2);color:var(--text)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.chip .n{font-family:var(--mono);font-size:12px;opacity:.85;margin-left:4px}
-.searchbox{flex:1;min-width:180px;position:relative}
-.searchbox input{width:100%;min-height:44px;padding:8px 12px 8px 34px;border-radius:var(--r-sm);
-  border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;
-  font-family:inherit;-webkit-appearance:none;appearance:none;transition:border-color 120ms}
-.searchbox input::placeholder{color:var(--text-3);opacity:1}
-.searchbox input:focus-visible{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:1px}
-.searchbox .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px}
-
-/* ── profile picker ────────────────────────────────────────────── */
-.ents{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.ent{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
-  padding:14px;text-align:left;transition:all 120ms var(--ease);box-shadow:var(--shadow)}
-.ent:hover{border-color:var(--accent-br);box-shadow:var(--shadow-md);transform:translateY(-1px)}
-.ent.on{border-color:var(--accent);background:var(--accent-bg);box-shadow:0 0 0 3px var(--accent-bg)}
-.ent .ic{font-size:19px;line-height:1}
-.ent .nm{font-size:13.5px;font-weight:600;margin-top:9px;letter-spacing:-.01em}
-.ent.on .nm{color:var(--accent)}
-.ent .ds{font-size:12px;color:var(--text-3);margin-top:2px;line-height:1.4}
-
-.mrow{display:grid;grid-template-columns:150px 1fr 132px;gap:16px;align-items:start;
-  padding:15px 16px;border-bottom:1px solid var(--border)}
-.mrow:last-child{border-bottom:none}
-.mrow.na{opacity:.5}
-.mrow .rn{font-size:14px;font-weight:650;letter-spacing:-.01em}
-.mrow .rm{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:3px;
-  text-transform:uppercase;letter-spacing:.04em}
-.mrow .rw{font-size:12.5px;color:var(--text-2);line-height:1.55}
-.mrow .rnote{font-size:12.5px;color:var(--text);line-height:1.5;margin-top:8px;
-  background:var(--warn-bg);border:1px solid var(--warn-br);border-radius:var(--r-sm);padding:8px 11px}
-.mrow .rd{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:8px}
-.mrow .bdg{justify-self:end;text-align:center}
-@media(max-width:760px){
-  .mrow{grid-template-columns:1fr auto;gap:10px}
-  .mrow .rw,.mrow .rnote,.mrow .rd{grid-column:1/-1}
-}
-
-/* ── deadlines ─────────────────────────────────────────────────── */
-.dl{display:grid;grid-template-columns:104px 1fr auto;gap:16px;align-items:center;
-  padding:14px 16px;border-bottom:1px solid var(--border)}
-.dl:last-child{border-bottom:none}
-.dl .dt{font-family:var(--mono);font-size:12.5px;font-weight:600}
-.dl .dd{font-family:var(--mono);font-size:12px;color:var(--text-3);margin-top:2px}
-.dl .de{font-size:13.5px}
-.dl.soon .dt{color:var(--crit)}
-
-/* ── drawer ────────────────────────────────────────────────────── */
-.ov{position:fixed;inset:0;background:rgba(16,24,40,.45);opacity:0;pointer-events:none;
-  transition:opacity 160ms;z-index:1100;backdrop-filter:blur(2px)}
-.ov.on{opacity:1;pointer-events:auto}
-.dw{position:fixed;top:0;right:0;height:100%;width:min(560px,96vw);background:var(--surface);
-  border-left:1px solid var(--border);transform:translateX(101%);
-  visibility:hidden;transition:transform 220ms var(--ease),visibility 0s linear 220ms;
-  z-index:1101;overflow-y:auto;box-shadow:var(--shadow-md)}
-.dw.on{transform:none;visibility:visible;transition:transform 220ms var(--ease),visibility 0s}
-.dw:focus{outline:none}
-.dw-in{padding:22px 26px 60px}
-.dw .x{position:absolute;top:12px;right:14px;font-size:22px;line-height:1;color:var(--text-2);
-  width:44px;height:44px;border-radius:var(--r-sm)}
-.dw .x:hover{background:var(--surface-3);color:var(--text)}
-.dw .dtitle{font-size:19px;font-weight:650;letter-spacing:-.02em;line-height:1.3;margin:12px 0 14px;padding-right:48px}
-.dsec{margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
-.dsec .dl2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
-  color:var(--text-3);margin-bottom:7px}
-.dsec p{font-size:13.5px;line-height:1.65;color:var(--text-2)}
-.dbtn{display:inline-flex;align-items:center;gap:7px;margin-top:20px;padding:9px 15px;
-  min-height:44px;border-radius:var(--r-sm);background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:600}
-.dbtn:hover{background:var(--accent-2)}
-
-.stat-err{padding:32px 24px;text-align:center;color:var(--text-2);font-size:13.5px}
-.stat-err b{display:block;color:var(--text);font-size:14.5px;font-weight:600;margin-bottom:6px}
-.stat-err .dbtn{margin-top:14px}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}}
+/* profile dialog */
+.ents{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,140px),1fr));gap:var(--rr-2)}
+.ent{text-align:left;min-height:44px;padding:var(--rr-3);border-radius:12px;border:1px solid var(--rr-line-strong);background:var(--rr-surface)}
+.ent[aria-pressed="true"]{border-color:var(--rr-accent);background:var(--rr-accent-bg)}
+.ent b{display:block;font-size:14px}
+.ent span{display:block;font-size:var(--rr-t-micro);color:var(--rr-text-2);margin-top:2px}
+.dlg-b h3{font-size:15px;margin:var(--rr-4) 0 var(--rr-2)}
+.perim li{align-items:start}
+.state-msg{padding:var(--rr-6) var(--rr-4);text-align:center;color:var(--rr-text-2)}
+.state-msg b{display:block;color:var(--rr-text);font-size:var(--rr-t-h3);margin-bottom:6px}
 </style>
 </head>
 <body>
+<a class="skip" href="#s-docs">Skip to documents</a>
 <script src="site-nav.js?v=20261114a"></script>
 
-<main class="wrap" id="main">
-  <header class="pg-h head rr-band">
-    <div><h1>RegWatch</h1><div class="sub" id="upd">Belgian &amp; EU regulators, checked daily</div></div>
-    <button class="prof" id="whoBtn" title="What applies to me" aria-haspopup="dialog">
-      <span class="av" id="whoAv">?</span>
-      <span><b id="whoName">Set your profile</b><span class="s" id="whoSub">See what applies to you</span></span>
-    </button>
+<main id="main" class="wrap">
+  <header class="head rr-band">
+    <div>
+      <h1>RegWatch</h1>
+      <p class="lead">What EU and Belgian authorities published, primary documents first. News only adds a source.</p>
+    </div>
+    <div class="head-tools">
+      <button class="btn" type="button" id="whoBtn" aria-haspopup="dialog"><span id="whoName">Set your profile</span></button>
+    </div>
+    <div class="band-stats" id="stats" aria-label="Live counts">
+      <div class="rr-stat"><div class="n">–</div><div class="l">Documents</div><div class="s">Loading</div></div>
+      <div class="rr-stat"><div class="n">–</div><div class="l">This week</div><div class="s">&nbsp;</div></div>
+      <div class="rr-stat"><div class="n">–</div><div class="l">Belgium</div><div class="s">NBB and FSMA</div></div>
+      <div class="rr-stat"><div class="n">–</div><div class="l">Deadlines</div><div class="s">Next 90 days</div></div>
+    </div>
+    <div class="band-meta" id="upd">Checking the sources…</div>
   </header>
-  <div id="view" aria-busy="true"><div class="rows"><div class="empty">Loading the latest items…</div></div></div>
-  <div class="sr" id="live" role="status" aria-live="polite"></div>
+
+  <div id="notice"></div>
+
+  <div class="rw" id="rw" aria-busy="true">
+    <section class="rr-section" id="s-dl" aria-labelledby="h-dl">
+      <div class="rr-card dl-pane">
+        <div class="rr-section-h"><h2 id="h-dl">Deadlines</h2>
+          <div class="seg" role="group" aria-label="Deadline window" id="dlWin">
+            <button type="button" data-win="90" aria-pressed="true">90 days</button>
+            <button type="button" data-win="365" aria-pressed="false">12 months</button>
+            <button type="button" data-win="all" aria-pressed="false">All</button>
+          </div>
+        </div>
+        <div id="dlBody"><p class="hint">Loading…</p></div>
+      </div>
+    </section>
+
+    <section class="rr-section" id="s-docs" aria-labelledby="h-docs" tabindex="-1">
+      <div class="rr-section-h"><h2 id="h-docs">Documents</h2></div>
+      <p class="sec-sub">Legislation, AMLA, EBA, ESMA, Commission and national supervisors. Ranked: binding and in-scope first.</p>
+      <div class="rr-filters" role="search" aria-label="Filter documents" id="filters">
+        <div class="f-top">
+          <label class="sr" for="q">Search documents</label>
+          <input class="in" id="q" type="search" autocomplete="off" placeholder="Search title, authority, topic">
+          <div class="seg" role="group" aria-label="Jurisdiction" id="jur">
+            <button type="button" data-jur="" aria-pressed="true">All</button>
+            <button type="button" data-jur="BE" aria-pressed="false">Belgium</button>
+            <button type="button" data-jur="EU" aria-pressed="false">EU</button>
+          </div>
+        </div>
+        <div class="f-grid">
+          <div class="field"><label for="fAuth">Authority</label><select class="sel" id="fAuth"><option value="">All authorities</option></select></div>
+          <div class="field"><label for="fTopic">Topic</label><select class="sel" id="fTopic"><option value="">All topics</option></select></div>
+          <div class="field"><label for="fType">Type</label><select class="sel" id="fType"><option value="">All types</option></select></div>
+          <div class="field"><label for="fStatus">Status</label><select class="sel" id="fStatus"><option value="">Any status</option></select></div>
+        </div>
+        <div class="f-foot">
+          <div class="views" id="views" aria-label="Saved views"></div>
+          <div class="btns">
+            <button class="btn sm" type="button" id="mineBtn" aria-pressed="false" hidden>For my firm</button>
+            <button class="btn sm" type="button" id="saveBtn">Save this view</button>
+            <button class="btn sm quiet" type="button" id="clrBtn" hidden>Clear filters</button>
+          </div>
+        </div>
+        <form class="saveform" id="saveForm" hidden>
+          <label class="sr" for="viewName">Name of this view</label>
+          <input class="in" id="viewName" maxlength="40" placeholder="Name, for example Belgium AML" required>
+          <button class="btn sm" type="submit">Save</button>
+          <button class="btn sm quiet" type="button" id="saveCancel">Cancel</button>
+        </form>
+      </div>
+      <div class="result-line"><span id="resN" role="status" aria-live="polite"></span>
+        <label class="lbl" for="sort">Order <select class="sel" id="sort"><option value="rank">Most important first</option><option value="date">Newest first</option></select></label></div>
+      <ul class="docs" id="docs"><li class="rr-card state-msg">Loading the latest documents…</li></ul>
+      <div class="more-wrap" id="moreWrap"></div>
+    </section>
+
+    <section class="rr-section" id="s-news" aria-labelledby="h-news">
+      <details class="rr-card news" id="newsBox">
+        <summary><span id="h-news">News</span> <span class="hint" id="newsN"></span></summary>
+        <div class="news-in">
+          <p class="sec-sub" style="margin:0 0 var(--rr-3)">Press and trade coverage with no primary document in the feed. One card per story, outlets listed beneath. Outlets that cover a primary document are listed under that document instead.</p>
+          <ul class="docs" id="news"></ul>
+        </div>
+      </details>
+    </section>
+  </div>
 </main>
 
-<div class="ov" id="ov" aria-hidden="true" onclick="closeDrawer()"></div>
-<div class="dw" id="dw" role="dialog" aria-modal="true" aria-labelledby="dwTitle" tabindex="-1" inert aria-hidden="true"><div class="dw-in" id="dwBody"></div></div>
+<dialog class="mid" id="prof" aria-labelledby="profT">
+  <div class="dlg-h"><h2 id="profT">What applies to me</h2>
+    <button class="rr-x" type="button" id="profX" aria-label="Close">&times;</button></div>
+  <div class="dlg-b" id="profB"></div>
+  <div class="dlg-f"><button class="btn" type="button" id="profClr">Clear profile</button><button class="btn pri" type="button" id="profDone">Done</button></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script>
-const PKEY='regradar-profile';
-let ITEMS=[], META={}, APP=null, SHOWN=20, LOADFAIL=false;
-let ENTITY='', ACTS=new Set();
-let fTopic='', fWeight='', fQuery='', LIVE_N=0, LASTFOCUS=null, OPENER_ID='';
-
-// EUR-Lex titles start with their CELEX number ("CELEX:32026R2138: …") —
-// an identifier, not something to read.
-const title=it=>(it.title||'').replace(/^CELEX:\S+:\s*/,'');
-const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const hoursAgo=d=>Math.max(0,(Date.now()-new Date(d).getTime())/36e5);
-function ago(h){ if(h<1)return'now'; if(h<24)return Math.round(h)+'h'; if(h<720) return Math.round(h/24)+'d'; return Math.round(h/720)+'mo'; }
-// Publication date, not "3h ago": a compliance reader cites and files by
-// date. The year is shown only when it is not the current one.
-function pubDate(d){ try{ const x=new Date(d), y=x.getFullYear()!==new Date().getFullYear();
-  return x.toLocaleDateString('en-GB',y?{day:'numeric',month:'short',year:'numeric'}:{day:'numeric',month:'short'});
-}catch(e){return '';} }
-function fmt(d){ try{return new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}catch(e){return d||'';} }
-function toggleTheme(){const h=document.documentElement;const t=h.dataset.theme==='dark'?'light':'dark';
-  h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}}
-
-function saveP(){ try{ localStorage.setItem(PKEY,JSON.stringify({entity:ENTITY,acts:[...ACTS]})); }catch(e){} }
-function loadP(){ try{ const p=JSON.parse(localStorage.getItem(PKEY)||'null');
-  if(p){ ENTITY=p.entity||''; ACTS=new Set(p.acts||[]); } }catch(e){} }
-
-/* ── applicability engine (shared with the profile view) ───────── */
-function verdictFor(reg,entity,acts){
-  let s = reg.applies[entity] || 'na';
-  const raises = reg.activity_raises || {};
-  for(const a of acts){
-    const t = raises[a];
-    if(t && t.includes(entity)) s = s==='na' ? 'conditional' : 'direct';
-  }
-  return s;
-}
-function badgeLabel(status,instrument){
-  if(status==='conditional') return 'Conditional';
-  if(status==='na') return 'Not applicable';
-  return instrument==='Directive' ? 'Applies · check national transposition' : 'Directly applicable';
-}
-function inScopeRegs(){
-  if(!APP||!ENTITY) return [];
-  return APP.regulations.filter(r=>verdictFor(r,ENTITY,ACTS)!=='na');
-}
-
-/* A regulation's topic and a feed item's theme are different
-   vocabularies — this is the join between them. Kept explicit rather
-   than fuzzy-matched, so a wrong "relevant to you" flag is traceable. */
-/* NB: "Enforcement/Fines" is deliberately not mapped to any topic.
-   It is cross-cutting — every fine anywhere carries it — so mapping it
-   under AML/CFT flagged unrelated global enforcement stories as
-   "relevant to you". Relevance has to come from subject matter. */
-const TOPIC_THEMES={
-  'AML/CFT':['AML/CFT','Sanctions'],
-  'Operational Resilience':['DORA'],
-  'Crypto':['MiCA/Crypto'],
-  'Markets':['MiFID/MiFIR','Market Infrastructure'],
-  'Capital':['Capital/CRR'],
-  'Payments':['Payments'],
-  'Data Protection':['Data Protection'],
-};
-function myThemes(){
-  const s=new Set();
-  inScopeRegs().forEach(r=>(TOPIC_THEMES[r.topic]||[]).forEach(t=>s.add(t)));
-  return s;
-}
-function isRelevant(it,themes){
-  if(!themes.size) return false;
-  return (it.themes||[]).some(t=>themes.has(t));
-}
-
-// EBA digest items carry their section label ("News & Press") in the
-// summary field; a label is not a summary.
-// Google News "summaries" are the headline again plus the outlet name.
-function snip(it){
-  const t=it.so_what||it.summary||'';
-  const head=title(it).slice(0,40).toLowerCase();
-  return t.length>=40 && !t.toLowerCase().startsWith(head) ? t : '';
-}
-/* ── shared row renderer ───────────────────────────────────────── */
-const impactLabel=it=>it.impact===3?'Critical':it.impact===2?'Important':'Info';
-function itemRow(it,themes){
-  const rel=isRelevant(it,themes);
-  const doc = it.doc_label && it.doc_type!=='news'
-    ? `<span class="pill ${(it.legal_weight||1)>=7?'crit':(it.legal_weight||1)>=4?'warn':''}">${esc(it.doc_label)}</span>` : '';
-  const life = it.lifecycle_label?`<span class="pill">${esc(it.lifecycle_label)}</span>`:'';
-  const tag = (it.themes||[]).slice(0,2).map(t=>`<span class="pill">${esc(t)}</span>`).join('');
-  const imp=impactLabel(it);
-  const label=[imp+' impact',title(it),it.source,pubDate(it.date),rel?'Relevant to you':''].filter(Boolean).join('. ');
-  return `<button type="button" class="row ${rel?'rel':''}" data-id="${esc(it.id)}" aria-haspopup="dialog" aria-label="${esc(label)}">
-    <span class="dot i${it.impact||1}" title="${imp} impact" aria-hidden="true"></span>
-    <span>
-      <span class="ttl">${esc(title(it))}</span>
-      ${snip(it)?`<span class="snip">${esc(snip(it))}</span>`:''}
-      <span class="meta">
-        <span class="src">${esc(it.source)}</span>
-        ${rel?'<span class="pill acc">● Relevant to you</span>':''}
-        ${doc}${life}${tag}
-      </span>
-    </span>
-    <span class="when" title="${esc(fmt(it.date))}">${pubDate(it.date)}</span>
-  </button>`;
-}
-function wireRows(){
-  document.querySelectorAll('.row[data-id]').forEach(r=>
-    r.addEventListener('click',()=>openDrawer(r.dataset.id,r)));
-}
-
-/* ── page ──────────────────────────────────────────────────────── */
-const PAGE=20;
-// At most two per source: the Official Journal alone publishes several
-// sanctions updates a week and would otherwise fill all five slots,
-// hiding an EBA guideline or an NBB decision underneath.
-function attentionList(pool){
-  const per={}, out=[];
-  // Fresh only: a months-old item is history, not something to act on
-  // today — it stays findable in All signals.
-  pool.filter(i=>((i.legal_weight||1)>=4||i.impact===3) && hoursAgo(i.date)<=30*24)
-    .sort((a,b)=>(b.legal_weight||1)-(a.legal_weight||1)||new Date(b.date)-new Date(a.date))
-    .forEach(i=>{ if(out.length<5 && (per[i.source_id]=(per[i.source_id]||0)+1)<=2) out.push(i); });
-  return out;
-}
-function filtered(themes){
-  let list=ITEMS.slice();
-  if(fTopic) list=list.filter(i=>(i.themes||[]).includes(fTopic));
-  if(fWeight==='binding') list=list.filter(i=>(i.legal_weight||1)>=7);
-  else if(fWeight==='soft') list=list.filter(i=>{const w=i.legal_weight||1;return w>=4&&w<7});
-  else if(fWeight==='mine') list=list.filter(i=>isRelevant(i,themes));
-  if(fQuery){const q=fQuery.toLowerCase();
-    list=list.filter(i=>(i.title+' '+i.source+' '+(i.themes||[]).join(' ')).toLowerCase().includes(q));}
-  // Newest first: this is the running log. Ranking by weight is what
-  // "Needs attention" above is for.
-  return list.sort((a,b)=>new Date(b.date)-new Date(a.date));
-}
-// Days until a YYYY-MM-DD date, counted in UTC calendar days from today,
-// so the countdown never freezes at pipeline time.
-function daysUntil(dateStr){
-  const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(dateStr||'');
-  if(!m) return null;
-  const t=new Date();
-  return Math.round((Date.UTC(+m[1],m[2]-1,+m[3])-Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate()))/864e5);
-}
-function deadlineRow(d){
-  const n=daysUntil(d.date);
-  const passed=n!=null&&n<0;
-  const soon=n!=null&&n>=0&&n<45;
-  const label=n==null?'':passed?'passed':n===0?'today':n===1?'1 day':n+' days';
-  return `<div class="dl ${soon?'soon':''}">
-    <div class="dt"><span>${fmt(d.date)}</span><span class="dd">${label}</span></div>
-    <div class="de">${esc(d.event)}${d.source&&/^https:\/\//.test(d.source)?` <a href="${esc(d.source)}" target="_blank" rel="noopener">Source${d.basis?' ('+esc(d.basis)+')':''}</a>`:''}</div></div>`;
-}
-
-function vPage(){
-  const themes=myThemes();
-  const mine=ITEMS.filter(i=>isRelevant(i,themes));
-  const attention=attentionList(themes.size?mine:ITEMS);
-  const list=filtered(themes);
-  LIVE_N=list.length;
-  const dates=(META.timeline||[]).filter(d=>d.source).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const topics={}; ITEMS.forEach(i=>(i.themes||[]).forEach(t=>topics[t]=(topics[t]||0)+1));
-  const tks=Object.keys(topics).sort((a,b)=>a.localeCompare(b));
-  const cnt=f=>ITEMS.filter(f).length;
-
-  // A failed load must never read as "all clear": say so and offer Retry.
-  const fail=`<div class="stat-err" role="alert"><b>Could not load the latest items</b>
-      Check your connection, then try again. Nothing here should be read as "no changes".
-      <div><button type="button" class="dbtn" id="retry">Retry</button></div></div>`;
-  const attBody=LOADFAIL?fail:attention.length?attention.map(i=>itemRow(i,themes)).join(''):
-      '<div class="empty"><b>Nothing pressing</b>No binding instruments or consultations in range.</div>';
-  const chip=(w,label,n,on)=>`<button type="button" class="chip ${on?'on':''}" data-w="${w}" aria-pressed="${on}">${label}<span class="n">${n}</span></button>`;
-
-  return `<div class="layout"><section class="blk-att" aria-labelledby="h-att">
-    <div class="sec-h"><div><h2 class="sec-t" id="h-att">Needs attention</h2>
-      <div class="d">${themes.size?'Binding rules and consultations in your perimeter from the last 30 days, most authoritative first.'
-        :'Binding rules and consultations from the last 30 days, most authoritative first.'}</div></div></div>
-    <div class="rows">${attBody}</div>
-  </section>
-
-  <aside class="side-col" aria-labelledby="h-up">
-    <div class="sec-h"><div><h2 class="sec-t" id="h-up">Coming up</h2></div></div>
-    <div class="rows">${dates.length?dates.map(deadlineRow).join(''):
-      '<div class="empty"><b>No dated deadlines</b></div>'}</div>
-  </aside>
-
-  ${LOADFAIL?'':`<section class="blk-feed" aria-labelledby="h-all">
-    <div class="sec-h"><div><h2 class="sec-t" id="h-all">All signals</h2></div>
-      ${(fTopic||fWeight||fQuery)?'<button type="button" class="lnk" id="clr">Clear filters ×</button>':''}</div>
-    <div class="filters">
-      <div class="searchbox"><label class="sr" for="q">Search signals by title, source or theme</label>
-        <span class="si" aria-hidden="true">⌕</span>
-        <input id="q" type="search" autocomplete="off" placeholder="Search…" value="${esc(fQuery)}"></div>
-      <select class="topic" id="topic" aria-label="Topic">
-        <option value="">All topics</option>
-        ${tks.map(t=>`<option value="${esc(t)}" ${fTopic===t?'selected':''}>${esc(t)} (${topics[t]})</option>`).join('')}
-      </select>
-    </div>
-    <div class="filters" role="group" aria-label="Filter by legal weight">
-      ${chip('','All',ITEMS.length,!fWeight)}
-      ${themes.size?chip('mine','● For me',mine.length,fWeight==='mine'):''}
-      ${chip('binding','Binding',cnt(i=>(i.legal_weight||1)>=7),fWeight==='binding')}
-      ${chip('soft','Consultations &amp; guidance',cnt(i=>{const w=i.legal_weight||1;return w>=4&&w<7}),fWeight==='soft')}
-    </div>
-    <div class="rows" id="feed">${list.length?list.slice(0,SHOWN).map(i=>itemRow(i,themes)).join(''):
-      '<div class="empty"><b>No matches</b>Try clearing a filter.</div>'}
-      ${list.length>SHOWN?`<button type="button" class="more" id="more">Show more · ${list.length-SHOWN} left</button>`:''}</div>
-  </section>`}</div>`;
-}
-
-/* "What applies to me": entity + activities → perimeter. Opens in the
-   side panel so it never takes the reader away from the feed. */
-function profilePanel(){
-  if(!APP) return '<button type="button" class="x" onclick="closeDrawer()" aria-label="Close">×</button><h2 class="dtitle" id="dwTitle">What applies to me</h2><div class="empty">Applicability data unavailable.</div>';
-  const rows=ENTITY?APP.regulations.map(r=>({r,v:verdictFor(r,ENTITY,ACTS)}))
-    .sort((a,b)=>({direct:0,conditional:1,na:2})[a.v]-({direct:0,conditional:1,na:2})[b.v]
-      ||a.r.name.localeCompare(b.r.name)):[];
-  const n={direct:0,conditional:0,na:0}; rows.forEach(x=>n[x.v]++);
-  return `
-  <button type="button" class="x" onclick="closeDrawer()" aria-label="Close">×</button>
-  <h2 class="dtitle" id="dwTitle">What applies to me</h2>
-  <div class="sec-h"><div><h3 class="sec-t">I am a…</h3>
-    <div class="d">Stored on this device only.</div></div>
-    ${ENTITY?'<button type="button" class="lnk" id="clrProf">Clear ×</button>':''}</div>
-  <div class="ents">${APP.entities.map(e=>`
-    <button type="button" class="ent ${ENTITY===e.id?'on':''}" data-e="${esc(e.id)}" aria-pressed="${ENTITY===e.id}">
-      <div class="ic">${e.icon}</div><div class="nm">${esc(e.label)}</div>
-      <div class="ds">${esc(e.desc)}</div></button>`).join('')}</div>
-  <div class="sec-h"><div><h3 class="sec-t">And I also do…</h3>
-    <div class="d">Optional. Never removes an obligation.</div></div></div>
-  <div class="filters">${APP.activities.map(a=>`
-    <button type="button" class="chip ${ACTS.has(a.id)?'on':''}" data-a="${esc(a.id)}" aria-pressed="${ACTS.has(a.id)}">${a.icon} ${esc(a.label)}</button>`).join('')}</div>
-  ${ENTITY?`
-  <div class="sec-h"><div><h3 class="sec-t">Your perimeter</h3>
-    <div class="d">${n.direct} in scope · ${n.conditional} conditional · ${n.na} not applicable</div></div></div>
-  <div class="rows">${rows.filter(x=>x.v!=='na').map(({r,v})=>{
-    const note=(r.notes||{})[ENTITY];
-    return `<div class="mrow ${v}">
-      <div><div class="rn">${esc(r.name)}</div><div class="rm">${esc(r.instrument)} · ${esc(r.topic)}</div></div>
-      <div><div class="rw">${esc(r.why)}</div>
-        ${note?`<div class="rnote">${esc(note)}</div>`:''}
-        ${r.applies_from?`<div class="rd">Applies from ${esc(r.applies_from)}</div>`:''}</div>
-      <span class="pill bdg ${v==='direct'?'crit':'warn'}">${badgeLabel(v,r.instrument)}</span>
-    </div>`;}).join('')}</div>
-  <div class="d" style="margin-top:14px;font-size:12px;color:var(--text-3);line-height:1.6">${esc(APP._meta.disclaimer)}</div>`:''}`;
-}
-function openProfile(){
-  const body=document.getElementById('dwBody');
-  // Re-rendering replaces the button that was just pressed; remember which
-  // one so keyboard focus lands back on it.
-  const ae=document.activeElement;
-  const was=body.contains(ae)?(ae.dataset.e?'[data-e="'+ae.dataset.e+'"]':ae.dataset.a?'[data-a="'+ae.dataset.a+'"]':ae.id?'#'+ae.id:''):'';
-  body.innerHTML=profilePanel();
-  body.querySelectorAll('[data-e]').forEach(b=>b.addEventListener('click',()=>{
-    ENTITY = ENTITY===b.dataset.e?'':b.dataset.e; saveP(); paintWho(); render(); openProfile();
-  }));
-  body.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>{
-    ACTS.has(b.dataset.a)?ACTS.delete(b.dataset.a):ACTS.add(b.dataset.a); saveP(); paintWho(); render(); openProfile();
-  }));
-  const cp=body.querySelector('#clrProf');
-  if(cp) cp.addEventListener('click',()=>{ENTITY='';ACTS.clear();saveP();paintWho();render();openProfile();});
-  showDrawer(was?body.querySelector(was):null);
-}
-
-/* ── drawer ────────────────────────────────────────────────────── */
-const LEGAL_TEXT={
-  'binding':'Directly binding — applies without national transposition.',
-  'binding-transposed':'Binding once transposed into national law.',
-  'supervisory-binding':'Issued by your supervisor — binding in practice.',
-  'comply-or-explain':'Comply-or-explain: deviation must be justified to the supervisor.',
-  'interpretive':'Interpretive — clarifies how an existing rule applies.',
-  'supervisory-expectation':'Supervisory expectation — not law, but examined against.',
-  'enforcement':'Enforcement outcome — precedent for supervisory tolerance.',
-  'not-yet-binding':'Not yet binding — in consultation or proposal stage.',
-  'non-binding':'Non-binding — background and context.',
-  'informational':'Informational — no direct obligation.',
-};
-function openDrawer(id,opener){
-  const it=ITEMS.find(x=>x.id===id); if(!it)return;
-  const themes=myThemes(), rel=isRelevant(it,themes);
-  const w=it.legal_weight||1;
-  const mine=rel?inScopeRegs().filter(r=>(TOPIC_THEMES[r.topic]||[]).some(t=>(it.themes||[]).includes(t))):[];
-  document.getElementById('dwBody').innerHTML=`
-    <button type="button" class="x" onclick="closeDrawer()" aria-label="Close">×</button>
-    <div class="filters" style="margin:0">
-      <span class="pill ${it.impact===3?'crit':it.impact===2?'warn':''}">${it.impact===3?'Critical':it.impact===2?'Important':'Info'}</span>
-      <span class="pill">${esc(it.source)}</span>
-      <span class="pill">${fmt(it.date)}</span>
-      ${rel?'<span class="pill acc">● Relevant to you</span>':''}
-    </div>
-    <h2 class="dtitle" id="dwTitle">${esc(title(it))}</h2>
-    ${it.doc_label&&it.doc_type!=='news'?`<div class="dsec"><h3 class="dl2">Instrument &amp; legal weight</h3>
-      <div class="filters" style="margin-bottom:8px">
-        <span class="pill ${w>=7?'crit':w>=4?'warn':''}">${esc(it.doc_label)}</span>
-        ${it.lifecycle_label?`<span class="pill">${esc(it.lifecycle_label)}</span>`:''}
-      </div>
-      <p>${esc(LEGAL_TEXT[it.legal_status]||it.legal_status||'')}</p></div>`:''}
-    ${mine.length?`<div class="dsec"><h3 class="dl2">Why this reaches you</h3>
-      <p>Touches ${mine.length===1?'a regulation':'regulations'} in your perimeter:
-      ${mine.map(r=>esc(r.name)).join(', ')}.</p></div>`:''}
-    ${it.summary?`<div class="dsec"><h3 class="dl2">What happened</h3><p>${esc(it.summary)}</p></div>`:''}
-    ${it.so_what?`<div class="dsec"><h3 class="dl2">So what</h3><p>${esc(it.so_what)}</p></div>`:''}
-    ${it.action?`<div class="dsec"><h3 class="dl2">Action</h3><p>${esc(it.action)}</p></div>`:''}
-    <div class="dsec"><h3 class="dl2">Scope</h3><div class="filters">
-      ${(it.themes||[]).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}
-      ${it.jurisdiction?`<span class="pill">${esc(it.jurisdiction)}</span>`:''}
-    </div></div>
-    ${it.url?`<a class="dbtn" href="${esc(it.url)}" target="_blank" rel="noopener">Open primary source ↗</a>`:''}`;
-  showDrawer(null);
-}
-
-/* Dialog behaviour: the page behind becomes inert while the drawer is
-   open, focus moves in, Tab is kept inside, Esc closes, and focus returns
-   to whatever opened it. A closed drawer is inert + hidden, so its links
-   are not in the tab order. */
-function setBackdropInert(on){
-  [...document.body.children].forEach(el=>{
-    if(el.id==='dw'||el.id==='ov'||el.tagName==='SCRIPT') return;
-    if(on){ if(!el.hasAttribute('inert')){ el.setAttribute('inert',''); el.dataset.wasInert='1'; } }
-    else if(el.dataset.wasInert){ el.removeAttribute('inert'); delete el.dataset.wasInert; }
-  });
-}
-function showDrawer(focusEl){
-  const dw=document.getElementById('dw'), ov=document.getElementById('ov');
-  if(!dw.classList.contains('on')){
-    LASTFOCUS=document.activeElement;
-    OPENER_ID=LASTFOCUS&&LASTFOCUS.dataset&&LASTFOCUS.dataset.id||'';
-    setBackdropInert(true);
-    dw.removeAttribute('inert'); dw.removeAttribute('aria-hidden');
-    dw.classList.add('on'); ov.classList.add('on'); dw.scrollTop=0;
-  }
-  const t=focusEl||dw.querySelector('.x')||dw;
-  t.focus({preventScroll:true});
-}
-function closeDrawer(){
-  const dw=document.getElementById('dw'), ov=document.getElementById('ov');
-  if(!dw.classList.contains('on')) return;
-  dw.classList.remove('on'); ov.classList.remove('on');
-  dw.setAttribute('inert',''); dw.setAttribute('aria-hidden','true');
-  setBackdropInert(false);
-  let t=LASTFOCUS;
-  if(!t||t===document.body||!document.contains(t)){
-    t=(OPENER_ID&&document.querySelector('.row[data-id="'+OPENER_ID.replace(/["\\]/g,'\\$&')+'"]'))||document.getElementById('whoBtn');
-  }
-  LASTFOCUS=null; OPENER_ID='';
-  if(t&&t.focus) t.focus();
-}
-document.addEventListener('keydown',e=>{
-  const dw=document.getElementById('dw');
-  if(!dw.classList.contains('on')) return;
-  if(e.key==='Escape'){ e.preventDefault(); closeDrawer(); }
-  else if(e.key==='Tab'){
-    const f=[...dw.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])')];
-    if(!f.length) return;
-    const first=f[0], last=f[f.length-1], a=document.activeElement;
-    if(e.shiftKey&&(a===first||a===dw)){ e.preventDefault(); last.focus(); }
-    else if(!e.shiftKey&&a===last){ e.preventDefault(); first.focus(); }
-  }
-});
-
-/* ── render ────────────────────────────────────────────────────── */
-function announce(){
-  const l=document.getElementById('live');
-  if(l) l.textContent=LIVE_N+(LIVE_N===1?' item':' items')+' shown';
-}
-function render(focusSel){
-  const v=document.getElementById('view');
-  v.innerHTML=vPage();
-  v.setAttribute('aria-busy','false');
-  wireRows();
-  v.querySelectorAll('[data-w]').forEach(b=>b.addEventListener('click',()=>{
-    fWeight=b.dataset.w; SHOWN=PAGE; render('[data-w="'+fWeight+'"]'); announce(); }));
-  const tp=document.getElementById('topic');
-  if(tp) tp.addEventListener('change',()=>{ fTopic=tp.value; SHOWN=PAGE; render('#topic'); announce(); });
-  const clr=document.getElementById('clr');
-  if(clr) clr.addEventListener('click',()=>{fTopic='';fWeight='';fQuery='';SHOWN=PAGE;render('#q');announce();});
-  const more=document.getElementById('more');
-  if(more) more.addEventListener('click',()=>{
-    const was=SHOWN; SHOWN+=PAGE; render();
-    const r=document.querySelectorAll('#feed .row')[was]; if(r) r.focus();
-  });
-  const retry=document.getElementById('retry');
-  if(retry) retry.addEventListener('click',async()=>{
-    retry.disabled=true; retry.textContent='Retrying…';
-    await load(); render(LOADFAIL?'#retry':'#h-att');
-  });
-  const q=document.getElementById('q');
-  if(q) q.addEventListener('input',()=>{
-    fQuery=q.value; SHOWN=PAGE; const at=document.activeElement===q;
-    render(); announce(); if(at){const n=document.getElementById('q'); if(n){n.focus();n.setSelectionRange(n.value.length,n.value.length);} }
-  });
-  if(focusSel){ const n=v.querySelector(focusSel); if(n){ if(!n.matches('button,input,select,a')) n.setAttribute('tabindex','-1'); n.focus(); } }
-}
-
-function paintWho(){
-  const e=APP&&ENTITY?APP.entities.find(x=>x.id===ENTITY):null;
-  document.getElementById('whoAv').textContent=e?e.icon:'?';
-  document.getElementById('whoName').textContent=e?e.label:'Set your profile';
-  document.getElementById('whoSub').textContent=e
-    ? (ACTS.size?`+${ACTS.size} activit${ACTS.size>1?'ies':'y'} · change`:'What applies to me · change')
-    : 'See what applies to you';
-}
-
-async function load(){
-  // no-store: the pipeline rewrites these on a schedule, and a cached
-  // copy would quietly show yesterday's regulatory position.
-  const get=u=>fetch(u,{cache:'no-store'}).then(r=>{ if(!r.ok) throw new Error(u+' '+r.status); return r.json(); });
-  const [items,meta,app]=await Promise.all([
-    get('data/items.json').catch(()=>null),
-    get('data/meta.json').catch(()=>({})),
-    get('data/applicability.json').catch(()=>null),
-  ]);
-  // A failed feed is an error, never an empty (all-clear) feed.
-  const list=Array.isArray(items)?items:(items&&Array.isArray(items.items)?items.items:null);
-  LOADFAIL=!list;
-  ITEMS=list||[]; META=meta||{}; APP=app;
-  ITEMS.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  if(META.last_updated){
-    const d=new Date(META.last_updated);
-    document.getElementById('upd').textContent=
-      `Belgian & EU regulators · updated ${d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}, ${d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`;
-    // pipeline timestamps carry no zone; they are written in UTC
-    const ts=/(Z|[+-]\d\d:?\d\d)$/.test(META.last_updated)?META.last_updated:META.last_updated+'Z';
-    const age=Math.floor((Date.now()-new Date(ts))/864e5);
-    if(age>=3){
-      const w=document.createElement('div');
-      w.setAttribute('role','status');
-      w.style.cssText='margin-top:6px;font-weight:600;color:var(--warn,var(--ink));';
-      w.textContent=`Feed last refreshed ${age} days ago: items and deadlines may be out of date.`;
-      document.getElementById('upd').appendChild(w);
-    }
-  }
-  paintWho();
-}
-async function boot(){
-  loadP();
-  document.getElementById('whoBtn').addEventListener('click',openProfile);
-  await load();
-  render();
-  // Old links (regwatch.html#apply) open the profile panel; the other
-  // former views are all on this page now.
-  if(location.hash==='#apply') openProfile();
-}
-boot();
-</script>
+<script src="regwatch-data.js?v=20261114b"></script>
+<script src="regwatch.js?v=20261114b"></script>
 </body>
 </html>
