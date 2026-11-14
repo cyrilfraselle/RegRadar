@@ -1,0 +1,109 @@
+{
+ "_meta": {
+  "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
+  "generated": "2026-11-14T08:24:53+00:00"
+ },
+ "run": {
+  "duration_s": 2.3,
+  "requests": 0,
+  "bytes": 0,
+  "not_modified_304": 0,
+  "retries": 0,
+  "http_errors": 0,
+  "robots_blocked": 0,
+  "politeness_wait_s": 0.0,
+  "budget": 220,
+  "errors": []
+ },
+ "sources": {
+  "registered": 31,
+  "working": 19,
+  "planned": 6,
+  "blocked": 4,
+  "excluded": 2,
+  "polled_this_run": 0,
+  "skipped_not_due": 0,
+  "health": {
+   "healthy": 19
+  }
+ },
+ "entries": {
+  "total": 423,
+  "in_scope": 212,
+  "new": 0,
+  "changed": 0,
+  "withdrawn": 0,
+  "pending_docs": 74
+ },
+ "documents": {
+  "total": 124,
+  "new": 0,
+  "changed": 0,
+  "unchanged": 0,
+  "errors": 0,
+  "paragraphs": 8798,
+  "corpus_bytes": 2720105,
+  "corpus_warning": false
+ },
+ "freshness_hours": {
+  "this_run": {
+   "n": 0,
+   "p50": null,
+   "p90": null
+  },
+  "last_30_days": {
+   "n": 0,
+   "p50": null,
+   "p90": null
+  },
+  "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
+ },
+ "proposals_new": 0,
+ "deadlines": 92,
+ "coverage": [],
+ "feed": {
+  "cards": 400,
+  "tiers": {
+   "important": 144,
+   "critical": 64,
+   "info": 192
+  },
+  "news_cards": 121,
+  "news_dropped": 105,
+  "clustered_items": 494,
+  "f028": {
+   "archive_items": 744,
+   "before": {
+    "critical": 245,
+    "share": 0.329,
+    "informational": 124,
+    "distinct_stories": 232
+   },
+   "after": {
+    "critical": 3,
+    "share": 0.004,
+    "informational": 0,
+    "distinct_stories": 3,
+    "note": "v2 tier: in-scope (topic-tagged) primary legislation, standards, guidelines, enforcement or open consultations; news never critical; duplicates collapse into one story card"
+   }
+  }
+ },
+ "quality": {
+  "topic_golden": {
+   "cases": 93,
+   "precision": 1.0,
+   "recall": 0.988
+  },
+  "topic_heldout": {
+   "cases": 62,
+   "precision": 1.0,
+   "recall": 0.791
+  },
+  "duplicate_pairs": {
+   "pairs": 85,
+   "precision": 1.0,
+   "recall": 0.893
+  }
+ },
+ "false_alert_rate": "not measured (needs reviewer verdicts on proposals; proposals.json review_status will provide them)"
+}

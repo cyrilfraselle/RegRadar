@@ -1,0 +1,1291 @@
+{
+ "_meta": {
+  "purpose": "Labelled pairs of real items from docs/data/items.json (2026-11-14) for the story-clustering rules in regwatch_sources/dedupe.py.",
+  "sampling": "all pairs within 10 days whose normalised titles have word Jaccard >= 0.25 or containment >= 0.5 (791 pairs), up to 9 drawn per Jaccard band of 0.1 with random.seed(7)",
+  "labelling_rule": "same_story = both items report the same event or the same publication (syndicated copies, several outlets on one announcement, an act and its OJ/CELEX double). Different legal acts are never the same story, even with near-identical boilerplate titles; suspension vs reopening of trading are different events.",
+  "labelled_by": "scraper-v2 agent, 2026-11-14, before the identifier rules were added",
+  "thresholds": {
+   "precision": 0.9,
+   "recall": 0.8
+  },
+  "count": 85,
+  "positives": 28
+ },
+ "pairs": [
+  {
+   "a": {
+    "id": "aff4c291489e36e2bb074186aad990e9",
+    "title": "European Parliament: SFDR/PRIIPs Regulation - CMS.law",
+    "date": "2026-09-17T08:25:09",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "5e26d9b62819095f5ca2493a3d02a001",
+    "title": "CELEX:32026R2041: Commission Implementing Regulation (EU) 2026/2041 of 11 September 2026 laying down rules for the application of Directive 2009/138/EC of the European Parliament and of the Council as regards technical information for the calculation of technical provisions and basic own funds for reporting with reference dates from 30 June 2026 until 29 September 2026",
+    "date": "2026-09-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "b6c86e4f5a5de331e38f4df47dbd8df1",
+    "title": "European Parliament: SFDR/PRIIPs Regulation - CMS.law",
+    "date": "2026-09-17T10:01:58",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "5e26d9b62819095f5ca2493a3d02a001",
+    "title": "CELEX:32026R2041: Commission Implementing Regulation (EU) 2026/2041 of 11 September 2026 laying down rules for the application of Directive 2009/138/EC of the European Parliament and of the Council as regards technical information for the calculation of technical provisions and basic own funds for reporting with reference dates from 30 June 2026 until 29 September 2026",
+    "date": "2026-09-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "b6c86e4f5a5de331e38f4df47dbd8df1",
+    "title": "European Parliament: SFDR/PRIIPs Regulation - CMS.law",
+    "date": "2026-09-17T10:01:58",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "8ed434760f07bbdf7605eb20d92796a2",
+    "title": "CELEX:32026R1221: Commission Delegated Regulation (EU) 2026/1221 of 4 June 2026 amending Regulation (EU) No 575/2013 of the European Parliament and of the Council as regards temporary targeted operational relief measures and targeted multipliers for the calculation of an institution’s own funds requirements for market risk",
+    "date": "2026-09-10T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "aff4c291489e36e2bb074186aad990e9",
+    "title": "European Parliament: SFDR/PRIIPs Regulation - CMS.law",
+    "date": "2026-09-17T08:25:09",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "8ed434760f07bbdf7605eb20d92796a2",
+    "title": "CELEX:32026R1221: Commission Delegated Regulation (EU) 2026/1221 of 4 June 2026 amending Regulation (EU) No 575/2013 of the European Parliament and of the Council as regards temporary targeted operational relief measures and targeted multipliers for the calculation of an institution’s own funds requirements for market risk",
+    "date": "2026-09-10T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "2b34b8b7c25491daf78c19b2495334ba",
+    "title": "New EU sanctions against Russia: who was sanctioned and for what - Українські Національні Новини (УНН)",
+    "date": "2026-10-13T01:25:02",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "627fa83ec7bf86ad821fff1423215bdc",
+    "title": "Russian billionaire Mikhail Gutseriev spent years fighting EU sanctions over Belarus. He finally won (but remains sanctioned over Russia’s war in Ukraine). - Meduza",
+    "date": "2026-10-08T17:21:00",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "b6c86e4f5a5de331e38f4df47dbd8df1",
+    "title": "European Parliament: SFDR/PRIIPs Regulation - CMS.law",
+    "date": "2026-09-17T10:01:58",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "33f5fc57a2b09236cd06ab381cec0bab",
+    "title": "Commission Delegated Regulation (EU) 2026/1167 of 28 May 2026 supplementing Regulation (EU) No 575/2013 of the European Parliament and of the Council with regard to regulatory technical standards specifying operational risk requirements",
+    "date": "2026-09-08T00:00:00",
+    "source_id": "bnb_circulaires"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "1ba627a4efc62dc339508d4d39e87b68",
+    "title": "ESMA Stablecoin Opinion for MiCA Crypto Firms - LeapRate",
+    "date": "2026-10-08T09:34:58",
+    "source_id": "gnews_esma"
+   },
+   "b": {
+    "id": "f2dcb45ce7a13966c27091ebc16a0988",
+    "title": "REGULATION | Greece Adds First 4 Crypto Firms to the EU MiCA Register After Rejecting Binance - BitKE",
+    "date": "2026-09-29T13:00:23",
+    "source_id": "gnews_eu_regulations"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "8adb3da2e71205623e5481d08e97dcb8",
+    "title": "EU sanctions Russian pundit expelled from France - straitstimes.com",
+    "date": "2026-09-24T15:29:00",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "022ae555b500eede45ad6ab765b97242",
+    "title": "EU court overturns 2024 and 2025 sanctions decisions against former Russian senator Oleg Tkach (but he remains on the sanctions list) - meduza.io",
+    "date": "2026-09-23T16:20:00",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "aff4c291489e36e2bb074186aad990e9",
+    "title": "European Parliament: SFDR/PRIIPs Regulation - CMS.law",
+    "date": "2026-09-17T08:25:09",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "33f5fc57a2b09236cd06ab381cec0bab",
+    "title": "Commission Delegated Regulation (EU) 2026/1167 of 28 May 2026 supplementing Regulation (EU) No 575/2013 of the European Parliament and of the Council with regard to regulatory technical standards specifying operational risk requirements",
+    "date": "2026-09-08T00:00:00",
+    "source_id": "bnb_circulaires"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "adb1ab409929ba5947c068f38989e630",
+    "title": "NBB_2026_11 / Communication on the practical formalities to be complied when notifying (i) the acquisition of a material holding, (ii) a merger or division, or (iii) a material transfer of assets or liabilities in accordance with the new CRD VI rules",
+    "date": "2026-11-09T00:00:00",
+    "source_id": "bnb_circulaires"
+   },
+   "b": {
+    "id": "74803768c5168aed9ef660d18386f6e0",
+    "title": "Daily News 04 / 11 / 2026",
+    "date": "2026-11-04T11:26:13",
+    "source_id": "ec_presscorner"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "022ae555b500eede45ad6ab765b97242",
+    "title": "EU court overturns 2024 and 2025 sanctions decisions against former Russian senator Oleg Tkach (but he remains on the sanctions list) - meduza.io",
+    "date": "2026-09-23T16:20:00",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "f96394dc3c35fb14b548084381c91c50",
+    "title": "EU removes Fridman and Usmanov from its sanctions list of russian oligarchs - ukranews.com",
+    "date": "2026-09-23T12:22:39",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "47bb3bd4da6a836fe32d110160f6dd0e",
+    "title": "MiCA Under the Microscope: What the EBA and the ECB Told Brussels About the Review of the Markets in Crypto-Assets Regulation - Freshfields",
+    "date": "2026-09-29T14:15:20",
+    "source_id": "gnews_eba"
+   },
+   "b": {
+    "id": "8d835f8926f8f8b8973f32cc67cf4fdb",
+    "title": "EBA identifies priorities for the review of MiCA - Global Regulation Tomorrow",
+    "date": "2026-09-24T14:57:42",
+    "source_id": "gnews_eba"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "b306ca1dad999419444183ad4193b4a2",
+    "title": "Daily News 10 / 11 / 2026",
+    "date": "2026-11-10T10:40:27",
+    "source_id": "ec_presscorner"
+   },
+   "b": {
+    "id": "adb1ab409929ba5947c068f38989e630",
+    "title": "NBB_2026_11 / Communication on the practical formalities to be complied when notifying (i) the acquisition of a material holding, (ii) a merger or division, or (iii) a material transfer of assets or liabilities in accordance with the new CRD VI rules",
+    "date": "2026-11-09T00:00:00",
+    "source_id": "bnb_circulaires"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "6762f6751913b5d88bcd43ec071b2228",
+    "title": "CELEX:32026D2312: Council Implementing Decision (CFSP) 2026/2312 of 13 October 2026 implementing Decision 2012/642/CFSP concerning restrictive measures in view of the situation in Belarus and the involvement of Belarus in the Russian aggression against Ukraine",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "9af630d80eb70f735fc86d82b09fac91",
+    "title": "CELEX:32026D2264: Council Decision (CFSP) 2026/2264 of 8 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "69f312e05141683c413abee054ed5250",
+    "title": "$16 bn or lives of Ukrainians: Kyiv is furious after EU took two of Russia's richest men off its sanctions list - Euromaidan Press",
+    "date": "2026-09-23T09:22:13",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "629bee75a2d067056db4f02c30567849",
+    "title": "EU removes two oligarchs from Russia sanctions list as deadline looms - The Guardian",
+    "date": "2026-09-22T17:00:00",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "d34a7c253850908cc0a4fdb1149331c4",
+    "title": "OJ:L_202602165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "a9c7e0a86fd8440359ea8c2466032b66",
+    "title": "CELEX:32026R2160: Council Implementing Regulation (EU) 2026/2160 of 22 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-09-21T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "883d75006d59175f598e8404d98ad2f7",
+    "title": "CELEX:32026R2333: Council Implementing Regulation (EU) 2026/2333 of 15 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "75f171121b0963fcb316a76b4427f0ba",
+    "title": "CELEX:32026R2278: Council Implementing Regulation (EU) 2026/2278 of 12 October 2026 implementing Regulation (EU) 2017/1509 concerning restrictive measures against the Democratic People’s Republic of Korea",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "8de63e7d63959000089ac44d481c267c",
+    "title": "Consultation on the draft RTS on criteria for identifying business relationships, occasional and linked transactions and lower thresholds",
+    "date": "2026-10-06T12:15:46",
+    "source_id": "amla_consultations"
+   },
+   "b": {
+    "id": "1a0069e2241f5d529d4c40a3d7c7cde3",
+    "title": "Consultation on the draft RTS on Customer Due Diligence",
+    "date": "2026-10-06T12:15:17",
+    "source_id": "amla_consultations"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "ff7d6d860ab2cb36e348e5c2550ff9d4",
+    "title": "CELEX:32026R2318: Council Implementing Regulation (EU) 2026/2318 of 13 October 2026 implementing Regulation (EU) No 1284/2009 concerning restrictive measures in view of the situation in Guinea",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "8321a0d32e066d3784a28934130160c6",
+    "title": "CELEX:32026D2261: Council Decision (CFSP) 2026/2261 of 9 October 2026 amending Decision (CFSP) 2023/2135 concerning restrictive measures in view of activities undermining the stability and political transition of Sudan",
+    "date": "2026-10-08T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "6f6c1ed251f3c8369afd421d346f898b",
+    "title": "REACTION: EU removing Russian oligarch from sanctions list shows \"chilling effect\" of corporate courts, campaigners say - Global Justice Now",
+    "date": "2026-09-23T13:01:31",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "f96394dc3c35fb14b548084381c91c50",
+    "title": "EU removes Fridman and Usmanov from its sanctions list of russian oligarchs - ukranews.com",
+    "date": "2026-09-23T12:22:39",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "eb3292173dd0d36e257887f0c037b3cd",
+    "title": "USDC Faces EU Oversight: Stablecoin Regulation Update - OneSafe",
+    "date": "2026-10-16T01:30:40",
+    "source_id": "gnews_eu_regulations"
+   },
+   "b": {
+    "id": "db92a3ab28f85202b44627662502c985",
+    "title": "EU Stablecoin Regulation: 2027 Compliance Deadline & Actions - OneSafe",
+    "date": "2026-10-09T00:06:56",
+    "source_id": "gnews_eu_regulations"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "6f2d2ccdc76b5ace917c3430566b7c2b",
+    "title": "CELEX:32026R2271: Council Implementing Regulation (EU) 2026/2271 of 9 October 2026 implementing Regulation (EU) 2019/1716 concerning restrictive measures in view of the situation in Nicaragua",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "9235229aa58057a990501a2ec394f56c",
+    "title": "OJ:L_202602263: Council Implementing Regulation (EU) 2026/2263 of 8 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "614c2d47e0dd7c3c297c95a63cfdd461",
+    "title": "CELEX:32026R2313: Council Implementing Regulation (EU) 2026/2313 of 13 October 2026 implementing Regulation (EC) No 765/2006 concerning restrictive measures in view of the situation in Belarus and the involvement of Belarus in the Russian aggression against Ukraine",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "75f171121b0963fcb316a76b4427f0ba",
+    "title": "CELEX:32026R2278: Council Implementing Regulation (EU) 2026/2278 of 12 October 2026 implementing Regulation (EU) 2017/1509 concerning restrictive measures against the Democratic People’s Republic of Korea",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "d9e4d6d2c1b2f9ba472e8ee715cb880b",
+    "title": "CELEX:32026D2172: Council Implementing Decision (CFSP) 2026/2172 of 28 September 2026 implementing Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+    "date": "2026-09-28T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "0c6989ec38bcde18a98c1bad507e479c",
+    "title": "CELEX:32026D2137: Council Implementing Decision (CFSP) 2026/2137 of 22 September 2026 implementing Decision 2011/486/CFSP concerning restrictive measures directed against certain individuals, groups, undertakings and entities in view of the situation in Afghanistan",
+    "date": "2026-09-22T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "d9e4d6d2c1b2f9ba472e8ee715cb880b",
+    "title": "CELEX:32026D2172: Council Implementing Decision (CFSP) 2026/2172 of 28 September 2026 implementing Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+    "date": "2026-09-28T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "ad7ba0de1be791e7ce7279a73f6e6732",
+    "title": "CELEX:32026R2165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "749591d7b6f648a45c0d021606dc5715",
+    "title": "AMLA finalises key standards for the private sector - Global Regulation Tomorrow",
+    "date": "2026-10-01T15:53:51",
+    "source_id": "gnews_amla"
+   },
+   "b": {
+    "id": "4858e6305f0e2d4fb325451f4aee202a",
+    "title": "Press Release: AMLA finalises standards on Home-Host Supervisory Cooperation",
+    "date": "2026-10-01T08:14:53",
+    "source_id": "amla_rss"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "a18f213dea794ce3ad6fdaa5f44587ef",
+    "title": "CELEX:32026R2388: Commission Implementing Regulation (EU) 2026/2388 of 21 October 2026 amending Council Regulation (EC) No 1210/2003 concerning certain specific restrictions on economic and financial relations with Iraq",
+    "date": "2026-10-22T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "c0c02ad4b74404b03d3fde484b83fc6a",
+    "title": "CELEX:32026R2384: Commission Implementing Regulation (EU) 2026/2384 of 21 October 2026 amending for the 363rd time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+    "date": "2026-10-21T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "41e1c292a590a01300d0aaf98c6f3327",
+    "title": "ESMA calls for MiCA changes in response to European Commission consultation - The TRADE",
+    "date": "2026-10-02T08:53:50",
+    "source_id": "gnews_esma"
+   },
+   "b": {
+    "id": "215d4a1d65207103f63d8fe3ff792e14",
+    "title": "Platform response to the European Commission consultation on the Taxonomy Disclosures Delegated Act - regulationtomorrow.com",
+    "date": "2026-09-22T15:37:06",
+    "source_id": "gnews_esma"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "930e2b9cf362f4c4d44ce03af996c122",
+    "title": "CELEX:32026D2242: Council Decision (CFSP) 2026/2242 of 9 October 2026 amending Decision (CFSP) 2015/1333 concerning restrictive measures in view of the situation in Libya",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "2d1f64f3b60ce8036773b661a2ef5de5",
+    "title": "CELEX:32026D2291: Council Decision (CFSP) 2026/2291 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "009ae5966a7c9061cfbbc91b6ce2ef23",
+    "title": "CELEX:32026D2378: Council Decision (CFSP) 2026/2378 of 26 October 2026 amending Decision (CFSP) 2016/1693 concerning restrictive measures against ISIL (Da’esh) and Al-Qaeda and persons, groups, undertakings and entities associated with them",
+    "date": "2026-10-26T23:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "c0c02ad4b74404b03d3fde484b83fc6a",
+    "title": "CELEX:32026R2384: Commission Implementing Regulation (EU) 2026/2384 of 21 October 2026 amending for the 363rd time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+    "date": "2026-10-21T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "614c2d47e0dd7c3c297c95a63cfdd461",
+    "title": "CELEX:32026R2313: Council Implementing Regulation (EU) 2026/2313 of 13 October 2026 implementing Regulation (EC) No 765/2006 concerning restrictive measures in view of the situation in Belarus and the involvement of Belarus in the Russian aggression against Ukraine",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "cab73666400fcfaca24cb03696cf5ded",
+    "title": "CELEX:32026R2259: Council Regulation (EU) 2026/2259 of 9 October 2026 amending Regulation (EU) 2016/44 concerning restrictive measures in view of the situation in Libya",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "32670c093f6fde7e3dfd65510a0e115f",
+    "title": "Press release on the reopening of trading in NYXOAH",
+    "date": "2026-10-19T12:37:06",
+    "source_id": "fsma_rss"
+   },
+   "b": {
+    "id": "6370f3f159ce5dc75fc949e44aed6c5b",
+    "title": "Press release on the suspension of trading in ONTEX",
+    "date": "2026-10-16T08:06:09",
+    "source_id": "fsma_rss"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "2f4e49257aa97221a3042196c31ce41f",
+    "title": "Banks face new EBA guidelines on critical third-party functions - Cyprus Mail",
+    "date": "2026-09-28T04:30:00",
+    "source_id": "gnews_eba"
+   },
+   "b": {
+    "id": "f6de0714ede07169417c35ee942743b6",
+    "title": "New EBA Guidelines on Third-Party Risk Management - Deloitte",
+    "date": "2026-09-22T16:54:38",
+    "source_id": "gnews_eba"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "ff7d6d860ab2cb36e348e5c2550ff9d4",
+    "title": "CELEX:32026R2318: Council Implementing Regulation (EU) 2026/2318 of 13 October 2026 implementing Regulation (EU) No 1284/2009 concerning restrictive measures in view of the situation in Guinea",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "7b58963a56c1e37d2234d4d4e70f92bc",
+    "title": "CELEX:32026D2317: Council Decision (CFSP) 2026/2317 of 13 October 2026 amending Decision 2010/638/CFSP concerning restrictive measures in view of the situation in Guinea",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "043b0f31877eaad4e996c52b57aeae07",
+    "title": "CELEX:32026R2292: Council Implementing Regulation (EU) 2026/2292 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "85259fc57bb9231f862125efa6fe6f8f",
+    "title": "OJ:L_202602264: Council Decision (CFSP) 2026/2264 of 8 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "4453d0421811b1a408f88d00fad7d89c",
+    "title": "CELEX:32026D2258: Council Decision (CFSP) 2026/2258 of 8 October 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "650a8eed09cb553c14ad22039413c8f3",
+    "title": "CELEX:32026D2192: Council Decision (CFSP) 2026/2192 of 28 September 2026 amending Decision (CFSP) 2024/1484 concerning restrictive measures in view of the situation in Russia",
+    "date": "2026-09-27T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "ff7d6d860ab2cb36e348e5c2550ff9d4",
+    "title": "CELEX:32026R2318: Council Implementing Regulation (EU) 2026/2318 of 13 October 2026 implementing Regulation (EU) No 1284/2009 concerning restrictive measures in view of the situation in Guinea",
+    "date": "2026-10-13T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "cab73666400fcfaca24cb03696cf5ded",
+    "title": "CELEX:32026R2259: Council Regulation (EU) 2026/2259 of 9 October 2026 amending Regulation (EU) 2016/44 concerning restrictive measures in view of the situation in Libya",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "f388078e8c1297355b2a7bd10bfb758e",
+    "title": "EBA updates guidelines on third-party arrangements — Cyprus Mail - ua.news",
+    "date": "2026-09-28T04:42:55",
+    "source_id": "gnews_eba"
+   },
+   "b": {
+    "id": "38b5c1d8709853126e9eacca16d921c6",
+    "title": "Banks face new EBA guidelines on critical third-party functions - cyprus-mail.com",
+    "date": "2026-09-28T04:30:00",
+    "source_id": "gnews_eba"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "62af17ed4bc7339458adc2d3205b4600",
+    "title": "FSB consults on high-level principles for regulatory and supervisory modernisation",
+    "date": "2026-10-14T04:00:00",
+    "source_id": "fsb_rss"
+   },
+   "b": {
+    "id": "d7b9f5fb6f4d995afcfb49b5aa2b50d8",
+    "title": "Regulatory and Supervisory Modernisation Principles: Consultation report",
+    "date": "2026-10-14T04:00:00",
+    "source_id": "fsb_rss"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "a0b4eb7dc9bf8f453039df86ac0e6b8b",
+    "title": "CELEX:32026R2193: Council Implementing Regulation (EU) 2026/2193 of 28 September 2026 implementing Regulation (EU) 2024/1485 concerning restrictive measures in view of the situation in Russia",
+    "date": "2026-09-27T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "d34a7c253850908cc0a4fdb1149331c4",
+    "title": "OJ:L_202602165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "485aad2d85c2797d4c64a456bebd2a07",
+    "title": "ESMA, the EU markets watchdog, wants stronger enforcement of EU crypto regulation - The Cryptonomist",
+    "date": "2026-09-30T17:35:03",
+    "source_id": "gnews_esma"
+   },
+   "b": {
+    "id": "125ba68a50bcdf79a2e767279487d0fd",
+    "title": "EU Crypto Regulation: ESMA Urges Stronger Enforcement Powers - The Cryptonomist",
+    "date": "2026-09-30T17:35:03",
+    "source_id": "gnews_esma"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "043b0f31877eaad4e996c52b57aeae07",
+    "title": "CELEX:32026R2292: Council Implementing Regulation (EU) 2026/2292 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "2d1f64f3b60ce8036773b661a2ef5de5",
+    "title": "CELEX:32026D2291: Council Decision (CFSP) 2026/2291 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "cc05f627e86eaf8d90689a04c872a2b1",
+    "title": "CELEX:32026D2332: Council Decision (CFSP) 2026/2332 of 15 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "3bc343626d9f9518bdf4b0ce66c7bd0c",
+    "title": "CELEX:32026R2263: Council Implementing Regulation (EU) 2026/2263 of 8 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "043b0f31877eaad4e996c52b57aeae07",
+    "title": "CELEX:32026R2292: Council Implementing Regulation (EU) 2026/2292 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "a66c26e87a5658b862e347e42afa9e32",
+    "title": "CELEX:32026D2279: Council Decision (CFSP) 2026/2279 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "4bb41e3a1cde45279efe33693a199121",
+    "title": "Commission Implementing Regulation (EU) 2026/1941 of 7 August 2026 amending Council Regulation (EU) 2016/44 concerning restrictive measures in view of the situation in Libya",
+    "date": "2026-08-07T00:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "78f60dbc338aae97d41002b52f2e18b9",
+    "title": "Council Implementing Decision (CFSP) 2026/1938 of 7 August 2026 implementing Decision (CFSP) 2015/1333 concerning restrictive measures in view of the situation in Libya",
+    "date": "2026-08-07T00:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "1b852b7efe1fa63fefd05fbc32ed254e",
+    "title": "Bank-Backed Euro Stablecoin Issuer Qivalis Wins Dutch E-Money License - CoinMarketCap",
+    "date": "2026-10-15T03:14:15",
+    "source_id": "gnews_fintech_licensing"
+   },
+   "b": {
+    "id": "2f74e3285fac68703dd92fc04e6c8ff0",
+    "title": "Qivalis secures Dutch EMI license to launch bank-backed euro stablecoin - CoinDesk",
+    "date": "2026-10-14T11:12:36",
+    "source_id": "gnews_eu_regulations"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "4453d0421811b1a408f88d00fad7d89c",
+    "title": "CELEX:32026D2258: Council Decision (CFSP) 2026/2258 of 8 October 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "bc7b903827712519ac2c05664cee2f53",
+    "title": "CELEX:32026R2257: Council Implementing Regulation (EU) 2026/2257 of 8 October 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "d9e4d6d2c1b2f9ba472e8ee715cb880b",
+    "title": "CELEX:32026D2172: Council Implementing Decision (CFSP) 2026/2172 of 28 September 2026 implementing Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+    "date": "2026-09-28T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "650a8eed09cb553c14ad22039413c8f3",
+    "title": "CELEX:32026D2192: Council Decision (CFSP) 2026/2192 of 28 September 2026 amending Decision (CFSP) 2024/1484 concerning restrictive measures in view of the situation in Russia",
+    "date": "2026-09-27T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "36553e6c7b18f0b5e5922042182595e3",
+    "title": "Sound Practices for Responsible Adoption of Artificial Intelligence (AI): Overview of consultation responses",
+    "date": "2026-10-15T04:00:01",
+    "source_id": "fsb_rss"
+   },
+   "b": {
+    "id": "47f93a2a03859b1c9ef900e9947f6db0",
+    "title": "FSB finalises sound practices for the responsible adoption of artificial intelligence (AI)",
+    "date": "2026-10-15T04:00:01",
+    "source_id": "fsb_rss"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "ab4e88b9170221d08e9d7ce44a8cf54a",
+    "title": "Press release on the reopening of trading in Nyrstar",
+    "date": "2026-06-26T12:13:23",
+    "source_id": "fsma_rss"
+   },
+   "b": {
+    "id": "487afe74ee1dc5426ea8c0c83f7c671e",
+    "title": "Press release on the suspension of trading in Nyrstar",
+    "date": "2026-06-26T08:53:25",
+    "source_id": "fsma_rss"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "32670c093f6fde7e3dfd65510a0e115f",
+    "title": "Press release on the reopening of trading in NYXOAH",
+    "date": "2026-10-19T12:37:06",
+    "source_id": "fsma_rss"
+   },
+   "b": {
+    "id": "177b04b8168664b9e57871746d9511a7",
+    "title": "Press release on the suspension of trading in NYXOAH",
+    "date": "2026-10-19T10:21:53",
+    "source_id": "fsma_rss"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "883d75006d59175f598e8404d98ad2f7",
+    "title": "CELEX:32026R2333: Council Implementing Regulation (EU) 2026/2333 of 15 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "9235229aa58057a990501a2ec394f56c",
+    "title": "OJ:L_202602263: Council Implementing Regulation (EU) 2026/2263 of 8 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "25b8ce53c1f3f3d7dbadb1b190b90417",
+    "title": "Speech by Dominique Laboureix at the FSB 2026 ReSolve Event \"Exploring cross-sectoral interconnections and financial stability implications\"",
+    "date": "2026-07-08T16:50:15",
+    "source_id": "srb_rss"
+   },
+   "b": {
+    "id": "55d5f567f05f0bcd9b833a8d9601d5b2",
+    "title": "Opening remarks for the FSB 2026 ReSolve Event: Exploring cross-sectoral interconnections and financial stability implications",
+    "date": "2026-07-08T07:05:00",
+    "source_id": "fsb_rss"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "1199338e346e48a08e26b9f400434f3c",
+    "title": "EBA's Final Guidelines on Third-Party Risk Management: What They Mean for Your Institution - Deloitte",
+    "date": "2026-09-25T13:22:10",
+    "source_id": "gnews_eba"
+   },
+   "b": {
+    "id": "68aa43c9b7cb2e0054e118ce7657123a",
+    "title": "From Outsourcing to Third-Party Risk: The EBA’s New Guidelines and What They Mean in Practice - freshfields.com",
+    "date": "2026-09-24T16:30:45",
+    "source_id": "gnews_eu_regulations"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "a66c26e87a5658b862e347e42afa9e32",
+    "title": "CELEX:32026D2279: Council Decision (CFSP) 2026/2279 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "85259fc57bb9231f862125efa6fe6f8f",
+    "title": "OJ:L_202602264: Council Decision (CFSP) 2026/2264 of 8 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "cc05f627e86eaf8d90689a04c872a2b1",
+    "title": "CELEX:32026D2332: Council Decision (CFSP) 2026/2332 of 15 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "85259fc57bb9231f862125efa6fe6f8f",
+    "title": "OJ:L_202602264: Council Decision (CFSP) 2026/2264 of 8 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "043b0f31877eaad4e996c52b57aeae07",
+    "title": "CELEX:32026R2292: Council Implementing Regulation (EU) 2026/2292 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "9235229aa58057a990501a2ec394f56c",
+    "title": "OJ:L_202602263: Council Implementing Regulation (EU) 2026/2263 of 8 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "7bdc500126814f21395221d769e88bb8",
+    "title": "Bybit's EU Payments Unit Obtains Austrian E-Money License - Mena FN",
+    "date": "2026-08-05T06:00:16",
+    "source_id": "gnews_fintech_licensing"
+   },
+   "b": {
+    "id": "4fee0d92186fb6c835f983cf785a742a",
+    "title": "Bybit’s EU payments arm secures Austrian e-money license - TradingView",
+    "date": "2026-08-05T04:03:00",
+    "source_id": "gnews_fintech_licensing"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "2d1f64f3b60ce8036773b661a2ef5de5",
+    "title": "CELEX:32026D2291: Council Decision (CFSP) 2026/2291 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "9af630d80eb70f735fc86d82b09fac91",
+    "title": "CELEX:32026D2264: Council Decision (CFSP) 2026/2264 of 8 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "4363fc401a233385bedc06b331268106",
+    "title": "Daily News 14 / 10 / 2026",
+    "date": "2026-10-14T08:25:27",
+    "source_id": "ec_presscorner"
+   },
+   "b": {
+    "id": "b15479c546695dc2d655a255c9946391",
+    "title": "Daily News 05 / 10 / 2026",
+    "date": "2026-10-05T09:26:54",
+    "source_id": "ec_presscorner"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "cc05f627e86eaf8d90689a04c872a2b1",
+    "title": "CELEX:32026D2332: Council Decision (CFSP) 2026/2332 of 15 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "9af630d80eb70f735fc86d82b09fac91",
+    "title": "CELEX:32026D2264: Council Decision (CFSP) 2026/2264 of 8 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "d34a7c253850908cc0a4fdb1149331c4",
+    "title": "OJ:L_202602165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "ad7ba0de1be791e7ce7279a73f6e6732",
+    "title": "CELEX:32026R2165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "cc05f627e86eaf8d90689a04c872a2b1",
+    "title": "CELEX:32026D2332: Council Decision (CFSP) 2026/2332 of 15 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "2d1f64f3b60ce8036773b661a2ef5de5",
+    "title": "CELEX:32026D2291: Council Decision (CFSP) 2026/2291 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "3f99c2e8db65a3842662d583f343adb0",
+    "title": "CELEX:32026R2184: Council Implementing Regulation (EU) 2026/2184 of 28 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-09-27T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "a9c7e0a86fd8440359ea8c2466032b66",
+    "title": "CELEX:32026R2160: Council Implementing Regulation (EU) 2026/2160 of 22 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-09-21T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "bca90b3d5e74b8ab5c3d4843ecd9853e",
+    "title": "OJ:L_202602164: Council Decision (CFSP) 2026/2164 of 24 September 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "7825db8af66fdd50791a05f506babc80",
+    "title": "CELEX:32026D2164: Council Decision (CFSP) 2026/2164 of 24 September 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+    "date": "2026-09-23T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "bd0f744dfd734a8c053fda5214532611",
+    "title": "CELEX:32026R1965: Commission Implementing Regulation (EU) 2026/1965 of 26 August 2026 amending for the 360th time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+    "date": "2026-08-26T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "59fbebf3539870ca4100a0c3e71a88b2",
+    "title": "CELEX:32026R1960: Commission Implementing Regulation (EU) 2026/1960 of 20 August 2026 amending for the 359th time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+    "date": "2026-08-20T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "883d75006d59175f598e8404d98ad2f7",
+    "title": "CELEX:32026R2333: Council Implementing Regulation (EU) 2026/2333 of 15 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-14T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "043b0f31877eaad4e996c52b57aeae07",
+    "title": "CELEX:32026R2292: Council Implementing Regulation (EU) 2026/2292 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "fa138236f8ed7935c0f82818e1a3503d",
+    "title": "Binance’s EU services face scrutiny over licensing exemption|Cointelegraph - خبرپو",
+    "date": "2026-10-01T13:08:22",
+    "source_id": "gnews_esma"
+   },
+   "b": {
+    "id": "42d940a88f4c0e87d1ef4a34b16677f9",
+    "title": "Binance’s EU services face scrutiny over licensing exemption: Report - TradingView",
+    "date": "2026-10-01T10:07:18",
+    "source_id": "gnews_esma"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "043b0f31877eaad4e996c52b57aeae07",
+    "title": "CELEX:32026R2292: Council Implementing Regulation (EU) 2026/2292 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "30979ac08620791e5fbc7be8ec71ea5d",
+    "title": "CELEX:32026R2281: Council Implementing Regulation (EU) 2026/2281 of 12 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "fa138236f8ed7935c0f82818e1a3503d",
+    "title": "Binance’s EU services face scrutiny over licensing exemption|Cointelegraph - خبرپو",
+    "date": "2026-10-01T13:08:22",
+    "source_id": "gnews_esma"
+   },
+   "b": {
+    "id": "66af597d1878ee664cb0411365991532",
+    "title": "Binance’s EU services face scrutiny over licensing exemption: Report - Cryptonews.net",
+    "date": "2026-10-01T12:49:16",
+    "source_id": "gnews_esma"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "9235229aa58057a990501a2ec394f56c",
+    "title": "OJ:L_202602263: Council Implementing Regulation (EU) 2026/2263 of 8 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "3bc343626d9f9518bdf4b0ce66c7bd0c",
+    "title": "CELEX:32026R2263: Council Implementing Regulation (EU) 2026/2263 of 8 October 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-07T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "2d1f64f3b60ce8036773b661a2ef5de5",
+    "title": "CELEX:32026D2291: Council Decision (CFSP) 2026/2291 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "a66c26e87a5658b862e347e42afa9e32",
+    "title": "CELEX:32026D2279: Council Decision (CFSP) 2026/2279 of 12 October 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "date": "2026-10-11T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "55c566251442d8b473edf8265b474822",
+    "title": "Press release on the reopening of trading in Banque nationale de Belgique/Nationale bank van België (BNB/NBB)",
+    "date": "2026-09-03T10:21:21",
+    "source_id": "fsma_rss"
+   },
+   "b": {
+    "id": "b2c055e54e9735b27664037de7e1eb86",
+    "title": "Press release on the suspension of trading in Banque nationale de Belgique/Nationale bank van België (BNB/NBB)",
+    "date": "2026-09-02T06:44:15",
+    "source_id": "fsma_rss"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "83cedf9877610ca020b3fb5ef98718d6",
+    "title": "OJ:L_202602343: Commission Delegated Regulation (EU) 2026/2343 of 14 July 2026 amending the regulatory technical standards laid down in Delegated Regulation (EU) No 149/2013 as regards the clearing thresholds and the mechanisms triggering their review",
+    "date": "2026-10-20T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "d9431d28faaca2090c2921559cbbc08b",
+    "title": "CELEX:32026R2343: Commission Delegated Regulation (EU) 2026/2343 of 14 July 2026 amending the regulatory technical standards laid down in Delegated Regulation (EU) No 149/2013 as regards the clearing thresholds and the mechanisms triggering their review",
+    "date": "2026-10-20T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "cd3553266ca5b2a71f28be723fe71d19",
+    "title": "OJ:L_202602356: Council Decision (EU) 2026/2356 of 13 October 2026 on the signing of the Additional Protocol to the Council of Europe Convention on Laundering, Search, Seizure and Confiscation of the Proceeds from Crime and on the Financing of Terrorism with regard to anti-money laundering measures",
+    "date": "2026-10-20T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "b": {
+    "id": "0ba0c6fe88a311f4b8d46e2e63687a2d",
+    "title": "CELEX:32026D2356: Council Decision (EU) 2026/2356 of 13 October 2026 on the signing of the Additional Protocol to the Council of Europe Convention on Laundering, Search, Seizure and Confiscation of the Proceeds from Crime and on the Financing of Terrorism with regard to anti-money laundering measures",
+    "date": "2026-10-20T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "628fbdbfea4ccfe48ad8597392fc84aa",
+    "title": "CELEX:52026PC0473: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for partial payment under the eighth instalment of the Ukraine Plan of the Ukraine Facility",
+    "date": "2026-11-05T13:55:17.973995",
+    "source_id": "eurlex_proposals"
+   },
+   "b": {
+    "id": "79f8db9212c3fd47128412c50d67dee1",
+    "title": "CELEX:52026PC0583: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for the partial payment of the ninth instalment under the Ukraine Plan of the Ukraine Facility",
+    "date": "2026-11-04T13:43:20.009861",
+    "source_id": "eurlex_proposals"
+   },
+   "same_story": false
+  },
+  {
+   "a": {
+    "id": "965464e958297c18189157566ef2cacf",
+    "title": "Chemical weapons: Council renews framework for restrictive measures and individual listings - Consilium.europa.eu",
+    "date": "2026-10-12T08:17:33",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "d157b50ac0432f986cb70a1d8cf75135",
+    "title": "Chemical weapons: Council renews framework for restrictive measures and individual listings - Consilium.europa.eu",
+    "date": "2026-10-12T08:16:26",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "f84e09053800c2849b5df23c4b8bc4b0",
+    "title": "The EBA identifies priorities for the review of MiCA",
+    "date": "2026-09-24T15:00:03",
+    "source_id": "eba_rss"
+   },
+   "b": {
+    "id": "8d835f8926f8f8b8973f32cc67cf4fdb",
+    "title": "EBA identifies priorities for the review of MiCA - Global Regulation Tomorrow",
+    "date": "2026-09-24T14:57:42",
+    "source_id": "gnews_eba"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "45d3e0d107d267965986758cef48c9cf",
+    "title": "EBA updates guidelines on third-party arrangements — Cyprus Mail - UA.NEWS",
+    "date": "2026-09-28T04:42:55",
+    "source_id": "gnews_eba"
+   },
+   "b": {
+    "id": "f388078e8c1297355b2a7bd10bfb758e",
+    "title": "EBA updates guidelines on third-party arrangements — Cyprus Mail - ua.news",
+    "date": "2026-09-28T04:42:55",
+    "source_id": "gnews_eba"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "4a7e69c22249a11d9bbe0d9daa4584c3",
+    "title": "ESAs call for vigilance over external dependencies, cyber threats and private credit risks",
+    "date": "2026-10-02T11:48:18.877451",
+    "source_id": "esma_rss"
+   },
+   "b": {
+    "id": "60ad7f37f1c1dc8d00e392aa1ee320ca",
+    "title": "ESAs call for vigilance over external dependencies, cyber threats and private credit risks",
+    "date": "2026-09-23T15:00:03",
+    "source_id": "eba_rss"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "6eb1ed9e91c3b079710d77fa28367c71",
+    "title": "Azerbaijan Rejects Reports It Pressured France Over Billionaire's EU Sanctions - U.S. News & World Report",
+    "date": "2026-09-18T13:46:00",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "57d69ce1390081eca6bc862681a05409",
+    "title": "Azerbaijan rejects reports it pressured France over billionaire's EU sanctions - Devdiscourse",
+    "date": "2026-09-18T13:43:30",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "125ba68a50bcdf79a2e767279487d0fd",
+    "title": "EU Crypto Regulation: ESMA Urges Stronger Enforcement Powers - The Cryptonomist",
+    "date": "2026-09-30T17:35:03",
+    "source_id": "gnews_esma"
+   },
+   "b": {
+    "id": "dca04754affe4cc1db801e1ef417a390",
+    "title": "EU Crypto Regulation: ESMA Urges Stronger Enforcement Powers - en.cryptonomist.ch",
+    "date": "2026-09-30T17:35:03",
+    "source_id": "gnews_esma"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "125935d0dfa6f642312dac93e04e7c43",
+    "title": "LATEST: AMLA seeks industry feedback on simplified due diligence guidelines - AML Intelligence",
+    "date": "2026-10-02T23:21:08",
+    "source_id": "gnews_amla"
+   },
+   "b": {
+    "id": "2bde306bec2a605da6c5a07395855af4",
+    "title": "LATEST: AMLA seeks industry feedback on simplified due diligence guidelines - amlintelligence.com",
+    "date": "2026-10-02T23:21:08",
+    "source_id": "gnews_amla"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "fc7cc3d9aa6e3eff52f88be12fcc8121",
+    "title": "EU sanctions Russian pundit expelled from France - The Straits Times",
+    "date": "2026-09-24T15:29:00",
+    "source_id": "gnews_sanctions"
+   },
+   "b": {
+    "id": "8adb3da2e71205623e5481d08e97dcb8",
+    "title": "EU sanctions Russian pundit expelled from France - straitstimes.com",
+    "date": "2026-09-24T15:29:00",
+    "source_id": "gnews_sanctions"
+   },
+   "same_story": true
+  },
+  {
+   "a": {
+    "id": "bc63549c381aff5eaa50528c556c8301",
+    "title": "Commission Implementing Regulation (EU) 2026/1166 of 28 May 2026 laying down implementing technical standards with regard to the mapping of the business indicator components with corresponding supervisory reporting references",
+    "date": "2026-09-08T00:00:00",
+    "source_id": "bnb_circulaires"
+   },
+   "b": {
+    "id": "19d96db8fd19533b0b45ad786e514704",
+    "title": "CELEX:32026R1166: Commission Implementing Regulation (EU) 2026/1166 of 28 May 2026 laying down implementing technical standards with regard to the mapping of the business indicator components with corresponding supervisory reporting references",
+    "date": "2026-09-02T22:00:00",
+    "source_id": "eurlex_ojl"
+   },
+   "same_story": true
+  }
+ ]
+}

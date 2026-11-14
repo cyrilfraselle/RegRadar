@@ -605,109 +605,13 @@ def classify_article(title: str, summary: str, source_id: str) -> int:
 
 
 # ═══════════════════════════════════════════════════════════════
-#  REFINED SOURCES — Google News block
-#  → REPLACE the Google News entries in the SOURCES list
+#  GOOGLE NEWS SOURCES: retired 2026-11-14
+#  news.google.com/robots.txt disallows every agent (scraper audit,
+#  strategy/scraper-audit.md). The ids stay in GOOGLE_NEWS_SOURCES above
+#  so archived items keep their "news" classification; no search is run.
 # ═══════════════════════════════════════════════════════════════
 
-REFINED_GNEWS_SOURCES = [
-    # — Official regulator coverage (actual publications, tighter) —
-    {
-        "id": "gnews_fsma_bnb", "nom": "GNews — FSMA / BNB", "pays": "BE", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("FSMA"+OR+"National+Bank+of+Belgium"+OR+"Banque+Nationale+de+Belgique")+(circular+OR+regulation+OR+guideline+OR+license+OR+authorisation+OR+sanction)&hl=en&gl=BE&ceid=BE:en',
-        "couleur": "#185FA5",
-    },
-    {
-        "id": "gnews_esma", "nom": "GNews — ESMA", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q="ESMA"+(guidelines+OR+"technical+standard"+OR+consultation+OR+opinion+OR+RTS+OR+ITS+OR+decision)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    {
-        "id": "gnews_eba", "nom": "GNews — EBA", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q="EBA"+"European+Banking+Authority"+(guidelines+OR+"technical+standard"+OR+consultation+OR+RTS+OR+ITS)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    {
-        "id": "gnews_eu_regulations", "nom": "GNews — EU Frameworks", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=(DORA+OR+MiCA+OR+MiCAR+OR+SFDR+OR+MiFID+OR+CSRD+OR+CRR3+OR+AMLR+OR+PSD3)+(regulation+OR+guidelines+OR+"technical+standard"+OR+implementation+OR+"transitional+period")&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    # — AMLA (dedicated — now an active regulator, advisory notes, supervision) —
-    {
-        "id": "gnews_amla", "nom": "GNews — AMLA", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("AMLA"+OR+"Anti-Money+Laundering+Authority")+(advisory+OR+guidelines+OR+regulation+OR+supervision+OR+note+OR+opinion+OR+report+OR+RTS+OR+standard)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#6B2D8B",
-    },
-    # — EIOPA (dedicated) —
-    {
-        "id": "gnews_eiopa", "nom": "GNews — EIOPA", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q="EIOPA"+(guidelines+OR+opinion+OR+consultation+OR+Solvency+OR+"technical+standard"+OR+report)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    # — Fintech & licensing (kept, you like these) —
-    {
-        "id": "gnews_fintech_licensing", "nom": "GNews — Fintech / Licensing", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=(fintech+OR+"payment+institution"+OR+"e-money"+OR+"crypto-asset+service")+(license+OR+licence+OR+authorisation+OR+passport+OR+registration)+(EU+OR+Belgium+OR+regulator)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    # — AML / Financial crime (NEW) —
-    {
-        "id": "gnews_aml_financialcrime", "nom": "GNews — AML / Financial Crime", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("money+laundering"+OR+"financial+crime"+OR+"terrorist+financing"+OR+"sanctions+breach")+(bank+OR+fintech+OR+payment)+(fined+OR+investigation+OR+probe+OR+charged+OR+breach)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#A32D2D",
-    },
-    # — Fraud / market abuse (NEW) —
-    {
-        "id": "gnews_fraud", "nom": "GNews — Fraud / Market Abuse", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=(fraud+OR+"market+abuse"+OR+"market+manipulation"+OR+embezzlement)+(bank+OR+financial+OR+"investment+firm")+(EU+OR+Belgium+OR+Europe)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#A32D2D",
-    },
-    # — Enforcement Belgium —
-    {
-        "id": "gnews_enforcement_be", "nom": "GNews — Enforcement BE", "pays": "BE", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("FSMA"+OR+"NBB"+OR+Belgian)+(fine+OR+penalty+OR+sanction+OR+enforcement+OR+investigation+OR+warning)+(bank+OR+financial)&hl=en&gl=BE&ceid=BE:en',
-        "couleur": "#A32D2D",
-    },
-    # — Major-FI enforcement (catches Wise, Revolut, N26, Binance…) —
-    {
-        "id": "gnews_enforcement_majorFI", "nom": "GNews — Major FI Watch", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=(Wise+OR+Revolut+OR+N26+OR+ING+OR+KBC+OR+"BNP+Paribas"+OR+"Deutsche+Bank"+OR+Binance+OR+PayPal+OR+Adyen)+(fined+OR+investigation+OR+probe+OR+"money+laundering"+OR+sanction+OR+breach+OR+penalty)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#A32D2D",
-    },
-    # — Major global enforcement (only the big stuff) —
-    {
-        "id": "gnews_global_enforcement", "nom": "GNews — Major Global", "pays": "GLOBAL", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("record+fine"+OR+billion+OR+major)+(bank+OR+financial)+("money+laundering"+OR+"sanctions+violation"+OR+fraud)&hl=en&gl=US&ceid=US:en',
-        "couleur": "#A32D2D",
-    },
-    # — Sanctions (was folded into AML/CFT keyword-only; now a distinct
-    #   theme, so it needs its own source or it stays near-empty) —
-    {
-        "id": "gnews_sanctions", "nom": "GNews — Sanctions", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("EU+sanctions"+OR+"restrictive+measures"+OR+"asset+freeze"+OR+"sanctions+list")+(bank+OR+financial+OR+compliance+OR+EU+OR+Belgium)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#A32D2D",
-    },
-    # — Data protection (GDPR intersecting financial services — breach
-    #   notifications, DPA fines against banks/fintechs) —
-    {
-        "id": "gnews_data_protection", "nom": "GNews — Data Protection", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=(GDPR+OR+"data+protection")+(bank+OR+financial+OR+fintech+OR+insurer)+(fine+OR+breach+OR+EDPB+OR+guideline)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    # — Consumer protection (mis-selling, unfair terms, vulnerable
-    #   customers — a standing compliance-officer beat, previously
-    #   untracked entirely) —
-    {
-        "id": "gnews_consumer_protection", "nom": "GNews — Consumer Protection", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=("consumer+protection"+OR+"mis-selling"+OR+"unfair+terms"+OR+"vulnerable+customer")+(bank+OR+financial+OR+insurer+OR+EU)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    # — Tax transparency (DAC6/7/8, CRS, beneficial-ownership registers) —
-    {
-        "id": "gnews_tax_transparency", "nom": "GNews — Tax Transparency", "pays": "EU", "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=(DAC6+OR+DAC7+OR+DAC8+OR+CRS+OR+FATCA+OR+"automatic+exchange"+OR+"beneficial+ownership+register")+(EU+OR+Belgium+OR+tax)&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-]
+REFINED_GNEWS_SOURCES: list = []
 
 
 # ═══════════════════════════════════════════════════════════════

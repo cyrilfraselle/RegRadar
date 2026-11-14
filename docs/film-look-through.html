@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme');if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+window.toggleTheme=function(){var h=document.documentElement,t=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}};
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Look through · RegRadar Academy</title>
+<meta name="description" content="A 60-second animated explainer on beneficial ownership: who counts, the 25 % ownership test, multiplying along a chain and adding holdings, control by other means, and the register. Fictional example.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<link rel="stylesheet" href="academy-film.css?v=20261114a">
+</head>
+<body>
+<script src="site-nav.js?v=20261114a"></script>
+<a class="skip" href="#player">Skip to the explainer</a>
+<main class="wrap film-main" id="main">
+  <div class="intro">
+    <div class="eyebrow">Beneficial ownership · 60 seconds</div>
+    <h1>Look through</h1>
+    <p>One example scenario: Velmont Analytics, a fictional company, applies for an account at Orrin, a fictional crypto-asset service provider. The pattern to watch is one common example: a stake split up so that no single piece looks big. The film works out, on screen, who the beneficial owners are.</p>
+  </div>
+
+  <section class="player" id="player" data-film="data/academy/films/beneficial-ownership.json" aria-label="Explainer video: Look through, 60 seconds"></section>
+  <p class="note">Fictional example. Not legal advice.</p>
+
+  <section class="block" id="stillsBlock" hidden aria-labelledby="stillsH">
+    <h2 id="stillsH">Scene by scene</h2>
+    <p class="note" style="margin:-6px 0 16px">Your device asks for reduced motion, so the explainer does not play on its own. Here are the key frames. The player above still works if you press play.</p>
+    <div class="stills" id="stills"></div>
+  </section>
+
+  <section class="block transcript" aria-labelledby="trH">
+    <h2 id="trH">Transcript</h2>
+    <ol id="transcript"><li><span class="tc"></span><div><p>The transcript loads with the film.</p></div></li></ol>
+  </section>
+
+  <div class="fine">
+    <p><b>Fictional example. Not legal advice.</b> One example of one pattern (a stake split across direct and indirect holdings). Where a company in the chain is controlled by someone, Art. 54 applies instead of simple multiplication; not shown in this film.</p>
+    <p>Velmont Analytics, Kappa Holding, Orrin, Mira, Jonas, Elif, Tom, Victor, Nominee Services Ltd and every percentage are invented. The warning signs shown are common warning signs, not proof. Not covered here: trusts and similar arrangements, foundations, cases where Art. 54 applies, and access to the register. Script and claim ledger: academy/films/beneficial-ownership.script.md, checked against the AMLR (Regulation (EU) 2024/1624).</p>
+  </div>
+</main>
+<script src="academy-film-engine.js?v=20261114a"></script>
+</body>
+</html>

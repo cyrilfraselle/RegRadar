@@ -1,4 +1,4 @@
-/* RegRadar work board (board.html). Shared tokens and components in home.css. */
+/* RegRadar work board (board.html): layout only. Tokens and components: rr-ui.css; shared layout: home.css. */
 .eyebrow a{color:var(--text-3)}
 .toolbar{display:flex;gap:12px 18px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
 .tool{display:flex;gap:8px;align-items:center}
@@ -16,12 +16,12 @@
 .cards{list-style:none;display:flex;flex-direction:column;gap:8px;min-height:40px}
 .col-empty{font-size:13px;color:var(--text-3);padding:10px 4px}
 
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 10px 8px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.05);padding:10px 10px 8px;min-width:0}
 .card[data-drag]{cursor:grab}
 .card.dragging{opacity:.45}
 .card.ghost{position:fixed;left:0;top:0;z-index:90;pointer-events:none;box-shadow:0 10px 28px rgba(0,0,0,.25);opacity:.95;cursor:grabbing}
 body.is-dragging{user-select:none;-webkit-user-select:none;cursor:grabbing}
-.card.od{border-left:4px solid var(--crit)}
+.card.od{border-color:var(--rr-risk)}
 .card.locked{background:var(--surface);border-style:dashed}
 .c-top{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--text-3);font-weight:600}
 .c-title{display:block;width:100%;text-align:left;background:none;border:0;padding:4px 0;margin-top:2px;font-weight:650;font-size:14px;line-height:1.35;color:var(--text);min-height:44px;overflow-wrap:anywhere}

@@ -49,6 +49,12 @@ jobs:
       - name: Academy evidence tests (certificate, register, merge)
         run: node academy/evidence.test.mjs
 
+      - name: Topic view data checks (verbatim law extracts, ids, coverage)
+        run: node tests/topics.test.mjs
+
+      - name: RegWatch data adapter checks
+        run: node tests/regwatch.test.mjs
+
       - run: node smoke.mjs
         working-directory: tests
         env:

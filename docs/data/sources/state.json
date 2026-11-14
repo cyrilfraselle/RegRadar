@@ -1,0 +1,1124 @@
+{
+ "http": {
+  "eurlex-cellar-aml-family:sparql": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "def63eede2752de5812d888a37ad72b8595310976bcf0ea321479559455abdcb",
+   "checked": "2026-11-14T08:14:50+00:00",
+   "status": 200
+  },
+  "eurlex-cellar-ojl-recent:sparql": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "dc070a21c9ae69dd2f2f0df12662322c7191e394aed3ae328566eb3175965c50",
+   "checked": "2026-11-14T08:15:36+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/node/8/rss_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "90f5e113649d3c05b2d087c7db63cbfa157834387b959a84383f4994368fc3a9",
+   "checked": "2026-11-14T08:15:37+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "8d7bf8ff7836eafd7d992a95af859bf64756769bed0c4de322af4dbf72c2f0c2",
+   "checked": "2026-11-14T08:15:39+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/regulatory-instruments_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "509773ce9a3d510af9699be5ccd338f12b6e815596b1d67a7c1d96f7e1a36b42",
+   "checked": "2026-11-14T08:15:41+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/node/19/rss_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "d2636194830ffeaaf271f14371e383582e0c0f0183285dc6dcd3e06fb51db480",
+   "checked": "2026-11-14T08:15:42+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/node/105/rss_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "1d978d680ce072720a88ed2e92d4c9b53972c6355b905831fd7400d2f263b57e",
+   "checked": "2026-11-14T08:15:44+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/node/267/rss_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "ad60511a0c235707caf61c97e9c6c89816874e062c49aa351f501f45b3041bda",
+   "checked": "2026-11-14T08:15:45+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/node/190/rss_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "80a8a901ac80016a151237f34eddb29f969ae3413960dbb08847f313ff6a3afb",
+   "checked": "2026-11-14T08:15:47+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/faqs_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "94576191d74f28146e6c83689e46f59eb07db9af6835b0c954d6a3453803cc64",
+   "checked": "2026-11-14T08:12:46+00:00",
+   "status": 200
+  },
+  "https://www.eba.europa.eu/rss.xml": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "690c83a1d1b369e1c740137c9fd87672dbf09ae4974edf63414d2803cd9c5e97",
+   "checked": "2026-11-14T08:15:57+00:00",
+   "status": 200
+  },
+  "https://www.esma.europa.eu/rss.xml": {
+   "etag": "\"1794639973-gzip\"",
+   "last_modified": "Sat, 14 Nov 2026 07:06:13 GMT",
+   "sha256": "cf42108834a9fba4cc5eb71448c0c4c7d82e7e4bff408e582633b7e4e74504f7",
+   "checked": "2026-11-14T08:15:59+00:00",
+   "status": 200
+  },
+  "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-eu-level_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "dde5f9dfd7da7982b5941fe1ccde0e8f4ed87b5b58a17740e96dd56d73adbdb7",
+   "checked": "2026-11-14T08:12:59+00:00",
+   "status": 200
+  },
+  "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-international-level_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "6ba695cc17f577a65710a917769a6c69307b90f2935c6ac33ceb8b9cff3ee7ac",
+   "checked": "2026-11-14T08:13:01+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/news": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:03 GMT",
+   "sha256": "43a53d393512e1ca6dae1f3b1d07b5c07d611cc5ff7728c34fa3317fbd1b2d01",
+   "checked": "2026-11-14T08:16:01+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/scope": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:04 GMT",
+   "sha256": "907b8d1cd6665db46dcf7ec760694d39edac4cacdd325952206352a74eb2bd16",
+   "checked": "2026-11-14T08:18:36+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/risk-based-approach-and-overall-risk-assessment": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:06 GMT",
+   "sha256": "ee234e84e210c74c909c625642b336d4aa8eb3ae28cb3e0bc725c3674ad211e5",
+   "checked": "2026-11-14T08:18:38+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:08 GMT",
+   "sha256": "54873fc75d1d87648cecba0c356654dc037752bd4b5ab9412f0eae16d9078b5c",
+   "checked": "2026-11-14T08:18:39+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:17:48 GMT",
+   "sha256": "a0bef1f9a5196fe7d8b8e9ab4932cca067fc92ee7d211fcd919d9d14a5e0110a",
+   "checked": "2026-11-14T08:18:41+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:11 GMT",
+   "sha256": "851962c2905b94e5d6ed918188ade3cd9da6fccf0c6192ece72fc65cfeb0ace8",
+   "checked": "2026-11-14T08:18:42+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/transfers-funds": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:12 GMT",
+   "sha256": "026f88ebd6c62689e4bf6ca02422443cde6ac08144ef0de1e8f0b10a7471b7a4",
+   "checked": "2026-11-14T08:18:44+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/financial-embargoes-and-asset-freezing": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:14 GMT",
+   "sha256": "378cb275d6fbf1e384641f4120f04b3fa37f89b0aa10f7e23a73a57fe3672108",
+   "checked": "2026-11-14T08:18:46+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/data-and-document-retention": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:16 GMT",
+   "sha256": "45b4d143e44a5b2fc31a7401959cf10a8a7259d83df4743fd402a20f4b2b7187",
+   "checked": "2026-11-14T08:18:47+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:17 GMT",
+   "sha256": "fff5f30d78032029327a0672c2e6fe433e3008473f532d18dcca2172fc21eab0",
+   "checked": "2026-11-14T08:18:49+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/sanctions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:19 GMT",
+   "sha256": "9ba7809ba045ad28d8cfa02f36bd184ea6a41c5f3b89709d21218f69cdb31150",
+   "checked": "2026-11-14T08:18:50+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/publication-individual-decisions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:13:20 GMT",
+   "sha256": "1acff588c94d0d3d77998c9cf1f56a78a42030990f6cc626f70699992e97d2b7",
+   "checked": "2026-11-14T08:16:02+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/news_rss.xml": {
+   "etag": "\"1794644164\"",
+   "last_modified": "Sat, 14 Nov 2026 08:16:04 GMT",
+   "sha256": "12f0034b75e065fccf3c4c7e8ffa686570a6da066ab3d11dd7933a22d9917e98",
+   "checked": "2026-11-14T08:16:04+00:00",
+   "status": 200
+  },
+  "https://www.fsma.be/en/news-articles/rss.xml": {
+   "etag": "\"1794641429\"",
+   "last_modified": "Sat, 14 Nov 2026 07:30:29 GMT",
+   "sha256": "206723c84f6f8089b2406d41f26d813fe3ab9ccf2f2cf77202156ee304d0dc5a",
+   "checked": "2026-11-14T08:16:34+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2508": {
+   "etag": "\"Con-20261111025901000\"",
+   "last_modified": "Wed, 11 Nov 2026 01:59:01 GMT",
+   "sha256": "d43165aae2f8597a572654c4103f57d4fb97ec0f28b7f7be27686e21a4f232a1",
+   "checked": "2026-11-14T08:13:54+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2507": {
+   "etag": "\"Con-20261111025859000\"",
+   "last_modified": "Wed, 11 Nov 2026 01:58:59 GMT",
+   "sha256": "0e8a06c29a0b6b8639b4c4492d88c8c2314f256e0e62c7f376571e10d0d3dda7",
+   "checked": "2026-11-14T08:13:56+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D1814": {
+   "etag": "\"Con-20261109025516000\"",
+   "last_modified": "Mon, 09 Nov 2026 01:55:16 GMT",
+   "sha256": "b5e8e9c196a5a108af256df45360d5d5afc8865b4fa414bc8d142066161f01b5",
+   "checked": "2026-11-14T08:13:58+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026R2490": {
+   "etag": "\"Con-20261104025826000\"",
+   "last_modified": "Wed, 04 Nov 2026 01:58:26 GMT",
+   "sha256": "132d0dabf14c24044fe2d44f85b9a1d5b97ae0bf70cc9dcd99333dcc43e7fa61",
+   "checked": "2026-11-14T08:14:01+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026R2354": {
+   "etag": "\"Con-20261022025445000\"",
+   "last_modified": "Thu, 22 Oct 2026 00:54:45 GMT",
+   "sha256": "50bc1f4811e47a2b95a9f4b677d64f66682aff526dd73c627209fabe21880e7d",
+   "checked": "2026-11-14T08:14:02+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D01260": {
+   "etag": "\"Con-20260302025651000\"",
+   "last_modified": "Mon, 02 Mar 2026 01:56:51 GMT",
+   "sha256": "652418abf8d465a7afeff56be3b3cd5f5650a849f54276a054419c3c9d650d09",
+   "checked": "2026-11-14T08:14:13+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/1c8bca18-fb5e-4b5e-afee-848111754238_en?filename=2.1_20251216_Final%20report%20-%20RTS%20under%20art.%2012%287%29%20AMLAR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "fbdaea4ad05faefbbe87de97e90bcbd954d261b2bea4e634184eb0914046c315",
+   "checked": "2026-11-14T08:14:14+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "e643127b89ade6f11e95bea5f964febb81866d73e8395d463c0b6e3f934174a0",
+   "checked": "2026-11-14T08:20:46+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "9276268a9c741ae2083c41ca68482de6fb83f2ed613bd7db56f35e55359a7e12",
+   "checked": "2026-11-14T08:20:45+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-public-hearing-draft-rts-establishing-central-amlcft-database_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "bf0ab24e2b379bf8977df4b67bca0a5b850f47a8fe5fc6684b8b5f092c59ebc3",
+   "checked": "2026-11-14T08:14:25+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "796d91846a115b6217592164eba2fcb03fb6bc9fcfee99850e278d8137522b33",
+   "checked": "2026-11-14T08:17:15+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-assessment-inherent-and-residual-risk-profile-obliged-entities-non-financial_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "602abf6be999683c4cee74d0173115c54c8cc34c45ecdc5fb1c94176e14f7923",
+   "checked": "2026-11-14T08:17:10+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "141a6e1f2fe08518eb083edacabd90ef7f0ec0169669b8135411100fcaa1aeed",
+   "checked": "2026-11-14T08:20:56+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/press-release-amla-consults-draft-standards-eu-wide-amlcft-database_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "aa868edfb64141006bb9a8e46a690d7315d3d28187a360da5542ed314c515d5c",
+   "checked": "2026-11-14T08:14:26+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/events/public-hearing-draft-rts-establishing-central-amlcft-database-2026-11-03_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "ce68be7b7f480022d007012c79bdf30e1a1c2e33d1d2fc534891e4b337c438e0",
+   "checked": "2026-11-14T08:14:28+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-criteria-identifying-business-relationships-occasional-and-linked_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "473792344de0a5a34229d23bb2bba7903e0a5f149351cf529ce1773b3f42a448",
+   "checked": "2026-11-14T08:14:29+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-customer-due-diligence_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "2f0af085009d9df49adca0d6f4d6c14f8108c6e922a82db23631922492232ac3",
+   "checked": "2026-11-14T08:14:31+00:00",
+   "status": 200
+  },
+  "https://www.eba.europa.eu/publications-and-media/press-releases": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "aae6ba5caa80ab2a85a9aa885f05a3e19b3a86ca829bf16a9bdaa1c3b634dfec",
+   "checked": "2026-11-14T08:24:13+00:00",
+   "status": 200
+  },
+  "https://www.esma.europa.eu/press-news/esma-news": {
+   "etag": "\"1794641086-gzip\"",
+   "last_modified": "Sat, 14 Nov 2026 07:24:46 GMT",
+   "sha256": "decdd9a1f47f2f70e24217bb32b1c425a76a0cf4a49f44b440a2283aac786cec",
+   "checked": "2026-11-14T08:24:15+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2449": {
+   "etag": "\"Con-20261030030037000\"",
+   "last_modified": "Fri, 30 Oct 2026 02:00:37 GMT",
+   "sha256": "5a9387130426c7dd7c32c72f703ad87f0b4295a3dae331299105951d6b94c668",
+   "checked": "2026-11-14T08:16:38+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026R2374": {
+   "etag": "\"Con-20261027024901000\"",
+   "last_modified": "Tue, 27 Oct 2026 01:49:01 GMT",
+   "sha256": "dbcc182e5cc895b802c7127621f4216593cafbdb8b93af503412b93e98eb3353",
+   "checked": "2026-11-14T08:16:41+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026R0046": {
+   "etag": "\"Con-20260109025401000\"",
+   "last_modified": "Fri, 09 Jan 2026 01:54:01 GMT",
+   "sha256": "30621c78fbc05630f5a6740e314acf8a7dace753aae5ae4685b78df2ffab4ee3",
+   "checked": "2026-11-14T08:16:43+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026R0083": {
+   "etag": "\"Con-20260109025459000\"",
+   "last_modified": "Fri, 09 Jan 2026 01:54:59 GMT",
+   "sha256": "5047cb3699efb43188b84fb0ac0dd43d6284c732c54d92f05cad3d0b0cac7b2e",
+   "checked": "2026-11-14T08:16:44+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32025Y06342": {
+   "etag": "\"Con-20251121030814000\"",
+   "last_modified": "Fri, 21 Nov 2025 02:08:14 GMT",
+   "sha256": "a6b45bfe2cced7c1fb993c7f20bbee67f00a22020e00b2cdbe061ccf09f6dcf7",
+   "checked": "2026-11-14T08:16:48+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32025R2088": {
+   "etag": "\"Con-20251021024847000\"",
+   "last_modified": "Tue, 21 Oct 2025 00:48:47 GMT",
+   "sha256": "cd411da915526b2ea5f3d24c2c130293025615607980bb0c573e56098ae84161",
+   "checked": "2026-11-14T08:16:51+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/6198dbbf-e73e-4909-8302-5deac9100973_en?filename=Annexes%20-%20draft%20RTS%20under%20Article%2069%283%29%20AMLR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "940db59632f83a0f64a56b4edd19de5d97a50d424ab4c8721976afc0be768736",
+   "checked": "2026-11-14T08:16:52+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/3e3f0ec6-bd1d-42fc-9d87-b64666fafd31_en?filename=Interpretative%20Note%20draft%20RTS%20under%20Article%2069%283%29%20AMLR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "97f7bf5605d15ebd14d29fc11888189ecb42731170c09754b6e063feb52779be",
+   "checked": "2026-11-14T08:16:56+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/d5ef25b6-4265-41c7-bb54-618c43b4c74f_en?filename=Annex%20I%20and%20II%20-%20Data%20points%20-%20draft%20RTS%20under%20Article%2040%282%29%20AMLD.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "022b7e9c1715348e713388adea8c20c8f5560223e6b7de10fc404ffcb2e6798b",
+   "checked": "2026-11-14T08:16:58+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/86561c3a-0910-445d-beb7-8f0a43360de0_en?filename=Final%20Report%20-%20RTS%20under%20Article%2046%284%29%20AMLD.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "0ba1cef35dade6753f0dc06eaa16aadf43cc7232e238e1a7bda8a84cb6f983bf",
+   "checked": "2026-11-14T08:17:00+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/ffcb26fd-0a0e-4f4f-9c3d-9f3ce0a283b5_en?filename=Final%20Report%20-%20draft%20RTS%2016%284%29%20and%2017%283%29%20AMLR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "e43de1856e6895b08c8e412ad0dc6fd70e457708658ea52419ed4a3a49888073",
+   "checked": "2026-11-14T08:17:01+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/e15ab2e5-4074-4de8-bb9d-613dd8b7fdd1_en?filename=Final%20Report%20-%20draft%20RTS%2028%281%29%20AMLR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "09a9a59bc4678ec8e92886a7153dc57dd0815d28804c5ef1d0d9cb56410b1524",
+   "checked": "2026-11-14T08:17:03+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/32e5aea0-52dc-4b0c-b93a-b0dd373fcd0f_en?filename=Final%20Report%20-%20draft%20RTS%20under%20Article%2019%289%29%20AMLR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "dbcdb68b70b1bed498e561fa67869038e87657fbf40e0a85dad0c7d659857a33",
+   "checked": "2026-11-14T08:17:05+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-group-wide-minimum-requirements-and-additional-measures-subsidiaries-and_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "720e5f939aa4189828770454ad95ef089de46b17f1410445b181ce2b37b02b8a",
+   "checked": "2026-11-14T08:17:07+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/events/public-hearing-draft-its-format-reporting-suspicions-and-providing-transaction-records-2026-09-09_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "3f16bf391da20a24a54435b1522b9a123440e5764567d7ccceee0687c25ff0b8",
+   "checked": "2026-11-14T08:17:09+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/press-release-amla-consults-harmonised-risk-assessments-non-financial-sector_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "6eb491ba78bb7a4078786a24c2069d99d44b5f92d124b9fb16e83c09655bb638",
+   "checked": "2026-11-14T08:17:12+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-pecuniary-sanctions-administrative-measures-and-periodic-penalty-payments_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "08696a83645830982f2e1d53348170a5cf054a1b583922834e0f88835150883d",
+   "checked": "2026-11-14T08:17:14+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/press-release-amla-concludes-public-hearing-draft-guidelines-ongoing-monitoring-business_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "fd1f7a3d6cad9f2eff0fd1990b3e135759f3cc2a5a7ff2eab8fcf95b37fdfd2a",
+   "checked": "2026-11-14T08:17:17+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:18:52 GMT",
+   "sha256": "a31a4b8e147386821528aebafbf6111d3c8dfc3e98aa45eaeaad6c404fdb1564",
+   "checked": "2026-11-14T08:18:53+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-groups": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:01:52 GMT",
+   "sha256": "702dba24e3227d9a29a55c3e088690bfffa16f5c4cf499af586aefa5af905dc4",
+   "checked": "2026-11-14T08:18:55+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/performance-obligations-third-parties": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:00:52 GMT",
+   "sha256": "ce806065fd5f45f939cdbe30e4c8238f456561764c6c14edf6ed27429b972ad6",
+   "checked": "2026-11-14T08:18:57+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/brexit": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:18:58 GMT",
+   "sha256": "1573d3c943476d413b961c61a7382953b1595170716419bc065b2682d857f87c",
+   "checked": "2026-11-14T08:18:59+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/individual-risk-assessment": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 07:14:21 GMT",
+   "sha256": "96caf0c553b0589147c30b049aaa6e47127d909489979b095499ead4121068e9",
+   "checked": "2026-11-14T08:19:01+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/anonymous-or-numbered-accounts-safe-deposit-boxes-and-contracts": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:03 GMT",
+   "sha256": "c8cbb4ae66c82b5ddde306fdf64d63303435e6eabd9c865c3af9f33cac673237",
+   "checked": "2026-11-14T08:19:04+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/identification-and-identity-verification": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:05 GMT",
+   "sha256": "468fd0d56298423999841380aff06fd72f7219fa72853a49217d93221ddd76fe",
+   "checked": "2026-11-14T08:19:06+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/identification-customers-characteristics-and-purpose-and-nature-business": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:08 GMT",
+   "sha256": "5428c7167c6a02dde749dbd83d413f9541c251b40e744dc56b29c28539f813e4",
+   "checked": "2026-11-14T08:19:09+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/due-diligence-business-relationships-and-occasional-transactions-and-detection": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 06:28:44 GMT",
+   "sha256": "50c90ff6e3f2ad5b5db2480a230c2007fe78f5baa2f494139e03b726aabd16a5",
+   "checked": "2026-11-14T08:19:11+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:13 GMT",
+   "sha256": "20201a9b240d6631ec44ced2d88a8b99c0743e585e11beb69fe7c71efe2e51a3",
+   "checked": "2026-11-14T08:19:14+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/due-diligence-requirements-and-de-risking": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:09:44 GMT",
+   "sha256": "0e922046417f01a4b19f2c2b9244c19f6ae693723d84f17cc866151ea10c118b",
+   "checked": "2026-11-14T08:19:15+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/due-diligence-requirements-and-compliance-other-legislation": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:17 GMT",
+   "sha256": "15796f6c2e0b27f684ae62641649300746a2cbd36d221213457d12b7241dd94a",
+   "checked": "2026-11-14T08:19:18+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions/analysis-atypical-facts-and-transactions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:20 GMT",
+   "sha256": "0b2d355116967b33d0f4dda3e54036dd337c22d3773d7cdd89f33bdd26304e91",
+   "checked": "2026-11-14T08:19:21+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions/reporting-suspicions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:02:10 GMT",
+   "sha256": "dbea4b8f8b385ccd0db98bbf298a682cb56337de352649207973c40971422e43",
+   "checked": "2026-11-14T08:19:22+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions/prohibition-disclosure": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 05:09:56 GMT",
+   "sha256": "e5f48a4c434eea4a88a6a61eb6ef10f2d2fcf4948540a2c172182820ecc9df79",
+   "checked": "2026-11-14T08:19:24+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions/protection-reporting-persons": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:26 GMT",
+   "sha256": "12bf640aa40eebf17a16e822bbf9f507e88ce9c1b60d83e25e1abc4115e5636a",
+   "checked": "2026-11-14T08:19:27+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/financial-embargoes-and-asset-freezing/financial-embargoes-and-assets-freezing-comments-and-recommendations-nbb": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 07:09:19 GMT",
+   "sha256": "63187d1a3aa10cd747ac912809aa9a750918b81fe59d870ff3c3f7d3470dd465",
+   "checked": "2026-11-14T08:19:28+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/new-institutions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:30 GMT",
+   "sha256": "234c1d76e3890d97562e268b31afe10385934761e1563b73ffc1b622013cdd03",
+   "checked": "2026-11-14T08:19:31+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/reporting-financial-institutions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 05:49:30 GMT",
+   "sha256": "96b9e73031f55d65903b1b57374ee3a7d7b923046c36dc1065e59a159752f7c3",
+   "checked": "2026-11-14T08:19:33+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/external-whistleblowing": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:34 GMT",
+   "sha256": "30ca308a8e382ad9d8c2af7a55af282ef800fb0b0892328162e5b37fe5cca0d6",
+   "checked": "2026-11-14T08:19:36+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/supervisory-powers-measures-and-policy-nbb": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 03:31:32 GMT",
+   "sha256": "492c044e26a4e3e8c8749e743e5fd93c5504331df60192c0b0bdcee36fa64d5a",
+   "checked": "2026-11-14T08:19:37+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/national-cooperation": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:39 GMT",
+   "sha256": "d118f39f1286566c3e24014e7a3c98b7e8fa0d7f34d778a62dccd0decf28cbf7",
+   "checked": "2026-11-14T08:19:40+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/international-cooperation": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 03:15:43 GMT",
+   "sha256": "bb30aa81037c8a3099bcf69e39d6691dc5e9d952002374eb8030a295fbf206b7",
+   "checked": "2026-11-14T08:19:42+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/sanctions/administrative-sanctions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:06:17 GMT",
+   "sha256": "7d0a4295418c374abcb5aadf61e7313a3461f8774d401dfc8e7072594a18d9de",
+   "checked": "2026-11-14T08:19:43+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/sanctions/criminal-sanctions": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:45 GMT",
+   "sha256": "bd4d7bfd26580640744aa31bb80c54f0b7f152d4c0c6e01125ddc874a1360692",
+   "checked": "2026-11-14T08:19:46+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/governance": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 05:45:43 GMT",
+   "sha256": "c8420fee54d342b013accb18e20263ef0145e3b53616021b81733e7d83aeb97a",
+   "checked": "2026-11-14T08:19:48+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/risk-classification": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 06:58:16 GMT",
+   "sha256": "4246d0844edcaa2f08d3c5aa7155409c96b30d7e5e1b22b0408b3c5ad4f620a8",
+   "checked": "2026-11-14T08:19:49+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/policies-procedures-processes": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:51 GMT",
+   "sha256": "8fe8a34c6d33ebeb7d09a054133554095542a39ffe9a34cf3e0278649a1a551f",
+   "checked": "2026-11-14T08:19:52+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/training-and-education-staff": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:19:54 GMT",
+   "sha256": "29b4df1ed856561fe4ff7316db9283b32c0b48141527e274a4a681cbe94cd403",
+   "checked": "2026-11-14T08:19:55+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-financial-institutions/internal-whistleblowing": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 06:17:58 GMT",
+   "sha256": "e4c57ddae517e801f4db9238bc057011410db6470e663e916e81dc37d13af447",
+   "checked": "2026-11-14T08:19:57+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-groups/belgian-parent-companies": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:01:29 GMT",
+   "sha256": "e01cf8c01b87e64a621aed05ecfc0aef3cd86063006555627c6e2f4200f2c1e8",
+   "checked": "2026-11-14T08:19:58+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-groups/belgian-subsidiaries-and-branches": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 05:50:07 GMT",
+   "sha256": "9fdd2f8f93c9c46b8abf018b93eacd9edf86a9fff811d8485a3a74c042f02509",
+   "checked": "2026-11-14T08:20:00+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control/organisation-and-internal-control-groups/central-contact-points-belgium-financial": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 02:35:07 GMT",
+   "sha256": "7ea106235edb42a98273097c1bfe27ba769ade8ae9c4e388952329980ff1361c",
+   "checked": "2026-11-14T08:20:02+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/identification-and-identity-verification/persons-be-identified": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:03 GMT",
+   "sha256": "615d25adba2c18d32da3e032c4bcf3df61b883db98716fd7eb22518b9e20700c",
+   "checked": "2026-11-14T08:20:04+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/identification-and-identity-verification/object-identification-and-identity": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:01:41 GMT",
+   "sha256": "996f1375c48f9d9d76ab0b17dc6a1d40d0e47491cd2a039f8013cf04d52515b8",
+   "checked": "2026-11-14T08:20:06+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/identification-and-identity-verification/time-identification-and-identity": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 02:26:43 GMT",
+   "sha256": "a215998c1e31078c2dce81ab5c15b1330acc1c4030fbb4a5439fc34b1b8c8578",
+   "checked": "2026-11-14T08:20:08+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/identification-and-identity-verification/non-compliance-identification-and-identity": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 04:36:05 GMT",
+   "sha256": "e3e7d776f55dd246e4d76a803d106df44d2f7395d23438e485597d3883660133",
+   "checked": "2026-11-14T08:20:10+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/identity-verification-over-course-business": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:11 GMT",
+   "sha256": "dd6807d67722dcc8028ceede9678826e1a168f403f5843f77aa09b9e6ef23941",
+   "checked": "2026-11-14T08:20:13+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/high-risk-third-countries": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 02:49:19 GMT",
+   "sha256": "d02936be9453efb410d7535dee6769861634847509490310e0883eef0a923334",
+   "checked": "2026-11-14T08:20:14+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/states-low-or-no-taxes": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:16 GMT",
+   "sha256": "105ec9c85d11dcff42faf5a900e85aa039bc630063daf15bae0199f70ed22158",
+   "checked": "2026-11-14T08:20:17+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/correspondent-relationships": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:19 GMT",
+   "sha256": "17bc0dcaf1cc892d92fc556a85820857251a775edce75fe33ce53cd9eacdf128",
+   "checked": "2026-11-14T08:20:20+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/politically-exposed-persons-peps": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 06:54:42 GMT",
+   "sha256": "5a9231ea9ca70e67bdf03f23a74aaec372f300e2591191b15d77c28a72421f28",
+   "checked": "2026-11-14T08:20:22+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/assets-repatriation": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:23 GMT",
+   "sha256": "f0ea94fc8ee4b0be4812873bb9f54ecaf9d77be9c817c5c95c35266b2fdc060c",
+   "checked": "2026-11-14T08:20:24+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence/special-cases-enhanced-due-diligence/recommended-actions-event-credible-publications": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:26 GMT",
+   "sha256": "278d9c76e3ba05d1b6dac79279f48fbf71f31b2c5477caf360a78b2504c35aad",
+   "checked": "2026-11-14T08:20:27+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb/new-institutions/new-institutions-comments-and-recommendations": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:20:29 GMT",
+   "sha256": "5d5d3272c12a2d5cedcd9c774251a844dc2594a9c8d90e7a143969896a7ad541",
+   "checked": "2026-11-14T08:20:30+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2397": {
+   "etag": "\"Con-20261027025120000\"",
+   "last_modified": "Tue, 27 Oct 2026 01:51:20 GMT",
+   "sha256": "6ac9e985c1002ae63088a3d447bb5f83a6a7b64e159ac983c3bf4eae1f44fb09",
+   "checked": "2026-11-14T08:20:32+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2375": {
+   "etag": "\"Con-20261027025310000\"",
+   "last_modified": "Tue, 27 Oct 2026 01:53:10 GMT",
+   "sha256": "b89dd26f87850a073bf33b6d00c51eabaa0ad5d9ec8bf0fce6092f4ba50e77d0",
+   "checked": "2026-11-14T08:20:34+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2363": {
+   "etag": "\"Con-20261027071846000\"",
+   "last_modified": "Tue, 27 Oct 2026 06:18:46 GMT",
+   "sha256": "3a305561b5ae346b9e227d02882510b2e14fdba2cf66bebe75d5c9ae85daee27",
+   "checked": "2026-11-14T08:20:36+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2364": {
+   "etag": "\"Con-20261027083001000\"",
+   "last_modified": "Tue, 27 Oct 2026 07:30:01 GMT",
+   "sha256": "26389cc389554f718308722e73a157d0a88708eee14c6c21e6b37f46430b7418",
+   "checked": "2026-11-14T08:20:38+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/87ebc12f-2eec-4ebf-ab1f-44eb8000a755_en?filename=Annex%20VI%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Cross-Border%20Dissemination.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "8d38720fc88b7b02d806919d919a03f60b30c5dca75506ce90a6b7445dcff41a",
+   "checked": "2026-11-14T08:20:40+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/d88d6273-815c-4469-a486-c5303a1ac296_en?filename=Annex%20V%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Cross-Border%20Report.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "0008875e8216739436bed42b10fdd7b4f7b0c6d8aeb1b6b647476af9608d73f8",
+   "checked": "2026-11-14T08:20:41+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/89b2d7b0-f86e-4757-9064-9751333af2cb_en?filename=Annex%20IV%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Provision%20of%20Feedback.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "faabd31446d8318345ae98e0d585d3b2a8e6d9c32a1ae569d87e44ad11f5cf64",
+   "checked": "2026-11-14T08:20:43+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/180688e2-9cbc-4b40-84ea-1f9121f4d32f_en?filename=Final%20Report%20-%20ITS%20under%20Article%2081%281%29%20AMLR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "585b99d5c74cab958c2542470246e8bd389ad1989a1194da3a475a30338c4abc",
+   "checked": "2026-11-14T08:20:48+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/993e4d38-eeef-4d9d-a3ec-85ff59f82d61_en?filename=Final%20Report%20-%20ITS%20under%20Article%2041%282%29%20AMLAR.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "2b7613b6c3be56063abfc95f5668ec5db97945fdb3daee9da3cfe7e6d0e5658e",
+   "checked": "2026-11-14T08:20:49+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/events/public-hearing-draft-rts-assessment-inherent-and-residual-risk-profile-obliged-entities-non-2026-09-10_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "309572dea0583aea9d5917b36ede1c7ab5c53dda58c132375ccdf707524aa330",
+   "checked": "2026-11-14T08:20:52+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/press-release-amla-launches-public-consultation-common-format-reporting-suspicions_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "0a817a32a90af4be5f353e0c307c64da18fbc329943018ff05184af82efd2cc3",
+   "checked": "2026-11-14T08:20:54+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-ongoing-monitoring-business-relationship_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "f09ef570996817dd352c2a54324c8fd2a3006cb633ae9db363adaac8bbe70a03",
+   "checked": "2026-11-14T08:20:57+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "456accc8d3b4bd540457e785a9546497ef82c08995d472e2de6e9917c75b8c2f",
+   "checked": "2026-11-14T08:20:59+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-under-art-153-amlar_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "ca0d403b8ff1fd3d52a7c2c6716c0d8e26150069c6aa2fc07e70a48220cbf811",
+   "checked": "2026-11-14T08:21:00+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/news/publication-decision-national-bank-belgium-concerning-wise-europe-sa-pursuant-article-981": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 07:50:51 GMT",
+   "sha256": "79d96d1ff551f2a9fd19c36c5f7eea2ed524fadb76571913d8e6b95012ecff1c",
+   "checked": "2026-11-14T08:21:00+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/doc/cp/eng/2026/20260825_publication_wise_art98_en.pdf": {
+   "etag": "\"1f74-659df2e61bbc0\"",
+   "last_modified": "Tue, 25 Aug 2026 13:35:51 GMT",
+   "sha256": "bb4bdf23507ba79e0718bc96565ec4973fe382e33e9dc68fb3d995664c8a7c7e",
+   "checked": "2026-11-14T08:21:02+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/en/financial-supervision/news/publication-decision-national-bank-belgium-11-october-2022-regarding-x-adopted-pursuant-article-93": {
+   "etag": "",
+   "last_modified": "Sat, 14 Nov 2026 08:21:04 GMT",
+   "sha256": "f65be9b045a4a2c4eb187bae242486fb5d39e1b0fd85ba6eaf1cd60928eee7d2",
+   "checked": "2026-11-14T08:21:04+00:00",
+   "status": 200
+  },
+  "https://www.nbb.be/doc/cp/eng/2022/20221116_individual_preventive_measures_en.pdf": {
+   "etag": "\"5790b-5ed9602e51c40\"",
+   "last_modified": "Wed, 16 Nov 2022 12:57:13 GMT",
+   "sha256": "adcd8335f320192c8b99141b15ca7252d8179c7769255b3f7041ce1275dcdc89",
+   "checked": "2026-11-14T08:21:06+00:00",
+   "status": 200
+  },
+  "https://www.esma.europa.eu/press-news/esma-news/new-qas-available-27": {
+   "etag": "\"1794643454-gzip\"",
+   "last_modified": "Sat, 14 Nov 2026 08:04:14 GMT",
+   "sha256": "5c408e628d51ce1ea51ce8dd4ab2ad4fc66459e68c9c74eae337b59b65b11571",
+   "checked": "2026-11-14T08:21:07+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-derville-rowland-attends-eurofi-financial-forum-dublin_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "a118b0086892f37cd4f9cebadb150e2df7f0ff2bb7b0d5f6894e049afd121c80",
+   "checked": "2026-11-14T08:21:07+00:00",
+   "status": 200
+  },
+  "https://www.eurofi.net/wp-content/uploads/2026/09/eurofi-views-dublin-web.pdf#page=306": {
+   "etag": "",
+   "last_modified": "Tue, 15 Sep 2026 15:46:44 GMT",
+   "sha256": "b084c484f0471badb03ba906a6b031317f1f28a9a54a44b4434faa748ba1a685",
+   "checked": "2026-11-14T08:21:11+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/call-expression-interest-technology-providers-roundtable-partnerships-information-sharing_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "999f28bcf5b931449862fa7d3b680fbfc74b78ad49cd86368290e825949d1a4a",
+   "checked": "2026-11-14T08:21:14+00:00",
+   "status": 200
+  },
+  "https://www.eba.europa.eu/publications-and-media/press-releases/eba-classifies-usdc-first-significant-e-money-token-european-union": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "c133ad9d91134a9ac3d16fb3e044f316b45029531a6a2d29d55a2ed50312ce5d",
+   "checked": "2026-11-14T08:21:24+00:00",
+   "status": 200
+  },
+  "http://www.fsma.be/en/news/continuing-professional-training-2026-accredited-auditors": {
+   "etag": "\"1794641509\"",
+   "last_modified": "Sat, 14 Nov 2026 07:31:49 GMT",
+   "sha256": "362b5a72cb07a5c6c16bbe7ed5435f2ba052d5025c9f6cd34e163a1a7ea48ce6",
+   "checked": "2026-11-14T08:21:55+00:00",
+   "status": 200
+  },
+  "https://www.fsma.be/sites/default/files/media/files/2026-09/fsma_2026_17_fr.pdf": {
+   "etag": "",
+   "last_modified": "Wed, 02 Sep 2026 08:50:32 GMT",
+   "sha256": "2567b39d0b4f9d95ee6a047e72aa1a38ccfe5ff7ad292b0938e8494f76f73b94",
+   "checked": "2026-11-14T08:22:55+00:00",
+   "status": 200
+  }
+ },
+ "pending_docs": [
+  "celex-32026D2365",
+  "celex-32026D2366",
+  "celex-32026D2367",
+  "celex-32026D2369",
+  "celex-32026D2368",
+  "celex-32026D2378",
+  "celex-32026D2362",
+  "celex-32026D2386",
+  "celex-32026D2372",
+  "celex-32026D2385",
+  "celex-32026R2138R01",
+  "celex-32026D2392",
+  "amla-library-f562217654c5",
+  "amla-library-64711cbaea86",
+  "amla-library-0e49e767e94f",
+  "amla-instruments-48e5213f80e7",
+  "amla-instruments-dbe5e7761f34",
+  "amla-instruments-b322780192c5",
+  "amla-library-964d9792a3fe",
+  "amla-library-f7e7ee51546d",
+  "amla-hearings-4285fab0d1b7",
+  "amla-hearings-ad95d46373dc",
+  "amla-hearings-8eddb9934486",
+  "amla-hearings-ebbf5cc0b12e",
+  "amla-hearings-b1a44b083017",
+  "amla-hearings-7c2ec9b20e25",
+  "amla-hearings-2c11a2dcab90",
+  "amla-hearings-321e325c341b",
+  "amla-instruments-24380b371f7c",
+  "amla-instruments-c2d6e16d4987",
+  "nbb-aml-decisions-b9f5736b858e",
+  "amla-library-cd27b232a75d",
+  "amla-news-f788b3addd04",
+  "amla-news-25ba5b2df2f3",
+  "amla-news-bb51330afd2e",
+  "amla-news-c2518b65d16a",
+  "amla-news-cdc99a25a64b",
+  "amla-news-c97a25fb94e1",
+  "amla-news-2e337f7ab926",
+  "amla-library-38ddd130dcf9",
+  "amla-news-6777126e95c2",
+  "amla-news-55bc303d93b0",
+  "amla-news-490c4c92f749",
+  "amla-library-ff54c0d692f3",
+  "amla-library-c8c0f6f109b2",
+  "amla-news-0fee8ddae26e",
+  "amla-news-5d411692ff70",
+  "amla-library-eb900769d03c",
+  "amla-library-a602b2a61c97",
+  "amla-library-79cd70a6156d",
+  "amla-news-16f9ae59ea35",
+  "amla-library-7e6bbdde4a21",
+  "amla-news-fcba9a8ef8a6",
+  "amla-news-b87f876ecb19",
+  "amla-news-6f6fe2c360a2",
+  "amla-news-672f202ee9be",
+  "amla-library-656e536eb6b4",
+  "amla-news-6354ca0b6f00",
+  "amla-library-69f6d9e46e55",
+  "amla-library-427903da878f",
+  "amla-library-04c336501f91",
+  "amla-library-04dcf14190e2",
+  "amla-news-f47b90ce2410",
+  "amla-reports-07ab5af50b97",
+  "amla-news-d5ab093a6513",
+  "amla-news-012fad91830b",
+  "amla-news-e5fae4c9426d",
+  "amla-news-d75961908ae9",
+  "amla-news-45fd17c84237",
+  "nbb-news-5e516fa02a25",
+  "celex-52025DP0342",
+  "celex-52025IP0286",
+  "celex-52025IP0075",
+  "celex-52025IP0105"
+ ],
+ "runs": [
+  {
+   "started": "2026-11-14T08:12:28+00:00",
+   "sources_polled": 19,
+   "sources_skipped": 0,
+   "new": 378,
+   "changed": 0,
+   "withdrawn": 0,
+   "docs_new": 31,
+   "docs_changed": 0,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 23,
+   "duration_s": 126.9,
+   "errors": 0,
+   "requests": 62
+  },
+  {
+   "started": "2026-11-14T08:14:47+00:00",
+   "sources_polled": 15,
+   "sources_skipped": 4,
+   "new": 0,
+   "changed": 0,
+   "withdrawn": 0,
+   "docs_new": 20,
+   "docs_changed": 0,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 19,
+   "duration_s": 152.7,
+   "errors": 0,
+   "requests": 49
+  },
+  {
+   "started": "2026-11-14T08:18:34+00:00",
+   "sources_polled": 1,
+   "sources_skipped": 0,
+   "new": 45,
+   "changed": 10,
+   "withdrawn": 0,
+   "docs_new": 73,
+   "docs_changed": 10,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 53,
+   "duration_s": 266.5,
+   "errors": 0,
+   "requests": 91
+  },
+  {
+   "started": "2026-11-14T08:23:56+00:00",
+   "sources_polled": 0,
+   "sources_skipped": 0,
+   "new": 0,
+   "changed": 0,
+   "withdrawn": 0,
+   "docs_new": 0,
+   "docs_changed": 0,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 0,
+   "duration_s": 22.0,
+   "errors": 0,
+   "requests": 4
+  },
+  {
+   "started": "2026-11-14T08:24:35+00:00",
+   "sources_polled": 0,
+   "sources_skipped": 0,
+   "new": 0,
+   "changed": 0,
+   "withdrawn": 0,
+   "docs_new": 0,
+   "docs_changed": 0,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 0,
+   "duration_s": 2.2,
+   "errors": 0,
+   "requests": 0
+  },
+  {
+   "started": "2026-11-14T08:24:53+00:00",
+   "sources_polled": 0,
+   "sources_skipped": 0,
+   "new": 0,
+   "changed": 0,
+   "withdrawn": 0,
+   "docs_new": 0,
+   "docs_changed": 0,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 0,
+   "duration_s": 2.3,
+   "errors": 0,
+   "requests": 0
+  }
+ ],
+ "tags_hash": "26327f2701568498"
+}

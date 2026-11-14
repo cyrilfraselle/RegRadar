@@ -77,13 +77,22 @@ function daysBetween(a,b){ return Math.round((utc(b)-utc(a))/86400000); }
 function num(v){ if(v===null||v===undefined||v==='') return null; var n=Number(v); return isFinite(n)? n : null; }
 
 /* ── scopes: whole path, a season (three lessons), one lesson ──── */
-function scopes(tracks){
-  var out=[{id:'all', label:'Whole path', modules:tracks.map(function(t){ return t.id; })}];
-  for(var s=0;s*3<tracks.length;s++){
-    var ts=tracks.slice(s*3,s*3+3);
-    out.push({id:'season-'+(s+1), label:'Season '+(s+1)+' (lessons '+ts[0].no+' to '+ts[ts.length-1].no+')', modules:ts.map(function(t){ return t.id; })});
+function scopes(tracks, levels){
+  var out=[{id:'all', label:'Whole programme', modules:tracks.map(function(t){ return t.id; })}];
+  var ids={}; tracks.forEach(function(t){ ids[t.id]=1; });
+  if(levels && levels.length){
+    /* levels from data/academy/programme.json: one scope per level (built topics only) */
+    levels.forEach(function(lv){
+      var ms=(lv.topics||[]).concat(lv.optional||[]).filter(function(id){ return ids[id]; });
+      if(ms.length) out.push({id:'level-'+lv.no, label:'Level '+lv.no+': '+lv.title+' ('+ms.length+' topic'+(ms.length>1?'s':'')+')', modules:ms});
+    });
+  }else{
+    for(var s=0;s*3<tracks.length;s++){
+      var ts=tracks.slice(s*3,s*3+3);
+      out.push({id:'season-'+(s+1), label:'Season '+(s+1)+' (lessons '+ts[0].no+' to '+ts[ts.length-1].no+')', modules:ts.map(function(t){ return t.id; })});
+    }
   }
-  tracks.forEach(function(t){ out.push({id:'lesson:'+t.id, label:'Lesson '+t.no+': '+t.title, modules:[t.id]}); });
+  tracks.forEach(function(t){ out.push({id:'lesson:'+t.id, label:'Topic '+t.no+': '+t.title, modules:[t.id]}); });
   return out;
 }
 
@@ -103,7 +112,7 @@ function buildRecord(o){
   var rec={
     format:FORMAT, v:1, issued:o.issued,
     learner:{name:clean(L.name), role:clean(L.role), firm:clean(L.firm)},
-    programme:'RegRadar Academy learning path',
+    programme:'RegRadar Academy AMLR programme',
     scope:{id:o.scope.id, label:o.scope.label, lessonsInScope:o.scope.modules.length},
     content:{version:(o.content&&o.content.version)||null, date:(o.content&&o.content.date)||null},
     statement:STATEMENT,

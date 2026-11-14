@@ -53,7 +53,7 @@ if (cur && exp) {
       const a = article(c.celex, c.art);
       if (!a) { err(`${w} law[${i}]: no article ${c.celex} Art. ${c.art}`); continue; }
       const txt = norm(a.text);
-      for (const part of c.quote.split(' […] ')) if (!txt.includes(norm(part))) err(`${w} law[${i}] (${c.celex} Art. ${c.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
+      for (const part of c.quote.replace(/^\[…\]\s*|\s*\[…\]$/g, '').split(' […] ')) if (!txt.includes(norm(part))) err(`${w} law[${i}] (${c.celex} Art. ${c.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
     }
   }
   for (const e of exp.explainers) {
@@ -111,7 +111,7 @@ if (rnd && cur) {
     if (!a) return err(`${where}: no article ${q.celex} Art. ${q.art}`);
     if (!q.quote) return err(`${where}: law entry without a quote`);
     const txt = norm(a.text);
-    for (const part of q.quote.split(' […] ')) if (!txt.includes(norm(part))) err(`${where} (${q.celex} Art. ${q.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
+    for (const part of q.quote.replace(/^\[…\]\s*|\s*\[…\]$/g, '').split(' […] ')) if (!txt.includes(norm(part))) err(`${where} (${q.celex} Art. ${q.art}): quote is not verbatim: "${part.slice(0, 60)}…"`);
     nRQ++;
   };
   const checkCard = (g, c, where, practice) => {
@@ -189,5 +189,49 @@ if (rnd && cur) {
   });
 }
 
+/* ── programme.json (levels, order, rooms, coming soon) and films.json ── */
+const pg = J(path.join(A, 'programme.json'));
+let nSoon = 0;
+if (pg && cur) {
+  const ids = new Set(cur.tracks.map((t) => t.id));
+  const soon = pg.coming_soon || {};
+  const placed = new Set();
+  for (const k of ['title', 'for', 'outcomes', 'get', 'note']) if (!pg.programme?.[k]) err(`programme: missing programme.${k}`);
+  (pg.levels || []).forEach((lv, i) => {
+    const w = `programme level ${lv.id}`;
+    if (lv.no !== i) err(`${w}: numbered ${lv.no}, expected ${i}`);
+    for (const k of ['title', 'audience', 'summary']) if (!lv[k]) err(`${w}: missing ${k}`);
+    for (const id of (lv.topics || []).concat(lv.optional || [])) {
+      if (placed.has(id)) err(`${w}: topic ${id} placed twice`); placed.add(id);
+      if (!ids.has(id) && !soon[id]) err(`${w}: topic ${id} is neither in curriculum.json nor in coming_soon`);
+    }
+    for (const r of lv.rooms || []) {
+      const room = pg.rooms?.[r];
+      if (!room) { err(`${w}: room ${r} not defined`); continue; }
+      if (room.shift && !(rnd?.shifts || []).some((s) => s.no === room.shift)) err(`${w}: room ${r} points to a missing shift`);
+      if (room.href && !fs.existsSync(path.join(docs, room.href))) err(`${w}: room ${r} href ${room.href} not found`);
+      if (room.href && !/fictional/i.test(room.blurb || '')) err(`${w}: room ${r} blurb must say it is fictional`);
+    }
+  });
+  for (const id of ids) if (!placed.has(id)) err(`programme: lesson ${id} is not placed in any level`);
+  for (const [id, s] of Object.entries(soon)) {
+    nSoon++;
+    if (ids.has(id)) err(`programme coming_soon ${id}: already built, remove it from coming_soon`);
+    if (!placed.has(id)) err(`programme coming_soon ${id}: not placed in any level`);
+    if (!s.title || !s.short || !(s.missing || []).length) err(`programme coming_soon ${id}: needs title, short and missing`);
+    (s.law || []).forEach((q, i) => {
+      const a = article(q.celex, q.art), where = `programme coming_soon ${id} law[${i}]`;
+      if (!a) return err(`${where}: no article ${q.celex} Art. ${q.art}`);
+      for (const part of String(q.quote || '').replace(/^\[…\]\s*|\s*\[…\]$/g, '').split(' […] ')) if (!part || !norm(a.text).includes(norm(part))) err(`${where}: quote is not verbatim: "${part.slice(0, 60)}…"`);
+    });
+    for (const o of s.related || []) if (obl && !obl.obligations.some((x) => x.id === o)) err(`programme coming_soon ${id}: obligation ${o} is not in obligations.json`);
+  }
+}
+const films = J(path.join(A, 'films.json'));
+if (films) for (const f of films.films || []) {
+  for (const k of ['id', 'title', 'topic', 'seconds', 'page', 'status']) if (f[k] === undefined) err(`films.json ${f.id}: missing ${k}`);
+  if (f.status === 'live' && !fs.existsSync(path.join(docs, f.page))) err(`films.json ${f.id}: page ${f.page} not found`);
+}
+
 if (errs.length) { console.error(errs.map((e) => 'FAIL ' + e).join('\n')); process.exit(1); }
-console.log(`ok: ${cur.tracks.length} modules, ${exp.explainers.length} explainers, ${cur.tracks.reduce((n, t) => n + t.law.length, 0)} law quotes verbatim, module-map ids real; rounds: ${nGames} games, ${nCards} cards, ${nDec} decide scenarios, ${nRQ} round law quotes verbatim, ledger complete`);
+console.log(`ok: ${cur.tracks.length} modules, ${exp.explainers.length} explainers, ${cur.tracks.reduce((n, t) => n + t.law.length, 0)} law quotes verbatim, module-map ids real; rounds: ${nGames} games, ${nCards} cards, ${nDec} decide scenarios, ${nRQ} round law quotes verbatim, ledger complete; programme: ${(pg?.levels || []).length} levels, ${nSoon} coming-soon topics with verbatim excerpts`);

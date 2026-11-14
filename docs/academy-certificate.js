@@ -15,7 +15,7 @@
 'use strict';
 var AE=window.AcademyEvidence, AP=window.AcademyProgress;
 var APP=document.getElementById('app'), LIVE=document.getElementById('evLive');
-var CUR=null, MAP={}, TR=[], META={}, S={learner:{name:'',role:'',firm:''}, scopeId:'all'}, REC=null;
+var LEVELS=null, CUR=null, MAP={}, TR=[], META={}, S={learner:{name:'',role:'',firm:''}, scopeId:'all'}, REC=null;
 
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function say(msg){ if(!LIVE) return; LIVE.textContent=''; setTimeout(function(){ LIVE.textContent=msg; },40); }
@@ -34,7 +34,7 @@ function oblText(ids){
 function completions(){ return AP? AP.get().completions : []; }
 function scopeList(){
   var done={}; completions().forEach(function(c){ done[c.module]=true; });
-  return AE.scopes(TR).filter(function(s){ return s.id==='all' || s.modules.some(function(m){ return done[m]; }); });
+  return AE.scopes(TR, LEVELS).filter(function(s){ return s.id==='all' || s.modules.some(function(m){ return done[m]; }); });
 }
 function currentScope(){
   var list=scopeList(), s=list.filter(function(x){ return x.id===S.scopeId; })[0];
@@ -89,7 +89,7 @@ function sheetHTML(r){
 function emptyHTML(){
   var n=completions().length;
   return '<div class="empty"><h2>'+(n? 'No completed lessons in this scope' : 'No completed lessons on this device yet')+'</h2>'
-    +'<p>'+(n? 'Pick another scope above, or finish more lessons.' : 'A certificate lists the lessons you have finished, with dates and scores. Finish one lesson in the learning path and it appears here. Nothing is stored anywhere except this browser.')+'</p>'
+    +'<p>'+(n? 'Pick another scope above, or finish more topics.' : 'A certificate lists the lessons you have finished, with dates and scores. Finish one topic in the AMLR programme and it appears here. Nothing is stored anywhere except this browser.')+'</p>'
     +'<a class="btn pri" href="academy.html">Go to the learning path</a></div>';
 }
 
@@ -105,12 +105,12 @@ function pageHTML(){
     +'<div class="fld"><label for="fFirm">Firm</label><input id="fFirm" type="text" maxlength="120" autocomplete="organization" value="'+esc(L.firm)+'"></div>'
     +'<div class="fld wide"><label for="fScope">What to include</label><select id="fScope">'
     +sl.map(function(s){ return '<option value="'+esc(s.id)+'"'+(s.id===S.scopeId?' selected':'')+'>'+esc(s.label)+'</option>'; }).join('')
-    +'</select><span class="hint">Whole path, a season of three lessons, or a single lesson. Only completed lessons are listed.</span></div></div></section>'
+    +'</select><span class="hint">Whole programme, one level, or a single topic. Only completed lessons are listed.</span></div></div></section>'
     +'<section class="card" aria-labelledby="stH"><h2 class="h" id="stH">What is stored, and where</h2><ul class="facts">'
-    +'<li>Your lesson completions are in this browser, key <code>regradar-academy-training</code>. They were saved by the learning path.</li>'
+    +'<li>Your lesson completions are in this browser, key <code>regradar-academy-training</code>. They were saved by the AMLR programme.</li>'
     +'<li>The name, role and firm you type here are saved in this browser only, key <code>regradar-academy-learner</code>. They are never sent anywhere: this page makes no request that includes them.</li>'
     +'<li>A downloaded file contains what the certificate shows, including the name if you typed one. You decide who receives it.</li>'
-    +'<li>“Clear my data” removes the name, role and firm (and the team-register settings). It does not touch your lesson progress; that has its own button on the learning path.</li></ul></section></div>';
+    +'<li>“Clear my data” removes the name, role and firm (and the team-register settings). It does not touch your lesson progress; that has its own button on the Evidence step of the AMLR programme.</li></ul></section></div>';
   h+='<div class="actions noprint" role="group" aria-label="Certificate actions">'
     +'<button type="button" class="btn pri" data-act="print">Print or save as PDF</button>'
     +'<button type="button" class="btn" data-act="json">Download JSON</button>'
@@ -169,9 +169,9 @@ APP.addEventListener('change',function(e){
 
 /* ── boot ── */
 function getJSON(u){ return fetch(u).then(function(r){ if(!r.ok) throw new Error(u+' '+r.status); return r.json(); }); }
-Promise.all([getJSON('data/academy/curriculum.json'), getJSON('data/academy/module-map.json').catch(function(){ return {modules:{}}; })])
+Promise.all([getJSON('data/academy/curriculum.json'), getJSON('data/academy/module-map.json').catch(function(){ return {modules:{}}; }), getJSON('data/academy/programme.json').catch(function(){ return {}; })])
 .then(function(r){
-  CUR=r[0]; META=CUR._meta||{}; TR=CUR.tracks; MAP=r[1].modules||{};
+  CUR=r[0]; META=CUR._meta||{}; TR=CUR.tracks; MAP=r[1].modules||{}; LEVELS=(r[2]&&r[2].levels)||null;
   S.learner=AE.loadLearner();
   APP.innerHTML=pageHTML(); drawSheet();
 }).catch(function(e){

@@ -35,7 +35,8 @@
 
   // Full-frame simulation pages: Max stays out of the way there.
   var EXCLUDE = ['workstation.html', 'desk.html', 'laundromat.html', 'ownership.html',
-    'shift.html', 'triage.html', 'casefile.html', 'film-follow-the-money.html'];
+    'shift.html', 'triage.html', 'casefile.html', 'film-follow-the-money.html',
+    'film-effort-follows-risk.html', 'film-know-who-know-why.html', 'film-look-through.html'];
   var PREVIEW = window.MAX_PREVIEW === true; // set by max-preview.html (CSS inlined there)
   var page = location.pathname.split('/').pop() || 'index.html';
   if (!MAX_ENABLED || (!PREVIEW && EXCLUDE.indexOf(page) !== -1) || window.__regMax) return;
