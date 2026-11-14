@@ -373,7 +373,7 @@ function cardLayout(e, C, k) {
       wrap(l.s, f, inner).forEach(function (ln, i) { rows.push({ s: ln, size: sz, w: l.w || 500, fam: fam, col: l.c, y: y + sz * .92, tt: l.tt, li: i, full: l.s, off: i }); y += sz * (e.lh || 1.4); });
       y += (l.gap || 0) * kk;
     });
-    if (y <= e.h - pad * 1.4 || kk < .55) break;
+    if (y <= e.h - 2 * Math.min(pad, e.h * .16) || kk < .55) break;
     kk *= .9;
   }
   L = { rows: rows, h: y, pad: pad }; LC.set(key, L); return L;
@@ -487,7 +487,7 @@ DRAW.dial = function (e) {
   for (var i = 0; i <= 10; i++) { ga(p * .6); ctx.fillStyle = rgba(T3, 1); ctx.fillRect(-hw + w * i / 10 - .75, 10, 1.5, i % 5 ? 7 : 12); }
   var ls = (e.ls || 17) * ks(e);
   if (e.left) txt(e.left, -hw, 48 * Math.max(1, ks(e) * .9), ls, 600, MONO, COOL, p, 'left', 1);
-  if (e.right) txt(e.right, hw, 48 * Math.max(1, ks(e) * .9), ls, 600, MONO, WARM, p, 'right', 1);
+  if (e.right) txt(e.right, hw, 48 * Math.max(1, ks(e) * .9) + (sm ? ls * 1.3 : 0), ls, 600, MONO, WARM, p, 'right', 1);
   (e.needles || []).forEach(function (nd) {
     var q2 = seg(t, nd.t, nd.t + .9); if (q2 <= 0) return;
     var v = lerp(nd.from == null ? 0 : nd.from, nd.v, EZ.outBack(q2)), x = v * hw, col = temp(lerp(1, 0, (v + 1) / 2));

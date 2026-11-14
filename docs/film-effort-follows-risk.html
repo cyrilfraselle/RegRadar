@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme');if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+window.toggleTheme=function(){var h=document.documentElement,t=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}};
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Effort follows risk · RegRadar Academy</title>
+<meta name="description" content="A 58-second animated explainer on the risk-based approach: a firm assesses its own risks, sizes each customer's checks to the risk, and records why. Fictional example.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<link rel="stylesheet" href="academy-film.css?v=20261114a">
+</head>
+<body>
+<script src="site-nav.js?v=20261114a"></script>
+<a class="skip" href="#player">Skip to the explainer</a>
+<main class="wrap film-main" id="main">
+  <div class="intro">
+    <div class="eyebrow">AML basics · 58 seconds</div>
+    <h1>Effort follows risk</h1>
+    <p>One example scenario: Brindle Pay, a fictional payment and e-money firm, takes its prepaid card to a new country. The film shows the firm assessing its own risks before launch, sizing each customer's checks to the risk, and recording why.</p>
+  </div>
+
+  <section class="player" id="player" data-film="data/academy/films/aml-basics.json" aria-label="Explainer video: Effort follows risk, 58 seconds"></section>
+  <p class="note">Fictional example. Not legal advice.</p>
+
+  <section class="block" id="stillsBlock" hidden aria-labelledby="stillsH">
+    <h2 id="stillsH">Scene by scene</h2>
+    <p class="note" style="margin:-6px 0 16px">Your device asks for reduced motion, so the explainer does not play on its own. Here are the key frames. The player above still works if you press play.</p>
+    <div class="stills" id="stills"></div>
+  </section>
+
+  <section class="block transcript" aria-labelledby="trH">
+    <h2 id="trH">Transcript</h2>
+    <ol id="transcript"><li><span class="tc"></span><div><p>The transcript loads with the film.</p></div></li></ol>
+  </section>
+
+  <div class="fine">
+    <p><b>Fictional example. Not legal advice.</b> Brindle Pay, Customer A, Customer B, the card, the country and every figure are invented.</p>
+    <p>One example scenario: a known product in a new market. The risks beat shows one pattern commonly linked to money mules (cards loaded by many different payers and emptied abroad the same day): a warning sign to examine, not proof. "Four habits" (know, watch, report, keep) is a common way to teach the everyday duties, not a legal list, and not a sequence. Script and claim ledger: academy/films/aml-basics.script.md, checked against the AMLR (Regulation (EU) 2024/1624) and AMLD6 (Directive (EU) 2024/1640).</p>
+  </div>
+</main>
+<script src="academy-film-engine.js?v=20261114a"></script>
+</body>
+</html>
