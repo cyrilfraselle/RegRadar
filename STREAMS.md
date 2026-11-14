@@ -50,6 +50,22 @@ digest); the next run reads the answer and acts.
 - Landing page style everywhere (see `docs/index.html`, `docs/rr-ui.css` once it
   exists on `main`; until then do content and logic, not page styling).
 
+## Design rules (every page)
+- Link `docs/rr-ui.css` **before** the page's own `<style>`; page CSS adds layout
+  only. No page-level colour tokens, buttons, chips, tabs or type sizes: use the
+  `--rr-*` tokens and the classes in `docs/rr-ui-guide.html` (copy its markup).
+- Page shell: `<script src="site-nav.js">` first in `<body>`, then
+  `<main id="main" class="wrap">` with one `<header class="head rr-band">`
+  (h1, one `p.lead`, `.head-tools`). The menu, footer and Max loader live only
+  in `site-nav.js` (SYSTEM owns it; ask in the PR for menu changes).
+- One primary button (`.btn.pri`, the ink pill) per view; status uses
+  `.pill.live|review|risk|done` with the same meaning everywhere.
+- No eyebrow labels above headings, no coloured left borders, no emoji icons.
+  Floating UI stays clear of Max (bottom right, z-index 90); use native
+  `<dialog>`.
+- `rr-legacy.css` exists only for pages that used the retired `regradar.css`
+  (law, country risk); do not use it on new pages.
+
 ## AMLR path: topics to cover (Regulation (EU) 2024/1624)
 1. Why AML exists and the EU framework (AMLR, AMLD6, AMLA).
 2. Who is covered (obliged entities, financial institutions, CASPs).
