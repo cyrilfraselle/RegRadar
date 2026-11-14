@@ -41,7 +41,7 @@
   if (!MAX_ENABLED || (!PREVIEW && EXCLUDE.indexOf(page) !== -1) || window.__regMax) return;
   window.__regMax = true;
 
-  var VERSION = '20261112p';
+  var VERSION = '20261114a';
   var K_HIDDEN = 'regradar-max-hidden', K_GREETED = 'regradar-max-greeted';
   var params = new URLSearchParams(location.search);
   var DEMO = PREVIEW || params.get('maxdemo') === '1';
@@ -76,19 +76,21 @@
      A curled cat seen from above: a disc with two ears at the upper left.
      The same polar outline r(θ) drives the static badge and the morph
      target, so the morph lands exactly on the badge. Badge units: 40 x 40. */
-  var BC = [20, 22], BR = 14, EARS = [[212, 20], [245, 20.5]], EW = 11;
+  var BC = [20, 22], BR = 14.6, EARS = [[215, 18.8], [248, 19.2]], EW = 15;
   function badgeR(deg) {
     var r = BR;
     EARS.forEach(function (e) {
       var d = Math.abs(((deg - e[0]) % 360 + 540) % 360 - 180);
-      if (d < EW) r = Math.max(r, BR + (e[1] - BR) * (1 - d / EW));
+      if (d < EW) r = Math.max(r, BR + (e[1] - BR) * (0.5 + 0.5 * Math.cos(PI * d / EW)));
     });
     return r;
   }
   function polar(deg, r) { var a = deg * PI / 180; return [BC[0] + r * Math.cos(a), BC[1] + r * Math.sin(a)]; }
   function earTri(e) {
-    var a = polar(e[0] - EW, BR - 1), b = polar(e[0], e[1]), c = polar(e[0] + EW, BR - 1);
-    return 'M' + f1(a[0]) + ' ' + f1(a[1]) + 'L' + f1(b[0]) + ' ' + f1(b[1]) + 'L' + f1(c[0]) + ' ' + f1(c[1]) + 'Z';
+    // a soft, rounded ear: straight-ish sides, round tip
+    var a = polar(e[0] - EW, BR - 1.5), b = polar(e[0], e[1] + 1.4), c = polar(e[0] + EW, BR - 1.5);
+    var p = [lerp(a[0], b[0], 0.62), lerp(a[1], b[1], 0.62)], q = [lerp(c[0], b[0], 0.62), lerp(c[1], b[1], 0.62)];
+    return 'M' + f1(a[0]) + ' ' + f1(a[1]) + 'L' + f1(p[0]) + ' ' + f1(p[1]) + 'Q' + f1(b[0]) + ' ' + f1(b[1]) + ' ' + f1(q[0]) + ' ' + f1(q[1]) + 'L' + f1(c[0]) + ' ' + f1(c[1]) + 'Z';
   }
   function earBase(e) { return polar(e[0], BR - 1); }
   function badge(id) {
@@ -96,54 +98,54 @@
     return '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">' +
       '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="-4" y="-4" width="48" height="48">' +
         '<rect x="-4" y="-4" width="48" height="48" fill="#fff"/>' +
-        '<g fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round">' +
-          '<path d="M22.19 14.31 A7.6 7.6 0 0 1 11.64 23.17"/>' +              // tucked head
-          '<path d="M28.36 16.15 A10.2 10.2 0 1 1 10.42 25.49 L6.13 26.24"/>' + // tail wrapping to the chin
+        '<g fill="none" stroke="#000" stroke-width="1.35" stroke-linecap="round">' +
+          '<path d="M22.6 14.2 A7.8 7.8 0 0 1 11.4 23.6"/>' +                 // tucked head
+          '<path d="M28.8 15.9 A10.6 10.6 0 1 1 9.9 25.9"/>' +                // tail wrapping round to the chin
+          '<path d="M9.9 25.9 Q7.4 26.6 6.4 25.2"/>' +                        // rounded tail tip
         '</g></mask></defs>' +
       '<g class="mx-cg" mask="url(#' + id + ')" fill="currentColor">' +
         '<circle cx="20" cy="22" r="14"/>' +
         '<path class="mx-ear" style="transform-origin:' + f1(b1[0]) + 'px ' + f1(b1[1]) + 'px" d="' + earTri(EARS[0]) + '"/>' +
         '<path class="mx-ear mx-ear2" style="transform-origin:' + f1(b2[0]) + 'px ' + f1(b2[1]) + 'px" d="' + earTri(EARS[1]) + '"/>' +
       '</g>' +
-      '<g class="mx-eyes"><circle cx="13.94" cy="18.71" r="1.55"/><circle cx="17.36" cy="15.63" r="1.55"/></g>' +
+      '<g class="mx-eyes"><circle cx="13.7" cy="18.6" r="1.6"/><circle cx="17.3" cy="15.4" r="1.6"/></g>' +
       '</svg>';
   }
-  var SPARK = '<svg class="mx-q" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path d="M3 5.2C3 3.2 4.4 2 6.1 2 7.9 2 9.2 3.2 9.2 4.8c0 1.4-.9 2.1-1.8 2.7-.8.5-1.3 1-1.3 2v.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="6.1" cy="13.2" r="1.15" fill="currentColor"/></svg>';
 
   /* ------------------------------------------------------------ the walking rig
      Walker units: viewBox 120 x 64, facing left, ground at y = 60.
      The outline is 16 segments, each sampled 6 times = 96 points for the morph.
      Tags: h head, e1/e2 ear tips (head + spring), b back (spine flex), u belly. */
-  var START = [5, 25, 'h'];
+  var START = [5.5, 24, 'h'];
   var SEG = [
-    ['C', [5, 22.5, 'h'], [6.5, 20, 'h'], [9, 18.5, 'h']],
-    ['L', [10.5, 15.5, 'h']],
-    ['L', [11.5, 6.5, 'e1']],
-    ['L', [16, 12, 'h']],
-    ['C', [17, 11.6, 'h'], [18, 11.6, 'h'], [19, 11.8, 'h']],
-    ['L', [23, 6.5, 'e2']],
-    ['L', [24.5, 14.5, 'h']],
-    ['C', [26, 16.5, 'h'], [29, 20, ''], [36, 22, '']],
-    ['C', [52, 20.5, 'b'], [70, 19.5, 'b'], [84, 22, '']],
-    ['C', [92, 23.5, ''], [95, 28, ''], [94, 34, '']],
-    ['C', [93, 40, ''], [88, 44, ''], [80, 44, '']],
-    ['C', [66, 45.5, 'u'], [46, 45.5, 'u'], [34, 43, '']],
-    ['C', [28, 42, ''], [25.5, 38.5, ''], [24.5, 35, '']],
-    ['C', [22.5, 32, 'h'], [19, 31.5, 'h'], [15, 31.5, 'h']],
-    ['C', [11, 31.5, 'h'], [8, 30, 'h'], [6.5, 28.5, 'h']],
-    ['C', [5.5, 27.5, 'h'], [5, 26.5, 'h'], [5, 25, 'h']]
+    ['C', [5.8, 20.5, 'h'], [7, 18, 'h'], [9, 16, 'h']],
+    ['C', [9.2, 14, 'h'], [9, 12, 'h'], [9.4, 10.5, 'h']],
+    ['C', [9.8, 8, 'e1'], [11.8, 7.2, 'e1'], [12.8, 8.2, 'e1']],
+    ['C', [14, 9.5, 'h'], [15.2, 11.5, 'h'], [16, 12.6, 'h']],
+    ['C', [17, 12.2, 'h'], [18, 12.2, 'h'], [19, 12.4, 'h']],
+    ['C', [19.6, 10, 'e2'], [21.5, 7.6, 'e2'], [23, 8.2, 'e2']],
+    ['C', [24.6, 9, 'h'], [25.4, 12.5, 'h'], [26, 15.5, 'h']],
+    ['C', [28, 17.5, 'h'], [31, 20.5, ''], [38, 21.5, '']],
+    ['C', [52, 19.5, 'b'], [70, 18, 'b'], [84, 20.5, '']],
+    ['C', [92, 22, ''], [97.5, 29, ''], [95.5, 37, '']],
+    ['C', [93.5, 44, ''], [87, 47.5, ''], [79, 46.5, '']],
+    ['C', [66, 48.5, 'u'], [46, 48.5, 'u'], [35, 44.5, '']],
+    ['C', [29.5, 42.5, ''], [26.5, 39, ''], [25.5, 35.5, '']],
+    ['C', [24, 33.5, 'h'], [21, 33.5, 'h'], [17.5, 33.2, 'h']],
+    ['C', [12.5, 33, 'h'], [8.5, 31.5, 'h'], [6.6, 28.6, 'h']],
+    ['C', [5.4, 26.8, 'h'], [5.2, 25.4, 'h'], [5.5, 24, 'h']]
   ];
   // Morph anchors: outline sample index -> badge angle (degrees, clockwise from +x).
-  var ANCH = [[0, 190], [18, 212], [36, 245], [48, 290], [60, 385], [69, 450], [78, 515], [90, 540], [96, 550]];
-  var GROUND = 61.6, LC = 40, DUTY = 0.62;
-  var LEGS = [ // hip (rest, body frame), bone lengths, width, phase offset, far side
-    { hip: [83, 31.5], a: 16, b: 16.5, w: 4.2, th: 5.2, off: 0.5, far: true },
-    { hip: [34, 32], a: 16, b: 16, w: 3.8, th: 3.8, off: 0.75, far: true },
-    { hip: [80, 33], a: 16, b: 16.5, w: 4.8, th: 6, off: 0, far: false },
-    { hip: [31, 33.5], a: 16, b: 16, w: 4.4, th: 4.4, off: 0.25, far: false }
+  var ANCH = [[0, 190], [18, 215], [36, 248], [48, 290], [60, 385], [69, 450], [78, 515], [90, 540], [96, 550]];
+  var GROUND = 60, LC = 26, DUTY = 0.62;
+  var LEGS = [ // hip (rest, body frame), bone lengths, width, thigh, phase offset, far side: shorter, rounder legs
+    { hip: [84, 35], a: 12.5, b: 13, w: 5.2, th: 7, off: 0.5, far: true },
+    { hip: [35, 35], a: 12.5, b: 12.5, w: 4.8, th: 4.8, off: 0.75, far: true },
+    { hip: [81, 36.5], a: 12.5, b: 13, w: 5.8, th: 8, off: 0, far: false },
+    { hip: [32, 36.5], a: 12.5, b: 12.5, w: 5.4, th: 5.4, off: 0.25, far: false }
   ];
-  var TAIL_N = 9, TAIL_L = 4, TAIL_BASE = [89, 27.5];
-  var TAIL_REST = [-0.92, -0.13, -0.12, -0.12, -0.13, -0.2, -0.34, -0.52, -0.72];
+  var TAIL_N = 9, TAIL_L = 3.9, TAIL_BASE = [92, 27];
+  var TAIL_REST = [-0.86, -0.12, -0.12, -0.12, -0.14, -0.2, -0.32, -0.48, -0.62];
   // Walker box (right 10, bottom 12, 96 x 51 px, 0.8 px/unit) vs badge box
   // (bubble right 16, bottom 16, 52 px; badge inset 8 px, 36 px for 40 units).
   function badgeToWalker(p) { return [57.5 + 1.125 * p[0], 3.75 + 1.125 * p[1]]; }
@@ -156,7 +158,8 @@
     this.legEls = [].slice.call(svg.querySelectorAll('.mx-wleg'));
     this.shEls = [].slice.call(svg.querySelectorAll('.mx-wsh'));
     this.thEls = [].slice.call(svg.querySelectorAll('.mx-wth'));
-    this.thEls.forEach(function (t, i) { t.setAttribute('rx', f1(LEGS[i].a / 2 + 1.5)); t.setAttribute('ry', f1(LEGS[i].th)); });
+    this.pawEls = [].slice.call(svg.querySelectorAll('.mx-wpaw')); this.hl = q('.mx-whl');
+    this.thEls.forEach(function (t, i) { t.setAttribute('rx', f1(LEGS[i].a / 2 + 2)); t.setAttribute('ry', f1(LEGS[i].th)); });
     this.x = 0; this.phase = 0; this.amp = 0; this.t = 0;
     this.pose = { bodyY: 0, pitch: 0, flex: 0, belly: 0, hx: 0, hy: 0, headRot: 0, e1x: 0, e1y: 0, e2x: 0, e2y: 0, earLift: 0, tailDrop: 0 };
     this.ear = { x: 0, y: 0, vx: 0, vy: 0 };
@@ -222,7 +225,7 @@
   Rig.prototype.feet = function () {
     var self = this;
     return LEGS.map(function (L) {
-      var u = ((self.phase - L.off) % 1 + 1) % 1, S = DUTY * LC * self.amp, H = 5.5 * self.amp, fx, fy, lift = 0, s;
+      var u = ((self.phase - L.off) % 1 + 1) % 1, S = DUTY * LC * self.amp, H = 4.4 * self.amp, fx, fy, lift = 0, s;
       if (u < DUTY) { s = u / DUTY; fx = -S / 2 + S * s; fy = 0; }
       else { s = (u - DUTY) / (1 - DUTY); fx = S / 2 - S * smooth(s); fy = -H * Math.sin(PI * s); lift = Math.sin(PI * s); }
       var hip = self.bodyXf(L.hip[0], L.hip[1]);
@@ -245,9 +248,10 @@
       L.push([pts[i][0] + nx, pts[i][1] + ny]); R.push([pts[i][0] - nx, pts[i][1] - ny]);
     }
     var d = 'M' + L.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L');
-    d += 'A' + f1(w1 / 2) + ' ' + f1(w1 / 2) + ' 0 0 1 ' + f1(R[n - 1][0]) + ' ' + f1(R[n - 1][1]);
+    d += 'L' + f1(R[n - 1][0]) + ' ' + f1(R[n - 1][1]);
     d += 'L' + R.reverse().map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L');
-    return d + 'Z';
+    var t = pts[n - 1], r = w1 / 2; // round tip as a second sub-path drawn in the same direction-independent way
+    return d + 'Z' + 'M' + f1(t[0] - r) + ' ' + f1(t[1]) + 'a' + f1(r) + ' ' + f1(r) + ' 0 1 0 ' + f1(2 * r) + ' 0a' + f1(r) + ' ' + f1(r) + ' 0 1 0 ' + f1(-2 * r) + ' 0Z';
   }
   // Advance secondary motion (ears and tail springs) by dt seconds.
   Rig.prototype.secondary = function (dt) {
@@ -269,17 +273,18 @@
     var self = this, feet = this.feet();
     this.g.setAttribute('transform', 'translate(' + f1(this.x) + ' 0)');
     this.body.setAttribute('d', this.outlineD());
-    this.tail.setAttribute('d', taper(this.tailPts(), 5.4, 3));
-    var a = this.xf([36, 23.2, '']), b = this.xf([52, 21.7, 'b']), c = this.xf([70, 20.7, 'b']), dd = this.xf([84, 23.2, '']);
+    this.tail.setAttribute('d', taper(this.tailPts(), 6.8, 4.6));
+    this.hl.setAttribute('transform', 'translate(0 ' + f1(this.pose.bodyY) + ')');
+    var a = this.xf([38, 22.8, '']), b = this.xf([52, 20.8, 'b']), c = this.xf([70, 19.3, 'b']), dd = this.xf([86, 22.2, '']);
     this.rim.setAttribute('d', 'M' + f1(a[0]) + ' ' + f1(a[1]) + 'C' + f1(b[0]) + ' ' + f1(b[1]) + ' ' + f1(c[0]) + ' ' + f1(c[1]) + ' ' + f1(dd[0]) + ' ' + f1(dd[1]));
     feet.forEach(function (F, i) {
       var L = LEGS[i], k = ik(F.hip, F.foot, L.a, L.b);
-      var toe = F.foot[0] - 1.8 * (1 - F.lift);
-      self.legEls[i].setAttribute('d', 'M' + f1(F.hip[0]) + ' ' + f1(F.hip[1]) + 'L' + f1(k[0]) + ' ' + f1(k[1]) + 'L' + f1(F.foot[0]) + ' ' + f1(F.foot[1]) + 'L' + f1(toe) + ' ' + f1(F.foot[1] + 0.2));
+      self.legEls[i].setAttribute('d', 'M' + f1(F.hip[0]) + ' ' + f1(F.hip[1]) + 'L' + f1(k[0]) + ' ' + f1(k[1]) + 'L' + f1(F.foot[0]) + ' ' + f1(F.foot[1]));
+      var pw = self.pawEls[i]; pw.setAttribute('cx', f1(F.foot[0] - 1)); pw.setAttribute('cy', f1(F.foot[1] + 0.4));
       var th = self.thEls[i], ang = Math.atan2(k[1] - F.hip[1], k[0] - F.hip[0]) * 180 / PI;
       th.setAttribute('transform', 'translate(' + f1((F.hip[0] + k[0]) / 2) + ' ' + f1((F.hip[1] + k[1]) / 2) + ') rotate(' + f1(ang) + ')');
       var pulse = 1 + 0.35 * Math.exp(-F.u * 26) * self.amp, sh = self.shEls[i];
-      sh.setAttribute('cx', f1(F.foot[0] - 0.8)); sh.setAttribute('rx', f1(3.4 * (1 - 0.55 * F.lift) * pulse));
+      sh.setAttribute('cx', f1(F.foot[0] - 1)); sh.setAttribute('rx', f1(3.8 * (1 - 0.55 * F.lift) * pulse));
       sh.setAttribute('opacity', f1((L.far ? 0.5 : 0.9) * (1 - 0.8 * F.lift)));
     });
   };
@@ -288,7 +293,7 @@
     for (var i = 0; i < 96; i++) pts.push([lerp(M.src[i][0], M.dst[i][0], M.ease(i, e)), lerp(M.src[i][1], M.dst[i][1], M.ease(i, e))]);
     this.body.setAttribute('d', 'M' + pts.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L') + 'Z');
     var tp = M.tail.map(function (p, i) { return [lerp(p[0], M.arc[i][0], e), lerp(p[1], M.arc[i][1], e)]; });
-    this.tail.setAttribute('d', taper(tp, lerp(5.4, 4.2, e), lerp(3, 3.4, e)));
+    this.tail.setAttribute('d', taper(tp, lerp(6.8, 4.4, e), lerp(4.6, 3.6, e)));
     var self = this;
     M.legs.forEach(function (L, i) {
       var e2 = clamp(e * 1.6, 0, 1), h = [lerp(L.hip[0], M.c[0], e2 * 0.8), lerp(L.hip[1], M.c[1] + 4, e2 * 0.8)];
@@ -297,9 +302,12 @@
       self.legEls[i].setAttribute('stroke-width', f1(LEGS[i].w * (1 - e2)));
       self.thEls[i].setAttribute('transform', 'translate(' + f1((h[0] + k[0]) / 2) + ' ' + f1((h[1] + k[1]) / 2) + ') scale(' + f1(1 - e2) + ')');
       self.shEls[i].setAttribute('opacity', f1(0.8 * (1 - e)));
+      self.pawEls[i].setAttribute('cx', f1(f[0])); self.pawEls[i].setAttribute('cy', f1(f[1]));
+      self.pawEls[i].setAttribute('rx', f1(3.4 * (1 - e2))); self.pawEls[i].setAttribute('ry', f1(2.4 * (1 - e2)));
     });
-    this.rim.setAttribute('opacity', f1(clamp(1 - e * 2.5, 0, 1)));
-    this.bshadow.setAttribute('opacity', f1(1 - e));
+    this.rim.style.opacity = f1(0.9 * clamp(1 - e * 2.5, 0, 1));
+    this.hl.style.opacity = f1(clamp(1 - e * 2, 0, 1));
+    this.bshadow.style.opacity = f1(1 - e);
     this.g.setAttribute('transform', 'translate(' + f1(this.x * (1 - e)) + ' 0)');
     this.sq.setAttribute('transform', 'translate(' + f1(M.c[0]) + ' ' + f1(M.c[1]) + ') scale(' + f1(sx) + ' ' + f1(sy) + ') translate(' + f1(-M.c[0]) + ' ' + f1(-M.c[1]) + ')');
   };
@@ -319,19 +327,26 @@
     }
   };
 
+  // Monochrome volume: a soft ground shadow, a faint grey rim on the back, a
+  // dark-grey inner highlight clipped to the body; far legs a touch lighter.
   var WALKER_SVG =
-    '<svg viewBox="0 0 120 64" aria-hidden="true" focusable="false"><g class="mx-wk">' +
-      '<ellipse class="mx-wbsh" cx="58" cy="63.8" rx="34" ry="1.7"/>' +
-      '<ellipse class="mx-wsh" cx="0" cy="63.9" rx="3" ry="0.9"/><ellipse class="mx-wsh" cx="0" cy="63.9" rx="3" ry="0.9"/>' +
-      '<ellipse class="mx-wsh" cx="0" cy="63.9" rx="3" ry="0.9"/><ellipse class="mx-wsh" cx="0" cy="63.9" rx="3" ry="0.9"/>' +
+    '<svg viewBox="0 0 120 64" aria-hidden="true" focusable="false"><defs>' +
+      '<radialGradient id="mx-wsg"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>' +
+      '<radialGradient id="mx-whg"><stop offset="0" stop-color="#34343A" stop-opacity=".5"/><stop offset="1" stop-color="#34343A" stop-opacity="0"/></radialGradient>' +
+      '<clipPath id="mx-wclip"><use href="#mx-wbody-p"/></clipPath></defs><g class="mx-wk">' +
+      '<ellipse class="mx-wbsh" cx="60" cy="62.2" rx="40" ry="3" fill="url(#mx-wsg)"/>' +
+      '<ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/><ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/>' +
+      '<ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/><ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/>' +
       '<g class="mx-sq"><g class="mx-sil">' +
         '<path class="mx-wtail"/>' +
-        '<g class="mx-wfar"><path class="mx-wleg" stroke-width="4.2"/><path class="mx-wleg" stroke-width="3.8"/>' +
-        '<ellipse class="mx-wth"/><ellipse class="mx-wth"/></g>' +
-        '<path class="mx-wbody"/>' +
-        '<path class="mx-wleg" stroke-width="4.8"/><path class="mx-wleg" stroke-width="4.4"/>' +
-        '<ellipse class="mx-wth"/><ellipse class="mx-wth"/>' +
-      '</g><path class="mx-wrim"/></g>' +
+        '<g class="mx-wfar"><path class="mx-wleg" stroke-width="5.2"/><path class="mx-wleg" stroke-width="4.8"/>' +
+        '<ellipse class="mx-wth"/><ellipse class="mx-wth"/><ellipse class="mx-wpaw" rx="3.3" ry="2.3"/><ellipse class="mx-wpaw" rx="3.1" ry="2.2"/></g>' +
+        '<path class="mx-wbody" id="mx-wbody-p"/>' +
+        '<path class="mx-wleg" stroke-width="5.8"/><path class="mx-wleg" stroke-width="5.4"/>' +
+        '<ellipse class="mx-wth"/><ellipse class="mx-wth"/><ellipse class="mx-wpaw" rx="3.5" ry="2.4"/><ellipse class="mx-wpaw" rx="3.3" ry="2.3"/>' +
+      '</g><g clip-path="url(#mx-wclip)"><g class="mx-whl">' +
+        '<ellipse cx="80" cy="30" rx="15" ry="10" fill="url(#mx-whg)"/><ellipse cx="38" cy="28" rx="10" ry="7" fill="url(#mx-whg)"/><ellipse cx="15" cy="17" rx="7" ry="6" fill="url(#mx-whg)"/>' +
+      '</g></g><path class="mx-wrim"/></g>' +
     '</g></svg>';
 
   /* ------------------------------------------------------------ helpers */
@@ -374,7 +389,8 @@
     if (!btn) return;
     btn.classList.remove('mx-thinking', 'mx-found', 'mx-unsure');
     if (s === 'think') btn.classList.add('mx-thinking');
-    if (s === 'found') { void btn.offsetWidth; btn.classList.add('mx-found'); }
+    if (s === 'found') { void btn.offsetWidth; btn.classList.add('mx-found');
+      anim(btn.querySelector('.mx-glow2'), [{ opacity: 0, transform: 'scale(.8)' }, { opacity: 0.95, transform: 'scale(1.1)', offset: 0.18 }, { opacity: 0, transform: 'scale(1.35)' }], { duration: 700, easing: 'ease-out' }); }
     if (s === 'unsure') btn.classList.add('mx-unsure');
     clearTimeout(revertTimer);
     if ((s === 'found' || s === 'unsure') && !DEMO) revertTimer = setTimeout(function () { setState('idle'); }, 3000);
@@ -394,12 +410,10 @@
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-controls', 'max-panel');
-    var burst = ''; for (var i = 0; i < 8; i++) burst += '<i style="--a:' + (i * 45 + 22) + 'deg"></i>';
     btn.innerHTML = '<span class="mx-tilt" aria-hidden="true"><span class="mx-orb">' +
       '<span class="mx-glow"></span><span class="mx-glow2"></span>' +
       '<span class="mx-glass"><span class="mx-spec"></span><span class="mx-sheen"></span></span>' +
       '<span class="mx-badge">' + badge('mx-mask-b') + '</span>' +
-      '<span class="mx-orbit"><i></i><i></i><i></i></span><span class="mx-burst">' + burst + '</span>' + SPARK +
       '</span></span><span class="mx-tip" aria-hidden="true">Talk to Max</span>';
     tilt = btn.querySelector('.mx-tilt'); orb = btn.querySelector('.mx-orb'); glass = btn.querySelector('.mx-glass'); badgeEl = btn.querySelector('.mx-badge');
     btn.addEventListener('click', function () { if (panel && !panel.hidden) closePanel(); else openPanel(); });
@@ -497,7 +511,7 @@
         var ph = R.phase * 2 * PI, A = R.amp;
         P.bodyY = -1.1 * A * Math.cos(2 * ph); P.pitch = 0.014 * A * Math.sin(ph);
         P.flex = 0.9 * A * Math.sin(2 * ph + 1); P.belly = 0.4 * A * Math.sin(2 * ph);
-        P.hy = 0.85 * A * Math.cos(2 * ph); P.hx = -0.3 * A * Math.sin(ph); P.headRot = 0.035 * A * Math.sin(ph + 0.6);
+        P.hy = 0.85 * A * Math.cos(2 * ph); P.hx = (-0.9 - 0.3 * Math.sin(ph)) * A; P.headRot = 0.035 * A * Math.sin(ph + 0.6);
         if (!opts.inPlace && t >= TW) { walkTail(R, opts.onDone); return false; }
         if (opts.inPlace && opts.stop && opts.stop()) return false;
       }
@@ -798,10 +812,10 @@
     ['Walking', 4.2, function () { btn.classList.remove('mx-on', 'mx-alive', 'mx-tip-on'); setState('idle'); walkingInPlace = true; walkIn({ inPlace: true, stop: function () { return !walkingInPlace; } }); }],
     ['Arriving: crouch, morph, bubble inflates', 3.2, function () { walkingInPlace = false; if (rig) { runArrival(); } }],
     ['Idle: breathing, blinks, ear twitches', 5, function () { setState('idle'); }],
-    ['Hover: ears perk, glow warms, tooltip', 3.4, function () { btn.classList.add('mx-tip-on'); }],
-    ['Thinking: aurora and orbiting sparks', 4.4, function () { btn.classList.remove('mx-tip-on'); setState('think'); }],
-    ['Found a source: spark burst, ears perk', 3.2, function () { setState('found'); }],
-    ['Not sure: head tilt, question shimmer', 3.4, function () { setState('unsure'); }]
+    ['Hover: ears perk, halo brightens, tooltip', 3.4, function () { btn.classList.add('mx-tip-on'); }],
+    ['Thinking: soft halo pulse and shimmer', 4.4, function () { btn.classList.remove('mx-tip-on'); setState('think'); }],
+    ['Found a source: white flash, ears perk', 3.2, function () { setState('found'); }],
+    ['Not sure: head tilt', 3.4, function () { setState('unsure'); }]
   ];
   // From walking in place: look up, crouch and morph (reuses the walk-in stages).
   function runArrival() {

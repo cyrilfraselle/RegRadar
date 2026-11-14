@@ -6,8 +6,9 @@
    The glow is decoration only, never the boundary. Motion uses transform
    and opacity; everything pauses under .mx-paused. */
 #max-root{
-  --mx-cat:#1B2440;--mx-eye:#EEF3FC;--mx-rim:rgba(255,255,255,.42);--mx-shadow:rgba(12,20,40,.2);
-  --mx-glass:rgba(255,255,255,.62);--mx-glass-solid:rgba(255,255,255,.94);--mx-ring:#6E7891;--mx-spec:rgba(255,255,255,.75);
+  --mx-cat:#0B0B0D;--mx-eye:#F4F4F6;--mx-rim:rgba(150,150,158,.75);--mx-shadow:rgba(0,0,0,.2);
+  --mx-glass:rgba(250,250,251,.78);--mx-glass-solid:#F7F7F8;--mx-ring:#7C7F86;--mx-spec:rgba(255,255,255,.9);
+  --mx-halo:rgba(110,110,118,.22);--mx-focus:#111114;
   --mx-acc:#0A4FD6;--mx-on-acc:#FFFFFF;
   --mx-bg:rgba(255,255,255,.84);--mx-bg-solid:#FFFFFF;--mx-bg2:rgba(20,32,60,.06);--mx-line:rgba(22,32,44,.16);
   --mx-tx:#16202C;--mx-tx2:#455163;--mx-pill:rgba(255,255,255,.96);
@@ -16,8 +17,7 @@
   color:var(--mx-tx);-webkit-font-smoothing:antialiased;
 }
 #max-root.mx-dark{
-  --mx-cat:#E8EEF9;--mx-eye:#18202F;--mx-rim:rgba(130,170,255,.75);--mx-shadow:rgba(0,0,0,.5);
-  --mx-glass:rgba(18,23,32,.6);--mx-glass-solid:rgba(18,23,32,.94);--mx-spec:rgba(255,255,255,.28);
+  --mx-rim:rgba(170,170,178,.8);--mx-shadow:rgba(0,0,0,.55);--mx-halo:rgba(255,255,255,.2);--mx-focus:#F2F2F4;
   --mx-acc:#86ADFF;--mx-on-acc:#06101F;
   --mx-bg:rgba(21,26,34,.86);--mx-bg-solid:#151A22;--mx-bg2:rgba(255,255,255,.07);--mx-line:rgba(230,237,243,.16);
   --mx-tx:#E6EDF3;--mx-tx2:#B4BECD;--mx-pill:rgba(28,34,44,.96);
@@ -29,31 +29,33 @@
 
 /* ---------------------------------------------------------------- the walking rig (drawn by JS) */
 .mx-walker{position:fixed;right:10px;bottom:calc(12px + var(--mx-lift));z-index:91;width:96px;height:51px;pointer-events:none;color:var(--mx-cat)}
-.mx-dark .mx-walker{filter:drop-shadow(0 0 1px rgba(0,0,0,.6))}
+/* on dark pages the black silhouette gets a faint light edge so it never disappears */
+.mx-dark .mx-walker{filter:drop-shadow(0 0 .8px rgba(225,226,230,.85)) drop-shadow(0 0 5px rgba(225,226,230,.18))}
 .mx-walker svg{display:block;width:100%;height:100%;overflow:visible}
-.mx-sil{opacity:.88}
-.mx-wbody,.mx-wtail{fill:currentColor}
+.mx-sil{opacity:1}
+.mx-wbody,.mx-wtail{fill:currentColor;fill-rule:nonzero}
 .mx-wleg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
-.mx-wfar{opacity:.45}
+.mx-wfar{opacity:.62}
+.mx-wpaw{fill:currentColor}
 .mx-wth{fill:currentColor}
-.mx-wrim{fill:none;stroke:var(--mx-rim);stroke-width:1;stroke-linecap:round}
+.mx-wrim{fill:none;stroke:var(--mx-rim);stroke-width:.9;stroke-linecap:round;opacity:.9}
 .mx-wbsh,.mx-wsh{fill:var(--mx-shadow)}
-.mx-wbsh{opacity:.55}
+.mx-dark .mx-wbsh{opacity:.6}
 
 /* ---------------------------------------------------------------- the bubble (the button) */
 .mx-btn{all:unset;position:fixed;right:16px;bottom:calc(16px + var(--mx-lift));z-index:90;width:52px;height:52px;border-radius:50%;
   cursor:pointer;isolation:isolate;opacity:0;transform:scale(.85);-webkit-tap-highlight-color:transparent;
   transition:opacity .45s,transform .6s cubic-bezier(.34,1.4,.64,1),bottom .35s cubic-bezier(.16,1,.3,1)}
 .mx-btn.mx-on{opacity:1;transform:none}
-.mx-btn:focus-visible{outline:3px solid var(--mx-acc);outline-offset:4px}
+.mx-btn:focus-visible{outline:2.5px solid var(--mx-focus);outline-offset:4px}
 .mx-tilt,.mx-orb{position:absolute;inset:0}
 .mx-alive .mx-orb{animation:mx-float 5.4s ease-in-out infinite}
 .mx-glow,.mx-glow2{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
-.mx-glow{inset:-10px;background:conic-gradient(from 0deg,#7AA7FF,#A98BFF,#6FD6C9,#FFA3C7,#7AA7FF);filter:blur(11px);opacity:.3;transition:filter .4s}
-.mx-alive .mx-glow{animation:mx-breathe-glow 7.3s ease-in-out infinite,mx-spin 26s linear infinite}
-.mx-glow2{inset:-6px;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(140,170,255,.55) 45%,transparent 70%);opacity:0}
+.mx-glow{inset:-9px;background:radial-gradient(circle,var(--mx-halo) 45%,transparent 72%);filter:blur(4px);opacity:.8;transition:transform .4s,opacity .4s}
+.mx-alive .mx-glow{animation:mx-breathe-glow 7.3s ease-in-out infinite}
+.mx-glow2{inset:-6px;background:radial-gradient(circle,rgba(255,255,255,1),rgba(255,255,255,.6) 45%,transparent 70%);opacity:0}
 .mx-glass{position:absolute;inset:0;border-radius:50%;z-index:1;overflow:hidden;background:var(--mx-glass-solid);
-  border:1.5px solid var(--mx-ring);box-shadow:0 4px 16px rgba(10,20,50,.16),inset 0 1px 0 rgba(255,255,255,.35)}
+  border:1px solid var(--mx-ring);box-shadow:0 4px 14px rgba(0,0,0,.14),0 1px 2px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.8)}
 @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .mx-glass{background:var(--mx-glass);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6)}
 }
@@ -62,18 +64,18 @@
 .mx-badge{position:absolute;left:8px;top:8px;width:36px;height:36px;z-index:2;color:var(--mx-cat);transition:transform .5s cubic-bezier(.34,1.4,.64,1)}
 .mx-forming .mx-badge{opacity:0}
 .mx-badge svg{display:block;width:100%;height:100%;overflow:visible}
-.mx-cg{opacity:.9;transform-origin:20px 22px;transform-box:view-box}
+.mx-cg{opacity:1;transform-origin:20px 22px;transform-box:view-box}
 .mx-alive .mx-cg{animation:mx-breathe 4.7s ease-in-out infinite}
 .mx-ear{transform-box:view-box;transition:transform .35s cubic-bezier(.34,1.5,.64,1)}
 .mx-eyes{fill:var(--mx-eye);transform-box:fill-box;transform-origin:50% 50%}
 @keyframes mx-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2.5px) scale(1.016)}}
 @keyframes mx-breathe{0%,100%{transform:scale(1)}45%{transform:scale(1.022)}}
-@keyframes mx-breathe-glow{0%,100%{opacity:.24}40%{opacity:.36}70%{opacity:.3}}
+@keyframes mx-breathe-glow{0%,100%{opacity:.6}40%{opacity:1}70%{opacity:.8}}
 @keyframes mx-spin{to{rotate:360deg}}
 
 /* hover / keyboard focus: ears perk, glow warms, tooltip springs in */
 .mx-btn:hover .mx-ear,.mx-btn:focus-visible .mx-ear,.mx-tip-on .mx-ear,.mx-found .mx-ear{transform:scale(1.16)}
-.mx-btn:hover .mx-glow,.mx-btn:focus-visible .mx-glow,.mx-tip-on .mx-glow{filter:blur(11px) saturate(1.4) brightness(1.18) hue-rotate(-30deg)}
+.mx-btn:hover .mx-glow,.mx-btn:focus-visible .mx-glow,.mx-tip-on .mx-glow{transform:scale(1.12)}
 .mx-tip,.mx-cap{position:absolute;right:calc(100% + 12px);top:50%;white-space:nowrap;pointer-events:none;z-index:4;
   background:var(--mx-pill);color:var(--mx-tx);border:1px solid var(--mx-line);border-radius:999px;padding:5px 11px;
   font-size:13px;font-weight:600;line-height:1.3;box-shadow:0 4px 14px rgba(0,0,0,.12);opacity:0;
@@ -85,27 +87,15 @@
 .mx-btn:hover .mx-cap,.mx-btn:focus-visible .mx-cap,.mx-btn.mx-tip-on .mx-cap{opacity:0}
 
 /* states (RegMax.setState) */
-.mx-orbit{position:absolute;inset:-9px;z-index:3;opacity:0;transition:opacity .5s;pointer-events:none}
-.mx-orbit i{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;background:#8FB2FF;box-shadow:0 0 6px #8FB2FF}
-.mx-orbit i:nth-child(1){transform:rotate(0deg) translateY(-34px)}
-.mx-orbit i:nth-child(2){transform:rotate(130deg) translateY(-34px) scale(.75);background:#B49BFF;box-shadow:0 0 6px #B49BFF}
-.mx-orbit i:nth-child(3){transform:rotate(250deg) translateY(-34px) scale(.6);background:#6FD6C9;box-shadow:0 0 6px #6FD6C9}
-.mx-thinking .mx-orbit{opacity:1;animation:mx-spin 3.6s linear infinite}
-.mx-thinking .mx-glow{animation:mx-aurora 3.2s ease-in-out infinite,mx-spin 7s linear infinite}
+.mx-thinking .mx-glow{animation:mx-pulse 2.8s ease-in-out infinite}
 .mx-thinking .mx-cg{animation:mx-shimmer 2.2s ease-in-out infinite}
-.mx-burst{position:absolute;inset:0;z-index:3;pointer-events:none}
-.mx-burst i{position:absolute;left:50%;top:50%;width:2px;height:6px;margin:-3px -1px;border-radius:2px;background:#F2B84B;opacity:0;
-  transform:rotate(var(--a)) translateY(-24px)}
-.mx-found .mx-burst i{animation:mx-burst .7s cubic-bezier(.16,1,.3,1) 1 both}
-.mx-found .mx-glow{animation:mx-bright 1.6s ease-out 1 both,mx-spin 26s linear infinite}
-.mx-q{position:absolute;right:-7px;top:-12px;width:12px;height:16px;z-index:3;color:var(--mx-acc);opacity:0;pointer-events:none}
+.mx-thinking .mx-sheen{animation:mx-sweep 2.4s ease-in-out infinite}
+.mx-found .mx-glass{animation:mx-flash .7s ease-out 1}
 .mx-unsure .mx-badge{transform:rotate(-11deg)}
-.mx-unsure .mx-q{animation:mx-q 2s ease-in-out infinite}
-@keyframes mx-aurora{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.6;transform:scale(1.1)}}
-@keyframes mx-shimmer{0%,100%{opacity:.9}50%{opacity:.72}}
-@keyframes mx-burst{0%{opacity:0;transform:rotate(var(--a)) translateY(-20px) scaleY(.4)}25%{opacity:1}100%{opacity:0;transform:rotate(var(--a)) translateY(-38px) scaleY(1)}}
-@keyframes mx-bright{0%{opacity:.3}25%{opacity:.78}100%{opacity:.36}}
-@keyframes mx-q{0%,100%{opacity:.3;transform:translateY(1px)}50%{opacity:.95;transform:translateY(-1px)}}
+@keyframes mx-pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.14)}}
+@keyframes mx-shimmer{0%,100%{opacity:1}50%{opacity:.78}}
+@keyframes mx-sweep{0%{opacity:0;transform:translateX(-70%) rotate(20deg)}45%{opacity:.6}100%{opacity:0;transform:translateX(70%) rotate(20deg)}}
+@keyframes mx-flash{0%{box-shadow:0 0 0 0 rgba(255,255,255,0)}25%{box-shadow:0 0 0 6px rgba(255,255,255,.85),0 0 18px 6px rgba(255,255,255,.6)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
 
 /* ---------------------------------------------------------------- buttons */
 .mx-b{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;min-width:44px;
@@ -125,7 +115,7 @@
   .mxp{background:var(--mx-bg);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5)}
 }
 .mxp-h{display:flex;align-items:center;gap:8px;padding:2px 4px 2px 12px;flex:0 0 auto}
-.mxp-av{width:26px;height:26px;flex:0 0 auto;color:var(--mx-cat)}
+.mxp-av{width:30px;height:30px;flex:0 0 auto;color:var(--mx-cat);background:var(--mx-glass-solid);border:1px solid var(--mx-ring);border-radius:50%;padding:3px}
 .mxp-av svg{display:block;width:100%;height:100%}
 .mxp-h h2{flex:1;margin:0;font-size:14px;font-weight:700;color:var(--mx-tx)}
 .mxp-log{flex:1 1 auto;overflow-y:auto;padding:6px 12px 12px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
@@ -158,9 +148,6 @@
   #max-root *,#max-root *::before,#max-root *::after{animation:none!important;transition:none!important}
   .mx-walker{display:none}
   .mx-btn{transform:none;transition:opacity .45s!important}
-  .mx-thinking .mx-glow{opacity:.55}
-  .mx-found .mx-glow{opacity:.6}
-  .mx-thinking .mx-orbit{opacity:1}
-  .mx-unsure .mx-q{opacity:.9}
+  .mx-thinking .mx-glow{opacity:1;transform:scale(1.1)}
 }
 @media print{#max-root{display:none!important}}
