@@ -139,5 +139,23 @@ indicative (plus or minus about 12 points at n = 60).
 
 ## After the upgrade (engine v2, same day)
 
-See `docs/data/sources/metrics.json` for the numbers each run writes, and
-the PR description for the per-source status table.
+Measured on local runs, 2026-11-14 (first clean run, then incremental
+runs). `docs/data/sources/metrics.json` is rewritten by every run.
+
+| Metric | Legacy pipeline | Engine v2 |
+|---|---|---|
+| Sources respecting robots.txt | 16 of 36 (EUR-Lex and Google News forbid crawling) | 19 of 19 working (checked before every request; crawl-delay honoured) |
+| AML-dedicated primary sources | 3 (AMLA feeds) | 14 (CELLAR AML family and OJ L, 8 AMLA, NBB guidance, decisions and supervision news, Commission AML pages) |
+| Corrigenda of AML / payments / crypto acts | not detected | detected through CELLAR (8 in the last 400 days; English text often absent because a corrigendum may concern other language versions) |
+| Documents with text and locators | 0 | 124 (8,798 numbered paragraphs, 2.7 MB of JSON; 74 more queued, extracted at up to 24 per run) |
+| Recall against the authorities' own listing pages | not measured | EBA 9/9, ESMA 10/10, AMLA consultations 10/10 (coverage.json) |
+| Deadlines with a source link | AI-extracted only | 92 (77 from structured fields, 15 from stated text patterns with the quoted sentence) |
+| Topic tagging (golden / held-out) | not measured | precision 1.00 / 1.00, recall 0.99 / 0.79 (golden set was in view while the rules were written; held-out was not) |
+| Duplicate detection (85 labelled real pairs) | exact title only | precision 1.00, recall 0.89 (thresholds tuned on the same pairs) |
+| "Critical" on the 744-item archive (F-028) | 245 (32.9%), 124 informational, 232 distinct stories | 3 (0.4%) on the legacy archive; 64 of 400 cards in the v2 feed |
+| Run time | 3.3 min median in CI | 127 s first run, 153 s incremental (mostly polite waiting: EBA 10 s, FSMA 30 s crawl-delays); weekly NBB guidance crawl 267 s |
+| Requests per run | about 40 feeds plus about 15 pages | 49 to 62 daily, about 90 more once a week; budget 220 |
+
+Not measured yet: freshness of the new engine (needs several CI runs; a
+first run only backfills) and false-alert rate (needs reviewer verdicts on
+proposals).
