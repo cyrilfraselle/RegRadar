@@ -103,3 +103,32 @@ Public tools (no data layer, no client data) to build as small pages once
 the above is underway: UBO calculator (Art. 52 to 54, runs in the browser),
 regulatory deadlines calendar (from docs/data/sources/deadlines.json, with .ics
 export), applicability checker ('which laws apply to my firm').
+
+## Priority queue, additions (owner, 2026-11-14)
+MAX stream, design decisions to follow:
+1. **One ticket model for everything.** Every item that needs a person or an
+   approval is a ticket with the same structure (id, type tag, title, subject
+   link, owner, approver, status, priority, due date, history, comments) in one
+   store (the data layer's task/finding records), with a type tag such as
+   `high-risk-individual-approval`, `policy-review`, `control-test`,
+   `change-impact`, `gap-action`, `training`. One Kanban and one global list
+   show all tickets; filters by type tag, owner and status; each type may have
+   its own workflow and template (configurable). Atlassian-style: assign,
+   comment, approve, link to obligations, controls and documents.
+2. **Policies are links, not an editor.** Nobody writes policies in a tool.
+   The Policies module becomes a register of external documents (Word, Google
+   Docs, SharePoint, PDF) with a link or an uploaded copy, owner, version,
+   status, next review date, approval ticket, and the obligations and controls
+   it covers. Comparison and gap checks work on pasted or uploaded text (and
+   later through connectors to Google Docs/Drive and SharePoint). No policy
+   authoring UI.
+3. **Law reader popup.** Wherever an obligation shows 'Read the law', open a
+   side panel or modal reader at the exact article and paragraph (highlighting
+   the cited extract), closable with Esc, returning the user exactly where they
+   were (scroll position, selected obligation, filters); no page navigation.
+   Reusable component (docs/law-popup.js) used by Register, Topics, Controls,
+   Policies and Gap view; links to the full law.html page remain available.
+4. **Bulk obligation extraction.** Generate draft obligation records for every
+   article of the stored laws (AMLR first), each with verbatim excerpts
+   verified by script, topic tags, applicability and 'draft, not reviewed'
+   status; a review queue promotes drafts to verified after the CHECK stream.
