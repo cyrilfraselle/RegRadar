@@ -32,11 +32,12 @@
 
   var MONTHS = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
   // Highlight rules, in priority order (at one position the first rule that matches wins; then the longest match).
+  var CARVE_OUT = '(?:apply|affect|prohibit|replace|constitute|involve|be understood|be invoked|in any case)';   // "shall not apply" is a carve-out, not a duty or a ban
   var RULES = [
-    { cls: 'hl-proh', label: 'Prohibition', re: /\b(?:shall not|must not|shall refrain from|shall be prohibited|are prohibited|is prohibited|shall abstain)\b/g },
+    { cls: 'hl-proh', label: 'Prohibition', re: new RegExp('\\b(?:(?:shall|must) not(?! ' + CARVE_OUT + ')|shall refrain from|shall be prohibited|are prohibited|is prohibited|shall abstain)\\b', 'g') },
     { cls: 'hl-time', label: 'Deadline or period', re: new RegExp('\\b(?:(?:within|by|before|no later than|not exceed(?:ing)?|at least|for not less than|less than)\\s+)?(?:\\d{1,2} ' + MONTHS + ' \\d{4}|\\d+ (?:working days?|calendar days?|days?|hours?|months?|years?))\\b|\\bwithout (?:undue )?delay\\b|\\bas soon as practicable\\b|\\bpromptly\\b', 'g') },
     { cls: 'hl-num', label: 'Threshold or amount', re: /\bEUR \d{1,3}(?: \d{3})*\b|\b\d+(?:[.,]\d+)? ?%(?: plus one)?/g },
-    { cls: 'hl-duty', label: 'Obligation', re: /\b(?:shall|must)\b/g },
+    { cls: 'hl-duty', label: 'Obligation', re: new RegExp('\\b(?:shall|must)\\b(?! not ' + CARVE_OUT + ')', 'g') },
     { cls: 'hl-perm', label: 'Permission or option', re: /\bmay\b/g }
   ];
   function highlight(text) {
@@ -269,7 +270,7 @@
         if (c.due && c.due < t) gaps.push('Test overdue since ' + fmtDate(c.due));
         if (!owner) gaps.push('No owner');
         if (c.status !== 'approved') gaps.push('Not approved (' + (st ? st.label : c.status) + ')');
-        rows.push({ obligation: o.legal_basis, oid: o.id, name: c.title, owner: owner, status: st ? st.label : c.status, lastTest: last || '', result: res, gaps: gaps, demo: c.origin === 'demo' || (d.demo === true) });
+        rows.push({ obligation: o.legal_basis, oid: o.id, name: c.title, owner: owner, status: st ? st.label : c.status, lastTest: last || '', result: res, gaps: gaps, demo: c.origin === 'demo' || d.demo === true || Array.isArray(d.lib_obligations) });
       });
     });
     return rows;
@@ -281,10 +282,11 @@
     if (!R) return '<p class="empty">Your controls could not be read on this device (storage blocked or the data layer did not load). Open <a href="controls.html">Controls</a> to check.</p>';
     var rows = controlRows(sub); LAST_ROWS = rows;
     var gaps = rows.filter(function (r) { return r.gaps.length; }).length;
-    var h = '<p class="meta">' + (gaps ? chip(gaps + ' gap marker' + (gaps === 1 ? '' : 's'), 'gap') : chip('No gap marker', 'ok')) + ' <span class="hint">Read from this browser. Gap = no control, not tested, last test not effective, overdue, no owner or not approved.</span></p>';
+    var h = '<p class="meta">' + (gaps ? chip(gaps + ' gap marker' + (gaps === 1 ? '' : 's'), 'gap') : chip('No gap marker', 'ok')) + ' <span class="hint">Read from this browser. Gap = no control, not tested, last test not effective, overdue, no owner or not approved.' +
+      (rows.some(function (r) { return r.demo; }) ? ' Rows marked "Sample, fictional" come from the sample library shipped with RegRadar (fictional CF Bank) until you replace them.' : '') + '</span></p>';
     h += '<div class="tablewrap" tabindex="0" role="region" aria-label="Controls for ' + esc(sub.title) + '"><table class="tbl"><caption class="sr">Controls linked to the obligations of this subtopic</caption><thead><tr><th scope="col">Obligation</th><th scope="col">Control</th><th scope="col">Owner</th><th scope="col">Status</th><th scope="col">Last test</th><th scope="col">Gap</th></tr></thead><tbody>';
     rows.forEach(function (r) {
-      h += '<tr><td><a href="obligations.html#' + esc(r.oid) + '">' + esc(r.obligation) + '</a></td><td>' + (r.name ? esc(r.name) + (r.demo ? ' ' + chip('Demo', 'muted') : '') : '<span class="hint">None</span>') + '</td><td>' + esc(r.owner || '-') + '</td><td>' + esc(r.status || '-') + '</td>' +
+      h += '<tr><td><a href="obligations.html#' + esc(r.oid) + '">' + esc(r.obligation) + '</a></td><td>' + (r.name ? esc(r.name) + (r.demo ? ' ' + chip('Sample, fictional', 'muted') : '') : '<span class="hint">None</span>') + '</td><td>' + esc(r.owner || '-') + '</td><td>' + esc(r.status || '-') + '</td>' +
         '<td>' + (r.lastTest ? esc(fmtDate(r.lastTest)) + (r.result && r.result !== 'not_tested' ? '<br><span class="hint">' + esc(r.result.replace('_', ' ')) + '</span>' : '') : '-') + '</td>' +
         '<td>' + (r.gaps.length ? r.gaps.map(function (g) { return chip(g, 'gap'); }).join(' ') : chip('None', 'ok')) + '</td></tr>';
     });

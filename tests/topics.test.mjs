@@ -172,6 +172,7 @@ test('page helpers: highlight rules, search, citation, CSV (docs/topics.js)', ()
   assert.match(h, /<mark class="hl-num">EUR 10 000<\/mark>/);
   assert.match(h, /<mark class="hl-num">25 %<\/mark>/);
   assert.match(h, /<mark class="hl-time">by 10 July 2027<\/mark>/);
+  assert.equal(RT.highlight('This shall not apply to x.'), 'This shall not apply to x.', '"shall not apply" is a carve-out, not marked');
   assert.equal(RT.highlight('<b>x</b> shall'), '&lt;b&gt;x&lt;/b&gt; <mark class="hl-duty">shall</mark>', 'escapes before marking');
   const hits = RT.search(TOP, 'passport');
   assert.ok(hits.some((x) => x.id === 'cdd-natural'), 'search finds cdd-natural by "passport"');
