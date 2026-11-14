@@ -25,6 +25,7 @@
       { href: "home.html",                  t: "Briefing",           d: "What is due, waiting, coming up" },
       { href: "board.html",                 t: "Work board",         d: "Tasks and findings, assigned and tracked" },
       { href: "workspace.html",             t: "Register",           d: "Obligations, the law, coverage" },
+      { href: "topics.html",                t: "Topics",             d: "Law, AMLA, guidance and your controls by theme" },
       { href: "workspace.html?view=controls", t: "Controls",         d: "Your controls and their tests" },
       { href: "policies.html",              t: "Policies",           d: "Versions, sign-off, attestations" },
       { href: "risk-assessment.html",       t: "Risk",               d: "Business-wide risk assessment" },
@@ -45,7 +46,7 @@
   ];
 
   var GROUP_OF = {
-    "home.html": "max", "board.html": "max", "workspace.html": "max", "obligations.html": "max",
+    "home.html": "max", "topics.html": "max", "board.html": "max", "workspace.html": "max", "obligations.html": "max",
     "controls.html": "max", "dashboard.html": "max", "policies.html": "max", "risk-assessment.html": "max",
     "customer-risk.html": "max", "cases.html": "max", "actions.html": "max", "impact.html": "max", "ask.html": "max",
     "regwatch.html": "regwatch", "country-risk.html": "country", "law.html": "law",
