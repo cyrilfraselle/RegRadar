@@ -707,7 +707,7 @@ function mount(root, D) {
   var chBox = q('.chapters'), ticks = q('.ticks');
   D.chapters.forEach(function (c, i) {
     var b = document.createElement('button'); b.type = 'button'; b.className = 'chap';
-    b.innerHTML = '<span>' + fmt(c.t) + '</span>' + esc(c.n); b.setAttribute('aria-label', 'Go to ' + c.n + ', ' + fmt(c.t));
+    b.innerHTML = '<span>' + fmt(c.t) + '</span> ' + esc(c.n); b.title = 'Go to this scene';
     b.addEventListener('click', function () { seek(c.t + .001); }); chBox.appendChild(b);
     if (i) { var k = document.createElement('i'); k.style.left = (c.t / DUR * 100) + '%'; ticks.appendChild(k); }
   });
