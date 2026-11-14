@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "purpose": "Every source the RegWatch engine v2 follows or plans to follow. Hand-maintained configuration; the engine rewrites only each source's `runtime` block (last success, health, counts).",
+    "status_values": {
+      "working": "fetched and parsed by the engine",
+      "planned": "wanted, parser not written yet (or not verified)",
+      "blocked": "tried and refused: bot challenge, outage or HTTP error at the time of the check",
+      "excluded": "deliberately not fetched (robots.txt or terms of use)"
+    },
+    "types": ["legislation", "rts_its_draft", "consultation", "guideline", "supervisory_communication", "enforcement", "faq"],
+    "polling": {"daily": "every run", "weekly": "when the last successful check is 6.5 days old or more"},
+    "user_agent": "RegWatchBot/2.0 (regulatory-monitoring; robots.txt-aware)",
+    "budget": {"requests_per_run": 220, "docs_per_run": 24, "default_delay_s": 1.5},
+    "verified": "2026-11-14"
+  },
+  "sources": [
+    {
+      "id": "eurlex-cellar-aml-family", "authority": "EU Publications Office (EUR-Lex data)", "name": "OJ acts based on, amending, correcting or implementing the AML, payments and crypto acts",
+      "type": "legislation", "jurisdiction": "EU", "language": "en", "parser": "cellar_sparql", "status": "working",
+      "url": "https://publications.europa.eu/webapi/rdf/sparql",
+      "url_patterns": ["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:*", "http://publications.europa.eu/resource/celex/*"],
+      "params": {"query": "related", "lookback_days": 400, "limit": 300,
+                 "base_celex": ["32024R1624", "32024R1620", "32024L1640", "32023R1113", "32023R1114", "32015L0849", "32015L2366", "32009L0110", "32022R2554", "32015R0847"]},
+      "polling": "daily", "scope": "all", "max_docs": 8,
+      "notes": "Official CELLAR SPARQL endpoint (publications.europa.eu robots.txt: Allow /). Replaces the EUR-Lex RSS feeds: eur-lex.europa.eu/robots.txt disallows all agents. Includes corrigenda (CELEX ...R(nn)). Bases: AMLR, AMLAR, AMLD6, TFR, MiCA, AMLD4, PSD2, EMD2, DORA, old TFR."
+    },
+    {
+      "id": "eurlex-cellar-ojl-recent", "authority": "EU Publications Office (EUR-Lex data)", "name": "Official Journal L, last 21 days, filtered by topic",
+      "type": "legislation", "jurisdiction": "EU", "language": "en", "parser": "cellar_sparql", "status": "working",
+      "url": "https://publications.europa.eu/webapi/rdf/sparql",
+      "url_patterns": ["https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:*"],
+      "params": {"query": "oj_recent", "lookback_days": 21, "limit": 600},
+      "polling": "daily", "scope": "topics", "max_docs": 4,
+      "notes": "Catches new Level 1 acts and sanctions acts that are not linked to the base acts above. Only topic-tagged acts are kept as in scope."
+    },
+    {
+      "id": "amla-consultations", "authority": "AMLA", "name": "AMLA public consultations (feed)",
+      "type": "consultation", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.amla.europa.eu/node/8/rss_en", "url_patterns": ["https://www.amla.europa.eu/policy/public-consultations/*"],
+      "polling": "daily", "scope": "all", "max_docs": 4, "extract_attachments": true
+    },
+    {
+      "id": "amla-consultations-list", "authority": "AMLA", "name": "AMLA public consultations (listing page with deadlines)",
+      "type": "consultation", "jurisdiction": "EU", "language": "en", "parser": "html_list", "status": "working",
+      "url": "https://www.amla.europa.eu/policy/public-consultations_en", "url_patterns": ["https://www.amla.europa.eu/policy/public-consultations/*"],
+      "params": {"item": "article.ecl-content-item", "title": ".ecl-content-block__title a", "link": ".ecl-content-block__title a", "category": ".ecl-label"},
+      "polling": "daily", "scope": "all", "max_docs": 0,
+      "notes": "Gives status and the structured 'Deadline' field used for docs/data/sources/deadlines.json. Also the coverage reference for amla-consultations."
+    },
+    {
+      "id": "amla-instruments", "authority": "AMLA", "name": "AMLA regulatory instruments tracker (RTS, ITS, guidelines: status and final reports)",
+      "type": "rts_its_draft", "jurisdiction": "EU", "language": "en", "parser": "amla_instruments", "status": "working",
+      "url": "https://www.amla.europa.eu/policy/regulatory-instruments_en", "url_patterns": ["https://www.amla.europa.eu/document/download/*"],
+      "polling": "daily", "scope": "all", "max_docs": 4, "complete_listing": true,
+      "notes": "One entry per mandate; a status change (consultation closed -> final report published) is reported as 'changed'."
+    },
+    {
+      "id": "amla-news", "authority": "AMLA", "name": "AMLA news and press releases",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.amla.europa.eu/node/19/rss_en", "url_patterns": ["https://www.amla.europa.eu/news-media/news-articles/*", "https://www.amla.europa.eu/press-release-*"],
+      "polling": "daily", "scope": "all", "max_docs": 3
+    },
+    {
+      "id": "amla-library", "authority": "AMLA", "name": "AMLA document library",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.amla.europa.eu/node/105/rss_en", "url_patterns": ["https://www.amla.europa.eu/document/download/*"],
+      "polling": "daily", "scope": "all", "max_docs": 3,
+      "params": {"exclude_title": "privacy statement|record of processing|ropa|vacanc|recruit|procurement|tender|board meeting summar"}
+    },
+    {
+      "id": "amla-reports", "authority": "AMLA", "name": "AMLA reports and thematic notes",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.amla.europa.eu/node/267/rss_en", "polling": "daily", "scope": "all", "max_docs": 2
+    },
+    {
+      "id": "amla-hearings", "authority": "AMLA", "name": "AMLA public hearings",
+      "type": "consultation", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.amla.europa.eu/node/190/rss_en", "polling": "daily", "scope": "all", "max_docs": 1
+    },
+    {
+      "id": "amla-faqs", "authority": "AMLA", "name": "AMLA FAQs page",
+      "type": "faq", "jurisdiction": "EU", "language": "en", "parser": "page_snapshot", "status": "working",
+      "url": "https://www.amla.europa.eu/faqs_en", "polling": "weekly", "scope": "all", "max_docs": 1, "complete_listing": true,
+      "notes": "Institutional FAQs today (scams, mandate). Watched for change so a future AMLR Q&A section is caught."
+    },
+    {
+      "id": "eba-news", "authority": "EBA", "name": "EBA daily e-mail alert (split into publications)",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.eba.europa.eu/rss.xml", "params": {"digest": true},
+      "polling": "daily", "scope": "topics", "max_docs": 3, "rate_limit_s": 10,
+      "coverage": {"url": "https://www.eba.europa.eu/publications-and-media/press-releases", "parser": "html_list",
+                   "params": {"item": ".views-row", "title": "h3 a", "link": "h3 a", "date": ".teaser-columns__metadata"}},
+      "notes": "robots.txt crawl-delay 10 s is honoured. Kept in scope when a topic tag fires (AML/CFT, crypto, payments...)."
+    },
+    {
+      "id": "esma-news", "authority": "ESMA", "name": "ESMA news feed",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.esma.europa.eu/rss.xml", "polling": "daily", "scope": "topics", "max_docs": 3,
+      "coverage": {"url": "https://www.esma.europa.eu/press-news/esma-news", "parser": "html_list",
+                   "params": {"item": "article.node--view-mode-teaser", "title": ".search-title", "link": "a[href]", "date": ".search-date"}},
+      "notes": "MiCA and crypto output is what matters here; topic filter keeps it."
+    },
+    {
+      "id": "ec-aml-eu-level", "authority": "European Commission (DG FISMA)", "name": "Commission page: AML/CFT at EU level",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "page_snapshot", "status": "working",
+      "url": "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-eu-level_en",
+      "polling": "weekly", "scope": "all", "max_docs": 1, "complete_listing": true
+    },
+    {
+      "id": "ec-high-risk-third-countries", "authority": "European Commission (DG FISMA)", "name": "Commission page: EU policy on high-risk third countries",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "page_snapshot", "status": "working",
+      "url": "https://finance.ec.europa.eu/financial-crime/high-risk-third-countries_en",
+      "polling": "weekly", "scope": "all", "max_docs": 1, "complete_listing": true
+    },
+    {
+      "id": "nbb-supervision-news", "authority": "NBB", "name": "NBB financial supervision news (circulars, communications, decisions, Belgian laws)",
+      "type": "supervisory_communication", "jurisdiction": "BE", "language": "en", "parser": "html_list", "status": "working",
+      "url": "https://www.nbb.be/en/financial-supervision/news", "url_patterns": ["https://www.nbb.be/en/financial-supervision/news/*"],
+      "params": {"item": "div.views-row", "title": ".node-supervision-update-teaser__label", "link": "a[href]", "date": "time", "category": ".node-supervision-update-teaser__top-type"},
+      "polling": "daily", "scope": "topics", "max_docs": 3, "extract_attachments": true
+    },
+    {
+      "id": "nbb-aml-guidance", "authority": "NBB", "name": "NBB AML/CFT website: information and recommendations (14 chapters)",
+      "type": "guideline", "jurisdiction": "BE", "language": "en", "parser": "page_snapshot", "status": "working",
+      "urls": [
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/scope",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/risk-based-approach-and-overall-risk-assessment",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/organisation-and-internal-control",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/customer-and-transaction-due-diligence",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/analysis-atypical-transactions-and-reporting-suspicions",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/transfers-funds",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/financial-embargoes-and-asset-freezing",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/data-and-document-retention",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/supervision-nbb",
+        "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/sanctions"
+      ],
+      "polling": "weekly", "scope": "all", "max_docs": 10, "complete_listing": true,
+      "notes": "The NBB's own commentary on the Belgian AML law, chapter by chapter: the base corpus for Belgian obligations. The NBB marks the English text as an unofficial translation. Remaining chapters (introduction, definitions, personal data, cash, useful links) can be added to `urls`."
+    },
+    {
+      "id": "nbb-aml-decisions", "authority": "NBB", "name": "NBB AML: publication of individual decisions",
+      "type": "enforcement", "jurisdiction": "BE", "language": "en", "parser": "html_links", "status": "working",
+      "url": "https://www.nbb.be/en/financial-supervision/aml/publication-individual-decisions",
+      "params": {"href_pattern": "/en/financial-supervision/|\\.pdf", "text_pattern": "^Publication (of|concerning)", "min_title": 30},
+      "polling": "daily", "scope": "all", "max_docs": 2, "complete_listing": true, "extract_attachments": true
+    },
+    {
+      "id": "nbb-news", "authority": "NBB", "name": "NBB news feed",
+      "type": "supervisory_communication", "jurisdiction": "BE", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.nbb.be/en/news_rss.xml", "polling": "daily", "scope": "topics", "max_docs": 1
+    },
+    {
+      "id": "fsma-news", "authority": "FSMA", "name": "FSMA news feed",
+      "type": "supervisory_communication", "jurisdiction": "BE", "language": "en", "parser": "rss", "status": "working",
+      "url": "https://www.fsma.be/en/news-articles/rss.xml", "polling": "daily", "scope": "topics", "max_docs": 1, "rate_limit_s": 30,
+      "notes": "robots.txt crawl-delay 30 s is honoured, so FSMA document pages are fetched one per 30 s at most."
+    },
+    {
+      "id": "ctif-cfi", "authority": "CTIF-CFI (Belgian FIU)", "name": "CTIF-CFI news, typologies, annual reports",
+      "type": "supervisory_communication", "jurisdiction": "BE", "language": "fr", "parser": "", "status": "blocked",
+      "url": "https://www.ctif-cfi.be/", "polling": "weekly",
+      "notes": "2026-11-14: robots.txt and home page return HTTP 503 with a 'Website Maintenance' page. Re-check, then write a parser."
+    },
+    {
+      "id": "fatf-publications", "authority": "FATF", "name": "FATF publications (high-risk jurisdictions, guidance)",
+      "type": "guideline", "jurisdiction": "GLOBAL", "language": "en", "parser": "", "status": "blocked",
+      "url": "https://www.fatf-gafi.org/en/publications.html", "polling": "weekly",
+      "notes": "2026-11-14: HTTP 403 'Just a moment...' (Cloudflare JavaScript challenge) on robots.txt and pages. Not bypassed. High-risk-country changes still arrive via the Commission page and Delegated Regulations amending 2016/1675 in CELLAR."
+    },
+    {
+      "id": "eiopa-news", "authority": "EIOPA", "name": "EIOPA press releases",
+      "type": "supervisory_communication", "jurisdiction": "EU", "language": "en", "parser": "rss", "status": "planned",
+      "url": "https://www.eiopa.europa.eu/node/4816/rss_en", "polling": "daily",
+      "notes": "Feed works (used by the legacy pipeline). Not enabled: insurance output is outside the payments, e-money and crypto scope; enable with scope=topics if life insurers become a target."
+    },
+    {"id": "cssf-lu", "authority": "CSSF (Luxembourg)", "name": "CSSF circulars and AML/CFT", "type": "supervisory_communication", "jurisdiction": "LU", "language": "en", "parser": "", "status": "planned", "url": "https://www.cssf.lu/", "polling": "daily", "notes": "robots.txt disallows URLs with query strings (/*?*); use path URLs only."},
+    {"id": "dnb-nl", "authority": "DNB (Netherlands)", "name": "DNB supervision news", "type": "supervisory_communication", "jurisdiction": "NL", "language": "en", "parser": "", "status": "blocked", "url": "https://www.dnb.nl/", "polling": "daily", "notes": "2026-11-14: robots.txt returned HTTP 403."},
+    {"id": "acpr-fr", "authority": "Banque de France / ACPR", "name": "ACPR publications (LCB-FT)", "type": "supervisory_communication", "jurisdiction": "FR", "language": "fr", "parser": "", "status": "planned", "url": "https://acpr.banque-france.fr/", "polling": "daily", "notes": "robots.txt reachable, standard Drupal rules."},
+    {"id": "bafin-de", "authority": "BaFin (Germany)", "name": "BaFin publications (Geldwäsche)", "type": "supervisory_communication", "jurisdiction": "DE", "language": "de", "parser": "", "status": "planned", "url": "https://www.bafin.de/", "polling": "daily", "notes": "robots.txt reachable."},
+    {"id": "cbi-ie", "authority": "Central Bank of Ireland", "name": "CBI AML publications", "type": "supervisory_communication", "jurisdiction": "IE", "language": "en", "parser": "", "status": "planned", "url": "https://www.centralbank.ie/", "polling": "daily", "notes": "robots.txt reachable."},
+    {"id": "mfsa-mt", "authority": "MFSA (Malta)", "name": "MFSA circulars", "type": "supervisory_communication", "jurisdiction": "MT", "language": "en", "parser": "", "status": "planned", "url": "https://www.mfsa.mt/", "polling": "daily", "notes": "robots.txt crawl-delay 30 s."},
+    {"id": "lb-lt", "authority": "Bank of Lithuania", "name": "Bank of Lithuania supervision news", "type": "supervisory_communication", "jurisdiction": "LT", "language": "en", "parser": "", "status": "blocked", "url": "https://www.lb.lt/", "polling": "daily", "notes": "2026-11-14: robots.txt returned HTTP 403 (bot challenge)."},
+    {"id": "eurlex-rss", "authority": "EUR-Lex", "name": "EUR-Lex RSS feeds (used by the legacy pipeline)", "type": "legislation", "jurisdiction": "EU", "language": "en", "parser": "", "status": "excluded", "url": "https://eur-lex.europa.eu/EN/display-feed.rss?rssId=222", "polling": "daily", "notes": "eur-lex.europa.eu/robots.txt: 'User-agent: * Disallow: /'. Also served an Azure WAF JavaScript challenge on 2026-11-14. Replaced by the two CELLAR sources."},
+    {"id": "google-news", "authority": "Google News", "name": "Google News RSS searches (used by the legacy pipeline)", "type": "supervisory_communication", "jurisdiction": "GLOBAL", "language": "en", "parser": "", "status": "excluded", "url": "https://news.google.com/rss/search", "polling": "daily", "notes": "news.google.com/robots.txt disallows all agents. News is accessory: the engine clusters the legacy items it already holds but does not fetch Google News itself."}
+  ]
+}
