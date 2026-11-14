@@ -1,3 +1,14 @@
+# One learning path: the AMLR programme (structure since 2026-11-14)
+
+`docs/academy.html` is one page: the AMLR programme. Structure in `docs/data/academy/programme.json`:
+Level 0 Intro (topic 1, two short films), Level 1 Foundations (topics 2 to 4: who is covered, internal
+policies and risk assessment, CDD), Level 2 Practitioner (ownership, PEPs, monitoring, reporting and tipping
+off, then governance, records and data protection, crypto-assets and cash marked coming soon, then the
+sanctions context; DORA/MiCA optional). Each topic is one flow: Watch, Questions, Spot it, Decide, Read the
+law, Related in Max. Practice rooms (Laundromat, Ownership, Desk, workstation) are optional, at the end of a
+level. Evidence (certificate, register) is the last step (`#/evidence`); `#/programme` is a one-page
+summary generated from the data. The rest of this file is the earlier design note.
+
 # One learning path (built on epic/academy-path; see the PR for what is verified)
 
 Principle: one path, one "Next" button, short beats, and never more than

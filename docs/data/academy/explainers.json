@@ -331,7 +331,7 @@
     },
     {
      "title": "Your firm is a gate",
-     "caption": "Banks, financial institutions and crypto-asset service providers are all obliged entities under the EU's AML Regulation. RegRadar's applicability table (indicative) also lists payment and e-money firms as directly covered. It applies from 10 July 2027.",
+     "caption": "Banks and other financial institutions, and professions such as lawyers, notaries, accountants and estate agents for listed activities, are obliged entities under the EU's AML Regulation (Article 3). They stand between the client and the financial system. It applies from 10 July 2027.",
      "items": [
       {
        "t": "icon",
@@ -399,7 +399,7 @@
        "y": 92,
        "w": 92,
        "h": 66,
-       "text": "Payment\nnetwork",
+       "text": "Financial\nsystem",
        "tone": "mute",
        "d": 1.4
       },
@@ -482,6 +482,340 @@
        "text": "\"we have always done it this way\"",
        "tone": "crit",
        "d": 3.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "who-is-covered",
+   "title": "Who is covered: obliged entities",
+   "scenes": [
+    {
+     "title": "The rules apply to obliged entities",
+     "caption": "The AMLR applies to obliged entities. Article 3 lists them: credit institutions, financial institutions, and a list of other businesses and professions acting in the exercise of their professional activities.",
+     "items": [
+      {
+       "t": "text",
+       "x": 240,
+       "y": 34,
+       "text": "Article 3: obliged entities",
+       "tone": "mute",
+       "d": 0
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 70,
+       "w": 140,
+       "h": 80,
+       "text": "Credit\ninstitutions",
+       "tone": "brand",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 70,
+       "w": 140,
+       "h": 80,
+       "text": "Financial\ninstitutions",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 70,
+       "w": 140,
+       "h": 80,
+       "text": "Professions\nand businesses",
+       "tone": "warn",
+       "d": 1.5
+      },
+      {
+       "t": "text",
+       "x": 85,
+       "y": 185,
+       "text": "point (1)",
+       "tone": "mute",
+       "d": 0.6
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 185,
+       "text": "point (2)",
+       "tone": "mute",
+       "d": 1.2
+      },
+      {
+       "t": "text",
+       "x": 395,
+       "y": 185,
+       "text": "point (3)",
+       "tone": "mute",
+       "d": 1.8
+      }
+     ]
+    },
+    {
+     "title": "Financial institutions",
+     "caption": "Financial institutions are defined in Article 2. Among others they include investment firms, insurers insofar as they carry out life or other investment-related assurance, crypto-asset service providers, and undertakings carrying out certain listed financial activities (Article 2(1), point (6)(a)), such as payment services, issuing electronic money and currency exchange. Account information services alone are excluded. Illustrative, not the full list.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 30,
+       "w": 215,
+       "h": 90,
+       "text": "Investment\nfirms",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 30,
+       "w": 215,
+       "h": 90,
+       "text": "Life and investment\ninsurance",
+       "tone": "violet",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 150,
+       "w": 215,
+       "h": 90,
+       "text": "Crypto-asset\nservice providers",
+       "tone": "warn",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 150,
+       "w": 215,
+       "h": 90,
+       "text": "Payment, e-money,\ncurrency exchange",
+       "tone": "ok",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 275,
+       "text": "illustrative, not complete",
+       "tone": "mute",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "Professions and businesses",
+     "caption": "Point (3) covers, among others, auditors, external accountants and tax advisors; notaries, lawyers and other independent legal professionals in the situations set out in point (3)(b); trust or company service providers; estate agents acting as intermediaries; persons trading, as a regular or principal professional activity, in precious metals, stones and high-value goods; gambling and crowdfunding providers.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 25,
+       "w": 140,
+       "h": 70,
+       "text": "Accountants,\ntax advisors",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 25,
+       "w": 140,
+       "h": 70,
+       "text": "Notaries,\nlawyers",
+       "tone": "violet",
+       "d": 0.6
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 25,
+       "w": 140,
+       "h": 70,
+       "text": "Trust and company\nproviders",
+       "tone": "warn",
+       "d": 1.0
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 120,
+       "w": 140,
+       "h": 70,
+       "text": "Estate\nagents",
+       "tone": "ok",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 170,
+       "y": 120,
+       "w": 140,
+       "h": 70,
+       "text": "High-value\ngoods",
+       "tone": "brand",
+       "d": 1.8
+      },
+      {
+       "t": "box",
+       "x": 325,
+       "y": 120,
+       "w": 140,
+       "h": 70,
+       "text": "Gambling,\ncrowdfunding",
+       "tone": "crit",
+       "d": 2.2
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 230,
+       "text": "and others in Article 3, point (3)",
+       "tone": "mute",
+       "d": 2.6
+      }
+     ]
+    },
+    {
+     "title": "Lawyers: covered for listed work",
+     "caption": "A lawyer or notary is covered when acting for a client in any financial or real estate transaction, or when helping to plan or carry out listed transactions: for example buying or selling property or companies, managing client money, or setting up companies or trusts. Legal work outside these situations, such as advising on a client's legal position, is not covered by this point.",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 40,
+       "w": 200,
+       "h": 90,
+       "text": "Property or\ncompany deal",
+       "tone": "warn",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 20,
+       "y": 160,
+       "w": 200,
+       "h": 90,
+       "text": "Holding client\nmoney",
+       "tone": "warn",
+       "d": 0.8
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        220,
+        145,
+        280,
+        145
+       ],
+       "tone": "mute",
+       "d": 1.3,
+       "dur": 0.6
+      },
+      {
+       "t": "box",
+       "x": 280,
+       "y": 100,
+       "w": 180,
+       "h": 90,
+       "text": "Obliged entity\nfor this work",
+       "tone": "ok",
+       "d": 1.8
+      }
+     ]
+    },
+    {
+     "title": "Privilege has limits",
+     "caption": "Notaries, lawyers, other independent legal professionals, auditors, external accountants and tax advisors are exempt from the reporting duty for information obtained while ascertaining a client's legal position or representing them in proceedings. The exemption does not apply if they take part in laundering, its predicate offences or terrorist financing, or advise for those purposes, or know the client seeks advice for them. Member States may narrow it (Article 70(3)).",
+     "items": [
+      {
+       "t": "box",
+       "x": 20,
+       "y": 60,
+       "w": 200,
+       "h": 90,
+       "text": "Advice on the\nlegal position",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 120,
+       "y": 180,
+       "text": "reporting exemption",
+       "tone": "ok",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 260,
+       "y": 60,
+       "w": 200,
+       "h": 90,
+       "text": "Advice for\nlaundering",
+       "tone": "crit",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 360,
+       "y": 180,
+       "text": "no exemption",
+       "tone": "crit",
+       "d": 2.0
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 250,
+       "text": "Article 70(2)",
+       "tone": "mute",
+       "d": 2.4
+      }
+     ]
+    },
+    {
+     "title": "When it applies",
+     "caption": "The AMLR applies from 10 July 2027 (Article 90), and from 10 July 2029 for football agents and professional football clubs. Member States may exempt some low-risk gambling providers, some football clubs and occasional, very limited financial activities (Articles 4 to 6), and may apply the rules to other sectors they find exposed to risk. Check your national rules.",
+     "items": [
+      {
+       "t": "box",
+       "x": 30,
+       "y": 70,
+       "w": 190,
+       "h": 90,
+       "text": "10 July 2027\nmost entities",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 260,
+       "y": 70,
+       "w": 190,
+       "h": 90,
+       "text": "10 July 2029\nfootball",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 215,
+       "text": "plus national extensions",
+       "tone": "mute",
+       "d": 1.6
       }
      ]
     }
@@ -3729,7 +4063,7 @@
    "scenes": [
     {
      "title": "Two more rulebooks",
-     "caption": "AML is not the only EU framework for payment, e-money and crypto firms. DORA is about digital operational resilience: keeping ICT systems safe and running. MiCA is about crypto-assets: who may offer services and under what conditions.",
+     "caption": "AML is not the only EU framework for financial firms. DORA is about digital operational resilience: keeping ICT systems safe and running. MiCA is about crypto-assets: who may offer services and under what conditions.",
      "items": [
       {
        "t": "box",
