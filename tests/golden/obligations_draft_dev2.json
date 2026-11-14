@@ -1,0 +1,409 @@
+{
+ "_meta": {
+  "name": "Held-out golden sample (seed 99) for the obligations-draft extractor",
+  "method": "40 sentences/points drawn with random.Random(99).sample from the pool of 540 plain-line sentences and marker-less-lead-in points of the non-skipped AMLR articles (same splitting logic as the extractor; list points folded into a marker-bearing lead-in are not pool items). Drawn AFTER the extractor rules were frozen against the development sample (tests/golden/obligations_draft_dev.json, seed 7), and labelled by hand before comparing with extractor output; no rule was changed after seeing these labels. One labeller (the builder, an AI, not a lawyer): NOT an independent legal label. Labelling question: does this sentence or point, read alone, state a duty or prohibition on an identifiable actor? NO for: definitions, scope or allocation rules, deeming rules, permissions ('may', 'shall be permitted'), list points that only complete a lead-in, rulemaking and designation mandates (RTS, guidelines, delegated or implementing acts and their timing, AMLA reviewing standards), and text fragments. 'binds' = the actor the duty falls on (null = ambiguous, not scored).",
+  "seed": 99
+ },
+ "items": [
+  {
+   "n": 0,
+   "celex": "32024R1624",
+   "article": "67",
+   "paragraph": "1",
+   "point": null,
+   "text": "Legal entities created outside the Union and trustees of express trusts or persons holding an equivalent position in a similar legal arrangement that are administered outside the Union or that reside or are established outside the Union shall submit beneficial ownership information pursuant to Article 62 to the central register of the Member State where they:",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 1,
+   "celex": "32024R1624",
+   "article": "63",
+   "paragraph": "4",
+   "point": null,
+   "text": "For the purpose of this paragraph, 'senior managing officials' means the natural persons who are the executive members of the management body, as well as the natural persons who exercise executive functions within a legal entity and are responsible, and accountable to the management body, for the day-to-day management of the entity.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 2,
+   "celex": "32024R1624",
+   "article": "29",
+   "paragraph": "1",
+   "point": null,
+   "text": "Third countries with significant strategic deficiencies in their national AML/CFT regimes shall be identified by the Commission and designated as 'high-risk third countries'.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 3,
+   "celex": "32024R1624",
+   "article": "26",
+   "paragraph": "1",
+   "point": null,
+   "text": "Where business relationships cover more than one product or service, obliged entities shall ensure that the customer due diligence measures cover all those products and services.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 4,
+   "celex": "32024R1624",
+   "article": "31",
+   "paragraph": "9",
+   "point": null,
+   "text": "That implementing act shall set out, in particular:",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 5,
+   "celex": "32024R1624",
+   "article": "35",
+   "paragraph": null,
+   "point": "a",
+   "text": "countermeasures that obliged entities are to apply to persons and legal entities involving high-risk third countries and, where relevant, other countries posing a threat to the Union's financial system consisting in:",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 6,
+   "celex": "32024R1624",
+   "article": "19",
+   "paragraph": "8",
+   "point": null,
+   "text": "Providers of gambling services may fulfil their obligation to apply customer due diligence measures referred to in Article 20(1), point (a), by identifying the customer and verifying the customer's identity upon entry to the casino or other physical gambling premises, provided that they have systems in place that enable them to attribute transactions to specific customers.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 7,
+   "celex": "32024R1624",
+   "article": "16",
+   "paragraph": "2",
+   "point": null,
+   "text": "Compliance functions shall be established at the level of the group.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 8,
+   "celex": "32024R1624",
+   "article": "36",
+   "paragraph": null,
+   "point": null,
+   "text": "Where credit institutions and financial institutions decide to terminate cross-border correspondent relationships for reasons relating to AML/CFT policy, they shall document their decision.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 9,
+   "celex": "32024R1624",
+   "article": "63",
+   "paragraph": "6",
+   "point": null,
+   "text": "The identity and contact details of the person responsible for retaining the information shall be reported to the central registers.",
+   "is_obligation": true,
+   "binds": null
+  },
+  {
+   "n": 10,
+   "celex": "32024R1624",
+   "article": "16",
+   "paragraph": "2",
+   "point": null,
+   "text": "The compliance manager referred to in the first subparagraph shall regularly report to the management body in its management function of the parent undertaking on the implementation of the group-wide policies, procedures and controls.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 11,
+   "celex": "32024R1624",
+   "article": "79",
+   "paragraph": "3",
+   "point": null,
+   "text": "However, companies with securities listed on a regulated market or whose shares are issued as intermediated securities either through immobilisation within the meaning of Article 2(1), point (3), of that Regulation or through a direct issuance in dematerialised form within the meaning of Article 2(1), point (4), of that Regulation shall be permitted to issue new and maintain existing bearer shares.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 12,
+   "celex": "32024R1624",
+   "article": "70",
+   "paragraph": "1",
+   "point": null,
+   "text": "By way of derogation from Article 69(1), Member States may allow obliged entities referred to in Article 3, point (3)(a) and (b), to transmit the information referred to in Article 69(1) to a self-regulatory body designated by the Member State.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 13,
+   "celex": "32024R1624",
+   "article": "30",
+   "paragraph": "2",
+   "point": null,
+   "text": "Those delegated acts shall be adopted within 20 calendar days of the Commission ascertaining that the criteria in point (a) or (b) of the first subparagraph are met.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 14,
+   "celex": "32024R1624",
+   "article": "63",
+   "paragraph": "2",
+   "point": null,
+   "text": "A legal entity shall report beneficial ownership information to the central register without undue delay after its creation.",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 15,
+   "celex": "32024R1624",
+   "article": "64",
+   "paragraph": "2",
+   "point": null,
+   "text": "The trustee or the person holding an equivalent position in a similar legal arrangement shall regularly verify that the information they hold over the legal arrangement pursuant to paragraph 1, first subparagraph, is updated.",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 16,
+   "celex": "32024R1624",
+   "article": "29",
+   "paragraph": "7",
+   "point": null,
+   "text": "Where the Commission considers that the specific additional measures applied by a Member State under paragraph 6 are not necessary to mitigate specific risks stemming from that third country, it may decide, by means of an implementing act, that the Member State shall put an end to the specific additional countermeasure.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 17,
+   "celex": "32024R1624",
+   "article": "21",
+   "paragraph": "3",
+   "point": null,
+   "text": "Obliged entities shall keep record of the actions taken in order to comply with the requirement to apply customer due diligence measures, including records of the decisions taken and the relevant supporting documents and justifications.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 18,
+   "celex": "32024R1624",
+   "article": "76",
+   "paragraph": "3",
+   "point": null,
+   "text": "Obliged entities shall be able to process personal data covered by Article 10 of Regulation (EU) 2016/679 provided that they comply with the conditions laid down in paragraph 2 of this Article and that:",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 19,
+   "celex": "32024R1624",
+   "article": "56",
+   "paragraph": null,
+   "point": null,
+   "text": "That notification shall include the specific categories of entities, description of characteristics and, where applicable, legal basis under the national law of the Member State concerned.",
+   "is_obligation": true,
+   "binds": null
+  },
+  {
+   "n": 20,
+   "celex": "32024R1624",
+   "article": "16",
+   "paragraph": "1",
+   "point": null,
+   "text": "To this end, a parent undertaking shall perform a group-wide risk assessment, taking into account the business-wide risk assessment performed by all branches and subsidiaries of the group, and establish and implement group-wide policies, procedures and controls, including on data protection and on information sharing within the group for AML/CFT purposes and to ensure that employees within the group are aware of the requirements arising from this Regulation.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 21,
+   "celex": "32024R1624",
+   "article": "16",
+   "paragraph": "2",
+   "point": null,
+   "text": "Those functions shall include a compliance manager at the level of the group and, where justified by the activities carried out at group level, a compliance officer.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 22,
+   "celex": "32024R1624",
+   "article": "76",
+   "paragraph": "5",
+   "point": "b",
+   "text": "any decision to enter or refuse to enter into or maintain a business relationship with a customer or to carry out or refuse to carry out an occasional transaction for a customer, or to increase or decrease the extent of the customer due diligence measures applied pursuant to Article 20 of this Regulation, is subject to meaningful human intervention to ensure the accuracy and appropriateness of such a decision; and",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 23,
+   "celex": "32024R1624",
+   "article": "51",
+   "paragraph": null,
+   "point": "b",
+   "text": "control, directly or indirectly, the corporate or other legal entity, through ownership interest or via other means.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 24,
+   "celex": "32024R1624",
+   "article": "66",
+   "paragraph": null,
+   "point": null,
+   "text": "Legal entities shall also report the information referred to in the first paragraph to obliged entities when the obliged entities are applying customer due diligence measures in accordance with Chapter III.",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 25,
+   "celex": "32024R1624",
+   "article": "10",
+   "paragraph": "1",
+   "point": null,
+   "text": "Obliged entities shall take appropriate measures, proportionate to the nature of their business, including its risks and complexity, and their size, to identify and assess the risks of money laundering and terrorist financing to which they are exposed, as well as the risks of non-implementation and evasion of targeted financial sanctions, taking into account at least:",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 26,
+   "celex": "32024R1624",
+   "article": "39",
+   "paragraph": "2",
+   "point": null,
+   "text": "To that end, crypto-asset service providers shall have in place internal policies, procedures and controls to detect any attempt to use their accounts for the provision of unregulated crypto-asset services.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 27,
+   "celex": "32024R1624",
+   "article": "5",
+   "paragraph": "1",
+   "point": null,
+   "text": "Member States may decide to exempt, in full or in part, professional football clubs that participate in a division lower than the highest division of the national football league from the requirements set out in this Regulation on the basis of proven low risk posed by the nature and the scale of operation of such professional football clubs.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 28,
+   "celex": "32024R1624",
+   "article": "70",
+   "paragraph": "2",
+   "point": "b",
+   "text": "provide legal advice for the purposes of money laundering, its predicate offences or terrorist financing; or",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 29,
+   "celex": "32024R1624",
+   "article": "29",
+   "paragraph": "2",
+   "point": null,
+   "text": "Those delegated acts shall be adopted within 20 calendar days of the Commission ascertaining that the criteria in point (a), (b) or (c) of the first subparagraph are met.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 30,
+   "celex": "32024R1624",
+   "article": "60",
+   "paragraph": null,
+   "point": null,
+   "text": "Where discretionary trusts meet the conditions laid down in Article 59(2), only the class of objects of a power and default takers shall be identified.",
+   "is_obligation": true,
+   "binds": null
+  },
+  {
+   "n": 31,
+   "celex": "32024R1624",
+   "article": "15",
+   "paragraph": null,
+   "point": null,
+   "text": "Where a natural person falling within any of the categories listed in Article 3, point (3) performs professional activities as an employee of a legal person, the requirements laid down in this Regulation shall apply to that legal person rather than to the natural person.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 32,
+   "celex": "32024R1624",
+   "article": "76",
+   "paragraph": "4",
+   "point": null,
+   "text": "Personal data shall be processed by obliged entities on the basis of this Regulation only for the purposes of the prevention of money laundering and terrorist financing and shall not be further processed in a way that is incompatible with those purposes.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 33,
+   "celex": "32024R1624",
+   "article": "83",
+   "paragraph": "1",
+   "point": null,
+   "text": "(",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 34,
+   "celex": "32024R1624",
+   "article": "28",
+   "paragraph": "3",
+   "point": null,
+   "text": "AMLA shall review regularly the regulatory technical standards and, if necessary, prepare and submit to the Commission the draft for updating those standards in order, inter alia, to take account of innovation and technological developments.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 35,
+   "celex": "32024R1624",
+   "article": "11",
+   "paragraph": "1",
+   "point": null,
+   "text": "The compliance manager shall also ensure that sufficient human and material resources are allocated to that end.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 36,
+   "celex": "32024R1624",
+   "article": "59",
+   "paragraph": "3",
+   "point": null,
+   "text": "Member State shall notify to the Commission the categories of legal entities, express trusts or similar legal arrangements under paragraph 2, together with a justification based on the specific risk assessment.",
+   "is_obligation": true,
+   "binds": "member_state"
+  },
+  {
+   "n": 37,
+   "celex": "32024R1624",
+   "article": "19",
+   "paragraph": "7",
+   "point": "a",
+   "text": "the payment instrument is not reloadable, and the amount stored electronically does not exceed EUR 150 or the equivalent in national currency;",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 38,
+   "celex": "32024R1624",
+   "article": "22",
+   "paragraph": "3",
+   "point": null,
+   "text": "Credit institutions and financial institutions shall obtain information to identify and verify the identity of the natural or legal persons using any virtual IBAN they issue, and the associated bank or payment account.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 39,
+   "celex": "32024R1624",
+   "article": "74",
+   "paragraph": "3",
+   "point": null,
+   "text": "Reporting pursuant to paragraphs 1 and 2 shall be carried out within the deadlines imposed by the FIU.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  }
+ ]
+}

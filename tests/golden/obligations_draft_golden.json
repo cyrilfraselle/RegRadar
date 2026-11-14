@@ -1,0 +1,409 @@
+{
+ "_meta": {
+  "name": "Held-out golden sample (seed 123) for the obligations-draft extractor",
+  "method": "40 sentences/points drawn with random.Random(123).sample from the pool of 544 plain-line sentences and marker-less-lead-in points of the non-skipped AMLR articles (same splitting logic as the extractor; list points folded into a marker-bearing lead-in are not pool items). Drawn AFTER the extractor rules were frozen against the development samples (tests/golden/obligations_draft_dev.json seed 7 and obligations_draft_dev2.json seed 99; two rounds of rule fixes: carve-outs, rulemaking and permission rules), and labelled by hand before comparing with extractor output; no rule was changed after seeing these labels. One labeller (the builder, an AI, not a lawyer): NOT an independent legal label. Labelling question: does this sentence or point, read alone, state a duty or prohibition on an identifiable actor? NO for: definitions, scope or allocation rules, deeming rules, permissions ('may', 'shall be permitted'), list points that only complete a lead-in, rulemaking and designation mandates (RTS, guidelines, delegated or implementing acts and their timing, AMLA reviewing standards), and text fragments. 'binds' = the actor the duty falls on (null = ambiguous, not scored).",
+  "seed": 123
+ },
+ "items": [
+  {
+   "n": 0,
+   "celex": "32024R1624",
+   "article": "11",
+   "paragraph": "1",
+   "point": null,
+   "text": "The compliance manager shall be responsible for receiving information on significant or material weaknesses in such policies, procedures and controls.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 1,
+   "celex": "32024R1624",
+   "article": "39",
+   "paragraph": "2",
+   "point": null,
+   "text": "In addition to the requirement laid down in paragraph 1, crypto-asset service providers shall ensure that their accounts are not used by shell institutions to provide crypto-asset services.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 2,
+   "celex": "32024R1624",
+   "article": "16",
+   "paragraph": "2",
+   "point": null,
+   "text": "Those functions shall include a compliance manager at the level of the group and, where justified by the activities carried out at group level, a compliance officer.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 3,
+   "celex": "32024R1624",
+   "article": "67",
+   "paragraph": "5",
+   "point": null,
+   "text": "In the cases covered by paragraph 1, legal entities created outside the Union and trustees of express trusts or persons holding an equivalent position in a similar legal arrangement that are administered outside the Union or that reside or are established outside the Union shall report any change to the beneficial ownership information submitted to the central register pursuant to paragraph 1 without undue delay, and in any case, within 28 calendar days thereof.",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 4,
+   "celex": "32024R1624",
+   "article": "39",
+   "paragraph": "1",
+   "point": null,
+   "text": "Credit institutions and financial institutions shall not enter into, or continue, a correspondent relationship with a shell institution.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 5,
+   "celex": "32024R1624",
+   "article": "18",
+   "paragraph": "2",
+   "point": null,
+   "text": "The obliged entity shall remain fully liable for any action, whether an act of commission or omission, connected to the outsourced tasks that are carried out by service providers.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 6,
+   "celex": "32024R1624",
+   "article": "8",
+   "paragraph": "3",
+   "point": null,
+   "text": "Where this Regulation allows Member States to adopt additional rules applicable to obliged entities, obliged entities shall comply with the national rules of the Member State in which they are established.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 7,
+   "celex": "32024R1624",
+   "article": "63",
+   "paragraph": "4",
+   "point": null,
+   "text": "In the cases referred to in paragraph 3 of this Article, when providing beneficial ownership information in accordance with Article 20 of this Regulation and Article 10 of Directive (EU) 2024/1640, legal entities shall provide the following:",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 8,
+   "celex": "32024R1624",
+   "article": "53",
+   "paragraph": "4",
+   "point": "b",
+   "text": "relationships between family members;",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 9,
+   "celex": "32024R1624",
+   "article": "56",
+   "paragraph": null,
+   "point": null,
+   "text": "The Commission shall communicate the notification referred to in the first paragraph to other Member States.",
+   "is_obligation": true,
+   "binds": "commission"
+  },
+  {
+   "n": 10,
+   "celex": "32024R1624",
+   "article": "22",
+   "paragraph": "2",
+   "point": null,
+   "text": "Obliged entities shall keep records of the actions taken as well as of the difficulties encountered during the identification process, which led to resorting to the identification of a senior managing official.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 11,
+   "celex": "32024R1624",
+   "article": "19",
+   "paragraph": "9",
+   "point": null,
+   "text": "Those draft regulatory technical standards shall specify:",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 12,
+   "celex": "32024R1624",
+   "article": "56",
+   "paragraph": null,
+   "point": null,
+   "text": "Each Member State shall notify to the Commission by 10 October 2027 a list of the types of legal entities existing under its national law with beneficial owners identified in accordance with Article 51 and Article 52(4).",
+   "is_obligation": true,
+   "binds": "member_state"
+  },
+  {
+   "n": 13,
+   "celex": "32024R1624",
+   "article": "53",
+   "paragraph": "4",
+   "point": "c",
+   "text": "use of formal or informal nominee arrangements.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 14,
+   "celex": "32024R1624",
+   "article": "33",
+   "paragraph": "4",
+   "point": null,
+   "text": "Obliged entities shall verify on a regular basis that the conditions for the application of simplified due diligence measures continue to exist.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 15,
+   "celex": "32024R1624",
+   "article": "22",
+   "paragraph": "5",
+   "point": null,
+   "text": "In the case of discretionary trusts, an obliged entity shall obtain sufficient information concerning the objects of a power and default takers to enable it to establish the identity of the beneficiary at the time of the exercise by the trustees of their power of discretion, or at the time that the default takers become the beneficiaries due to the trustees' failure to exercise their power of discretion.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 16,
+   "celex": "32024R1624",
+   "article": "4",
+   "paragraph": "1",
+   "point": "a",
+   "text": "casinos;",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 17,
+   "celex": "32024R1624",
+   "article": "73",
+   "paragraph": "3",
+   "point": null,
+   "text": "By way of derogation from paragraph 1 of this Article, disclosure may take place between obliged entities that belong to the same group, or between such entities and their branches and subsidiaries established in third countries, provided that those branches and subsidiaries fully comply with the group-wide policies and procedures, including procedures for sharing information within the group, in accordance with Article 16, and that the group-wide policies and procedures comply with the requirements set out in this Regulation.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 18,
+   "celex": "32024R1624",
+   "article": "63",
+   "paragraph": "2",
+   "point": null,
+   "text": "The beneficial owners of a legal entity as well as the legal entities and, in the case of legal arrangements, their trustees or persons holding an equivalent position, which are part of the ownership or control structure of a legal entity, shall provide that legal entity with all the information necessary for the legal entity to comply with the requirements of this Chapter or to respond to any request for additional information received pursuant to Article 10(4) of Directive (EU) 2024/1640.",
+   "is_obligation": true,
+   "binds": "legal_entity"
+  },
+  {
+   "n": 19,
+   "celex": "32024R1624",
+   "article": "11",
+   "paragraph": "7",
+   "point": null,
+   "text": "Those functions may be cumulated with other functions.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 20,
+   "celex": "32024R1624",
+   "article": "5",
+   "paragraph": "1",
+   "point": null,
+   "text": "Member States may decide to exempt, in full or in part, professional football clubs that participate in the highest division of the national football league and that have a total annual turnover of less than EUR 5 000 000, or the equivalent in national currency, for each of the previous 2 calendar years from the requirements set out in this Regulation on the basis of the proven low risk posed by the nature and the scale of operation of such professional football clubs.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 21,
+   "celex": "32024R1624",
+   "article": "51",
+   "paragraph": null,
+   "point": "b",
+   "text": "control, directly or indirectly, the corporate or other legal entity, through ownership interest or via other means.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 22,
+   "celex": "32024R1624",
+   "article": "75",
+   "paragraph": "3",
+   "point": null,
+   "text": "The information referred to in the first subparagraph shall only be exchanged to the extent that it is necessary for the purposes of carrying out the activities of the partnership for information sharing.",
+   "is_obligation": true,
+   "binds": null
+  },
+  {
+   "n": 23,
+   "celex": "32024R1624",
+   "article": "17",
+   "paragraph": "3",
+   "point": null,
+   "text": "By 10 July 2026, AMLA shall develop draft regulatory technical standards and submit them to the Commission for adoption.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 24,
+   "celex": "32024R1624",
+   "article": "10",
+   "paragraph": "1",
+   "point": null,
+   "text": "Prior to the launch of new products, services or business practices, including the use of new delivery channels and new or developing technologies, in conjunction with new or pre-existing products and services or before starting to provide an existing service or product to a new customer segment or in a new geographical area, obliged entities shall identify and assess, in particular, the related money laundering and terrorist financing risks and take appropriate measures to manage and mitigate those risks.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 25,
+   "celex": "32024R1624",
+   "article": "16",
+   "paragraph": "3",
+   "point": null,
+   "text": "The policies, procedures and controls pertaining to the sharing of information referred to in paragraph 1 shall require obliged entities within the group to exchange information when such sharing is relevant for the purposes of customer due diligence and money laundering and terrorist financing risk management.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 26,
+   "celex": "32024R1624",
+   "article": "20",
+   "paragraph": "3",
+   "point": null,
+   "text": "By 10 July 2026, AMLA shall issue guidelines on the risk variables and risk factors to be taken into account by obliged entities when entering into business relationships or carrying out occasional transactions.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 27,
+   "celex": "32024R1624",
+   "article": "19",
+   "paragraph": "4",
+   "point": null,
+   "text": "The first subparagraph of this paragraph shall not apply where Member States have in place, pursuant to Article 80(2) and (3), a limit to large cash payments of EUR 3 000 or less, or the equivalent in national currency, except in the cases covered by paragraph 4, point (b) of that Article.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 28,
+   "celex": "32024R1624",
+   "article": "6",
+   "paragraph": "3",
+   "point": null,
+   "text": "It shall be sufficiently low in order to ensure that the types of transactions in question are an impractical and inefficient method for money laundering or terrorist financing, and shall not exceed EUR 1 000 or the equivalent in national currency, irrespective of the means of payment.",
+   "is_obligation": true,
+   "binds": null
+  },
+  {
+   "n": 29,
+   "celex": "32024R1624",
+   "article": "44",
+   "paragraph": null,
+   "point": null,
+   "text": "Those measures shall be taken no later than at the time of the payout or at the time of the assignment, in whole or in part, of the policy.",
+   "is_obligation": true,
+   "binds": null
+  },
+  {
+   "n": 30,
+   "celex": "32024R1624",
+   "article": "71",
+   "paragraph": "1",
+   "point": null,
+   "text": "Obliged entities shall refrain from carrying out transactions which they know or suspect to be related to proceeds of criminal activity or to terrorist financing until they have submitted a report in accordance with Article 69(1), first subparagraph, point (a), and have complied with any further specific instructions from the FIU or other competent authority in accordance with the applicable law.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 31,
+   "celex": "32024R1624",
+   "article": "77",
+   "paragraph": "2",
+   "point": null,
+   "text": "By way of derogation from paragraph 1, obliged entities may decide to replace the retention of copies of the information by a retention of the references to such information, provided that the nature and method of retention of such information ensure that the obliged entities can provide immediately to competent authorities the information and that the information cannot be modified or altered.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 32,
+   "celex": "32024R1624",
+   "article": "38",
+   "paragraph": "7",
+   "point": null,
+   "text": "Credit institutions and financial institutions shall document any decision taken pursuant to this Article.",
+   "is_obligation": true,
+   "binds": "obliged_entity"
+  },
+  {
+   "n": 33,
+   "celex": "32024R1624",
+   "article": "76",
+   "paragraph": "5",
+   "point": null,
+   "text": "(",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 34,
+   "celex": "32024R1624",
+   "article": "8",
+   "paragraph": "1",
+   "point": null,
+   "text": "The first subparagraph shall not apply to obliged entities subject to specific notification procedures for the exercise of the freedom of establishment and of the freedom to provide services under other Union legal acts or to cases where the obliged entity is subject to specific authorisation requirements in order to operate in the territory of that other Member State.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 35,
+   "celex": "32024R1624",
+   "article": "48",
+   "paragraph": "3",
+   "point": "b",
+   "text": "the group applies AML/CFT policies and procedures, customer due diligence measures and rules on record-keeping that are fully in compliance with this Regulation, or with equivalent rules in third countries;",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 36,
+   "celex": "32024R1624",
+   "article": "57",
+   "paragraph": "3",
+   "point": null,
+   "text": "Member States shall notify to the Commission by 10 October 2027 a list of types of legal entities, of which the beneficial owners are identified in accordance with paragraph 1.",
+   "is_obligation": true,
+   "binds": "member_state"
+  },
+  {
+   "n": 37,
+   "celex": "32024R1624",
+   "article": "83",
+   "paragraph": "1",
+   "point": null,
+   "text": "Pursuant to Article 8(3) of Regulation (EU, Euratom) No 883/2013 of the European Parliament and of the Council",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 38,
+   "celex": "32024R1624",
+   "article": "77",
+   "paragraph": "4",
+   "point": null,
+   "text": "Where, on 10 July 2027, legal proceedings concerned with the prevention, detection, investigation or prosecution of suspected money laundering or terrorist financing are pending in a Member State, and an obliged entity holds information or documents relating to those pending proceedings, the obliged entity may retain that information or those documents for a period of 5 years from 10 July 2027.",
+   "is_obligation": false,
+   "binds": null
+  },
+  {
+   "n": 39,
+   "celex": "32024R1624",
+   "article": "29",
+   "paragraph": "5",
+   "point": null,
+   "text": "The delegated act referred to in paragraph 2 shall identify among the countermeasures listed in Article 35 the specific countermeasures mitigating specific risks stemming from each high-risk third country.",
+   "is_obligation": false,
+   "binds": null
+  }
+ ]
+}
