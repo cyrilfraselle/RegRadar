@@ -32,3 +32,5 @@ Decided: capture it in VISION.md and ROADMAP.md; make the shared entity graph
 calendar and import wizards in Phase 1.
 
 Deferred (owner): first buyer and size, backend and hosting, first connectors.
+
+- 2026-11-14 (MAX): Topic view `docs/topics.html`: 10 themes, 40 subtopics, 114 verbatim AMLR/TFR extracts checked by `tests/topics.test.mjs`; AMLA mandates quoted; NBB/EBA/FATF layers marked not collected yet; controls with gap markers; deterministic highlights; AI summariser hook (no AI code).
