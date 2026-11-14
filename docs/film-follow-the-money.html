@@ -908,7 +908,7 @@ var capEls=capBox.querySelectorAll('p');
 var chBox=$('chapters'),ticks=$('ticks');
 CHAPTERS.forEach(function(c,i){
   var b=document.createElement('button');b.type='button';b.className='chap';
-  b.innerHTML='<span>'+fmt(c.t)+'</span>'+c.n;b.setAttribute('aria-label',fmt(c.t)+' '+c.n+': go to this scene');
+  b.innerHTML='<span>'+fmt(c.t)+'</span> '+c.n;b.title='Go to this scene';
   b.addEventListener('click',function(){seek(c.t+.001);});chBox.appendChild(b);
   if(i){var k=document.createElement('i');k.style.left=(c.t/DUR*100)+'%';ticks.appendChild(k)}
 });

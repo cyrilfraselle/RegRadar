@@ -298,7 +298,7 @@
       "module": "aml-basics",
       "type": "flag",
       "title": "Fine or escalate?",
-      "intro": "Each card is one transaction or request at CF Bank (fictional). Does it fit what the bank knows about the customer, or should someone take a closer look?",
+      "intro": "Each card is one transaction or request at CF Bank (fictional). Does it fit what the bank knows about the customer, or should someone take a closer look? Sector note: the example is set at a bank; the same test (does it fit what you know about the client?) applies in a law firm or an insurer.",
       "minutes": 2,
       "choices": [
         { "id": "fine", "label": "Looks fine", "hint": "fits what we know" },
@@ -361,7 +361,7 @@
       "module": "cdd-kyc",
       "type": "doc",
       "title": "Spot the mismatch",
-      "intro": "Compare what the customer told CF Bank (fictional) with the document they sent. Tap the one field on the document that does not match. Every person, company and document here is invented.",
+      "intro": "Compare what the customer told CF Bank (fictional) with the document they sent. Tap the one field on the document that does not match. Every person, company and document here is invented. Sector note: the example is set at a bank; law firms and insurers compare client documents in the same way.",
       "minutes": 2,
       "practice": {
         "id": "p", "title": "Practice document",
@@ -823,7 +823,7 @@
     },
     {
       "id": "d-basics", "module": "aml-basics", "title": "A launch next month",
-      "text": "The product team at CF Bank (fictional) wants to launch crypto-asset top-ups in a new country next month. Nobody has looked at the money laundering risks yet.",
+      "text": "The product team at CF Bank (fictional) wants to launch crypto-asset top-ups in a new country next month. Nobody has looked at the money laundering risks yet. (Sector note: a bank example; any obliged entity assesses risks before a new product, service or market.)",
       "options": [
         { "id": "a", "label": "Assess the risks before launch and set the controls to match", "verdict": "best",
           "consequence": "Exactly what the law asks: before launching a new product or entering a new area, identify and assess the risks and take measures to manage them.",
@@ -838,7 +838,7 @@
     },
     {
       "id": "d-kyc", "module": "cdd-kyc", "title": "Open it today",
-      "text": "A new business customer's director wants the account opened today: 'Documents next week. A €40,000 payment is waiting.' Nothing in the file suggests lower risk.",
+      "text": "A new business customer's director wants the account opened today: 'Documents next week. A €40,000 payment is waiting.' Nothing in the file suggests lower risk. (Sector note: a bank example; the timing rule for verification applies to every obliged entity.)",
       "options": [
         { "id": "a", "label": "Verify identity and owners first, and explain why to the director", "verdict": "best",
           "consequence": "Verification takes place before the business relationship starts. The payment waits a few days; the bank does not take an unknown customer.",

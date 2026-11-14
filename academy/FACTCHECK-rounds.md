@@ -241,7 +241,7 @@ Independent check (gate step 3): **pending**.
 
 ### `d-basics`: A launch next month (lesson `aml-basics`)
 
-Situation (fictional): The product team at CF Bank (fictional) wants to launch crypto-asset top-ups in a new country next month. Nobody has looked at the money laundering risks yet.
+Situation (fictional): The product team at CF Bank (fictional) wants to launch crypto-asset top-ups in a new country next month. Nobody has looked at the money laundering risks yet. (Sector note: a bank example; any obliged entity assesses risks before a new product, service or market.)
 
 | Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
 |---|---|---|---|---|---|---|
@@ -251,7 +251,7 @@ Situation (fictional): The product team at CF Bank (fictional) wants to launch c
 
 ### `d-kyc`: Open it today (lesson `cdd-kyc`)
 
-Situation (fictional): A new business customer's director wants the account opened today: 'Documents next week. A €40,000 payment is waiting.' Nothing in the file suggests lower risk.
+Situation (fictional): A new business customer's director wants the account opened today: 'Documents next week. A €40,000 payment is waiting.' Nothing in the file suggests lower risk. (Sector note: a bank example; the timing rule for verification applies to every obliged entity.)
 
 | Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
 |---|---|---|---|---|---|---|

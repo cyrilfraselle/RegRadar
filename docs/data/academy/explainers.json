@@ -331,7 +331,7 @@
     },
     {
      "title": "Your firm is a gate",
-     "caption": "Banks, financial institutions and crypto-asset service providers are all obliged entities under the EU's AML Regulation. RegRadar's applicability table (indicative) also lists payment and e-money firms as directly covered. It applies from 10 July 2027.",
+     "caption": "Banks and other financial institutions, and professions such as lawyers, notaries, accountants and estate agents for listed activities, are obliged entities under the EU's AML Regulation (Article 3). They stand between the client and the financial system. It applies from 10 July 2027.",
      "items": [
       {
        "t": "icon",
@@ -399,7 +399,7 @@
        "y": 92,
        "w": 92,
        "h": 66,
-       "text": "Payment\nnetwork",
+       "text": "Financial\nsystem",
        "tone": "mute",
        "d": 1.4
       },
@@ -4063,7 +4063,7 @@
    "scenes": [
     {
      "title": "Two more rulebooks",
-     "caption": "AML is not the only EU framework for payment, e-money and crypto firms. DORA is about digital operational resilience: keeping ICT systems safe and running. MiCA is about crypto-assets: who may offer services and under what conditions.",
+     "caption": "AML is not the only EU framework for financial firms. DORA is about digital operational resilience: keeping ICT systems safe and running. MiCA is about crypto-assets: who may offer services and under what conditions.",
      "items": [
       {
        "t": "box",
