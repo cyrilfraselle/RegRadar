@@ -14,7 +14,10 @@
   ─ ESMA (RSS + scraping Q&A)
   ─ EBA (RSS)
   ─ BCE / ECB (RSS)
-  ─ Commission Européenne / EUR-Lex (RSS)
+  ─ Commission Européenne (press corner RSS)
+  ─ AMLA, SRB, FSB (RSS)
+  (EUR-Lex et Google News retirés : robots.txt l'interdit ; voir
+   strategy/scraper-audit.md et collect_sources.py)
   ─ EIOPA (RSS)
 
   PRÉREQUIS : voir README.md
@@ -48,7 +51,6 @@ from classification_v3 import (
     WHOLE_CORPUS_SOURCES,
     LEGAL_WEIGHT,
     DOC_TYPES,
-    REFINED_GNEWS_SOURCES,
     OFFICIAL_REGULATOR_SOURCES,
     GOOGLE_NEWS_SOURCES,
     compute_counts,
@@ -326,31 +328,10 @@ SOURCES = [
         "url": "https://www.bankingsupervision.europa.eu/rss/pub.html",
         "couleur": "#0F6E56",
     },
-    {
-        # ── The single most important source in the whole watch ──
-        # OJ L is adopted, binding EU law. The previous URL
-        # (RSSOJ-L_EN.xml) has never returned an item; EUR-Lex serves
-        # its predefined feeds from display-feed.rss?rssId=N instead.
-        # Verified 2026-08-25: 100 items, same-day.
-        # Carries every policy area, so WHOLE_CORPUS_SOURCES applies a
-        # subject test downstream (~16% is financial/AML/data).
-        "id": "eurlex_ojl",
-        "nom": "EUR-Lex — Official Journal L",
-        "pays": "EU",
-        "type": "rss",
-        "url": "https://eur-lex.europa.eu/EN/display-feed.rss?rssId=222",
-        "couleur": "#1750C4",
-    },
-    {
-        # Legislative proposals (COM documents) — horizon scanning:
-        # what is coming, long before it binds. Verified 2026-08-25.
-        "id": "eurlex_proposals",
-        "nom": "EUR-Lex — Legislative proposals",
-        "pays": "EU",
-        "type": "rss",
-        "url": "https://eur-lex.europa.eu/EN/display-feed.rss?rssId=161",
-        "couleur": "#1750C4",
-    },
+    # eurlex_ojl and eurlex_proposals removed 2026-11-14: eur-lex.europa.eu
+    # robots.txt is "Disallow: /" for every agent. The Official Journal and
+    # COM proposals now come from the Publications Office CELLAR SPARQL
+    # endpoint in the source engine (collect_sources.py, regwatch_sources/).
     {
         # EU agency sites (europa.eu "ewcms") expose one RSS per listing
         # page at /node/<id>/rss_en; the old /rss_en path 404s.
@@ -438,101 +419,19 @@ SOURCES = [
         "couleur": "#0F6E56",
     },
  
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    #  GOOGLE NEWS RSS — Primary fallback + adverse media
-    #  These always work regardless of IP. Proven to return 100+ articles.
-    #  Queries are precision-tuned for compliance teams.
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- 
-    # — Regulatory publications (official regulator news via Google News) —
-    {
-        "id": "gnews_fsma_bnb",
-        "nom": "Google News — FSMA / BNB",
-        "pays": "BE",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22FSMA%22+OR+%22Banque+Nationale+de+Belgique%22+OR+%22NBB%22+regulation+OR+circular+OR+guideline+OR+circulaire&hl=en&gl=BE&ceid=BE:en',
-        "couleur": "#185FA5",
-    },
-    {
-        "id": "gnews_esma_guidelines",
-        "nom": "Google News — ESMA",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22ESMA%22+guidelines+OR+regulation+OR+consultation+OR+RTS+OR+ITS+OR+opinion&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    {
-        "id": "gnews_eba_prudential",
-        "nom": "Google News — EBA",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22EBA%22+%22European+Banking+Authority%22+guidelines+OR+RTS+OR+ITS+OR+consultation+OR+regulation&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    {
-        "id": "gnews_eiopa_amla",
-        "nom": "Google News — EIOPA / AMLA",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22EIOPA%22+OR+%22AMLA%22+guidelines+OR+regulation+OR+consultation+OR+AML&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#6B2D8B",
-    },
-    {
-        "id": "gnews_eu_regulations",
-        "nom": "Google News — EU Regulatory Framework",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=DORA+OR+MiCA+OR+SFDR+OR+MiFID+OR+CSRD+OR+CRR3+OR+%22AMLR%22+OR+%22Retail+Investment%22+regulation+european&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
-    {
-        "id": "gnews_ecb_supervision",
-        "nom": "Google News — ECB Supervision",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=ECB+%22banking+supervision%22+OR+SREP+OR+%22supervisory+review%22+OR+SSM+regulation&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#0F6E56",
-    },
- 
-    # — Adverse media — regulatory fines, enforcement, financial crime —
-    {
-        "id": "gnews_enforcement_be",
-        "nom": "Google News — Enforcement Belgium",
-        "pays": "BE",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22FSMA%22+OR+%22NBB%22+fine+OR+penalty+OR+sanction+OR+enforcement+OR+%22money+laundering%22+OR+investigation+Belgium&hl=en&gl=BE&ceid=BE:en',
-        "couleur": "#A32D2D",
-    },
-    {
-        "id": "gnews_enforcement_eu",
-        "nom": "Google News — Enforcement EU",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=bank+fine+OR+%22enforcement+action%22+OR+%22regulatory+penalty%22+OR+%22AML+violation%22+OR+%22sanctions+violation%22+EU+OR+Europe&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#A32D2D",
-    },
-    {
-        "id": "gnews_financial_crime",
-        "nom": "Google News — Financial Crime",
-        "pays": "EU",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22money+laundering%22+OR+%22financial+crime%22+OR+%22fraud%22+bank+EU+OR+Belgium+investigation+OR+charged+OR+fined&hl=en&gl=EU&ceid=EU:en',
-        "couleur": "#A32D2D",
-    },
-    {
-        "id": "gnews_bigbanks_global",
-        "nom": "Google News — Major Global Enforcement",
-        "pays": "GLOBAL",
-        "type": "rss",
-        "url": 'https://news.google.com/rss/search?q=%22billion%22+fine+OR+penalty+bank+OR+%22record+fine%22+%22money+laundering%22+OR+%22sanctions+violations%22+global&hl=en&gl=US&ceid=US:en',
-        "couleur": "#A32D2D",
-    },
- 
+    # Google News searches removed 2026-11-14 (strategy/scraper-audit.md):
+    # news.google.com/robots.txt disallows every agent. The engine in
+    # regwatch_sources/ covers the regulators directly, and news is only
+    # an accessory on RegWatch.
 ]
 
-# Replace old Google News entries with the refined v3 set
-# (AML, fraud, fintech licensing, major-FI watch, tighter regulator queries)
-SOURCES = [s for s in SOURCES if not s["id"].startswith("gnews_")] + REFINED_GNEWS_SOURCES
+# Hosts whose robots.txt forbids crawling (scraper audit 2026-11-14).
+# A source on one of these hosts is never fetched, whatever the list
+# above says; tests/test_legacy_sources.py keeps the list clean.
+DISALLOWED_HOSTS = ("eur-lex.europa.eu", "news.google.com")
+SOURCES = [s for s in SOURCES
+           if not any(h in s["url"] for h in DISALLOWED_HOSTS)
+           and not s["id"].startswith("gnews_")]
 
 # ═══════════════════════════════════════════════════════════════
 #  MOTS-CLÉS ET SCORING
@@ -972,12 +871,42 @@ def scraper_page(source: dict) -> list[dict]:
 SOURCE_HEALTH: dict = {}
 
 
+_ROBOTS_CACHE: dict = {}
+
+
+def robots_allows(url: str) -> bool:
+    """robots.txt check before every source fetch (RFC 9309 matching from
+    regwatch_sources.fetch.Robots). A host on DISALLOWED_HOSTS is refused
+    without a request. An unreachable robots.txt (5xx, network error)
+    means full disallow, as RFC 9309 says; a 4xx means no rules."""
+    from urllib.parse import urlsplit
+    from regwatch_sources.fetch import Robots
+    parts = urlsplit(url)
+    if any(parts.netloc.endswith(h) for h in DISALLOWED_HOSTS):
+        return False
+    origin = f"{parts.scheme}://{parts.netloc}"
+    if origin not in _ROBOTS_CACHE:
+        try:
+            r = requests.get(origin + "/robots.txt", headers=HEADERS, timeout=20)
+            _ROBOTS_CACHE[origin] = Robots(r.text if r.status_code < 400 else "", r.status_code)
+        except Exception:
+            _ROBOTS_CACHE[origin] = Robots("", 503)
+    return _ROBOTS_CACHE[origin].allowed(url)
+
+
 def collecter_toutes_sources() -> list[dict]:
     """Collecte les articles de toutes les sources configurées."""
     tous = []
     SOURCE_HEALTH.clear()
     FETCH_FAILED.clear()
     for source in SOURCES:
+        if not robots_allows(source["url"]):
+            log.warning(f"robots.txt forbids {source['url']}: {source['nom']} skipped")
+            SOURCE_HEALTH[source["id"]] = {
+                "id": source["id"], "name": source["nom"], "country": source.get("pays", ""),
+                "kind": "primary", "fetched": 0, "newest": None, "status": "blocked",
+            }
+            continue
         if source["type"] == "rss":
             articles = lire_flux_rss(source)
         elif source["type"] == "scraping":
