@@ -555,7 +555,33 @@ class Engine:
             "news_cap": f"news-only cards are at most {int(NEWS_SHARE_CAP * 100)}% of the feed; {dropped} lower-ranked news cards dropped this run",
             "window_days": FEED_DAYS, "generated": self.now, "cards": len(cards), "tiers": tiers}, "cards": cards})
         return {"cards": len(cards), "tiers": tiers, "news_cards": min(len(news), cap), "news_dropped": dropped,
-                "clustered_items": sum(c["size"] for c in cards)}
+                "clustered_items": sum(c["size"] for c in cards), "f028": self.f028(legacy)}
+
+    def f028(self, legacy):
+        """Finding F-028: legacy 'Critical' (impact 3) vs the v2 tier on the
+        same archive (docs/data/items.json, whole archive, read only)."""
+        if not legacy:
+            return {}
+        rows = []
+        for it in legacy:
+            news = it.get("source_id", "").startswith("gnews_") or it.get("doc_type", "").startswith("news")
+            topics = self.tagger.tag(it.get("title", "") + " " + (it.get("summary", "") or "")[:400])
+            row = {"title": it.get("title", ""), "url": it.get("url", ""), "date": (it.get("date") or "")[:10],
+                   "type": legacy_type(it), "status": it.get("legal_status", ""), "topics": topics,
+                   "in_scope": bool(topics), "is_news": news, "impact": it.get("impact")}
+            row["tier"] = classify.tier(row)
+            rows.append(row)
+        before = [r for r in rows if r["impact"] == 3]
+        stories_before = len(cluster(before))
+        after = [r for r in rows if r["tier"] == "critical"]
+        return {"archive_items": len(rows),
+                "before": {"critical": len(before), "share": round(len(before) / len(rows), 3),
+                           "informational": sum(1 for r in before if r["status"] == "informational"),
+                           "distinct_stories": stories_before},
+                "after": {"critical": len(after), "share": round(len(after) / len(rows), 3),
+                          "informational": sum(1 for r in after if r["status"] == "informational"),
+                          "distinct_stories": len(cluster(after)),
+                          "note": "v2 tier: in-scope (topic-tagged) primary legislation, standards, guidelines, enforcement or open consultations; news never critical; duplicates collapse into one story card"}}
 
     # main -------------------------------------------------------
     def run_all(self, coverage_only=False):
