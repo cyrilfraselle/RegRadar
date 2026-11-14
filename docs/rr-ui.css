@@ -1,0 +1,355 @@
+/* ═══════════════════════════════════════════════════════════════
+   RegRadar UI (rr-ui.css): the shared design system.
+
+   Extracted from the landing page (docs/index.html): the same system
+   type, the same ink and paper, the same pill buttons and chips, the
+   same blue / green / amber / red signals, the same easing. Living
+   style guide with copy-paste markup: docs/rr-ui-guide.html.
+
+   How a page uses it
+     <html lang="en" data-theme="light">   (theme script as today)
+     <link rel="stylesheet" href="rr-ui.css?v=…">   BEFORE the page's
+     own <style>, so page rules only add layout, never re-skin.
+     <main id="main" class="wrap">
+       <header class="head rr-band"> h1 + p.lead | .head-tools </header>
+
+   Themes: light by default, html[data-theme="dark"] for dark.
+   Any element can switch locally with .rr-dark or .rr-light (the
+   page header band .rr-band is always dark, like the landing hero).
+
+   Tokens are --rr-*. The older page vocabulary (--bg, --surface,
+   --text, --accent, --crit, --imp, --ok…) is mapped onto them, so
+   existing page CSS and script-injected markup follow the system.
+   Contrast: every text/background pair below is >= 4.5:1 in both
+   themes (checked); control borders are >= 3:1.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. Tokens ─────────────────────────────────────────────────── */
+:root{
+  /* brand constants (theme independent) */
+  --rr-ink:#05070C; --rr-paper:#F5F5F7; --rr-white:#FFFFFF;
+  --rr-blue:#5B8CFF; --rr-green:#3DDCA7; --rr-amber:#FFB454;
+
+  /* type */
+  --rr-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --rr-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --rr-serif:Georgia,"Times New Roman",serif;
+  --rr-t-display:clamp(34px,4.6vw,56px);  /* page title */
+  --rr-t-h2:clamp(22px,2.2vw,28px);       /* section title */
+  --rr-t-h3:17px;                          /* card / pane title */
+  --rr-t-lead:clamp(17px,1.5vw,20px);     /* line under a title */
+  --rr-t-body:15px;
+  --rr-t-small:13px;
+  --rr-t-micro:12px;                       /* floor: nothing smaller */
+  --rr-track-tight:-.04em; --rr-track-head:-.025em;
+
+  /* space (4-px base) */
+  --rr-1:4px; --rr-2:8px; --rr-3:12px; --rr-4:16px; --rr-5:24px;
+  --rr-6:32px; --rr-7:48px; --rr-8:64px; --rr-9:96px;
+  --rr-gutter:clamp(16px,3vw,40px);
+  --rr-max:1320px;
+
+  /* shape */
+  --rr-r-sm:10px; --rr-r:16px; --rr-r-lg:24px; --rr-r-pill:999px;
+
+  /* motion (landing page ease) */
+  --rr-ease:cubic-bezier(.16,1,.3,1);
+  --rr-dur-1:.15s; --rr-dur-2:.3s; --rr-dur-3:.6s;
+
+  /* light theme (default) */
+  --rr-bg:#F5F5F7;
+  --rr-surface:#FFFFFF;
+  --rr-surface-2:#F2F2F5;
+  --rr-line:#E3E3E8;
+  --rr-line-strong:#8A8F9A;     /* control borders, 3.3:1 on white */
+  --rr-text:#1D1D1F;
+  --rr-text-2:#515154;          /* 7.4:1 on white */
+  --rr-text-3:#636369;          /* 5.8:1 on white, 5.2:1 on surface-2 */
+  --rr-accent:#0A4FD6;          /* links, selection, focus */
+  --rr-accent-bg:#E8EFFD;
+  --rr-on-accent:#FFFFFF;
+  --rr-primary:#1D1D1F;         /* primary button = ink pill */
+  --rr-on-primary:#FFFFFF;
+  --rr-live:#0A4FD6;   --rr-live-bg:#E8EFFD;
+  --rr-review:#8A4B00; --rr-review-bg:#FBEFD9;
+  --rr-risk:#B3261E;   --rr-risk-bg:#FBE4E1;
+  --rr-done:#0B6E4C;   --rr-done-bg:#E3F4EC;
+  --rr-focus:#0A4FD6;
+  --rr-shadow-1:0 1px 2px rgba(16,24,40,.05),0 6px 18px rgba(30,40,70,.06);
+  --rr-shadow-2:0 2px 4px rgba(0,0,0,.05),0 24px 48px rgba(30,40,70,.14);
+  --rr-shadow-3:0 4px 10px rgba(0,0,0,.08),0 34px 70px rgba(30,40,70,.24);
+  --rr-scrim:rgba(5,7,12,.55);
+  color-scheme:light;
+}
+html[data-theme="dark"],.rr-dark,.rr-band{
+  --rr-bg:#0A0E17;
+  --rr-surface:#121827;         /* the landing "plane" */
+  --rr-surface-2:#182033;
+  --rr-line:#252E42;
+  --rr-line-strong:#647089;     /* 3.3:1 on surface */
+  --rr-text:#F5F7FB;
+  --rr-text-2:#AAB4C6;          /* 8.4:1 on surface */
+  --rr-text-3:#8D97A9;          /* 5.6:1 on surface, 5.1:1 on surface-2 */
+  --rr-accent:#9DBAFF;          /* landing link blue */
+  --rr-accent-bg:#16224A;
+  --rr-on-accent:#05070C;
+  --rr-primary:#F5F7FB;         /* light pill on dark, as the landing hero */
+  --rr-on-primary:#05070C;
+  --rr-live:#9DBAFF;   --rr-live-bg:#16224A;
+  --rr-review:#FFC477; --rr-review-bg:#33230C;
+  --rr-risk:#FFA3AB;   --rr-risk-bg:#3A1519;
+  --rr-done:#7FF0C6;   --rr-done-bg:#0E2C28;
+  --rr-focus:#9DBAFF;
+  --rr-shadow-1:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+  --rr-shadow-2:0 2px 6px rgba(0,0,0,.35),0 30px 80px rgba(0,0,0,.5);
+  --rr-shadow-3:0 4px 12px rgba(0,0,0,.4),0 40px 90px rgba(0,0,0,.6);
+  --rr-scrim:rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+.rr-band{--rr-surface:#111726;--rr-surface-2:#182033;--rr-line:#273049}
+.rr-light{
+  --rr-bg:#F5F5F7; --rr-surface:#FFFFFF; --rr-surface-2:#F2F2F5; --rr-line:#E3E3E8; --rr-line-strong:#8A8F9A;
+  --rr-text:#1D1D1F; --rr-text-2:#515154; --rr-text-3:#636369;
+  --rr-accent:#0A4FD6; --rr-accent-bg:#E8EFFD; --rr-on-accent:#FFFFFF; --rr-primary:#1D1D1F; --rr-on-primary:#FFFFFF;
+  --rr-live:#0A4FD6; --rr-live-bg:#E8EFFD; --rr-review:#8A4B00; --rr-review-bg:#FBEFD9;
+  --rr-risk:#B3261E; --rr-risk-bg:#FBE4E1; --rr-done:#0B6E4C; --rr-done-bg:#E3F4EC; --rr-focus:#0A4FD6;
+  color-scheme:light;
+}
+/* Older page vocabulary, re-declared in every scope so it follows the
+   scope's --rr-* values (custom properties resolve where declared). */
+:root,html[data-theme],.rr-dark,.rr-light,.rr-band{
+  --bg:var(--rr-bg); --surface:var(--rr-surface); --surface-2:var(--rr-surface-2); --surface-3:var(--rr-surface-2);
+  --border:var(--rr-line); --border-2:var(--rr-line-strong); --border-strong:var(--rr-line-strong);
+  --text:var(--rr-text); --text-2:var(--rr-text-2); --text-3:var(--rr-text-3);
+  --accent:var(--rr-accent); --accent-bg:var(--rr-accent-bg); --on-accent:var(--rr-on-accent);
+  --crit:var(--rr-risk); --crit-bg:var(--rr-risk-bg);
+  --imp:var(--rr-review); --imp-bg:var(--rr-review-bg);
+  --ok:var(--rr-done); --ok-bg:var(--rr-done-bg);
+  --radius:var(--rr-r); --radius-sm:var(--rr-r-sm);
+  --font:var(--rr-font); --mono:var(--rr-mono); --serif:var(--rr-serif);
+}
+
+/* ── 2. Base ───────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scrollbar-color:var(--rr-line-strong) var(--rr-bg)}
+body{background:var(--rr-bg);color:var(--rr-text);font-family:var(--rr-font);font-size:var(--rr-t-body);line-height:1.5;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;caret-color:var(--rr-accent)}
+h1,h2,h3,h4{font-weight:700;letter-spacing:var(--rr-track-head);line-height:1.15;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:var(--rr-accent);text-underline-offset:.18em;text-decoration-thickness:1px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+img,svg{max-width:100%}
+::selection{background:var(--rr-blue);color:#fff}
+:focus-visible{outline:3px solid var(--rr-focus);outline-offset:2px;border-radius:6px}
+.mono,code,kbd{font-family:var(--rr-mono);font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums}
+.sr,.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:8px;z-index:1100;background:var(--rr-white);color:var(--rr-ink);padding:10px 16px;border-radius:var(--rr-r-sm);font-weight:600;text-decoration:none}
+.skip:focus{left:8px}
+
+/* ── 3. Page shell ─────────────────────────────────────────────── */
+.wrap{max-width:var(--rr-max);margin:0 auto;padding:0 var(--rr-gutter)}
+
+/* The page header band: dark, full bleed, like the landing hero.
+   The ink is painted with border-image outset, which bleeds to both
+   viewport edges without widening the page (no horizontal scroll). */
+.rr-band{position:relative;color:var(--rr-text);background:var(--rr-ink);
+  border-image:radial-gradient(60% 150% at 50% 160%,#1B2B5C 0%,#0B1122 55%,#05070C 100%) fill 0/0/0 100vmax;
+  padding:clamp(32px,5vw,64px) 0 clamp(28px,4vw,44px);margin-bottom:clamp(20px,3vw,32px)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--rr-4) var(--rr-6);flex-wrap:wrap}
+.head h1{font-size:var(--rr-t-display);line-height:1.02;letter-spacing:var(--rr-track-tight);max-width:18ch}
+.head .lead,.head > div > p:not(.eyebrow){margin-top:var(--rr-3);font-size:var(--rr-t-lead);line-height:1.45;color:var(--rr-text-2);max-width:62ch;font-weight:500}
+.head .eyebrow{font-size:var(--rr-t-small);font-weight:600;color:var(--rr-text-3);margin-bottom:var(--rr-2)}
+.head .sub{color:var(--rr-text-2);margin-top:var(--rr-2);max-width:70ch}
+.head-tools{display:flex;gap:var(--rr-2) var(--rr-3);align-items:center;flex-wrap:wrap}
+.head-tools label,.lbl{font-size:var(--rr-t-small);font-weight:600;color:var(--rr-text-2)}
+@media (prefers-reduced-motion:no-preference){
+  .rr-band h1{animation:rr-rise .9s var(--rr-ease) both}
+  .rr-band h1 ~ p,.rr-band .head-tools{animation:rr-rise .9s var(--rr-ease) .12s both}
+}
+@keyframes rr-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Sections inside a page */
+.rr-section{margin:clamp(28px,4vw,48px) 0}
+.rr-section-h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--rr-3);flex-wrap:wrap;margin-bottom:var(--rr-4)}
+.rr-section-h h2{font-size:var(--rr-t-h2);letter-spacing:-.03em}
+.rr-section-h p{color:var(--rr-text-2);font-size:var(--rr-t-small)}
+.note{font-size:var(--rr-t-small);color:var(--rr-text-3);margin:var(--rr-5) auto var(--rr-7);max-width:100ch;text-align:center}
+.hint{font-size:var(--rr-t-micro);color:var(--rr-text-3)}
+
+/* ── 4. Surfaces: panes and cards ─────────────────────────────── */
+.pane,.rr-card{background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r);box-shadow:var(--rr-shadow-1);min-width:0}
+.rr-card{padding:var(--rr-5)}
+.rr-card.raised{border-radius:var(--rr-r-lg);box-shadow:var(--rr-shadow-2)}
+.rr-card h3,.pane-h h2{font-size:var(--rr-t-h3);letter-spacing:-.015em}
+.pane-h{display:flex;align-items:center;justify-content:space-between;gap:var(--rr-2) var(--rr-3);flex-wrap:wrap;margin-bottom:var(--rr-3)}
+.pane-h .count,.count{color:var(--rr-text-3);font-weight:600}
+.rr-grid{display:grid;gap:var(--rr-4);grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+
+/* list rows (landing .row) */
+.rr-rows{list-style:none;display:flex;flex-direction:column}
+.rr-rows > li,.rr-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--rr-1) var(--rr-3);padding:var(--rr-3) 0;border-bottom:1px solid var(--rr-line);align-items:center}
+.rr-rows > li:last-child{border-bottom:0}
+.rr-rows b{font-weight:600;letter-spacing:-.01em}
+.rr-rows small{display:block;font-size:var(--rr-t-small);color:var(--rr-text-2);margin-top:2px}
+
+/* ── 5. Stat tiles ─────────────────────────────────────────────── */
+.rr-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:var(--rr-3)}
+.rr-stat,.kpi,.tile{background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r);padding:var(--rr-4) var(--rr-4);min-width:0}
+.rr-stat .n,.kpi .n,.tile .n{font-size:clamp(28px,3vw,36px);font-weight:700;letter-spacing:var(--rr-track-tight);line-height:1;font-variant-numeric:tabular-nums}
+.rr-stat .l,.kpi .l,.tile .l{font-size:var(--rr-t-small);font-weight:600;color:var(--rr-text-2);margin-top:var(--rr-2)}
+.rr-stat .s,.kpi .s,.tile .s{font-size:var(--rr-t-micro);color:var(--rr-text-3);margin-top:2px}
+.rr-stat.risk,.kpi.warn,.tile.bad{border-color:var(--rr-risk)}
+.rr-stat.risk .n,.tile.bad .n{color:var(--rr-risk)}
+
+/* ── 6. Buttons ────────────────────────────────────────────────── */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--rr-2);min-height:44px;padding:0 18px;
+  border-radius:var(--rr-r-pill);border:1px solid var(--rr-line-strong);background:var(--rr-surface);color:var(--rr-text);
+  font-weight:600;font-size:14px;line-height:1.2;text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:transform var(--rr-dur-2) var(--rr-ease),background-color var(--rr-dur-1),border-color var(--rr-dur-1),color var(--rr-dur-1)}
+.btn:hover{border-color:var(--rr-text);color:var(--rr-text)}
+.btn:active{transform:scale(.98)}
+.btn.pri,.btn.primary{background:var(--rr-primary);border-color:var(--rr-primary);color:var(--rr-on-primary)}
+.btn.pri:hover,.btn.primary:hover{transform:scale(1.03);color:var(--rr-on-primary);border-color:var(--rr-primary)}
+.btn.quiet,.btn.ghost{background:transparent;border-color:transparent;color:var(--rr-accent);padding:0 10px}
+.btn.quiet:hover,.btn.ghost:hover{text-decoration:underline;color:var(--rr-accent);border-color:transparent}
+.btn.danger:hover{border-color:var(--rr-risk);color:var(--rr-risk)}
+.btn.sm{min-height:36px;padding:0 14px;font-size:13px}
+.btn.sm::after{content:"";position:absolute;inset:-4px 0}   /* 44-px hit area */
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed;transform:none}
+.btn .ic,.btn svg{width:16px;height:16px;flex:0 0 auto}
+.linkbtn{background:none;border:0;color:var(--rr-accent);font-weight:600;text-decoration:underline;text-underline-offset:.18em;min-height:44px;padding:0 4px}
+.rr-more{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--rr-accent);text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:1px;transition:gap var(--rr-dur-2) var(--rr-ease)}
+.rr-more:hover{gap:10px}
+.btns,.row-actions{display:flex;gap:var(--rr-2);flex-wrap:wrap;align-items:center}
+.row-actions{margin-top:var(--rr-3)}
+
+/* ── 7. Chips, status pills ────────────────────────────────────── */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 12px;border-radius:var(--rr-r-pill);
+  background:var(--rr-surface-2);border:1px solid var(--rr-line);color:var(--rr-text-2);white-space:nowrap;line-height:1.35;text-decoration:none}
+button.chip,a.chip{cursor:pointer;min-height:36px;transition:background-color var(--rr-dur-1),color var(--rr-dur-1),border-color var(--rr-dur-1)}
+button.chip::after,a.chip::after{content:"";position:absolute;inset:-4px 0}
+button.chip:hover,a.chip:hover{border-color:var(--rr-text-3);color:var(--rr-text)}
+button.chip[aria-pressed="true"],.chip.on{background:var(--rr-primary);border-color:var(--rr-primary);color:var(--rr-on-primary)}
+/* status: live (in force / active), review (waiting), risk (gap, overdue), done (covered, closed) */
+.pill,.st{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:var(--rr-r-pill);
+  background:var(--rr-surface-2);color:var(--rr-text-2);white-space:nowrap;line-height:1.4}
+.pill.live,.chip.acc{background:var(--rr-live-bg);color:var(--rr-live);border-color:transparent}
+.pill.review,.st.rev,.chip.imp{background:var(--rr-review-bg);color:var(--rr-review);border-color:transparent}
+.pill.risk,.st.gap,.chip.crit{background:var(--rr-risk-bg);color:var(--rr-risk);border-color:transparent}
+.pill.done,.st.cov,.chip.ok{background:var(--rr-done-bg);color:var(--rr-done);border-color:transparent}
+.st.drf{background:var(--rr-surface-2);color:var(--rr-text-3)}
+.pill.live::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto}
+@media (prefers-reduced-motion:no-preference){.pill.live::before{animation:rr-pulse 2.4s var(--rr-ease) infinite}}
+@keyframes rr-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.chip.demo{background:transparent;border:1px dashed var(--rr-line-strong);color:var(--rr-text-3)}
+
+/* ── 8. Forms ──────────────────────────────────────────────────── */
+.in,.sel,.rr-input{min-height:44px;padding:9px 14px;background:var(--rr-surface);color:var(--rr-text);border:1px solid var(--rr-line-strong);
+  border-radius:12px;max-width:100%;transition:border-color var(--rr-dur-1),box-shadow var(--rr-dur-1)}
+.in::placeholder{color:var(--rr-text-3);opacity:1}
+.in:hover,.sel:hover{border-color:var(--rr-text-3)}
+.in:focus-visible,.sel:focus-visible{outline:none;border-color:var(--rr-focus);box-shadow:0 0 0 3px color-mix(in srgb,var(--rr-focus) 35%,transparent)}
+input[type="search"].in{border-radius:var(--rr-r-pill);padding-left:16px}
+textarea.in{width:100%;min-height:88px;resize:vertical;line-height:1.5}
+input[type="checkbox"],input[type="radio"]{accent-color:var(--rr-accent);width:18px;height:18px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--rr-3) var(--rr-4)}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+.field label,.field .flabel{display:block;font-size:var(--rr-t-small);font-weight:600;color:var(--rr-text-2);margin-bottom:6px}
+.field .in,.field .sel{width:100%}
+.field .help{font-size:var(--rr-t-micro);color:var(--rr-text-3);margin-top:4px}
+.err{color:var(--rr-risk);font-weight:600;margin-top:var(--rr-2)}
+@media (max-width:620px){.fields{grid-template-columns:1fr}}
+
+/* filter bar: search + chips + selects in one row that wraps */
+.rr-filters{display:flex;flex-wrap:wrap;gap:var(--rr-2) var(--rr-3);align-items:center;padding:var(--rr-3);
+  background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r)}
+.rr-filters .in[type="search"]{flex:1 1 220px}
+
+/* segmented control (two to four choices) */
+.seg{display:inline-flex;gap:2px;background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r-pill);padding:3px}
+.seg > button,.seg span{border:0;background:transparent;min-height:38px;padding:0 14px;border-radius:var(--rr-r-pill);font-weight:600;color:var(--rr-text-2);display:inline-flex;align-items:center;justify-content:center}
+.seg > button[aria-selected="true"],.seg > button[aria-pressed="true"],.seg input:checked + span{background:var(--rr-surface);color:var(--rr-text);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+
+/* ── 9. Tabs (landing nav underline) ───────────────────────────── */
+.tabs{display:flex;gap:var(--rr-5);border-bottom:1px solid var(--rr-line);overflow-x:auto;scrollbar-width:none;margin-bottom:var(--rr-4)}
+.tabs::-webkit-scrollbar{display:none}
+.tabs [role="tab"],.tabs > a,.tabs > button{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 2px;border:0;background:none;
+  color:var(--rr-text-2);font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}
+.tabs [role="tab"]::after,.tabs > a::after,.tabs > button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:1px;background:var(--rr-text);transform:scaleX(0);transition:transform .5s var(--rr-ease)}
+.tabs [role="tab"]:hover{color:var(--rr-text)}
+.tabs [aria-selected="true"],.tabs [aria-current="page"],.tabs .on{color:var(--rr-text)}
+.tabs [aria-selected="true"]::after,.tabs [aria-current="page"]::after,.tabs .on::after{transform:scaleX(1)}
+
+/* ── 10. Tables ────────────────────────────────────────────────── */
+.rr-table-wrap{overflow-x:auto;border:1px solid var(--rr-line);border-radius:var(--rr-r);background:var(--rr-surface)}
+.rr-table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.rr-table th{text-align:left;font-size:var(--rr-t-micro);font-weight:600;color:var(--rr-text-3);padding:10px 14px;border-bottom:1px solid var(--rr-line);white-space:nowrap;background:var(--rr-surface-2)}
+.rr-table td{padding:12px 14px;border-bottom:1px solid var(--rr-line);vertical-align:top}
+.rr-table tr:last-child td{border-bottom:0}
+.rr-table tbody tr:hover td{background:color-mix(in srgb,var(--rr-surface-2) 60%,transparent)}
+.rr-table .r{text-align:right}
+
+/* ── 11. Banners, empty states, toasts ─────────────────────────── */
+.banner{display:flex;gap:var(--rr-3);align-items:center;justify-content:space-between;flex-wrap:wrap;padding:var(--rr-3) var(--rr-4);
+  border-radius:var(--rr-r);border:1px solid var(--rr-line);background:var(--rr-surface);margin-bottom:var(--rr-4)}
+.banner p{max-width:80ch}
+.banner.demo{border-style:dashed;border-color:var(--rr-line-strong)}
+.banner.warn,.banner.risk{border-color:var(--rr-risk);background:var(--rr-risk-bg);color:var(--rr-risk)}
+.empty{padding:var(--rr-6) var(--rr-4);text-align:center;color:var(--rr-text-2)}
+.empty-hero,.rr-empty{padding:clamp(24px,4vw,40px);border:1px dashed var(--rr-line-strong);border-radius:var(--rr-r-lg);background:var(--rr-surface);margin-bottom:var(--rr-4)}
+.empty-hero h2,.rr-empty h2{font-size:var(--rr-t-h2);letter-spacing:-.03em}
+.empty-hero p,.rr-empty p{color:var(--rr-text-2);margin-top:var(--rr-2);max-width:66ch}
+.toast{position:fixed;left:50%;bottom:24px;z-index:95;transform:translate(-50%,12px);max-width:min(480px,calc(100vw - 32px));
+  background:var(--rr-text);color:var(--rr-bg);padding:12px 20px;border-radius:var(--rr-r-pill);font-weight:600;font-size:14px;
+  box-shadow:var(--rr-shadow-2);opacity:0;pointer-events:none;transition:opacity var(--rr-dur-2),transform var(--rr-dur-3) var(--rr-ease)}
+.toast.on,.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ── 12. Dialogs (native <dialog>, sits above Max at z 90) ─────── */
+dialog{margin:auto;border:1px solid var(--rr-line);border-radius:var(--rr-r-lg);background:var(--rr-surface);color:var(--rr-text);padding:0;
+  width:min(640px,calc(100vw - 24px));max-height:calc(100vh - 32px);overflow:auto;box-shadow:var(--rr-shadow-3)}
+dialog::backdrop{background:var(--rr-scrim)}
+dialog.narrow{width:min(460px,calc(100vw - 24px))} dialog.mid{width:min(760px,calc(100vw - 24px))} dialog.wide{width:min(980px,calc(100vw - 24px))}
+@media (prefers-reduced-motion:no-preference){dialog[open]{animation:rr-pop var(--rr-dur-3) var(--rr-ease)}}
+@keyframes rr-pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.dlg-h{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--rr-3);padding:var(--rr-5) var(--rr-5) var(--rr-2)}
+.dlg-h h2{font-size:22px;letter-spacing:-.025em;line-height:1.2}
+.dlg-b{padding:var(--rr-2) var(--rr-5) var(--rr-1)}
+.dlg-f{display:flex;gap:var(--rr-2);justify-content:flex-end;flex-wrap:wrap;padding:var(--rr-4) var(--rr-5) var(--rr-5);border-top:1px solid var(--rr-line);margin-top:var(--rr-4)}
+.rr-x{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:0;background:transparent;color:var(--rr-text-2);flex:0 0 auto}
+.rr-x:hover{background:var(--rr-surface-2);color:var(--rr-text)}
+
+/* ── 13. Kanban ────────────────────────────────────────────────── */
+.kb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--rr-3);align-items:stretch}
+.kb-col{background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r);padding:var(--rr-3);min-width:0;min-height:160px}
+.kb-col-h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--rr-2);padding:2px 4px var(--rr-3)}
+.kb-col-h h2,.kb-col-h h3{font-size:15px;letter-spacing:-.01em}
+.kb-col-h .n{font-size:var(--rr-t-micro);font-weight:700;color:var(--rr-text-3);font-variant-numeric:tabular-nums}
+.kb-cards{list-style:none;display:flex;flex-direction:column;gap:var(--rr-2)}
+.kb-card{background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:12px;padding:var(--rr-3);box-shadow:0 1px 2px rgba(16,24,40,.05);min-width:0}
+.kb-card .t{font-weight:600;line-height:1.35}
+.kb-card .m{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:var(--rr-t-micro);color:var(--rr-text-2);margin-top:6px}
+@media (max-width:1100px){.kb{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.kb{grid-template-columns:1fr}}
+
+/* ── 14. Law text (serif, as the landing reader) ───────────────── */
+.rr-law,.quote{font-family:var(--rr-serif);font-size:16px;line-height:1.6;background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r-sm);padding:var(--rr-4)}
+.rr-law mark{background:color-mix(in srgb,var(--rr-blue) 25%,transparent);color:inherit;padding:0 2px;border-bottom:2px solid var(--rr-blue)}
+
+/* ── 15. Responsive and motion floors ──────────────────────────── */
+@media (max-width:620px){
+  .head{align-items:flex-start}
+  .head-tools{width:100%}
+  .head-tools .sel{flex:1 1 160px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media print{
+  .rr-band{border-image:none;background:none;color:#000;padding:0 0 12px}
+  .rrn,.rrf,.toast,.skip{display:none!important}
+}
