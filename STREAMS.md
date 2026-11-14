@@ -63,3 +63,27 @@ digest); the next run reads the answer and acts.
 10. Sanctions context (targeted financial sanctions are outside the AMLR: say so).
 Each topic: a 45 to 60 s film (script gate), 4 questions, one Spot it game, one
 Decide scenario, the law excerpt, related obligations in Max.
+
+## Priority queue (owner, 2026-11-14)
+MAX builder, in this order after the register growth already under way:
+1. **Gap assessment view** (law, obligation, control, evidence): a very visual
+   view over the data layer, not a table first. Idea: a coverage map by topic
+   (treemap or radial) where each block is an obligation group coloured by gap
+   status (covered and tested, covered untested, partly covered, not covered,
+   not applicable); click a block to see its obligations, mapped controls,
+   owner, last test and the gap; a matrix view (obligations by controls) and a
+   list view; filters by topic, owner, firm type; a 'what to do next' list per
+   gap that can create actions in the tracker; snapshot dated assessments that
+   can be compared over time; export to Excel (a real .xlsx written in the
+   browser without libraries) and print. Status definitions are configurable
+   (see finding F-004: 'covered' should mean owned and tested). Later the same
+   view compares a policy document against the law and guidance (AI mapping).
+2. Topic view (see branch max/topics-view) integration with the gap view.
+3. Everything else in the MAX list.
+ACADEMY builder: the programme and path rebuild (branch academy/path-v2) and the
+films 02 to 04 (branch academy/films-02-04) are in progress; do not duplicate
+them; continue with topics and scripts after they are merged.
+Public tools (no data layer, no client data) to build as small pages once
+the above is underway: UBO calculator (Art. 52 to 54, runs in the browser),
+regulatory deadlines calendar (from docs/data/sources/deadlines.json, with .ics
+export), applicability checker ('which laws apply to my firm').
