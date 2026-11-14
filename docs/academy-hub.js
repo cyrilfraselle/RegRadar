@@ -209,7 +209,7 @@ function hubView(){
   document.title='RegRadar Academy: AMLR programme';
   var started=TR.some(function(t){ return beatsDone(t)>0; }), nt=nextStep(), warm=warmDue(), wc=warm? warmCards().length : 0;
   var doneN=PATH.filter(isComplete).length;
-  var html='<header class="head ph"><div><div class="kicker">REGRADAR ACADEMY</div><h1>'+esc((PG.programme||{}).title||'AMLR programme')+'</h1>'
+  var html='<header class="head ph rr-band"><div><div class="kicker">REGRADAR ACADEMY</div><h1>'+esc((PG.programme||{}).title||'AMLR programme')+'</h1>'
     +'<p>One path through the EU Anti-Money Laundering Regulation, in three levels. Short films, questions, games and the law text, topic by topic. '
     +'About '+totalMin()+' minutes in all so far. Fictional examples only.</p></div></header>';
   html+='<div id="promo" class="banner" hidden></div>';
