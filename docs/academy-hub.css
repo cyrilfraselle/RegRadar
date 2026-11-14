@@ -244,7 +244,7 @@ details .ov-c{background:var(--surface)}
 .film.soon{border:1px dashed var(--border-strong);border-radius:var(--radius-sm);padding:12px 14px;background:var(--surface-2)}
 .film.soon b{display:block}.film.soon span{color:var(--text-2);font-size:14px}
 .mx{list-style:none;display:grid;gap:8px;margin-top:10px}
-.mx a{display:block;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);text-decoration:none;color:var(--text);min-height:44px}
+.mx a{display:block;overflow-wrap:anywhere;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);text-decoration:none;color:var(--text);min-height:44px}
 .mx a:hover{border-color:var(--accent)}.mx b{display:block;color:var(--accent)}.mx span{font-size:13.5px;color:var(--text-2)}
 .evl{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:12px}
 .evl li{border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;background:var(--surface-2)}
@@ -266,3 +266,6 @@ details .ov-c{background:var(--surface)}
   .sumt thead{display:none}.sumt tr{display:block;border-bottom:1px solid var(--border);padding:6px 0}.sumt th,.sumt td{display:block;border:0;padding:3px 0}
 }
 @media print{.noprint,.rrnav,.rrf,#rr-site-nav{display:none!important}.panel{border:0}}
+.foot-act .btn{max-width:100%;white-space:normal;text-align:center;height:auto;padding-top:8px;padding-bottom:8px}
+[hidden]{display:none!important}
+.film{max-width:880px}

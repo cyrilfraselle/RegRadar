@@ -219,7 +219,7 @@ function hubView(){
     var lv=LV_OF[nt.t.id], bs=counted(nt.t), k=bs.map(function(b){ return b.id; }).indexOf(nt.step), bn=bs[k]? bs[k].n : 'Read the law';
     var kick=started? 'You are here · '+topicKicker(nt.t) : 'Start here · Level '+lv.no+' · about '+levelMin(lv)+' min, no prior knowledge';
     var head=started? bn+': '+nt.t.title : nt.t.title;
-    var sub=started? 'Beat '+(k+1)+' of '+bs.length+', about '+beatMin(nt.t,nt.step)+' min. '+doneN+' of '+PATH.length+' topics complete.' : 'Watch two short films, answer four questions, play one round, make one decision and read the law. No sign-up: progress is saved on this device.';
+    var sub=started? 'Beat '+(k+1)+' of '+bs.length+', about '+beatMin(nt.t,nt.step)+' min. '+doneN+' of '+PATH.length+' topics complete.' : (liveFilm(nt.t)? 'Watch a short film' : 'Watch a short explainer')+', answer four questions, play one round, make one decision and read the law. No sign-up: progress is saved on this device.';
     html+='<section class="card next" aria-labelledby="nxH"><div class="next-t"><div class="k">'+esc(kick)+'</div><h2 id="nxH">'+esc(head)+'</h2><p>'+esc(sub)+'</p>'+rankLine()+'</div>'
       +'<div class="next-a"><a class="btn pri big" href="'+hrefFor(nt.t,nt.step)+'">'+(started?'Next':'Start')+' <span aria-hidden="true">→</span></a>'
       +(warm? '<a class="btn sm" href="#/warmup">Warm up first · 2 min</a>' : '')+'</div></section>';
@@ -293,7 +293,7 @@ function roomHTML(id){
   var r=ROOMS[id]; if(!r) return '';
   if(r.shift){ var s=SHIFTS.filter(function(x){ return x.no===r.shift; })[0]; if(!s) return '';
     var sd=shiftDone(s);
-    return '<a class="room" href="#/shift/'+s.no+'"><b>'+esc(s.title.replace(/^Shift \d+: /,''))+(sd?' <span class="tick">✓</span><span class="sr"> (worked)</span>':'')+'</b><span>'+esc(s.room)+', about '+s.minutes+' min. '+esc(s.blurb.split('. ')[0])+'.</span></a>'; }
+    return '<a class="room" href="#/shift/'+s.no+'"><b>'+esc(roomTitle(s))+(sd?' <span class="tick">✓</span><span class="sr"> (worked)</span>':'')+'</b><span>'+esc(s.room)+', about '+s.minutes+' min. '+esc(s.blurb.split('. ')[0])+'.</span></a>'; }
   var d=SH && r.module && ((SH.progress.modules[r.module]||{}).done||0)>0;
   return '<a class="room" href="'+esc(r.href)+'"><b>'+esc(r.title)+(d?' <span class="tick">✓</span><span class="sr"> (played)</span>':'')+'</b><span>About '+r.minutes+' min. '+esc(r.blurb)+'</span></a>';
 }
@@ -330,7 +330,7 @@ function programmeView(){
         var parts=counted(t).map(function(b){ return b.id==='watch'? (fl.length? 'Film and explainer' : 'Explainer') : b.n; });
         return '<tr><th scope="row">'+esc(t.title)+(opt?' (optional)':'')+'<span>'+esc(t.short)+'</span></th><td>'+esc(parts.join(', '))+'</td><td>about '+lessonMin(t)+'</td><td>Available</td></tr>';
       }).join('')+'</tbody></table></div>';
-    var rs=(lv.rooms||[]).map(function(id){ var r=ROOMS[id]; if(!r) return ''; if(r.shift){ var s=SHIFTS.filter(function(x){ return x.no===r.shift; })[0]; return s? s.room+' ('+s.title.replace(/^Shift \d+: /,'')+')' : ''; } return r.title; }).filter(Boolean);
+    var rs=(lv.rooms||[]).map(function(id){ var r=ROOMS[id]; if(!r) return ''; if(r.shift){ var s=SHIFTS.filter(function(x){ return x.no===r.shift; })[0]; return s? s.room+' ('+roomTitle(s).toLowerCase()+')' : ''; } return r.title; }).filter(Boolean);
     if(rs.length) html+='<p class="fine" style="margin-top:6px">Optional practice rooms: '+esc(rs.join('; '))+'.</p>';
   });
   html+='<h3 class="sum-l">Evidence</h3><ul class="learn">'+(P.get||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ul>'
@@ -378,10 +378,11 @@ function deskDays(){ try{ var D=window.AcademyEngine&&window.AcademyEngine.Desk;
 function shiftDone(s){ var m=AP.pref('shifts',{})||{}; return !!m[s.no] || deskDays()>=s.desk_days; }
 function shiftLevel(s){ for(var i=0;i<LEVELS.length;i++){ if((LEVELS[i].rooms||[]).some(function(id){ return ROOMS[id]&&ROOMS[id].shift===s.no; })) return LEVELS[i]; } return null; }
 function isPhone(){ try{ return window.matchMedia('(max-width: 899px)').matches; }catch(e){ return false; } }
+function roomTitle(s){ var x=s.title.replace(/^Shift \d+: /,''); return x.charAt(0).toUpperCase()+x.slice(1); }
 function shiftView(s){
   document.title=s.title+' | RegRadar Academy';
   var lv=shiftLevel(s), done=shiftDone(s), phone=isPhone()&&s.desktop_only;
-  var html='<a class="crumb" href="#/">← The path</a><header class="mhead"><div class="kicker">Practice room · optional'+(lv? ' · end of Level '+lv.no+' · '+esc(lv.title) : '')+'</div><h1>'+esc(s.title.replace(/^Shift \d+: /,''))+'</h1>'
+  var html='<a class="crumb" href="#/">← The path</a><header class="mhead"><div class="kicker">Practice room · optional'+(lv? ' · end of Level '+lv.no+' · '+esc(lv.title) : '')+'</div><h1>'+esc(roomTitle(s))+'</h1>'
     +'<div class="meta"><span class="chip">about '+s.minutes+' min</span>'+(done?'<span class="chip ok">Worked</span>':'<span class="chip">Not worked yet</span>')+'<span class="chip">Fictional cases</span></div></header>';
   html+='<section class="panel" aria-labelledby="shH"><h2 id="shH">'+esc(s.room)+'</h2><p class="lede">'+esc(s.blurb)+'</p>'
     +'<p class="fine" style="margin-top:8px">The simulation is set in a fictional bank, CF Bank. The judgement it trains (how much diligence a case needs, when to escalate) is the same in any obliged entity.</p>';
