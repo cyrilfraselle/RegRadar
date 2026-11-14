@@ -253,6 +253,11 @@ class Engine:
             self.run["docs_unchanged"] += 1
             return
         if not r.ok:
+            if rec["extra"].get("corrigendum") and r.status == 404:
+                # Corrigenda often concern only some language versions;
+                # CELLAR then has no English text. Not an error.
+                rec["doc_note"] = "no English text in CELLAR (the corrigendum may concern other language versions)"
+                return
             raise RuntimeError(r.error)
         ex = extract.extract(r.body, r.content_type, r.final_url)
         doc = self.store_doc(src, rec, ex, {"sha256": r.sha, "bytes": len(r.body)}, r.final_url)
@@ -545,7 +550,7 @@ class Engine:
             tiers[c["tier"]] = tiers.get(c["tier"], 0) + 1
         dump(self.dir / "feed.json", {"_meta": {
             "purpose": "Ranked story cards: one card per story, the primary source first, other outlets beneath. Built from engine entries and the legacy RegWatch archive (docs/data/items.json, read only).",
-            "ranking": "regwatch_sources/classify.py rank(): primary type weight (legislation 100 ... supervisory communication 45), +5 open/final/in force, +2 per topic (max 10), -1 per week of age (max 20); news 15. Primary always outranks news.",
+            "ranking": "regwatch_sources/classify.py rank(): band (2 in-scope primary, 1 other primary, 0 news) x 100 + score; score = type weight (legislation 85 ... supervisory communication 30; news 15), +5 open/final/in force, +2 per topic (max 10), -1 per week of age (max 20). Primary always outranks news.",
             "tiers": "critical = in-scope legislation, standards, guidelines, enforcement or an open consultation from a primary source; important = other in-scope primary; info = the rest and all news.",
             "news_cap": f"news-only cards are at most {int(NEWS_SHARE_CAP * 100)}% of the feed; {dropped} lower-ranked news cards dropped this run",
             "window_days": FEED_DAYS, "generated": self.now, "cards": len(cards), "tiers": tiers}, "cards": cards})

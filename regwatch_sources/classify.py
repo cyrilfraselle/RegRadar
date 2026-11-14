@@ -22,6 +22,12 @@ _RULES = [  # (type, regex on title), first match wins
 
 def doc_type(entry: dict, src: dict) -> str:
     if src.get("parser") == "cellar_sparql":
+        celex = entry.get("extra", {}).get("celex", "")
+        # sector 5 = preparatory acts: COM proposals (PC) stay legislation
+        # (status "proposal"); Parliament resolutions and other preparatory
+        # documents are communications, not law.
+        if celex.startswith("5") and not re.match(r"5\d{4}(PC|DC)", celex):
+            return "supervisory_communication"
         return "legislation"
     t = entry.get("title", "")
     for typ, rx in _RULES:
@@ -41,6 +47,12 @@ def doc_status(entry: dict, dtype: str, today: str = None) -> str:
         eif = (entry.get("fields", {}).get("Entry into force") or {}).get("date", "")
         base = "in force" if eif and eif <= today else ("adopted, not yet in force" if eif else "published in OJ")
         return base + (" (corrigendum)" if ex.get("corrigendum") else "")
+    if dtype == "supervisory_communication" and ex.get("celex", "").startswith("5"):
+        return "European Parliament or other preparatory document"
+    if "consultation closed" in t and "final report" not in t:
+        return "draft (consultation closed)"
+    if "consultation open" in t or "under consultation" in t:
+        return "draft (consultation open)"
     if "final report published" in t or "final report" in t or "final draft" in t:
         return "final (submitted to the Commission)" if dtype == "rts_its_draft" else "final"
     status_field = (entry.get("fields", {}).get("Status") or {}).get("text", "") or entry.get("category", "")
@@ -105,16 +117,16 @@ NEWS_WEIGHT = 15
 
 
 def rank(item: dict, today: str = None) -> float:
-    """Higher is more important. Primary documents always outrank news:
-    the best news item (15 + topic bonus <= 25) is below the weakest
-    in-scope primary document (45)."""
+    """Higher is more important. The score sits inside a band so primary
+    documents always outrank news whatever their age or topics:
+    band 2 = in-scope primary, band 1 = other primary, band 0 = news;
+    rank = band * 100 + score (score is below 100)."""
     today = today or date.today().isoformat()
     if item.get("is_news"):
-        base = NEWS_WEIGHT
+        band, base = 0, NEWS_WEIGHT
     else:
-        base = TYPE_WEIGHT.get(item.get("type"), 40)
-        if not item.get("in_scope"):
-            base = min(base, 30)
+        band = 2 if item.get("in_scope") else 1
+        base = TYPE_WEIGHT.get(item.get("type"), 40) - 15
     st = item.get("status", "")
     if "open" in st or st.startswith("in force") or st.startswith("final") or st.startswith("adopted"):
         base += 5
@@ -126,7 +138,7 @@ def rank(item: dict, today: str = None) -> float:
             base -= min(20, max(0, age) / 7)        # minus 1 point per week, capped
         except ValueError:
             pass
-    return round(base, 2)
+    return round(band * 100 + max(0.0, min(99.0, base)), 2)
 
 
 def tier(item: dict) -> str:

@@ -144,6 +144,8 @@ def parse_html_links(src: dict, body: bytes, base_url: str) -> list:
         href, text = a["href"], clean(a.get_text(" "))
         if len(text) < p.get("min_title", 25) or not href_re.search(href) or not text_re.search(text):
             continue
+        if p.get("strip_prefix"):
+            text = re.sub(p["strip_prefix"], "", text).strip()
         url = urljoin(base_url, href)
         if url in seen:
             continue
@@ -252,6 +254,13 @@ def cellar_query(src: dict, since: str) -> str:
                 "since": since, "eng": _ENG, "limit": int(p.get("limit", 300))}
 
 
+BASE_NAMES = {"32024R1624": "AMLR (Regulation (EU) 2024/1624)", "32024R1620": "AMLAR (Regulation (EU) 2024/1620)",
+              "32024L1640": "AMLD6 (Directive (EU) 2024/1640)", "32023R1113": "TFR (Regulation (EU) 2023/1113)",
+              "32023R1114": "MiCA (Regulation (EU) 2023/1114)", "32015L0849": "AMLD4 (Directive (EU) 2015/849)",
+              "32015L2366": "PSD2 (Directive (EU) 2015/2366)", "32009L0110": "EMD2 (Directive 2009/110/EC)",
+              "32022R2554": "DORA (Regulation (EU) 2022/2554)", "32015R0847": "Regulation (EU) 2015/847"}
+
+
 def eurlex_url(celex: str) -> str:
     return "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:" + celex
 
@@ -268,7 +277,8 @@ def parse_cellar(src: dict, body: bytes) -> list:
         if e is None:
             rtype = v.get("type", "").rsplit("/", 1)[-1]
             corrig = bool(re.search(r"R\(\d+\)$", celex))
-            title = v.get("title", "") or (f"Corrigendum to {celex.split('R(')[0]}" if corrig else celex)
+            base = celex.split("R(")[0]
+            title = v.get("title", "") or (f"Corrigendum to {BASE_NAMES.get(base, base)} ({celex})" if corrig else celex)
             e = _entry(eurlex_url(celex), title, v.get("pub", "")[:10], "", rtype,
                        {"OJ publication": {"text": v.get("pub", "")[:10], "date": v.get("pub", "")[:10]},
                         "Entry into force": {"text": v.get("eif", "")[:10], "date": v.get("eif", "")[:10]},
