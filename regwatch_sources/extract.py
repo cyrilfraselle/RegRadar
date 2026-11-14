@@ -68,6 +68,22 @@ def _is_subtitle(el) -> bool:
     return bool(re.search(r"(^|\s)(oj-)?sti-art(\s|$)", cls))
 
 
+def pick_root(soup, root_selector=None):
+    """First candidate container that holds real text (some sites put an
+    empty skip-link anchor with id="main-content")."""
+    first = None
+    for sel in ([root_selector] if root_selector else []) + list(_ROOTS):
+        el = soup.select_one(sel)
+        if el is None:
+            continue
+        n = len(el.get_text(" ", strip=True))
+        if n >= 200:
+            return el
+        if first is None and n > 0:
+            first = el
+    return first or soup.body or soup
+
+
 def html_sections(html: str, root_selector: str = None) -> tuple:
     """Return (title, sections). sections = [{"heading", "paras": [str]}]."""
     soup = BeautifulSoup(html or "", "html.parser")
@@ -79,11 +95,7 @@ def html_sections(html: str, root_selector: str = None) -> tuple:
         title = clean(soup.title.get_text())
     for bad in soup.select(_DROP):
         bad.decompose()
-    root = None
-    for sel in ([root_selector] if root_selector else []) + list(_ROOTS):
-        root = soup.select_one(sel)
-        if root:
-            break
+    root = pick_root(soup, root_selector)
     if root is None:
         return title, []
     sections = [{"heading": "", "paras": []}]
@@ -240,11 +252,7 @@ def pdf_links(html: str, base: str) -> list:
     soup = BeautifulSoup(html or "", "html.parser")
     for bad in soup.select(_DROP):
         bad.decompose()
-    root = None
-    for sel in _ROOTS:
-        root = soup.select_one(sel)
-        if root:
-            break
+    root = pick_root(soup)
     out, seen = [], set()
     for a in (root.select("a[href]") if root else []):
         href = a["href"]

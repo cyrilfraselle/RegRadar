@@ -193,6 +193,13 @@ class DedupeTest(unittest.TestCase):
         self.assertFalse(same_story_raw("Press release on the suspension of trading in Nyrstar",
                                         "Press release on the reopening of trading in Nyrstar"))
 
+    def test_primary_documents_need_same_subject(self):
+        from regwatch_sources.dedupe import same_primary_document
+        self.assertFalse(same_primary_document("Draft Implementing Technical Standards on FIU reporting to the EPPO",
+                                               "Draft Implementing Technical Standards on AMLA reporting to the EPPO"))
+        self.assertTrue(same_primary_document("Consultation on the draft RTS on Customer Due Diligence",
+                                              "Draft Regulatory Technical Standards on Customer Due Diligence."))
+
     def test_cluster_syndicated(self):
         items = [{"title": "Binance’s EU services face scrutiny over licensing exemption - TradingView", "url": "u1", "date": "2026-11-01"},
                  {"title": "Binance’s EU services face scrutiny over licensing exemption: Report - Cryptonews.net", "url": "u2", "date": "2026-11-02"},

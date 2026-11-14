@@ -142,17 +142,24 @@ def rank(item: dict, today: str = None) -> float:
 
 
 def tier(item: dict) -> str:
-    """critical: binding or about-to-bind AML/payments/crypto material
-    (legislation, final or draft standards, guidelines, open consultations,
-    enforcement decisions) from a primary source.
-    important: other in-scope primary documents.
+    """critical: binding or final AML/payments/crypto material from a
+    primary source: in-force or adopted legislation (not proposals, not
+    sanctions-list-only acts), final standards or guidelines, enforcement
+    decisions, and consultations that are open now.
+    important: other in-scope primary documents (drafts, closed
+    consultations, sanctions-list updates, communications).
     info: everything else, including all news."""
-    if item.get("is_news"):
+    if item.get("is_news") or not item.get("in_scope"):
         return "info"
-    if not item.get("in_scope"):
-        return "info"
-    st = item.get("status", "")
-    if item.get("type") in ("legislation", "rts_its_draft", "guideline", "enforcement") or \
-            (item.get("type") == "consultation" and "open" in st):
+    st = item.get("status", "") or ""
+    typ = item.get("type")
+    topics = set(item.get("topics") or [])
+    if typ == "legislation":
+        if st.startswith("proposal") or "corrigendum" in st or topics == {"sanctions"}:
+            return "important"
+        return "critical"
+    if typ in ("rts_its_draft", "guideline"):
+        return "critical" if st.startswith("final") or st in ("supervisory-binding", "comply-or-explain", "binding") else "important"
+    if typ == "enforcement" or (typ == "consultation" and "open" in st):
         return "critical"
     return "important"

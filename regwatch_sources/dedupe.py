@@ -109,6 +109,28 @@ def same_story_raw(ta: str, tb: str) -> bool:
     return same_story(normalise_title(ta), normalise_title(tb))
 
 
+_GENERIC = set("draft final report consultation consults public hearing via rts its regulatory technical "
+               "standards standard implementing guidelines guideline under article amlr amld amlar press release "
+               "publishes published paper annex annexes factsheet".split())
+
+
+def same_primary_document(ta: str, tb: str) -> bool:
+    """Stricter rule for two primary-source items (not news): official
+    titles share long boilerplate ("Draft Implementing Technical Standards
+    on ..."), so they are one story only when, once generic instrument
+    words are removed, every remaining word of the shorter title is in the
+    longer one (a consultation and the final report of the same mandate)."""
+    ia, ib = identifier(ta), identifier(tb)
+    if ia and ib:
+        return ia == ib
+    wa = set(normalise_title(ta, strip_outlet=False).split()) - _GENERIC
+    wb = set(normalise_title(tb, strip_outlet=False).split()) - _GENERIC
+    if len(wa) < 3 or len(wb) < 3:
+        return wa == wb and bool(wa)
+    short, long_ = (wa, wb) if len(wa) <= len(wb) else (wb, wa)
+    return short <= long_
+
+
 def same_story(a: str, b: str) -> bool:
     """a, b are normalised titles."""
     if a == b and a:
@@ -126,8 +148,9 @@ def _date(x):
         return None
 
 
-def cluster(items: list, title_key="title", date_key="date", url_key="url") -> list:
-    """Return a list of clusters (lists of indexes into `items`)."""
+def cluster(items: list, title_key="title", date_key="date", url_key="url", news_key="is_news") -> list:
+    """Return a list of clusters (lists of indexes into `items`). Items
+    with `news_key` False on both sides use same_primary_document()."""
     n = len(items)
     parent = list(range(n))
 
@@ -159,8 +182,11 @@ def cluster(items: list, title_key="title", date_key="date", url_key="url") -> l
         for j in order[a_pos + 1:]:
             if dates[i] and dates[j] and (dates[j] - dates[i]).days > WINDOW_DAYS:
                 break
-            if find(i) != find(j) and same_story_raw(items[i].get(title_key, ""),
-                                                     items[j].get(title_key, "")):
+            ti, tj = items[i].get(title_key, ""), items[j].get(title_key, "")
+            primary = items[i].get(news_key) is False and items[j].get(news_key) is False
+            if primary and items[i].get("authority") != items[j].get("authority"):
+                continue          # two authorities' own documents are two stories
+            if find(i) != find(j) and (same_primary_document(ti, tj) if primary else same_story_raw(ti, tj)):
                 union(i, j)
     groups = {}
     for i in range(n):

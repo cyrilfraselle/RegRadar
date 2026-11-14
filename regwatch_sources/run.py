@@ -166,10 +166,31 @@ class Engine:
             return PARSERS["cellar_sparql"](src, r)
         if src["parser"] == "page_snapshot":
             out = []
-            for u in src.get("urls") or [src["url"]]:
+            queue = list(src.get("urls") or [src["url"]])
+            done = set()
+            follow = src.get("params", {}).get("follow_children")
+            max_pages = src.get("params", {}).get("max_pages", 80)
+            while queue and len(done) < max_pages:
+                u = queue.pop(0)
+                if u in done:
+                    continue
+                done.add(u)
                 r = self.fetcher.get(u, conditional=False)
                 if not r.ok:
-                    raise RuntimeError(f"{u}: {r.error}")
+                    if u in (src.get("urls") or [src["url"]]):
+                        raise RuntimeError(f"{u}: {r.error}")
+                    self.run["errors"].append(f"{src['id']} child {u}: {r.error}")
+                    continue
+                if follow:
+                    # one level of sub-pages under this page's own path
+                    from urllib.parse import urljoin
+                    from bs4 import BeautifulSoup as _BS
+                    root = extract.pick_root(_BS(r.body, "html.parser"))
+                    base = u.split("?")[0].rstrip("/") + "/"
+                    for a in (root.select("a[href]") if root else []):
+                        cu = urljoin(u, a["href"]).split("#")[0]
+                        if cu.startswith(base) and cu.count("/") == base.count("/") and cu not in done:
+                            queue.append(cu)
                 e = PARSERS["page_snapshot"](src, r)[0]
                 ex = extract.extract(r.body, r.content_type, r.final_url)
                 text = extract.plain_text(ex)
@@ -377,6 +398,8 @@ class Engine:
                     quotes.append({"text": p["text"][:1200], "loc": p["loc"], "topics": tp,
                                    "why": "normative wording (" + NORMATIVE.search(p["text"]).group(0) + ") on " + ", ".join(tp)})
             quotes.sort(key=lambda q: -len(q["topics"]))
+            if not quotes:
+                continue          # nothing quotable to review
             text = extract.plain_text(doc)
             cited = set()
             basis = " ".join(str(v) for v in [doc["title"]] + [x.get("text", "") for x in (self.entries.get(doc["id"], {}).get("fields") or {}).values()])
@@ -403,7 +426,7 @@ class Engine:
                 "quotes": quotes[:6], "review_status": "needs-review",
             }
             self.run["proposals_new"] += 1
-        keep = sorted(props.values(), key=lambda p: p["created"], reverse=True)[:MAX_PROPOSALS]
+        keep = sorted((p for p in props.values() if p.get("quotes")), key=lambda p: p["created"], reverse=True)[:MAX_PROPOSALS]
         dump(path, {"_meta": {
             "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
             "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
@@ -620,12 +643,36 @@ class Engine:
         if not coverage_only:
             self.process_docs()
             self.proposals()
+        self.retag_if_rules_changed()
         n_deadlines = self.deadlines()
         cov = self.coverage() if self.do_coverage else []
         feed = self.feed()
         self.run["duration_s"] = round(time.monotonic() - t0, 1)
         self.write(n_deadlines, cov, feed)
         return self.run
+
+    def retag_if_rules_changed(self):
+        """Re-apply topic tags to stored documents when topic-tags.json
+        changes (local work only, no requests)."""
+        rules_hash = h((self.dir / "topic-tags.json").read_text(encoding="utf-8"), 16)
+        if self.state.get("tags_hash") == rules_hash:
+            return
+        for p in self.docs_dir.glob("*.json"):
+            d = load(p, None)
+            if not d:
+                continue
+            for s in d.get("sections", []):
+                for para in s.get("paras", []):
+                    para.pop("topics", None)
+            t = self.tagger.tag_document(d.get("title", ""), d.get("sections", []))
+            d["topics"], d["topic_counts"] = t["topics"], t["topic_counts"]
+            dump(p, d, compact=True)
+        srcs = {s["id"]: s for s in self.registry["sources"]}
+        for e in self.entries.values():
+            e["topics"] = self.tagger.tag(" ".join([e["title"], e.get("summary", ""), e.get("category", "")]))
+            src = srcs.get(e["source"], {})
+            e["in_scope"] = src.get("scope", "all") == "all" or bool(e["topics"])
+        self.state["tags_hash"] = rules_hash
 
     def write(self, n_deadlines, cov, feed):
         by_src = {}

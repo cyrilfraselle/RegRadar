@@ -1,60 +1,303 @@
 {
-  "_meta": {
-    "purpose": "Topic tags for the source corpus (RegWatch engine v2). Deterministic rules: a tag applies when one of its patterns matches and none of its exclude patterns matches the same text. Patterns are Python regular expressions, matched case-insensitively at word boundaries the pattern states itself. Covers EN, FR and NL wording where Belgian sources use it.",
-    "maintained_by": "hand-edited; tested by tests/test_topic_precision.py against tests/golden/topic_golden.json",
-    "not_the_site_taxonomy": "docs/data/topics.json is the site-wide topic list owned by another stream; this file is only the tagger's rule set. Map ids there when that file lands."
+ "_meta": {
+  "purpose": "Topic tags for the source corpus (RegWatch engine v2). Deterministic rules: a tag applies when one of its patterns matches and none of its exclude patterns matches the same text. Patterns are Python regular expressions, matched case-insensitively at word boundaries the pattern states itself. Covers EN, FR and NL wording where Belgian sources use it.",
+  "maintained_by": "hand-edited; tested by tests/test_topic_precision.py against tests/golden/topic_golden.json",
+  "not_the_site_taxonomy": "docs/data/topics.json is the site-wide topic list owned by another stream; this file is only the tagger's rule set. Map ids there when that file lands."
+ },
+ "tags": [
+  {
+   "id": "cdd",
+   "label": "Customer due diligence",
+   "patterns": [
+    "customer due diligence",
+    "\\bCDD\\b",
+    "\\bKYC\\b",
+    "know your customer",
+    "\\bdue diligence\\b",
+    "identification (and verification )?of the (identity of )?(the )?customers?",
+    "verification of the (customer|identity)",
+    "purpose and intended nature",
+    "business relationships?,? occasional",
+    "devoir de vigilance",
+    "vigilance (à l'égard de|envers) la client",
+    "mesures de vigilance",
+    "cliënten?onderzoek",
+    "klantenonderzoek"
+   ],
+   "exclude": []
   },
-  "tags": [
-    {"id": "cdd", "label": "Customer due diligence",
-     "patterns": ["customer due diligence", "\\bCDD\\b", "\\bKYC\\b", "know your customer", "\\bdue diligence\\b", "identification (and verification )?of the (identity of )?(the )?customers?", "verification of the (customer|identity)", "purpose and intended nature", "business relationships?,? occasional", "devoir de vigilance", "vigilance (à l'égard de|envers) la client", "mesures de vigilance", "cliënten?onderzoek", "klantenonderzoek"],
-     "exclude": []},
-    {"id": "cdd-natural-person", "label": "CDD: natural persons",
-     "patterns": ["(identif|verif)\\w*[^.]{0,60}natural persons?", "natural persons?[^.]{0,40}(identif|verif)", "identity documents?", "date and place of birth", "personnes? physiques?", "natuurlijke personen?"],
-     "exclude": []},
-    {"id": "cdd-legal-entity", "label": "CDD: legal entities and arrangements",
-     "patterns": ["(beneficial owners?|identif\\w*|verif\\w*)[^.]{0,40}(for|of) (foreign )?legal (entit|arrangement)", "legal arrangements?", "express trusts?", "similar legal (entit|arrangement)", "personnes? morales?", "constructions? juridiques?", "rechtspersonen?", "juridische constructies?"],
-     "exclude": []},
-    {"id": "pep", "label": "Politically exposed persons",
-     "patterns": ["politically exposed", "\\bPEPs?\\b", "prominent public functions?", "politiquement exposées?", "politiek prominente"],
-     "exclude": []},
-    {"id": "beneficial-ownership", "label": "Beneficial ownership",
-     "patterns": ["beneficial own(er|ership)s?", "\\bUBOs?\\b", "bénéficiaires? effectifs?", "uiteindelijke begunstigden?", "class of beneficiaries", "ownership interest", "ownership through control"],
-     "exclude": []},
-    {"id": "simplified-edd", "label": "Simplified and enhanced due diligence",
-     "patterns": ["simplified (customer )?due diligence", "enhanced (customer )?due diligence", "\\bEDD\\b", "\\bSDD\\b", "correspondent relationships?", "vigilance (simplifiée|renforcée)s?", "mesures de vigilance (simplifiées|renforcées)", "vereenvoudigde? (klanten|cliënten)?onderzoek", "verscherpte? (klanten|cliënten)?onderzoek"],
-     "exclude": []},
-    {"id": "ongoing-monitoring", "label": "Ongoing and transaction monitoring",
-     "patterns": ["ongoing monitoring", "transaction monitoring", "monitoring of (the )?(business relationships?|transactions)", "atypical transactions?", "scrutiny of transactions", "surveillance continue", "transactions atypiques", "atypische verrichtingen", "doorlopende? (controle|monitoring)"],
-     "exclude": []},
-    {"id": "reporting-str", "label": "Suspicion reporting and the FIU",
-     "patterns": ["suspicious (transaction|activit)", "report(s|ing)? (of )?suspicions?", "reporting suspicions?", "\\bSTRs?\\b", "\\bSARs?\\b", "financial intelligence units?", "\\bFIUs?\\b", "tipping[- ]off", "prohibition of disclosure", "déclarations? de soupçons?", "\\bCTIF\\b", "\\bCFI\\b", "melding van (verdachte|vermoedens)"],
-     "exclude": []},
-    {"id": "record-keeping", "label": "Record keeping",
-     "patterns": ["record[- ]keeping", "record retention", "provision of records", "retention of (the )?(records|documents|data|information)", "(data|records?) and documents? retention", "document retention", "retain (the )?(records|copies|documents|information)", "conservation des (données|documents|pièces)", "bewaring van (gegevens|documenten|stukken)"],
-     "exclude": []},
-    {"id": "governance-risk-assessment", "label": "Governance, policies and risk assessment",
-     "patterns": ["business[- ]wide risk assessment", "risk assessments?", "risk-based approach", "internal polic(y|ies)", "internal controls?", "policies, procedures and controls", "compliance (officer|function|manager)s?", "management body", "group-wide", "inherent and residual risk", "integrity of employees", "reporting of breaches", "branches and subsidiaries", "subsidiaries and branches", "évaluation globale des risques", "approche fondée sur les risques", "contrôle interne", "organisation (and|et) (internal )?contr", "risicobeoordeling", "interne controle"],
-     "exclude": []},
-    {"id": "sanctions", "label": "Targeted financial sanctions",
-     "patterns": ["targeted financial sanctions", "financial sanctions", "restrictive measures", "asset[- ]freez\\w*", "freezing of (funds|assets)", "financial embargo(es)?", "sanctions? (lists?|regimes?|screening|evasion)", "\\bCFSP\\b", "gel des avoirs", "embargos? financiers?", "mesures restrictives", "beperkende maatregelen", "bevriezing van tegoeden"],
-     "exclude": ["pecuniary sanctions", "administrative sanctions", "sanctions? and measures", "periodic penalty"]},
-    {"id": "crypto-assets", "label": "Crypto-assets",
-     "patterns": ["crypto[- ]?assets?", "\\bCASPs?\\b", "\\bMiCAR?\\b", "virtual assets?", "stablecoins?", "e-money tokens?", "asset-referenced tokens?", "distributed ledger", "self-hosted (address|wallet)", "crypto-actifs?", "cryptoactiva"],
-     "exclude": []},
-    {"id": "transfers-of-funds", "label": "Transfers of funds (travel rule)",
-     "patterns": ["transfers? of funds", "wire transfers?", "travel rule", "information accompanying transfers", "2023/1113", "payer and (the )?payee", "transferts? de fonds", "overmakingen? van geldmiddelen"],
-     "exclude": []},
-    {"id": "high-risk-countries", "label": "High-risk third countries",
-     "patterns": ["high[- ]risk third countr\\w*", "high[- ]risk jurisdictions?", "jurisdictions? under increased monitoring", "\\bgrey list\\b", "strategic deficiencies", "compliance weaknesses", "third countr\\w* posing", "threats? from outside the union", "countermeasures", "call for action", "pays tiers à haut risque", "derde landen met een hoog risico"],
-     "exclude": []},
-    {"id": "training", "label": "Training and awareness",
-     "patterns": ["\\btraining\\b", "awareness (of requirements|programmes?|raising)", "formation (du personnel|des employés)", "sensibilisation", "opleiding"],
-     "exclude": []},
-    {"id": "outsourcing-reliance", "label": "Outsourcing and reliance on third parties",
-     "patterns": ["outsourc\\w*", "reliance on (third parties|other obliged|another obliged)", "rel(y|ying) on (third parties|another obliged|other obliged)", "third[- ]party risk", "third[- ]party service providers?", "process of reliance", "guidelines on reliance", "sous-traitance", "recours à des tiers", "uitbesteding"],
-     "exclude": []},
-    {"id": "payments-emoney", "label": "Payments and e-money",
-     "patterns": ["payment (institutions?|services?|accounts?|initiation)", "e-money(?! tokens?)", "electronic money(?! tokens?)", "\\bPSD[23]\\b", "\\bPSR\\b", "instant payments?", "établissements? de (paiement|monnaie électronique)", "monnaie électronique", "betalingsinstellingen?", "instellingen voor elektronisch geld"],
-     "exclude": []}
-  ]
+  {
+   "id": "cdd-natural-person",
+   "label": "CDD: natural persons",
+   "patterns": [
+    "(identif|verif)\\w*[^.]{0,60}natural persons?",
+    "natural persons?[^.]{0,40}(identif|verif)",
+    "identity documents?",
+    "date and place of birth",
+    "personnes? physiques?",
+    "natuurlijke personen?"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "cdd-legal-entity",
+   "label": "CDD: legal entities and arrangements",
+   "patterns": [
+    "(beneficial owners?|identif\\w*|verif\\w*)[^.]{0,40}(for|of) (foreign )?legal (entit|arrangement)",
+    "legal arrangements?",
+    "express trusts?",
+    "similar legal (entit|arrangement)",
+    "personnes? morales?",
+    "constructions? juridiques?",
+    "rechtspersonen?",
+    "juridische constructies?"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "pep",
+   "label": "Politically exposed persons",
+   "patterns": [
+    "politically exposed",
+    "\\bPEPs?\\b",
+    "prominent public functions?",
+    "politiquement exposées?",
+    "politiek prominente"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "beneficial-ownership",
+   "label": "Beneficial ownership",
+   "patterns": [
+    "beneficial own(er|ership)s?",
+    "\\bUBOs?\\b",
+    "bénéficiaires? effectifs?",
+    "uiteindelijke begunstigden?",
+    "class of beneficiaries",
+    "ownership interest",
+    "ownership through control"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "simplified-edd",
+   "label": "Simplified and enhanced due diligence",
+   "patterns": [
+    "simplified (customer )?due diligence",
+    "enhanced (customer )?due diligence",
+    "\\bEDD\\b",
+    "\\bSDD\\b",
+    "correspondent relationships?",
+    "vigilance (simplifiée|renforcée)s?",
+    "mesures de vigilance (simplifiées|renforcées)",
+    "vereenvoudigde? (klanten|cliënten)?onderzoek",
+    "verscherpte? (klanten|cliënten)?onderzoek"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "ongoing-monitoring",
+   "label": "Ongoing and transaction monitoring",
+   "patterns": [
+    "ongoing monitoring",
+    "transaction monitoring",
+    "monitoring of (the )?(business relationships?|transactions)",
+    "atypical transactions?",
+    "scrutiny of transactions",
+    "surveillance continue",
+    "transactions atypiques",
+    "atypische verrichtingen",
+    "doorlopende? (controle|monitoring)"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "reporting-str",
+   "label": "Suspicion reporting and the FIU",
+   "patterns": [
+    "suspicious (transaction|activit)",
+    "report(s|ing)? (of )?suspicions?",
+    "reporting suspicions?",
+    "\\bSTRs?\\b",
+    "\\bSARs?\\b",
+    "financial intelligence units?",
+    "\\bFIUs?\\b",
+    "tipping[- ]off",
+    "prohibition of disclosure",
+    "déclarations? de soupçons?",
+    "\\bCTIF\\b",
+    "\\bCFI\\b",
+    "melding van (verdachte|vermoedens)"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "record-keeping",
+   "label": "Record keeping",
+   "patterns": [
+    "record[- ]keeping",
+    "record retention",
+    "provision of records",
+    "retention of (the )?(records|documents|data|information)",
+    "(data|records?) and documents? retention",
+    "document retention",
+    "retain (the )?(records|copies|documents|information)",
+    "conservation des (données|documents|pièces)",
+    "bewaring van (gegevens|documenten|stukken)"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "governance-risk-assessment",
+   "label": "Governance, policies and risk assessment",
+   "patterns": [
+    "business[- ]wide risk assessment",
+    "risk assessments?",
+    "risk-based approach",
+    "internal polic(y|ies)",
+    "internal controls?",
+    "policies, procedures and controls",
+    "compliance (officer|function|manager)s?",
+    "management body",
+    "group-wide",
+    "inherent and residual risk",
+    "integrity of employees",
+    "reporting of breaches",
+    "branches and subsidiaries",
+    "subsidiaries and branches",
+    "évaluation globale des risques",
+    "approche fondée sur les risques",
+    "contrôle interne",
+    "organisation (and|et) (internal )?contr",
+    "risicobeoordeling",
+    "interne controle"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "sanctions",
+   "label": "Targeted financial sanctions",
+   "patterns": [
+    "targeted financial sanctions",
+    "financial sanctions",
+    "restrictive measures",
+    "asset[- ]freez\\w*",
+    "freezing of (funds|assets)",
+    "financial embargo(es)?",
+    "sanctions? (lists?|regimes?|screening|evasion)",
+    "\\bCFSP\\b",
+    "gel des avoirs",
+    "embargos? financiers?",
+    "mesures restrictives",
+    "beperkende maatregelen",
+    "bevriezing van tegoeden"
+   ],
+   "exclude": [
+    "pecuniary sanctions",
+    "administrative sanctions",
+    "sanctions? and measures",
+    "periodic penalty"
+   ]
+  },
+  {
+   "id": "crypto-assets",
+   "label": "Crypto-assets",
+   "patterns": [
+    "crypto[- ]?assets?",
+    "\\bCASPs?\\b",
+    "\\bMiCAR?\\b",
+    "virtual assets?",
+    "stablecoins?",
+    "e-money tokens?",
+    "asset-referenced tokens?",
+    "distributed ledger",
+    "self-hosted (address|wallet)",
+    "crypto-actifs?",
+    "cryptoactiva"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "transfers-of-funds",
+   "label": "Transfers of funds (travel rule)",
+   "patterns": [
+    "transfers? of funds",
+    "wire transfers?",
+    "travel rule",
+    "information accompanying transfers",
+    "2023/1113",
+    "payer and (the )?payee",
+    "transferts? de fonds",
+    "overmakingen? van geldmiddelen"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "high-risk-countries",
+   "label": "High-risk third countries",
+   "patterns": [
+    "high[- ]risk third countr\\w*",
+    "high[- ]risk jurisdictions?",
+    "jurisdictions? under increased monitoring",
+    "\\bgrey list\\b",
+    "strategic deficiencies",
+    "compliance weaknesses",
+    "third countr\\w* posing",
+    "threats? from outside the union",
+    "countermeasures",
+    "call for action",
+    "pays tiers à haut risque",
+    "derde landen met een hoog risico"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "training",
+   "label": "Training and awareness",
+   "patterns": [
+    "(staff|employees?|personnel|agents?|management)[^.]{0,40}\\btraining\\b",
+    "\\btraining\\b[^.]{0,60}(staff|employees|personnel|money laundering|AML|terrorist financing|obligations|requirements)",
+    "awareness (of requirements|programmes?|raising)",
+    "formation (du personnel|des employés)",
+    "sensibilisation",
+    "opleiding van (het )?personeel"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "outsourcing-reliance",
+   "label": "Outsourcing and reliance on third parties",
+   "patterns": [
+    "outsourc\\w*",
+    "reliance on (third parties|other obliged|another obliged)",
+    "rel(y|ying) on (third parties|another obliged|other obliged)",
+    "third[- ]party risk",
+    "third[- ]party service providers?",
+    "process of reliance",
+    "guidelines on reliance",
+    "sous-traitance",
+    "recours à des tiers",
+    "uitbesteding"
+   ],
+   "exclude": []
+  },
+  {
+   "id": "payments-emoney",
+   "label": "Payments and e-money",
+   "patterns": [
+    "payment (institutions?|services?|accounts?|initiation)",
+    "e-money(?! tokens?)",
+    "electronic money(?! tokens?)",
+    "\\bPSD[23]\\b",
+    "\\bPSR\\b",
+    "instant payments?",
+    "établissements? de (paiement|monnaie électronique)",
+    "monnaie électronique",
+    "betalingsinstellingen?",
+    "instellingen voor elektronisch geld"
+   ],
+   "exclude": []
+  }
+ ]
 }
