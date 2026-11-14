@@ -261,11 +261,12 @@
       if (!ctl.length) rows.push({ obligation: o.legal_basis, oid: o.id, name: '', owner: '', status: '', lastTest: '', result: '', gaps: ['No control mapped'] });
       ctl.forEach(function (c) {
         var d = c.data || {}, tests = R.linked(c.id, 'tests', 'in').filter(function (x) { return x.type === 'test'; })
-          .sort(function (a, b) { return String((b.data || {}).tested_on).localeCompare(String((a.data || {}).tested_on)); });
-        var lt = tests[0], last = lt ? (lt.data || {}).tested_on : d.last_tested, res = lt ? lt.status : (d.effectiveness || 'not_tested');
+          .sort(function (a, b) { var x = (a.data || {}).tested_on || a.created_at || '', y = (b.data || {}).tested_on || b.created_at || ''; return String(y).localeCompare(String(x)); });
+        var lt = tests[0], last = lt ? ((lt.data || {}).tested_on || '') : d.last_tested, res = lt ? lt.status : (d.effectiveness || 'not_tested');
+        var tested = !!lt || !!d.last_tested;
         var owner = c.owner && R.get(c.owner) ? R.get(c.owner).title : (d.owner_text || '');
         var st = R.stateDef ? R.stateDef('control', c.status) : null, gaps = [];
-        if (!last) gaps.push('Not tested');
+        if (!tested) gaps.push('Not tested');
         if (res === 'failed' || res === 'needs_improvement') gaps.push('Last test: ' + (res === 'failed' ? 'failed' : 'needs improvement'));
         if (c.due && c.due < t) gaps.push('Test overdue since ' + fmtDate(c.due));
         if (!owner) gaps.push('No owner');
@@ -287,7 +288,7 @@
     h += '<div class="tablewrap" tabindex="0" role="region" aria-label="Controls for ' + esc(sub.title) + '"><table class="tbl"><caption class="sr">Controls linked to the obligations of this subtopic</caption><thead><tr><th scope="col">Obligation</th><th scope="col">Control</th><th scope="col">Owner</th><th scope="col">Status</th><th scope="col">Last test</th><th scope="col">Gap</th></tr></thead><tbody>';
     rows.forEach(function (r) {
       h += '<tr><td><a href="obligations.html#' + esc(r.oid) + '">' + esc(r.obligation) + '</a></td><td>' + (r.name ? esc(r.name) + (r.demo ? ' ' + chip('Sample, fictional', 'muted') : '') : '<span class="hint">None</span>') + '</td><td>' + esc(r.owner || '-') + '</td><td>' + esc(r.status || '-') + '</td>' +
-        '<td>' + (r.lastTest ? esc(fmtDate(r.lastTest)) + (r.result && r.result !== 'not_tested' ? '<br><span class="hint">' + esc(r.result.replace('_', ' ')) + '</span>' : '') : '-') + '</td>' +
+        '<td>' + (r.lastTest || (r.result && r.result !== 'not_tested') ? (r.lastTest ? esc(fmtDate(r.lastTest)) : 'Date not recorded') + (r.result && r.result !== 'not_tested' ? '<br><span class="hint">' + esc(r.result.replace('_', ' ')) + '</span>' : '') : '-') + '</td>' +
         '<td>' + (r.gaps.length ? r.gaps.map(function (g) { return chip(g, 'gap'); }).join(' ') : chip('None', 'ok')) + '</td></tr>';
     });
     h += '</tbody></table></div><p class="acts"><a class="btn ghost" href="controls.html">Open Controls to map or test</a></p>';
