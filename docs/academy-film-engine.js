@@ -258,6 +258,11 @@ DRAW.text = function (e) {
   var tint = e.tint, words = 0;
   var colors = tint ? function (i) { return (tint.i && tint.i.indexOf(i) >= 0) || (tint.from != null && i >= tint.from) ? colorOf(tint.c, t, COOL) : col; } : null;
   var y0 = e.valign === 'bottom' ? -(lines.length - 1) * lh : 0;
+  if (e.plate) {
+    ctx.font = f; var pw = 0; lines.forEach(function (ln) { pw = Math.max(pw, ctx.measureText(ln).width); });
+    var px = e.align === 'center' ? -pw / 2 : e.align === 'right' ? -pw : 0;
+    ga(.78 * clamp(seg(t, e.t0 || 0, (e.t0 || 0) + .3))); ctx.fillStyle = 'rgba(7,11,20,1)'; rr(px - size * .5, y0 - size * 1.0, pw + size, lh * (lines.length - 1) + size * 1.35, size * .3); ctx.fill();
+  }
   lines.forEach(function (ln, li) {
     var y = y0 + li * lh;
     if (e.split === 'type') {

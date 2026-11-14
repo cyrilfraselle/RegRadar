@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme');if(!t)t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+window.toggleTheme=function(){var h=document.documentElement,t=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}};
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Know who, know why · RegRadar Academy</title>
+<meta name="description" content="A 60-second animated explainer on customer due diligence: when it applies, the set of measures, nothing moves before verification, and what happens when it cannot be completed. Fictional example.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<link rel="stylesheet" href="academy-film.css?v=20261114a">
+</head>
+<body>
+<script src="site-nav.js?v=20261114a"></script>
+<a class="skip" href="#player">Skip to the explainer</a>
+<main class="wrap film-main" id="main">
+  <div class="intro">
+    <div class="eyebrow">Customer due diligence · 60 seconds</div>
+    <h1>Know who, know why</h1>
+    <p>One example scenario: a rushed onboarding. Larkmoor Trading, a fictional company set up last month, asks Brindle Pay, a fictional payment and e-money firm, for a business account and wants to send €48,000 today. The film follows the customer file from the first request to the decision.</p>
+  </div>
+
+  <section class="player" id="player" data-film="data/academy/films/cdd-kyc.json" aria-label="Explainer video: Know who, know why, 60 seconds"></section>
+  <p class="note">Fictional example. Not legal advice.</p>
+
+  <section class="block" id="stillsBlock" hidden aria-labelledby="stillsH">
+    <h2 id="stillsH">Scene by scene</h2>
+    <p class="note" style="margin:-6px 0 16px">Your device asks for reduced motion, so the explainer does not play on its own. Here are the key frames. The player above still works if you press play.</p>
+    <div class="stills" id="stills"></div>
+  </section>
+
+  <section class="block transcript" aria-labelledby="trH">
+    <h2 id="trH">Transcript</h2>
+    <ol id="transcript"><li><span class="tc"></span><div><p>The transcript loads with the film.</p></div></li></ol>
+  </section>
+
+  <div class="fine">
+    <p><b>Fictional example. Not legal advice.</b> Larkmoor Trading, its holding company, Brindle Pay, €48,000, €60,000 a month, every person and document are invented.</p>
+    <p>One example scenario: a rushed onboarding. The typology named is one common warning sign, pressure to move money before checks are done; the warning signs shown are common warning signs, not proof. Not covered here: simplified measures beyond timing, the full list of enhanced measures, reliance on third parties, and sanctions and politically exposed person checks in detail (they have their own modules). Script and claim ledger: academy/films/cdd-kyc.script.md, checked against the AMLR (Regulation (EU) 2024/1624) and AMLD6 (Directive (EU) 2024/1640).</p>
+  </div>
+</main>
+<script src="academy-film-engine.js?v=20261114a"></script>
+</body>
+</html>
