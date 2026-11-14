@@ -528,8 +528,9 @@ DRAW.meter = function (e) {
     if (b.name) txt(b.name, cx, 30 * Math.max(1, ks(e) * .85), (e.nls || 18) * ks(e), 600, MONO, mix(T2, T3, 1 - sat), p, 'center');
     if (b.tag) {
       var ta = seg(t, b.tag.t, b.tag.t + .4); if (ta > 0) {
-        var top = -h * track(vals[0], t, 0) / max;
-        txt(b.tag.s, cx + (b.tag.dx || 0), top - 16, (b.tag.size || 14) * ks(e), 700, MONO, COOL, ta, b.tag.align || 'center', 1);
+        var bh0 = h * track(vals[0], t, 0) / max, tsz = (b.tag.size || 14) * Math.min(ks(e), 1.25);
+        ctx.save(); ctx.translate(cx + tsz * .36, -bh0 / 2); ctx.rotate(-Math.PI / 2);
+        txt(b.tag.s, 0, 0, tsz, 700, MONO, NAMED.ink, ta, 'center', 1); ctx.restore();
       }
     }
   });
