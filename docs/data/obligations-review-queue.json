@@ -1,0 +1,6811 @@
+{
+ "_meta": {
+  "name": "Obligations review queue",
+  "generated": "2026-11-14",
+  "status": "draft, not reviewed",
+  "order": "tier 0 (article mapped in topics.json) first, then tier 1 (binds obliged entities), then tier 2; inside a tier AMLR, TFR, AMLD6 and article order. Suggested batches of 25.",
+  "count": 417,
+  "tiers": {
+   "0": 181,
+   "1": 102,
+   "2": 134
+  },
+  "tier_meaning": {
+   "0": "article already mapped in topics.json",
+   "1": "binds obliged entities, not yet in topics.json",
+   "2": "binds another actor (Member State, supervisor, FIU, AMLA ...)"
+  },
+  "how_to_promote": "See strategy/obligations-bulk.md."
+ },
+ "queue": [
+  {
+   "rank": 1,
+   "batch": 1,
+   "id": "AMLR-art10-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 10(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 2,
+   "batch": 1,
+   "id": "AMLR-art10-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 10(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 3,
+   "batch": 1,
+   "id": "AMLR-art10-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 10(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 4,
+   "batch": 1,
+   "id": "AMLR-art10-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 10(2)",
+   "binds": [
+    "supervisor"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 5,
+   "batch": 1,
+   "id": "AMLR-art10-p2-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 10(2)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 6,
+   "batch": 1,
+   "id": "AMLR-art11-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 7,
+   "batch": 1,
+   "id": "AMLR-art11-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 8,
+   "batch": 1,
+   "id": "AMLR-art11-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 9,
+   "batch": 1,
+   "id": "AMLR-art11-p1-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 10,
+   "batch": 1,
+   "id": "AMLR-art11-p1-s5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 11,
+   "batch": 1,
+   "id": "AMLR-art11-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 12,
+   "batch": 1,
+   "id": "AMLR-art11-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 13,
+   "batch": 1,
+   "id": "AMLR-art11-p2-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 14,
+   "batch": 1,
+   "id": "AMLR-art11-p2-s6",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 15,
+   "batch": 1,
+   "id": "AMLR-art11-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 16,
+   "batch": 1,
+   "id": "AMLR-art11-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 17,
+   "batch": 1,
+   "id": "AMLR-art11-p5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 18,
+   "batch": 1,
+   "id": "AMLR-art11-p5-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 19,
+   "batch": 1,
+   "id": "AMLR-art11-p6",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 20,
+   "batch": 1,
+   "id": "AMLR-art11-p6-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 21,
+   "batch": 1,
+   "id": "AMLR-art11-p6-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 22,
+   "batch": 1,
+   "id": "AMLR-art11-p7-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 11(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 23,
+   "batch": 1,
+   "id": "AMLR-art12-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 12",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 24,
+   "batch": 1,
+   "id": "AMLR-art12-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 12",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 25,
+   "batch": 1,
+   "id": "AMLR-art12-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 12",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 26,
+   "batch": 2,
+   "id": "AMLR-art13-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 13(1)",
+   "binds": [
+    "supervisor"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 27,
+   "batch": 2,
+   "id": "AMLR-art13-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 13(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 28,
+   "batch": 2,
+   "id": "AMLR-art13-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 13(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 29,
+   "batch": 2,
+   "id": "AMLR-art13-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 13(2)",
+   "binds": [
+    "supervisor"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 30,
+   "batch": 2,
+   "id": "AMLR-art13-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 13(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "train"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 31,
+   "batch": 2,
+   "id": "AMLR-art16-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 32,
+   "batch": 2,
+   "id": "AMLR-art16-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 33,
+   "batch": 2,
+   "id": "AMLR-art16-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 34,
+   "batch": 2,
+   "id": "AMLR-art16-p1-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 35,
+   "batch": 2,
+   "id": "AMLR-art16-p1-s5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 36,
+   "batch": 2,
+   "id": "AMLR-art16-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 37,
+   "batch": 2,
+   "id": "AMLR-art16-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 38,
+   "batch": 2,
+   "id": "AMLR-art16-p2-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 39,
+   "batch": 2,
+   "id": "AMLR-art16-p2-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 40,
+   "batch": 2,
+   "id": "AMLR-art16-p2-s5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 41,
+   "batch": 2,
+   "id": "AMLR-art16-p2-s6",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 42,
+   "batch": 2,
+   "id": "AMLR-art16-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 43,
+   "batch": 2,
+   "id": "AMLR-art16-p3-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(3)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 44,
+   "batch": 2,
+   "id": "AMLR-art16-p3-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 45,
+   "batch": 2,
+   "id": "AMLR-art16-p3-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 16(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 46,
+   "batch": 2,
+   "id": "AMLR-art17-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 17(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 47,
+   "batch": 2,
+   "id": "AMLR-art17-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 17(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 48,
+   "batch": 2,
+   "id": "AMLR-art17-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 17(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 49,
+   "batch": 2,
+   "id": "AMLR-art18-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 50,
+   "batch": 2,
+   "id": "AMLR-art18-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(2)",
+   "binds": [
+    "obliged_entity",
+    "register"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 51,
+   "batch": 3,
+   "id": "AMLR-art18-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 52,
+   "batch": 3,
+   "id": "AMLR-art18-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 53,
+   "batch": 3,
+   "id": "AMLR-art18-p3-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(3)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 54,
+   "batch": 3,
+   "id": "AMLR-art18-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 55,
+   "batch": 3,
+   "id": "AMLR-art18-p4-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 56,
+   "batch": 3,
+   "id": "AMLR-art18-p4-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 57,
+   "batch": 3,
+   "id": "AMLR-art18-p4-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 58,
+   "batch": 3,
+   "id": "AMLR-art18-p4-s5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(4)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 59,
+   "batch": 3,
+   "id": "AMLR-art18-p5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 60,
+   "batch": 3,
+   "id": "AMLR-art18-p6",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 18(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 61,
+   "batch": 3,
+   "id": "AMLR-art19-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 19(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art19"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 62,
+   "batch": 3,
+   "id": "AMLR-art19-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 19(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art19"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 63,
+   "batch": 3,
+   "id": "AMLR-art19-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 19(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [
+    "AMLR-art19"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 64,
+   "batch": 3,
+   "id": "AMLR-art19-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 19(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art19"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 65,
+   "batch": 3,
+   "id": "AMLR-art19-p5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 19(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [
+    "AMLR-art19"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 66,
+   "batch": 3,
+   "id": "AMLR-art19-p6",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 19(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [
+    "AMLR-art19"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 67,
+   "batch": 3,
+   "id": "AMLR-art20-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 20(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd",
+    "pep",
+    "sanctions"
+   ],
+   "verified_ids": [
+    "AMLR-art20"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 68,
+   "batch": 3,
+   "id": "AMLR-art20-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 20(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art20"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 69,
+   "batch": 3,
+   "id": "AMLR-art20-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 20(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art20"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 70,
+   "batch": 3,
+   "id": "AMLR-art20-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 20(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art20"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 71,
+   "batch": 3,
+   "id": "AMLR-art21-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 21(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art21"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 72,
+   "batch": 3,
+   "id": "AMLR-art21-p1-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 21(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art21"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 73,
+   "batch": 3,
+   "id": "AMLR-art21-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 21(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art21"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 74,
+   "batch": 3,
+   "id": "AMLR-art21-p3-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 21(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art21"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 75,
+   "batch": 3,
+   "id": "AMLR-art21-p3-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 21(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art21"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 76,
+   "batch": 4,
+   "id": "AMLR-art22-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 77,
+   "batch": 4,
+   "id": "AMLR-art22-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 78,
+   "batch": 4,
+   "id": "AMLR-art22-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 79,
+   "batch": 4,
+   "id": "AMLR-art22-p2-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 80,
+   "batch": 4,
+   "id": "AMLR-art22-p2-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 81,
+   "batch": 4,
+   "id": "AMLR-art22-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 82,
+   "batch": 4,
+   "id": "AMLR-art22-p3-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 83,
+   "batch": 4,
+   "id": "AMLR-art22-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 84,
+   "batch": 4,
+   "id": "AMLR-art22-p5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 85,
+   "batch": 4,
+   "id": "AMLR-art22-p6",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 86,
+   "batch": 4,
+   "id": "AMLR-art22-p7",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 87,
+   "batch": 4,
+   "id": "AMLR-art22-p7-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 88,
+   "batch": 4,
+   "id": "AMLR-art22-p7-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 22(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art22"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 89,
+   "batch": 4,
+   "id": "AMLR-art23-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 23(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art23"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 90,
+   "batch": 4,
+   "id": "AMLR-art23-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 23(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art23"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 91,
+   "batch": 4,
+   "id": "AMLR-art23-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 23(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art23"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 92,
+   "batch": 4,
+   "id": "AMLR-art23-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 23(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo",
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art23"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 93,
+   "batch": 4,
+   "id": "AMLR-art25-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 25",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art25"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 94,
+   "batch": 4,
+   "id": "AMLR-art25-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 25",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art25"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 95,
+   "batch": 4,
+   "id": "AMLR-art25-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 25",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art25"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 96,
+   "batch": 4,
+   "id": "AMLR-art26-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 97,
+   "batch": 4,
+   "id": "AMLR-art26-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 98,
+   "batch": 4,
+   "id": "AMLR-art26-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 99,
+   "batch": 4,
+   "id": "AMLR-art26-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 100,
+   "batch": 4,
+   "id": "AMLR-art26-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 101,
+   "batch": 5,
+   "id": "AMLR-art26-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 102,
+   "batch": 5,
+   "id": "AMLR-art26-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "sanctions"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 103,
+   "batch": 5,
+   "id": "AMLR-art26-p4-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "sanctions"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 104,
+   "batch": 5,
+   "id": "AMLR-art26-p4-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "sanctions"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 105,
+   "batch": 5,
+   "id": "AMLR-art26-p4-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 26(4)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd",
+    "sanctions"
+   ],
+   "verified_ids": [
+    "AMLR-art26"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 106,
+   "batch": 5,
+   "id": "AMLR-art27-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 27(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "sanctions"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 107,
+   "batch": 5,
+   "id": "AMLR-art27-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 27(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "sanctions"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 108,
+   "batch": 5,
+   "id": "AMLR-art29-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 29(3)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 109,
+   "batch": 5,
+   "id": "AMLR-art29-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 29(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 110,
+   "batch": 5,
+   "id": "AMLR-art29-p6-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 29(6)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 111,
+   "batch": 5,
+   "id": "AMLR-art29-p7-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 29(7)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 112,
+   "batch": 5,
+   "id": "AMLR-art33-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 113,
+   "batch": 5,
+   "id": "AMLR-art33-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 114,
+   "batch": 5,
+   "id": "AMLR-art33-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 115,
+   "batch": 5,
+   "id": "AMLR-art33-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 116,
+   "batch": 5,
+   "id": "AMLR-art33-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 117,
+   "batch": 5,
+   "id": "AMLR-art33-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 118,
+   "batch": 5,
+   "id": "AMLR-art33-p4-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(4)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 119,
+   "batch": 5,
+   "id": "AMLR-art33-p5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 33(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 120,
+   "batch": 5,
+   "id": "AMLR-art36-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 36",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 121,
+   "batch": 5,
+   "id": "AMLR-art36-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 36",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 122,
+   "batch": 5,
+   "id": "AMLR-art37-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 37(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 123,
+   "batch": 5,
+   "id": "AMLR-art37-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 37(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 124,
+   "batch": 5,
+   "id": "AMLR-art37-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 37(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 125,
+   "batch": 5,
+   "id": "AMLR-art37-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 37(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 126,
+   "batch": 6,
+   "id": "AMLR-art39-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 39(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 127,
+   "batch": 6,
+   "id": "AMLR-art39-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 39(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 128,
+   "batch": 6,
+   "id": "AMLR-art39-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 39(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 129,
+   "batch": 6,
+   "id": "AMLR-art39-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 39(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 130,
+   "batch": 6,
+   "id": "AMLR-art40-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 40(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 131,
+   "batch": 6,
+   "id": "AMLR-art40-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 40(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 132,
+   "batch": 6,
+   "id": "AMLR-art40-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 40(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 133,
+   "batch": 6,
+   "id": "AMLR-art40-p1-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 40(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 134,
+   "batch": 6,
+   "id": "AMLR-art42-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 42(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [
+    "AMLR-art42"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 135,
+   "batch": 6,
+   "id": "AMLR-art45-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 45(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 136,
+   "batch": 6,
+   "id": "AMLR-art45-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 45(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 137,
+   "batch": 6,
+   "id": "AMLR-art46-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 46",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [
+    "AMLR-art46"
+   ],
+   "review": "pending"
+  },
+  {
+   "rank": 138,
+   "batch": 6,
+   "id": "AMLR-art48-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 48(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 139,
+   "batch": 6,
+   "id": "AMLR-art48-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 48(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 140,
+   "batch": 6,
+   "id": "AMLR-art48-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 48(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 141,
+   "batch": 6,
+   "id": "AMLR-art49-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 49(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 142,
+   "batch": 6,
+   "id": "AMLR-art49-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 49(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 143,
+   "batch": 6,
+   "id": "AMLR-art49-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 49(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 144,
+   "batch": 6,
+   "id": "AMLR-art49-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 49(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 145,
+   "batch": 6,
+   "id": "AMLR-art51-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 51",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 146,
+   "batch": 6,
+   "id": "AMLR-art52-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 52(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 147,
+   "batch": 6,
+   "id": "AMLR-art52-p1-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 52(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 148,
+   "batch": 6,
+   "id": "AMLR-art52-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 52(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 149,
+   "batch": 6,
+   "id": "AMLR-art52-p2-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 52(2)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 150,
+   "batch": 6,
+   "id": "AMLR-art53-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 53(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 151,
+   "batch": 7,
+   "id": "AMLR-art53-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 53(3)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 152,
+   "batch": 7,
+   "id": "AMLR-art71-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 71(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 153,
+   "batch": 7,
+   "id": "AMLR-art71-p2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 71(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 154,
+   "batch": 7,
+   "id": "AMLR-art73-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 73(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 155,
+   "batch": 7,
+   "id": "AMLR-art76-p4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 76(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 156,
+   "batch": 7,
+   "id": "AMLR-art76-p4-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 76(4)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 157,
+   "batch": 7,
+   "id": "AMLR-art77-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 77(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 158,
+   "batch": 7,
+   "id": "AMLR-art77-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 77(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 159,
+   "batch": 7,
+   "id": "AMLR-art77-p2-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 77(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 160,
+   "batch": 7,
+   "id": "AMLR-art77-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 77(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 161,
+   "batch": 7,
+   "id": "AMLR-art77-p3-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 77(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 162,
+   "batch": 7,
+   "id": "AMLR-art77-p3-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 77(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "rec"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 163,
+   "batch": 7,
+   "id": "AMLR-art78-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 78",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 164,
+   "batch": 7,
+   "id": "AMLR-art79-p1",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 79(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 165,
+   "batch": 7,
+   "id": "AMLR-art79-p1-s2",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 79(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 166,
+   "batch": 7,
+   "id": "AMLR-art79-p3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 79(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 167,
+   "batch": 7,
+   "id": "AMLR-art79-p3-s3",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 79(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 168,
+   "batch": 7,
+   "id": "AMLR-art79-p3-s4",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 79(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 169,
+   "batch": 7,
+   "id": "AMLR-art79-p3-s5",
+   "tier": 0,
+   "law": "AMLR",
+   "locator": "AMLR Art. 79(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 170,
+   "batch": 7,
+   "id": "TFR-art4-p1",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 4(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 171,
+   "batch": 7,
+   "id": "TFR-art4-p2",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 4(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 172,
+   "batch": 7,
+   "id": "TFR-art4-p3",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 4(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 173,
+   "batch": 7,
+   "id": "TFR-art4-p4",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 4(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 174,
+   "batch": 7,
+   "id": "TFR-art4-p6",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 4(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 175,
+   "batch": 7,
+   "id": "TFR-art14-p1",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 176,
+   "batch": 8,
+   "id": "TFR-art14-p2",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 177,
+   "batch": 8,
+   "id": "TFR-art14-p3",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 178,
+   "batch": 8,
+   "id": "TFR-art14-p5",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 179,
+   "batch": 8,
+   "id": "TFR-art14-p5-s2",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(5)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 180,
+   "batch": 8,
+   "id": "TFR-art14-p6",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 181,
+   "batch": 8,
+   "id": "TFR-art14-p8",
+   "tier": 0,
+   "law": "TFR",
+   "locator": "TFR Art. 14(8)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 182,
+   "batch": 8,
+   "id": "AMLR-art8-p1-s2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 183,
+   "batch": 8,
+   "id": "AMLR-art8-p1-s3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 184,
+   "batch": 8,
+   "id": "AMLR-art8-p2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(2)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 185,
+   "batch": 8,
+   "id": "AMLR-art8-p3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 186,
+   "batch": 8,
+   "id": "AMLR-art8-p6",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 187,
+   "batch": 8,
+   "id": "AMLR-art31-p7",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 31(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 188,
+   "batch": 8,
+   "id": "AMLR-art38-p1",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 189,
+   "batch": 8,
+   "id": "AMLR-art38-p3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(3)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 190,
+   "batch": 8,
+   "id": "AMLR-art38-p6",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 191,
+   "batch": 8,
+   "id": "AMLR-art38-p6-s2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 192,
+   "batch": 8,
+   "id": "AMLR-art38-p7",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 193,
+   "batch": 8,
+   "id": "AMLR-art41-p1",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 41",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 194,
+   "batch": 8,
+   "id": "AMLR-art44-p1",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 44",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 195,
+   "batch": 8,
+   "id": "AMLR-art44-p1-s3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 44",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 196,
+   "batch": 8,
+   "id": "AMLR-art47-p1",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 47",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 197,
+   "batch": 8,
+   "id": "AMLR-art47-p1-s3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 47",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 198,
+   "batch": 8,
+   "id": "AMLR-art67-p2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 199,
+   "batch": 8,
+   "id": "AMLR-art67-p4",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 200,
+   "batch": 8,
+   "id": "AMLR-art67-p5-s2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(5)",
+   "binds": [
+    "obliged_entity",
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 201,
+   "batch": 9,
+   "id": "AMLR-art74-p2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 74(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 202,
+   "batch": 9,
+   "id": "AMLR-art75-p2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 203,
+   "batch": 9,
+   "id": "AMLR-art75-p3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 204,
+   "batch": 9,
+   "id": "AMLR-art75-p5",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(5)",
+   "binds": [
+    "obliged_entity",
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 205,
+   "batch": 9,
+   "id": "AMLR-art75-p6",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 206,
+   "batch": 9,
+   "id": "AMLR-art75-p6-s2",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(6)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 207,
+   "batch": 9,
+   "id": "AMLR-art75-p7",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 208,
+   "batch": 9,
+   "id": "AMLR-art80-p3",
+   "tier": 1,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 209,
+   "batch": 9,
+   "id": "TFR-art5-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 5(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 210,
+   "batch": 9,
+   "id": "TFR-art5-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 5(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 211,
+   "batch": 9,
+   "id": "TFR-art6-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 6(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 212,
+   "batch": 9,
+   "id": "TFR-art7-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 7(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 213,
+   "batch": 9,
+   "id": "TFR-art7-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 7(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 214,
+   "batch": 9,
+   "id": "TFR-art7-p3",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 7(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 215,
+   "batch": 9,
+   "id": "TFR-art8-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 8(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 216,
+   "batch": 9,
+   "id": "TFR-art8-p1-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 8(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 217,
+   "batch": 9,
+   "id": "TFR-art8-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 8(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 218,
+   "batch": 9,
+   "id": "TFR-art8-p2-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 8(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 219,
+   "batch": 9,
+   "id": "TFR-art9-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 9",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 220,
+   "batch": 9,
+   "id": "TFR-art10-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 10",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 221,
+   "batch": 9,
+   "id": "TFR-art11-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 11(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 222,
+   "batch": 9,
+   "id": "TFR-art11-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 11(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 223,
+   "batch": 9,
+   "id": "TFR-art12-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 12(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 224,
+   "batch": 9,
+   "id": "TFR-art12-p1-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 12(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 225,
+   "batch": 9,
+   "id": "TFR-art12-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 12(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 226,
+   "batch": 10,
+   "id": "TFR-art12-p2-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 12(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 227,
+   "batch": 10,
+   "id": "TFR-art13-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 13",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 228,
+   "batch": 10,
+   "id": "TFR-art16-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 16(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 229,
+   "batch": 10,
+   "id": "TFR-art16-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 230,
+   "batch": 10,
+   "id": "TFR-art16-p2-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 16(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 231,
+   "batch": 10,
+   "id": "TFR-art16-p3",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 16(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 232,
+   "batch": 10,
+   "id": "TFR-art17-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 17(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 233,
+   "batch": 10,
+   "id": "TFR-art17-p1-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 17(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 234,
+   "batch": 10,
+   "id": "TFR-art17-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 17(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 235,
+   "batch": 10,
+   "id": "TFR-art17-p2-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 17(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 236,
+   "batch": 10,
+   "id": "TFR-art18-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 18",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 237,
+   "batch": 10,
+   "id": "TFR-art19-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 19",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 238,
+   "batch": 10,
+   "id": "TFR-art20-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 20",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 239,
+   "batch": 10,
+   "id": "TFR-art21-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 21(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 240,
+   "batch": 10,
+   "id": "TFR-art21-p1-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 21(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 241,
+   "batch": 10,
+   "id": "TFR-art21-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 21(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 242,
+   "batch": 10,
+   "id": "TFR-art21-p2-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 21(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 243,
+   "batch": 10,
+   "id": "TFR-art22-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 22",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 244,
+   "batch": 10,
+   "id": "TFR-art23-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 23",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 245,
+   "batch": 10,
+   "id": "TFR-art24-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 24",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "str",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 246,
+   "batch": 10,
+   "id": "TFR-art25-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 25(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 247,
+   "batch": 10,
+   "id": "TFR-art25-p3",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 25(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 248,
+   "batch": 10,
+   "id": "TFR-art25-p3-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 25(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 249,
+   "batch": 10,
+   "id": "TFR-art25-p4",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 25(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 250,
+   "batch": 10,
+   "id": "TFR-art26-p1-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 26(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 251,
+   "batch": 11,
+   "id": "TFR-art26-p2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 26(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "rec",
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 252,
+   "batch": 11,
+   "id": "TFR-art36-p1",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 36",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 253,
+   "batch": 11,
+   "id": "TFR-art36-p1-s2",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 36",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 254,
+   "batch": 11,
+   "id": "TFR-art36-p1-s4",
+   "tier": 1,
+   "law": "TFR",
+   "locator": "TFR Art. 36",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 255,
+   "batch": 11,
+   "id": "AMLD6-art6-p1-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 6(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 256,
+   "batch": 11,
+   "id": "AMLD6-art6-p3-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 6(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 257,
+   "batch": 11,
+   "id": "AMLD6-art11-p4",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 11(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 258,
+   "batch": 11,
+   "id": "AMLD6-art12-p2-ptj",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 12(2)(j)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 259,
+   "batch": 11,
+   "id": "AMLD6-art16-p3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 16(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 260,
+   "batch": 11,
+   "id": "AMLD6-art21-p4-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 21(4)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 261,
+   "batch": 11,
+   "id": "AMLD6-art24-p1-s3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 24(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 262,
+   "batch": 11,
+   "id": "AMLD6-art27-p1-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 27",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 263,
+   "batch": 11,
+   "id": "AMLD6-art37-p1-s3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 37(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 264,
+   "batch": 11,
+   "id": "AMLD6-art37-p4-s4",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 37(4)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 265,
+   "batch": 11,
+   "id": "AMLD6-art38-p2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 38(2)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 266,
+   "batch": 11,
+   "id": "AMLD6-art38-p3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 38(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 267,
+   "batch": 11,
+   "id": "AMLD6-art39-p2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 39(2)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 268,
+   "batch": 11,
+   "id": "AMLD6-art40-p2-s3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 40(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 269,
+   "batch": 11,
+   "id": "AMLD6-art40-p5-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 40(5)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 270,
+   "batch": 11,
+   "id": "AMLD6-art41-p1-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 41(1)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 271,
+   "batch": 11,
+   "id": "AMLD6-art46-p1-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 46(1)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "gov"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 272,
+   "batch": 11,
+   "id": "AMLD6-art47-p1-s3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 47(1)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 273,
+   "batch": 11,
+   "id": "AMLD6-art47-p2-s5",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 47(2)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 274,
+   "batch": 11,
+   "id": "AMLD6-art49-p2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 49(2)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 275,
+   "batch": 11,
+   "id": "AMLD6-art50-p1-s3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 50(1)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 276,
+   "batch": 12,
+   "id": "AMLD6-art50-p2-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 50(2)",
+   "binds": [
+    "obliged_entity",
+    "supervisor"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 277,
+   "batch": 12,
+   "id": "AMLD6-art50-p3-s3",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 50(3)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 278,
+   "batch": 12,
+   "id": "AMLD6-art50-p7-s4",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 50(7)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 279,
+   "batch": 12,
+   "id": "AMLD6-art52-p1",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 52(1)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 280,
+   "batch": 12,
+   "id": "AMLD6-art54-p4-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 54(4)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 281,
+   "batch": 12,
+   "id": "AMLD6-art55-p3-s5",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 55(3)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 282,
+   "batch": 12,
+   "id": "AMLD6-art57-p2-s2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 57(2)",
+   "binds": [
+    "obliged_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 283,
+   "batch": 12,
+   "id": "AMLD6-art67-p2",
+   "tier": 1,
+   "law": "AMLD6",
+   "locator": "AMLD6 Art. 67(2)",
+   "binds": [
+    "obliged_entity",
+    "member_state"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 284,
+   "batch": 12,
+   "id": "AMLR-art4-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 4(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 285,
+   "batch": 12,
+   "id": "AMLR-art4-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 4(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 286,
+   "batch": 12,
+   "id": "AMLR-art4-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 4(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 287,
+   "batch": 12,
+   "id": "AMLR-art5-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 5(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 288,
+   "batch": 12,
+   "id": "AMLR-art5-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 5(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 289,
+   "batch": 12,
+   "id": "AMLR-art5-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 5(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 290,
+   "batch": 12,
+   "id": "AMLR-art6-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(2)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 291,
+   "batch": 12,
+   "id": "AMLR-art6-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 292,
+   "batch": 12,
+   "id": "AMLR-art6-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 293,
+   "batch": 12,
+   "id": "AMLR-art6-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 294,
+   "batch": 12,
+   "id": "AMLR-art6-p3-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 295,
+   "batch": 12,
+   "id": "AMLR-art6-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(4)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 296,
+   "batch": 12,
+   "id": "AMLR-art6-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(5)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 297,
+   "batch": 12,
+   "id": "AMLR-art6-p6",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 6(6)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 298,
+   "batch": 12,
+   "id": "AMLR-art7-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 299,
+   "batch": 12,
+   "id": "AMLR-art7-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 300,
+   "batch": 12,
+   "id": "AMLR-art7-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(2)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 301,
+   "batch": 13,
+   "id": "AMLR-art7-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 302,
+   "batch": 13,
+   "id": "AMLR-art7-p3-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 303,
+   "batch": 13,
+   "id": "AMLR-art7-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(4)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 304,
+   "batch": 13,
+   "id": "AMLR-art7-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 7(5)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 305,
+   "batch": 13,
+   "id": "AMLR-art8-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 306,
+   "batch": 13,
+   "id": "AMLR-art8-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(4)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 307,
+   "batch": 13,
+   "id": "AMLR-art8-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 8(5)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 308,
+   "batch": 13,
+   "id": "AMLR-art28-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 28(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 309,
+   "batch": 13,
+   "id": "AMLR-art31-p4-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 31(4)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 310,
+   "batch": 13,
+   "id": "AMLR-art31-p6",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 31(6)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "third"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 311,
+   "batch": 13,
+   "id": "AMLR-art38-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(2)",
+   "binds": [
+    "amla"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 312,
+   "batch": 13,
+   "id": "AMLR-art38-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(4)",
+   "binds": [
+    "amla"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 313,
+   "batch": 13,
+   "id": "AMLR-art38-p4-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(4)",
+   "binds": [
+    "amla"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 314,
+   "batch": 13,
+   "id": "AMLR-art38-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 38(5)",
+   "binds": [
+    "amla"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 315,
+   "batch": 13,
+   "id": "AMLR-art43-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 316,
+   "batch": 13,
+   "id": "AMLR-art43-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 317,
+   "batch": 13,
+   "id": "AMLR-art43-p1-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 318,
+   "batch": 13,
+   "id": "AMLR-art43-p1-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 319,
+   "batch": 13,
+   "id": "AMLR-art43-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(4)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 320,
+   "batch": 13,
+   "id": "AMLR-art43-p4-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(4)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 321,
+   "batch": 13,
+   "id": "AMLR-art43-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(5)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 322,
+   "batch": 13,
+   "id": "AMLR-art43-p5-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(5)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 323,
+   "batch": 13,
+   "id": "AMLR-art43-p5-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 43(5)",
+   "binds": [
+    "amla"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 324,
+   "batch": 13,
+   "id": "AMLR-art44-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 44",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "pep"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 325,
+   "batch": 13,
+   "id": "AMLR-art47-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 47",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 326,
+   "batch": 14,
+   "id": "AMLR-art54-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 54",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 327,
+   "batch": 14,
+   "id": "AMLR-art56-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 56",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 328,
+   "batch": 14,
+   "id": "AMLR-art56-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 56",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 329,
+   "batch": 14,
+   "id": "AMLR-art56-p1-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 56",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 330,
+   "batch": 14,
+   "id": "AMLR-art56-p1-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 56",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 331,
+   "batch": 14,
+   "id": "AMLR-art57-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 57(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 332,
+   "batch": 14,
+   "id": "AMLR-art57-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 57(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 333,
+   "batch": 14,
+   "id": "AMLR-art57-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 57(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 334,
+   "batch": 14,
+   "id": "AMLR-art57-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 57(3)",
+   "binds": [
+    "legal_entity",
+    "register"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 335,
+   "batch": 14,
+   "id": "AMLR-art58-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 58(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 336,
+   "batch": 14,
+   "id": "AMLR-art58-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 58(3)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 337,
+   "batch": 14,
+   "id": "AMLR-art58-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 58(4)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 338,
+   "batch": 14,
+   "id": "AMLR-art58-p4-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 58(4)",
+   "binds": [
+    "legal_entity",
+    "register"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 339,
+   "batch": 14,
+   "id": "AMLR-art58-p4-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 58(4)",
+   "binds": [
+    "member_state",
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 340,
+   "batch": 14,
+   "id": "AMLR-art59-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 59(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 341,
+   "batch": 14,
+   "id": "AMLR-art59-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 59(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 342,
+   "batch": 14,
+   "id": "AMLR-art59-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 59(2)",
+   "binds": [
+    "member_state",
+    "legal_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 343,
+   "batch": 14,
+   "id": "AMLR-art59-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 59(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 344,
+   "batch": 14,
+   "id": "AMLR-art59-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 59(3)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 345,
+   "batch": 14,
+   "id": "AMLR-art60-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 60",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 346,
+   "batch": 14,
+   "id": "AMLR-art60-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 60",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 347,
+   "batch": 14,
+   "id": "AMLR-art60-p1-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 60",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 348,
+   "batch": 14,
+   "id": "AMLR-art60-p1-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 60",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 349,
+   "batch": 14,
+   "id": "AMLR-art60-p1-s5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 60",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "cdd"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 350,
+   "batch": 14,
+   "id": "AMLR-art62-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 62(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 351,
+   "batch": 15,
+   "id": "AMLR-art62-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 62(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 352,
+   "batch": 15,
+   "id": "AMLR-art62-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 62(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 353,
+   "batch": 15,
+   "id": "AMLR-art62-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 62(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 354,
+   "batch": 15,
+   "id": "AMLR-art63-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 355,
+   "batch": 15,
+   "id": "AMLR-art63-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 356,
+   "batch": 15,
+   "id": "AMLR-art63-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 357,
+   "batch": 15,
+   "id": "AMLR-art63-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(2)",
+   "binds": [
+    "register"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 358,
+   "batch": 15,
+   "id": "AMLR-art63-p2-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 359,
+   "batch": 15,
+   "id": "AMLR-art63-p2-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 360,
+   "batch": 15,
+   "id": "AMLR-art63-p2-s5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 361,
+   "batch": 15,
+   "id": "AMLR-art63-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(3)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 362,
+   "batch": 15,
+   "id": "AMLR-art63-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(4)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 363,
+   "batch": 15,
+   "id": "AMLR-art63-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(5)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 364,
+   "batch": 15,
+   "id": "AMLR-art63-p6",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(6)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 365,
+   "batch": 15,
+   "id": "AMLR-art63-p6-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 63(6)",
+   "binds": [
+    "register"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 366,
+   "batch": 15,
+   "id": "AMLR-art64-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 367,
+   "batch": 15,
+   "id": "AMLR-art64-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 368,
+   "batch": 15,
+   "id": "AMLR-art64-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 369,
+   "batch": 15,
+   "id": "AMLR-art64-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 370,
+   "batch": 15,
+   "id": "AMLR-art64-p2-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(2)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 371,
+   "batch": 15,
+   "id": "AMLR-art64-p2-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 372,
+   "batch": 15,
+   "id": "AMLR-art64-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(3)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 373,
+   "batch": 15,
+   "id": "AMLR-art64-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(4)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 374,
+   "batch": 15,
+   "id": "AMLR-art64-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(5)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 375,
+   "batch": 15,
+   "id": "AMLR-art64-p6",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(6)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 376,
+   "batch": 16,
+   "id": "AMLR-art64-p7",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 64(7)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 377,
+   "batch": 16,
+   "id": "AMLR-art66-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 66",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 378,
+   "batch": 16,
+   "id": "AMLR-art66-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 66",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 379,
+   "batch": 16,
+   "id": "AMLR-art66-p1-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 66",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 380,
+   "batch": 16,
+   "id": "AMLR-art67-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(1)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 381,
+   "batch": 16,
+   "id": "AMLR-art67-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 382,
+   "batch": 16,
+   "id": "AMLR-art67-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(5)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 383,
+   "batch": 16,
+   "id": "AMLR-art67-p7",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(7)",
+   "binds": [
+    "legal_entity"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 384,
+   "batch": 16,
+   "id": "AMLR-art67-p7-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(7)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 385,
+   "batch": 16,
+   "id": "AMLR-art67-p8-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 67(8)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 386,
+   "batch": 16,
+   "id": "AMLR-art68-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 68(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 387,
+   "batch": 16,
+   "id": "AMLR-art68-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 68(1)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 388,
+   "batch": 16,
+   "id": "AMLR-art68-p1-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 68(1)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "bo"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 389,
+   "batch": 16,
+   "id": "AMLR-art70-p1-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 70(1)",
+   "binds": [
+    "supervisor"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 390,
+   "batch": 16,
+   "id": "AMLR-art70-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 70(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 391,
+   "batch": 16,
+   "id": "AMLR-art70-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 70(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 392,
+   "batch": 16,
+   "id": "AMLR-art70-p3-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 70(3)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 393,
+   "batch": 16,
+   "id": "AMLR-art74-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 74(1)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 394,
+   "batch": 16,
+   "id": "AMLR-art74-p3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 74(3)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 395,
+   "batch": 16,
+   "id": "AMLR-art75-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 396,
+   "batch": 16,
+   "id": "AMLR-art75-p2-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(2)",
+   "binds": [
+    "supervisor"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 397,
+   "batch": 16,
+   "id": "AMLR-art75-p2-s4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(2)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 398,
+   "batch": 16,
+   "id": "AMLR-art75-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(3)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 399,
+   "batch": 16,
+   "id": "AMLR-art75-p4",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(4)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 400,
+   "batch": 16,
+   "id": "AMLR-art75-p4-s5-ptk",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(4)(k)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 401,
+   "batch": 17,
+   "id": "AMLR-art75-p6-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 75(6)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 402,
+   "batch": 17,
+   "id": "AMLR-art80-p2-s5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(2)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 403,
+   "batch": 17,
+   "id": "AMLR-art80-p3-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(3)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 404,
+   "batch": 17,
+   "id": "AMLR-art80-p4-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(4)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 405,
+   "batch": 17,
+   "id": "AMLR-art80-p5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(5)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 406,
+   "batch": 17,
+   "id": "AMLR-art80-p6",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(6)",
+   "binds": [
+    "unspecified"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 407,
+   "batch": 17,
+   "id": "AMLR-art80-p7",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(7)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 408,
+   "batch": 17,
+   "id": "AMLR-art80-p7-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(7)",
+   "binds": [
+    "member_state"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 409,
+   "batch": 17,
+   "id": "AMLR-art80-p7-s3",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 80(7)",
+   "binds": [
+    "commission"
+   ],
+   "topics": [
+    "crypto"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 410,
+   "batch": 17,
+   "id": "AMLR-art81-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 81(1)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 411,
+   "batch": 17,
+   "id": "AMLR-art81-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 81(2)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 412,
+   "batch": 17,
+   "id": "AMLR-art82-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 82(1)",
+   "binds": [
+    "law_enforcement"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 413,
+   "batch": 17,
+   "id": "AMLR-art82-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 82(2)",
+   "binds": [
+    "law_enforcement"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 414,
+   "batch": 17,
+   "id": "AMLR-art83-p1-s5",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 83(1)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 415,
+   "batch": 17,
+   "id": "AMLR-art83-p2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 83(2)",
+   "binds": [
+    "fiu"
+   ],
+   "topics": [
+    "str"
+   ],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 416,
+   "batch": 17,
+   "id": "AMLR-art84-p1",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 84(1)",
+   "binds": [
+    "law_enforcement"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  },
+  {
+   "rank": 417,
+   "batch": 17,
+   "id": "AMLR-art84-p2-s2",
+   "tier": 2,
+   "law": "AMLR",
+   "locator": "AMLR Art. 84(2)",
+   "binds": [
+    "law_enforcement"
+   ],
+   "topics": [],
+   "verified_ids": [],
+   "review": "pending"
+  }
+ ]
+}
