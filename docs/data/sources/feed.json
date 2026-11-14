@@ -7,9 +7,9 @@
    "critical": 64,
    "info": 192
   },
-  "news_cap": "news-only cards are at most 20% of the feed; 105 lower-ranked news cards dropped this run",
+  "news_cap": "news-only cards are at most 20% of the feed; 103 lower-ranked news cards dropped this run",
   "window_days": 120,
-  "generated": "2026-11-14T08:24:53+00:00",
+  "generated": "2026-11-14T12:56:46+00:00",
   "cards": 400
  },
  "cards": [
@@ -262,7 +262,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026D2365",
     "origin": "engine",
     "rank": 289.43,
     "tier": "important"
@@ -288,7 +288,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026D2366",
     "origin": "engine",
     "rank": 289.43,
     "tier": "important"
@@ -314,7 +314,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026D2367",
     "origin": "engine",
     "rank": 289.43,
     "tier": "important"
@@ -340,7 +340,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026D2369",
     "origin": "engine",
     "rank": 289.43,
     "tier": "important"
@@ -1016,7 +1016,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-instruments-dbe5e7761f34",
     "origin": "engine",
     "rank": 282.0,
     "tier": "critical"
@@ -1241,7 +1241,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-instruments-48e5213f80e7",
     "origin": "engine",
     "rank": 282.0,
     "tier": "critical"
@@ -1267,7 +1267,7 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-instruments-b322780192c5",
     "origin": "engine",
     "rank": 282.0,
     "tier": "critical"
@@ -3512,7 +3512,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-library-f562217654c5",
     "origin": "engine",
     "rank": 267.43,
     "tier": "important"
@@ -3536,7 +3536,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-library-64711cbaea86",
     "origin": "engine",
     "rank": 267.43,
     "tier": "important"
@@ -3560,7 +3560,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-library-0e49e767e94f",
     "origin": "engine",
     "rank": 267.43,
     "tier": "important"
@@ -4278,7 +4278,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-news-f788b3addd04",
     "origin": "engine",
     "rank": 227.29,
     "tier": "important"
@@ -4544,7 +4544,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-news-25ba5b2df2f3",
     "origin": "engine",
     "rank": 226.86,
     "tier": "important"
@@ -4602,7 +4602,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-news-bb51330afd2e",
     "origin": "engine",
     "rank": 226.57,
     "tier": "important"
@@ -5777,7 +5777,7 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-reports-07ab5af50b97",
     "origin": "engine",
     "rank": 214.71,
     "tier": "important"
@@ -6478,6 +6478,54 @@
   },
   {
    "lead": {
+    "id": "legacy-74e43737730fe1dff4d1cfdcb1eb4a7d",
+    "title": "NBB_2026_15 / Implementation of the new reporting requirements developed by the EBA for Belgian branches of credit institutions from third countries (“third-country branches”)",
+    "url": "https://www.nbb.be/en/financial-supervision/news/nbb202615-implementation-new-reporting-requirements-developed-eba-belgian-branches-credit",
+    "date": "2026-11-10",
+    "authority": "BNB — Supervision (circulars, decisions)",
+    "source": "bnb_circulaires",
+    "type": "guideline",
+    "status": "supervisory-binding",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 164.43,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 164.43,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-2cb8b7ca685a3594d194b320958efcae",
+    "title": "Communication NBB_2026_13 / Communication summarising governance-related changes resulting from CRD VI",
+    "url": "https://www.nbb.be/en/financial-supervision/news/communication-nbb202613-communication-summarising-governance-related-changes-resulting-crd-vi",
+    "date": "2026-11-10",
+    "authority": "BNB — Supervision (circulars, decisions)",
+    "source": "bnb_circulaires",
+    "type": "guideline",
+    "status": "supervisory-binding",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 164.43,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 164.43,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "legacy-adb1ab409929ba5947c068f38989e630",
     "title": "NBB_2026_11 / Communication on the practical formalities to be complied when notifying (i) the acquisition of a material holding, (ii) a merger or division, or (iii) a material transfer of assets or liabilities in accordance with the new CRD VI rules",
     "url": "https://www.nbb.be/en/financial-supervision/news/nbb202611-communication-practical-formalities-notifying-significant-transactions-under-crd-vi",
@@ -6817,6 +6865,30 @@
    "also": [],
    "size": 1,
    "rank": 149.71,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-7146dac5e6dbda7a761c9e5830e8faaa",
+    "title": "2026_7914 Direct/indirect method",
+    "url": "https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2026_7914",
+    "date": "2026-11-13",
+    "authority": "EBA",
+    "source": "eba_rss",
+    "type": "faq",
+    "status": "interpretive",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 144.86,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 144.86,
    "tier": "info",
    "news_only": false
   },
@@ -7297,6 +7369,54 @@
    "also": [],
    "size": 1,
    "rank": 136.86,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-39751bc4b8d2efb8dd3db79f024cb649",
+    "title": "The EBA supports the NGFS Declaration on the macro-financial dimension of the energy transition on the occasion of COP31",
+    "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-supports-ngfs-declaration-macro-financial-dimension-energy-transition-occasion-cop31",
+    "date": "2026-11-13",
+    "authority": "EBA",
+    "source": "eba_rss",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 129.86,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 129.86,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-289ce33aca18fac8e117ca6ef85cb98b",
+    "title": "Speech by Commissioner Kos at the opening of 30 Years of Transparency International Switzerland",
+    "url": "https://ec.europa.eu/commission/presscorner/detail/de/speech_26_2439",
+    "date": "2026-11-13",
+    "authority": "European Commission",
+    "source": "ec_presscorner",
+    "type": "supervisory_communication",
+    "status": "non-binding",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 2,
+    "origin": "legacy items.json",
+    "rank": 129.86,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -10472,134 +10592,6 @@
    "also": [],
    "size": 1,
    "rank": 123.71,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-e48713594c5406be61bfb92fade7be04",
-    "title": "Patrick Montagner: Remaining vigilant in a changing risk environment",
-    "url": "https://www.bankingsupervision.europa.eu//press/speeches/date/2026/html/ssm.sp261001_1~039634f271.en.html",
-    "date": "2026-10-01",
-    "authority": "ECB — Banking Supervision",
-    "source": "ecb_supervision_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 123.71,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 123.71,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-52ba9f1fd5bffff8e1d57eb075816867",
-    "title": "New FSMA tools to combat online investment fraud deliver encouraging results",
-    "url": "http://www.fsma.be/en/news/nieuwe-fsma-tools-tegen-online-beleggingsfraude-leveren-bemoedigende-resultaten",
-    "date": "2026-10-01",
-    "authority": "FSMA",
-    "source": "fsma_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 123.71,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 123.71,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-efb52e47f8df656c7f22cf5555765f9a",
-    "title": "Pedro Machado: The exit test: why the single market in banking depends on how banks fail",
-    "url": "https://www.bankingsupervision.europa.eu//press/speeches/date/2026/html/ssm.sp261001~6a72b2ab07.en.html",
-    "date": "2026-10-01",
-    "authority": "ECB — Banking Supervision",
-    "source": "ecb_supervision_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 123.71,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 123.71,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-ead7e143560026547404c61b3758e05f",
-    "title": "Christine Lagarde: Interview with La Croix",
-    "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260930~10084a5f3d.en.html",
-    "date": "2026-09-30",
-    "authority": "ECB",
-    "source": "ecb_rss",
-    "type": "supervisory_communication",
-    "status": "non-binding",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 123.57,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 123.57,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-b90123be48b0759531743c2e7824d58e",
-    "title": "The EBA publishes its 2027 Work Programme",
-    "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-publishes-its-2027-work-programme",
-    "date": "2026-09-30",
-    "authority": "EBA",
-    "source": "eba_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 123.57,
-    "tier": "info"
-   },
-   "also": [
-    {
-     "title": "EBA 2027 Work Programme - Global Regulation Tomorrow",
-     "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1GdUx0Q1Q1QXk2d3c5QUJhLW02N2NHaUdLaTFkdS0tT3lZbHBmeUdzVUZpVTlqZ25iWXdFTEN5bmJpaGp0T0c1UE4yTzJhVTkxeDVENG80MEZYejJIU2RWeHBHV1ZhYmdqdU9KXy02Z3lZMGVGQnc?oc=5",
-     "authority": "GNews — EBA",
-     "date": "2026-09-30",
-     "is_news": true
-    }
-   ],
-   "size": 2,
-   "rank": 123.57,
    "tier": "info",
    "news_only": false
   }

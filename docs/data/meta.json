@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-11-13T13:52:45.149884",
+  "last_updated": "2026-11-14T12:55:28.714544",
   "last_run_counts": {
-    "total": 14,
-    "critical": 6,
-    "important": 8,
+    "total": 5,
+    "critical": 4,
+    "important": 1,
     "info": 0
   },
-  "archive_size": 744,
+  "archive_size": 749,
   "exec_summary": "",
   "timeline": [
     {
@@ -16,7 +16,7 @@
       "type": "report",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114",
       "basis": "MiCA Art. 140(1)",
-      "days_away": 229
+      "days_away": 228
     },
     {
       "date": "2027-07-10",
@@ -25,7 +25,7 @@
       "type": "application",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1624",
       "basis": "AMLR Art. 90 and Art. 32(1)",
-      "days_away": 239
+      "days_away": 238
     },
     {
       "date": "2027-07-10",
@@ -34,31 +34,10 @@
       "type": "deadline",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024L1640",
       "basis": "AMLD6 Art. 78(1)",
-      "days_away": 239
+      "days_away": 238
     }
   ],
   "trends": [
-    {
-      "theme": "General",
-      "this_week": 9,
-      "avg": 1.9,
-      "pct": 385,
-      "arrow": "▲",
-      "label": "RISING",
-      "color": "#B91C1C",
-      "spark": "▃▂▁▁▁▁▁█",
-      "values": [
-        4,
-        3,
-        1,
-        1,
-        2,
-        1,
-        1,
-        9
-      ],
-      "weeks": 8
-    },
     {
       "theme": "Solvency/Insurance",
       "this_week": 4,
@@ -81,23 +60,23 @@
       "weeks": 8
     },
     {
-      "theme": "Capital/CRR",
-      "this_week": 4,
-      "avg": 1.7,
-      "pct": 133,
+      "theme": "General",
+      "this_week": 3,
+      "avg": 1.9,
+      "pct": 62,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▅▃▃▁▃▁▁█",
+      "spark": "█▅▁▁▃▁▁▅",
       "values": [
+        4,
         3,
-        2,
-        2,
-        1,
-        2,
         1,
         1,
-        4
+        2,
+        1,
+        1,
+        3
       ],
       "weeks": 8
     },
@@ -189,6 +168,27 @@
         2,
         1,
         1,
+        1,
+        2,
+        1,
+        1,
+        1
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Capital/CRR",
+      "this_week": 1,
+      "avg": 1.7,
+      "pct": -42,
+      "arrow": "▼",
+      "label": "COOLING",
+      "color": "#2563EB",
+      "spark": "█▄▄▁▄▁▁▁",
+      "values": [
+        3,
+        2,
+        2,
         1,
         2,
         1,
@@ -452,8 +452,8 @@
       "name": "EBA",
       "country": "EU",
       "kind": "primary",
-      "fetched": 14,
-      "newest": "2026-11-09T16:00:03",
+      "fetched": 15,
+      "newest": "2026-11-13T16:00:03",
       "status": "ok"
     },
     {
@@ -498,25 +498,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-13T13:51:06.929671",
-      "status": "ok"
-    },
-    {
-      "id": "eurlex_proposals",
-      "name": "EUR-Lex — Legislative proposals",
-      "country": "EU",
-      "kind": "primary",
-      "fetched": 100,
-      "newest": "2026-11-13T13:51:11.279672",
-      "status": "ok"
-    },
-    {
-      "id": "eurlex_ojl",
-      "name": "EUR-Lex — Official Journal L",
-      "country": "EU",
-      "kind": "primary",
-      "fetched": 100,
-      "newest": "2026-11-12T23:00:00",
+      "newest": "2026-11-14T12:54:43.323416",
       "status": "ok"
     },
     {
@@ -525,7 +507,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-13T12:24:19",
+      "newest": "2026-11-13T15:26:05",
       "status": "ok"
     },
     {
@@ -553,150 +535,6 @@
       "kind": "primary",
       "fetched": 10,
       "newest": "2026-11-13T13:48:46",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_aml_financialcrime",
-      "name": "GNews — AML / Financial Crime",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 30,
-      "newest": "2026-11-13T09:12:33",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_amla",
-      "name": "GNews — AMLA",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 36,
-      "newest": "2026-11-10T17:01:18",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_consumer_protection",
-      "name": "GNews — Consumer Protection",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 27,
-      "newest": "2026-11-11T23:14:57",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_data_protection",
-      "name": "GNews — Data Protection",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 33,
-      "newest": "2026-11-13T11:27:00",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_eba",
-      "name": "GNews — EBA",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 10,
-      "newest": "2026-11-13T10:34:38",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_eiopa",
-      "name": "GNews — EIOPA",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 14,
-      "newest": "2026-11-12T14:19:37",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_esma",
-      "name": "GNews — ESMA",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 10,
-      "newest": "2026-11-13T07:59:42",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_eu_regulations",
-      "name": "GNews — EU Frameworks",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 35,
-      "newest": "2026-10-22T07:00:00",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_enforcement_be",
-      "name": "GNews — Enforcement BE",
-      "country": "BE",
-      "kind": "news",
-      "fetched": 31,
-      "newest": "2026-11-13T10:00:00",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_fsma_bnb",
-      "name": "GNews — FSMA / BNB",
-      "country": "BE",
-      "kind": "news",
-      "fetched": 11,
-      "newest": "2026-11-04T00:00:00",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_fintech_licensing",
-      "name": "GNews — Fintech / Licensing",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 30,
-      "newest": "2026-11-12T15:48:29",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_fraud",
-      "name": "GNews — Fraud / Market Abuse",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 29,
-      "newest": "2026-11-11T18:20:08",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_enforcement_majorFI",
-      "name": "GNews — Major FI Watch",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 70,
-      "newest": "2026-11-13T12:50:08",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_global_enforcement",
-      "name": "GNews — Major Global",
-      "country": "GLOBAL",
-      "kind": "news",
-      "fetched": 28,
-      "newest": "2026-11-13T11:00:00",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_sanctions",
-      "name": "GNews — Sanctions",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 54,
-      "newest": "2026-11-13T11:03:58",
-      "status": "ok"
-    },
-    {
-      "id": "gnews_tax_transparency",
-      "name": "GNews — Tax Transparency",
-      "country": "EU",
-      "kind": "news",
-      "fetched": 29,
-      "newest": "2026-11-13T03:43:00",
       "status": "ok"
     }
   ]

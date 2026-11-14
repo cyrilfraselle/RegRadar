@@ -2,10 +2,1241 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-14T08:24:53+00:00",
-  "count": 46
+  "generated": "2026-11-14T12:56:46+00:00",
+  "count": 61
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2365-fed12550",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "celex-32026D2365",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2365 of 26 October 2026 amending Decision (CFSP) 2022/339 on an assistance measure under the European Peace Facility to support the Ukrainian Armed Forces",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2365",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In light of the ongoing war of aggression by the Russian Federation against Ukraine, the financial reference amount of the assistance measure under Decision (CFSP) 2022/339 should be increased by an additional EUR 372 115 534,32 intended to cover the financing of the provision to the Ukrainian Armed Forces of equipment and supplies not designed to deliver lethal force, such as personal protective equipment, first aid kits and fuel.",
+     "loc": "amending Decision (CFSP) 2022/339 on an assistance measure under the European Pe, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2022/339 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2022/339 on an assistance measure under the European Pe, para 18",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "paragraphs 3 and 4 are replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 752 115 534,32 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the Assistance Measure. 4. Expenditure related to the implementation of the Assistance Measure shall be eligible from 1 January 2022 and until a date to be determined by the Council. Without prejudice to the additional expenditure that could be financed under this Assistance Measure with the additional contributions made available by Member States which abstained from an assistance measure pursuant to Article 5(3) of Decision (CFSP) 2021/509, the financial reference amount shall be used as follows: (a) the maximum eligible expenditure incurred before 11 March 2022 shall be EUR 50 000 000; (b) the maximum amount eligible for the period from 11 March 2022 to 20 July 2022 shall be EU",
+     "loc": "Article 1, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2366-559f57c5",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "celex-32026D2366",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2366 of 26 October 2026 amending Decision (CFSP) 2022/338 on an assistance measure under the European Peace Facility for the supply to the Ukrainian Armed Forces of military equipment, and platforms, designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2366",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On 26 October 2026, the Council adopted Decision (CFSP) 2026/ 2364 ( 4 ) which increased the financial reference amount of the assistance measure under Decision (CFSP) 2022/338 by EUR 1 798 856 325,22 to EUR 5 918 856 325,22. In light of the ongoing war of aggression by the Russian Federation against Ukraine, that financial reference amount should be increased by an additional EUR 2 179 060 000,00 from the UAF, intended to cover the financing of the provision to the Armed Forces of Ukraine of military equipment, and platforms, designed to deliver lethal force, including for the coverage of existing reimbursement requests communicated to the European Union Military Staff Clearing House Cell before 18 March 2024, the date of establishment of the UAF, and until 15 November 2024.",
+     "loc": "amending Decision (CFSP) 2022/338 on an assistance measure under the European Pe, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Also on 21 May 2024, the Council adopted Decision (CFSP) 2024/1471 ( 7 ) on the allocation of the amounts of the financial contribution paid to the EPF pursuant to Decision (CFSP) 2024/1470. That Decision specifies that the amounts allocated to the EPF pursuant to Decision (CFSP) 2024/1470 are to be allocated to assistance measures for the supply of military support to the Armed Forces of Ukraine, and that the allocation of the received amounts between assistance measures is to be determined and periodically reviewed by the Facility Committee established under Decision (CFSP) 2021/509 in accordance with a dedicated strategic orientation provided by the Political and Security Committee pursuant to Article 9(2) of Decision (CFSP) 2021/509. This assistance measure should remain available for future allocations of the received amounts.",
+     "loc": "amending Decision (CFSP) 2022/338 on an assistance measure under the European Pe, para 16",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2022/338 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2022/338 on an assistance measure under the European Pe, para 22",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Article 2 is amended as follows: (a) paragraph 1 is replaced by the following: ‘1. The financial reference amount intended to cover the expenditure related to the Assistance Measure shall be EUR 8 097 916 325,22.’ ; (b) paragraphs 3 and 4 are replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 8 097 916 325,22 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the Assistance Measure. 4. Expenditure related to the implementation of the Assistance Measure shall be eligible from 1 January 2022 and until 15 November 2024: (a) the maximum eligible expenditure incurred before 11 March 2022 shall be EUR 446 374 895,54; (b) the maximum amount eligible for the period from 11 March 2022 to 20 July 2022 shall be EUR 1 386 484 776,34; (c) the maximum amount eligible for the period between 21 July 2022 and 30 November 2022 shall be",
+     "loc": "Article 1, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "paragraphs 3 and 4 are replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 8 097 916 325,22 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the Assistance Measure. 4. Expenditure related to the implementation of the Assistance Measure shall be eligible from 1 January 2022 and until 15 November 2024: (a) the maximum eligible expenditure incurred before 11 March 2022 shall be EUR 446 374 895,54; (b) the maximum amount eligible for the period from 11 March 2022 to 20 July 2022 shall be EUR 1 386 484 776,34; (c) the maximum amount eligible for the period between 21 July 2022 and 30 November 2022 shall be EUR 654 326 601,50; (d) the maximum amount eligible for the period from 1 December 2022 to 10 February 2023 shall be EUR 473 000 113,21; (e) the maximum amount eligible for the period from 11 February 2023 to 18 March 2",
+     "loc": "Article 1, para 7",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "the following paragraph is added: ‘5. Without prejudice to the exhaustion of the amounts in paragraph 4 of this Article and to the duration established in Article 1(4) of this Decision, this assistance measure shall remain available for the allocation of amounts received by the EPF pursuant to Article 1a(11) of Council Decision 2014/512/CFSP ( *1 ) . ( *1 ) Council Decision 2014/512/CFSP of 31 July 2014 concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine ( OJ L 229, 31.7.2014, p. 13 , ELI: http://data.europa.eu/eli/dec/2014/512/oj ).’.\"",
+     "loc": "Article 1, para 26",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2367-4a8038ab",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "celex-32026D2367",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2367 of 26 October 2026 amending Decision (CFSP) 2022/339 on an assistance measure under the European Peace Facility to support the Ukrainian Armed Forces",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2367",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On 26 October 2026, the Council adopted Decision (CFSP) 2026/2365 ( 4 ) , which increased the financial reference amount of the assistance measure under Decision (CFSP) 2022/339 by EUR 372 115 534,32 to EUR 752 115 534,32. In light of the ongoing war of aggression by the Russian Federation against Ukraine, that financial reference amount should be increased by an additional EUR 420 940 000,00 from the UAF, intended to cover the financing of the provision to the Armed Forces of Ukraine of equipment and supplies not designed to deliver lethal force, such as personal protective equipment, first aid kits and fuel, including for the coverage of existing reimbursement requests communicated to the European Union Military Staff Clearing House Cell before the date of establishment of the UAF, 18 March 2024, and until 15 November 2024.",
+     "loc": "amending Decision (CFSP) 2022/339 on an assistance measure under the European Pe, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Also on 21 May 2024, the Council adopted Decision (CFSP) 2024/1471 ( 7 ) on the allocation of the amounts of the financial contribution paid to the EPF pursuant to Decision (CFSP) 2024/1470. That Decision specifies that the amounts allocated to the EPF pursuant to Decision 2024/1470 are to be allocated to assistance measures for the supply of military support to the Armed Forces of Ukraine, and that the allocation of the received amounts between assistance measures is to be determined and periodically reviewed by the Facility Committee established under Decision (CFSP) 2021/509 in accordance with a dedicated strategic orientation provided by the Political and Security Committee pursuant to Article 9(2) of Decision (CFSP) 2021/509. This assistance measure should remain available for future allocations of the received amounts.",
+     "loc": "amending Decision (CFSP) 2022/339 on an assistance measure under the European Pe, para 16",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2022/339 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2022/339 on an assistance measure under the European Pe, para 24",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Article 2 is amended as follows: (a) paragraph 1 is replaced by the following: ‘1. The financial reference amount intended to cover the expenditure related to the assistance measure shall be EUR 1 173 055 534,32.’ ; (b) paragraphs 3 and 4 are replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 1 173 055 534,32 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the Assistance Measure. 4. Expenditure related to the implementation of the Assistance Measure shall be eligible from 1 January 2022 and until 15 November 2024. Without prejudice to the additional expenditure that could be financed under this Assistance Measure with the additional contributions made available by Member States which abstained from an assistance measure pursuant to Article 5(3) of Decision (CFSP) 2021/509, the financial reference amount shall be us",
+     "loc": "Article 1, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "paragraphs 3 and 4 are replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 1 173 055 534,32 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the Assistance Measure. 4. Expenditure related to the implementation of the Assistance Measure shall be eligible from 1 January 2022 and until 15 November 2024. Without prejudice to the additional expenditure that could be financed under this Assistance Measure with the additional contributions made available by Member States which abstained from an assistance measure pursuant to Article 5(3) of Decision (CFSP) 2021/509, the financial reference amount shall be used as follows: (a) the maximum eligible expenditure incurred before 11 March 2022 shall be EUR 50 000 000; (b) the maximum amount eligible for the period from 11 March 2022 to 20 July 2022 shall be EUR 110 000 000; (c) t",
+     "loc": "Article 1, para 7",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "the following paragraph is added: ‘5. Without prejudice to the exhaustion of the amounts in paragraph 4 of this Article and to the duration established in Article 1(4) of this Decision, this assistance measure shall remain available for the allocation of amounts received by the EPF pursuant to Article 1a(11) of Council Decision (CFSP) 2014/512 ( *1 ) . ( *1 ) Council Decision 2014/512/CFSP of 31 July 2014 concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine ( OJ L 229, 31.7.2014, p. 13 , ELI: http://data.europa.eu/eli/dec/2014/512/oj ).’.\"",
+     "loc": "Article 1, para 22",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2369-b00c1ec6",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "celex-32026D2369",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2369 of 26 October 2026 amending Decision (CFSP) 2023/231 on an assistance measure under the European Peace Facility to support the Ukrainian Armed Forces trained by the European Union Military Assistance Mission in support of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2369",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Article 2 is amended as follows: (a) paragraph 1 is replaced by the following: ‘1. The financial reference amount intended to cover the expenditure related to the assistance measure shall be EUR 85 000 000.’ ; (b) paragraph 3 is replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for operations may call for contributions following the adoption of this Decision, up to EUR 85 000 000. The funds called by the administrator for operations shall only be used to pay expenditure within the limits approved by the Committee established by Decision (CFSP) 2021/509 in the related budget corresponding to the assistance measure.’.",
+     "loc": "Article 1, para 7",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "paragraph 3 is replaced by the following: ‘3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for operations may call for contributions following the adoption of this Decision, up to EUR 85 000 000. The funds called by the administrator for operations shall only be used to pay expenditure within the limits approved by the Committee established by Decision (CFSP) 2021/509 in the related budget corresponding to the assistance measure.’.",
+     "loc": "Article 1, para 9",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-f562217654c5-92957f09",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-library-f562217654c5",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Annex II to CP draft ITS under Art. 31(2) AMLD - Requests for information",
+   "url": "https://www.amla.europa.eu/document/download/6bae04f0-abc4-472c-a3a3-4aace29200b2_en?filename=Annex%20II%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Requests%20for%20information.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd-natural-person",
+    "pep",
+    "beneficial-ownership",
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd-natural-person",
+     "pep",
+     "beneficial-ownership",
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "3 Fields marked with * are mandatory, and must always be completed, while fields marked with ** are conditional mandatory and must be completed only when relevant or when the related information is available to the disclosing FIU. Fields marked with *** shall be replicated as necessary on a case-by-case basis.",
+     "loc": "p. 3, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "Type of obliged entity: free text The two tables are dedicated respectively to transfers (including for crypto assets) and to other types of transactions. For each transaction (row), the available information must be included in the corresponding field, leaving the other fields in the row empty (or marked as “Unknown”).",
+     "loc": "p. 20, para 3",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (must) on crypto-assets"
+    },
+    {
+     "text": "Option 1 (General consent) applies by default and shall be preselected, while option 2 and 3 shall be expressly selected by the responding FIU.",
+     "loc": "p. 28, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "When 11.3 is chosen, the requested consent is considered embedded in the reply – unless it is made explicit or the counterpart clearly states otherwise in their response. The FIU shall also provide an explanation of the reasons for which it intends to share the information with the specific authority.",
+     "loc": "p. 33, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-64711cbaea86-fe57158a",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-library-64711cbaea86",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Annex III to CP draft ITS under Art. 31(2) AMLD - Response to request for information",
+   "url": "https://www.amla.europa.eu/document/download/52325eda-1df1-4217-a33f-d21e76f36171_en?filename=Annex%20III%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Response%20to%20request%20for%20information.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "pep",
+    "beneficial-ownership",
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "pep",
+     "beneficial-ownership",
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "3 Fields marked with * are mandatory, and must always be completed, while fields marked with ** are conditional mandatory and must be completed only when relevant or when the related information is available to the disclosing FIU. Fields marked with *** shall be replicated as necessary on a case-by-case basis.",
+     "loc": "p. 3, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "Data in this section shall concern natural persons not indicated in the request, that, based on the information gathered and the analyses performed, appear to be also involved in the case (e.g. due to relevant identified links such as business partners, involved in same or connected investigations, co-holders of accounts or other business relationships, legal or beneficial owners in entities involved in the case).",
+     "loc": "p. 14, para 2",
+     "topics": [
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (shall) on beneficial-ownership"
+    },
+    {
+     "text": "Data in this section shall concern legal persons not indicated in the request, that, based on the information gathered and the analyses performed appear to be also involved in the case (e.g. due to relevant identified links such as business partners, involved in same or connected investigations, co-holders of accounts or other business relationships, legal or beneficial owners in entities involved in the case).",
+     "loc": "p. 18, para 2",
+     "topics": [
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (shall) on beneficial-ownership"
+    },
+    {
+     "text": "The two tables are dedicated respectively to transfers (including for crypto assets) and to other types of transactions. For each transaction (row), the available information must be included in the corresponding field, leaving the other fields in the row empty (or marked as “Unknown”).",
+     "loc": "p. 23, para 9",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (must) on crypto-assets"
+    },
+    {
+     "text": "SECTION 7 – INFORMATION All the fields in this Section are marked with **, because the responding FIU must complete them only when ticked in the request by the requesting FIU under Section 10 (‘Information requested’). Fields/Types of information Description",
+     "loc": "p. 24, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "The responding FIU shall specify the searches carried out in relation to the information requested and shall provide a brief explanation in cases where any of the requested searches have not been performed.",
+     "loc": "p. 28, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-0e49e767e94f-b909e78b",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-library-0e49e767e94f",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Annex I to CP draft ITS under Art. 31(2) AMLD - Spontaneous Exchange of information",
+   "url": "https://www.amla.europa.eu/document/download/ccb6d9a9-ba34-439a-99ff-9ccf33434dbb_en?filename=Annex%20I%20to%20CP%20draft%20ITS%20under%20Art.%2031%282%29%20AMLD%20-%20Spontaneous%20Exchange%20of%20information.pdf",
+   "type": "rts_its_draft",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "pep",
+    "beneficial-ownership",
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "pep",
+     "beneficial-ownership",
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Fields marked with * are mandatory, and must always be completed, while fields marked with ** are conditional mandatory and must be completed only when relevant or when the related information is available to the disclosing FIU. Fields marked with *** shall be replicated as necessary on a case-by-case basis.",
+     "loc": "p. 3, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "Transfers The two tables are dedicated respectively to transfers (including for crypto assets) and to other types of transactions. For each transaction (row), the available information shall be included in the corresponding field, leaving the other fields in the row empty (or marked as “Unknown”).",
+     "loc": "p. 21, para 8",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (shall) on crypto-assets"
+    },
+    {
+     "text": "Option 1 (General consent) applies by default and shall be preselected, while option 2 and 3 shall be expressly selected by the responding FIU.",
+     "loc": "p. 31, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-48e5213f80e7-cdff5ed3",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-instruments-48e5213f80e7",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Implementing Technical Standards on FIU-to-FIU exchanges",
+   "url": "https://www.amla.europa.eu/document/download/db186a43-0976-4aab-aee5-f5a2dcf560e5_en?filename=Final%20Report%20-%20ITS%20under%20Art%2031%282%29%20AMLD.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "3. Where the request concerns the suspension of a transaction or the freezing of assets, the template shall indicate the details of the transaction(s) and the account(s) concerned, as well as the amount of assets for which the suspension or freezing is requested. The requesting FIU shall also provide the reasons supporting such request.",
+     "loc": "p. 18, para 9",
+     "topics": [
+      "reporting-str",
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on reporting-str, sanctions"
+    },
+    {
+     "text": "2.1. General consideration Article 31(1) of Directive (EU) 2024/1640 (‘AMLD’) requires Member States to ensure that Financial Intelligence Units (FIUs) exchange information effectively, both spontaneously and upon request. It also sets out the minimum content that a request for information from one FIU to another must contain in order to enable a meaningful and useful response. Despite the existence of FIU.net as the designated channel for FIU-to-FIU cooperation, current practices display a high degree of heterogeneity. Rather than relying on harmonised templates or a common minimum content, FIUs frequently exchange information by attaching annexes in varying formats and with differing levels of detail. This discretion in the form and structure of exchanges leads to inconsistencies, incomplete submissions and inefficient communication flows, thereby hampering the effectiveness and timeliness of cooperation. To remedy these shortcomings and support the effective implementation of Article 31(1), Article 31(2) AMLD mandates AMLA to develop Implementing Technical Standards specifying the format for the exchange of information between FIUs.",
+     "loc": "p. 5, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    },
+    {
+     "text": "The primary objective of the proposed ITS is therefore to establish uniform and comprehensive templates for each category of information exchange. These templates define the relevant data fields – covering information on subjects of interest, transactions, accounts and business relationships – and identify which elements are required to ensure a consistent and effective exchange of information across Member States. By doing so, the ITS aims to ensure that each exchange contains a consistent and sufficiently detailed set of information, thereby enabling FIUs to issue and receive complete, clear and operationally useful communications. The ITS also introduces templates for the transmission of Cross-Border Reports (XBRs) and Cross-Border Disseminations (XBDs). In developing these templates, the ITS takes into account the new concept of relevance and selection criteria that will be introduced by the delegated act adopted under Article 31(3) AMLD. While the structure for XBRs remains aligned with current practices, XBDs will be transmitted by forwarding, at a first stage, only a set of selected key structured data directly extracted from the original report and following the application",
+     "loc": "p. 5, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (are required to) on reporting-str"
+    },
+    {
+     "text": "2.2. Consent for the usage and for the dissemination of the information exchanged To enhance the efficiency of FIU-to-FIU cooperation, the ITS also harmonises the mechanisms governing prior consent for the use and dissemination of exchanged information. The objective is to reduce the current practice of issuing repeated, case specific consent requests, which generates delays and administrative burdens. In line with Article 34(2) AMLD, the ITS therefore introduces a system in which the default option corresponds to the broadest possible level of consent, unless the disclosing FIU explicitly indicates otherwise. In situations where the level of consent granted differs from the level requested, the disclosing FIU is required to provide a justification when selecting a more restrictive option.",
+     "loc": "p. 6, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (is required to) on reporting-str"
+    },
+    {
+     "text": "Problem identification Given the cross-border nature of financial crime, effective cooperation and exchange of information between FIUs is essential. Therefore, Article 31(1) of Directive (EU) 2024/1640 specifies that Member States shall ensure that FIUs exchange, spontaneously or upon request, any information that may be relevant for the processing or analysis of information related to",
+     "loc": "p. 7, para 8",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "Policy issue 1: Content of information exchange Article 31(2) of Directive (EU) 2024/1640 requires AMLA to develop draft ITS specifying the format for the exchange of the information between FIUs. As part of this, AMLA considered whether a specific template for the exchange of information should be provided, analysing the following options:",
+     "loc": "p. 9, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-dbe5e7761f34-55abd9d7",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-instruments-dbe5e7761f34",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on the assessment of the inherent and residual risk profile of obliged entities.",
+   "url": "https://www.amla.europa.eu/document/download/c8782141-45bf-4ef9-9d66-33e2f90e607e_en?filename=1.1_20251216_FINAL%20REPORT%20RTS%2040%282%29%20AMLD%20financial%20only_Final.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "pep",
+    "beneficial-ownership",
+    "ongoing-monitoring",
+    "reporting-str",
+    "record-keeping",
+    "governance-risk-assessment",
+    "sanctions",
+    "crypto-assets",
+    "training",
+    "outsourcing-reliance",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "cites AMLR Art. 20",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "topic Transaction Monitoring"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "pep",
+     "beneficial-ownership",
+     "ongoing-monitoring",
+     "reporting-str",
+     "record-keeping",
+     "governance-risk-assessment",
+     "sanctions",
+     "crypto-assets",
+     "training",
+     "outsourcing-reliance",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(5) This Regulation does not specify how competent authorities should obtain the information on which the assessment should be based. Supervisors may collect relevant data from different sources, either from the credit institutions and financial institutions themselves, from external auditors, or from AML/CFT authorities, prudential supervisors, FIUs or other public bodies in the context of cooperation or ongoing exchanges. Supervisors should use these data to establish a set of harmonised indicators. These indicators should be scored using the same methodology and combined using the same weighting system to determine the inherent and residual risk profile of credit institutions and financial institutions.",
+     "loc": "p. 10, para 2",
+     "topics": [
+      "reporting-str",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on reporting-str, governance-risk-assessment"
+    },
+    {
+     "text": "Category Data Points CI CP LI EMI PI BC IF AMC CASP O Compliance with Fund Transfers Regulation authorities and the implementation of these changes in the institution's screening tools Number of outbound transfers for which requests were received from a counterparty in the transfer chain for information that is missing, incomplete or provided using inadmissible characters in the last calendar year x x x x x x Total number of outbound transfers in the last calendar year x x x x x x % of outbound transfers rejected or returned by the counterparty in the transfer chain due to information that is missing, incomplete or provided using inadmissible characters in the last calendar year x x x x x x 7 - Group-wide AML/CFT Framework (AML/CFT governance structures, Group-wide ML/TF risk assessment, Group policies and procedures, including sharing of information, Group-wide AML/CFT function) % of group entities that provided reports to the Group AML compliance on the following areas in the last calendar year (should only be answered by the parent company):",
+     "loc": "p. 37, para 1",
+     "topics": [
+      "governance-risk-assessment",
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, crypto-assets"
+    },
+    {
+     "text": "1 Executive Summary Article 40(2) of Directive (EU) 2024/1640 (AMLD) mandates AMLA to develop draft regulatory technical standards (RTS) to define a common methodology that supervisors will use to assess the level of money laundering and terrorist financing (ML/TF) risk to which obliged entities are exposed. This methodology defines how supervisors classify inherent and residual risk profiles and determines how often these risk profiles must be reviewed.",
+     "loc": "p. 3, para 1",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (must) on governance-risk-assessment"
+    },
+    {
+     "text": "Supervisory approaches to entity-level ML/TF risk assessment are currently fragmented, leading to divergent risk assessment outcomes and disproportionate costs for financial institutions that operate across borders. Importantly, fragmentation also undermines the effectiveness of the EU AML/CFT framework because consistent AML/CFT supervision of financial institutions may not be ensured.",
+     "loc": "p. 3, para 2",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (may not) on governance-risk-assessment"
+    },
+    {
+     "text": "2 Background and rationale Article 40(2) of Directive (EU) 2024/1640 (AMLD) requires AMLA to develop a methodology that all supervisors will use to assess the level of money laundering and terrorist financing (ML/TF) risk to which obliged entities are exposed. Specifically, Article 40(2) of the AMLD mandates AMLA to set out, in draft Regulatory Technical Standards (RTS), how supervisors will assess and classify the inherent and residual risk profile of each obliged entity and how often this risk profile must be reviewed.",
+     "loc": "p. 4, para 1",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (must) on governance-risk-assessment"
+    },
+    {
+     "text": "To address this, the risk assessment methodology under Article 40(2) of the AMLD should be",
+     "loc": "p. 4, para 4",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-b322780192c5-f544d9de",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-instruments-b322780192c5",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Regulatory Technical Standards on the risk assessment for the purpose of selecting credit institutions, financial institutions and groups of credit and financial institutions for direct supervision.",
+   "url": "https://www.amla.europa.eu/document/download/1c8bca18-fb5e-4b5e-afee-848111754238_en?filename=2.1_20251216_Final%20report%20-%20RTS%20under%20art.%2012%287%29%20AMLAR.pdf",
+   "type": "rts_its_draft",
+   "status": "final (submitted to the Commission)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "pep",
+    "beneficial-ownership",
+    "ongoing-monitoring",
+    "reporting-str",
+    "record-keeping",
+    "governance-risk-assessment",
+    "sanctions",
+    "crypto-assets",
+    "training",
+    "outsourcing-reliance",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "cites AMLR Art. 20",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "topic Transaction Monitoring"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art42",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art46",
+      "why": [
+       "topic PEP"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "pep",
+     "beneficial-ownership",
+     "ongoing-monitoring",
+     "reporting-str",
+     "record-keeping",
+     "governance-risk-assessment",
+     "sanctions",
+     "crypto-assets",
+     "training",
+     "outsourcing-reliance",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Category Data Points CI CP LI EMI PI BC IF AMC CASP O identified, in relation to the transactions carried out by the customer (Y/N) Average number of days between the date of identification of potential suspicious transactions (prior to the analysis of the transaction) and the date when the transaction is reported to the FIU (after the analysis of the transaction) during the last calendar year x x x x x x x x x x Total number of STRs submitted to the FIU during the last calendar year x x x x x x x x x x 6 - Targeted Financial Sanctions and Compliance with Fund Transfers Regulation Maximum number of hours between the publication of the TFS by the authorities and the implementation of these changes in the institution's screening tools x x x x x x x x x x Number of outbound transfers for which requests were received from a counterparty in the transfer chain for information that is missing, incomplete or provided using inadmissible characters in the last calendar year x x x x x x Total number of outbound transfers in the last calendar year x x x x x x % of outbound transfers rejected or returned by the counterparty in the transfer chain due to information that is missing, incomplete or",
+     "loc": "p. 33, para 1",
+     "topics": [
+      "reporting-str",
+      "governance-risk-assessment",
+      "sanctions",
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on reporting-str, governance-risk-assessment, sanctions, crypto-assets"
+    },
+    {
+     "text": "Category Data Points CI CP LI EMI PI BC IF AMC CASP O % of jurisdictions in which the group is established covered by reviews (including access to customer and transaction level data) performed by the group AML/CFT compliance function in the last three calendar years. (applies only to groups that have been existing for more than 3 years and should only be filled in by the parent company) x x x x x x x x x x Number of group entities for which deficiencies were identified by competent AML/CFT supervisors in the last calendar year (should only be filled in by the parent company)",
+     "loc": "p. 34, para 1",
+     "topics": [
+      "governance-risk-assessment",
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment, crypto-assets"
+    },
+    {
+     "text": "Adjustments to entity-level ML/TF risk scores should be strictly limited to prevent arbitrage and ensure a level playing field. For this reason, the option to modify inherent risk scores based on national specificities or other supervisory considerations, available under the entity-level risk assessment methodology in Article 40(2) AMLD, has been excluded from the methodology for assessing eligible credit and financial institutions under Article 12(7)(b) AMLAR. The draft RTS also introduces a methodology for calculating a group-wide ML/TF risk score. This score is derived from a weighted average of entity-level residual risk scores, reflecting each entity’s significance within the group. The approach ensures that entities with higher ML/TF risk,",
+     "loc": "p. 5, para 5",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "(5) To avoid that, as an effect of the aggregation of the entity-level score, the ML/TF risk profile of a high ML/TF risk group being unduly reduced because some of its components have a low risk profile, the group-wide methodology for the purposes of selection should reflect the relative importance of each entity within the group, in terms of size and risk, and attribute a higher weight to the most important entities.",
+     "loc": "p. 9, para 4",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "1. The methodology for assessing and classifying the inherent and residual risk profile of a credit institution or financial institution as referred to in Article 12, paragraphs (5) and (6), of Regulation (EU) 2024/1640 as low, medium, substantial or high, shall consist of the following sequential steps:",
+     "loc": "p. 10, para 11",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (shall) on governance-risk-assessment"
+    },
+    {
+     "text": "4. The result of the aggregation carried out in accordance paragraph 2 shall be converted into a numerical group-wide residual risk score with two decimal places, ranging between 1, that corresponds to the lowest level of risk, to 4, that corresponds to the highest level of risk.",
+     "loc": "p. 15, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (shall) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-hearings-4285fab0d1b7-0ef8a16b",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-hearings-4285fab0d1b7",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft Guidelines on ongoing monitoring of a business relationship",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-guidelines-ongoing-monitoring-business-relationship-2026-07-02_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "ongoing-monitoring"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "topic Transaction Monitoring"
+      ]
+     }
+    ],
+    "topics": [
+     "ongoing-monitoring"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Ongoing monitoring is a core requirement of the AMLR. Obliged entities must continuously monitor and review their business relationships to detect any unusual or suspicious transactions or activities. The draft Guidelines explain how ongoing monitoring of a business relationship, including transaction and activity monitoring, should be implemented and applied in practice. They set out core principles applicable across both financial and non-financial sectors.",
+     "loc": "s1, para 2",
+     "topics": [
+      "ongoing-monitoring",
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on ongoing-monitoring, reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-24380b371f7c-e230a0c6",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-instruments-24380b371f7c",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Guidelines on ongoing monitoring of business relationships",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-ongoing-monitoring-business-relationship_en",
+   "type": "guideline",
+   "status": "draft (consultation closed)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "ongoing-monitoring"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "cites AMLR Art. 26",
+       "topic Transaction Monitoring"
+      ]
+     }
+    ],
+    "topics": [
+     "ongoing-monitoring"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Ongoing monitoring is a core requirement of the AMLR. Obliged entities must continuously monitor and review their business relationships to detect any unusual or suspicious transactions or activities. AMLA's draft guidelines under Article 26(5) AMLR support obliged entities in implementing their ongoing and transaction monitoring duties. They set out core principles applicable across both financial and non-financial sectors.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "ongoing-monitoring",
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on ongoing-monitoring, reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-reports-07ab5af50b97-988bcb57",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "amla-reports-07ab5af50b97",
+   "source": "amla-reports",
+   "authority": "AMLA",
+   "title": "Thematic Note - Money Laundering in the Real Estate Sector",
+   "url": "https://www.amla.europa.eu/document/download/8a29e0a5-0209-4aa1-a1be-3296d0df255c_en?filename=Thematic%20Note%20-%20Money%20Laundering%20in%20the%20Real%20Estate%20Sector.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "beneficial-ownership",
+    "ongoing-monitoring",
+    "reporting-str",
+    "governance-risk-assessment",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art24",
+      "why": [
+       "topic UBO"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art26",
+      "why": [
+       "topic Transaction Monitoring"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "beneficial-ownership",
+     "ongoing-monitoring",
+     "reporting-str",
+     "governance-risk-assessment",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "AMLA’s emphasis on both transaction and activity monitoring is especially relevant. In real estate, suspicious activity may appear in payment flows, but it may also emerge through changes in ownership, funding arrangements, intermediaries, timing, urgency, pricing, or the wider structure of the deal. This better reflects the reality of property transactions, where money laundering may not only impact the movement of funds, but also the way the transaction is organised. The same vulnerabilities are also relevant to the non-implementation or evasion of targeted financial sanctions. The new AML framework makes the management of these risks an important part of the AML/CFT framework. In real estate, this matters because money laundering and sanctions evasion can exploit similar weaknesses, including opaque ownership structures, intermediaries and limited visibility of the true beneficiary of an asset. This reinforces the importance of beneficial ownership transparency, transaction and activity monitoring, and effective data sharing. On a more general note, AMLA’s added value lies not only in coordinating, but in helping to build a genuinely common supervisory and analytical culture acr",
+     "loc": "p. 14, para 2",
+     "topics": [
+      "beneficial-ownership",
+      "reporting-str",
+      "sanctions"
+     ],
+     "why": "normative wording (may not) on beneficial-ownership, reporting-str, sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-52025IP0286-c4a2dfd7",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "celex-52025IP0286",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "P10_TA(2025)0286 – Impact of artificial intelligence on the financial sector – European Parliament resolution of 25 November 2025 on the impact of artificial intelligence on the financial sector (2025/2056(INI))",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52025IP0286",
+   "type": "supervisory_communication",
+   "status": "European Parliament or other preparatory document",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment",
+    "outsourcing-reliance",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment",
+     "outsourcing-reliance",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Believes that AI is a major opportunity for EU financial institutions to develop more innovative products, streamline operations and improve competitiveness on a global scale; highlights that the use of AI in financial services has the potential to bring societal benefits, including more effective fraud detection and prevention, anti-money laundering checks and sanctions checks, customer support, transaction monitoring, personalised financial advice, environmental, social and governance data gathering, analysis and reporting, trading models and strategies, regulatory compliance assistance, market surveillance and abuse monitoring; considers that the use of AI in the financial sector should strike a balance between innovation and competitiveness on the one hand, and risk management, consumer protection and financial stability on the other hand; stresses that the benefits of AI use in financial services should be passed on primarily to end customers, for example through lower prices, better coverage, improved financial advice, greater financial inclusion and access, and enhanced financial literacy;",
+     "loc": "State of AI adoption in financial services, para 2",
+     "topics": [
+      "ongoing-monitoring"
+     ],
+     "why": "normative wording (should) on ongoing-monitoring"
+    },
+    {
+     "text": "Calls on the Commission to provide clear and practical guidance, developed in consultation with the European and national supervisory authorities and stakeholders, on the application of existing financial services legislation with regard to the use of AI; considers that such guidance should aim to enable the use of AI in the financial services sector, including in a way that is ethical, responsible and transparent; calls for consistent definitions and the simplification of the regulatory framework to avoid duplicated requirements, including risk assessment reporting requirements, and cautions against a one-size-fits-all approach that places a disproportionate burden on smaller and medium-sized financial institutions; emphasises the need for a good balance between the responsible use of AI and providing enough room for innovation;",
+     "loc": "Recommendations to ensure responsible use of AI in financial services, para 4",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "Believes that sectoral legislation regulating the use of AI in financial services is mainly sufficient to cover AI deployment in its current form; underlines that there should be continuous monitoring to determine if there are duplications or deficiencies in the current financial services legislation applicable to AI deployment; underlines that additional legislation would add complexity and uncertainty and ultimately risk depriving the sector of the benefits of AI use; stresses that reliance on current frameworks requires continuous supervisory attention, effective enforcement and clear allocation of responsibility for ensuring compliance, particularly in cross-border or outsourced AI deployment scenarios, as well as the monitoring and assessment of possible future gaps created by new AI developments if they create substantial risks to consumers and financial stability; strongly advises the Commission and the Member States to coordinate to avoid gold-plating relevant legislation and to prevent the creation of new barriers in cross-border markets; notes that the Commission, according to the AI Act, can assess the list of high-risk applications under Annex III to the AI Act;",
+     "loc": "Recommendations to ensure responsible use of AI in financial services, para 8",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-52025IP0075-c07cdcf9",
+   "created": "2026-11-14T12:56:46+00:00",
+   "doc_id": "celex-52025IP0075",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "P10_TA(2025)0075 – Protection of the European Union’s financial interests – combating fraud – annual report 2023 – European Parliament resolution of 6 May 2025 on the protection of the European Union’s financial interests – combating fraud – annual report 2023 (2024/2083(INI))",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52025IP0075",
+   "type": "supervisory_communication",
+   "status": "European Parliament or other preparatory document",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions",
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions",
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Understands that the Commission has yet to provide data on the recoveries to the benefit of the Union budget following the EPPO activities reported to the Commission, as provided by Article 103(2) of the EPPO Regulation, and that this matter is included in the mission letter of the Commissioner for budget, anti-fraud and public administration; observes that the freezing of assets is essential to combat crime affecting the EU budget and that a certain amount of time is needed for freezing to be converted into actual confiscations and recoveries; highlights that the amount confiscated is not expected to return by default to the Union’s budget; notes that, in line with Article 38 of the EPPO Regulation, the potential revenue resulting from seizure and confiscation measures taken by EDPs in Member States should flow back into the EU budget and could be accounted for in the EU budget as non-assigned revenue; calls on the Commission to make the necessary arrangements with the relevant national authorities to allow these sums to enter the EU budget;",
+     "loc": "The internal layer of the EU’s AFA – 2023 key measures at EU level, para 58",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Reiterates that whistleblowers play a key role in boosting fraud detection, investigation and prosecution; understands that, by the end of 2023, 24 Member States had adopted national legislation to transpose the Whistleblower Directive and declared their transposition complete; regrets, however, that in March 2023, after analysis of the national measures adopted, the Commission was obliged to refer six Member States to the CJEU for their failure to transpose the Directive and failure to notify transposition measures, asking the Court to impose financial sanctions; is concerned by the further infringement proceedings ( 45 ) ongoing against six other Member States; calls on the Commission to intensify the monitoring of national transposition measures and report to Parliament accordingly; stresses that Parliament itself must also urgently ensure the proper transposition of the Directive, as confirmed by the CJEU ruling of 11 September 2024, which found that Parliament’s current framework fails to provide balanced and effective protection against retaliation; calls for Parliament to immediately adopt robust rules in line with the Directive to safeguard its own whistleblowers;",
+     "loc": "The external layer of the EU’s AFA – key measures at national level in 2023, para 22",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (must) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-nbb-aml-guidance-966dd0c52e75-5c834c29",
    "created": "2026-11-14T08:18:34+00:00",
