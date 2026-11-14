@@ -27,19 +27,13 @@
 #max-root.mx-paused *,#max-root.mx-paused *::before,#max-root.mx-paused *::after{animation-play-state:paused!important}
 .mx-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-/* ---------------------------------------------------------------- the walking rig (drawn by JS) */
-.mx-walker{position:fixed;right:10px;bottom:calc(12px + var(--mx-lift));z-index:91;width:96px;height:51px;pointer-events:none;color:var(--mx-cat)}
+/* ---------------------------------------------------------------- the walking cat (rigged by JS) */
+.mx-walker{position:fixed;right:2px;bottom:calc(6px + var(--mx-lift));z-index:91;width:104px;height:86px;pointer-events:none;color:var(--mx-cat)}
 /* on dark pages the black silhouette gets a faint light edge so it never disappears */
 .mx-dark .mx-walker{filter:drop-shadow(0 0 .8px rgba(225,226,230,.85)) drop-shadow(0 0 5px rgba(225,226,230,.18))}
 .mx-walker svg{display:block;width:100%;height:100%;overflow:visible}
-.mx-sil{opacity:1}
-.mx-wbody,.mx-wtail{fill:currentColor;fill-rule:nonzero}
-.mx-wleg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
-.mx-wfar{opacity:.62}
-.mx-wpaw{fill:currentColor}
-.mx-wth{fill:currentColor}
-.mx-wrim{fill:none;stroke:var(--mx-rim);stroke-width:.9;stroke-linecap:round;opacity:.9}
-.mx-wbsh,.mx-wsh{fill:var(--mx-shadow)}
+.mx-sil{fill:currentColor}
+.mx-wsh{fill:var(--mx-shadow)}
 .mx-dark .mx-wbsh{opacity:.6}
 
 /* ---------------------------------------------------------------- the bubble (the button) */

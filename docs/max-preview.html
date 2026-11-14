@@ -49,19 +49,13 @@ footer{text-align:center;font-size:12.5px;color:var(--text-2);padding:20px}
 #max-root.mx-paused *,#max-root.mx-paused *::before,#max-root.mx-paused *::after{animation-play-state:paused!important}
 .mx-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-/* ---------------------------------------------------------------- the walking rig (drawn by JS) */
-.mx-walker{position:fixed;right:10px;bottom:calc(12px + var(--mx-lift));z-index:91;width:96px;height:51px;pointer-events:none;color:var(--mx-cat)}
+/* ---------------------------------------------------------------- the walking cat (rigged by JS) */
+.mx-walker{position:fixed;right:2px;bottom:calc(6px + var(--mx-lift));z-index:91;width:104px;height:86px;pointer-events:none;color:var(--mx-cat)}
 /* on dark pages the black silhouette gets a faint light edge so it never disappears */
 .mx-dark .mx-walker{filter:drop-shadow(0 0 .8px rgba(225,226,230,.85)) drop-shadow(0 0 5px rgba(225,226,230,.18))}
 .mx-walker svg{display:block;width:100%;height:100%;overflow:visible}
-.mx-sil{opacity:1}
-.mx-wbody,.mx-wtail{fill:currentColor;fill-rule:nonzero}
-.mx-wleg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
-.mx-wfar{opacity:.62}
-.mx-wpaw{fill:currentColor}
-.mx-wth{fill:currentColor}
-.mx-wrim{fill:none;stroke:var(--mx-rim);stroke-width:.9;stroke-linecap:round;opacity:.9}
-.mx-wbsh,.mx-wsh{fill:var(--mx-shadow)}
+.mx-sil{fill:currentColor}
+.mx-wsh{fill:var(--mx-shadow)}
 .mx-dark .mx-wbsh{opacity:.6}
 
 /* ---------------------------------------------------------------- the bubble (the button) */
@@ -226,13 +220,14 @@ window.MAX_PREVIEW = true;
 
   // Full-frame simulation pages: Max stays out of the way there.
   var EXCLUDE = ['workstation.html', 'desk.html', 'laundromat.html', 'ownership.html',
-    'shift.html', 'triage.html', 'casefile.html', 'film-follow-the-money.html'];
+    'shift.html', 'triage.html', 'casefile.html', 'film-follow-the-money.html',
+    'film-effort-follows-risk.html', 'film-know-who-know-why.html', 'film-look-through.html'];
   var PREVIEW = window.MAX_PREVIEW === true; // set by max-preview.html (CSS inlined there)
   var page = location.pathname.split('/').pop() || 'index.html';
   if (!MAX_ENABLED || (!PREVIEW && EXCLUDE.indexOf(page) !== -1) || window.__regMax) return;
   window.__regMax = true;
 
-  var VERSION = '20261114a';
+  var VERSION = '20261114b';
   var K_HIDDEN = 'regradar-max-hidden', K_GREETED = 'regradar-max-greeted';
   var params = new URLSearchParams(location.search);
   var DEMO = PREVIEW || params.get('maxdemo') === '1';
@@ -268,14 +263,6 @@ window.MAX_PREVIEW = true;
      The same polar outline r(θ) drives the static badge and the morph
      target, so the morph lands exactly on the badge. Badge units: 40 x 40. */
   var BC = [20, 22], BR = 14.6, EARS = [[215, 18.8], [248, 19.2]], EW = 15;
-  function badgeR(deg) {
-    var r = BR;
-    EARS.forEach(function (e) {
-      var d = Math.abs(((deg - e[0]) % 360 + 540) % 360 - 180);
-      if (d < EW) r = Math.max(r, BR + (e[1] - BR) * (0.5 + 0.5 * Math.cos(PI * d / EW)));
-    });
-    return r;
-  }
   function polar(deg, r) { var a = deg * PI / 180; return [BC[0] + r * Math.cos(a), BC[1] + r * Math.sin(a)]; }
   function earTri(e) {
     // a soft, rounded ear: straight-ish sides, round tip
@@ -303,242 +290,151 @@ window.MAX_PREVIEW = true;
       '</svg>';
   }
 
-  /* ------------------------------------------------------------ the walking rig
-     Walker units: viewBox 120 x 64, facing left, ground at y = 60.
-     The outline is 16 segments, each sampled 6 times = 96 points for the morph.
-     Tags: h head, e1/e2 ear tips (head + spring), b back (spine flex), u belly. */
-  var START = [5.5, 24, 'h'];
-  var SEG = [
-    ['C', [5.8, 20.5, 'h'], [7, 18, 'h'], [9, 16, 'h']],
-    ['C', [9.2, 14, 'h'], [9, 12, 'h'], [9.4, 10.5, 'h']],
-    ['C', [9.8, 8, 'e1'], [11.8, 7.2, 'e1'], [12.8, 8.2, 'e1']],
-    ['C', [14, 9.5, 'h'], [15.2, 11.5, 'h'], [16, 12.6, 'h']],
-    ['C', [17, 12.2, 'h'], [18, 12.2, 'h'], [19, 12.4, 'h']],
-    ['C', [19.6, 10, 'e2'], [21.5, 7.6, 'e2'], [23, 8.2, 'e2']],
-    ['C', [24.6, 9, 'h'], [25.4, 12.5, 'h'], [26, 15.5, 'h']],
-    ['C', [28, 17.5, 'h'], [31, 20.5, ''], [38, 21.5, '']],
-    ['C', [52, 19.5, 'b'], [70, 18, 'b'], [84, 20.5, '']],
-    ['C', [92, 22, ''], [97.5, 29, ''], [95.5, 37, '']],
-    ['C', [93.5, 44, ''], [87, 47.5, ''], [79, 46.5, '']],
-    ['C', [66, 48.5, 'u'], [46, 48.5, 'u'], [35, 44.5, '']],
-    ['C', [29.5, 42.5, ''], [26.5, 39, ''], [25.5, 35.5, '']],
-    ['C', [24, 33.5, 'h'], [21, 33.5, 'h'], [17.5, 33.2, 'h']],
-    ['C', [12.5, 33, 'h'], [8.5, 31.5, 'h'], [6.6, 28.6, 'h']],
-    ['C', [5.4, 26.8, 'h'], [5.2, 25.4, 'h'], [5.5, 24, 'h']]
+  /* ------------------------------------------------------------ the walking cat
+     An original vector traced from the owner-approved master silhouette with
+     our own tracer (boundary following, Douglas-Peucker, Catmull-Rom to
+     Bezier). Units are 1/16 of the 2048 px master; viewBox 12 20 104 86,
+     facing left, paws on y = 103.3. The main shape (head, near ear, body,
+     near legs, tail) is reused with <use> and convex clip regions cut at the
+     natural joints; the far ear and the far legs are their own shapes. Parts
+     overlap across every cut and discs sit on the joint pivots, so the
+     joins stay seamless while the parts rotate. */
+  var CAT_MAIN = 'M104.1 23.9C104.6 23.8 105.1 23.8 105.6 23.9C106.1 24 106.5 23.9 107.1 24.2C107.7 24.5 108.8 25.1 109.4 25.5C110 25.9 110.1 26.2 110.5 26.7C110.8 27.1 111.1 27.7 111.3 28.2C111.6 28.7 111.7 29.2 111.8 29.7C111.9 30.2 111.9 30.8 111.8 31.2C111.8 31.6 111.7 31.8 111.5 32.1C111.4 32.4 111.1 32.6 110.8 32.8C110.6 32.9 110.3 33.1 110 33.1C109.7 33.1 109.2 33 109 33C108.7 32.9 108.6 32.9 108.4 32.7C108.2 32.5 107.9 32.2 107.8 31.8C107.6 31.4 107.7 30.6 107.6 30.2C107.5 29.7 107.3 29.4 107.1 29.2C106.9 28.9 106.7 28.7 106.3 28.5C106 28.3 105.6 28.1 105.2 28C104.7 28 104.2 28 103.8 28.1C103.4 28.2 103.2 28.3 102.8 28.5C102.4 28.8 101.8 29.3 101.5 29.7C101.2 30 101.1 30.2 101 30.6C100.8 31 100.6 31.4 100.6 32C100.6 32.6 100.6 33.6 100.7 34.2C100.8 34.9 100.8 34.9 101.3 35.9C101.8 36.9 103.1 39.1 103.8 40.3C104.4 41.6 104.8 42.5 105.2 43.6C105.5 44.7 105.6 45.8 105.7 46.8C105.8 47.8 105.7 48.9 105.6 49.8C105.5 50.7 105.3 51.3 105 52.2C104.6 53.1 103.9 54.5 103.4 55.3C103 56 102.8 56.2 102.3 56.8C101.8 57.4 101.3 57.9 100.4 58.7C99.5 59.5 97.7 60.9 97.1 61.5C96.4 62.2 96.6 62.3 96.5 62.6C96.4 62.9 96.3 62.7 96.5 63.5C96.7 64.3 97.5 65.4 97.8 67.3C98 69.1 98 72.9 98.1 74.5C98.2 76.1 98.4 76.2 98.5 76.8C98.7 77.4 98.8 77.6 99 78.2C99.3 78.7 99.7 79.5 100.1 80.1C100.5 80.7 100.8 81.2 101.5 81.9C102.1 82.6 103.1 83.5 103.8 84.1C104.6 84.7 105.5 84.8 106 85.3C106.5 85.8 106.5 85.5 106.9 87C107.4 88.4 108.3 91.9 108.7 93.8C109.2 95.7 109.4 97.4 109.6 98.3C109.8 99.3 109.7 99.2 109.7 99.7C109.6 100.2 109.5 100.9 109.4 101.3C109.3 101.8 109.2 102.1 109 102.4C108.8 102.7 108.6 103 108.2 103.3C107.8 103.6 107.1 103.9 106.7 104C106.2 104.2 105.7 104.2 105.3 104.1C104.9 104 104.5 103.8 104.3 103.7C104 103.5 103.9 103.3 103.8 103C103.7 102.7 103.7 102.2 103.7 101.9C103.7 101.6 103.8 101.6 103.9 101.3C104 101.1 104.2 100.8 104.5 100.5C104.8 100.3 105.5 100 105.7 99.8C105.9 99.5 106 100.2 105.7 99.1C105.5 98 104.5 94.4 104.1 93.2C103.7 92 103.7 92.4 103.4 91.9C103.1 91.4 102.7 90.9 102.1 90.4C101.5 89.9 101.1 89.6 99.9 89C98.7 88.4 96.4 87.5 95 86.8C93.6 86.2 92.4 85.5 91.4 84.9C90.4 84.3 90.4 84.4 89.2 83.3C88.1 82.3 85.6 79.9 84.4 78.8C83.2 77.8 83 77.7 82.2 77.2C81.4 76.8 80.5 76.4 79.6 76.1C78.7 75.8 77.8 75.7 77 75.6C76.1 75.5 75.3 75.6 74.7 75.7C74 75.7 74.6 75.5 72.9 76C71.2 76.4 66.7 77.8 64.5 78.3C62.2 78.9 60.9 79.1 59.4 79.3C57.9 79.5 57.3 79.6 55.5 79.6C53.7 79.6 50.1 79.3 48.5 79.3C47 79.4 47 79.6 46.3 79.9C45.7 80.2 45.1 80.5 44.5 81C43.9 81.4 44.8 80.4 42.8 82.7C40.8 84.9 34.5 92.1 32.5 94.5C30.5 96.9 31.4 96.4 30.8 97.1C30.2 97.8 29.8 97.7 29 98.5C28.3 99.4 26.8 101.3 26.1 102C25.3 102.8 25 102.8 24.5 103C24 103.2 23.7 103.2 23 103.2C22.4 103.3 21.3 103.3 20.7 103.2C20 103 19.6 102.7 19.3 102.5C19.1 102.3 19.1 102.3 19.1 102C19.1 101.8 19 101.5 19.1 101.2C19.2 100.9 19.3 100.6 19.5 100.3C19.8 100.1 20.3 99.6 20.8 99.5C21.3 99.3 22.2 99.4 22.7 99.3C23.1 99.2 22.8 99.5 23.4 98.9C24 98.3 24.8 97.7 26.3 95.5C27.7 93.3 30.9 87.9 32.1 85.8C33.3 83.6 33.2 83.6 33.6 82.7C34 81.7 34.2 81 34.3 80.2C34.5 79.3 34.6 79.8 34.3 77.6C34.1 75.4 33.4 69.2 33 67.1C32.7 65 32.8 66 32.3 65C31.8 64 30.6 62.1 29.9 61.1C29.2 60.1 28.6 59.5 28 59C27.3 58.5 26.6 58.2 26.1 58C25.5 57.9 25.4 57.8 24.7 57.9C23.9 58 22.2 58.4 21.5 58.5C20.8 58.6 20.8 58.6 20.4 58.5C20 58.5 19.8 58.5 19.3 58.2C18.8 57.9 17.9 57.3 17.3 56.7C16.8 56.1 16.3 55.1 16.2 54.6C16 54.1 15.9 54.3 16.2 53.8C16.5 53.3 17.6 52.3 18 51.5C18.5 50.6 18.6 49.5 18.9 48.8C19.2 48.2 19.2 48 19.7 47.5C20.2 46.9 21.4 46 22 45.6C22.7 45.1 23.1 45 23.7 44.8C24.2 44.6 25 44.4 25.4 44.3C25.8 44.1 25.8 44 26 43.8C26.1 43.7 26.1 43.9 26.3 43.2C26.4 42.6 26.6 40.7 26.8 40C27 39.3 27.1 39.3 27.3 39.1C27.6 38.9 27.9 38.8 28.3 38.9C28.6 39 28.9 39.1 29.5 39.6C30 40.1 31 41.2 31.5 42C32.1 42.9 32.1 43.9 32.9 44.8C33.7 45.8 34.9 46.4 36.2 47.8C37.6 49.2 40 52.3 41 53.4C42 54.5 41.9 54 42.3 54.3C42.7 54.5 42.8 54.7 43.6 54.8C44.4 55 45.8 55 47.3 55.4C48.8 55.8 51 56.8 52.4 57.2C53.8 57.6 54 57.7 55.5 57.8C57 57.8 58.7 57.9 61.4 57.6C64.1 57.3 69.1 56.5 72 56.2C74.8 55.9 76.6 55.7 78.4 55.7C80.2 55.6 81.8 55.7 83 55.8C84.1 55.9 84.1 55.9 85.3 56.1C86.5 56.3 88.9 57 90.2 57.2C91.4 57.4 92.1 57.3 92.8 57.2C93.6 57.1 93.9 57 94.7 56.6C95.5 56.2 96.7 55.5 97.5 54.8C98.3 54.2 98.9 53.5 99.5 52.8C100 52.1 100.4 51.3 100.7 50.6C100.9 49.9 101.1 49.3 101.2 48.5C101.2 47.6 101.1 46.3 101 45.3C100.8 44.4 100.7 44 100.2 42.8C99.6 41.7 98.2 39.4 97.7 38.2C97.1 37.1 97 36.8 96.8 36C96.6 35.3 96.4 34.4 96.3 33.7C96.3 32.9 96.3 32.4 96.4 31.6C96.5 30.8 96.8 29.9 97.1 29.1C97.4 28.3 97.9 27.5 98.5 26.8C99.1 26.2 100.1 25.4 100.7 25C101.4 24.5 101.9 24.4 102.5 24.2C103 24 103.5 23.9 104.1 23.9Z';
+  var CAT_EAR = 'M22 39.5C22.3 39.5 22.6 39.5 23.2 40C23.8 40.4 25.2 41.6 25.6 42.1C26 42.6 25.5 42.9 25.5 43.2C25.4 43.4 25.7 43.3 25.2 43.5C24.8 43.7 23.3 44.8 22.7 44.4C22.1 44 21.9 41.8 21.7 41.1C21.5 40.4 21.6 40.5 21.7 40.2C21.7 40 21.7 39.5 22 39.5Z';
+  var CAT_FH = 'M75.1 76.7C75.8 76.7 77.1 76.7 78 76.8C79 77 79.8 77.3 80.7 77.7C81.5 78 82.1 78.4 83.1 79.2C84.1 79.9 85.8 81.7 86.5 82.3C87.1 82.9 86.8 82.3 86.8 82.7C86.9 83.1 86.6 83.9 86.5 84.6C86.5 85.3 86.5 86.2 86.7 87C86.8 87.7 87 88.3 87.2 89C87.5 89.7 88 90.6 88.2 91.2C88.3 91.8 88.2 92 88 92.5C87.8 92.9 88 92.8 87 94C86.1 95.1 83.6 97.9 82.2 99.3C80.7 100.8 79.3 101.9 78.5 102.5C77.7 103.1 77.7 102.9 77.3 103C76.8 103.1 76.5 103.1 75.9 103.1C75.3 103.1 74.2 103.1 73.7 103C73.1 103 73 102.8 72.7 102.7C72.5 102.5 72.3 102.2 72.2 101.9C72.2 101.6 72.3 101.1 72.4 100.7C72.6 100.4 72.9 100.1 73.1 99.9C73.3 99.7 73.3 99.5 73.8 99.5C74.4 99.4 75.7 99.6 76.3 99.5C76.9 99.4 76.6 99.6 77.4 98.8C78.2 98 80.3 95.6 81 94.5C81.6 93.5 81.4 93.3 81.4 92.6C81.4 91.9 81.5 91.7 80.7 90.3C79.9 88.9 77.5 85.7 76.5 84.1C75.5 82.5 75.2 81.8 74.7 80.6C74.2 79.4 73.5 77.6 73.5 77C73.6 76.3 74.3 76.7 75.1 76.7Z';
+  var CAT_FF = 'M48.4 80.4C49.4 80.4 51.6 80.7 53 80.7C54.3 80.8 55.7 78.9 56.5 80.7C57.3 82.4 57.5 89.1 57.8 91.2C58.1 93.4 58.1 92.9 58.3 93.5C58.5 94.1 58.8 94.5 58.8 94.9C58.9 95.3 58.5 95.2 58.5 95.8C58.5 96.3 58.8 97.4 58.8 98.2C58.8 99.1 58.8 100.1 58.7 100.8C58.5 101.5 58.3 102 58 102.4C57.7 102.8 57.4 103 57 103.2C56.5 103.3 55.9 103.4 55.3 103.5C54.8 103.5 54.2 103.5 53.7 103.5C53.2 103.4 52.7 103.2 52.3 103C52 102.8 51.9 102.6 51.8 102.3C51.7 101.9 51.8 101.4 51.9 101C52.1 100.7 52.4 100.4 52.7 100.2C52.9 100 53.2 99.9 53.5 99.8C53.9 99.7 54.4 99.8 54.6 99.7C54.8 99.7 54.7 99.9 54.8 99.5C54.8 99.1 55 98.3 54.8 97.3C54.7 96.4 54.4 95.6 53.7 93.7C53 91.8 51.4 87.6 50.6 85.8C49.8 84 49.5 83.7 49 82.9C48.4 82.1 47.2 81.3 47.2 80.8C47.1 80.4 47.5 80.5 48.4 80.4Z';
+  var OV = 1.6, HOV = 5, GROUND = 103.3, STRIDE = 10.5, DUTY = 0.62, LC = STRIDE / DUTY, LIFT = 3.2;
+  var SPINE = [[66, 40], [66, 96]], SPV = [66, 68.5], NECK = [[44.5, 53.4], [32.6, 63.2]];
+  var TAILC = [[[87.5, 57.2], [97.3, 62.6]], [[100.3, 46], [105.6, 46]], [[96.2, 34], [100.6, 34]]];
+  var LEGS = [ // shape, hip cut, knee cut, foot contact, region box, walk phase offset, stride centre shift, rear half, hip pivot (inside the body)
+    { s: 'main', hip: [[34.5, 79], [46.5, 80.6]], knee: [[23.2, 93.6], [30.6, 97.6]], foot: [20, 103.3], box: [8, 74, 47.5, 108], off: 0.25, c: 5, rear: 0, pv: [40.5, 69] },
+    { s: 'ff', hip: [[47, 81], [58, 81]], knee: [[53.3, 95.2], [58.4, 95.6]], foot: [52.5, 103.2], box: [44, 76, 62, 108], off: 0.75, c: 0, rear: 0, pv: [53, 71] },
+    { s: 'fh', hip: [[73, 77.6], [86.5, 83]], knee: [[82.5, 91.5], [88.2, 93]], foot: [74.5, 103], box: [69, 72, 91, 108], off: 0.5, c: 1, rear: 1, pv: [80, 70] },
+    { s: 'main', hip: [[80.5, 79.5], [101, 80]], knee: [[99.5, 91.8], [105.6, 89.4]], foot: [105, 103.2], box: [78, 74, 114, 108], off: 0, c: -3.5, rear: 1, pv: [91, 68] }
   ];
-  // Morph anchors: outline sample index -> badge angle (degrees, clockwise from +x).
-  var ANCH = [[0, 190], [18, 215], [36, 248], [48, 290], [60, 385], [69, 450], [78, 515], [90, 540], [96, 550]];
-  var GROUND = 60, LC = 26, DUTY = 0.62;
-  var LEGS = [ // hip (rest, body frame), bone lengths, width, thigh, phase offset, far side: shorter, rounder legs
-    { hip: [84, 35], a: 12.5, b: 13, w: 5.2, th: 7, off: 0.5, far: true },
-    { hip: [35, 35], a: 12.5, b: 12.5, w: 4.8, th: 4.8, off: 0.75, far: true },
-    { hip: [81, 36.5], a: 12.5, b: 13, w: 5.8, th: 8, off: 0, far: false },
-    { hip: [32, 36.5], a: 12.5, b: 12.5, w: 5.4, th: 5.4, off: 0.25, far: false }
-  ];
-  var TAIL_N = 9, TAIL_L = 3.9, TAIL_BASE = [92, 27];
-  var TAIL_REST = [-0.86, -0.12, -0.12, -0.12, -0.14, -0.2, -0.32, -0.48, -0.62];
-  // Walker box (right 10, bottom 12, 96 x 51 px, 0.8 px/unit) vs badge box
-  // (bubble right 16, bottom 16, 52 px; badge inset 8 px, 36 px for 40 units).
-  function badgeToWalker(p) { return [57.5 + 1.125 * p[0], 3.75 + 1.125 * p[1]]; }
+  function mid(a, b) { return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]; }
+  function dist(a, b) { return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1])); }
+  function ang(a, b) { return Math.atan2(b[1] - a[1], b[0] - a[0]); }
+  function rbox(b) { return [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]]]; }
+  // Keep the part of a convex polygon on the side of line ab that contains ref; grow moves the line away (overlap).
+  function cutPoly(poly, ab, ref, grow) {
+    var a = ab[0], b = ab[1], nx = a[1] - b[1], ny = b[0] - a[0], L = Math.sqrt(nx * nx + ny * ny), out = [];
+    nx /= L; ny /= L;
+    if ((ref[0] - a[0]) * nx + (ref[1] - a[1]) * ny < 0) { nx = -nx; ny = -ny; }
+    function sd(p) { return (p[0] - a[0]) * nx + (p[1] - a[1]) * ny + (grow || 0); }
+    for (var i = 0; i < poly.length; i++) {
+      var P = poly[i], Q = poly[(i + 1) % poly.length], sp = sd(P), sq = sd(Q);
+      if (sp >= 0) out.push(P);
+      if ((sp >= 0) !== (sq >= 0)) { var t = sp / (sp - sq); out.push([P[0] + (Q[0] - P[0]) * t, P[1] + (Q[1] - P[1]) * t]); }
+    }
+    return out;
+  }
+  function pts(poly) { return poly.map(function (p) { return f1(p[0]) + ',' + f1(p[1]); }).join(' '); }
+  LEGS.forEach(function (L) {
+    L.H = L.pv; L.K = mid(L.knee[0], L.knee[1]);
+    L.a = dist(L.H, L.K); L.b = dist(L.K, L.foot);
+    L.bend = (L.K[0] - L.H[0]) * (L.foot[1] - L.H[1]) - (L.K[1] - L.H[1]) * (L.foot[0] - L.H[0]) > 0 ? 1 : -1;
+  });
+  var TP = TAILC.map(function (c) { return mid(c[0], c[1]); });
+
+  function walkerSVG() {
+    var defs = '<path id="mx-c-main" d="' + CAT_MAIN + '"/><path id="mx-c-ff" d="' + CAT_FF + '"/><path id="mx-c-fh" d="' + CAT_FH + '"/>' +
+      '<radialGradient id="mx-wsg"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>';
+    function clip(id, poly) { defs += '<clipPath id="mx-k-' + id + '"><polygon points="' + pts(poly) + '"/></clipPath>'; return 'url(#mx-k-' + id + ')'; }
+    function use(shape, cl) { return '<use href="#mx-c-' + shape + '" clip-path="' + cl + '"/>'; }
+    function disc(c, r) { return r ? '<circle cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="' + f1(r) + '"/>' : ''; }
+    var BIG = [0, 0, 130, 120];
+    var head = function (g) { return cutPoly(rbox([8, 30, 52, 72]), NECK, [20, 45], g); };
+    var tail = function (i, g) {
+      var p = cutPoly(rbox([84, 18, 116, 63]), TAILC[0], [100, 40], i === 0 ? g : 0);
+      if (i >= 1) p = cutPoly(p, TAILC[1], [102, 30], g); else p = cutPoly(p, TAILC[1], [95, 56], g);
+      if (i === 2) p = cutPoly(p, TAILC[2], [100, 26], g); else if (i === 1) { p = cutPoly(p, TAILC[2], [103, 42], g); p = cutPoly(p, [[103.5, 32], [108, 40]], [98, 40], 0); }
+      return p;
+    };
+    var legRegion = function (L, g) { return cutPoly(rbox(L.box), L.hip, L.foot, g); }; // g < 0 shrinks toward the foot
+    // torso halves: whole shape minus the parts that move on their own
+    var mFront = '<polygon fill="#fff" points="' + pts(cutPoly(rbox(BIG), SPINE, [30, 70], OV)) + '"/>' +
+      '<polygon points="' + pts(head(-0.6)) + '"/><polygon points="' + pts(legRegion(LEGS[0], -2.2)) + '"/>';
+    var mRear = '<polygon fill="#fff" points="' + pts(cutPoly(rbox(BIG), SPINE, [100, 70], OV)) + '"/>' +
+      '<polygon points="' + pts(tail(0, 0)) + '"/><polygon points="' + pts(tail(1, 0)) + '"/><polygon points="' + pts(tail(2, 0)) + '"/>' +
+      '<polygon points="' + pts(legRegion(LEGS[3], -2.2)) + '"/>';
+    defs += '<mask id="mx-m-f" maskUnits="userSpaceOnUse" x="0" y="0" width="130" height="120">' + mFront + '</mask>' +
+      '<mask id="mx-m-r" maskUnits="userSpaceOnUse" x="0" y="0" width="130" height="120">' + mRear + '</mask>';
+    function leg(i) {
+      var L = LEGS[i], up = cutPoly(cutPoly(rbox([L.box[0], L.box[1] - 10, L.box[2], L.box[3]]), L.hip, L.foot, HOV), L.knee, L.H, OV), lo = cutPoly(rbox(L.box), L.knee, L.foot, OV);
+      return '<g class="mx-lu">' + use(L.s, clip('u' + i, up)) +
+        '<g class="mx-ll">' + use(L.s, clip('l' + i, lo)) + disc(L.K, dist(L.knee[0], L.knee[1]) * 0.43) + '</g></g>';
+    }
+    var tailG = '<g class="mx-t0">' + use('main', clip('t0', tail(0, OV))) +
+      '<g class="mx-t1">' + use('main', clip('t1', tail(1, OV))) + disc(TP[1], dist(TAILC[1][0], TAILC[1][1]) * 0.47) +
+      '<g class="mx-t2">' + use('main', clip('t2', tail(2, OV))) + disc(TP[2], dist(TAILC[2][0], TAILC[2][1]) * 0.47) + '</g></g></g>';
+    var headG = '<g class="mx-whd"><path d="' + CAT_EAR + '"/>' + use('main', clip('hd', head(OV))) + disc(mid(NECK[0], NECK[1]), dist(NECK[0], NECK[1]) * 0.42) + '</g>';
+    var body = '<g class="mx-wk">' +
+      '<ellipse cx="62" cy="104.2" rx="46" ry="2.6" fill="url(#mx-wsg)" class="mx-wbsh"/>' +
+      '<ellipse class="mx-wsh" cy="104" rx="3" ry="1"/><ellipse class="mx-wsh" cy="104" rx="3" ry="1"/><ellipse class="mx-wsh" cy="104" rx="3" ry="1"/><ellipse class="mx-wsh" cy="104" rx="3" ry="1"/>' +
+      '<g class="mx-sil">' +
+        '<g class="mx-wf">' + leg(1) + '</g>' +
+        '<g class="mx-wr">' + leg(2) + '</g>' +
+        '<g class="mx-wr">' + tailG + '</g>' +
+        '<g class="mx-wr"><use href="#mx-c-main" mask="url(#mx-m-r)"/>' + leg(3) + '</g>' +
+        '<g class="mx-wf"><use href="#mx-c-main" mask="url(#mx-m-f)"/>' + disc(SPV, 10.8) + headG + leg(0) + '</g>' +
+      '</g></g>';
+    return '<svg viewBox="12 20 104 86" aria-hidden="true" focusable="false"><defs>' + defs + '</defs>' + body + '</svg>';
+  }
+
+  function fx(u) { return u < DUTY ? -STRIDE / 2 + STRIDE * u / DUTY : STRIDE / 2 - STRIDE * smooth((u - DUTY) / (1 - DUTY)); }
+  function fy(u) { return u < DUTY ? 0 : -LIFT * Math.sin(PI * (u - DUTY) / (1 - DUTY)); }
+  function rot(p, c, a) { var co = Math.cos(a), si = Math.sin(a), dx = p[0] - c[0], dy = p[1] - c[1]; return [c[0] + dx * co - dy * si, c[1] + dx * si + dy * co]; }
+  function deg(r) { return f1(r * 180 / PI); }
 
   function Rig(svg) {
-    this.svg = svg;
-    var q = function (s) { return svg.querySelector(s); };
-    this.g = q('.mx-wk'); this.sq = q('.mx-sq'); this.body = q('.mx-wbody'); this.tail = q('.mx-wtail');
-    this.rim = q('.mx-wrim'); this.bshadow = q('.mx-wbsh');
-    this.legEls = [].slice.call(svg.querySelectorAll('.mx-wleg'));
-    this.shEls = [].slice.call(svg.querySelectorAll('.mx-wsh'));
-    this.thEls = [].slice.call(svg.querySelectorAll('.mx-wth'));
-    this.pawEls = [].slice.call(svg.querySelectorAll('.mx-wpaw')); this.hl = q('.mx-whl');
-    this.thEls.forEach(function (t, i) { t.setAttribute('rx', f1(LEGS[i].a / 2 + 2)); t.setAttribute('ry', f1(LEGS[i].th)); });
+    var q = function (sel) { return [].slice.call(svg.querySelectorAll(sel)); };
+    this.wk = svg.querySelector('.mx-wk'); this.front = q('.mx-wf'); this.rear = q('.mx-wr');
+    this.lu = q('.mx-lu'); this.ll = q('.mx-ll'); this.sh = q('.mx-wsh'); this.head = svg.querySelector('.mx-whd');
+    this.tg = [svg.querySelector('.mx-t0'), svg.querySelector('.mx-t1'), svg.querySelector('.mx-t2')];
+    // DOM order of legs: far fore, far hind, near hind, near fore -> map to LEGS indexes
+    this.order = [1, 2, 3, 0];
     this.x = 0; this.phase = 0; this.amp = 0; this.t = 0;
-    this.pose = { bodyY: 0, pitch: 0, flex: 0, belly: 0, hx: 0, hy: 0, headRot: 0, e1x: 0, e1y: 0, e2x: 0, e2y: 0, earLift: 0, tailDrop: 0 };
-    this.ear = { x: 0, y: 0, vx: 0, vy: 0 };
-    this.tailA = TAIL_REST.slice(); this.tailV = TAIL_REST.map(function () { return 0; });
-    this.prevBodyY = 0; this.bodyVy = 0; this.morph = null;
+    this.by = 0; this.sp = 0; this.hr = 0; this.look = 0; this.crouch = 0;
+    this.ta = [0, 0, 0]; this.tv = [0, 0, 0]; this.prevBy = 0;
   }
-  Rig.prototype.bodyXf = function (x, y) { // pitch about mid-body, then bob
-    var p = this.pose, c = Math.cos(p.pitch), s = Math.sin(p.pitch), dx = x - 55, dy = y - 33;
-    return [55 + dx * c - dy * s, 33 + dx * s + dy * c + p.bodyY];
-  };
-  Rig.prototype.xf = function (pt) {
-    var p = this.pose, x = pt[0], y = pt[1], tag = pt[2];
-    if (tag === 'h' || tag === 'e1' || tag === 'e2') {
-      var c = Math.cos(p.headRot), s = Math.sin(p.headRot), dx = x - 26, dy = y - 22;
-      x = 26 + dx * c - dy * s + p.hx; y = 22 + dx * s + dy * c + p.hy;
-      if (tag === 'e1') { x += p.e1x; y += p.e1y; }
-      if (tag === 'e2') { x += p.e2x; y += p.e2y; }
-    } else if (tag === 'b') y += p.flex;
-    else if (tag === 'u') y += p.belly;
-    return this.bodyXf(x, y);
-  };
-  Rig.prototype.outlineD = function () {
-    var self = this, s = this.xf(START), d = 'M' + f1(s[0]) + ' ' + f1(s[1]);
-    SEG.forEach(function (sg) {
-      d += sg[0];
-      for (var i = 1; i < sg.length; i++) { var p = self.xf(sg[i]); d += f1(p[0]) + ' ' + f1(p[1]) + ' '; }
-    });
-    return d + 'Z';
-  };
-  Rig.prototype.samples = function () { // 96 points in outline order
-    var self = this, out = [], p0 = this.xf(START);
-    SEG.forEach(function (sg) {
-      var pts = sg.slice(1).map(function (p) { return self.xf(p); });
-      for (var k = 0; k < 6; k++) {
-        var t = k / 6, u = 1 - t;
-        if (sg[0] === 'L') out.push([lerp(p0[0], pts[0][0], t), lerp(p0[1], pts[0][1], t)]);
-        else out.push([u * u * u * p0[0] + 3 * u * u * t * pts[0][0] + 3 * u * t * t * pts[1][0] + t * t * t * pts[2][0],
-          u * u * u * p0[1] + 3 * u * u * t * pts[0][1] + 3 * u * t * t * pts[1][1] + t * t * t * pts[2][1]]);
-      }
-      p0 = pts[pts.length - 1];
-    });
-    return out;
-  };
-  function morphTargets() {
-    var out = [];
-    for (var i = 0; i < 96; i++) {
-      var j = 0; while (ANCH[j + 1][0] < i) j++;
-      var a = ANCH[j], b = ANCH[j + 1], deg = lerp(a[1], b[1], (i - a[0]) / (b[0] - a[0]));
-      out.push(badgeToWalker(polar(deg, badgeR(deg))));
-    }
-    return out;
-  }
-  function tailArc() { // where the tail lies in the badge: along r = 12 from 20° to 165°
-    var out = [];
-    for (var i = 0; i <= TAIL_N; i++) out.push(badgeToWalker(polar(lerp(20, 165, i / TAIL_N), 12)));
-    return out;
-  }
-  function ik(h, f, a, b) { // two-bone, joint bends backward (+x)
-    var dx = f[0] - h[0], dy = f[1] - h[1], d = clamp(Math.sqrt(dx * dx + dy * dy), 0.01, a + b - 0.01);
-    var phi = Math.atan2(dy, dx), al = Math.acos(clamp((a * a + d * d - b * b) / (2 * a * d), -1, 1));
-    return [h[0] + a * Math.cos(phi - al), h[1] + a * Math.sin(phi - al)];
-  }
-  Rig.prototype.feet = function () {
-    var self = this;
-    return LEGS.map(function (L) {
-      var u = ((self.phase - L.off) % 1 + 1) % 1, S = DUTY * LC * self.amp, H = 4.4 * self.amp, fx, fy, lift = 0, s;
-      if (u < DUTY) { s = u / DUTY; fx = -S / 2 + S * s; fy = 0; }
-      else { s = (u - DUTY) / (1 - DUTY); fx = S / 2 - S * smooth(s); fy = -H * Math.sin(PI * s); lift = Math.sin(PI * s); }
-      var hip = self.bodyXf(L.hip[0], L.hip[1]);
-      return { hip: hip, foot: [L.hip[0] + fx, GROUND + fy], lift: lift * self.amp, u: u };
-    });
-  };
-  Rig.prototype.tailPts = function () {
-    var b = this.bodyXf(TAIL_BASE[0], TAIL_BASE[1]), pts = [b], ang = 0;
-    for (var i = 0; i < TAIL_N; i++) {
-      ang += this.tailA[i];
-      var p = pts[i]; pts.push([p[0] + TAIL_L * Math.cos(ang), p[1] + TAIL_L * Math.sin(ang)]);
-    }
-    return pts;
-  };
-  function taper(pts, w0, w1) { // tapered stroke outline with a round tip
-    var L = [], R = [], n = pts.length;
-    for (var i = 0; i < n; i++) {
-      var a = pts[Math.max(0, i - 1)], b = pts[Math.min(n - 1, i + 1)], dx = b[0] - a[0], dy = b[1] - a[1], m = Math.sqrt(dx * dx + dy * dy) || 1;
-      var w = lerp(w0, w1, i / (n - 1)) / 2, nx = -dy / m * w, ny = dx / m * w;
-      L.push([pts[i][0] + nx, pts[i][1] + ny]); R.push([pts[i][0] - nx, pts[i][1] - ny]);
-    }
-    var d = 'M' + L.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L');
-    d += 'L' + f1(R[n - 1][0]) + ' ' + f1(R[n - 1][1]);
-    d += 'L' + R.reverse().map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L');
-    var t = pts[n - 1], r = w1 / 2; // round tip as a second sub-path drawn in the same direction-independent way
-    return d + 'Z' + 'M' + f1(t[0] - r) + ' ' + f1(t[1]) + 'a' + f1(r) + ' ' + f1(r) + ' 0 1 0 ' + f1(2 * r) + ' 0a' + f1(r) + ' ' + f1(r) + ' 0 1 0 ' + f1(-2 * r) + ' 0Z';
-  }
-  // Advance secondary motion (ears and tail springs) by dt seconds.
-  Rig.prototype.secondary = function (dt) {
-    var p = this.pose, e = this.ear;
-    this.bodyVy = (p.bodyY - this.prevBodyY) / Math.max(dt, 1e-3); this.prevBodyY = p.bodyY;
-    e.vx += (-180 * e.x - 9 * e.vx) * dt; e.vy += (-180 * e.y - 9 * e.vy - this.bodyVy * 2.2) * dt;
-    e.x += e.vx * dt; e.y += e.vy * dt;
-    p.e1x = e.x * 0.6; p.e1y = e.y; p.e2x = e.x * 0.8; p.e2y = e.y * 1.25 + p.earLift;
-    p.e1y += p.earLift;
-    var w = 2 * PI / 1.7;
-    for (var i = 0; i < TAIL_N; i++) {
-      var target = TAIL_REST[i] + (0.025 + 0.012 * i) * (0.35 + this.amp) * Math.sin(this.t * w - i * 0.6) + this.bodyVy * 0.0015 * (i + 1) + (p.tailDrop || 0) * (i === 0 ? 1 : 0);
-      var k = 150 - 11 * i;
-      this.tailV[i] += (k * (target - this.tailA[i]) - 12 * this.tailV[i]) * dt;
-      this.tailA[i] += this.tailV[i] * dt;
+  Rig.prototype.step = function (dt) { // secondary motion: tail chain springs (lag and sway)
+    var vy = (this.by - this.prevBy) / Math.max(dt, 1e-3); this.prevBy = this.by;
+    var w = 2 * PI / 1.5;
+    for (var i = 0; i < 3; i++) {
+      var target = (0.03 + 0.03 * i) * (0.4 + this.amp) * Math.sin(this.t * w - i * 0.8) + vy * 0.004 * (i + 1) - this.crouch * 0.05 * (i === 0 ? 1 : 0);
+      this.tv[i] += ((120 - 25 * i) * (target - this.ta[i]) - 10 * this.tv[i]) * dt;
+      this.ta[i] += this.tv[i] * dt;
     }
   };
   Rig.prototype.render = function () {
-    var self = this, feet = this.feet();
-    this.g.setAttribute('transform', 'translate(' + f1(this.x) + ' 0)');
-    this.body.setAttribute('d', this.outlineD());
-    this.tail.setAttribute('d', taper(this.tailPts(), 6.8, 4.6));
-    this.hl.setAttribute('transform', 'translate(0 ' + f1(this.pose.bodyY) + ')');
-    var a = this.xf([38, 22.8, '']), b = this.xf([52, 20.8, 'b']), c = this.xf([70, 19.3, 'b']), dd = this.xf([86, 22.2, '']);
-    this.rim.setAttribute('d', 'M' + f1(a[0]) + ' ' + f1(a[1]) + 'C' + f1(b[0]) + ' ' + f1(b[1]) + ' ' + f1(c[0]) + ' ' + f1(c[1]) + ' ' + f1(dd[0]) + ' ' + f1(dd[1]));
-    feet.forEach(function (F, i) {
-      var L = LEGS[i], k = ik(F.hip, F.foot, L.a, L.b);
-      self.legEls[i].setAttribute('d', 'M' + f1(F.hip[0]) + ' ' + f1(F.hip[1]) + 'L' + f1(k[0]) + ' ' + f1(k[1]) + 'L' + f1(F.foot[0]) + ' ' + f1(F.foot[1]));
-      var pw = self.pawEls[i]; pw.setAttribute('cx', f1(F.foot[0] - 1)); pw.setAttribute('cy', f1(F.foot[1] + 0.4));
-      var th = self.thEls[i], ang = Math.atan2(k[1] - F.hip[1], k[0] - F.hip[0]) * 180 / PI;
-      th.setAttribute('transform', 'translate(' + f1((F.hip[0] + k[0]) / 2) + ' ' + f1((F.hip[1] + k[1]) / 2) + ') rotate(' + f1(ang) + ')');
-      var pulse = 1 + 0.35 * Math.exp(-F.u * 26) * self.amp, sh = self.shEls[i];
-      sh.setAttribute('cx', f1(F.foot[0] - 1)); sh.setAttribute('rx', f1(3.8 * (1 - 0.55 * F.lift) * pulse));
-      sh.setAttribute('opacity', f1((L.far ? 0.5 : 0.9) * (1 - 0.8 * F.lift)));
+    var self = this, A = this.amp, ph = this.phase * 2 * PI;
+    this.by = -0.75 * A * Math.cos(2 * ph) + 1.6 * this.crouch;
+    this.sp = 0.022 * A * Math.sin(ph);
+    this.hr = 0.03 * A * Math.cos(2 * ph) + 0.12 * this.look - 0.04 * this.crouch;
+    var fT = 'translate(0 ' + f1(this.by) + ')', rT = fT + ' rotate(' + deg(this.sp) + ' ' + SPV[0] + ' ' + SPV[1] + ')';
+    this.wk.setAttribute('transform', 'translate(' + f1(this.x) + ' 0)');
+    this.front.forEach(function (g) { g.setAttribute('transform', fT); });
+    this.rear.forEach(function (g) { g.setAttribute('transform', rT); });
+    this.head.setAttribute('transform', 'rotate(' + deg(this.hr) + ' ' + f1(mid(NECK[0], NECK[1])[0]) + ' ' + f1(mid(NECK[0], NECK[1])[1]) + ')');
+    for (var i = 0; i < 3; i++) this.tg[i].setAttribute('transform', 'rotate(' + deg(this.ta[i]) + ' ' + f1(TP[i][0]) + ' ' + f1(TP[i][1]) + ')');
+    this.order.forEach(function (li, k) {
+      var L = LEGS[li], u = ((self.phase + L.off) % 1 + 1) % 1, lift = u < DUTY ? 0 : Math.sin(PI * (u - DUTY) / (1 - DUTY)) * A;
+      var T = [L.foot[0] + (L.c + fx(u)) * Math.max(A, 0.35), L.foot[1] + fy(u) * A];
+      var lt = [T[0], T[1] - self.by]; if (L.rear) lt = rot(lt, SPV, -self.sp);
+      // two-bone IK, keeping the drawn knee direction
+      var d = clamp(dist(L.H, lt), Math.abs(L.a - L.b) + 0.01, L.a + L.b - 0.01), phi = ang(L.H, lt);
+      var al = Math.acos(clamp((L.a * L.a + d * d - L.b * L.b) / (2 * L.a * d), -1, 1)), k1 = phi - al, k2 = phi + al;
+      var c1 = [L.H[0] + L.a * Math.cos(k1), L.H[1] + L.a * Math.sin(k1)];
+      var cr = (c1[0] - L.H[0]) * (lt[1] - L.H[1]) - (c1[1] - L.H[1]) * (lt[0] - L.H[0]);
+      var ka = (cr > 0 ? 1 : -1) === L.bend ? k1 : k2, Kn = [L.H[0] + L.a * Math.cos(ka), L.H[1] + L.a * Math.sin(ka)];
+      var d1 = ka - ang(L.H, L.K), d2 = ang(Kn, lt) - ang(L.K, L.foot) - d1;
+      self.lu[k].setAttribute('transform', 'rotate(' + deg(d1) + ' ' + f1(L.H[0]) + ' ' + f1(L.H[1]) + ')');
+      self.ll[k].setAttribute('transform', 'rotate(' + deg(d2) + ' ' + f1(L.K[0]) + ' ' + f1(L.K[1]) + ')');
+      var sh = self.sh[k], pulse = 1 + 0.3 * Math.exp(-u * 24) * A;
+      sh.setAttribute('cx', f1(T[0] - 1)); sh.setAttribute('rx', f1(3.8 * (1 - 0.5 * lift) * pulse)); sh.style.opacity = f1((L.s === 'main' ? 0.9 : 0.6) * (1 - 0.75 * lift));
     });
   };
-  Rig.prototype.renderMorph = function (e, sx, sy) {
-    var M = this.morph, pts = [];
-    for (var i = 0; i < 96; i++) pts.push([lerp(M.src[i][0], M.dst[i][0], M.ease(i, e)), lerp(M.src[i][1], M.dst[i][1], M.ease(i, e))]);
-    this.body.setAttribute('d', 'M' + pts.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L') + 'Z');
-    var tp = M.tail.map(function (p, i) { return [lerp(p[0], M.arc[i][0], e), lerp(p[1], M.arc[i][1], e)]; });
-    this.tail.setAttribute('d', taper(tp, lerp(6.8, 4.4, e), lerp(4.6, 3.6, e)));
-    var self = this;
-    M.legs.forEach(function (L, i) {
-      var e2 = clamp(e * 1.6, 0, 1), h = [lerp(L.hip[0], M.c[0], e2 * 0.8), lerp(L.hip[1], M.c[1] + 4, e2 * 0.8)];
-      var k = [lerp(L.knee[0], h[0], e2), lerp(L.knee[1], h[1], e2)], f = [lerp(L.foot[0], h[0], e2), lerp(L.foot[1], h[1], e2)];
-      self.legEls[i].setAttribute('d', 'M' + f1(h[0]) + ' ' + f1(h[1]) + 'L' + f1(k[0]) + ' ' + f1(k[1]) + 'L' + f1(f[0]) + ' ' + f1(f[1]));
-      self.legEls[i].setAttribute('stroke-width', f1(LEGS[i].w * (1 - e2)));
-      self.thEls[i].setAttribute('transform', 'translate(' + f1((h[0] + k[0]) / 2) + ' ' + f1((h[1] + k[1]) / 2) + ') scale(' + f1(1 - e2) + ')');
-      self.shEls[i].setAttribute('opacity', f1(0.8 * (1 - e)));
-      self.pawEls[i].setAttribute('cx', f1(f[0])); self.pawEls[i].setAttribute('cy', f1(f[1]));
-      self.pawEls[i].setAttribute('rx', f1(3.4 * (1 - e2))); self.pawEls[i].setAttribute('ry', f1(2.4 * (1 - e2)));
-    });
-    this.rim.style.opacity = f1(0.9 * clamp(1 - e * 2.5, 0, 1));
-    this.hl.style.opacity = f1(clamp(1 - e * 2, 0, 1));
-    this.bshadow.style.opacity = f1(1 - e);
-    this.g.setAttribute('transform', 'translate(' + f1(this.x * (1 - e)) + ' 0)');
-    this.sq.setAttribute('transform', 'translate(' + f1(M.c[0]) + ' ' + f1(M.c[1]) + ') scale(' + f1(sx) + ' ' + f1(sy) + ') translate(' + f1(-M.c[0]) + ' ' + f1(-M.c[1]) + ')');
-  };
-  Rig.prototype.startMorph = function () {
-    var feet = this.feet(), c = badgeToWalker(BC), shift = this.x, dst = morphTargets();
-    this.morph = {
-      src: this.samples(), dst: dst, c: [c[0], c[1]], tail: this.tailPts(), arc: tailArc(),
-      legs: feet.map(function (F, i) { return { hip: F.hip, knee: ik(F.hip, F.foot, LEGS[i].a, LEGS[i].b), foot: F.foot }; }),
-      // the head curls in slightly after the body (overlapping action)
-      ease: function (i, e) { var lag = (i < 48 || i > 84) ? 0.12 : 0; return easeIO((e - lag) / (1 - lag)); }
-    };
-    if (shift) { // fold the remaining translation into the source points
-      var sh = function (p) { return [p[0] + shift, p[1]]; };
-      this.morph.src = this.morph.src.map(sh); this.morph.tail = this.morph.tail.map(sh);
-      this.morph.legs.forEach(function (L) { L.hip = sh(L.hip); L.knee = sh(L.knee); L.foot = sh(L.foot); });
-      this.x = 0;
-    }
-  };
-
-  // Monochrome volume: a soft ground shadow, a faint grey rim on the back, a
-  // dark-grey inner highlight clipped to the body; far legs a touch lighter.
-  var WALKER_SVG =
-    '<svg viewBox="0 0 120 64" aria-hidden="true" focusable="false"><defs>' +
-      '<radialGradient id="mx-wsg"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>' +
-      '<radialGradient id="mx-whg"><stop offset="0" stop-color="#34343A" stop-opacity=".5"/><stop offset="1" stop-color="#34343A" stop-opacity="0"/></radialGradient>' +
-      '<clipPath id="mx-wclip"><use href="#mx-wbody-p"/></clipPath></defs><g class="mx-wk">' +
-      '<ellipse class="mx-wbsh" cx="60" cy="62.2" rx="40" ry="3" fill="url(#mx-wsg)"/>' +
-      '<ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/><ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/>' +
-      '<ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/><ellipse class="mx-wsh" cx="0" cy="62.3" rx="3" ry="1"/>' +
-      '<g class="mx-sq"><g class="mx-sil">' +
-        '<path class="mx-wtail"/>' +
-        '<g class="mx-wfar"><path class="mx-wleg" stroke-width="5.2"/><path class="mx-wleg" stroke-width="4.8"/>' +
-        '<ellipse class="mx-wth"/><ellipse class="mx-wth"/><ellipse class="mx-wpaw" rx="3.3" ry="2.3"/><ellipse class="mx-wpaw" rx="3.1" ry="2.2"/></g>' +
-        '<path class="mx-wbody" id="mx-wbody-p"/>' +
-        '<path class="mx-wleg" stroke-width="5.8"/><path class="mx-wleg" stroke-width="5.4"/>' +
-        '<ellipse class="mx-wth"/><ellipse class="mx-wth"/><ellipse class="mx-wpaw" rx="3.5" ry="2.4"/><ellipse class="mx-wpaw" rx="3.3" ry="2.3"/>' +
-      '</g><g clip-path="url(#mx-wclip)"><g class="mx-whl">' +
-        '<ellipse cx="80" cy="30" rx="15" ry="10" fill="url(#mx-whg)"/><ellipse cx="38" cy="28" rx="10" ry="7" fill="url(#mx-whg)"/><ellipse cx="15" cy="17" rx="7" ry="6" fill="url(#mx-whg)"/>' +
-      '</g></g><path class="mx-wrim"/></g>' +
-    '</g></svg>';
 
   /* ------------------------------------------------------------ helpers */
   function el(tag, cls, text) {
@@ -675,55 +571,72 @@ window.MAX_PREVIEW = true;
     removeWalker();
     walker = el('div', 'mx-walker');
     walker.setAttribute('aria-hidden', 'true');
-    walker.innerHTML = WALKER_SVG;
+    walker.innerHTML = walkerSVG();
     root.insertBefore(walker, btn);
     rig = new Rig(walker.querySelector('svg'));
     return rig;
   }
   function removeWalker() { if (walker && walker.parentNode) walker.parentNode.removeChild(walker); walker = null; rig = null; }
 
-  /* opts: { inPlace: walk without travelling (demo), onDone } */
+  /* Walk in from the right edge (or on the spot in the demo), then arrive:
+     slow down, look up toward the bubble, crouch, and curl into it.
+     opts: { inPlace, onDone }. Returns { arrive } for the demo. */
   function walkIn(opts) {
     opts = opts || {};
-    var R = makeWalker(), TW = 4.4, X0 = 172, t = 0, speedLP = 0;
+    var R = makeWalker(), TW = 5, X0 = 140, t = 0, speedLP = 0, mode = 'walk', st = 0;
     btn.classList.remove('mx-on', 'mx-alive'); btn.classList.add('mx-forming');
     stopIdle();
     R.x = opts.inPlace ? 0 : X0;
     function step(dt) {
-      if (!rig || rig !== R) return false;
-      t += dt; R.t += dt;
-      var P = R.pose;
-      {
-        var nx, sp;
-        if (opts.inPlace) { nx = 0; sp = 46; R.phase += 46 * dt / LC; }
+      if (rig !== R) return false;
+      t += dt; st += dt; R.t += dt;
+      if (mode === 'walk') {
+        var nx = R.x, sp;
+        if (opts.inPlace) { sp = 26; R.phase += sp * dt / LC; }
         else { nx = X0 * (1 - smoother(Math.pow(clamp(t / TW, 0, 1), 0.8))); sp = (R.x - nx) / Math.max(dt, 1e-3); R.phase += (R.x - nx) / LC; }
-        speedLP = lerp(speedLP, sp, 0.25);
-        R.x = nx; R.amp = clamp(speedLP / 26, 0, 1);
-        var ph = R.phase * 2 * PI, A = R.amp;
-        P.bodyY = -1.1 * A * Math.cos(2 * ph); P.pitch = 0.014 * A * Math.sin(ph);
-        P.flex = 0.9 * A * Math.sin(2 * ph + 1); P.belly = 0.4 * A * Math.sin(2 * ph);
-        P.hy = 0.85 * A * Math.cos(2 * ph); P.hx = (-0.9 - 0.3 * Math.sin(ph)) * A; P.headRot = 0.035 * A * Math.sin(ph + 0.6);
-        if (!opts.inPlace && t >= TW) { walkTail(R, opts.onDone); return false; }
-        if (opts.inPlace && opts.stop && opts.stop()) return false;
+        speedLP = lerp(speedLP, sp, 0.25); R.x = nx; R.amp = clamp(speedLP / 14, 0, 1);
+        if (!opts.inPlace && t >= TW) { mode = 'look'; st = 0; }
+      } else if (mode === 'stop') { // demo: ease out of walking in place
+        var k = 1 - smooth(st / 0.6); R.phase += 26 * k * dt / LC; R.amp = k;
+        if (st >= 0.6) { mode = 'look'; st = 0; }
+      } else if (mode === 'look') {
+        R.amp = lerp(R.amp, 0, 0.2); R.look = smooth(st / 0.4);
+        if (st >= 0.5) { mode = 'crouch'; st = 0; }
+      } else if (mode === 'crouch') {
+        R.crouch = smooth(st / 0.22); R.look = 1 - R.crouch;
+        if (st >= 0.24) { R.step(dt); R.render(); curl(R, opts.onDone); return false; }
       }
-      R.secondary(dt);
-      R.render();
+      R.step(dt); R.render();
       return true;
     }
-    R.secondary(1 / 60); R.render();
+    R.step(1 / 60); R.render();
     addTask(step);
+    return { arrive: function () { if (mode === 'walk') { mode = opts.inPlace ? 'stop' : 'look'; st = 0; } } };
   }
-  // The glass bubble inflates on a spring with a soft glow burst.
+  // Squash, then shrink into the bubble while the glass inflates and the curled badge springs in.
+  function curl(R, onDone) {
+    var wr = walker.getBoundingClientRect(), br = btn.getBoundingClientRect();
+    walker.style.transformOrigin = f1(br.left + br.width / 2 - wr.left) + 'px ' + f1(br.top + br.height / 2 - wr.top) + 'px';
+    btn.classList.add('mx-on'); btn.classList.remove('mx-forming');
+    inflate();
+    anim(badgeEl, [{ opacity: 0, transform: 'scale(.45) rotate(-25deg)' }, { opacity: 1, transform: 'scale(1.08) rotate(4deg)', offset: 0.62 }, { opacity: 1, transform: 'scale(1)' }],
+      { duration: 560, delay: 230, fill: 'backwards', easing: 'cubic-bezier(.3,.7,.3,1)' });
+    var a = anim(walker, [{ transform: 'scale(1,1)', opacity: 1 }, { transform: 'scale(1.05,.9)', opacity: 1, offset: 0.22 },
+      { transform: 'scale(.62,.7)', opacity: 0.9, offset: 0.62 }, { transform: 'scale(.3,.3)', opacity: 0 }],
+      { duration: 560, easing: 'cubic-bezier(.45,0,.3,1)', fill: 'forwards' });
+    function done() { if (rig === R) removeWalker(); finishArrival(); if (onDone) onDone(); }
+    if (a) a.onfinish = done; else done();
+  }
+  // The glass bubble inflates on a spring with a soft halo burst.
   function inflate() {
     btn.classList.add('mx-on');
     anim(glass, [{ transform: 'scale(.15)', opacity: 0 }, { transform: 'scale(1.12)', opacity: 1, offset: 0.45 },
       { transform: 'scale(.96)', offset: 0.7 }, { transform: 'scale(1.015)', offset: 0.86 }, { transform: 'scale(1)', opacity: 1 }],
-      { duration: 760, delay: 240, fill: 'backwards', easing: 'cubic-bezier(.25,.7,.3,1)' });
+      { duration: 760, delay: 120, fill: 'backwards', easing: 'cubic-bezier(.25,.7,.3,1)' });
     anim(btn.querySelector('.mx-glow2'), [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 0.85, transform: 'scale(1.15)', offset: 0.35 }, { opacity: 0, transform: 'scale(1.5)' }],
-      { duration: 900, delay: 240, fill: 'backwards', easing: 'ease-out' });
+      { duration: 900, delay: 200, fill: 'backwards', easing: 'ease-out' });
   }
   function finishArrival() {
-    removeWalker();
     btn.classList.remove('mx-forming');
     var eyes = btn.querySelector('.mx-eyes');
     anim(eyes, [{ transform: 'scaleY(0)' }, { transform: 'scaleY(0)', offset: 0.35 }, { transform: 'scaleY(1)' }], { duration: 520, easing: 'ease-out' });
@@ -994,67 +907,21 @@ window.MAX_PREVIEW = true;
   }
 
   /* ------------------------------------------------------------ demo (?maxdemo=1 or max-preview.html only) */
-  var demoTimer = null, demoLabel = null, demoI = 0, walkingInPlace = false;
+  var demoTimer = null, demoLabel = null, demoI = 0;
   function applyRate() {
     if (!root || !root.getAnimations) return;
     root.getAnimations({ subtree: true }).forEach(function (a) { a.playbackRate = rate; });
   }
+  var walkCtl = null;
   var STEPS = [
-    ['Walking', 4.2, function () { btn.classList.remove('mx-on', 'mx-alive', 'mx-tip-on'); setState('idle'); walkingInPlace = true; walkIn({ inPlace: true, stop: function () { return !walkingInPlace; } }); }],
-    ['Arriving: crouch, morph, bubble inflates', 3.2, function () { walkingInPlace = false; if (rig) { runArrival(); } }],
+    ['Walking', 4.2, function () { btn.classList.remove('mx-tip-on'); setState('idle'); walkCtl = walkIn({ inPlace: true }); }],
+    ['Arriving: slows, looks up, crouches, curls into the bubble', 3.4, function () { if (walkCtl) walkCtl.arrive(); walkCtl = null; }],
     ['Idle: breathing, blinks, ear twitches', 5, function () { setState('idle'); }],
     ['Hover: ears perk, halo brightens, tooltip', 3.4, function () { btn.classList.add('mx-tip-on'); }],
     ['Thinking: soft halo pulse and shimmer', 4.4, function () { btn.classList.remove('mx-tip-on'); setState('think'); }],
     ['Found a source: white flash, ears perk', 3.2, function () { setState('found'); }],
     ['Not sure: head tilt', 3.4, function () { setState('unsure'); }]
   ];
-  // From walking in place: look up, crouch and morph (reuses the walk-in stages).
-  function runArrival() {
-    walkingInPlace = false;
-    removeWalker();
-    var R = makeWalker(); R.x = 0; R.amp = 1;
-    btn.classList.add('mx-forming');
-    // a short eased stop from walking speed, then the normal arrival stages
-    var stage = 'stop', st = 0, P = R.pose;
-    addTask(function (dt) {
-      if (rig !== R) return false;
-      st += dt; R.t += dt;
-      if (stage === 'stop') {
-        R.amp = 1 - smooth(st / 0.6); R.phase += 46 * (1 - smooth(st / 0.6)) * dt / LC;
-        var ph = R.phase * 2 * PI, A = R.amp;
-        P.bodyY = -1.1 * A * Math.cos(2 * ph); P.flex = 0.9 * A * Math.sin(2 * ph + 1); P.hy = 0.85 * A * Math.cos(2 * ph);
-        if (st > 0.6) { stage = 'done'; walkTail(R); return false; }
-      }
-      R.secondary(dt); R.render(); return true;
-    });
-  }
-  function walkTail(R, onDone) { // look up, crouch (anticipation), morph, overshoot and settle
-    var stage = 'look', st = 0, P = R.pose;
-    addTask(function (dt) {
-      if (rig !== R) return false;
-      st += dt; R.t += dt;
-      if (stage === 'look') {
-        var k = smooth(st / 0.5);
-        P.headRot = lerp(P.headRot, 0.26, 0.12); P.hy = lerp(P.hy, -0.6, 0.12); P.earLift = -1.2 * k; P.bodyY = lerp(P.bodyY, 0, 0.2);
-        if (st >= 0.55) { stage = 'crouch'; st = 0; }
-      } else if (stage === 'crouch') {
-        var c = smooth(st / 0.26);
-        P.bodyY = 2.2 * c; P.headRot = lerp(0.26, 0.04, c); P.hy = lerp(-0.6, 0.8, c); P.flex = 0.8 * c; P.earLift = lerp(-1.2, 0.4, c); P.tailDrop = 0.15 * c;
-        if (st >= 0.26) { stage = 'morph'; st = 0; R.startMorph(); inflate(); }
-      } else if (stage === 'morph') {
-        var u = clamp(st / 0.72, 0, 1), e = easeIO(u), sy = 1 + 0.1 * Math.sin(2 * PI * u) * (1 - 0.45 * u);
-        R.renderMorph(e, 1 / Math.pow(sy, 0.6), sy);
-        if (u >= 1) { stage = 'settle'; st = 0; }
-        return true;
-      } else {
-        var s2 = 1 - 0.06 * Math.exp(-9 * st) * Math.cos(22 * st);
-        R.renderMorph(1, 1 / Math.pow(s2, 0.6), s2);
-        if (st >= 0.32) { finishArrival(); if (onDone) onDone(); return false; }
-        return true;
-      }
-      R.secondary(dt); R.render(); return true;
-    });
-  }
   function startDemo() {
     demoBar = el('div', 'mxp-demo');
     demoLabel = el('span', 'mxp-demo-l'); demoLabel.setAttribute('role', 'status');
@@ -1065,9 +932,9 @@ window.MAX_PREVIEW = true;
     });
     var replay = button('', 'Replay walk-in');
     replay.addEventListener('click', function () {
-      clearTimeout(demoTimer); walkingInPlace = false; setState('idle'); btn.classList.remove('mx-tip-on');
+      clearTimeout(demoTimer); walkCtl = null; setState('idle'); btn.classList.remove('mx-tip-on');
       walkIn({ onDone: function () { demoI = 2; demoTimer = setTimeout(next, 2500 / rate); } });
-      demoLabel.textContent = 'Replay: walk-in from the edge, look up, crouch, morph';
+      demoLabel.textContent = 'Replay: walk-in from the edge, look up, crouch, curl';
     });
     demoBar.appendChild(demoLabel); demoBar.appendChild(slow); demoBar.appendChild(replay);
     root.insertBefore(demoBar, btn);
