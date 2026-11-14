@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RegRadar: Deadlines calendar</title>
+<meta name="description" content="Regulatory deadlines in one calendar: consultations closing, application dates, transposition and reporting deadlines, each with its source. Filter by authority, kind, jurisdiction and topic, and export to your calendar (.ics).">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<style>
+/* Deadlines calendar: layout only. Colours, type, buttons, pills and filters come from rr-ui.css. */
+.wrap{padding-bottom:var(--rr-8)}
+[hidden]{display:none!important}
+.head > div:first-child{flex:1 1 320px}
+.bar{display:grid;gap:var(--rr-3);margin-bottom:var(--rr-4)}
+.rr-filters .sel{flex:1 1 170px;min-width:0}
+.rr-filters label.sr{position:absolute}
+.tools{display:flex;flex-wrap:wrap;gap:var(--rr-2) var(--rr-3);align-items:center;justify-content:space-between}
+.mh{font-size:var(--rr-t-h3);margin:var(--rr-5) 0 var(--rr-2);display:flex;gap:var(--rr-2);align-items:baseline}
+.clist{list-style:none;display:grid;gap:var(--rr-2)}
+.crow{background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r);padding:var(--rr-3);min-width:0}
+.cr-l{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--rr-1) var(--rr-3);cursor:pointer}
+.cr-l input{margin-top:3px}
+.cr-date{grid-column:2;display:flex;flex-wrap:wrap;gap:0 var(--rr-3);font-size:var(--rr-t-small);color:var(--rr-text-2)}
+.cr-date b{color:var(--rr-text)}
+.cr-body{grid-column:2;display:grid;gap:var(--rr-2);min-width:0}
+.cr-body .t{font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.cr-body .m{display:flex;flex-wrap:wrap;gap:var(--rr-1) var(--rr-2);align-items:center}
+.cr-body q{display:block;font-size:var(--rr-t-small);color:var(--rr-text-2);quotes:"\201C" "\201D";overflow-wrap:anywhere}
+.cr-src{padding-left:calc(18px + var(--rr-3));margin-top:var(--rr-1)}
+.cr-src a{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.mnav{display:flex;flex-wrap:wrap;gap:var(--rr-2);align-items:center;justify-content:space-between;margin-bottom:var(--rr-3)}
+.mnav h3{font-size:var(--rr-t-h2);letter-spacing:-.03em;flex:1 1 auto;text-align:center}
+.mgrid{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:3px}
+.mgrid th{font-size:var(--rr-t-micro);font-weight:600;color:var(--rr-text-3);padding:4px 0}
+.mgrid td{height:52px;padding:0;vertical-align:top;background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:10px;text-align:center}
+.mgrid td.out{background:transparent;border-color:transparent;color:var(--rr-text-3)}
+.mgrid td.today{border-color:var(--rr-accent);border-width:2px}
+.mgrid td.sel{background:var(--rr-accent-bg)}
+.mgrid .dn{display:block;font-size:var(--rr-t-small);font-weight:600;padding-top:4px}
+.dbtn{display:flex;flex-direction:column;align-items:center;width:100%;height:100%;min-height:50px;border:0;background:transparent;border-radius:9px;color:var(--rr-text)}
+.dbtn:hover{background:var(--rr-surface-2)}
+.dc{margin-top:2px;min-width:22px;padding:0 6px;border-radius:999px;background:var(--rr-primary);color:var(--rr-on-primary);font-size:var(--rr-t-micro);font-weight:700;line-height:18px}
+@media (min-width:760px){.mgrid td{height:68px}.dbtn{min-height:66px}}
+.gen{font-size:var(--rr-t-small);color:var(--rr-text-2)}
+</style>
+</head>
+<body>
+<a class="skip" href="#view">Skip to the deadlines</a>
+<script src="site-nav.js?v=20261114a"></script>
+
+<main id="main" class="wrap">
+  <header class="head rr-band">
+    <div>
+      <h1>Deadlines calendar</h1>
+      <p class="lead">What closes, applies or is due, with the source for every date. The next 90 days by default.</p>
+    </div>
+    <div class="head-tools"><a class="btn" href="regwatch.html">Open RegWatch</a></div>
+  </header>
+
+  <div id="calApp">
+    <div class="bar">
+      <div class="rr-filters" role="group" aria-label="Filters">
+        <label class="sr" for="fAuth">Authority</label><select class="sel" id="fAuth"></select>
+        <label class="sr" for="fKind">Kind</label><select class="sel" id="fKind"></select>
+        <label class="sr" for="fJur">Jurisdiction</label><select class="sel" id="fJur"></select>
+        <label class="sr" for="fTopic">Topic</label><select class="sel" id="fTopic"></select>
+        <span id="winWrap"><label class="sr" for="fWin">Window</label>
+          <select class="sel" id="fWin"><option value="90" selected>Next 90 days</option><option value="180">Next 6 months</option><option value="365">Next 12 months</option><option value="all">All upcoming</option><option value="past">Past dates</option></select></span>
+        <button class="btn quiet" type="button" id="clr" hidden>Clear filters</button>
+      </div>
+      <div class="tools">
+        <div class="seg" id="viewSeg" role="group" aria-label="View"><button type="button" data-view="list" aria-pressed="true">List</button><button type="button" data-view="month" aria-pressed="false">Month</button></div>
+        <div class="btns"><button class="btn quiet" type="button" id="pickAll">Select all shown</button><button class="btn pri" type="button" id="icsBtn">Download .ics</button></div>
+      </div>
+      <p class="hint" role="status" aria-live="polite"><span id="count"></span></p>
+    </div>
+
+    <div id="view"><p class="hint">Loading the deadlines…</p></div>
+
+    <p class="note" style="text-align:left;margin-left:0"><span id="gen" class="gen"></span> High confidence means the date is a structured field in the source; medium means it was read from a sentence, which is quoted. Authority and topic are worked out from the source and the title, as a convenience. Not legal advice: check the source before you rely on a date. The .ics file is made in your browser and nothing is sent anywhere.</p>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+<script src="regwatch-data.js?v=20261114a"></script>
+<script src="calendar.js?v=20261114a"></script>
+</body>
+</html>
