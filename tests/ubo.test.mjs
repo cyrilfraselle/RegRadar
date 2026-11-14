@@ -56,7 +56,7 @@ test('adding: chains and direct holdings of the same person are added (Art. 52(1
   assert.equal(get(r, 'lena').total, 15 + 12 + 3);
   assert.equal(get(r, 'lena').isBO, true);
   const st = get(r, 'lena').steps.join(' ');
-  assert.ok(st.includes('= 30%') && st.includes('40% × 30% = 12%') && st.includes('30% × 10% = 3%'));
+  assert.ok(st.includes('= 30%') && st.includes('30% × 40% = 12%') && st.includes('10% × 30% = 3%'));
 });
 test('film example: Jonas 8% + 45% x 40% = 26%, Mira 30%, Victor by control, Elif 14%, Tom 8% no', () => {
   const r = U.analyse(U.FILM);
