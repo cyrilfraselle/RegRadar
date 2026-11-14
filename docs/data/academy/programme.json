@@ -1,0 +1,103 @@
+{
+ "_meta": {
+  "name": "AMLR programme: levels and topic order",
+  "purpose": "The structure of docs/academy.html: one path in three levels. Topic content lives in curriculum.json (lessons), rounds.json (Spot it, Decide, Shifts), explainers.json and films.json. Durations shown on the page are computed from those files, not typed here.",
+  "honesty": "No prices, customers or claims of accreditation. Legal excerpts for topics marked coming soon are verbatim from docs/data/laws/ and checked by academy/verify.mjs. Every case is fictional.",
+  "verified_by": "academy/verify.mjs checks that every topic id exists (or is listed under coming_soon), every room links to a page that exists, and every coming-soon excerpt is verbatim."
+ },
+ "programme": {
+  "title": "AMLR programme",
+  "law": "Regulation (EU) 2024/1624 (AMLR)",
+  "for": "Staff of obliged entities under the EU Anti-Money Laundering Regulation: lawyers and other legal professionals, small banks, insurers, and other regulated firms. Level 0 needs no prior knowledge; Levels 1 and 2 are for people who handle clients, files, payments or compliance work.",
+  "outcomes": [
+   "Explain what money laundering is and why the EU rules exist",
+   "Tell whether your firm, or one of its activities, is an obliged entity",
+   "Apply the risk-based approach and customer due diligence to a fictional case",
+   "Recognise PEPs, beneficial owners and suspicious activity, and know when and how to report without tipping off"
+  ],
+  "get": [
+   "A self-attested completion record per learner, with dates, scores and the content version",
+   "A team training register for the compliance officer, with an evidence pack to print",
+   "Every legal excerpt checked word for word against the official text"
+  ],
+  "note": "Examples, firms and people are fictional and labelled. Not legal advice. The AMLR applies from 10 July 2027 (Art. 90); until then your national AML rules apply."
+ },
+ "levels": [
+  {
+   "id": "intro", "no": 0, "title": "Intro",
+   "audience": "Anyone in the firm. No prior knowledge.",
+   "summary": "Two short films and one topic: what money laundering is, why firms are the gate, and the idea that effort follows risk.",
+   "films": [
+    { "topic": "context", "title": "Follow the money" },
+    { "topic": "aml-basics", "title": "Effort follows risk" }
+   ],
+   "topics": ["context"],
+   "rooms": ["laundromat"]
+  },
+  {
+   "id": "foundations", "no": 1, "title": "Foundations",
+   "audience": "People who deal with clients, files or payments.",
+   "summary": "Who the rules apply to, the firm's own policies and risk assessment, and customer due diligence.",
+   "topics": ["who-is-covered", "aml-basics", "cdd-kyc"],
+   "rooms": ["shift-1"]
+  },
+  {
+   "id": "practitioner", "no": 2, "title": "Practitioner",
+   "audience": "Compliance staff, MLROs, partners and managers who handle higher-risk work.",
+   "summary": "Beneficial ownership in depth, PEPs, monitoring, reporting and tipping off, governance, records and data protection, crypto-assets and cash, and the sanctions context.",
+   "topics": ["beneficial-ownership", "peps", "transaction-monitoring", "suspicious-transaction-reports", "governance", "records-data", "crypto-cash", "sanctions-screening"],
+   "optional": ["dora-mica-primer"],
+   "rooms": ["ownership", "shift-2", "shift-3"]
+  }
+ ],
+ "notes": {
+  "sanctions-screening": "Context topic. Targeted financial sanctions are imposed by EU and UN sanctions regimes, which sit outside the AMLR and are not in the RegRadar law library. This topic covers the AMLR duties that touch sanctions (risk assessment, screening in due diligence, the UN interim rule).",
+  "dora-mica-primer": "Optional, for financial-sector firms only. DORA and MiCA are separate EU rulebooks, not part of the AMLR.",
+  "beneficial-ownership": "The cases use company charts; the same rules matter for lawyers and notaries setting up structures for clients.",
+  "transaction-monitoring": "Examples use payment accounts. For a law firm read 'client account movements'; for an insurer, 'premiums, top-ups and surrenders'."
+ },
+ "coming_soon": {
+  "governance": {
+   "title": "Governance, training and the risk assessment in depth",
+   "short": "The compliance manager and compliance officer, training duties, integrity of employees, group-wide rules and outsourcing (Chapter II).",
+   "minutes": 10,
+   "missing": ["film script and claim ledger", "explainer", "4 questions", "Spot it game", "Decide scenario", "independent fact-check"],
+   "law": [
+    { "celex": "32024R1624", "art": "11", "para": "2", "label": "Compliance functions",
+      "quote": "The compliance officer shall also be responsible for reporting suspicious transactions to the FIU in accordance with Article 69(6)." }
+   ],
+   "related": ["AMLR-art69"]
+  },
+  "records-data": {
+   "title": "Record keeping, information sharing and data protection",
+   "short": "What to keep and for how long, processing personal data for AML purposes, and partnerships for information sharing (Chapters VI and VII).",
+   "minutes": 10,
+   "missing": ["film script and claim ledger", "explainer", "4 questions", "Spot it game", "Decide scenario", "independent fact-check"],
+   "law": [
+    { "celex": "32024R1624", "art": "77", "para": "3", "label": "Record retention",
+      "quote": "The information referred to in paragraphs 1 and 2 shall be retained for a period of 5 years commencing on the date of the termination of the business relationship or on the date of the carrying out of the occasional transaction, or on the date of refusal to enter into a business relationship or carry out an occasional transaction." }
+   ],
+   "related": []
+  },
+  "crypto-cash": {
+   "title": "Crypto-assets, anonymous instruments and cash",
+   "short": "Anonymous accounts and bearer shares, the EUR 10 000 cash limit, self-hosted addresses and transfers of crypto-assets (Chapter VIII and related).",
+   "minutes": 10,
+   "missing": ["film script and claim ledger", "explainer", "4 questions", "Spot it game", "Decide scenario", "independent fact-check"],
+   "law": [
+    { "celex": "32024R1624", "art": "80", "para": "1", "label": "Limits to large cash payments",
+      "quote": "Persons trading in goods or providing services may accept or make a payment in cash only up to an amount of EUR 10 000 or the equivalent in national or foreign currency, whether the transaction is carried out in a single operation or in several operations which appear to be linked." }
+   ],
+   "related": []
+  }
+ },
+ "rooms": {
+  "laundromat": { "title": "The Laundromat", "href": "laundromat.html", "minutes": 10, "module": "laundromat",
+    "blurb": "Play the launderer for a few rounds and see the red flags from the other side. Fictional scenario." },
+  "ownership": { "title": "Ownership structures", "href": "ownership.html", "minutes": 15, "module": "ownership",
+    "blurb": "Read ownership charts and designate the beneficial owners. Six fictional cases." },
+  "shift-1": { "shift": 1 },
+  "shift-2": { "shift": 2 },
+  "shift-3": { "shift": 3 }
+ }
+}

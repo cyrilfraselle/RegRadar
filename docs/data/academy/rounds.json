@@ -2,7 +2,7 @@
   "_meta": {
     "name": "Academy rounds: Spot it games, Decide scenarios, Shifts",
     "version": 1,
-    "purpose": "Data for docs/academy-rounds.js. One short game (Spot it) and one scenario (Decide) per lesson where they fit. Rendered inline in the lesson page.",
+    "purpose": "Data for docs/academy-rounds.js. One short game (Spot it) and one scenario (Decide) per topic where they fit. Rendered inline in the topic flow.",
     "applies": "The rounds cite the AMLR, Regulation (EU) 2024/1624, which applies from 10 July 2027 (Art. 90). Until then, your firm's current national AML rules apply.",
     "honesty": "CF Bank, every person, company, list entry and amount here is fictional. Law quotes are verbatim from docs/data/laws/ (checked by academy/verify.mjs). Typology and teaching-model statements are worded as 'commonly' or 'one example', not as law. Every card and option is in the claim ledger academy/FACTCHECK-rounds.md.",
     "defaults": {
@@ -14,7 +14,8 @@
     },
     "labels": {
       "context": "Context",
-      "aml-basics": "AML basics",
+      "who-is-covered": "Who is covered",
+      "aml-basics": "Risk and controls",
       "cdd-kyc": "CDD and KYC",
       "beneficial-ownership": "Ownership",
       "peps": "PEPs",
@@ -156,6 +157,140 @@
           "quote": "It shall apply from 10 July 2027, except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), to which it shall apply from 10 July 2029." }
       ],
       "reading": [ "FATF publications on money laundering methods and trends (typologies)" ]
+    },
+
+    {
+      "id": "g-scope-sort",
+      "module": "who-is-covered",
+      "type": "sort",
+      "title": "Covered or not?",
+      "intro": "Sort each fictional firm or professional by what the AMLR text says about this activity. National law can add sectors, so the second bucket means 'not in the AMLR list', not 'no rules at all'.",
+      "minutes": 2,
+      "choices": [
+        {
+          "id": "covered",
+          "label": "Covered for this activity",
+          "hint": "an obliged entity under Article 3"
+        },
+        {
+          "id": "notlisted",
+          "label": "Not in the list for this activity",
+          "hint": "under the AMLR text alone"
+        }
+      ],
+      "practice": {
+        "id": "p",
+        "kicker": "Practice",
+        "text": "A crypto-asset service provider offering custody to its clients.",
+        "hint": "Hint: look at the definition of financial institution.",
+        "answer": "covered",
+        "why": "Crypto-asset service providers are named in the definition of financial institution, and financial institutions are obliged entities.",
+        "cite": {
+          "celex": "32024R1624",
+          "art": "2",
+          "para": "1, point (6)(i)"
+        }
+      },
+      "cards": [
+        {
+          "id": "c1",
+          "kicker": "Example 1",
+          "text": "A small regional bank that takes deposits and grants loans.",
+          "answer": "covered",
+          "why": "Credit institutions are the first category of obliged entities in Article 3. There is no size condition.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "3",
+            "para": ""
+          }
+        },
+        {
+          "id": "c2",
+          "kicker": "Example 2",
+          "text": "A lawyer handling the purchase of an apartment for a client, including the client money.",
+          "answer": "covered",
+          "why": "Lawyers are obliged entities where they assist in listed transactions, including buying and selling real property and managing client money.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "3",
+            "para": ""
+          }
+        },
+        {
+          "id": "c3",
+          "kicker": "Example 3",
+          "text": "An insurer selling unit-linked life policies.",
+          "answer": "covered",
+          "why": "An insurance undertaking is a financial institution insofar as it carries out life or other investment-related assurance activities.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "2",
+            "para": "1, point (6)(b)"
+          }
+        },
+        {
+          "id": "c4",
+          "kicker": "Example 4",
+          "text": "An insurer whose only business is motor insurance.",
+          "answer": "notlisted",
+          "why": "The definition covers insurers insofar as they carry out life or other investment-related assurance, which motor insurance is not. A Member State may still extend AML rules to other sectors: check national law.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "2",
+            "para": "1, point (6)(b)"
+          }
+        },
+        {
+          "id": "c5",
+          "kicker": "Example 5",
+          "text": "An estate agent arranging the letting of a property at a monthly rent of EUR 12 000.",
+          "answer": "covered",
+          "why": "Estate agents are covered as intermediaries in real estate transactions, including lettings where the monthly rent is at least EUR 10 000.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "3",
+            "para": ""
+          }
+        },
+        {
+          "id": "c6",
+          "kicker": "Example 6",
+          "text": "The same estate agent arranging a letting at a monthly rent of EUR 1 500.",
+          "answer": "notlisted",
+          "why": "For lettings, the text covers transactions with a monthly rent of at least EUR 10 000. Sales and other real estate intermediation by the same agent are a separate question.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "3",
+            "para": ""
+          }
+        }
+      ],
+      "remember": [
+        "Obliged entities are listed in Article 3: credit institutions, financial institutions and a list of professions and businesses.",
+        "Lawyers and notaries are covered for listed transactions, not for every piece of legal work.",
+        "Some categories have conditions in the text, such as a rent or transaction value or the type of insurance.",
+        "Member States may apply AML rules to other sectors, so check your national law.",
+        "The rules quoted here are the AMLR, which applies from 10 July 2027."
+      ],
+      "law": [
+        {
+          "celex": "32024R1624",
+          "art": "3",
+          "para": "",
+          "label": "Obliged entities",
+          "quote": "The following entities are to be considered obliged entities for the purposes of this Regulation: (1) credit institutions; (2) financial institutions;"
+        },
+        {
+          "celex": "32024L1640",
+          "art": "3",
+          "para": "1",
+          "label": "Sectors added at national level",
+          "quote": "Where a Member State identifies that, in addition to obliged entities, entities in other sectors are exposed to money laundering and terrorist financing risks, it may decide to apply all or part of Regulation (EU) 2024/1624 to those additional entities."
+        }
+      ],
+      "reading": [
+        "FATF Recommendations 22 and 23 (designated non-financial businesses and professions)"
+      ]
     },
 
     {
@@ -632,7 +767,7 @@
   "decide": [
     {
       "id": "d-context", "module": "context", "title": "Something looks odd",
-      "text": "Day three at CF Bank (fictional). A payment on a customer account looks odd to you. Nobody has told you yet who handles this. What do you do?",
+      "text": "Your third day in a new role at a fictional obliged entity: it could be a bank, an insurer or a law firm. A payment on a client file looks odd to you. Nobody has told you yet who handles this. What do you do?",
       "options": [
         { "id": "a", "label": "Find out who the compliance officer is and raise it with them today", "verdict": "best",
           "consequence": "The right channel. The compliance officer is the person who reports suspicious transactions to the FIU, and you raised it promptly.",
@@ -643,6 +778,47 @@
         { "id": "c", "label": "Let it go: the amount is small", "verdict": "poor",
           "consequence": "The reporting duty applies regardless of the amount involved.",
           "cite": { "celex": "32024R1624", "art": "69", "para": "1(a)" } }
+      ]
+    },
+    {
+      "id": "d-scope",
+      "module": "who-is-covered",
+      "title": "'AML is for banks'",
+      "text": "A small law firm (fictional). A new client asks the firm to set up a company and to hold the client money for buying an office building. One partner says: 'AML is for banks, we are lawyers.' What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Treat the matter as covered and apply customer due diligence under the firm's procedure before acting",
+          "verdict": "best",
+          "consequence": "Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "3",
+            "para": ""
+          }
+        },
+        {
+          "id": "b",
+          "label": "Agree: legal privilege covers all of a lawyer's work",
+          "verdict": "poor",
+          "consequence": "Privilege limits the reporting duty in defined situations, such as ascertaining a client's legal position or proceedings. It does not take this transaction work outside the AMLR.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "70",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c",
+          "label": "Decline the matter without asking anything",
+          "verdict": "ok",
+          "consequence": "A firm may decline work, and nothing here requires it to. If it takes the matter, the AMLR requires due diligence when the business relationship is established.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "19",
+            "para": "1(a)"
+          }
+        }
       ]
     },
     {

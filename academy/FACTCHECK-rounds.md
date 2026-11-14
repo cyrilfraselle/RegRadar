@@ -193,18 +193,51 @@ Summary text (What to remember):
 Law quotes in the summary (verbatim, checked by verify.mjs): AMLR Art. 69 para. 2; AMLR Art. 69 para. 1.
 Further reading named, not quoted: FATF Recommendation 20 (reporting of suspicious transactions); Your national FIU's guidance on writing reports.
 
+## Game `g-scope-sort`: Covered or not? (sort, topic `who-is-covered`, added 2026-11-14)
+
+Self-checked by the author against `docs/data/laws/32024R1624_EN.json` and `32024L1640_EN.json`.
+Independent check (gate step 3): **pending**.
+
+| Key | Wording on screen | Citation shown | Source checked | Verdict |
+|---|---|---|---|---|
+| `g-scope-sort/p` | Crypto-asset service providers are named in the definition of financial institution, and financial institutions are obliged entities. | Art. 2 para. 1, point (6)(i) | AMLR Art. 2(1)(6)(i) "a crypto-asset service provider"; Art. 3, point (2) "financial institutions" | ok |
+| `g-scope-sort/c1` | Credit institutions are the first category of obliged entities in Article 3. There is no size condition. | Art. 3 | AMLR Art. 3, point (1) "credit institutions"; no size condition in Art. 3 | ok |
+| `g-scope-sort/c2` | Lawyers are obliged entities where they assist in listed transactions, including buying and selling real property and managing client money. | Art. 3 | AMLR Art. 3, point (3)(b)(i) and (ii) | ok |
+| `g-scope-sort/c3` | An insurance undertaking is a financial institution insofar as it carries out life or other investment-related assurance activities. | Art. 2 para. 1, point (6)(b) | AMLR Art. 2(1)(6)(b), verbatim in meaning; unit-linked life policies are life assurance (teaching example) | ok |
+| `g-scope-sort/c4` | The definition covers insurers insofar as they carry out life or other investment-related assurance, which motor insurance is not. A Member State may still extend AML rules to other sectors: check national law. | Art. 2 para. 1, point (6)(b) | AMLR Art. 2(1)(6)(b) ("insofar as"); AMLD6 Art. 3(1) (Member States may apply the AMLR to other sectors) | interpretation: reading of "insofar as"; owner or legal reviewer to confirm |
+| `g-scope-sort/c5` | Estate agents are covered as intermediaries in real estate transactions, including lettings where the monthly rent is at least EUR 10 000. | Art. 3 | AMLR Art. 3, point (3)(d) | ok; amount fictional |
+| `g-scope-sort/c6` | For lettings, the text covers transactions with a monthly rent of at least EUR 10 000. Sales and other real estate intermediation by the same agent are a separate question. | Art. 3 | AMLR Art. 3, point (3)(d): lettings "for transactions for which the monthly rent amounts to at least EUR 10 000" | interpretation: the bucket says "not in the list for this activity"; owner or legal reviewer to confirm |
+
+Summary text (What to remember): Art. 3 lists obliged entities; lawyers and notaries are covered for listed
+transactions; some categories carry conditions (rent, transaction value, type of insurance); Member States may
+add sectors (AMLD6 Art. 3(1)); the AMLR applies from 10 July 2027.
+
+Law quotes in the summary (verbatim, checked by verify.mjs): AMLR Art. 3, points (1) and (2); AMLD6 Art. 3(1).
+
 ## Decide scenarios
 
 
 ### `d-context`: Something looks odd (lesson `context`)
 
-Situation (fictional): Day three at CF Bank (fictional). A payment on a customer account looks odd to you. Nobody has told you yet who handles this. What do you do?
+Situation (fictional): Your third day in a new role at a fictional obliged entity: it could be a bank, an insurer or a law firm. A payment on a client file looks odd to you. (Sector-neutral wording since 2026-11-14; options unchanged.) Nobody has told you yet who handles this. What do you do?
 
 | Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
 |---|---|---|---|---|---|---|
 | `d-context/a` | Find out who the compliance officer is and raise it with them today | best | The right channel. The compliance officer is the person who reports suspicious transactions to the FIU, and you raised it promptly. | Art. 11 para. 2 | AMLR Art. 11(2): the compliance officer reports suspicious transactions to the FIU (Art. 69(6)); Art. 69(1): promptly | ok |
 | `d-context/b` | Wait a few weeks to see whether it happens again | poor | Reports are made promptly when there is a suspicion or reasonable grounds to suspect. Waiting for certainty is not the test. | Art. 69 para. 1(a) | AMLR Art. 69(1)(a): "knows, suspects or has reasonable grounds to suspect", reported promptly | ok |
 | `d-context/c` | Let it go: the amount is small | poor | The reporting duty applies regardless of the amount involved. | Art. 69 para. 1(a) | AMLR Art. 69(1)(a): "regardless of the amount involved" | ok |
+
+### `d-scope`: 'AML is for banks' (topic `who-is-covered`, added 2026-11-14)
+
+Situation (fictional): A small law firm (fictional). A new client asks the firm to set up a company and to hold the client money for buying an office building. One partner says: 'AML is for banks, we are lawyers.' What do you do?
+
+Independent check (gate step 3): **pending**.
+
+| Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
+|---|---|---|---|---|---|---|
+| `d-scope/a` | Treat the matter as covered and apply customer due diligence under the firm's procedure before acting | best | Right. Lawyers are obliged entities where they assist in listed transactions, such as setting up companies and managing client money. Customer due diligence applies when establishing a business relationship. | Art. 3 | AMLR Art. 3, point (3)(b)(ii) and (v); Art. 19(1)(a) | ok |
+| `d-scope/b` | Agree: legal privilege covers all of a lawyer's work | poor | Privilege limits the reporting duty in defined situations, such as ascertaining a client's legal position or proceedings. It does not take this transaction work outside the AMLR. | Art. 70 para. 2 | AMLR Art. 70(2): exemption from Art. 69(1) for information obtained in the course of ascertaining the legal position or in judicial proceedings; Art. 3, point (3)(b) | ok |
+| `d-scope/c` | Decline the matter without asking anything | ok | A firm may decline work, and nothing here requires it to. If it takes the matter, the AMLR requires due diligence when the business relationship is established. | Art. 19 para. 1(a) | AMLR Art. 19(1)(a); "may decline" is a statement of commercial freedom, not a legal claim | ok, practice wording |
 
 ### `d-basics`: A launch next month (lesson `aml-basics`)
 
