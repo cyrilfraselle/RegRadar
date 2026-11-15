@@ -1,17 +1,17 @@
 {
  "_meta": {
   "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
-  "generated": "2026-11-14T12:56:46+00:00"
+  "generated": "2026-11-15T13:22:56+00:00"
  },
  "run": {
-  "duration_s": 114.9,
-  "requests": 47,
-  "bytes": 6834271,
-  "not_modified_304": 1,
+  "duration_s": 98.6,
+  "requests": 36,
+  "bytes": 2231207,
+  "not_modified_304": 0,
   "retries": 0,
   "http_errors": 0,
   "robots_blocked": 0,
-  "politeness_wait_s": 78.5,
+  "politeness_wait_s": 75.2,
   "budget": 220,
   "errors": []
  },
@@ -31,18 +31,18 @@
   "total": 423,
   "in_scope": 212,
   "new": 0,
-  "changed": 0,
+  "changed": 1,
   "withdrawn": 0,
-  "pending_docs": 52
+  "pending_docs": 40
  },
  "documents": {
-  "total": 147,
-  "new": 23,
+  "total": 159,
+  "new": 12,
   "changed": 0,
   "unchanged": 0,
   "errors": 0,
-  "paragraphs": 11185,
-  "corpus_bytes": 3429059,
+  "paragraphs": 11434,
+  "corpus_bytes": 3512118,
   "corpus_warning": false
  },
  "freshness_hours": {
@@ -58,7 +58,7 @@
   },
   "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
  },
- "proposals_new": 15,
+ "proposals_new": 6,
  "deadlines": 95,
  "coverage": [
   {
@@ -90,8 +90,8 @@
    "critical": 64,
    "info": 192
   },
-  "news_cards": 123,
-  "news_dropped": 103,
+  "news_cards": 122,
+  "news_dropped": 100,
   "clustered_items": 493,
   "f028": {
    "archive_items": 749,

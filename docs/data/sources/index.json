@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-14T12:56:46+00:00",
-  "count": 147,
-  "corpus_bytes": 3429059
+  "generated": "2026-11-15T13:22:56+00:00",
+  "count": 159,
+  "corpus_bytes": 3512118
  },
  "documents": [
   {
@@ -351,6 +351,28 @@
    "paragraphs": 10
   },
   {
+   "id": "amla-hearings-ad95d46373dc",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft Guidelines on business-wide risk assessment",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-guidelines-business-wide-risk-assessment-2026-05-28_en",
+   "publication_date": "2026-05-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "b1da8135925c50977de7b904597c8a7f906f1396ea93e8d3da2bd2beea40a9f8",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1641,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 10
+  },
+  {
    "id": "amla-instruments-04b1e9cef1d4",
    "source": "amla-instruments",
    "authority": "AMLA",
@@ -632,6 +654,28 @@
    ],
    "parent": null,
    "paragraphs": 14
+  },
+  {
+   "id": "amla-instruments-c2d6e16d4987",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Draft Guidelines on business-wide risk assessment",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en",
+   "publication_date": "",
+   "type": "guideline",
+   "status": "draft (consultation closed)",
+   "language": "en",
+   "version_hash": "4de406cdaa80c297607aed7e7fbb94412b50fbab43f0a331bf9e11a7770b8a09",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2038,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 16
   },
   {
    "id": "amla-instruments-cfde034916be",
@@ -977,6 +1021,29 @@
    "paragraphs": 326
   },
   {
+   "id": "amla-library-964d9792a3fe",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AMLAs Response to ECs Targeted Consultation on the Review of MiCA",
+   "url": "https://www.amla.europa.eu/document/download/d7647d66-98a5-49f9-b3f2-30fad47f198c_en?filename=AMLAs%20Response%20to%20ECs%20Targeted%20Consultation%20on%20the%20Review%20of%20MiCA.pdf",
+   "publication_date": "2026-10-07",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "1b00aff2d53e05cef4d14f20eb7b7f14ef7bf7c8ae6c91d2b4f2d6846c6bf2e6",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "pdf",
+   "pages_total": 10,
+   "chars_stored": 15097,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "crypto-assets"
+   ],
+   "parent": null,
+   "paragraphs": 29
+  },
+  {
    "id": "amla-library-b322780192c5",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1008,6 +1075,26 @@
    ],
    "parent": null,
    "paragraphs": 177
+  },
+  {
+   "id": "amla-library-cd27b232a75d",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Call for expression of interest - Joint GL - Roundtable for technology providers",
+   "url": "https://www.amla.europa.eu/document/download/7e64962d-2be7-4ec4-92b5-926088b29f2b_en?filename=Call%20for%20expression%20of%20interest%20-%20Roundtable.pdf",
+   "publication_date": "2026-10-30",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "8352f0e5fb42c3f0c8db14074a830215100b8fc6a44ad098b5d5d6b7540cf760",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "pdf",
+   "pages_total": 4,
+   "chars_stored": 7761,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 29
   },
   {
    "id": "amla-library-ed5e2388851d",
@@ -1058,6 +1145,26 @@
    ],
    "parent": null,
    "paragraphs": 258
+  },
+  {
+   "id": "amla-library-f7e7ee51546d",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA consults on draft standards for an EU-wide AML/CFT database",
+   "url": "https://www.amla.europa.eu/document/download/ef7b6807-9a61-4971-aef0-5bc4f750f32d_en?filename=Press%20Release%20-%20AMLA%20consults%20on%20draft%20standards%20for%20an%20EU-wide%20AML_CFT%20database.pdf",
+   "publication_date": "2026-10-07",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "5f5d8d1eaeabd98a351336465cee87ba60f902597e977dc60f0e8ed108173eb4",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2201,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 6
   },
   {
    "id": "amla-news-25ba5b2df2f3",
@@ -1232,6 +1339,70 @@
    ],
    "parent": null,
    "paragraphs": 13
+  },
+  {
+   "id": "amla-news-c2518b65d16a",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Hennie Verbeek-Kusters highlights the importance of prevention in AML/CFT at International Anti-Financial Crime Summit",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/hennie-verbeek-kusters-highlights-importance-prevention-amlcft-international-anti-financial-crime_en",
+   "publication_date": "2026-10-09",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "602c16760a4cf059686d5a84fe4bcd5ca360220b4a2769cbe39d7fc830afa660",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1577,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 7
+  },
+  {
+   "id": "amla-news-c97a25fb94e1",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA identifies AML/CFT priorities for the review of MiCA",
+   "url": "https://www.amla.europa.eu/amla-identifies-amlcft-priorities-review-mica_en",
+   "publication_date": "2026-10-07",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "ac4dd1a2edda9fd99352f32141ed3aaf622092ec8780e7ba4b7631ee2d92ddd4",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1543,
+   "truncated": false,
+   "topics": [
+    "crypto-assets"
+   ],
+   "parent": null,
+   "paragraphs": 10
+  },
+  {
+   "id": "amla-news-cdc99a25a64b",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Executive Board Member Hennie Verbeek-Kusters speaks at IBSA Meeting in Brussels",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-hennie-verbeek-kusters-speaks-ibsa-meeting-brussels_en",
+   "publication_date": "2026-10-08",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "b0dc74dd7feaa479bb8093bff1c61a70aec9670f2da5a2451cf12e7e2bd1f9d8",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1348,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 4
   },
   {
    "id": "amla-news-f788b3addd04",
@@ -1469,6 +1640,28 @@
    "paragraphs": 1811
   },
   {
+   "id": "celex-32026D2362",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2362 of 26 October 2026 amending Decision (CFSP) 2021/509 establishing a European Peace Facility",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2362",
+   "publication_date": "2026-10-27",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "6d6990614cc621868c2ee42ab7c4d8ae3f188b9ca8591b81ff37f0d40f900ffd",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2634,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 42
+  },
+  {
    "id": "celex-32026D2363",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -1579,6 +1772,28 @@
    "paragraphs": 66
   },
   {
+   "id": "celex-32026D2368",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2368 of 26 October 2026 amending Decision (CFSP) 2022/2245 on an assistance measure under the European Peace Facility to support the Ukrainian Armed Forces trained by the European Union Military Assistance Mission in support of Ukraine with military equipment, and platforms, designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2368",
+   "publication_date": "2026-10-27",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "c3b2b0067c8cc8a8ed6bb81e90a8f074ecf5f2781c20b00ae6eb7c2746eff25d",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 4616,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 33
+  },
+  {
    "id": "celex-32026D2369",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -1621,6 +1836,50 @@
    ],
    "parent": null,
    "paragraphs": 28
+  },
+  {
+   "id": "celex-32026D2378",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2378 of 26 October 2026 amending Decision (CFSP) 2016/1693 concerning restrictive measures against ISIL (Da’esh) and Al-Qaeda and persons, groups, undertakings and entities associated with them",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2378",
+   "publication_date": "2026-10-27",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "7c11705bee98f35fb5348498325e4d70b536ef63f918ce7c03439345314657cd",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1602,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 26
+  },
+  {
+   "id": "celex-32026D2386",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2386 of 26 October 2026 amending Decision (CFSP) 2019/2110 on the European Union CSDP Advisory Mission in the Central African Republic (EUAM RCA)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2386",
+   "publication_date": "2026-10-27",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "5c53ea1dbc775e041bbc5be151542d8204c8835dcca481e73f0537c571b06788",
+   "retrieved": "2026-11-15T13:22:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 5403,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 37
   },
   {
    "id": "celex-32026D2397",
