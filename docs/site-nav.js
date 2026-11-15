@@ -311,5 +311,5 @@
   window.addEventListener("load", dockInAcademyShell);
 
   // Max, the quiet assistant (max-widget.js decides where he appears; MAX_ENABLED is its kill switch).
-  (function () { var s = document.createElement("script"); s.src = "max-widget.js?v=20261114b"; s.async = true; document.head.appendChild(s); })();
+  (function () { var s = document.createElement("script"); s.src = "max-widget.js?v=20261115a"; s.async = true; document.head.appendChild(s); })();
 })();

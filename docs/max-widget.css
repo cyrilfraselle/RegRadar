@@ -27,14 +27,11 @@
 #max-root.mx-paused *,#max-root.mx-paused *::before,#max-root.mx-paused *::after{animation-play-state:paused!important}
 .mx-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-/* ---------------------------------------------------------------- the walking cat (rigged by JS) */
-.mx-walker{position:fixed;right:2px;bottom:calc(6px + var(--mx-lift));z-index:91;width:104px;height:86px;pointer-events:none;color:var(--mx-cat)}
+/* ---------------------------------------------------------------- the walking cat (one canvas, drawn by JS) */
+.mx-walker{position:fixed;right:0;bottom:var(--mx-lift);z-index:91;width:360px;max-width:100vw;height:150px;pointer-events:none}
 /* on dark pages the black silhouette gets a faint light edge so it never disappears */
 .mx-dark .mx-walker{filter:drop-shadow(0 0 .8px rgba(225,226,230,.85)) drop-shadow(0 0 5px rgba(225,226,230,.18))}
-.mx-walker svg{display:block;width:100%;height:100%;overflow:visible}
-.mx-sil{fill:currentColor}
-.mx-wsh{fill:var(--mx-shadow)}
-.mx-dark .mx-wbsh{opacity:.6}
+.mx-walker canvas{display:block;width:100%;height:100%}
 
 /* ---------------------------------------------------------------- the bubble (the button) */
 .mx-btn{all:unset;position:fixed;right:16px;bottom:calc(16px + var(--mx-lift));z-index:90;width:52px;height:52px;border-radius:50%;
@@ -126,7 +123,7 @@
 .mxp-in textarea:disabled{cursor:not-allowed}
 .mxp-legal{display:flex;justify-content:space-between;align-items:center;gap:0 8px;flex-wrap:wrap;font-size:12px;color:var(--mx-tx2)}
 .mxp-legal a{min-height:44px;padding:0 2px;display:inline-flex;align-items:center}
-.mxp-demo{position:fixed;right:16px;bottom:calc(84px + var(--mx-lift));z-index:90;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:2px 4px;
+.mxp-demo{position:fixed;right:16px;bottom:calc(156px + var(--mx-lift));z-index:90;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:2px 4px;
   max-width:calc(100vw - 32px);background:var(--mx-pill);color:var(--mx-tx);border:1px solid var(--mx-line);border-radius:14px;padding:2px 4px 2px 12px;font-size:12.5px;font-weight:600}
 .mxp-demo-l{flex:1 1 200px}
 

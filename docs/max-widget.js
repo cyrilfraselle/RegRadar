@@ -5,16 +5,11 @@
    network calls beyond this file's own stylesheet. The answer engine
    plugs in later through ONE hook: window.RegMax.setAnswerer().
 
-   Motion (pictogram, flat silhouette, all original SVG):
-   - Walk-in (first page view of a browser session): a procedural walk
-     cycle. Feet are planted on the ground (no sliding) and the legs are
-     solved with two-bone IK in a lateral-sequence walk (hind, fore,
-     hind, fore). Body bob and spine flex, head counter-motion, spring
-     ears and a spring-chain tail that lags and whips, contact shadows
-     that pulse on each footfall, far legs lighter for depth, a rim
-     light along the back. He eases in, slows, looks up, crouches, then
-     his outline MORPHS point by point (96 matched points) into the
-     curled badge while the glass bubble inflates on a spring.
+   Motion (a flat black silhouette, all original, no images):
+   - Walk-in (first page view of a browser session): a skinned skeleton merged into one smooth
+     shape (signed distance field, drawn on a canvas at the device pixel ratio). He walks in from
+     beyond the right edge in a lateral-sequence walk with planted paws, slows, looks up, sits and
+     curls into the round badge while the glass bubble inflates on a spring.
    - Idle bubble: breathing, glow drift, ear twitches and slow blinks at
      random 6-14 s, an occasional faint sparkle across the glass.
    - Pointer (fine pointers only): spring-damped 3D tilt, specular
@@ -42,7 +37,7 @@
   if (!MAX_ENABLED || (!PREVIEW && EXCLUDE.indexOf(page) !== -1) || window.__regMax) return;
   window.__regMax = true;
 
-  var VERSION = '20261114b';
+  var VERSION = '20261115a';
   var K_HIDDEN = 'regradar-max-hidden', K_GREETED = 'regradar-max-greeted';
   var params = new URLSearchParams(location.search);
   var DEMO = PREVIEW || params.get('maxdemo') === '1';
@@ -67,17 +62,406 @@
   var PI = Math.PI;
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
   function lerp(a, b, t) { return a + (b - a) * t; }
-  function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
-  function smoother(t) { t = clamp(t, 0, 1); return t * t * t * (t * (t * 6 - 15) + 10); }
-  function easeIO(t) { t = clamp(t, 0, 1); return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
   function f1(n) { return Math.round(n * 100) / 100; }
   function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  /* ------------------------------------------------------------ the walking cat
+     ONE continuous silhouette: a skeleton carries smooth primitives merged into a single signed
+     distance field (smooth unions, so joints never show a seam). Rest pose fitted to the approved
+     master; walk and arrival are pure functions of time, replayed by tests/max-motion.test.mjs. */
+  /*@rig*/
+  var RIG = (function () {
+    var PI = Math.PI;
+    function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  /* --- signed distance field: primitives, smooth union, tiled renderer --- */
+  function sdCone(px, py, a) { // a = [ax, ay, r1, bx, by, r2]: tapered capsule (iq's uneven capsule)
+    var dx = a[3] - a[0], dy = a[4] - a[1], h = Math.sqrt(dx * dx + dy * dy), r1 = a[2], r2 = a[5];
+    var qx = px - a[0], qy = py - a[1];
+    if (h < 1e-6 || Math.abs(r1 - r2) >= h) { var d1 = Math.sqrt(qx * qx + qy * qy) - r1, ex = px - a[3], ey = py - a[4], d2 = Math.sqrt(ex * ex + ey * ey) - r2; return d1 < d2 ? d1 : d2; }
+    var ux = dx / h, uy = dy / h, x = Math.abs(qx * uy - qy * ux), y = qx * ux + qy * uy;
+    var b = (r1 - r2) / h, c = Math.sqrt(1 - b * b), k = -b * x + c * y;
+    if (k < 0) return Math.sqrt(x * x + y * y) - r1;
+    if (k > c * h) return Math.sqrt(x * x + (y - h) * (y - h)) - r2;
+    return x * c + y * b - r1;
+  }
+  function sdTri(px, py, a) { // a = [x0, y0, x1, y1, x2, y2, round]
+    var e0x = a[2] - a[0], e0y = a[3] - a[1], e1x = a[4] - a[2], e1y = a[5] - a[3], e2x = a[0] - a[4], e2y = a[1] - a[5];
+    var v0x = px - a[0], v0y = py - a[1], v1x = px - a[2], v1y = py - a[3], v2x = px - a[4], v2y = py - a[5];
+    var t0 = clamp((v0x * e0x + v0y * e0y) / (e0x * e0x + e0y * e0y), 0, 1), t1 = clamp((v1x * e1x + v1y * e1y) / (e1x * e1x + e1y * e1y), 0, 1), t2 = clamp((v2x * e2x + v2y * e2y) / (e2x * e2x + e2y * e2y), 0, 1);
+    var q0x = v0x - e0x * t0, q0y = v0y - e0y * t0, q1x = v1x - e1x * t1, q1y = v1y - e1y * t1, q2x = v2x - e2x * t2, q2y = v2y - e2y * t2;
+    var s = e0x * e2y - e0y * e2x > 0 ? 1 : -1;
+    var d = q0x * q0x + q0y * q0y, w = s * (v0x * e0y - v0y * e0x), dd = q1x * q1x + q1y * q1y, ww = s * (v1x * e1y - v1y * e1x);
+    if (dd < d) d = dd; if (ww < w) w = ww;
+    dd = q2x * q2x + q2y * q2y; ww = s * (v2x * e2y - v2y * e2x);
+    if (dd < d) d = dd; if (ww < w) w = ww;
+    return (w < 0 ? Math.sqrt(d) : -Math.sqrt(d)) - a[6];
+  }
+  function sdArc(px, py, a) { // a = [cx, cy, radius, start angle, sweep, half width]: a stroked arc with round caps
+    var dx = px - a[0], dy = py - a[1], t = Math.atan2(dy, dx) - a[3], sw = a[4];
+    if (sw < 0) { t = -t; sw = -sw; }
+    t = ((t % (2 * PI)) + 2 * PI) % (2 * PI);
+    if (t <= sw) return Math.abs(Math.sqrt(dx * dx + dy * dy) - a[2]) - a[5];
+    var e = sw * (a[4] < 0 ? -1 : 1) + a[3], ax = a[0] + a[2] * Math.cos(a[3]) - px, ay = a[1] + a[2] * Math.sin(a[3]) - py, bx = a[0] + a[2] * Math.cos(e) - px, by = a[1] + a[2] * Math.sin(e) - py;
+    return Math.sqrt(Math.min(ax * ax + ay * ay, bx * bx + by * by)) - a[5];
+  }
+  function sdPrim(p, x, y) { return p.t === 0 ? sdCone(x, y, p.a) : p.t === 1 ? sdTri(x, y, p.a) : sdArc(x, y, p.a); }
+  function smin(a, b, k) { var m = a < b ? a : b, h = k - Math.abs(a - b); return h > 0 ? m - h * h * 0.25 / k : m; }
+  // Layers: 0 = the near body (smooth union, in list order), 3 = the tail (its own smooth chain, then
+  // melted into the body as one piece with radius P.kt), 1 = the far legs and far ear (cut back
+  // by a thin gap where they pass behind the near body, as in the master), 2 = cut-outs (eyes, lines).
+  function compose(P, d, idx, n, gap) {
+    var near = 1e9, far = 1e9, cut = 1e9, tail = 1e9;
+    for (var j = 0; j < n; j++) {
+      var i = idx ? idx[j] : j, p = P[i], v = d[i];
+      if (p.L === 0) near = smin(near, v, p.k); else if (p.L === 3) tail = smin(tail, v, p.k); else if (p.L === 1) far = smin(far, v, p.k); else if (v < cut) cut = v;
+    }
+    var r = tail < 1e9 ? smin(near, tail, P.kt) : near;
+    if (far < 1e9) { var g = gap - r; r = Math.min(r, far > g ? far : g); }
+    return -cut > r ? -cut : r;
+  }
+  function primBox(p) {
+    var a = p.a, x0, y0, x1, y1;
+    if (p.t === 0) { x0 = Math.min(a[0] - a[2], a[3] - a[5]); x1 = Math.max(a[0] + a[2], a[3] + a[5]); y0 = Math.min(a[1] - a[2], a[4] - a[5]); y1 = Math.max(a[1] + a[2], a[4] + a[5]); }
+    else if (p.t === 1) { x0 = Math.min(a[0], a[2], a[4]) - a[6]; x1 = Math.max(a[0], a[2], a[4]) + a[6]; y0 = Math.min(a[1], a[3], a[5]) - a[6]; y1 = Math.max(a[1], a[3], a[5]) + a[6]; }
+    else { x0 = a[0] - a[2] - a[5]; x1 = a[0] + a[2] + a[5]; y0 = a[1] - a[2] - a[5]; y1 = a[1] + a[2] + a[5]; }
+    return [x0, y0, x1, y1];
+  }
+  /* Render the field into an 8-bit coverage buffer (W x H device pixels; world = o + (pixel + .5) / sc).
+     Tiles of 8 px are classified from the field at their centre (the field is 1-Lipschitz), so only
+     tiles on the outline are evaluated per pixel, and only with the primitives that can reach them. */
+  var TS = 8, dBuf = [], cand = [];
+  function render(P, gap, buf, W, H, ox, oy, sc) {
+    var n = P.length, kmax = P.kt || 0, bx0 = 1e9, by0 = 1e9, bx1 = -1e9, by1 = -1e9, i, j;
+    for (i = 0; i < n; i++) {
+      if (P[i].k > kmax) kmax = P[i].k;
+      if (P[i].L === 2) continue;
+      var b = primBox(P[i]); if (b[0] < bx0) bx0 = b[0]; if (b[1] < by0) by0 = b[1]; if (b[2] > bx1) bx1 = b[2]; if (b[3] > by1) by1 = b[3];
+    }
+    var mg = kmax + 0.5; // smooth unions can swell the shape a little past its primitives
+    var px0 = Math.max(0, Math.floor((bx0 - mg - ox) * sc)), py0 = Math.max(0, Math.floor((by0 - mg - oy) * sc));
+    var px1 = Math.min(W, Math.ceil((bx1 + mg - ox) * sc)), py1 = Math.min(H, Math.ceil((by1 + mg - oy) * sc));
+    if (px1 <= px0 || py1 <= py0) return null;
+    var hd = TS / sc * 0.7072, aa = 0.5 / sc, thr = 3 * hd + 2 * kmax + (gap > 0 ? gap : 0) + 1, inv = 1 / sc;
+    for (var ty = py0; ty < py1; ty += TS) for (var tx = px0; tx < px1; tx += TS) {
+      var tw = Math.min(TS, px1 - tx), th = Math.min(TS, py1 - ty), cx = ox + (tx + tw / 2) * inv, cy = oy + (ty + th / 2) * inv;
+      for (i = 0; i < n; i++) dBuf[i] = sdPrim(P[i], cx, cy);
+      var dc = compose(P, dBuf, null, n, gap), x, y, o;
+      if (dc > hd + aa) continue;
+      if (dc < -hd - aa) { for (y = ty; y < ty + th; y++) { o = y * W; for (x = tx; x < tx + tw; x++) buf[o + x] = 255; } continue; }
+      var m = 0;
+      for (i = 0; i < n; i++) if (dBuf[i] < thr) cand[m++] = i;
+      for (y = ty; y < ty + th; y++) {
+        var wy = oy + (y + 0.5) * inv; o = y * W;
+        for (x = tx; x < tx + tw; x++) {
+          var wx = ox + (x + 0.5) * inv;
+          for (j = 0; j < m; j++) dBuf[cand[j]] = sdPrim(P[cand[j]], wx, wy);
+          var v = 0.5 - compose(P, dBuf, cand, m, gap) * sc;
+          buf[o + x] = v <= 0 ? 0 : v >= 1 ? 255 : (v * 255 + 0.5) | 0;
+        }
+      }
+    }
+    return [px0, py0, px1, py1];
+  }
+  /* --- skeleton, fitted to the master: joints [x, y, r] in 1/16 master px, facing left. S spine, B belly,
+     N neck, H skull, M muzzle, EN/EF ears (corners + rounding), L legs [near fore, far fore, far hind,
+     near hind] x [shoulder/hip, elbow/stifle, wrist/hock, heel, toe], T tail. */
+  var REST = {S:[[46.74,68.02,11],[58.62,68.6,10.5],[75.15,65.65,9.8],[86.77,66.15,10.16]],B:[62.19,68.25,9.2],N:[30.67,52.48,5.28],H:[26.05,51.15,6.85],M:[[21.1,54.28,4.3],[18.83,54.45,2.6]],EN:[27.13,47.85,28.38,40.53,33.55,48.33,1.68],EF:[23.15,44.48,22.25,39.95,26.15,43.2,0.6],L:[[[40.75,71.74,7.15],[38.58,81.72,3.85],[28.4,96.3,2.05],[24.3,100.9,1.9],[21,101.4,1.9]],[[49.35,71.85,7.15],[53.1,82.85,3.3],[57.1,97.55,1.9],[56.4,101.15,1.9],[53.52,101.78,1.8]],[[78.1,71.98,6.6],[80.93,81.83,4.9],[85.25,92.35,2.6],[78.35,100.8,1.65],[74,101.35,1.8]],[[88.23,70.03,9.4],[94.27,81,4.8],[104.9,88.75,2.5],[108.2,100.05,1.85],[105.7,102.2,2]]],T:[[97.77,58.4,2.8],[100.74,54.75,2.4],[102.8,50.71,2.37],[103.21,46.26,2.34],[101.89,41.71,2.31],[99.98,37.37,2.27],[98.93,33.42,2.24],[99.3,30.02,2.21],[100.84,27.66,2.18],[102.99,26.41,2.15],[105.38,26.27,2.11],[107.64,27.2,2.08],[109.69,28.79,2.05]]};
+  var GROUND = 103.5;
+  // Smooth-union radii: how softly each part melts into what is drawn before it.
+  var K = { s: 0.6, b: 2.5, n: 3, h: 2.2, m: 1.6, e: 0.9, l: [3, 1.4, 1.1, 0.9], t0: 2.6, t: 0.5 };
+  function cone(a, b, k, L) { return { t: 0, L: L, k: k, a: [a[0], a[1], a[2], b[0], b[1], b[2]] }; }
+  function build(J, o) {
+    o = o || {};
+    var P = [], i, s = J.S;
+    for (i = 0; i < 3; i++) P.push(cone(s[i], s[i + 1], K.s, 0));
+    P.push(cone(J.B, J.B, K.b, 0));
+    P.push(cone(J.N, s[0], K.n, 0));
+    P.push(cone(J.H, J.H, K.h, 0));
+    P.push(cone(J.M[0], J.M[1], K.m, 0));
+    P.push({ t: 1, L: 0, k: K.e, a: J.EN.slice() });
+    function leg(l, L) { for (var j = 0; j < 4; j++) P.push(cone(l[j], l[j + 1], j === 0 && L === 1 ? 0 : K.l[j], L)); }
+    leg(J.L[0], 0); leg(J.L[3], 0);
+    var T = J.T, prev = T[0];
+    for (i = 0; i < 12; i++) for (var u = 1; u <= 3; u++) { // Catmull-Rom through the tail joints: a smooth tube, no beads
+      var a = T[i ? i - 1 : 0], b = T[i], c = T[i + 1], d = T[i < 11 ? i + 2 : 12], t = u / 3, t2 = t * t, t3 = t2 * t, q = [0, 0, 0];
+      for (var e = 0; e < 3; e++) q[e] = 0.5 * (2 * b[e] + (c[e] - a[e]) * t + (2 * a[e] - 5 * b[e] + 4 * c[e] - d[e]) * t2 + (3 * b[e] - a[e] - 3 * c[e] + d[e]) * t3);
+      P.push(cone(prev, q, K.t, 3)); prev = q;
+    }
+    leg(J.L[1], 1); leg(J.L[2], 1);
+    P.push({ t: 1, L: 1, k: 0, a: J.EF.slice() });
+    if (o.cuts) P = P.concat(o.cuts);
+    P.kt = o.kt || K.t0;
+    return P;
+  }
+  /* --- motion: everything below is a pure function of time t (seconds) and a plan, so the walk is
+     evaluated continuously (no stepped frames) and the test can replay it exactly. */
+  function sm(t) { t = t < 0 ? 0 : t > 1 ? 1 : t; return t * t * (3 - 2 * t); }
+  function lp(a, b, t) { return a + (b - a) * t; }
+  function rot(v, a) { var c = Math.cos(a), s = Math.sin(a); return [v[0] * c - v[1] * s, v[0] * s + v[1] * c]; }
+  function len(x, y) { return Math.sqrt(x * x + y * y); }
+  // Gait: lateral-sequence walk (near hind, near fore, far hind, far fore), each paw on the ground 62% of the cycle.
+  var DUTY = 0.62, OFF = [0.25, 0.75, 0.5, 0], LS = 23, DC = LS / DUTY, VW = 46, TSW = 0.42, MINR = 3;
+  var PSI = [[-0.04, -0.8, -1.3], [0.1, -0.45, -0.95]]; // paw angle at contact, at heel peel, in mid swing (fore, hind)
+  // Leg mechanics come from the near legs (the far legs of the master are caught mid-swing), placed at each leg's own shoulder or hip.
+  var LEG = REST.L.map(function (l0, i) {
+    var l = REST.L[i < 2 ? 0 : 3], top = l[0], mid = l[1], low = l[2], toe = l[4], tx = low[0] - top[0], ty = low[1] - top[1], mx = mid[0] - top[0], my = mid[1] - top[1];
+    return { a: len(mx, my), b: len(low[0] - mid[0], low[1] - mid[1]), s: mx * ty - my * tx > 0 ? -1 : 1, vA: [low[0] - toe[0], low[1] - toe[1]],
+      vH: [l[3][0] - toe[0], l[3][1] - toe[1]], y: GROUND - toe[2], c: l0[0][0] + (i < 2 ? -8 : 6.5), h: i < 2 ? 3.6 : 3.1, ps: PSI[i < 2 ? 0 : 1] };
+  });
+  // Tail: rest segment lengths and absolute angles, so the chain can bend joint by joint.
+  var TL = [], TA = [];
+  for (var ti = 0; ti < 12; ti++) { var A0 = REST.T[ti], A1 = REST.T[ti + 1]; TL.push(len(A1[0] - A0[0], A1[1] - A0[1])); TA.push(Math.atan2(A1[1] - A0[1], A1[0] - A0[0])); }
+
+  /* Speed profile: segments {t0, t1, v0, v1} joined by cosine ramps; X(t) is the body offset from the rest pose. */
+  function timeline(segs, X0) {
+    var last = segs[segs.length - 1], vEnd = last.v1, tStop = vEnd ? Infinity : last.t1;
+    function seg(t, f) {
+      if (t <= segs[0].t0) return f === 0 ? segs[0].v0 : f === 1 ? segs[0].v0 * (t - segs[0].t0) : 0;
+      var d = 0;
+      for (var i = 0; i < segs.length; i++) {
+        var s = segs[i], T = s.t1 - s.t0, u = Math.min(t, s.t1) - s.t0, dv = s.v1 - s.v0;
+        if (t <= s.t1) {
+          if (f === 0) return s.v0 + dv * (1 - Math.cos(PI * u / T)) / 2;
+          if (f === 2) return dv * PI / (2 * T) * Math.sin(PI * u / T);
+          return d + s.v0 * u + dv * (u / 2 - T / (2 * PI) * Math.sin(PI * u / T));
+        }
+        d += s.v0 * T + dv * T / 2;
+      }
+      return f === 0 ? vEnd : f === 1 ? d + vEnd * (t - last.t1) : 0;
+    }
+    var tl = { v: function (t) { return seg(t, 0); }, dist: function (t) { return seg(t, 1); }, acc: function (t) { return seg(t, 2); },
+      X: function (t) { return t === Infinity ? tl.Xend : X0 - seg(t, 1); }, tStop: tStop, segs: segs, X0: X0 };
+    tl.Xend = vEnd ? -Infinity : X0 - seg(last.t1, 1);
+    tl.tAt = function (dd) { // inverse of dist (Infinity if he stops before covering dd)
+      var lo = segs[0].t0 - 30, hi;
+      if (vEnd) hi = last.t1 + Math.max(0, dd - seg(last.t1, 1)) / vEnd + 1; else { if (dd >= seg(last.t1, 1) - 1e-9) return Infinity; hi = last.t1; }
+      for (var k = 0; k < 48; k++) { var m = (lo + hi) / 2; if (seg(m, 1) < dd) lo = m; else hi = m; }
+      return (lo + hi) / 2;
+    };
+    return tl;
+  }
+  /* Footstep plan: every paw is planted at a fixed world x for its whole stance (so it cannot slide),
+     centred on the distance the body covers until that paw lifts again. Lift-offs follow the gait phase;
+     swings are shortened when he slows down, and no new step starts in the last few units. */
+  function plan(tl, phi0, prev, ta) {
+    var legs = LEG.map(function (L, i) {
+      var u0 = phi0 + OFF[i], n = Math.floor(u0) - 1, ev = [], old = prev && prev.legs[i];
+      function Tu(u) { return tl.tAt((u - u0) * DC); }
+      while (ev.length < 90) {
+        var j = ev.length, ld = Tu(n), lo = Tu(n + DUTY), pv = ev[j - 1];
+        if (pv) ld = Math.min(ld, pv.lo + TSW);
+        if (lo < Infinity && tl.X(lo) - tl.Xend < MINR) lo = Infinity;
+        var Xa = tl.X(ld), e = { ld: ld, lo: lo, x: Xa + L.c - (Xa - tl.X(lo)) / 2 };
+        if (old && old[j]) { var o = old[j]; if (o.ld <= ta || (j && old[j - 1].lo <= ta)) { e.ld = o.ld; e.x = o.x; } if (o.lo <= ta) e.lo = o.lo; }
+        ev.push(e);
+        if (e.lo === Infinity) break;
+        n++;
+      }
+      return ev;
+    });
+    return { tl: tl, phi0: phi0, legs: legs };
+  }
+  function stPsi(ps, p) { return ps[0] * (1 - sm(p / 0.5)) + ps[1] * sm((p - 0.5) / 0.5); }
+  function swPsi(ps, s) { return s < 0.4 ? lp(ps[1], ps[2], sm(s / 0.4)) : lp(ps[2], ps[0], sm((s - 0.4) / 0.6)); }
+  // Paw state at time t: toe position (world) and paw angle.
+  function paw(pl, i, t) {
+    var L = LEG[i], ev = pl.legs[i], tl = pl.tl, j = 0;
+    while (j + 1 < ev.length && ev[j + 1].ld <= t) j++;
+    var e = ev[j];
+    if (t < e.lo || j + 1 >= ev.length) {
+      var Xa = tl.X(e.ld), Xb = tl.X(e.lo), p = Xa - Xb > 1e-6 ? (Xa - tl.X(Math.max(t, e.ld))) / (Xa - Xb) : 0.5;
+      return { x: e.x, y: L.y, psi: stPsi(L.ps, Math.min(1, p)), st: 1 };
+    }
+    var nx = ev[j + 1], s = clamp((t - e.lo) / (nx.ld - e.lo), 0, 1), k = Math.min(1, Math.abs(nx.x - e.x) / (0.8 * DC));
+    return { x: lp(e.x, nx.x, sm(s)), y: L.y - L.h * k * Math.sin(PI * Math.pow(s, 0.8)), psi: swPsi(L.ps, s), st: 0 };
+  }
+  function ik(top, a, b, t, s) {
+    var dx = t[0] - top[0], dy = t[1] - top[1], d = clamp(len(dx, dy), Math.abs(a - b) + 1e-3, a + b - 1e-3);
+    var ph = Math.atan2(dy, dx) + s * Math.acos(clamp((a * a + d * d - b * b) / (2 * a * d), -1, 1));
+    return [top[0] + a * Math.cos(ph), top[1] + a * Math.sin(ph)];
+  }
+  function cp(j) { return j.slice(); }
+  function mv(j, dx, dy) { return [j[0] + dx, j[1] + dy, j[2]]; }
+  function rotAbout(j, c, a) { var v = rot([j[0] - c[0], j[1] - c[1]], a); return [c[0] + v[0], c[1] + v[1], j[2]]; }
+  // the far legs walk slimmer than the master's caught-mid-swing far legs, so they never read as lumps under the belly
+  var FAR = [0, [[5, 0, 4.4], [0, 0, 3.1], [0, 0, 1.9], [0, 0, 1.85], [0, 0, 1.8]], [[0, 0, 4.6], [0, 0, 3.6], [0, 0, 2.3], [0, 0, 1.7], [0, 0, 1.8]], 0];
+  FAR.forEach(function (f, i) { if (f) f.forEach(function (j, k) { j[0] = REST.L[i][k][0]; j[1] = REST.L[i][k][1]; }); });
+  var LOOK = 0.45, CURL = 1.3; // after he stops: looks up, then curls for CURL seconds
+
+  /* The walking pose at time t (world joints). */
+  function walk(pl, t) {
+    var tl = pl.tl, X = tl.X(t), q = clamp(tl.v(t) / VW, 0, 1.2), ph = pl.phi0 + tl.dist(t) / DC, R = REST;
+    var uF = ph + OFF[0], uH = ph + OFF[3], c4 = Math.cos(4 * PI * (uF - 0.12));
+    var yF = 0.55 * q * c4, yR = 0.55 * q * Math.cos(4 * PI * (uH - 0.12)), sq = 0.012 * q * (0.5 + 0.5 * c4);
+    var ts = tl.tStop, tau = t - ts, look = ts < Infinity ? sm((tau + 0.3) / 0.6) : 0;
+    if (tau > 0) { var bump = Math.pow(Math.sin(PI * clamp(tau / 0.5, 0, 1)), 2) * 0.5; yF += bump * 0.6; yR += bump; } // weight settles after the stop
+    function Y(j) { return [j[0], GROUND - (GROUND - j[1]) * (1 - sq), j[2]]; } // slight squash on footfalls, about the ground
+    var J = { S: [], L: [], T: [] }, i;
+    for (i = 0; i < 4; i++) J.S.push(Y(mv(R.S[i], X, lp(yF, yR, i / 3) + 0.22 * q * Math.sin(4 * PI * ph + i))));
+    J.B = Y(mv(R.B, X, (yF + yR) / 2));
+    // head: steadier than the body, counter-rotates the pitch, nods slightly, looks up at the end
+    var N = Y(mv(R.N, X, yF * 0.75)), pitch = (yR - yF) / 40, hr = -0.6 * pitch - 0.025 * q * Math.sin(4 * PI * (uF - 0.3)) + 0.05 * q - 0.24 * look;
+    var hy = yF * 0.45 - 2 * look, piv = R.N;
+    function head(j) { var r = rotAbout(j, piv, hr); return Y([r[0] + X, r[1] + hy, r[2]]); }
+    J.N = N; J.H = head(R.H); J.M = [head(R.M[0]), head(R.M[1])];
+    var er = -0.06 * q * Math.sin(4 * PI * (uF - 0.25)) + 0.08 * look;
+    function ear(e, lag) {
+      var bx = (e[0] + e[4]) / 2, by = (e[1] + e[5]) / 2, tip = rotAbout([e[2], e[3], 0], [bx, by], er * lag), a = head([e[0], e[1], 0]), b = head(tip), c = head([e[4], e[5], 0]);
+      return [a[0], a[1], b[0], b[1], c[0], c[1], e[6]];
+    }
+    J.EN = ear(R.EN, 1); J.EF = ear(R.EF, 1.3);
+    for (i = 0; i < 4; i++) {
+      var L = LEG[i], P = paw(pl, i, t), rl = FAR[i] || R.L[i], fy = i < 2 ? yF : yR;
+      var top = Y(mv(rl[0], X + 0.1 * clamp(P.x - X - L.c, -14, 14), fy)), toe = [P.x, P.y, rl[4][2]];
+      var vA = rot(L.vA, P.psi), vH = rot(L.vH, P.psi), low = [toe[0] + vA[0], toe[1] + vA[1], rl[2][2]];
+      var m = ik(top, L.a, L.b, low, L.s);
+      J.L.push([top, [m[0], m[1], rl[1][2]], low, [toe[0] + vH[0], toe[1] + vH[1], rl[3][2]], toe]);
+    }
+    // tail: phase-lagged sway (overlapping action), a lagged reaction to speed changes, follow-through after the stop
+    var acc = 0, base = Y(mv(R.T[0], X, yR)), ang = 0;
+    J.T.push(base);
+    for (i = 0; i < 12; i++) {
+      var lag = i * 0.045, d = q * 0.045 * Math.sin(2 * PI * ph - 0.5 * i) + 0.02 * q * Math.cos(4 * PI * uH - 0.5 * i) + 0.0009 * tl.acc(t - lag);
+      if (tau > lag) { var u = tau - lag; d -= 0.05 * Math.exp(-u / 0.45) * Math.sin(2 * PI * u / 0.9) * sm(u / 0.12); }
+      ang += d; acc = TA[i] + ang;
+      var pr = J.T[i]; J.T.push([pr[0] + TL[i] * Math.cos(acc), pr[1] + TL[i] * Math.sin(acc), R.T[i + 1][2]]);
+    }
+    return J;
+  }
+  /* --- arrival: from the same skeleton he sits, then curls into the round badge (badge units, 40 x 40). */
+  var BC = [20, 22], BR = 14.6, EARS = [[215, 18.8], [248, 19.2]], EW = 15;
+  var SIT = {
+    S: [[48, 63.5, 11], [59, 70, 10.5], [70, 79, 9.8], [80.5, 89.5, 10.16]], B: [64, 76, 9.2], N: [31, 47.5, 4.68], H: [26.5, 45.5, 6.85],
+    M: [[22, 48.2, 4.3], [19.6, 48.6, 2.6]], EN: [26.6, 41.6, 28.2, 34.2, 36.5, 44, 1], EF: [23.4, 39.2, 22.6, 34.4, 26.5, 37.7, 0.6],
+    L: [[[45, 70, 7.15], [44, 83, 3.85], [41.5, 96.4, 2.05], [41, 100.9, 1.9], [37.6, 101.4, 1.9]],
+      [[51, 70, 7.15], [50.5, 83, 3.3], [48.5, 96.8, 1.9], [48, 101.2, 1.9], [44.8, 101.7, 1.8]],
+      [[79, 88, 6.6], [68.5, 95, 4.9], [84, 100.6, 2.6], [80.5, 101.5, 1.65], [71.5, 101.8, 1.8]],
+      [[81, 88, 9.4], [70, 94.5, 4.8], [88, 100.4, 2.5], [84.5, 101.4, 1.85], [74, 101.9, 2]]],
+    T: [[88, 92, 2.8], [92, 95.5, 2.4], [95.5, 98.5, 2.37], [99.5, 100.3, 2.3], [103.5, 100.9, 2.27], [107.5, 101, 2.24], [111.5, 100.9, 2.21],
+      [115.4, 100.8, 2.18], [119.3, 100.6, 2.15], [123, 100.1, 2.12], [126.5, 99.2, 2.09], [129.6, 97.8, 2.07], [132, 95.8, 2.05]]
+  };
+  function bpol(deg, r) { var a = deg * PI / 180; return [BC[0] + r * Math.cos(a), BC[1] + r * Math.sin(a)]; }
+  // The badge ear (straight sides, quadratic tip) as a rounded triangle: inner triangle + rounding radius.
+  function bear(e) {
+    var a = bpol(e[0] - EW, BR - 1.5), b = bpol(e[0], e[1] + 1.4), c = bpol(e[0] + EW, BR - 1.5);
+    var ap = [0.25 * lp(a[0], b[0], 0.62) + 0.5 * b[0] + 0.25 * lp(c[0], b[0], 0.62), 0.25 * lp(a[1], b[1], 0.62) + 0.5 * b[1] + 0.25 * lp(c[1], b[1], 0.62)];
+    var ux = a[0] - b[0], uy = a[1] - b[1], vx = c[0] - b[0], vy = c[1] - b[1], h = Math.acos((ux * vx + uy * vy) / len(ux, uy) / len(vx, vy)) / 2;
+    var gap = len(b[0] - ap[0], b[1] - ap[1]), r = gap / (1 / Math.sin(h) - 1), mx = (a[0] + c[0]) / 2, my = (a[1] + c[1]) / 2, dl = len(b[0] - mx, b[1] - my);
+    var tip = [b[0] - (b[0] - mx) / dl * r / Math.sin(h), b[1] - (b[1] - my) / dl * r / Math.sin(h)];
+    function inset(p) { return [p[0] + (mx - p[0]) * 0.2, p[1] + (my - p[1]) * 0.2]; }
+    var A = inset(a), C = inset(c);
+    return [A[0], A[1], tip[0], tip[1], C[0], C[1], r];
+  }
+  var BEARS = [bear(EARS[1]), bear(EARS[0])]; // near ear -> the upper badge ear, far ear -> the left one
+  function curlPose(A) {
+    function w(u, v, r) { return [A.x + (u - BC[0]) * A.s, A.y + (v - BC[1]) * A.s, r * A.s]; }
+    function pw(deg, rad, r) { var p = bpol(deg, rad); return w(p[0], p[1], r); }
+    function ew(e) { var a = w(e[0], e[1], e[6]), b = w(e[2], e[3], 0), c = w(e[4], e[5], 0); return [a[0], a[1], b[0], b[1], c[0], c[1], a[2]]; }
+    var J = { S: [pw(215, 6, 7.5), pw(305, 6, 7.5), pw(35, 6, 7.5), pw(125, 6, 7.5)], B: w(20, 22, 14), N: w(17, 18.5, 4), H: w(15.5, 17.5, 5.5),
+      M: [w(15.5, 20.5, 3.5), w(17, 23, 2)], EN: ew(BEARS[0]), EF: ew(BEARS[1]), L: [], T: [] };
+    [[12.5, 25], [14.5, 27], [25, 27.5], [23.5, 29]].forEach(function (c) {
+      J.L.push([w(c[0] + 1, c[1] - 2, 3.4), w(c[0], c[1], 3), w(c[0] - 1, c[1] + 1, 2.5), w(c[0] - 1.5, c[1] + 1.5, 2.2), w(c[0] - 2, c[1] + 1.5, 2)]);
+    });
+    J.T.push(pw(300, 8.5, 2.8));
+    for (var i = 1; i < 13; i++) J.T.push(pw(325 + (i - 1) * 16.5, 12.1, 1.85 - 0.02 * i));
+    return J;
+  }
+  // The badge's white lines (tucked head, tail wrapping to the chin, tail tip) and eyes, as cut-outs.
+  function badgeCuts(A, wl, we) {
+    var s = A.s, hw = 0.675 * s * wl, out = [];
+    function w(u, v) { return [A.x + (u - BC[0]) * s, A.y + (v - BC[1]) * s]; }
+    function arc(c, r, a0, sw) { var p = w(c[0], c[1]); out.push({ t: 2, L: 2, k: 0, a: [p[0], p[1], r * s, a0, sw, hw] }); }
+    function seg(a, b, r) { var p = w(a[0], a[1]), q = w(b[0], b[1]); out.push({ t: 0, L: 2, k: 0, a: [p[0], p[1], r, q[0], q[1], r] }); }
+    if (wl > 0) {
+      arc([18.748, 20.982], 7.8, -1.054, -2.43);
+      arc([19.35, 20.9], 10.691, -0.487, 3.142);
+      seg([9.9, 25.9], [7.775, 26.075], hw); seg([7.775, 26.075], [6.4, 25.2], hw);
+    }
+    if (we > 0) { seg([13.7, 18.6], [13.7, 18.6], 1.6 * s * we); seg([17.3, 15.4], [17.3, 15.4], 1.6 * s * we); }
+    return out;
+  }
+  // Flatten a pose to numbers (same order every time) with a motion group per number.
+  function flat(J) { var o = []; (function f(v) { if (Array.isArray(v)) v.forEach(f); else o.push(v); })([J.S, J.B, J.N, J.H, J.M, J.EN, J.EF, J.L, J.T]); return o; }
+  function unflat(a) { var i = 0; function c(v) { return Array.isArray(v) ? v.map(c) : a[i++]; } var r = c([REST.S, REST.B, REST.N, REST.H, REST.M, REST.EN, REST.EF, REST.L, REST.T]);
+    return { S: r[0], B: r[1], N: r[2], H: r[3], M: r[4], EN: r[5], EF: r[6], L: r[7], T: r[8] }; }
+  // group windows inside the curl (start, end): spine, head, ears, fore legs, hind legs, tail
+  var GW = [[0, 0.8], [0.04, 0.86], [0.04, 0.86], [0, 0.7], [0, 0.66], [0, 0.9]];
+  var GRP = (function () {
+    var g = [], n = function (k, v) { for (var i = 0; i < v; i++) g.push(k); };
+    n(0, 12 + 3); n(1, 3 + 3 + 6); n(2, 14); n(3, 30); n(4, 30); n(0, 3); n(5, 36);
+    return g;
+  })();
+  // number kind per flat index: 0 = x, 1 = y, 2 = radius (or ear rounding)
+  var KIND = (function () { var o = {}; function mark(v) { return typeof v[0] === 'number' ? (v.length === 3 ? [0, 1, 2] : [0, 1, 0, 1, 0, 1, 2]) : v.map(mark); }
+    for (var k in REST) o[k] = mark(REST[k]); return flat(o); })();
+  function herm(p0, p1, m0, m1, u) { var u2 = u * u, u3 = u2 * u; return (2 * u3 - 3 * u2 + 1) * p0 + (u3 - 2 * u2 + u) * m0 + (-2 * u3 + 3 * u2) * p1 + (u3 - u2) * m1; }
+  function wrap(x, ref) { while (x - ref > PI) x -= 2 * PI; while (x - ref < -PI) x += 2 * PI; return x; }
+  // tail as base angle + bend at each joint, and segment lengths
+  function tang(T) { var a = [], l = [], p = 0; for (var i = 0; i < 12; i++) { var d = Math.atan2(T[i + 1][1] - T[i][1], T[i + 1][0] - T[i][0]); a.push(i ? wrap(d - p, 0) : d); p = d; l.push(len(T[i + 1][0] - T[i][0], T[i + 1][1] - T[i][1])); } return [a, l]; }
+  var S0 = 1.5; // the curl is shaped at this size around the sitting cat, then glides and shrinks into the bubble
+  /* Everything the renderer needs at time t: primitives, the far-part gap, curl progress. */
+  function frame(pl, t) {
+    var J = walk(pl, t), tl = pl.tl, A = pl.arrive, c = A && tl.tStop < Infinity ? (t - tl.tStop - LOOK) / CURL : -1, gap = 0.8, cuts;
+    if (c > 0) {
+      c = Math.min(c, 1);
+      var px = SIT.B[0] + tl.Xend, py = SIT.B[1], e = sm((c - 0.3) / 0.7), g = lp(1, A.s / S0, e), dx = (A.x - px) * e, dy = (A.y - py) * e;
+      var Cp = curlPose({ x: px, y: py, s: S0 }), a = flat(J), s1 = flat(SIT), s2 = flat(Cp), out = [], Jw = J;
+      for (var i = 0; i < a.length; i++) {
+        var gw = GW[GRP[i]], s = clamp((c - gw[0]) / (gw[1] - gw[0]), 0, 1), k = KIND[i], b = s1[i] + (k === 0 ? tl.Xend : 0), m = GRP[i] === 5 ? 0 : 0.5 * (s2[i] - a[i]);
+        var v = s < 0.5 ? herm(a[i], b, 0, m, 2 * s) : herm(b, s2[i], m, 0, 2 * s - 1);
+        out.push(k === 2 ? v * g : k === 0 ? px + dx + (v - px) * g : py + dy + (v - py) * g);
+      }
+      J = unflat(out);
+      // the tail moves joint by joint (angles, not positions, so it never cuts through his body): it swings
+      // down behind him, rests a beat along the ground, then wraps round under him into the curl
+      var ts = clamp((c - GW[5][0]) / (GW[5][1] - GW[5][0]), 0, 1), K0 = tang(Jw.T), K1 = tang(SIT.T), K2 = tang(Cp.T), acc = 0;
+      for (i = 0; i < 12; i++) {
+        var r1 = wrap(K1[0][i], K0[0][i]), u = ts < 0.5 ? 2 * ts : 2 * ts - 1;
+        acc += ts < 0.5 ? herm(K0[0][i], r1, 0, 0, u) : herm(r1, wrap(K2[0][i], r1), 0, 0, u);
+        var ln = (ts < 0.5 ? herm(K0[1][i], K1[1][i], 0, 0, u) : herm(K1[1][i], K2[1][i], 0, 0, u)) * g, pr = J.T[i];
+        J.T[i + 1] = [pr[0] + ln * Math.cos(acc), pr[1] + ln * Math.sin(acc), J.T[i + 1][2]];
+      }
+      gap = 0.8 * (1 - sm((c - 0.5) / 0.4));
+      cuts = badgeCuts({ x: px + dx, y: py + dy, s: S0 * g }, sm((c - 0.8) / 0.2), sm((c - 0.84) / 0.16));
+    }
+    return { P: build(J, { cuts: cuts, kt: c > 0 ? 2.6 + 4.4 * sm(c / 0.3) : 0 }), gap: gap, c: c };
+  }
+  /* --- scenes: the walk-in (he enters from beyond the right edge and stops) and the demo walk in place. */
+  function scene(W, H, S, inPlace) {
+    var cx = 111.5 - (W - 70) / S, cy = GROUND - (H - 6) / S, sc = { S: S, W: W, H: H, cx: cx, cy: cy, follow: !!inPlace }, tl;
+    if (inPlace) tl = timeline([{ t0: 0, t1: 1, v0: VW, v1: VW }], 0);
+    else {
+      var v0 = 0.55 * VW, Ta = 0.6, Td = 1.5, da = Ta * (v0 + VW) / 2, dd = VW * Td / 2;
+      var X0 = Math.max(cx + W / S - 14, da + dd), Tc = (X0 - da - dd) / VW;
+      tl = timeline([{ t0: 0, t1: Ta, v0: v0, v1: VW }, { t0: Ta, t1: Ta + Tc, v0: VW, v1: VW }, { t0: Ta + Tc, t1: Ta + Tc + Td, v0: VW, v1: 0 }], X0);
+    }
+    sc.pl = plan(tl, 0.3);
+    return sc;
+  }
+  function cam(sc, t) { return [sc.follow ? sc.cx + sc.pl.tl.X(t) : sc.cx, sc.cy]; }
+  function stopAt(sc, ta) { // demo: ease out of the walk in place from time ta (paws already down stay down)
+    var old = sc.pl, tl = timeline([{ t0: 0, t1: ta, v0: VW, v1: VW }, { t0: ta, t1: ta + 0.9, v0: VW, v1: 0 }], 0);
+    sc.pl = plan(tl, old.phi0, old, ta); sc.pl.arrive = old.arrive;
+  }
+  function setBadge(sc, px, py) { // badge centre (20, 22) in canvas CSS px, once he has stopped
+    var c = cam(sc, sc.pl.tl.tStop);
+    sc.pl.arrive = { x: c[0] + px / sc.S, y: c[1] + py / sc.S, s: 0.9 / sc.S };
+  }
+  function draw(sc, t, buf, W, H, dpr) {
+    var f = frame(sc.pl, t), c = cam(sc, t);
+    return { box: render(f.P, f.gap, buf, W, H, c[0], c[1], sc.S * dpr), c: f.c };
+  }
+  return { REST: REST, GROUND: GROUND, build: build, render: render, frame: frame, walk: walk, paw: paw, timeline: timeline, plan: plan,
+    scene: scene, cam: cam, stopAt: stopAt, setBadge: setBadge, draw: draw, LEG: LEG, DC: DC, VW: VW, LOOK: LOOK, CURL: CURL,
+    BC: BC, BR: BR, EARS: EARS, EW: EW };
+})();
+  /*@rig-end*/
 
   /* ------------------------------------------------------------ badge geometry
      A curled cat seen from above: a disc with two ears at the upper left.
      The same polar outline r(θ) drives the static badge and the morph
      target, so the morph lands exactly on the badge. Badge units: 40 x 40. */
-  var BC = [20, 22], BR = 14.6, EARS = [[215, 18.8], [248, 19.2]], EW = 15;
+  var BC = RIG.BC, BR = RIG.BR, EARS = RIG.EARS, EW = RIG.EW;
   function polar(deg, r) { var a = deg * PI / 180; return [BC[0] + r * Math.cos(a), BC[1] + r * Math.sin(a)]; }
   function earTri(e) {
     // a soft, rounded ear: straight-ish sides, round tip
@@ -104,152 +488,6 @@
       '<g class="mx-eyes"><circle cx="13.7" cy="18.6" r="1.6"/><circle cx="17.3" cy="15.4" r="1.6"/></g>' +
       '</svg>';
   }
-
-  /* ------------------------------------------------------------ the walking cat
-     An original vector traced from the owner-approved master silhouette with
-     our own tracer (boundary following, Douglas-Peucker, Catmull-Rom to
-     Bezier). Units are 1/16 of the 2048 px master; viewBox 12 20 104 86,
-     facing left, paws on y = 103.3. The main shape (head, near ear, body,
-     near legs, tail) is reused with <use> and convex clip regions cut at the
-     natural joints; the far ear and the far legs are their own shapes. Parts
-     overlap across every cut and discs sit on the joint pivots, so the
-     joins stay seamless while the parts rotate. */
-  var CAT_MAIN = 'M104.1 23.9C104.6 23.8 105.1 23.8 105.6 23.9C106.1 24 106.5 23.9 107.1 24.2C107.7 24.5 108.8 25.1 109.4 25.5C110 25.9 110.1 26.2 110.5 26.7C110.8 27.1 111.1 27.7 111.3 28.2C111.6 28.7 111.7 29.2 111.8 29.7C111.9 30.2 111.9 30.8 111.8 31.2C111.8 31.6 111.7 31.8 111.5 32.1C111.4 32.4 111.1 32.6 110.8 32.8C110.6 32.9 110.3 33.1 110 33.1C109.7 33.1 109.2 33 109 33C108.7 32.9 108.6 32.9 108.4 32.7C108.2 32.5 107.9 32.2 107.8 31.8C107.6 31.4 107.7 30.6 107.6 30.2C107.5 29.7 107.3 29.4 107.1 29.2C106.9 28.9 106.7 28.7 106.3 28.5C106 28.3 105.6 28.1 105.2 28C104.7 28 104.2 28 103.8 28.1C103.4 28.2 103.2 28.3 102.8 28.5C102.4 28.8 101.8 29.3 101.5 29.7C101.2 30 101.1 30.2 101 30.6C100.8 31 100.6 31.4 100.6 32C100.6 32.6 100.6 33.6 100.7 34.2C100.8 34.9 100.8 34.9 101.3 35.9C101.8 36.9 103.1 39.1 103.8 40.3C104.4 41.6 104.8 42.5 105.2 43.6C105.5 44.7 105.6 45.8 105.7 46.8C105.8 47.8 105.7 48.9 105.6 49.8C105.5 50.7 105.3 51.3 105 52.2C104.6 53.1 103.9 54.5 103.4 55.3C103 56 102.8 56.2 102.3 56.8C101.8 57.4 101.3 57.9 100.4 58.7C99.5 59.5 97.7 60.9 97.1 61.5C96.4 62.2 96.6 62.3 96.5 62.6C96.4 62.9 96.3 62.7 96.5 63.5C96.7 64.3 97.5 65.4 97.8 67.3C98 69.1 98 72.9 98.1 74.5C98.2 76.1 98.4 76.2 98.5 76.8C98.7 77.4 98.8 77.6 99 78.2C99.3 78.7 99.7 79.5 100.1 80.1C100.5 80.7 100.8 81.2 101.5 81.9C102.1 82.6 103.1 83.5 103.8 84.1C104.6 84.7 105.5 84.8 106 85.3C106.5 85.8 106.5 85.5 106.9 87C107.4 88.4 108.3 91.9 108.7 93.8C109.2 95.7 109.4 97.4 109.6 98.3C109.8 99.3 109.7 99.2 109.7 99.7C109.6 100.2 109.5 100.9 109.4 101.3C109.3 101.8 109.2 102.1 109 102.4C108.8 102.7 108.6 103 108.2 103.3C107.8 103.6 107.1 103.9 106.7 104C106.2 104.2 105.7 104.2 105.3 104.1C104.9 104 104.5 103.8 104.3 103.7C104 103.5 103.9 103.3 103.8 103C103.7 102.7 103.7 102.2 103.7 101.9C103.7 101.6 103.8 101.6 103.9 101.3C104 101.1 104.2 100.8 104.5 100.5C104.8 100.3 105.5 100 105.7 99.8C105.9 99.5 106 100.2 105.7 99.1C105.5 98 104.5 94.4 104.1 93.2C103.7 92 103.7 92.4 103.4 91.9C103.1 91.4 102.7 90.9 102.1 90.4C101.5 89.9 101.1 89.6 99.9 89C98.7 88.4 96.4 87.5 95 86.8C93.6 86.2 92.4 85.5 91.4 84.9C90.4 84.3 90.4 84.4 89.2 83.3C88.1 82.3 85.6 79.9 84.4 78.8C83.2 77.8 83 77.7 82.2 77.2C81.4 76.8 80.5 76.4 79.6 76.1C78.7 75.8 77.8 75.7 77 75.6C76.1 75.5 75.3 75.6 74.7 75.7C74 75.7 74.6 75.5 72.9 76C71.2 76.4 66.7 77.8 64.5 78.3C62.2 78.9 60.9 79.1 59.4 79.3C57.9 79.5 57.3 79.6 55.5 79.6C53.7 79.6 50.1 79.3 48.5 79.3C47 79.4 47 79.6 46.3 79.9C45.7 80.2 45.1 80.5 44.5 81C43.9 81.4 44.8 80.4 42.8 82.7C40.8 84.9 34.5 92.1 32.5 94.5C30.5 96.9 31.4 96.4 30.8 97.1C30.2 97.8 29.8 97.7 29 98.5C28.3 99.4 26.8 101.3 26.1 102C25.3 102.8 25 102.8 24.5 103C24 103.2 23.7 103.2 23 103.2C22.4 103.3 21.3 103.3 20.7 103.2C20 103 19.6 102.7 19.3 102.5C19.1 102.3 19.1 102.3 19.1 102C19.1 101.8 19 101.5 19.1 101.2C19.2 100.9 19.3 100.6 19.5 100.3C19.8 100.1 20.3 99.6 20.8 99.5C21.3 99.3 22.2 99.4 22.7 99.3C23.1 99.2 22.8 99.5 23.4 98.9C24 98.3 24.8 97.7 26.3 95.5C27.7 93.3 30.9 87.9 32.1 85.8C33.3 83.6 33.2 83.6 33.6 82.7C34 81.7 34.2 81 34.3 80.2C34.5 79.3 34.6 79.8 34.3 77.6C34.1 75.4 33.4 69.2 33 67.1C32.7 65 32.8 66 32.3 65C31.8 64 30.6 62.1 29.9 61.1C29.2 60.1 28.6 59.5 28 59C27.3 58.5 26.6 58.2 26.1 58C25.5 57.9 25.4 57.8 24.7 57.9C23.9 58 22.2 58.4 21.5 58.5C20.8 58.6 20.8 58.6 20.4 58.5C20 58.5 19.8 58.5 19.3 58.2C18.8 57.9 17.9 57.3 17.3 56.7C16.8 56.1 16.3 55.1 16.2 54.6C16 54.1 15.9 54.3 16.2 53.8C16.5 53.3 17.6 52.3 18 51.5C18.5 50.6 18.6 49.5 18.9 48.8C19.2 48.2 19.2 48 19.7 47.5C20.2 46.9 21.4 46 22 45.6C22.7 45.1 23.1 45 23.7 44.8C24.2 44.6 25 44.4 25.4 44.3C25.8 44.1 25.8 44 26 43.8C26.1 43.7 26.1 43.9 26.3 43.2C26.4 42.6 26.6 40.7 26.8 40C27 39.3 27.1 39.3 27.3 39.1C27.6 38.9 27.9 38.8 28.3 38.9C28.6 39 28.9 39.1 29.5 39.6C30 40.1 31 41.2 31.5 42C32.1 42.9 32.1 43.9 32.9 44.8C33.7 45.8 34.9 46.4 36.2 47.8C37.6 49.2 40 52.3 41 53.4C42 54.5 41.9 54 42.3 54.3C42.7 54.5 42.8 54.7 43.6 54.8C44.4 55 45.8 55 47.3 55.4C48.8 55.8 51 56.8 52.4 57.2C53.8 57.6 54 57.7 55.5 57.8C57 57.8 58.7 57.9 61.4 57.6C64.1 57.3 69.1 56.5 72 56.2C74.8 55.9 76.6 55.7 78.4 55.7C80.2 55.6 81.8 55.7 83 55.8C84.1 55.9 84.1 55.9 85.3 56.1C86.5 56.3 88.9 57 90.2 57.2C91.4 57.4 92.1 57.3 92.8 57.2C93.6 57.1 93.9 57 94.7 56.6C95.5 56.2 96.7 55.5 97.5 54.8C98.3 54.2 98.9 53.5 99.5 52.8C100 52.1 100.4 51.3 100.7 50.6C100.9 49.9 101.1 49.3 101.2 48.5C101.2 47.6 101.1 46.3 101 45.3C100.8 44.4 100.7 44 100.2 42.8C99.6 41.7 98.2 39.4 97.7 38.2C97.1 37.1 97 36.8 96.8 36C96.6 35.3 96.4 34.4 96.3 33.7C96.3 32.9 96.3 32.4 96.4 31.6C96.5 30.8 96.8 29.9 97.1 29.1C97.4 28.3 97.9 27.5 98.5 26.8C99.1 26.2 100.1 25.4 100.7 25C101.4 24.5 101.9 24.4 102.5 24.2C103 24 103.5 23.9 104.1 23.9Z';
-  var CAT_EAR = 'M22 39.5C22.3 39.5 22.6 39.5 23.2 40C23.8 40.4 25.2 41.6 25.6 42.1C26 42.6 25.5 42.9 25.5 43.2C25.4 43.4 25.7 43.3 25.2 43.5C24.8 43.7 23.3 44.8 22.7 44.4C22.1 44 21.9 41.8 21.7 41.1C21.5 40.4 21.6 40.5 21.7 40.2C21.7 40 21.7 39.5 22 39.5Z';
-  var CAT_FH = 'M75.1 76.7C75.8 76.7 77.1 76.7 78 76.8C79 77 79.8 77.3 80.7 77.7C81.5 78 82.1 78.4 83.1 79.2C84.1 79.9 85.8 81.7 86.5 82.3C87.1 82.9 86.8 82.3 86.8 82.7C86.9 83.1 86.6 83.9 86.5 84.6C86.5 85.3 86.5 86.2 86.7 87C86.8 87.7 87 88.3 87.2 89C87.5 89.7 88 90.6 88.2 91.2C88.3 91.8 88.2 92 88 92.5C87.8 92.9 88 92.8 87 94C86.1 95.1 83.6 97.9 82.2 99.3C80.7 100.8 79.3 101.9 78.5 102.5C77.7 103.1 77.7 102.9 77.3 103C76.8 103.1 76.5 103.1 75.9 103.1C75.3 103.1 74.2 103.1 73.7 103C73.1 103 73 102.8 72.7 102.7C72.5 102.5 72.3 102.2 72.2 101.9C72.2 101.6 72.3 101.1 72.4 100.7C72.6 100.4 72.9 100.1 73.1 99.9C73.3 99.7 73.3 99.5 73.8 99.5C74.4 99.4 75.7 99.6 76.3 99.5C76.9 99.4 76.6 99.6 77.4 98.8C78.2 98 80.3 95.6 81 94.5C81.6 93.5 81.4 93.3 81.4 92.6C81.4 91.9 81.5 91.7 80.7 90.3C79.9 88.9 77.5 85.7 76.5 84.1C75.5 82.5 75.2 81.8 74.7 80.6C74.2 79.4 73.5 77.6 73.5 77C73.6 76.3 74.3 76.7 75.1 76.7Z';
-  var CAT_FF = 'M48.4 80.4C49.4 80.4 51.6 80.7 53 80.7C54.3 80.8 55.7 78.9 56.5 80.7C57.3 82.4 57.5 89.1 57.8 91.2C58.1 93.4 58.1 92.9 58.3 93.5C58.5 94.1 58.8 94.5 58.8 94.9C58.9 95.3 58.5 95.2 58.5 95.8C58.5 96.3 58.8 97.4 58.8 98.2C58.8 99.1 58.8 100.1 58.7 100.8C58.5 101.5 58.3 102 58 102.4C57.7 102.8 57.4 103 57 103.2C56.5 103.3 55.9 103.4 55.3 103.5C54.8 103.5 54.2 103.5 53.7 103.5C53.2 103.4 52.7 103.2 52.3 103C52 102.8 51.9 102.6 51.8 102.3C51.7 101.9 51.8 101.4 51.9 101C52.1 100.7 52.4 100.4 52.7 100.2C52.9 100 53.2 99.9 53.5 99.8C53.9 99.7 54.4 99.8 54.6 99.7C54.8 99.7 54.7 99.9 54.8 99.5C54.8 99.1 55 98.3 54.8 97.3C54.7 96.4 54.4 95.6 53.7 93.7C53 91.8 51.4 87.6 50.6 85.8C49.8 84 49.5 83.7 49 82.9C48.4 82.1 47.2 81.3 47.2 80.8C47.1 80.4 47.5 80.5 48.4 80.4Z';
-  var OV = 1.6, HOV = 5, GROUND = 103.3, STRIDE = 10.5, DUTY = 0.62, LC = STRIDE / DUTY, LIFT = 3.2;
-  var SPINE = [[66, 40], [66, 96]], SPV = [66, 68.5], NECK = [[44.5, 53.4], [32.6, 63.2]];
-  var TAILC = [[[87.5, 57.2], [97.3, 62.6]], [[100.3, 46], [105.6, 46]], [[96.2, 34], [100.6, 34]]];
-  var LEGS = [ // shape, hip cut, knee cut, foot contact, region box, walk phase offset, stride centre shift, rear half, hip pivot (inside the body)
-    { s: 'main', hip: [[34.5, 79], [46.5, 80.6]], knee: [[23.2, 93.6], [30.6, 97.6]], foot: [20, 103.3], box: [8, 74, 47.5, 108], off: 0.25, c: 5, rear: 0, pv: [40.5, 69] },
-    { s: 'ff', hip: [[47, 81], [58, 81]], knee: [[53.3, 95.2], [58.4, 95.6]], foot: [52.5, 103.2], box: [44, 76, 62, 108], off: 0.75, c: 0, rear: 0, pv: [53, 71] },
-    { s: 'fh', hip: [[73, 77.6], [86.5, 83]], knee: [[82.5, 91.5], [88.2, 93]], foot: [74.5, 103], box: [69, 72, 91, 108], off: 0.5, c: 1, rear: 1, pv: [80, 70] },
-    { s: 'main', hip: [[80.5, 79.5], [101, 80]], knee: [[99.5, 91.8], [105.6, 89.4]], foot: [105, 103.2], box: [78, 74, 114, 108], off: 0, c: -3.5, rear: 1, pv: [91, 68] }
-  ];
-  function mid(a, b) { return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]; }
-  function dist(a, b) { return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1])); }
-  function ang(a, b) { return Math.atan2(b[1] - a[1], b[0] - a[0]); }
-  function rbox(b) { return [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]]]; }
-  // Keep the part of a convex polygon on the side of line ab that contains ref; grow moves the line away (overlap).
-  function cutPoly(poly, ab, ref, grow) {
-    var a = ab[0], b = ab[1], nx = a[1] - b[1], ny = b[0] - a[0], L = Math.sqrt(nx * nx + ny * ny), out = [];
-    nx /= L; ny /= L;
-    if ((ref[0] - a[0]) * nx + (ref[1] - a[1]) * ny < 0) { nx = -nx; ny = -ny; }
-    function sd(p) { return (p[0] - a[0]) * nx + (p[1] - a[1]) * ny + (grow || 0); }
-    for (var i = 0; i < poly.length; i++) {
-      var P = poly[i], Q = poly[(i + 1) % poly.length], sp = sd(P), sq = sd(Q);
-      if (sp >= 0) out.push(P);
-      if ((sp >= 0) !== (sq >= 0)) { var t = sp / (sp - sq); out.push([P[0] + (Q[0] - P[0]) * t, P[1] + (Q[1] - P[1]) * t]); }
-    }
-    return out;
-  }
-  function pts(poly) { return poly.map(function (p) { return f1(p[0]) + ',' + f1(p[1]); }).join(' '); }
-  LEGS.forEach(function (L) {
-    L.H = L.pv; L.K = mid(L.knee[0], L.knee[1]);
-    L.a = dist(L.H, L.K); L.b = dist(L.K, L.foot);
-    L.bend = (L.K[0] - L.H[0]) * (L.foot[1] - L.H[1]) - (L.K[1] - L.H[1]) * (L.foot[0] - L.H[0]) > 0 ? 1 : -1;
-  });
-  var TP = TAILC.map(function (c) { return mid(c[0], c[1]); });
-
-  function walkerSVG() {
-    var defs = '<path id="mx-c-main" d="' + CAT_MAIN + '"/><path id="mx-c-ff" d="' + CAT_FF + '"/><path id="mx-c-fh" d="' + CAT_FH + '"/>' +
-      '<radialGradient id="mx-wsg"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>';
-    function clip(id, poly) { defs += '<clipPath id="mx-k-' + id + '"><polygon points="' + pts(poly) + '"/></clipPath>'; return 'url(#mx-k-' + id + ')'; }
-    function use(shape, cl) { return '<use href="#mx-c-' + shape + '" clip-path="' + cl + '"/>'; }
-    function disc(c, r) { return r ? '<circle cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="' + f1(r) + '"/>' : ''; }
-    var BIG = [0, 0, 130, 120];
-    var head = function (g) { return cutPoly(rbox([8, 30, 52, 72]), NECK, [20, 45], g); };
-    var tail = function (i, g) {
-      var p = cutPoly(rbox([84, 18, 116, 63]), TAILC[0], [100, 40], i === 0 ? g : 0);
-      if (i >= 1) p = cutPoly(p, TAILC[1], [102, 30], g); else p = cutPoly(p, TAILC[1], [95, 56], g);
-      if (i === 2) p = cutPoly(p, TAILC[2], [100, 26], g); else if (i === 1) { p = cutPoly(p, TAILC[2], [103, 42], g); p = cutPoly(p, [[103.5, 32], [108, 40]], [98, 40], 0); }
-      return p;
-    };
-    var legRegion = function (L, g) { return cutPoly(rbox(L.box), L.hip, L.foot, g); }; // g < 0 shrinks toward the foot
-    // torso halves: whole shape minus the parts that move on their own
-    var mFront = '<polygon fill="#fff" points="' + pts(cutPoly(rbox(BIG), SPINE, [30, 70], OV)) + '"/>' +
-      '<polygon points="' + pts(head(-0.6)) + '"/><polygon points="' + pts(legRegion(LEGS[0], -2.2)) + '"/>';
-    var mRear = '<polygon fill="#fff" points="' + pts(cutPoly(rbox(BIG), SPINE, [100, 70], OV)) + '"/>' +
-      '<polygon points="' + pts(tail(0, 0)) + '"/><polygon points="' + pts(tail(1, 0)) + '"/><polygon points="' + pts(tail(2, 0)) + '"/>' +
-      '<polygon points="' + pts(legRegion(LEGS[3], -2.2)) + '"/>';
-    defs += '<mask id="mx-m-f" maskUnits="userSpaceOnUse" x="0" y="0" width="130" height="120">' + mFront + '</mask>' +
-      '<mask id="mx-m-r" maskUnits="userSpaceOnUse" x="0" y="0" width="130" height="120">' + mRear + '</mask>';
-    function leg(i) {
-      var L = LEGS[i], up = cutPoly(cutPoly(rbox([L.box[0], L.box[1] - 10, L.box[2], L.box[3]]), L.hip, L.foot, HOV), L.knee, L.H, OV), lo = cutPoly(rbox(L.box), L.knee, L.foot, OV);
-      return '<g class="mx-lu">' + use(L.s, clip('u' + i, up)) +
-        '<g class="mx-ll">' + use(L.s, clip('l' + i, lo)) + disc(L.K, dist(L.knee[0], L.knee[1]) * 0.43) + '</g></g>';
-    }
-    var tailG = '<g class="mx-t0">' + use('main', clip('t0', tail(0, OV))) +
-      '<g class="mx-t1">' + use('main', clip('t1', tail(1, OV))) + disc(TP[1], dist(TAILC[1][0], TAILC[1][1]) * 0.47) +
-      '<g class="mx-t2">' + use('main', clip('t2', tail(2, OV))) + disc(TP[2], dist(TAILC[2][0], TAILC[2][1]) * 0.47) + '</g></g></g>';
-    var headG = '<g class="mx-whd"><path d="' + CAT_EAR + '"/>' + use('main', clip('hd', head(OV))) + disc(mid(NECK[0], NECK[1]), dist(NECK[0], NECK[1]) * 0.42) + '</g>';
-    var body = '<g class="mx-wk">' +
-      '<ellipse cx="62" cy="104.2" rx="46" ry="2.6" fill="url(#mx-wsg)" class="mx-wbsh"/>' +
-      '<ellipse class="mx-wsh" cy="104" rx="3" ry="1"/><ellipse class="mx-wsh" cy="104" rx="3" ry="1"/><ellipse class="mx-wsh" cy="104" rx="3" ry="1"/><ellipse class="mx-wsh" cy="104" rx="3" ry="1"/>' +
-      '<g class="mx-sil">' +
-        '<g class="mx-wf">' + leg(1) + '</g>' +
-        '<g class="mx-wr">' + leg(2) + '</g>' +
-        '<g class="mx-wr">' + tailG + '</g>' +
-        '<g class="mx-wr"><use href="#mx-c-main" mask="url(#mx-m-r)"/>' + leg(3) + '</g>' +
-        '<g class="mx-wf"><use href="#mx-c-main" mask="url(#mx-m-f)"/>' + disc(SPV, 10.8) + headG + leg(0) + '</g>' +
-      '</g></g>';
-    return '<svg viewBox="12 20 104 86" aria-hidden="true" focusable="false"><defs>' + defs + '</defs>' + body + '</svg>';
-  }
-
-  function fx(u) { return u < DUTY ? -STRIDE / 2 + STRIDE * u / DUTY : STRIDE / 2 - STRIDE * smooth((u - DUTY) / (1 - DUTY)); }
-  function fy(u) { return u < DUTY ? 0 : -LIFT * Math.sin(PI * (u - DUTY) / (1 - DUTY)); }
-  function rot(p, c, a) { var co = Math.cos(a), si = Math.sin(a), dx = p[0] - c[0], dy = p[1] - c[1]; return [c[0] + dx * co - dy * si, c[1] + dx * si + dy * co]; }
-  function deg(r) { return f1(r * 180 / PI); }
-
-  function Rig(svg) {
-    var q = function (sel) { return [].slice.call(svg.querySelectorAll(sel)); };
-    this.wk = svg.querySelector('.mx-wk'); this.front = q('.mx-wf'); this.rear = q('.mx-wr');
-    this.lu = q('.mx-lu'); this.ll = q('.mx-ll'); this.sh = q('.mx-wsh'); this.head = svg.querySelector('.mx-whd');
-    this.tg = [svg.querySelector('.mx-t0'), svg.querySelector('.mx-t1'), svg.querySelector('.mx-t2')];
-    // DOM order of legs: far fore, far hind, near hind, near fore -> map to LEGS indexes
-    this.order = [1, 2, 3, 0];
-    this.x = 0; this.phase = 0; this.amp = 0; this.t = 0;
-    this.by = 0; this.sp = 0; this.hr = 0; this.look = 0; this.crouch = 0;
-    this.ta = [0, 0, 0]; this.tv = [0, 0, 0]; this.prevBy = 0;
-  }
-  Rig.prototype.step = function (dt) { // secondary motion: tail chain springs (lag and sway)
-    var vy = (this.by - this.prevBy) / Math.max(dt, 1e-3); this.prevBy = this.by;
-    var w = 2 * PI / 1.5;
-    for (var i = 0; i < 3; i++) {
-      var target = (0.03 + 0.03 * i) * (0.4 + this.amp) * Math.sin(this.t * w - i * 0.8) + vy * 0.004 * (i + 1) - this.crouch * 0.05 * (i === 0 ? 1 : 0);
-      this.tv[i] += ((120 - 25 * i) * (target - this.ta[i]) - 10 * this.tv[i]) * dt;
-      this.ta[i] += this.tv[i] * dt;
-    }
-  };
-  Rig.prototype.render = function () {
-    var self = this, A = this.amp, ph = this.phase * 2 * PI;
-    this.by = -0.75 * A * Math.cos(2 * ph) + 1.6 * this.crouch;
-    this.sp = 0.022 * A * Math.sin(ph);
-    this.hr = 0.03 * A * Math.cos(2 * ph) + 0.12 * this.look - 0.04 * this.crouch;
-    var fT = 'translate(0 ' + f1(this.by) + ')', rT = fT + ' rotate(' + deg(this.sp) + ' ' + SPV[0] + ' ' + SPV[1] + ')';
-    this.wk.setAttribute('transform', 'translate(' + f1(this.x) + ' 0)');
-    this.front.forEach(function (g) { g.setAttribute('transform', fT); });
-    this.rear.forEach(function (g) { g.setAttribute('transform', rT); });
-    this.head.setAttribute('transform', 'rotate(' + deg(this.hr) + ' ' + f1(mid(NECK[0], NECK[1])[0]) + ' ' + f1(mid(NECK[0], NECK[1])[1]) + ')');
-    for (var i = 0; i < 3; i++) this.tg[i].setAttribute('transform', 'rotate(' + deg(this.ta[i]) + ' ' + f1(TP[i][0]) + ' ' + f1(TP[i][1]) + ')');
-    this.order.forEach(function (li, k) {
-      var L = LEGS[li], u = ((self.phase + L.off) % 1 + 1) % 1, lift = u < DUTY ? 0 : Math.sin(PI * (u - DUTY) / (1 - DUTY)) * A;
-      var T = [L.foot[0] + (L.c + fx(u)) * Math.max(A, 0.35), L.foot[1] + fy(u) * A];
-      var lt = [T[0], T[1] - self.by]; if (L.rear) lt = rot(lt, SPV, -self.sp);
-      // two-bone IK, keeping the drawn knee direction
-      var d = clamp(dist(L.H, lt), Math.abs(L.a - L.b) + 0.01, L.a + L.b - 0.01), phi = ang(L.H, lt);
-      var al = Math.acos(clamp((L.a * L.a + d * d - L.b * L.b) / (2 * L.a * d), -1, 1)), k1 = phi - al, k2 = phi + al;
-      var c1 = [L.H[0] + L.a * Math.cos(k1), L.H[1] + L.a * Math.sin(k1)];
-      var cr = (c1[0] - L.H[0]) * (lt[1] - L.H[1]) - (c1[1] - L.H[1]) * (lt[0] - L.H[0]);
-      var ka = (cr > 0 ? 1 : -1) === L.bend ? k1 : k2, Kn = [L.H[0] + L.a * Math.cos(ka), L.H[1] + L.a * Math.sin(ka)];
-      var d1 = ka - ang(L.H, L.K), d2 = ang(Kn, lt) - ang(L.K, L.foot) - d1;
-      self.lu[k].setAttribute('transform', 'rotate(' + deg(d1) + ' ' + f1(L.H[0]) + ' ' + f1(L.H[1]) + ')');
-      self.ll[k].setAttribute('transform', 'rotate(' + deg(d2) + ' ' + f1(L.K[0]) + ' ' + f1(L.K[1]) + ')');
-      var sh = self.sh[k], pulse = 1 + 0.3 * Math.exp(-u * 24) * A;
-      sh.setAttribute('cx', f1(T[0] - 1)); sh.setAttribute('rx', f1(3.8 * (1 - 0.5 * lift) * pulse)); sh.style.opacity = f1((L.s === 'main' ? 0.9 : 0.6) * (1 - 0.75 * lift));
-    });
-  };
 
   /* ------------------------------------------------------------ helpers */
   function el(tag, cls, text) {
@@ -382,65 +620,60 @@
     }, 2500);
   }
 
+  /* The walker is one canvas along the bottom right. Every frame the skeleton is posed at time t and its
+     merged field is rendered at the device pixel ratio, only over the cat's own box. */
+  var WK_H = 150, WK_S = 1.3, CAT_RGB = [11, 11, 13];
   function makeWalker() {
     removeWalker();
     walker = el('div', 'mx-walker');
     walker.setAttribute('aria-hidden', 'true');
-    walker.innerHTML = walkerSVG();
+    var w = Math.min(360, window.innerWidth || 360), dpr = Math.min(2, window.devicePixelRatio || 1), cv = el('canvas');
+    walker.style.width = w + 'px';
+    cv.width = Math.round(w * dpr); cv.height = Math.round(WK_H * dpr);
+    walker.appendChild(cv);
     root.insertBefore(walker, btn);
-    rig = new Rig(walker.querySelector('svg'));
+    var ctx = cv.getContext('2d');
+    rig = { w: w, dpr: dpr, cv: cv, ctx: ctx, img: ctx ? ctx.createImageData(cv.width, cv.height) : null, buf: new Uint8Array(cv.width * cv.height), box: null };
     return rig;
   }
   function removeWalker() { if (walker && walker.parentNode) walker.parentNode.removeChild(walker); walker = null; rig = null; }
+  function paint(R, sc, t) {
+    if (!R.img) return 1;
+    var W = R.cv.width, H = R.cv.height, buf = R.buf, d = R.img.data, old = R.box, x, y, i;
+    if (old) for (y = old[1]; y < old[3]; y++) for (x = old[0], i = y * W + x; x < old[2]; x++, i++) { buf[i] = 0; d[i * 4 + 3] = 0; }
+    var f = RIG.draw(sc, t, buf, W, H, R.dpr), b = f.box;
+    if (b) for (y = b[1]; y < b[3]; y++) for (x = b[0], i = y * W + x; x < b[2]; x++, i++) { var o = i * 4; d[o] = CAT_RGB[0]; d[o + 1] = CAT_RGB[1]; d[o + 2] = CAT_RGB[2]; d[o + 3] = buf[i]; }
+    var u = old && b ? [Math.min(old[0], b[0]), Math.min(old[1], b[1]), Math.max(old[2], b[2]), Math.max(old[3], b[3])] : (b || old);
+    if (u) R.ctx.putImageData(R.img, 0, 0, u[0], u[1], u[2] - u[0], u[3] - u[1]);
+    R.box = b;
+    return f.c;
+  }
+  // Where the badge centre will be, in walker canvas px (the bubble's centre does not move with its scale).
+  function badgeSpot(R) {
+    var wr = walker.getBoundingClientRect(), br = btn.getBoundingClientRect();
+    return [br.left + br.width / 2 - wr.left, br.top + br.height / 2 - wr.top + 1.8];
+  }
 
-  /* Walk in from the right edge (or on the spot in the demo), then arrive:
-     slow down, look up toward the bubble, crouch, and curl into it.
-     opts: { inPlace, onDone }. Returns { arrive } for the demo. */
+  /* Walk in from beyond the right edge (or on the spot in the demo), slow down, look up, sit and curl
+     into the bubble. opts: { inPlace, onDone }. Returns { arrive } for the demo. */
   function walkIn(opts) {
     opts = opts || {};
-    var R = makeWalker(), TW = 5, X0 = 140, t = 0, speedLP = 0, mode = 'walk', st = 0;
+    var R = makeWalker(), sc = RIG.scene(R.w, WK_H, WK_S, !!opts.inPlace), t = 0, inflated = false;
     btn.classList.remove('mx-on', 'mx-alive'); btn.classList.add('mx-forming');
     stopIdle();
-    R.x = opts.inPlace ? 0 : X0;
+    function place() { var p = badgeSpot(R); RIG.setBadge(sc, p[0], p[1]); }
+    if (!opts.inPlace) place();
     function step(dt) {
       if (rig !== R) return false;
-      t += dt; st += dt; R.t += dt;
-      if (mode === 'walk') {
-        var nx = R.x, sp;
-        if (opts.inPlace) { sp = 26; R.phase += sp * dt / LC; }
-        else { nx = X0 * (1 - smoother(Math.pow(clamp(t / TW, 0, 1), 0.8))); sp = (R.x - nx) / Math.max(dt, 1e-3); R.phase += (R.x - nx) / LC; }
-        speedLP = lerp(speedLP, sp, 0.25); R.x = nx; R.amp = clamp(speedLP / 14, 0, 1);
-        if (!opts.inPlace && t >= TW) { mode = 'look'; st = 0; }
-      } else if (mode === 'stop') { // demo: ease out of walking in place
-        var k = 1 - smooth(st / 0.6); R.phase += 26 * k * dt / LC; R.amp = k;
-        if (st >= 0.6) { mode = 'look'; st = 0; }
-      } else if (mode === 'look') {
-        R.amp = lerp(R.amp, 0, 0.2); R.look = smooth(st / 0.4);
-        if (st >= 0.5) { mode = 'crouch'; st = 0; }
-      } else if (mode === 'crouch') {
-        R.crouch = smooth(st / 0.22); R.look = 1 - R.crouch;
-        if (st >= 0.24) { R.step(dt); R.render(); curl(R, opts.onDone); return false; }
-      }
-      R.step(dt); R.render();
+      t += dt;
+      var c = paint(R, sc, t);
+      if (c >= 0.5 && !inflated) { inflated = true; btn.classList.add('mx-on'); inflate(); }
+      if (c >= 1) { btn.classList.remove('mx-forming'); removeWalker(); finishArrival(); if (opts.onDone) opts.onDone(); return false; }
       return true;
     }
-    R.step(1 / 60); R.render();
+    paint(R, sc, 0);
     addTask(step);
-    return { arrive: function () { if (mode === 'walk') { mode = opts.inPlace ? 'stop' : 'look'; st = 0; } } };
-  }
-  // Squash, then shrink into the bubble while the glass inflates and the curled badge springs in.
-  function curl(R, onDone) {
-    var wr = walker.getBoundingClientRect(), br = btn.getBoundingClientRect();
-    walker.style.transformOrigin = f1(br.left + br.width / 2 - wr.left) + 'px ' + f1(br.top + br.height / 2 - wr.top) + 'px';
-    btn.classList.add('mx-on'); btn.classList.remove('mx-forming');
-    inflate();
-    anim(badgeEl, [{ opacity: 0, transform: 'scale(.45) rotate(-25deg)' }, { opacity: 1, transform: 'scale(1.08) rotate(4deg)', offset: 0.62 }, { opacity: 1, transform: 'scale(1)' }],
-      { duration: 560, delay: 230, fill: 'backwards', easing: 'cubic-bezier(.3,.7,.3,1)' });
-    var a = anim(walker, [{ transform: 'scale(1,1)', opacity: 1 }, { transform: 'scale(1.05,.9)', opacity: 1, offset: 0.22 },
-      { transform: 'scale(.62,.7)', opacity: 0.9, offset: 0.62 }, { transform: 'scale(.3,.3)', opacity: 0 }],
-      { duration: 560, easing: 'cubic-bezier(.45,0,.3,1)', fill: 'forwards' });
-    function done() { if (rig === R) removeWalker(); finishArrival(); if (onDone) onDone(); }
-    if (a) a.onfinish = done; else done();
+    return { arrive: function () { if (opts.inPlace && sc.pl.tl.tStop === Infinity) { RIG.stopAt(sc, t); place(); } } };
   }
   // The glass bubble inflates on a spring with a soft halo burst.
   function inflate() {
@@ -451,10 +684,8 @@
     anim(btn.querySelector('.mx-glow2'), [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 0.85, transform: 'scale(1.15)', offset: 0.35 }, { opacity: 0, transform: 'scale(1.5)' }],
       { duration: 900, delay: 200, fill: 'backwards', easing: 'ease-out' });
   }
-  function finishArrival() {
+  function finishArrival() { // the walker's last frame is the badge itself (eyes open), so nothing pops
     btn.classList.remove('mx-forming');
-    var eyes = btn.querySelector('.mx-eyes');
-    anim(eyes, [{ transform: 'scaleY(0)' }, { transform: 'scaleY(0)', offset: 0.35 }, { transform: 'scaleY(1)' }], { duration: 520, easing: 'ease-out' });
     becomeAlive();
   }
   function showBubble(animated) {
