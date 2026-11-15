@@ -132,3 +132,6 @@ MAX stream, design decisions to follow:
    article of the stored laws (AMLR first), each with verbatim excerpts
    verified by script, topic tags, applicability and 'draft, not reviewed'
    status; a review queue promotes drafts to verified after the CHECK stream.
+
+## Owner decisions (2026-11-15), see strategy/decisions-log.md
+MAX builder: (1) add obligations actually in force with real application dates (F-019); (2) 'Covered' = control with owner AND tested (F-004), configurable; (3) keep interface and content work in parallel (do not pause the interface for two weeks).
