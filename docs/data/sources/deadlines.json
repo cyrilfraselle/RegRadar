@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-15T13:22:56+00:00",
-  "count": 95
+  "generated": "2026-11-16T14:40:51+00:00",
+  "count": 106
  },
  "deadlines": [
   {
@@ -488,6 +488,19 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
+   "id": "8b93456e80bb",
+   "date": "2026-10-18",
+   "kind": "reporting deadline",
+   "title": "News Announcement_SDD_GL",
+   "source_doc_id": "amla-library-ff54c0d692f3",
+   "source": "amla-library",
+   "url": "https://www.amla.europa.eu/document/download/af293466-527f-4cfd-950b-d165a08a2678_en?filename=News%20Announcement%20-%20SDD%20GL.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "How to express interest AMLA invites stakeholders to submit their expressions of interest via the EU Survey below by 18 October 2026 at 23h59 CEST.",
+   "loc": "p. 1, para 4"
+  },
+  {
    "id": "13877371051f",
    "date": "2026-10-26",
    "kind": "entry into force",
@@ -730,6 +743,116 @@
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
    "quote": "It shall apply from 16 November 2026.",
    "loc": "Article 2, para 2"
+  },
+  {
+   "id": "8f5e5901f2e6",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2546 of 16 November 2026 amending Decision (CFSP) 2019/797 concerning restrictive measures against cyber-attacks threatening the Union or its Member States",
+   "source_doc_id": "celex-32026D2546",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2546",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "964a39bd7e31",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Implementing Regulation (EU) 2026/2550 of 16 November 2026 implementing Regulation (EU) 2019/796 concerning restrictive measures against cyber-attacks threatening the Union or its Member States",
+   "source_doc_id": "celex-32026R2550",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2550",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "cc17552054aa",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Implementing Regulation (EU) 2026/2568 of 16 November 2026 implementing Regulation (EU) 2024/386 establishing restrictive measures against Hamas and Palestinian Islamic Jihad and those who support, facilitate or enable their violent actions",
+   "source_doc_id": "celex-32026R2568",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2568",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "534ea972c6fa",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2570 of 16 November 2026 amending Decision (CFSP) 2024/385 establishing restrictive measures against Hamas and the Palestinian Islamic Jihad and those who support, facilitate or enable their violent actions",
+   "source_doc_id": "celex-32026D2570",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2570",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "e48332193110",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Implementing Regulation (EU) 2026/2558 of 16 November 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2558",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "5f28324f9db8",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2556 of 16 November 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2556",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "5ac76a0169e3",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Implementing Regulation (EU) 2026/2569 of 16 November 2026 implementing Regulation (EU) 2020/1998 concerning restrictive measures against serious human rights violations and abuses",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2569",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "8e6da928cfcd",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Implementing Regulation (EU) 2026/2574 of 16 November 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2574",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "81b646d39530",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2575 of 16 November 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2575",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "082f6686a598",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2571 of 16 November 2026 amending Decision (CFSP) 2020/1999 concerning restrictive measures against serious human rights violations and abuses",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2571",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
    "id": "98c1f8791feb",

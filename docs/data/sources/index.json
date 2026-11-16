@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-15T13:22:56+00:00",
-  "count": 159,
-  "corpus_bytes": 3512118
+  "generated": "2026-11-16T14:40:51+00:00",
+  "count": 170,
+  "corpus_bytes": 3577107
  },
  "documents": [
   {
@@ -327,6 +327,26 @@
    ],
    "parent": null,
    "paragraphs": 10
+  },
+  {
+   "id": "amla-hearings-8eddb9934486",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on Home-Host Supervisory Cooperation",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-home-host-supervisory-cooperation-2026-05-28_en",
+   "publication_date": "2026-05-13",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "e9f78c89465268b722f08ef0882c051e9a2d92243f6d5ac70f87884b2e206333",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1265,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 11
   },
   {
    "id": "amla-hearings-99b5c6c4ee05",
@@ -894,6 +914,29 @@
    "paragraphs": 208
   },
   {
+   "id": "amla-library-38ddd130dcf9",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AFC_Summit_HVK_07.10.2026",
+   "url": "https://www.amla.europa.eu/document/download/b8e48098-daa4-4ee7-810b-4e304be1f87f_en?filename=AFC_Summit_HVK_07.10.2026.pdf",
+   "publication_date": "2026-10-07",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "746f7c8285060d61c207b343059646074ea59b73128dd8d29f29840394e6e1ea",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "pdf",
+   "pages_total": 4,
+   "chars_stored": 10761,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 24
+  },
+  {
    "id": "amla-library-43d001486f81",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1077,6 +1120,26 @@
    "paragraphs": 177
   },
   {
+   "id": "amla-library-c8c0f6f109b2",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Privacy_Statement_SDD_RT",
+   "url": "https://www.amla.europa.eu/document/download/4d6ed57f-9116-4562-9f0e-67a26de99ad8_en?filename=Privacy%20Statement_SDD_RT.pdf",
+   "publication_date": "2026-10-02",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "4fbe5bdc7185b2ed4572e01ac3cfbf20847fd4c74669834590439160f0e3587a",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 1964,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 6
+  },
+  {
    "id": "amla-library-cd27b232a75d",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1167,6 +1230,29 @@
    "paragraphs": 6
   },
   {
+   "id": "amla-library-ff54c0d692f3",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "News Announcement_SDD_GL",
+   "url": "https://www.amla.europa.eu/document/download/af293466-527f-4cfd-950b-d165a08a2678_en?filename=News%20Announcement%20-%20SDD%20GL.pdf",
+   "publication_date": "2026-10-02",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "5f4ad8e70fb2d18f67baecae5e50078cf47829a586ef38c2b0693396a020b932",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2469,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "simplified-edd"
+   ],
+   "parent": null,
+   "paragraphs": 5
+  },
+  {
    "id": "amla-news-25ba5b2df2f3",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1232,6 +1318,70 @@
    ],
    "parent": null,
    "paragraphs": 3
+  },
+  {
+   "id": "amla-news-2e337f7ab926",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Chair Bruna Szego in interview with Money Laundering Bulletin",
+   "url": "https://www.amla.europa.eu/amla-chair-bruna-szego-interview-money-laundering-bulletin_en",
+   "publication_date": "2026-10-07",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "bc0a3deded2f8009cf4c9e78961a004477c69ffdc536376955b44b0d59a273c4",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1446,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 4
+  },
+  {
+   "id": "amla-news-55bc303d93b0",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Vice-Chair Juan Manuel Vega Serrano takes part in panel at Foro La Toja",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-vice-chair-juan-manuel-vega-serrano-takes-part-panel-foro-la-toja_en",
+   "publication_date": "2026-10-06",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "cc721d69a6ab67759824c15d638053077414704584a88187564b8ef7d11e83e1",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 803,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 3
+  },
+  {
+   "id": "amla-news-6777126e95c2",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Executive Board Member Hennie Verbeek-Kusters speaks at the 10th Austrian Anti-Money Laundering Conference in Vienna",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-hennie-verbeek-kusters-speaks-10th-austrian-anti-money-laundering_en",
+   "publication_date": "2026-10-06",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "9f508ec522f8e8b977592eb929656f44cafa19c39d1089b6a4591f728096ab6e",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1562,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 5
   },
   {
    "id": "amla-news-712272c2e37f",
@@ -1970,6 +2120,50 @@
    "paragraphs": 59
   },
   {
+   "id": "celex-32026D2546",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2546 of 16 November 2026 amending Decision (CFSP) 2019/797 concerning restrictive measures against cyber-attacks threatening the Union or its Member States",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2546",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "92850f33d37d5324fedbf09747cccf4ca4c2fda8589bb9a611d61f7257659fb6",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 3214,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 34
+  },
+  {
+   "id": "celex-32026D2570",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2570 of 16 November 2026 amending Decision (CFSP) 2024/385 establishing restrictive measures against Hamas and the Palestinian Islamic Jihad and those who support, facilitate or enable their violent actions",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2570",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "f2868321fbbeda88c91769cde51072d003580593447e63f4d81606159a749147",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 3749,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 44
+  },
+  {
    "id": "celex-32026R0046",
    "source": "eurlex-cellar-aml-family",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -2083,6 +2277,50 @@
    ],
    "parent": null,
    "paragraphs": 38
+  },
+  {
+   "id": "celex-32026R2550",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2550 of 16 November 2026 implementing Regulation (EU) 2019/796 concerning restrictive measures against cyber-attacks threatening the Union or its Member States",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2550",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "2f870a9277c0d3aba9d28d75536b8257dcf4649648a08126663187a78f6f2d00",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 3354,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 36
+  },
+  {
+   "id": "celex-32026R2568",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2568 of 16 November 2026 implementing Regulation (EU) 2024/386 establishing restrictive measures against Hamas and Palestinian Islamic Jihad and those who support, facilitate or enable their violent actions",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2568",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "0e70a65e760f68f94a973e49b0af657e5d172cbd38f8f5fb8bb3ff9bbc1bf36c",
+   "retrieved": "2026-11-16T14:40:51+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 3269,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 42
   },
   {
    "id": "celex-52025DP0342",
