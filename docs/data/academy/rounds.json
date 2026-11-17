@@ -22,7 +22,8 @@
       "transaction-monitoring": "Monitoring",
       "sanctions-screening": "Sanctions",
       "suspicious-transaction-reports": "STRs",
-      "dora-mica-primer": "DORA, MiCA"
+      "dora-mica-primer": "DORA, MiCA",
+      "governance": "Governance"
     }
   },
 
@@ -761,6 +762,167 @@
           "quote": "All suspicious transactions, including attempted transactions and suspicions arising from the inability to conduct customer due diligence shall be reported in accordance with the first subparagraph." }
       ],
       "reading": [ "FATF Recommendation 20 (reporting of suspicious transactions)", "Your national FIU's guidance on writing reports" ]
+    },
+    {
+      "id": "g-gov-roles",
+      "module": "governance",
+      "type": "sort",
+      "title": "Who does what?",
+      "intro": "Sort each duty under the role that holds it. The firm is a fictional payment and e-money firm. In a small firm one person may hold both compliance roles, so read the duties, not the job titles.",
+      "minutes": 2,
+      "choices": [
+        {
+          "id": "mb",
+          "label": "Management body",
+          "hint": "in its management function"
+        },
+        {
+          "id": "cm",
+          "label": "Compliance manager",
+          "hint": "a member of the management body"
+        },
+        {
+          "id": "co",
+          "label": "Compliance officer",
+          "hint": "appointed by the management body"
+        }
+      ],
+      "practice": {
+        "id": "p",
+        "kicker": "Practice",
+        "text": "Appoints the compliance officer.",
+        "hint": "Hint: the officer is appointed at the top of the firm.",
+        "answer": "mb",
+        "why": "The compliance officer is appointed by the management body in its management function.",
+        "cite": {
+          "celex": "32024R1624",
+          "art": "11",
+          "para": "2"
+        }
+      },
+      "cards": [
+        {
+          "id": "c1",
+          "kicker": "Policies",
+          "text": "Approves the firm's internal AML policies.",
+          "answer": "mb",
+          "why": "Internal policies are approved by the management body in its management function. Procedures and controls are approved at least at the level of the compliance manager.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "9",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c2",
+          "kicker": "Role 2",
+          "text": "Is a member of the management body and is responsible for ensuring the firm complies with the AMLR.",
+          "answer": "cm",
+          "why": "That is the compliance manager.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "1"
+          }
+        },
+        {
+          "id": "c3",
+          "kicker": "Role 3",
+          "text": "Is responsible for the policies, procedures and controls in day-to-day operation, and is a contact point for the supervisor.",
+          "answer": "co",
+          "why": "That is the compliance officer.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c4",
+          "kicker": "Risk assessment",
+          "text": "Draws up the business-wide risk assessment.",
+          "answer": "co",
+          "why": "The business-wide risk assessment is drawn up by the compliance officer and approved by the management body in its management function.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "10",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c5",
+          "kicker": "Risk assessment",
+          "text": "Approves the business-wide risk assessment.",
+          "answer": "mb",
+          "why": "The management body in its management function approves it. The compliance officer draws it up.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "10",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c6",
+          "kicker": "Weaknesses",
+          "text": "Is responsible for receiving information on significant or material weaknesses in the policies, procedures and controls.",
+          "answer": "cm",
+          "why": "Receiving that information is part of the compliance manager's role.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "1"
+          }
+        },
+        {
+          "id": "c7",
+          "kicker": "Reports",
+          "text": "Is responsible for reporting suspicious transactions to the Financial Intelligence Unit (FIU).",
+          "answer": "co",
+          "why": "The compliance officer is also responsible for reporting suspicious transactions to the FIU in accordance with Article 69(6).",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c8",
+          "kicker": "Yearly report",
+          "text": "Submits to the management body, at least once a year, the report on how the policies, procedures and controls are implemented, and takes action to remedy deficiencies in good time.",
+          "answer": "cm",
+          "why": "The compliance manager submits the report, which the compliance officer draws up, and takes the necessary actions to remedy deficiencies in a timely manner.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "6"
+          }
+        }
+      ],
+      "remember": [
+        "Policies are in writing and approved by the management body in its management function.",
+        "The compliance manager is a member of the management body; the compliance officer runs the day-to-day work and is the contact point for the supervisor.",
+        "Where size and risk justify it, one person may perform both functions.",
+        "Check your national rules and the AMLA guidelines on proportionality."
+      ],
+      "law": [
+        {
+          "celex": "32024R1624",
+          "art": "11",
+          "para": "1",
+          "label": "Compliance manager",
+          "quote": "The compliance manager shall ensure that the obliged entity’s internal policies, procedures and controls are consistent with the obliged entity’s risk exposure and that they are implemented."
+        },
+        {
+          "celex": "32024R1624",
+          "art": "11",
+          "para": "7",
+          "label": "Same person, both roles",
+          "quote": "Where the nature of the business of the obliged entity, including its risks and complexity, and its size justify it, the functions of the compliance manager and the compliance officer may be performed by the same natural person."
+        }
+      ],
+      "reading": [
+        "AMLA guidelines on the extent of internal policies, procedures and controls (Art. 9(4), when published)"
+      ]
     }
   ],
 
@@ -924,6 +1086,47 @@
         { "id": "c", "label": "Leave it to the manager: it is his client", "verdict": "poor",
           "consequence": "Sending reports to the FIU is the compliance officer's job, and the report is due promptly. It is not the relationship manager's decision.",
           "cite": { "celex": "32024R1624", "art": "11", "para": "2" } }
+      ]
+    },
+    {
+      "id": "d-gov",
+      "module": "governance",
+      "title": "Sales wants a faster yes",
+      "text": "Brindle Pay, a fictional payment and e-money firm. The compliance officer has asked for extra checks on a new high-volume merchant before it goes live. The head of sales, who has a quarterly target tied to this merchant, says: 'Drop the checks. It is a business call.'",
+      "options": [
+        {
+          "id": "a",
+          "label": "Keep the checks, record the disagreement, and if it is not resolved raise it directly with the management body",
+          "verdict": "best",
+          "consequence": "The compliance officer can report directly to the management body in its management function, and raise concerns and warn it where risks affect the firm. That is the route for a disagreement like this.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "5"
+          }
+        },
+        {
+          "id": "b",
+          "label": "Let sales decide: they own the customer relationship",
+          "verdict": "poor",
+          "consequence": "The firm must take measures so that the compliance officer's decisions are not undermined or unduly influenced by the firm's commercial interests.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "4"
+          }
+        },
+        {
+          "id": "c",
+          "label": "Drop the checks to keep the peace, and note it in an email",
+          "verdict": "poor",
+          "consequence": "Giving way is the situation the firm must guard against: the compliance officer's decisions are not to be undermined by commercial interests, and a direct line to the management body exists for such cases.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "11",
+            "para": "4"
+          }
+        }
       ]
     }
   ],

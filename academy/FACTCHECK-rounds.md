@@ -314,6 +314,32 @@ Situation (fictional): You are about to report a suspicion on a long-standing cl
 | `d-str/b` | Wait until after the lunch | poor | Waiting delays a report that should be made promptly. And if the manager raises it at lunch, he risks disclosing that the client's transactions are being assessed, which is prohibited. | Art. 73 para. 1 | AMLR Art. 69(1): promptly; Art. 73(1): no disclosure that transactions are being assessed. Waiting is not itself disclosure: the consequence now says the lunch conversation risks it | ok after review (logic gap fixed) |
 | `d-str/c` | Leave it to the manager: it is his client | poor | Sending reports to the FIU is the compliance officer's job, and the report is due promptly. It is not the relationship manager's decision. | Art. 11 para. 2 | AMLR Art. 11(2) and 69(6): the compliance officer reports to the FIU; Art. 69(1): promptly | ok after review (cite moved to Art. 11(2); the retaliation sentence removed: the shown citation does not support it) |
 
+## Game `g-gov-roles`: Who does what? (sort, topic `governance`, added 2026-11-17; independent check pending)
+
+Facts: AMLR Arts 9 to 11 only. Roles: management body (in its management function), compliance manager, compliance officer.
+
+| Key | Reason shown | Citation shown | Source checked | Verdict |
+|---|---|---|---|---|
+| `g-gov-roles/p` | The compliance officer is appointed by the management body in its management function. | Art. 11 para. 2 | AMLR Art. 11(2): compliance officer appointed by the management body in its management function | ok (self-check) |
+| `g-gov-roles/c1` | Internal policies are approved by the management body in its management function. Procedures and controls are approved at least at the level of the compliance manager. | Art. 9 para. 2 | AMLR Art. 9(2), last subparagraph: policies approved by the management body in its management function; procedures and controls at least at the level of the compliance manager | ok (self-check) |
+| `g-gov-roles/c2` | That is the compliance manager. | Art. 11 para. 1 | AMLR Art. 11(1), first subparagraph | ok (self-check) |
+| `g-gov-roles/c3` | That is the compliance officer. | Art. 11 para. 2 | AMLR Art. 11(2), first sentence: day-to-day operation; contact point for competent authorities | ok (self-check) |
+| `g-gov-roles/c4` | The business-wide risk assessment is drawn up by the compliance officer and approved by the management body in its management function. | Art. 10 para. 2 | AMLR Art. 10(2), second subparagraph | ok (self-check) |
+| `g-gov-roles/c5` | The management body in its management function approves it. The compliance officer draws it up. | Art. 10 para. 2 | AMLR Art. 10(2), second subparagraph | ok (self-check) |
+| `g-gov-roles/c6` | Receiving that information is part of the compliance manager's role. | Art. 11 para. 1 | AMLR Art. 11(1), second subparagraph: compliance manager responsible for receiving information on significant or material weaknesses | ok (self-check) |
+| `g-gov-roles/c7` | The compliance officer is also responsible for reporting suspicious transactions to the FIU in accordance with Article 69(6). | Art. 11 para. 2 | AMLR Art. 11(2), last sentence of the first subparagraph; Art. 69(6) | ok (self-check) |
+| `g-gov-roles/c8` | The compliance manager submits the report, which the compliance officer draws up, and takes the necessary actions to remedy deficiencies in a timely manner. | Art. 11 para. 6 | AMLR Art. 11(6): report once a year, drawn up by the compliance officer, submitted by the compliance manager; remedy deficiencies in a timely manner | ok (self-check) |
+
+### `d-gov`: Sales wants a faster yes (topic `governance`, added 2026-11-17)
+
+Situation (fictional): Brindle Pay, a fictional payment and e-money firm. The compliance officer asked for extra checks on a new high-volume merchant; the head of sales says to drop them.
+
+| Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
+|---|---|---|---|---|---|---|
+| `d-gov/a` | Keep the checks, record the disagreement, and if it is not resolved raise it directly with the management body | best | The compliance officer can report directly to the management body in its management function, and raise concerns and warn it where risks affect the firm. That is the route for a disagreement like this. | Art. 11 para. 5 | AMLR Art. 11(5), first subparagraph: direct reporting to the management body; raise concerns and warn. 'Record the disagreement' is practice wording | ok (self-check) |
+| `d-gov/b` | Let sales decide: they own the customer relationship | poor | The firm must take measures so that the compliance officer's decisions are not undermined or unduly influenced by the firm's commercial interests. | Art. 11 para. 4 | AMLR Art. 11(4): decisions of the compliance officer not undermined or unduly influenced by commercial interests | ok (self-check) |
+| `d-gov/c` | Drop the checks to keep the peace, and note it in an email | poor | Giving way is the situation the firm must guard against: the compliance officer's decisions are not to be undermined by commercial interests, and a direct line to the management body exists for such cases. | Art. 11 para. 4 | AMLR Art. 11(4) and 11(5). 'Giving way is the situation the firm must guard against' is a reading of Art. 11(4) | ok (self-check) |
+
 ## Not verified by a primary source in this repository
 
 - The three-stage model (placement, layering, integration), structuring, and the layering and
