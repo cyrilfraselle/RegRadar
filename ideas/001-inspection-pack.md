@@ -1,11 +1,11 @@
 ---
 id: 001-inspection-pack
 title: One-click inspection pack for the supervisor
-status: proposed
+status: prototyped
 users: one-person compliance team at a payment, e-money or crypto firm
 needs_owner: false
 effort: M
-prototype:
+prototype: docs/labs/001-inspection-pack/
 ---
 
 ![Mockup, illustrative](001-inspection-pack.mockup.svg)
