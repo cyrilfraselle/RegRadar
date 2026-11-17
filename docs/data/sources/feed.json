@@ -3,16 +3,42 @@
   "purpose": "Ranked story cards: one card per story, the primary source first, other outlets beneath. Built from engine entries and the legacy RegWatch archive (docs/data/items.json, read only).",
   "ranking": "regwatch_sources/classify.py rank(): band (2 in-scope primary, 1 other primary, 0 news) x 100 + score; score = type weight (legislation 85 ... supervisory communication 30; news 15), +5 open/final/in force, +2 per topic (max 10), -1 per week of age (max 20). Primary always outranks news.",
   "tiers": {
-   "important": 154,
+   "important": 157,
    "critical": 64,
-   "info": 182
+   "info": 179
   },
-  "news_cap": "news-only cards are at most 20% of the feed; 96 lower-ranked news cards dropped this run",
+  "news_cap": "news-only cards are at most 20% of the feed; 95 lower-ranked news cards dropped this run",
   "window_days": 120,
-  "generated": "2026-11-16T14:40:51+00:00",
+  "generated": "2026-11-17T15:28:31+00:00",
   "cards": 400
  },
  "cards": [
+  {
+   "lead": {
+    "id": "celex-32026D2554",
+    "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
+    "date": "2026-11-17",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "celex-32026D2554",
+    "origin": "engine",
+    "rank": 292.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 292.0,
+   "tier": "important",
+   "news_only": false
+  },
   {
    "lead": {
     "id": "celex-32026D2546",
@@ -30,12 +56,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2546",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -56,12 +82,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2550",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -82,12 +108,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2568",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -108,12 +134,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2570",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -132,14 +158,14 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026R2558",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -158,14 +184,14 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026D2556",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -184,14 +210,14 @@
     ],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "celex-32026R2569",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -212,12 +238,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -238,12 +264,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -264,12 +290,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -290,12 +316,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2508",
     "origin": "engine",
-    "rank": 291.29,
+    "rank": 291.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.29,
+   "rank": 291.14,
    "tier": "important",
    "news_only": false
   },
@@ -316,12 +342,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2507",
     "origin": "engine",
-    "rank": 291.29,
+    "rank": 291.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.29,
+   "rank": 291.14,
    "tier": "important",
    "news_only": false
   },
@@ -342,12 +368,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2490",
     "origin": "engine",
-    "rank": 290.29,
+    "rank": 290.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 290.29,
+   "rank": 290.14,
    "tier": "important",
    "news_only": false
   },
@@ -368,12 +394,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2449",
     "origin": "engine",
-    "rank": 289.57,
+    "rank": 289.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.57,
+   "rank": 289.43,
    "tier": "important",
    "news_only": false
   },
@@ -394,12 +420,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2374",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -420,12 +446,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2397",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -446,12 +472,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2375",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -472,12 +498,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2363",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -498,12 +524,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2364",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -524,12 +550,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2365",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -550,12 +576,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2366",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -576,12 +602,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2367",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -602,12 +628,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2369",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -628,12 +654,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2368",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -654,12 +680,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2378",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -680,12 +706,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2362",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -706,12 +732,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2386",
     "origin": "engine",
-    "rank": 289.14,
+    "rank": 289.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.14,
+   "rank": 289.0,
    "tier": "important",
    "news_only": false
   },
@@ -721,58 +747,6 @@
     "title": "Council Decision (CFSP) 2026/2372 of 26 October 2026 amending Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
     "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2372",
     "date": "2026-10-27",
-    "authority": "EU Publications Office (EUR-Lex data)",
-    "source": "eurlex-cellar-ojl-recent",
-    "type": "legislation",
-    "status": "in force",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "",
-    "origin": "engine",
-    "rank": 289.14,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 289.14,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "celex-32026D2385",
-    "title": "Council Decision (CFSP) 2026/2385 of 26 October 2026 amending Decision (CFSP) 2016/610 on a European Union CSDP Military Training Mission in the Central African Republic (EUTM RCA)",
-    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2385",
-    "date": "2026-10-27",
-    "authority": "EU Publications Office (EUR-Lex data)",
-    "source": "eurlex-cellar-ojl-recent",
-    "type": "legislation",
-    "status": "in force",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "",
-    "origin": "engine",
-    "rank": 289.14,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 289.14,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "celex-32026D2392",
-    "title": "Political and Security Committee Decision (CFSP) 2026/2392 of 14 October 2026 extending the mandate of the Head of Mission of the European Union Advisory Mission in support of Security Sector Reform in Iraq (EUAM Iraq) (EUAM Iraq/2/2026)",
-    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2392",
-    "date": "2026-10-26",
     "authority": "EU Publications Office (EUR-Lex data)",
     "source": "eurlex-cellar-ojl-recent",
     "type": "legislation",
@@ -795,6 +769,58 @@
   },
   {
    "lead": {
+    "id": "celex-32026D2385",
+    "title": "Council Decision (CFSP) 2026/2385 of 26 October 2026 amending Decision (CFSP) 2016/610 on a European Union CSDP Military Training Mission in the Central African Republic (EUTM RCA)",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2385",
+    "date": "2026-10-27",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "",
+    "origin": "engine",
+    "rank": 289.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 289.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "celex-32026D2392",
+    "title": "Political and Security Committee Decision (CFSP) 2026/2392 of 14 October 2026 extending the mandate of the Head of Mission of the European Union Advisory Mission in support of Security Sector Reform in Iraq (EUAM Iraq) (EUAM Iraq/2/2026)",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2392",
+    "date": "2026-10-26",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "",
+    "origin": "engine",
+    "rank": 288.86,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 288.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "celex-32026R2354",
     "title": "Commission Implementing Regulation (EU) 2026/2354 of 16 October 2026 on formats for submitting beneficial ownership information",
     "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2354",
@@ -810,12 +836,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2354",
     "origin": "engine",
-    "rank": 288.43,
+    "rank": 288.29,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 288.43,
+   "rank": 288.29,
    "tier": "critical",
    "news_only": false
   },
@@ -836,12 +862,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 285.29,
+    "rank": 285.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 285.29,
+   "rank": 285.14,
    "tier": "important",
    "news_only": false
   },
@@ -862,12 +888,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 285.29,
+    "rank": 285.14,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 285.29,
+   "rank": 285.14,
    "tier": "critical",
    "news_only": false
   },
@@ -888,12 +914,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 285.14,
+    "rank": 285.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 285.14,
+   "rank": 285.0,
    "tier": "important",
    "news_only": false
   },
@@ -914,12 +940,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 284.57,
+    "rank": 284.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.57,
+   "rank": 284.43,
    "tier": "important",
    "news_only": false
   },
@@ -940,12 +966,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 284.14,
+    "rank": 284.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.14,
+   "rank": 284.0,
    "tier": "important",
    "news_only": false
   },
@@ -966,12 +992,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 284.0,
+    "rank": 283.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.0,
+   "rank": 283.86,
    "tier": "important",
    "news_only": false
   },
@@ -992,12 +1018,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 284.0,
+    "rank": 283.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.0,
+   "rank": 283.86,
    "tier": "important",
    "news_only": false
   },
@@ -1018,12 +1044,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 283.29,
+    "rank": 283.14,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 283.29,
+   "rank": 283.14,
    "tier": "critical",
    "news_only": false
   },
@@ -1044,12 +1070,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 283.29,
+    "rank": 283.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 283.29,
+   "rank": 283.14,
    "tier": "important",
    "news_only": false
   },
@@ -1070,12 +1096,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 282.29,
+    "rank": 282.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 282.29,
+   "rank": 282.14,
    "tier": "important",
    "news_only": false
   },
@@ -1096,12 +1122,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 282.14,
+    "rank": 282.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 282.14,
+   "rank": 282.0,
    "tier": "important",
    "news_only": false
   },
@@ -1122,12 +1148,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 282.14,
+    "rank": 282.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 282.14,
+   "rank": 282.0,
    "tier": "important",
    "news_only": false
   },
@@ -1148,12 +1174,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.86,
+    "rank": 281.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.86,
+   "rank": 281.71,
    "tier": "important",
    "news_only": false
   },
@@ -1174,12 +1200,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.86,
+    "rank": 281.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.86,
+   "rank": 281.71,
    "tier": "important",
    "news_only": false
   },
@@ -1200,12 +1226,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.86,
+    "rank": 281.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.86,
+   "rank": 281.71,
    "tier": "important",
    "news_only": false
   },
@@ -1226,12 +1252,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.86,
+    "rank": 281.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.86,
+   "rank": 281.71,
    "tier": "important",
    "news_only": false
   },
@@ -1252,12 +1278,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.86,
+    "rank": 281.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.86,
+   "rank": 281.71,
    "tier": "important",
    "news_only": false
   },
@@ -1278,7 +1304,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-dbe5e7761f34",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [
@@ -1298,7 +1324,7 @@
     }
    ],
    "size": 3,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1319,7 +1345,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-2c9307a49c44",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [
@@ -1346,7 +1372,7 @@
     }
    ],
    "size": 4,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1367,7 +1393,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-d2114c2e15ee",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [
@@ -1394,7 +1420,7 @@
     }
    ],
    "size": 4,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1415,7 +1441,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-cfde034916be",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [
@@ -1456,7 +1482,7 @@
     }
    ],
    "size": 6,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1477,12 +1503,12 @@
     "is_news": false,
     "doc_id": "amla-instruments-51a0aec27558",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1503,12 +1529,12 @@
     "is_news": false,
     "doc_id": "amla-instruments-48e5213f80e7",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1529,7 +1555,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-b322780192c5",
     "origin": "engine",
-    "rank": 281.71,
+    "rank": 281.57,
     "tier": "critical"
    },
    "also": [
@@ -1542,7 +1568,7 @@
     }
    ],
    "size": 2,
-   "rank": 281.71,
+   "rank": 281.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1563,12 +1589,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.43,
+    "rank": 281.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.43,
+   "rank": 281.29,
    "tier": "important",
    "news_only": false
   },
@@ -1589,12 +1615,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.43,
+    "rank": 281.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.43,
+   "rank": 281.29,
    "tier": "important",
    "news_only": false
   },
@@ -1615,7 +1641,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.29,
+    "rank": 281.14,
     "tier": "important"
    },
    "also": [
@@ -1628,7 +1654,7 @@
     }
    ],
    "size": 2,
-   "rank": 281.29,
+   "rank": 281.14,
    "tier": "important",
    "news_only": false
   },
@@ -1649,12 +1675,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.29,
+    "rank": 281.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.29,
+   "rank": 281.14,
    "tier": "important",
    "news_only": false
   },
@@ -1675,12 +1701,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.0,
+    "rank": 279.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.0,
+   "rank": 279.86,
    "tier": "important",
    "news_only": false
   },
@@ -1701,12 +1727,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 279.86,
+    "rank": 279.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 279.86,
+   "rank": 279.71,
    "tier": "important",
    "news_only": false
   },
@@ -1727,12 +1753,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 279.86,
+    "rank": 279.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 279.86,
+   "rank": 279.71,
    "tier": "important",
    "news_only": false
   },
@@ -1751,7 +1777,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-533bd851ab13",
     "origin": "engine",
-    "rank": 279.71,
+    "rank": 279.57,
     "tier": "critical"
    },
    "also": [
@@ -1785,7 +1811,7 @@
     }
    ],
    "size": 5,
-   "rank": 279.71,
+   "rank": 279.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1804,12 +1830,12 @@
     "is_news": false,
     "doc_id": "amla-instruments-1b17f68f9277",
     "origin": "engine",
-    "rank": 279.71,
+    "rank": 279.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 279.71,
+   "rank": 279.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1828,12 +1854,12 @@
     "is_news": false,
     "doc_id": "amla-instruments-04b1e9cef1d4",
     "origin": "engine",
-    "rank": 279.71,
+    "rank": 279.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 279.71,
+   "rank": 279.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1854,7 +1880,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 279.29,
+    "rank": 279.14,
     "tier": "important"
    },
    "also": [
@@ -1867,7 +1893,7 @@
     }
    ],
    "size": 2,
-   "rank": 279.29,
+   "rank": 279.14,
    "tier": "important",
    "news_only": false
   },
@@ -1877,32 +1903,6 @@
     "title": "CELEX:32026R2138: Council Implementing Regulation (EU) 2026/2138 of 22 September 2026 implementing Article 11(4) of Regulation (EU) No 753/2011 concerning restrictive measures directed against certain individuals, groups, undertakings and entities in view of the situation in Afghanistan",
     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2138",
     "date": "2026-09-22",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 279.14,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 279.14,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-a9c7e0a86fd8440359ea8c2466032b66",
-    "title": "CELEX:32026R2160: Council Implementing Regulation (EU) 2026/2160 of 22 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2160",
-    "date": "2026-09-21",
     "authority": "EUR-Lex — Official Journal L",
     "source": "eurlex_ojl",
     "type": "legislation",
@@ -1925,10 +1925,10 @@
   },
   {
    "lead": {
-    "id": "legacy-9746edbac760fbd1d9cbf1e03c6ce467",
-    "title": "CELEX:32026R2143: Commission Implementing Regulation (EU) 2026/2143 of 18 September 2026 amending for the 361st time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2143",
-    "date": "2026-09-20",
+    "id": "legacy-a9c7e0a86fd8440359ea8c2466032b66",
+    "title": "CELEX:32026R2160: Council Implementing Regulation (EU) 2026/2160 of 22 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2160",
+    "date": "2026-09-21",
     "authority": "EUR-Lex — Official Journal L",
     "source": "eurlex_ojl",
     "type": "legislation",
@@ -1951,6 +1951,32 @@
   },
   {
    "lead": {
+    "id": "legacy-9746edbac760fbd1d9cbf1e03c6ce467",
+    "title": "CELEX:32026R2143: Commission Implementing Regulation (EU) 2026/2143 of 18 September 2026 amending for the 361st time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2143",
+    "date": "2026-09-20",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 278.71,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.71,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "amla-instruments-db0c5746aabf",
     "title": "Draft Regulatory Technical Standards on cross-border information exchange between Financial Intelligence Units",
     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
@@ -1966,7 +1992,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-db0c5746aabf",
     "origin": "engine",
-    "rank": 276.71,
+    "rank": 276.57,
     "tier": "important"
    },
    "also": [
@@ -1979,7 +2005,7 @@
     }
    ],
    "size": 2,
-   "rank": 276.71,
+   "rank": 276.57,
    "tier": "important",
    "news_only": false
   },
@@ -2000,7 +2026,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-bf1be08fd1a2",
     "origin": "engine",
-    "rank": 276.71,
+    "rank": 276.57,
     "tier": "important"
    },
    "also": [
@@ -2013,7 +2039,7 @@
     }
    ],
    "size": 2,
-   "rank": 276.71,
+   "rank": 276.57,
    "tier": "important",
    "news_only": false
   },
@@ -2034,12 +2060,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 275.29,
+    "rank": 275.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 275.29,
+   "rank": 275.14,
    "tier": "important",
    "news_only": false
   },
@@ -2058,7 +2084,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-b7b6ebdd96a2",
     "origin": "engine",
-    "rank": 274.71,
+    "rank": 274.57,
     "tier": "important"
    },
    "also": [
@@ -2120,7 +2146,7 @@
     }
    ],
    "size": 9,
-   "rank": 274.71,
+   "rank": 274.57,
    "tier": "important",
    "news_only": false
   },
@@ -2141,7 +2167,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 274.57,
+    "rank": 274.43,
     "tier": "important"
    },
    "also": [
@@ -2154,7 +2180,7 @@
     }
    ],
    "size": 2,
-   "rank": 274.57,
+   "rank": 274.43,
    "tier": "important",
    "news_only": false
   },
@@ -2176,12 +2202,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-9741e52ff554",
     "origin": "engine",
-    "rank": 273.71,
+    "rank": 273.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 273.71,
+   "rank": 273.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2203,12 +2229,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-3ab1b9e903ac",
     "origin": "engine",
-    "rank": 273.71,
+    "rank": 273.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 273.71,
+   "rank": 273.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2229,12 +2255,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 273.14,
+    "rank": 273.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 273.14,
+   "rank": 273.0,
    "tier": "important",
    "news_only": false
   },
@@ -2255,12 +2281,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 273.14,
+    "rank": 273.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 273.14,
+   "rank": 273.0,
    "tier": "important",
    "news_only": false
   },
@@ -2281,12 +2307,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 272.57,
+    "rank": 272.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 272.57,
+   "rank": 272.43,
    "tier": "important",
    "news_only": false
   },
@@ -2307,12 +2333,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 272.57,
+    "rank": 272.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 272.57,
+   "rank": 272.43,
    "tier": "important",
    "news_only": false
   },
@@ -2333,7 +2359,7 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-47069e15ab91",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [
@@ -2353,7 +2379,7 @@
     }
    ],
    "size": 3,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2374,12 +2400,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-db5fd39f3a69",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2400,12 +2426,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-c5c9212ddeec",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2426,12 +2452,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-bf3f16404b06",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2452,12 +2478,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-aa4e7d7bb5ac",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2478,12 +2504,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-24db17d00bff",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2504,12 +2530,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b6d5a68dd3d2",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2530,12 +2556,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b4ca444898d5",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2556,12 +2582,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-77cfe8c32aa6",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2582,12 +2608,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-a2ddb91ba23e",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2608,12 +2634,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-ee754b3ea7f8",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2634,12 +2660,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-1afceb0721b5",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2660,12 +2686,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b583341af431",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2686,12 +2712,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-d6e628013ba9",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2712,12 +2738,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-4f0755308c1a",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2738,12 +2764,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-2a87324713b2",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2764,12 +2790,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-76d8e02d513c",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2790,12 +2816,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-acff2900485a",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2816,12 +2842,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-966dd0c52e75",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2842,12 +2868,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-2824c1a97323",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2868,12 +2894,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-36b204445abb",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2894,7 +2920,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "important"
    },
    "also": [
@@ -2907,7 +2933,7 @@
     }
    ],
    "size": 2,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "important",
    "news_only": false
   },
@@ -2928,7 +2954,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 271.71,
+    "rank": 271.57,
     "tier": "important"
    },
    "also": [
@@ -2941,7 +2967,7 @@
     }
    ],
    "size": 2,
-   "rank": 271.71,
+   "rank": 271.57,
    "tier": "important",
    "news_only": false
   },
@@ -2960,12 +2986,12 @@
     "is_news": false,
     "doc_id": "amla-library-5be92668cc8d",
     "origin": "engine",
-    "rank": 270.14,
+    "rank": 270.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 270.14,
+   "rank": 270.0,
    "tier": "important",
    "news_only": false
   },
@@ -2984,12 +3010,12 @@
     "is_news": false,
     "doc_id": "amla-library-2a00943677fd",
     "origin": "engine",
-    "rank": 270.14,
+    "rank": 270.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 270.14,
+   "rank": 270.0,
    "tier": "important",
    "news_only": false
   },
@@ -3008,12 +3034,12 @@
     "is_news": false,
     "doc_id": "amla-library-58150b878892",
     "origin": "engine",
-    "rank": 270.14,
+    "rank": 270.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 270.14,
+   "rank": 270.0,
    "tier": "important",
    "news_only": false
   },
@@ -3032,12 +3058,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-4a0f76f9b1dd",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3056,12 +3082,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b25d25446fec",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3080,7 +3106,7 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-5d0cf948f345",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [
@@ -3107,7 +3133,7 @@
     }
    ],
    "size": 4,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3126,12 +3152,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-3f4ec22c6e49",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3150,12 +3176,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-13c47f42acd7",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3174,12 +3200,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-daccaecea7cf",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3198,12 +3224,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-e3e9eb161869",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3222,12 +3248,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-6016bf3ec727",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3246,12 +3272,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-1d09dfdf83a4",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3270,12 +3296,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-a1335a4c34a2",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3294,12 +3320,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-740d36c89d7a",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3318,12 +3344,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-7184f72ff840",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3342,12 +3368,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-7b0d0497ca7f",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3366,12 +3392,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-04cdb233860f",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3390,12 +3416,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-5f8b542c5834",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3414,12 +3440,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-8052810a2e97",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3438,12 +3464,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-f3cc4fb2697d",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3462,12 +3488,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-75cbf13977b0",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3486,12 +3512,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-33bdaca97f51",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3510,12 +3536,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-a941734e9fb1",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3534,12 +3560,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-8b55356c5bdd",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3558,12 +3584,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-53f6cfbb7327",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3582,12 +3608,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-39835c904ef8",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3606,12 +3632,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-e016dccae34d",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3630,12 +3656,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-f3bb00e67091",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3654,12 +3680,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-38ab6ef6b587",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3678,12 +3704,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-590747fa0f34",
     "origin": "engine",
-    "rank": 269.71,
+    "rank": 269.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 269.71,
+   "rank": 269.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3702,12 +3728,12 @@
     "is_news": false,
     "doc_id": "amla-library-43d001486f81",
     "origin": "engine",
-    "rank": 267.14,
+    "rank": 267.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 267.14,
+   "rank": 267.0,
    "tier": "important",
    "news_only": false
   },
@@ -3726,12 +3752,12 @@
     "is_news": false,
     "doc_id": "amla-library-ed5e2388851d",
     "origin": "engine",
-    "rank": 267.14,
+    "rank": 267.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 267.14,
+   "rank": 267.0,
    "tier": "important",
    "news_only": false
   },
@@ -3750,12 +3776,12 @@
     "is_news": false,
     "doc_id": "amla-library-148273efc0e5",
     "origin": "engine",
-    "rank": 267.14,
+    "rank": 267.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 267.14,
+   "rank": 267.0,
    "tier": "important",
    "news_only": false
   },
@@ -3774,12 +3800,12 @@
     "is_news": false,
     "doc_id": "amla-library-f562217654c5",
     "origin": "engine",
-    "rank": 267.14,
+    "rank": 267.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 267.14,
+   "rank": 267.0,
    "tier": "important",
    "news_only": false
   },
@@ -3798,12 +3824,12 @@
     "is_news": false,
     "doc_id": "amla-library-64711cbaea86",
     "origin": "engine",
-    "rank": 267.14,
+    "rank": 267.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 267.14,
+   "rank": 267.0,
    "tier": "important",
    "news_only": false
   },
@@ -3822,12 +3848,12 @@
     "is_news": false,
     "doc_id": "amla-library-0e49e767e94f",
     "origin": "engine",
-    "rank": 267.14,
+    "rank": 267.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 267.14,
+   "rank": 267.0,
    "tier": "important",
    "news_only": false
   },
@@ -3848,12 +3874,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 266.57,
+    "rank": 266.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.57,
+   "rank": 266.43,
    "tier": "important",
    "news_only": false
   },
@@ -3874,12 +3900,12 @@
     "is_news": false,
     "doc_id": "amla-library-964d9792a3fe",
     "origin": "engine",
-    "rank": 266.29,
+    "rank": 266.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.29,
+   "rank": 266.14,
    "tier": "important",
    "news_only": false
   },
@@ -3900,12 +3926,12 @@
     "is_news": false,
     "doc_id": "amla-hearings-168a050ac865",
     "origin": "engine",
-    "rank": 264.43,
+    "rank": 264.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 264.43,
+   "rank": 264.29,
    "tier": "important",
    "news_only": false
   },
@@ -3926,7 +3952,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 258.57,
+    "rank": 258.43,
     "tier": "critical"
    },
    "also": [
@@ -4030,7 +4056,7 @@
     }
    ],
    "size": 15,
-   "rank": 258.57,
+   "rank": 258.43,
    "tier": "critical",
    "news_only": false
   },
@@ -4052,7 +4078,7 @@
     "is_news": false,
     "doc_id": "esma-news-551762665811",
     "origin": "engine",
-    "rank": 253.71,
+    "rank": 253.57,
     "tier": "important"
    },
    "also": [
@@ -4065,7 +4091,7 @@
     }
    ],
    "size": 2,
-   "rank": 253.71,
+   "rank": 253.57,
    "tier": "important",
    "news_only": false
   },
@@ -4084,12 +4110,12 @@
     "is_news": false,
     "doc_id": "amla-faqs-f02f54e3c02d",
     "origin": "engine",
-    "rank": 249.71,
+    "rank": 249.57,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 249.71,
+   "rank": 249.57,
    "tier": "important",
    "news_only": false
   },
@@ -4110,12 +4136,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 231.29,
+    "rank": 231.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 231.29,
+   "rank": 231.14,
    "tier": "important",
    "news_only": false
   },
@@ -4136,12 +4162,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 231.29,
+    "rank": 231.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 231.29,
+   "rank": 231.14,
    "tier": "important",
    "news_only": false
   },
@@ -4162,12 +4188,44 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 230.29,
+    "rank": 230.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 230.29,
+   "rank": 230.14,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-news-69b783c5ee7e",
+    "title": "From vision to reality: AMLA Chair Bruna Szego speaks at 29th Euro Finance Week",
+    "url": "https://www.amla.europa.eu/vision-reality-amla-chair-bruna-szego-speaks-29th-euro-finance-week_en",
+    "date": "2026-11-17",
+    "authority": "AMLA",
+    "source": "amla-news",
+    "type": "supervisory_communication",
+    "status": "published",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-news-69b783c5ee7e",
+    "origin": "engine",
+    "rank": 230.0,
+    "tier": "important"
+   },
+   "also": [
+    {
+     "title": "From vision to reality: AMLA Chair Bruna Szego speaks at 29th Euro Finance Week",
+     "url": "https://www.amla.europa.eu/vision-reality-amla-chair-bruna-szego-speaks-29th-euro-finance-week_en",
+     "authority": "AMLA",
+     "date": "2026-11-17",
+     "is_news": false
+    }
+   ],
+   "size": 2,
+   "rank": 230.0,
    "tier": "important",
    "news_only": false
   },
@@ -4188,12 +4246,44 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 230.14,
+    "rank": 230.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 230.14,
+   "rank": 230.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-news-0ab8fede43d1",
+    "title": "AMLA Executive Board Member Derville Rowland speaks at AFME’s European AML Conference",
+    "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-derville-rowland-speaks-afmes-european-aml-conference_en",
+    "date": "2026-11-16",
+    "authority": "AMLA",
+    "source": "amla-news",
+    "type": "supervisory_communication",
+    "status": "published",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-news-0ab8fede43d1",
+    "origin": "engine",
+    "rank": 229.86,
+    "tier": "important"
+   },
+   "also": [
+    {
+     "title": "AMLA Executive Board Member Derville Rowland speaks at AFME’s European AML Conference",
+     "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-derville-rowland-speaks-afmes-european-aml-conference_en",
+     "authority": "AMLA",
+     "date": "2026-11-16",
+     "is_news": false
+    }
+   ],
+   "size": 2,
+   "rank": 229.86,
    "tier": "important",
    "news_only": false
   },
@@ -4212,12 +4302,12 @@
     "is_news": false,
     "doc_id": "ec-aml-eu-level-d4656a188233",
     "origin": "engine",
-    "rank": 229.71,
+    "rank": 229.57,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 229.71,
+   "rank": 229.57,
    "tier": "important",
    "news_only": false
   },
@@ -4238,12 +4328,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 229.0,
+    "rank": 228.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 229.0,
+   "rank": 228.86,
    "tier": "important",
    "news_only": false
   },
@@ -4264,12 +4354,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 229.0,
+    "rank": 228.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 229.0,
+   "rank": 228.86,
    "tier": "important",
    "news_only": false
   },
@@ -4290,12 +4380,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 229.0,
+    "rank": 228.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 229.0,
+   "rank": 228.86,
    "tier": "important",
    "news_only": false
   },
@@ -4314,7 +4404,7 @@
     "is_news": false,
     "doc_id": "amla-news-2792009b59d1",
     "origin": "engine",
-    "rank": 228.29,
+    "rank": 228.14,
     "tier": "important"
    },
    "also": [
@@ -4327,7 +4417,7 @@
     }
    ],
    "size": 2,
-   "rank": 228.29,
+   "rank": 228.14,
    "tier": "important",
    "news_only": false
   },
@@ -4346,7 +4436,7 @@
     "is_news": false,
     "doc_id": "amla-news-8c712d4c9fa0",
     "origin": "engine",
-    "rank": 227.57,
+    "rank": 227.43,
     "tier": "important"
    },
    "also": [
@@ -4359,7 +4449,7 @@
     }
    ],
    "size": 2,
-   "rank": 227.57,
+   "rank": 227.43,
    "tier": "important",
    "news_only": false
   },
@@ -4378,12 +4468,12 @@
     "is_news": false,
     "doc_id": "amla-library-cd27b232a75d",
     "origin": "engine",
-    "rank": 227.57,
+    "rank": 227.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.57,
+   "rank": 227.43,
    "tier": "important",
    "news_only": false
   },
@@ -4404,7 +4494,7 @@
     "is_news": false,
     "doc_id": "eba-news-9e1e23e0ddaa",
     "origin": "engine",
-    "rank": 227.29,
+    "rank": 227.14,
     "tier": "important"
    },
    "also": [
@@ -4417,7 +4507,7 @@
     }
    ],
    "size": 2,
-   "rank": 227.29,
+   "rank": 227.14,
    "tier": "important",
    "news_only": false
   },
@@ -4438,12 +4528,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 227.29,
+    "rank": 227.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.29,
+   "rank": 227.14,
    "tier": "important",
    "news_only": false
   },
@@ -4464,12 +4554,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 227.14,
+    "rank": 227.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.14,
+   "rank": 227.0,
    "tier": "important",
    "news_only": false
   },
@@ -4490,12 +4580,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 227.14,
+    "rank": 227.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.14,
+   "rank": 227.0,
    "tier": "important",
    "news_only": false
   },
@@ -4516,12 +4606,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 227.14,
+    "rank": 227.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.14,
+   "rank": 227.0,
    "tier": "important",
    "news_only": false
   },
@@ -4540,7 +4630,7 @@
     "is_news": false,
     "doc_id": "amla-news-f788b3addd04",
     "origin": "engine",
-    "rank": 227.0,
+    "rank": 226.86,
     "tier": "important"
    },
    "also": [
@@ -4553,7 +4643,7 @@
     }
    ],
    "size": 2,
-   "rank": 227.0,
+   "rank": 226.86,
    "tier": "important",
    "news_only": false
   },
@@ -4574,12 +4664,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 227.0,
+    "rank": 226.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.0,
+   "rank": 226.86,
    "tier": "important",
    "news_only": false
   },
@@ -4600,12 +4690,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 227.0,
+    "rank": 226.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.0,
+   "rank": 226.86,
    "tier": "important",
    "news_only": false
   },
@@ -4626,12 +4716,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 227.0,
+    "rank": 226.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 227.0,
+   "rank": 226.86,
    "tier": "important",
    "news_only": false
   },
@@ -4652,12 +4742,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.86,
+    "rank": 226.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.86,
+   "rank": 226.71,
    "tier": "important",
    "news_only": false
   },
@@ -4678,12 +4768,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.86,
+    "rank": 226.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.86,
+   "rank": 226.71,
    "tier": "important",
    "news_only": false
   },
@@ -4704,12 +4794,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.86,
+    "rank": 226.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.86,
+   "rank": 226.71,
    "tier": "important",
    "news_only": false
   },
@@ -4730,12 +4820,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.86,
+    "rank": 226.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.86,
+   "rank": 226.71,
    "tier": "important",
    "news_only": false
   },
@@ -4756,12 +4846,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.86,
+    "rank": 226.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.86,
+   "rank": 226.71,
    "tier": "important",
    "news_only": false
   },
@@ -4782,12 +4872,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.86,
+    "rank": 226.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.86,
+   "rank": 226.71,
    "tier": "important",
    "news_only": false
   },
@@ -4806,7 +4896,7 @@
     "is_news": false,
     "doc_id": "amla-news-25ba5b2df2f3",
     "origin": "engine",
-    "rank": 226.57,
+    "rank": 226.43,
     "tier": "important"
    },
    "also": [
@@ -4819,7 +4909,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.57,
+   "rank": 226.43,
    "tier": "important",
    "news_only": false
   },
@@ -4840,12 +4930,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.43,
+    "rank": 226.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.43,
+   "rank": 226.29,
    "tier": "important",
    "news_only": false
   },
@@ -4864,7 +4954,7 @@
     "is_news": false,
     "doc_id": "amla-news-bb51330afd2e",
     "origin": "engine",
-    "rank": 226.29,
+    "rank": 226.14,
     "tier": "important"
    },
    "also": [
@@ -4877,7 +4967,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.29,
+   "rank": 226.14,
    "tier": "important",
    "news_only": false
   },
@@ -4898,7 +4988,7 @@
     "is_news": false,
     "doc_id": "amla-news-c97a25fb94e1",
     "origin": "engine",
-    "rank": 226.29,
+    "rank": 226.14,
     "tier": "important"
    },
    "also": [
@@ -4911,7 +5001,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.29,
+   "rank": 226.14,
    "tier": "important",
    "news_only": false
   },
@@ -4932,7 +5022,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.29,
+    "rank": 226.14,
     "tier": "important"
    },
    "also": [
@@ -4945,7 +5035,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.29,
+   "rank": 226.14,
    "tier": "important",
    "news_only": false
   },
@@ -4966,12 +5056,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.29,
+    "rank": 226.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.29,
+   "rank": 226.14,
    "tier": "important",
    "news_only": false
   },
@@ -4992,12 +5082,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.43,
+    "rank": 225.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.43,
+   "rank": 225.29,
    "tier": "important",
    "news_only": false
   },
@@ -5018,12 +5108,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.0,
+    "rank": 224.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.0,
+   "rank": 224.86,
    "tier": "important",
    "news_only": false
   },
@@ -5044,12 +5134,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.0,
+    "rank": 224.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.0,
+   "rank": 224.86,
    "tier": "important",
    "news_only": false
   },
@@ -5070,12 +5160,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 224.86,
+    "rank": 224.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 224.86,
+   "rank": 224.71,
    "tier": "important",
    "news_only": false
   },
@@ -5096,12 +5186,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 224.86,
+    "rank": 224.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 224.86,
+   "rank": 224.71,
    "tier": "important",
    "news_only": false
   },
@@ -5120,7 +5210,7 @@
     "is_news": false,
     "doc_id": "amla-news-c2518b65d16a",
     "origin": "engine",
-    "rank": 224.57,
+    "rank": 224.43,
     "tier": "important"
    },
    "also": [
@@ -5133,7 +5223,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.57,
+   "rank": 224.43,
    "tier": "important",
    "news_only": false
   },
@@ -5152,7 +5242,7 @@
     "is_news": false,
     "doc_id": "amla-news-cdc99a25a64b",
     "origin": "engine",
-    "rank": 224.43,
+    "rank": 224.29,
     "tier": "important"
    },
    "also": [
@@ -5165,7 +5255,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.43,
+   "rank": 224.29,
    "tier": "important",
    "news_only": false
   },
@@ -5186,7 +5276,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 224.43,
+    "rank": 224.29,
     "tier": "important"
    },
    "also": [
@@ -5199,7 +5289,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.43,
+   "rank": 224.29,
    "tier": "important",
    "news_only": false
   },
@@ -5218,7 +5308,7 @@
     "is_news": false,
     "doc_id": "amla-news-2e337f7ab926",
     "origin": "engine",
-    "rank": 224.29,
+    "rank": 224.14,
     "tier": "important"
    },
    "also": [
@@ -5231,7 +5321,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.29,
+   "rank": 224.14,
    "tier": "important",
    "news_only": false
   },
@@ -5250,12 +5340,12 @@
     "is_news": false,
     "doc_id": "amla-library-38ddd130dcf9",
     "origin": "engine",
-    "rank": 224.29,
+    "rank": 224.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 224.29,
+   "rank": 224.14,
    "tier": "important",
    "news_only": false
   },
@@ -5276,7 +5366,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 224.29,
+    "rank": 224.14,
     "tier": "important"
    },
    "also": [
@@ -5289,7 +5379,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.29,
+   "rank": 224.14,
    "tier": "important",
    "news_only": false
   },
@@ -5308,7 +5398,7 @@
     "is_news": false,
     "doc_id": "amla-news-6777126e95c2",
     "origin": "engine",
-    "rank": 224.14,
+    "rank": 224.0,
     "tier": "important"
    },
    "also": [
@@ -5321,7 +5411,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.14,
+   "rank": 224.0,
    "tier": "important",
    "news_only": false
   },
@@ -5340,7 +5430,7 @@
     "is_news": false,
     "doc_id": "amla-news-55bc303d93b0",
     "origin": "engine",
-    "rank": 224.14,
+    "rank": 224.0,
     "tier": "important"
    },
    "also": [
@@ -5353,7 +5443,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.14,
+   "rank": 224.0,
    "tier": "important",
    "news_only": false
   },
@@ -5374,7 +5464,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 224.14,
+    "rank": 224.0,
     "tier": "important"
    },
    "also": [
@@ -5387,7 +5477,7 @@
     }
    ],
    "size": 2,
-   "rank": 224.14,
+   "rank": 224.0,
    "tier": "important",
    "news_only": false
   },
@@ -5397,32 +5487,6 @@
     "title": "CELEX:32026D2137: Council Implementing Decision (CFSP) 2026/2137 of 22 September 2026 implementing Decision 2011/486/CFSP concerning restrictive measures directed against certain individuals, groups, undertakings and entities in view of the situation in Afghanistan",
     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2137",
     "date": "2026-09-22",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 224.14,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 224.14,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-1b59c0667d7919631d40e92ddcff0073",
-    "title": "CELEX:32026D2161: Council Decision (CFSP) 2026/2161 of 22 September 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2161",
-    "date": "2026-09-21",
     "authority": "EUR-Lex — Official Journal L",
     "source": "eurlex_ojl",
     "type": "supervisory_communication",
@@ -5445,6 +5509,32 @@
   },
   {
    "lead": {
+    "id": "legacy-1b59c0667d7919631d40e92ddcff0073",
+    "title": "CELEX:32026D2161: Council Decision (CFSP) 2026/2161 of 22 September 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2161",
+    "date": "2026-09-21",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 223.86,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 223.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "amla-library-ff54c0d692f3",
     "title": "News Announcement_SDD_GL",
     "url": "https://www.amla.europa.eu/document/download/af293466-527f-4cfd-950b-d165a08a2678_en?filename=News%20Announcement%20-%20SDD%20GL.pdf",
@@ -5458,12 +5548,12 @@
     "is_news": false,
     "doc_id": "amla-library-ff54c0d692f3",
     "origin": "engine",
-    "rank": 223.57,
+    "rank": 223.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.57,
+   "rank": 223.43,
    "tier": "important",
    "news_only": false
   },
@@ -5482,12 +5572,12 @@
     "is_news": false,
     "doc_id": "amla-library-c8c0f6f109b2",
     "origin": "engine",
-    "rank": 223.57,
+    "rank": 223.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.57,
+   "rank": 223.43,
    "tier": "important",
    "news_only": false
   },
@@ -5508,7 +5598,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 223.57,
+    "rank": 223.43,
     "tier": "important"
    },
    "also": [
@@ -5521,7 +5611,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.57,
+   "rank": 223.43,
    "tier": "important",
    "news_only": false
   },
@@ -5540,7 +5630,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 223.43,
+    "rank": 223.29,
     "tier": "important"
    },
    "also": [
@@ -5567,7 +5657,7 @@
     }
    ],
    "size": 4,
-   "rank": 223.43,
+   "rank": 223.29,
    "tier": "important",
    "news_only": false
   },
@@ -5586,7 +5676,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 223.43,
+    "rank": 223.29,
     "tier": "important"
    },
    "also": [
@@ -5606,7 +5696,7 @@
     }
    ],
    "size": 3,
-   "rank": 223.43,
+   "rank": 223.29,
    "tier": "important",
    "news_only": false
   },
@@ -5623,14 +5713,14 @@
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-library-eb900769d03c",
     "origin": "engine",
-    "rank": 223.43,
+    "rank": 223.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.43,
+   "rank": 223.29,
    "tier": "important",
    "news_only": false
   },
@@ -5651,12 +5741,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 223.43,
+    "rank": 223.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.43,
+   "rank": 223.29,
    "tier": "important",
    "news_only": false
   },
@@ -5677,12 +5767,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 223.29,
+    "rank": 223.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.29,
+   "rank": 223.14,
    "tier": "important",
    "news_only": false
   },
@@ -5703,12 +5793,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 223.0,
+    "rank": 222.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.0,
+   "rank": 222.86,
    "tier": "important",
    "news_only": false
   },
@@ -5727,7 +5817,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 222.29,
+    "rank": 222.14,
     "tier": "important"
    },
    "also": [
@@ -5740,7 +5830,7 @@
     }
    ],
    "size": 2,
-   "rank": 222.29,
+   "rank": 222.14,
    "tier": "important",
    "news_only": false
   },
@@ -5759,12 +5849,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 222.29,
+    "rank": 222.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.29,
+   "rank": 222.14,
    "tier": "important",
    "news_only": false
   },
@@ -5783,12 +5873,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 221.29,
+    "rank": 221.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 221.29,
+   "rank": 221.14,
    "tier": "important",
    "news_only": false
   },
@@ -5807,12 +5897,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 221.29,
+    "rank": 221.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 221.29,
+   "rank": 221.14,
    "tier": "important",
    "news_only": false
   },
@@ -5831,12 +5921,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 220.43,
+    "rank": 220.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 220.43,
+   "rank": 220.29,
    "tier": "important",
    "news_only": false
   },
@@ -5857,12 +5947,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 219.14,
+    "rank": 219.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 219.14,
+   "rank": 219.0,
    "tier": "important",
    "news_only": false
   },
@@ -5883,12 +5973,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 217.57,
+    "rank": 217.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 217.57,
+   "rank": 217.43,
    "tier": "important",
    "news_only": false
   },
@@ -5909,12 +5999,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 217.57,
+    "rank": 217.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 217.57,
+   "rank": 217.43,
    "tier": "important",
    "news_only": false
   },
@@ -5933,7 +6023,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 217.14,
+    "rank": 217.0,
     "tier": "important"
    },
    "also": [
@@ -5946,7 +6036,7 @@
     }
    ],
    "size": 2,
-   "rank": 217.14,
+   "rank": 217.0,
    "tier": "important",
    "news_only": false
   },
@@ -5965,12 +6055,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 217.14,
+    "rank": 217.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 217.14,
+   "rank": 217.0,
    "tier": "important",
    "news_only": false
   },
@@ -5989,12 +6079,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 215.14,
+    "rank": 215.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 215.14,
+   "rank": 215.0,
    "tier": "important",
    "news_only": false
   },
@@ -6015,12 +6105,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 215.0,
+    "rank": 214.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 215.0,
+   "rank": 214.86,
    "tier": "important",
    "news_only": false
   },
@@ -6039,12 +6129,12 @@
     "is_news": false,
     "doc_id": "amla-reports-07ab5af50b97",
     "origin": "engine",
-    "rank": 214.43,
+    "rank": 214.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 214.43,
+   "rank": 214.29,
    "tier": "important",
    "news_only": false
   },
@@ -6054,30 +6144,6 @@
     "title": "Frequently asked questions on the reporting package for identifying provisionally eligible entities",
     "url": "https://www.amla.europa.eu/news-media/news-articles/frequently-asked-questions-reporting-package-identifying-provisionally-eligible-entities_en",
     "date": "2026-07-22",
-    "authority": "AMLA",
-    "source": "amla-news",
-    "type": "supervisory_communication",
-    "status": "published",
-    "topics": [],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "",
-    "origin": "engine",
-    "rank": 213.29,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 213.29,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-news-012fad91830b",
-    "title": "Press Release: AMLA finalises standards for supervisory cooperation in direct supervision",
-    "url": "https://www.amla.europa.eu/press-release-amla-finalises-standards-supervisory-cooperation-direct-supervision_en",
-    "date": "2026-07-21",
     "authority": "AMLA",
     "source": "amla-news",
     "type": "supervisory_communication",
@@ -6098,10 +6164,10 @@
   },
   {
    "lead": {
-    "id": "amla-news-d75961908ae9",
-    "title": "AMLA Chair presents 2025 Consolidated Annual Activity Report to the European Parliament",
-    "url": "https://www.amla.europa.eu/news-media/news-articles/amla-chair-presents-2025-consolidated-annual-activity-report-european-parliament_en",
-    "date": "2026-07-20",
+    "id": "amla-news-012fad91830b",
+    "title": "Press Release: AMLA finalises standards for supervisory cooperation in direct supervision",
+    "url": "https://www.amla.europa.eu/press-release-amla-finalises-standards-supervisory-cooperation-direct-supervision_en",
+    "date": "2026-07-21",
     "authority": "AMLA",
     "source": "amla-news",
     "type": "supervisory_communication",
@@ -6122,6 +6188,30 @@
   },
   {
    "lead": {
+    "id": "amla-news-d75961908ae9",
+    "title": "AMLA Chair presents 2025 Consolidated Annual Activity Report to the European Parliament",
+    "url": "https://www.amla.europa.eu/news-media/news-articles/amla-chair-presents-2025-consolidated-annual-activity-report-european-parliament_en",
+    "date": "2026-07-20",
+    "authority": "AMLA",
+    "source": "amla-news",
+    "type": "supervisory_communication",
+    "status": "published",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "",
+    "origin": "engine",
+    "rank": 212.86,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 212.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "legacy-068e2e5fc12372fa0fc961b3f1bd9220",
     "title": "CELEX:32026R2487: Commission Implementing Regulation (EU) 2026/2487 of 10 November 2026 laying down rules for the application of Regulation (EU) 2024/1689 of the European Parliament and of the Council as regards the establishment, development, implementation, operation and supervision of AI regulatory sandboxes",
     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2487",
@@ -6135,12 +6225,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 184.14,
+    "rank": 184.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 184.14,
+   "rank": 184.0,
    "tier": "info",
    "news_only": false
   },
@@ -6159,12 +6249,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 182.43,
+    "rank": 182.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 182.43,
+   "rank": 182.29,
    "tier": "info",
    "news_only": false
   },
@@ -6183,12 +6273,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 181.43,
+    "rank": 181.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 181.43,
+   "rank": 181.29,
    "tier": "info",
    "news_only": false
   },
@@ -6207,12 +6297,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 181.43,
+    "rank": 181.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 181.43,
+   "rank": 181.29,
    "tier": "info",
    "news_only": false
   },
@@ -6231,12 +6321,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 181.43,
+    "rank": 181.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 181.43,
+   "rank": 181.29,
    "tier": "info",
    "news_only": false
   },
@@ -6255,7 +6345,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 181.14,
+    "rank": 181.0,
     "tier": "info"
    },
    "also": [
@@ -6268,7 +6358,7 @@
     }
    ],
    "size": 2,
-   "rank": 181.14,
+   "rank": 181.0,
    "tier": "info",
    "news_only": false
   },
@@ -6287,12 +6377,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 181.14,
+    "rank": 181.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 181.14,
+   "rank": 181.0,
    "tier": "info",
    "news_only": false
   },
@@ -6311,12 +6401,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 180.43,
+    "rank": 180.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 180.43,
+   "rank": 180.29,
    "tier": "info",
    "news_only": false
   },
@@ -6335,12 +6425,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 175.86,
+    "rank": 175.71,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 175.86,
+   "rank": 175.71,
    "tier": "info",
    "news_only": false
   },
@@ -6359,12 +6449,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 175.43,
+    "rank": 175.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 175.43,
+   "rank": 175.29,
    "tier": "info",
    "news_only": false
   },
@@ -6383,12 +6473,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 175.14,
+    "rank": 175.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 175.14,
+   "rank": 175.0,
    "tier": "info",
    "news_only": false
   },
@@ -6407,12 +6497,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 175.14,
+    "rank": 175.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 175.14,
+   "rank": 175.0,
    "tier": "info",
    "news_only": false
   },
@@ -6431,12 +6521,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 174.29,
+    "rank": 174.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 174.29,
+   "rank": 174.14,
    "tier": "info",
    "news_only": false
   },
@@ -6455,12 +6545,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 172.0,
+    "rank": 171.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 172.0,
+   "rank": 171.86,
    "tier": "info",
    "news_only": false
   },
@@ -6479,12 +6569,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 171.29,
+    "rank": 171.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 171.29,
+   "rank": 171.14,
    "tier": "info",
    "news_only": false
   },
@@ -6494,30 +6584,6 @@
     "title": "CELEX:52026PC0473: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for partial payment under the eighth instalment of the Ukraine Plan of the Ukraine Facility",
     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0473",
     "date": "2026-11-05",
-    "authority": "EUR-Lex — Legislative proposals",
-    "source": "eurlex_proposals",
-    "type": "consultation",
-    "status": "not-yet-binding",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 168.43,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 168.43,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-79f8db9212c3fd47128412c50d67dee1",
-    "title": "CELEX:52026PC0583: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for the partial payment of the ninth instalment under the Ukraine Plan of the Ukraine Facility",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0583",
-    "date": "2026-11-04",
     "authority": "EUR-Lex — Legislative proposals",
     "source": "eurlex_proposals",
     "type": "consultation",
@@ -6538,6 +6604,30 @@
   },
   {
    "lead": {
+    "id": "legacy-79f8db9212c3fd47128412c50d67dee1",
+    "title": "CELEX:52026PC0583: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for the partial payment of the ninth instalment under the Ukraine Plan of the Ukraine Facility",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0583",
+    "date": "2026-11-04",
+    "authority": "EUR-Lex — Legislative proposals",
+    "source": "eurlex_proposals",
+    "type": "consultation",
+    "status": "not-yet-binding",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 168.14,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 168.14,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "legacy-62af17ed4bc7339458adc2d3205b4600",
     "title": "FSB consults on high-level principles for regulatory and supervisory modernisation",
     "url": "https://www.fsb.org/2026/10/fsb-consults-on-high-level-principles-for-regulatory-and-supervisory-modernisation/",
@@ -6551,7 +6641,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 165.29,
+    "rank": 165.14,
     "tier": "info"
    },
    "also": [
@@ -6564,7 +6654,7 @@
     }
    ],
    "size": 2,
-   "rank": 165.29,
+   "rank": 165.14,
    "tier": "info",
    "news_only": false
   },
@@ -6583,12 +6673,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.43,
+    "rank": 164.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.43,
+   "rank": 164.29,
    "tier": "info",
    "news_only": false
   },
@@ -6607,12 +6697,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.29,
+    "rank": 164.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.29,
+   "rank": 164.14,
    "tier": "info",
    "news_only": false
   },
@@ -6631,7 +6721,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [
@@ -6644,7 +6734,7 @@
     }
    ],
    "size": 2,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6663,12 +6753,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6687,12 +6777,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6711,12 +6801,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6735,12 +6825,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6759,7 +6849,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [
@@ -6772,7 +6862,7 @@
     }
    ],
    "size": 2,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6791,12 +6881,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.14,
+    "rank": 164.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.14,
+   "rank": 164.0,
    "tier": "info",
    "news_only": false
   },
@@ -6815,12 +6905,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.0,
+    "rank": 163.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.0,
+   "rank": 163.86,
    "tier": "info",
    "news_only": false
   },
@@ -6839,12 +6929,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.0,
+    "rank": 163.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.0,
+   "rank": 163.86,
    "tier": "info",
    "news_only": false
   },
@@ -6863,12 +6953,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.43,
+    "rank": 163.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.43,
+   "rank": 163.29,
    "tier": "info",
    "news_only": false
   },
@@ -6887,12 +6977,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 162.57,
+    "rank": 162.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 162.57,
+   "rank": 162.43,
    "tier": "info",
    "news_only": false
   },
@@ -6911,12 +7001,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 162.57,
+    "rank": 162.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 162.57,
+   "rank": 162.43,
    "tier": "info",
    "news_only": false
   },
@@ -6935,12 +7025,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 161.29,
+    "rank": 161.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 161.29,
+   "rank": 161.14,
    "tier": "info",
    "news_only": false
   },
@@ -6959,12 +7049,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 161.29,
+    "rank": 161.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 161.29,
+   "rank": 161.14,
    "tier": "info",
    "news_only": false
   },
@@ -6983,12 +7073,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 161.14,
+    "rank": 161.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 161.14,
+   "rank": 161.0,
    "tier": "info",
    "news_only": false
   },
@@ -7007,12 +7097,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 160.43,
+    "rank": 160.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 160.43,
+   "rank": 160.29,
    "tier": "info",
    "news_only": false
   },
@@ -7031,12 +7121,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 159.0,
+    "rank": 158.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 159.0,
+   "rank": 158.86,
    "tier": "info",
    "news_only": false
   },
@@ -7055,7 +7145,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 158.29,
+    "rank": 158.14,
     "tier": "info"
    },
    "also": [
@@ -7068,7 +7158,7 @@
     }
    ],
    "size": 2,
-   "rank": 158.29,
+   "rank": 158.14,
    "tier": "info",
    "news_only": false
   },
@@ -7087,12 +7177,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 156.43,
+    "rank": 156.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 156.43,
+   "rank": 156.29,
    "tier": "info",
    "news_only": false
   },
@@ -7111,12 +7201,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 155.43,
+    "rank": 155.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 155.43,
+   "rank": 155.29,
    "tier": "info",
    "news_only": false
   },
@@ -7135,12 +7225,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 149.43,
+    "rank": 149.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 149.43,
+   "rank": 149.29,
    "tier": "info",
    "news_only": false
   },
@@ -7159,12 +7249,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7183,12 +7273,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 143.57,
+    "rank": 143.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 143.57,
+   "rank": 143.43,
    "tier": "info",
    "news_only": false
   },
@@ -7207,12 +7297,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 143.57,
+    "rank": 143.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 143.57,
+   "rank": 143.43,
    "tier": "info",
    "news_only": false
   },
@@ -7231,12 +7321,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 142.43,
+    "rank": 142.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 142.43,
+   "rank": 142.29,
    "tier": "info",
    "news_only": false
   },
@@ -7255,12 +7345,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 140.57,
+    "rank": 140.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 140.57,
+   "rank": 140.43,
    "tier": "info",
    "news_only": false
   },
@@ -7279,12 +7369,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 140.57,
+    "rank": 140.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 140.57,
+   "rank": 140.43,
    "tier": "info",
    "news_only": false
   },
@@ -7303,12 +7393,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7327,12 +7417,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7351,12 +7441,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7375,12 +7465,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7399,12 +7489,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7423,12 +7513,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7447,12 +7537,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7471,12 +7561,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7495,12 +7585,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7519,12 +7609,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -7543,12 +7633,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -7567,12 +7657,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 136.57,
+    "rank": 136.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 136.57,
+   "rank": 136.43,
    "tier": "info",
    "news_only": false
   },
@@ -7591,12 +7681,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 136.57,
+    "rank": 136.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 136.57,
+   "rank": 136.43,
    "tier": "info",
    "news_only": false
   },
@@ -7615,12 +7705,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 136.57,
+    "rank": 136.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 136.57,
+   "rank": 136.43,
    "tier": "info",
    "news_only": false
   },
@@ -7639,12 +7729,36 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 136.57,
+    "rank": 136.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 136.57,
+   "rank": 136.43,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-342c1b92c232c6d7901ebec25993a808",
+    "title": "EBA supports further progress on the Banking Union, including on deposit insurance",
+    "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-supports-further-progress-banking-union-including-deposit-insurance",
+    "date": "2026-11-16",
+    "authority": "EBA",
+    "source": "eba_rss",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 129.86,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -7663,12 +7777,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -7687,12 +7801,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -7711,12 +7825,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -7735,12 +7849,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -7759,12 +7873,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -7783,12 +7897,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -7807,12 +7921,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -7831,7 +7945,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [
@@ -7844,7 +7958,7 @@
     }
    ],
    "size": 2,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -7863,12 +7977,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -7887,12 +8001,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -7911,12 +8025,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -7935,12 +8049,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -7959,12 +8073,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -7983,12 +8097,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8007,12 +8121,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8031,7 +8145,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [
@@ -8044,7 +8158,7 @@
     }
    ],
    "size": 2,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8063,7 +8177,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.14,
+    "rank": 129.0,
     "tier": "info"
    },
    "also": [
@@ -8076,7 +8190,7 @@
     }
    ],
    "size": 2,
-   "rank": 129.14,
+   "rank": 129.0,
    "tier": "info",
    "news_only": false
   },
@@ -8095,12 +8209,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.14,
+    "rank": 129.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.14,
+   "rank": 129.0,
    "tier": "info",
    "news_only": false
   },
@@ -8119,12 +8233,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.14,
+    "rank": 129.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.14,
+   "rank": 129.0,
    "tier": "info",
    "news_only": false
   },
@@ -8143,12 +8257,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8167,12 +8281,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8191,12 +8305,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8215,12 +8329,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8239,12 +8353,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8263,12 +8377,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8287,12 +8401,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.71,
+    "rank": 128.57,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.71,
+   "rank": 128.57,
    "tier": "info",
    "news_only": false
   },
@@ -8311,7 +8425,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [
@@ -8324,7 +8438,7 @@
     }
    ],
    "size": 2,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -8343,12 +8457,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -8367,12 +8481,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -8391,12 +8505,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -8415,12 +8529,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -8439,12 +8553,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -8463,12 +8577,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -8487,12 +8601,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -8511,12 +8625,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -8535,12 +8649,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -8559,12 +8673,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.29,
+    "rank": 128.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.29,
+   "rank": 128.14,
    "tier": "info",
    "news_only": false
   },
@@ -8583,12 +8697,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.29,
+    "rank": 128.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.29,
+   "rank": 128.14,
    "tier": "info",
    "news_only": false
   },
@@ -8607,12 +8721,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.14,
+    "rank": 128.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.14,
+   "rank": 128.0,
    "tier": "info",
    "news_only": false
   },
@@ -8631,12 +8745,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.14,
+    "rank": 128.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.14,
+   "rank": 128.0,
    "tier": "info",
    "news_only": false
   },
@@ -8655,12 +8769,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -8679,12 +8793,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -8703,12 +8817,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -8727,12 +8841,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -8751,12 +8865,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -8775,12 +8889,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -8799,12 +8913,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8823,12 +8937,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8847,12 +8961,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8871,12 +8985,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8895,12 +9009,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8919,7 +9033,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [
@@ -8932,7 +9046,7 @@
     }
    ],
    "size": 2,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8951,12 +9065,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8975,12 +9089,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -8999,12 +9113,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9023,12 +9137,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9047,12 +9161,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9071,12 +9185,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9095,7 +9209,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.29,
+    "rank": 127.14,
     "tier": "info"
    },
    "also": [
@@ -9108,7 +9222,7 @@
     }
    ],
    "size": 2,
-   "rank": 127.29,
+   "rank": 127.14,
    "tier": "info",
    "news_only": false
   },
@@ -9127,12 +9241,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.14,
+    "rank": 127.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.14,
+   "rank": 127.0,
    "tier": "info",
    "news_only": false
   },
@@ -9151,12 +9265,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.0,
+    "rank": 126.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.0,
+   "rank": 126.86,
    "tier": "info",
    "news_only": false
   },
@@ -9175,12 +9289,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.71,
+    "rank": 126.57,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.71,
+   "rank": 126.57,
    "tier": "info",
    "news_only": false
   },
@@ -9199,12 +9313,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -9223,12 +9337,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -9247,12 +9361,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -9271,12 +9385,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -9295,12 +9409,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -9319,12 +9433,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.29,
+    "rank": 126.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.29,
+   "rank": 126.14,
    "tier": "info",
    "news_only": false
   },
@@ -9343,12 +9457,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.29,
+    "rank": 126.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.29,
+   "rank": 126.14,
    "tier": "info",
    "news_only": false
   },
@@ -9367,12 +9481,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.29,
+    "rank": 126.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.29,
+   "rank": 126.14,
    "tier": "info",
    "news_only": false
   },
@@ -9391,7 +9505,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.14,
+    "rank": 126.0,
     "tier": "info"
    },
    "also": [
@@ -9404,7 +9518,7 @@
     }
    ],
    "size": 2,
-   "rank": 126.14,
+   "rank": 126.0,
    "tier": "info",
    "news_only": false
   },
@@ -9423,12 +9537,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.14,
+    "rank": 126.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.14,
+   "rank": 126.0,
    "tier": "info",
    "news_only": false
   },
@@ -9447,7 +9561,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.14,
+    "rank": 126.0,
     "tier": "info"
    },
    "also": [
@@ -9460,7 +9574,7 @@
     }
    ],
    "size": 2,
-   "rank": 126.14,
+   "rank": 126.0,
    "tier": "info",
    "news_only": false
   },
@@ -9479,12 +9593,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.0,
+    "rank": 125.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.0,
+   "rank": 125.86,
    "tier": "info",
    "news_only": false
   },
@@ -9503,12 +9617,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.0,
+    "rank": 125.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.0,
+   "rank": 125.86,
    "tier": "info",
    "news_only": false
   },
@@ -9527,12 +9641,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.0,
+    "rank": 125.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.0,
+   "rank": 125.86,
    "tier": "info",
    "news_only": false
   },
@@ -9551,12 +9665,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.0,
+    "rank": 125.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.0,
+   "rank": 125.86,
    "tier": "info",
    "news_only": false
   },
@@ -9575,7 +9689,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.0,
+    "rank": 125.86,
     "tier": "info"
    },
    "also": [
@@ -9588,7 +9702,7 @@
     }
    ],
    "size": 2,
-   "rank": 126.0,
+   "rank": 125.86,
    "tier": "info",
    "news_only": false
   },
@@ -9607,12 +9721,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.71,
+    "rank": 125.57,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.71,
+   "rank": 125.57,
    "tier": "info",
    "news_only": false
   },
@@ -9631,12 +9745,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.57,
+    "rank": 125.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.57,
+   "rank": 125.43,
    "tier": "info",
    "news_only": false
   },
@@ -9655,12 +9769,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.57,
+    "rank": 125.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.57,
+   "rank": 125.43,
    "tier": "info",
    "news_only": false
   },
@@ -9679,12 +9793,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.43,
+    "rank": 125.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.43,
+   "rank": 125.29,
    "tier": "info",
    "news_only": false
   },
@@ -9703,12 +9817,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.43,
+    "rank": 125.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.43,
+   "rank": 125.29,
    "tier": "info",
    "news_only": false
   },
@@ -9727,12 +9841,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.43,
+    "rank": 125.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.43,
+   "rank": 125.29,
    "tier": "info",
    "news_only": false
   },
@@ -9751,12 +9865,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.43,
+    "rank": 125.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.43,
+   "rank": 125.29,
    "tier": "info",
    "news_only": false
   },
@@ -9775,7 +9889,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.43,
+    "rank": 125.29,
     "tier": "info"
    },
    "also": [
@@ -9795,7 +9909,7 @@
     }
    ],
    "size": 3,
-   "rank": 125.43,
+   "rank": 125.29,
    "tier": "info",
    "news_only": false
   },
@@ -9814,12 +9928,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.29,
+    "rank": 125.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.29,
+   "rank": 125.14,
    "tier": "info",
    "news_only": false
   },
@@ -9838,12 +9952,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.29,
+    "rank": 125.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.29,
+   "rank": 125.14,
    "tier": "info",
    "news_only": false
   },
@@ -9862,12 +9976,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.29,
+    "rank": 125.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.29,
+   "rank": 125.14,
    "tier": "info",
    "news_only": false
   },
@@ -9886,12 +10000,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.29,
+    "rank": 125.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.29,
+   "rank": 125.14,
    "tier": "info",
    "news_only": false
   },
@@ -9910,12 +10024,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.29,
+    "rank": 125.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.29,
+   "rank": 125.14,
    "tier": "info",
    "news_only": false
   },
@@ -9934,12 +10048,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.14,
+    "rank": 125.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.14,
+   "rank": 125.0,
    "tier": "info",
    "news_only": false
   },
@@ -9958,12 +10072,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.14,
+    "rank": 125.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.14,
+   "rank": 125.0,
    "tier": "info",
    "news_only": false
   },
@@ -9982,12 +10096,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.14,
+    "rank": 125.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.14,
+   "rank": 125.0,
    "tier": "info",
    "news_only": false
   },
@@ -10006,12 +10120,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.0,
+    "rank": 124.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.0,
+   "rank": 124.86,
    "tier": "info",
    "news_only": false
   },
@@ -10030,12 +10144,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.0,
+    "rank": 124.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.0,
+   "rank": 124.86,
    "tier": "info",
    "news_only": false
   },
@@ -10054,12 +10168,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.0,
+    "rank": 124.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.0,
+   "rank": 124.86,
    "tier": "info",
    "news_only": false
   },
@@ -10078,12 +10192,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.0,
+    "rank": 124.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.0,
+   "rank": 124.86,
    "tier": "info",
    "news_only": false
   },
@@ -10102,12 +10216,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 125.0,
+    "rank": 124.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.0,
+   "rank": 124.86,
    "tier": "info",
    "news_only": false
   },
@@ -10126,12 +10240,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 125.0,
+    "rank": 124.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 125.0,
+   "rank": 124.86,
    "tier": "info",
    "news_only": false
   },
@@ -10150,12 +10264,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10174,12 +10288,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10198,12 +10312,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10222,12 +10336,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10246,12 +10360,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10270,12 +10384,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10294,12 +10408,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.57,
+    "rank": 124.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.57,
+   "rank": 124.43,
    "tier": "info",
    "news_only": false
   },
@@ -10318,12 +10432,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.43,
+    "rank": 124.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.43,
+   "rank": 124.29,
    "tier": "info",
    "news_only": false
   },
@@ -10342,12 +10456,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.29,
+    "rank": 124.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.29,
+   "rank": 124.14,
    "tier": "info",
    "news_only": false
   },
@@ -10366,12 +10480,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.29,
+    "rank": 124.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.29,
+   "rank": 124.14,
    "tier": "info",
    "news_only": false
   },
@@ -10390,12 +10504,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 124.29,
+    "rank": 124.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.29,
+   "rank": 124.14,
    "tier": "info",
    "news_only": false
   },
@@ -10414,12 +10528,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.29,
+    "rank": 124.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.29,
+   "rank": 124.14,
    "tier": "info",
    "news_only": false
   },
@@ -10438,12 +10552,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.29,
+    "rank": 124.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.29,
+   "rank": 124.14,
    "tier": "info",
    "news_only": false
   },
@@ -10462,12 +10576,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 124.14,
+    "rank": 124.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.14,
+   "rank": 124.0,
    "tier": "info",
    "news_only": false
   },
@@ -10486,12 +10600,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.14,
+    "rank": 124.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.14,
+   "rank": 124.0,
    "tier": "info",
    "news_only": false
   },
@@ -10510,108 +10624,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 124.14,
+    "rank": 124.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 124.14,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-013bc30cdb8039491f1162b45f046f32",
-    "title": "ESMA to host Data Day 2026: ‘Data in the Savings and Investment Union – from burden to opportunity’",
-    "url": "https://www.esma.europa.eu/press-news/esma-news/esma-host-data-day-2026-data-savings-and-investment-union-burden-opportunity",
-    "date": "2026-10-06",
-    "authority": "ESMA",
-    "source": "esma_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 124.14,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 124.14,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-0a09614b5506f937e73d30c8cb8118c3",
-    "title": "EIOPA sets EU-wide expectations for the supervision of private equity-backed insurers",
-    "url": "https://www.eiopa.europa.eu/eiopa-sets-eu-wide-expectations-supervision-private-equity-backed-insurers-2026-10-06_en",
-    "date": "2026-10-06",
-    "authority": "EIOPA",
-    "source": "eiopa_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 124.14,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 124.14,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-eac4b7a01e9bff22ca412b9105d5c3c9",
-    "title": "Page test Economic Review 6",
-    "url": "https://www.nbb.be/en/news/page-test-economic-review-6",
-    "date": "2026-10-06",
-    "authority": "BNB / NBB",
-    "source": "bnb_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 124.14,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 124.14,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-4d0830a1ce95c86f8b3d34110f4f20af",
-    "title": "Philip R. Lane: Interview with Ansa",
-    "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261006~bc94400297.en.html",
-    "date": "2026-10-06",
-    "authority": "ECB",
-    "source": "ecb_rss",
-    "type": "supervisory_communication",
-    "status": "non-binding",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 124.14,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 124.14,
+   "rank": 124.0,
    "tier": "info",
    "news_only": false
   }

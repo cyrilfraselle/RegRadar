@@ -2,10 +2,204 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-16T14:40:51+00:00",
-  "count": 71
+  "generated": "2026-11-17T15:28:31+00:00",
+  "count": 75
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2554-ce2b37fc",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "celex-32026D2554",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2023/2682 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2023/2682 on an assistance measure under the European P, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2556-789c485a",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "celex-32026D2556",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2556 of 16 November 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2556",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In view of the gravity of the situation, the Council considers that 30 natural persons and one entity should be added to the list of natural and legal persons, entities and bodies set out in Annex I to Decision (CFSP) 2024/2643.",
+     "loc": "amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Ru, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2024/2643 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Ru, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R2569-eebbef7b",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "celex-32026R2569",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2569 of 16 November 2026 implementing Regulation (EU) 2020/1998 concerning restrictive measures against serious human rights violations and abuses",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2569",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In that context, four entities should be added to the list of natural or legal persons, entities or bodies subject to restrictive measures in Annex I to Regulation (EU) 2020/1998.",
+     "loc": "implementing Regulation (EU) 2020/1998 concerning restrictive measures against s, para 13",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-a602b2a61c97-a9508b05",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "amla-library-a602b2a61c97",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA finalises key standards for the private sector",
+   "url": "https://www.amla.europa.eu/document/download/6274f127-ac15-4e2a-b79f-88633a4deb54_en?filename=Press%20Release%20-%20AMLA%20finalises%20key%20standards%20for%20the%20private%20sector.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "▪ Customer due diligence: the information companies and professionals must collect and verify, including proportionate measures for lower-risk situations, non-face-to-face verification, electronic identification, and screening of politically exposed persons (PEPs), their family members and close associates.",
+     "loc": "p. 1, para 4",
+     "topics": [
+      "cdd",
+      "pep"
+     ],
+     "why": "normative wording (must) on cdd, pep"
+    },
+    {
+     "text": "▪ Business relationships and occasional transactions: how companies and professionals should distinguish between the two, and how to identify linked transactions, so that customer due diligence thresholds are applied consistently.",
+     "loc": "p. 1, para 3",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (should) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2546-92850f33",
    "created": "2026-11-16T14:40:51+00:00",

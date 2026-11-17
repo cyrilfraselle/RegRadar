@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-16T14:40:51+00:00",
-  "count": 170,
-  "corpus_bytes": 3577107
+  "generated": "2026-11-17T15:28:31+00:00",
+  "count": 181,
+  "corpus_bytes": 3847950
  },
  "documents": [
   {
@@ -391,6 +391,28 @@
    ],
    "parent": null,
    "paragraphs": 10
+  },
+  {
+   "id": "amla-hearings-ebbf5cc0b12e",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on draft ITS on FIU-to-FIU exchanges",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-its-fiu-fiu-exchanges-2026-05-27_en",
+   "publication_date": "2026-05-13",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "82b2438297f02d6186a2aa843ca1dc7614c86fd02e8bc8166cd33f83d2e66961",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1895,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 17
   },
   {
    "id": "amla-instruments-04b1e9cef1d4",
@@ -1064,6 +1086,26 @@
    "paragraphs": 326
   },
   {
+   "id": "amla-library-79cd70a6156d",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA finalises standards on Home-Host Supervisory Cooperation",
+   "url": "https://www.amla.europa.eu/document/download/52889999-664c-4c64-839e-52dcf2a006de_en?filename=Press%20Release%20-%20AMLA%20finalises%20standards%20on%20Home-Host%20Supervisory%20Cooperation.pdf",
+   "publication_date": "2026-10-01",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "2869baf0e2309a972e3f9d8e49bbd58964b749868af36070fa1ff286ef94ef60",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2018,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 6
+  },
+  {
    "id": "amla-library-964d9792a3fe",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1085,6 +1127,28 @@
    ],
    "parent": null,
    "paragraphs": 29
+  },
+  {
+   "id": "amla-library-a602b2a61c97",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA finalises key standards for the private sector",
+   "url": "https://www.amla.europa.eu/document/download/6274f127-ac15-4e2a-b79f-88633a4deb54_en?filename=Press%20Release%20-%20AMLA%20finalises%20key%20standards%20for%20the%20private%20sector.pdf",
+   "publication_date": "2026-10-01",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "a9508b052cfa5573aecacdacb8b8241edca3e8feccd180fc30d946ce4bbb4798",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2416,
+   "truncated": false,
+   "topics": [
+    "cdd"
+   ],
+   "parent": null,
+   "paragraphs": 6
   },
   {
    "id": "amla-library-b322780192c5",
@@ -1158,6 +1222,26 @@
    "topics": [],
    "parent": null,
    "paragraphs": 29
+  },
+  {
+   "id": "amla-library-eb900769d03c",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AMLA Organisational Chart",
+   "url": "https://www.amla.europa.eu/document/download/0343f230-0fd5-4d15-b122-288405b7ef5c_en?filename=AMLA%20Organisational%20Chart.pdf",
+   "publication_date": "2026-10-01",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "8add6189e544ec0a8faf2a253ba3058d2e7d7b1e4bc821349446430f7c1ea141",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 1222,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 2
   },
   {
    "id": "amla-library-ed5e2388851d",
@@ -1253,6 +1337,28 @@
    "paragraphs": 5
   },
   {
+   "id": "amla-news-0ab8fede43d1",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Executive Board Member Derville Rowland speaks at AFME’s European AML Conference",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-derville-rowland-speaks-afmes-european-aml-conference_en",
+   "publication_date": "2026-11-16",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "a0768ee6d1cc6ac14e9a632ce36b163a56f1e6758396485ff77f604f25d54ae0",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2204,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 12
+  },
+  {
    "id": "amla-news-25ba5b2df2f3",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1342,6 +1448,29 @@
    "paragraphs": 4
   },
   {
+   "id": "amla-news-490c4c92f749",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA invites stakeholders to sectoral roundtables on simplified customer due diligence",
+   "url": "https://www.amla.europa.eu/amla-invites-stakeholders-sectoral-roundtables-simplified-customer-due-diligence_en",
+   "publication_date": "2026-10-02",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "ca437225bbbb8ebfc7022b707f73a90f387170a0429517ee4757acf31a29e9d7",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2213,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "simplified-edd"
+   ],
+   "parent": null,
+   "paragraphs": 10
+  },
+  {
    "id": "amla-news-55bc303d93b0",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1376,6 +1505,28 @@
    "format": "html",
    "pages_total": null,
    "chars_stored": 1562,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 5
+  },
+  {
+   "id": "amla-news-69b783c5ee7e",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "From vision to reality: AMLA Chair Bruna Szego speaks at 29th Euro Finance Week",
+   "url": "https://www.amla.europa.eu/vision-reality-amla-chair-bruna-szego-speaks-29th-euro-finance-week_en",
+   "publication_date": "2026-11-17",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "05d772fb48832c955fb1966dabf72808fd64db238ea23ab71a9fa38742f3544d",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1609,
    "truncated": false,
    "topics": [
     "reporting-str"
@@ -2142,6 +2293,50 @@
    "paragraphs": 34
   },
   {
+   "id": "celex-32026D2554",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
+   "publication_date": "2026-11-17",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "ce2b37fcdde0ceac440f68f3cdf8e9f8c5b70a2d588cb325a7da5cf1b0b02665",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 3683,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 32
+  },
+  {
+   "id": "celex-32026D2556",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2556 of 16 November 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2556",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "789c485abdafbdf7b008376975141f57226a0eea3ceb26fca6207e70109398ac",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 100354,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 159
+  },
+  {
    "id": "celex-32026D2570",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -2301,6 +2496,28 @@
    "paragraphs": 36
   },
   {
+   "id": "celex-32026R2558",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2558 of 16 November 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2558",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "da08586d9e0d13819cda498891fc22265cae45ef6b907d3284ae236d4ba80650",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 100511,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 162
+  },
+  {
    "id": "celex-32026R2568",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -2321,6 +2538,28 @@
    ],
    "parent": null,
    "paragraphs": 42
+  },
+  {
+   "id": "celex-32026R2569",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2569 of 16 November 2026 implementing Regulation (EU) 2020/1998 concerning restrictive measures against serious human rights violations and abuses",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2569",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "eebbef7b5b2d1bac227e85d611787726caf333f97e7d6420c7dd1a7a70020757",
+   "retrieved": "2026-11-17T15:28:31+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 6290,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 53
   },
   {
    "id": "celex-52025DP0342",

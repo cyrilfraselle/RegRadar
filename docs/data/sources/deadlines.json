@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-16T14:40:51+00:00",
-  "count": 106
+  "generated": "2026-11-17T15:28:31+00:00",
+  "count": 109
  },
  "deadlines": [
   {
@@ -501,6 +501,19 @@
    "loc": "p. 1, para 4"
   },
   {
+   "id": "1da4b8c8fd27",
+   "date": "2026-10-18",
+   "kind": "reporting deadline",
+   "title": "AMLA invites stakeholders to sectoral roundtables on simplified customer due diligence",
+   "source_doc_id": "amla-news-490c4c92f749",
+   "source": "amla-news",
+   "url": "https://www.amla.europa.eu/amla-invites-stakeholders-sectoral-roundtables-simplified-customer-due-diligence_en",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "AMLA invites stakeholders to submit their expressions of interest by 18 October 2026 at 23h59 CEST .",
+   "loc": "How to express interest, para 1"
+  },
+  {
    "id": "13877371051f",
    "date": "2026-10-26",
    "kind": "entry into force",
@@ -789,33 +802,33 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "e48332193110",
+   "id": "37971ec5117c",
    "date": "2026-11-16",
    "kind": "entry into force",
    "title": "Council Implementing Regulation (EU) 2026/2558 of 16 November 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026R2558",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2558",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "5f28324f9db8",
+   "id": "92be666fb10a",
    "date": "2026-11-16",
    "kind": "entry into force",
    "title": "Council Decision (CFSP) 2026/2556 of 16 November 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026D2556",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2556",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "5ac76a0169e3",
+   "id": "d7b07c74c90e",
    "date": "2026-11-16",
    "kind": "entry into force",
    "title": "Council Implementing Regulation (EU) 2026/2569 of 16 November 2026 implementing Regulation (EU) 2020/1998 concerning restrictive measures against serious human rights violations and abuses",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026R2569",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2569",
    "confidence": "high",
@@ -851,6 +864,17 @@
    "source_doc_id": "",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2571",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "404e4124756e",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
+   "source_doc_id": "celex-32026D2554",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
@@ -1150,6 +1174,19 @@
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
    "quote": "The methodology would apply from 31 December 2028.",
    "loc": "Share your perspective, para 1"
+  },
+  {
+   "id": "693546a5da99",
+   "date": "2029-07-10",
+   "kind": "application date",
+   "title": "Press Release - AMLA finalises key standards for the private sector",
+   "source_doc_id": "amla-library-a602b2a61c97",
+   "source": "amla-library",
+   "url": "https://www.amla.europa.eu/document/download/6274f127-ac15-4e2a-b79f-88633a4deb54_en?filename=Press%20Release%20-%20AMLA%20finalises%20key%20standards%20for%20the%20private%20sector.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "For football agents and professional football clubs, they will apply from 10 July 2029.",
+   "loc": "p. 1, para 6"
   },
   {
    "id": "fc1e262cb406",
