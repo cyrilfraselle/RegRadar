@@ -2,10 +2,370 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-17T15:28:31+00:00",
-  "count": 75
+  "generated": "2026-11-18T15:03:00+00:00",
+  "count": 82
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026R2574-f8b53476",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026R2574",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2574 of 16 November 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2574",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In particular, the Council considers that 12 individuals and 101 entities should be added to the list of persons, entities and bodies subject to restrictive measures set out in Annex I to Regulation (EU) No 269/2014.",
+     "loc": "implementing Regulation (EU) No 269/2014 concerning restrictive measures in resp, para 13",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2575-2f16305a",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026D2575",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2575 of 16 November 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2575",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In particular, the Council considers that 12 individuals and 101 entities should be added to the list of persons, entities and bodies subject to restrictive measures set out in the Annex to Decision 2014/145/CFSP.",
+     "loc": "amending Decision 2014/145/CFSP concerning restrictive measures in respect of ac, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision 2014/145/CFSP should therefore be amended accordingly,",
+     "loc": "amending Decision 2014/145/CFSP concerning restrictive measures in respect of ac, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2571-0076b2ab",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026D2571",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2571 of 16 November 2026 amending Decision (CFSP) 2020/1999 concerning restrictive measures against serious human rights violations and abuses",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2571",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In that context, four entities should be added to the list of natural and legal persons, entities and bodies subject to restrictive measures in the Annex to Decision (CFSP) 2020/1999.",
+     "loc": "amending Decision (CFSP) 2020/1999 concerning restrictive measures against serio, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2020/1999 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2020/1999 concerning restrictive measures against serio, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2372-18308b80",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026D2372",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2372 of 26 October 2026 amending Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2372",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision 2010/788/CFSP should therefore be amended accordingly,",
+     "loc": "amending Decision 2010/788/CFSP concerning restrictive measures in view of the s, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-hearings-b1a44b083017-c3b7bf98",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "amla-hearings-b1a44b083017",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on draft ITS on FIU and AMLA reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-its-fiu-and-amla-reporting-eppo-2026-05-27_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The first instrument establishes the format Financial Intelligence Units (FIUs) must use when reporting findings to the EPPO where analysis reveals reasonable grounds to suspect offences against the EU's financial interests. The second establishes the equivalent format for AMLA, covering findings produced through joint analyses conducted by AMLA together with FIUs. Both introduce a common reporting template and require machine-readable submissions through a secure channel, enabling automatic processing by the EPPO.",
+     "loc": "About the consultation, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-59cf94b53227-73bbdb61",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "amla-library-59cf94b53227",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AMLA and EPPO - Working Arrangement on Cooperation",
+   "url": "https://www.amla.europa.eu/document/download/21f8c0f0-1c39-4de0-b770-49c2c5436fd6_en?filename=Working%20Arrangement%20-%20AMLA%20and%20EPPO.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(7) Pursuant to Article 57(4) of the AMLA Regulation, the General Board of AMLA, in its Financial Intelligence Unit (FIU) composition, may admit the EPPO as an observer to its meetings where matters within the scope of the EPPO’s mandate are discussed, and the conditions governing such participation should be laid down in the Rules of Procedure for the General Board of AMLA and reflect an agreement reached between AMLA and the EPPO.",
+     "loc": "p. 3, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "3. The European Chief Prosecutor shall designate representatives to participate, on behalf of the EPPO, as a non-voting observer in meetings of AMLA’s General Board in its Financial Intelligence Unit (FIU) composition where matters falling within the EPPO’s mandate are discussed, in accordance with Article 57(4) of the AMLA Regulation and the Rules of Procedure for the General Board of AMLA. For this purpose:",
+     "loc": "p. 11, para 6",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "1. Subject to the availability of resources, the Parties shall cooperate in the area of professional training, including through the exchange of staff for learning and capacity-building purposes. Each Party shall inform the other of, and, where appropriate, i nvite the other to participate in relevant seminars, workshops, conferences, and similar activities.",
+     "loc": "p. 12, para 3",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (shall) on training"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-news-0fee8ddae26e-9588f6f1",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "amla-news-0fee8ddae26e",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA finalises key standards for the private sector",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-key-standards-private-sector_en",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "cites AMLR Art. 19",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Customer due diligence : the information companies and professionals must collect and verify, including proportionate measures for lower-risk situations, non-face-to-face verification, electronic identification, and screening of politically exposed persons (PEPs), their family members and close associates.",
+     "loc": "Greater clarity and consistency for the private sector, para 3",
+     "topics": [
+      "cdd",
+      "pep"
+     ],
+     "why": "normative wording (must) on cdd, pep"
+    },
+    {
+     "text": "Business relationships and occasional transactions : how companies and professionals should distinguish between the two, and how to identify linked transactions, so that customer due diligence thresholds are applied consistently.",
+     "loc": "Greater clarity and consistency for the private sector, para 2",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (should) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2554-ce2b37fc",
    "created": "2026-11-17T15:28:31+00:00",

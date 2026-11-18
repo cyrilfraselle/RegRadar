@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-17T15:28:31+00:00",
-  "count": 181,
-  "corpus_bytes": 3847950
+  "generated": "2026-11-18T15:03:00+00:00",
+  "count": 193,
+  "corpus_bytes": 4285374
  },
  "documents": [
   {
@@ -391,6 +391,28 @@
    ],
    "parent": null,
    "paragraphs": 10
+  },
+  {
+   "id": "amla-hearings-b1a44b083017",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on draft ITS on FIU and AMLA reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-its-fiu-and-amla-reporting-eppo-2026-05-27_en",
+   "publication_date": "2026-05-13",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "c3b7bf98ded136ba90cfb415bdb332eb9b3add24e42d0ce9ebdbf83c0ccad62c",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1554,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 12
   },
   {
    "id": "amla-hearings-ebbf5cc0b12e",
@@ -1034,6 +1056,29 @@
    "paragraphs": 201
   },
   {
+   "id": "amla-library-59cf94b53227",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AMLA and EPPO - Working Arrangement on Cooperation",
+   "url": "https://www.amla.europa.eu/document/download/21f8c0f0-1c39-4de0-b770-49c2c5436fd6_en?filename=Working%20Arrangement%20-%20AMLA%20and%20EPPO.pdf",
+   "publication_date": "2026-11-17",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "73bbdb61cd19430d9fd6288a58d4a9f6dbf4c46af062ee8b7f36eb37a636e351",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "pdf",
+   "pages_total": 20,
+   "chars_stored": 29633,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "training"
+   ],
+   "parent": null,
+   "paragraphs": 176
+  },
+  {
    "id": "amla-library-5be92668cc8d",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1104,6 +1149,26 @@
    "topics": [],
    "parent": null,
    "paragraphs": 6
+  },
+  {
+   "id": "amla-library-7e6bbdde4a21",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Template_identification_eligible_obliged_entities_Art_153_AMLAR_V1.2",
+   "url": "https://www.amla.europa.eu/document/download/627c52b7-4821-4caf-9d18-626fa1a1c4c3_en?filename=Template_identification_eligible_obliged_entities_Art_153_AMLAR_V1.2.xlsx",
+   "publication_date": "2026-09-23",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "und",
+   "version_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 0,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 0
   },
   {
    "id": "amla-library-964d9792a3fe",
@@ -1222,6 +1287,28 @@
    "topics": [],
    "parent": null,
    "paragraphs": 29
+  },
+  {
+   "id": "amla-library-d4dd889f08bf",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA-EPPO Working Arrangement",
+   "url": "https://www.amla.europa.eu/document/download/21104760-db34-4a30-b593-3ef346df70c6_en?filename=Press%20Release%20-%20AMLA-EPPO%20Working%20Arrangement.pdf",
+   "publication_date": "2026-11-17",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "6616ee21887a8ad8c255325da623b39f75f97b53ab6a9683da842f38b753df4f",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "pdf",
+   "pages_total": 2,
+   "chars_stored": 3564,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 10
   },
   {
    "id": "amla-library-eb900769d03c",
@@ -1357,6 +1444,29 @@
    ],
    "parent": null,
    "paragraphs": 12
+  },
+  {
+   "id": "amla-news-0fee8ddae26e",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA finalises key standards for the private sector",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-key-standards-private-sector_en",
+   "publication_date": "2026-10-01",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "9588f6f1f5092f58e75b008ce25cd43018fef5b0d1bc30d3442b6fdcbf24c4a9",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2492,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 17
   },
   {
    "id": "amla-news-25ba5b2df2f3",
@@ -1518,12 +1628,12 @@
    "authority": "AMLA",
    "title": "From vision to reality: AMLA Chair Bruna Szego speaks at 29th Euro Finance Week",
    "url": "https://www.amla.europa.eu/vision-reality-amla-chair-bruna-szego-speaks-29th-euro-finance-week_en",
-   "publication_date": "2026-11-17",
+   "publication_date": "2026-11-18",
    "type": "supervisory_communication",
    "status": "published",
    "language": "en",
    "version_hash": "05d772fb48832c955fb1966dabf72808fd64db238ea23ab71a9fa38742f3544d",
-   "retrieved": "2026-11-17T15:28:31+00:00",
+   "retrieved": "2026-11-18T15:03:00+00:00",
    "format": "html",
    "pages_total": null,
    "chars_stored": 1609,
@@ -1706,6 +1816,28 @@
    "paragraphs": 4
   },
   {
+   "id": "amla-news-cfff4167fd42",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA and the EPPO agree closer cooperation to fight money laundering affecting the EU budget",
+   "url": "https://www.amla.europa.eu/amla-and-eppo-agree-closer-cooperation-fight-money-laundering-affecting-eu-budget_en",
+   "publication_date": "2026-11-17",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "647d54ea49ba3148f043b79d931524654bf9992c07c40f6c15a9ec80da7bfdd9",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 3174,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 12
+  },
+  {
    "id": "amla-news-f788b3addd04",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1854,6 +1986,28 @@
    ],
    "parent": "nbb-aml-decisions-7c23e2d4d72b",
    "paragraphs": 10
+  },
+  {
+   "id": "att-c997293c3cd8",
+   "source": "nbb-aml-decisions",
+   "authority": "NBB",
+   "title": "2026-11-17_Paynovate_Art. 94 & publication_Annexe 2_3_Publication_EN.docx",
+   "url": "https://www.nbb.be/doc/cp/eng/2026/20261117_paynovate_art_94_en.pdf",
+   "publication_date": "2017-09-18",
+   "type": "enforcement",
+   "status": "final",
+   "language": "en",
+   "version_hash": "fbbbc8b74961ac60c6d2f2f73a76d1e1b039427d6681928ca79213d3a9bb7b87",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2520,
+   "truncated": false,
+   "topics": [
+    "cdd"
+   ],
+   "parent": "nbb-aml-decisions-8ae562ba2c08",
+   "paragraphs": 4
   },
   {
    "id": "celex-32025R2088",
@@ -2117,6 +2271,28 @@
    "paragraphs": 35
   },
   {
+   "id": "celex-32026D2372",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2372 of 26 October 2026 amending Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2372",
+   "publication_date": "2026-10-27",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "18308b8046fee651196427c55ce229e22c738bdc68891c477642274cfb2da88f",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 6341,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 45
+  },
+  {
    "id": "celex-32026D2375",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -2359,6 +2535,51 @@
    "paragraphs": 44
   },
   {
+   "id": "celex-32026D2571",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2571 of 16 November 2026 amending Decision (CFSP) 2020/1999 concerning restrictive measures against serious human rights violations and abuses",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2571",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "0076b2abb262acbee4079ec35c063abfcf321a3a2454a9fb6116afad5ba41c74",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 6156,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 51
+  },
+  {
+   "id": "celex-32026D2575",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2575 of 16 November 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2575",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "2f16305a39634625e0153d7b0f0f5f52620ce9bbb390db5ca9910d0b5c8ae930",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 142219,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 486
+  },
+  {
    "id": "celex-32026R0046",
    "source": "eurlex-cellar-aml-family",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -2560,6 +2781,29 @@
    ],
    "parent": null,
    "paragraphs": 53
+  },
+  {
+   "id": "celex-32026R2574",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2574 of 16 November 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2574",
+   "publication_date": "2026-11-16",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "f8b534763e71f9370c216c8332fa54f7338e0770a3f6b704abfa73d5dab02627",
+   "retrieved": "2026-11-18T15:03:00+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 142403,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 488
   },
   {
    "id": "celex-52025DP0342",
@@ -2793,6 +3037,26 @@
    "language": "und",
    "version_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
    "retrieved": "2026-11-14T08:18:34+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 0,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 0
+  },
+  {
+   "id": "nbb-aml-decisions-8ae562ba2c08",
+   "source": "nbb-aml-decisions",
+   "authority": "NBB",
+   "title": "Publication of the decision of the National Bank of Belgium concerning Paynovate SA pursuant to Article 98/1 in conjunction with Article 135 §3 of the Act of 18 September 2017 on the prevention of money laundering and terrorist financing and on restriction of the use of cash 18 Nov 2026 - 11:30",
+   "url": "https://www.nbb.be/en/financial-supervision/news/publication-decision-national-bank-belgium-concerning-paynovate-sa-pursuant-article-981-conjunction",
+   "publication_date": "2017-09-18",
+   "type": "enforcement",
+   "status": "final",
+   "language": "und",
+   "version_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "retrieved": "2026-11-18T15:03:00+00:00",
    "format": "html",
    "pages_total": null,
    "chars_stored": 0,
