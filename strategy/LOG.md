@@ -41,3 +41,4 @@ Audit in strategy/scraper-audit.md. New registry-driven source engine (collect_s
 
 - 2026-11-14 (academy/films-02-04): films 02 to 04 built on a shared data-driven engine (docs/academy-film-engine.js); gate step 6 automated by tests/films.test.mjs; films registered in docs/data/academy/films.json. Needs legal fact-check.
 - 2026-11-14 MAX (max/obligations-bulk): bulk extraction started: extract_obligations_draft.py, docs/data/obligations-draft.json (AMLR 330, TFR 58, AMLD6 29 draft units, not reviewed), review queue, tests/obligations_draft.test.py, strategy/obligations-bulk.md. Verified register untouched. Needs legal fact-check.
+- 2026-11-18 MAX (max/gap-view): Gap assessment page `docs/gaps.html`: coverage map by topic (covered and tested, covered untested, partly, not covered, not applicable; configurable definition), list, dated snapshots with compare, real .xlsx export written in the browser, print. No legal text added. Menu entry left to SYSTEM.
