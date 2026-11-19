@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+window.toggleTheme=function(){var h=document.documentElement,t=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=t;try{localStorage.setItem('regradar-theme',t)}catch(e){}};
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar: UI guide</title>
+<meta name="description" content="The RegRadar design system: tokens and components from rr-ui.css, with markup to copy.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<style>
+.g-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--rr-5)}
+.g-sec{margin:0 0 clamp(40px,6vw,72px)}
+.g-sec > h2{font-size:var(--rr-t-h2);letter-spacing:-.03em}
+.g-sec > p{color:var(--rr-text-2);margin-top:6px;max-width:70ch}
+.g-demo{margin-top:var(--rr-4);padding:var(--rr-5);background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r);display:flex;flex-direction:column;gap:var(--rr-4)}
+.g-code{margin-top:var(--rr-2);font-family:var(--rr-mono);font-size:12.5px;line-height:1.6;color:var(--rr-text-2);background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r-sm);padding:var(--rr-3) var(--rr-4);white-space:pre-wrap;overflow-wrap:anywhere}
+.g-sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--rr-3)}
+.g-sw div{border:1px solid var(--rr-line);border-radius:12px;overflow:hidden;background:var(--rr-surface)}
+.g-sw i{display:block;height:44px}
+.g-sw span{display:block;padding:8px 10px;font-size:12.5px;color:var(--rr-text-2)}
+.g-sw b{display:block;color:var(--rr-text);font-family:var(--rr-mono);font-weight:600;font-size:12px}
+.g-type > *{margin-top:var(--rr-3)}
+.g-band-demo{border-radius:var(--rr-r);overflow:hidden;padding:var(--rr-5);background:var(--rr-ink);color:var(--rr-text)}
+.g-band-demo h1{font-size:clamp(28px,3.4vw,40px);letter-spacing:var(--rr-track-tight)}
+.g-band-demo p{color:var(--rr-text-2);margin-top:8px}
+.g-rules{list-style:none;display:grid;gap:var(--rr-2)}
+.g-rules li{padding-left:18px;position:relative;color:var(--rr-text-2);max-width:80ch}
+.g-rules li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--rr-text-3)}
+.g-rules b{color:var(--rr-text)}
+.g-toast-demo{position:static;transform:none;opacity:1;display:inline-block}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<script src="site-nav.js?v=20261114a"></script>
+
+<main id="main" class="wrap">
+  <header class="head rr-band">
+    <div>
+      <h1>UI guide</h1>
+      <p class="lead">The parts every RegRadar page is built from. Copy the markup, keep the classes, add only layout in your page.</p>
+    </div>
+    <div class="head-tools">
+      <a class="btn" href="index.html">See the landing page</a>
+      <button class="btn pri" type="button" onclick="toggleTheme()">Switch light / dark</button>
+    </div>
+  </header>
+
+  <nav class="g-nav" aria-label="Sections of this guide">
+    <a class="chip" href="#rules">Rules</a><a class="chip" href="#tokens">Tokens</a><a class="chip" href="#type">Type</a>
+    <a class="chip" href="#shell">Page shell</a><a class="chip" href="#buttons">Buttons</a><a class="chip" href="#pills">Chips and status</a>
+    <a class="chip" href="#cards">Cards and stats</a><a class="chip" href="#forms">Forms and filters</a><a class="chip" href="#tabs">Tabs</a>
+    <a class="chip" href="#tables">Tables</a><a class="chip" href="#kanban">Kanban</a><a class="chip" href="#feedback">Empty, banner, toast</a>
+    <a class="chip" href="#dialogs">Dialogs</a>
+  </nav>
+
+  <section class="g-sec" id="rules" aria-labelledby="h-rules">
+    <h2 id="h-rules">Rules</h2>
+    <ul class="g-rules" style="margin-top:var(--rr-4)">
+      <li><b>Link rr-ui.css before your page style.</b> Your page CSS adds layout only. Never redefine colours, buttons or type; use the tokens.</li>
+      <li><b>One dark band per page.</b> The page title sits in <code>header.head.rr-band</code>; the work sits below on paper (or on dark paper in dark mode).</li>
+      <li><b>Blue means link, focus or "live".</b> The primary button is an ink pill (light pill in dark), as on the landing page. Red, amber and green are for state only.</li>
+      <li><b>No labels above headings, no section numbers, no emoji as icons.</b> A heading carries its own weight.</li>
+      <li><b>Quality floor:</b> text 12 px or more, contrast 4.5:1 in light and dark, 44 px targets, visible focus, motion off under reduced motion, no sideways scroll at 390, 768 and 1280 px.</li>
+      <li><b>Floating things</b> stay clear of Max (bottom right, z-index 90). Toasts sit bottom centre at 95; dialogs use native <code>&lt;dialog&gt;</code> and sit above both.</li>
+    </ul>
+  </section>
+
+  <section class="g-sec" id="tokens" aria-labelledby="h-tokens">
+    <h2 id="h-tokens">Tokens</h2>
+    <p>Colours follow the theme. Use the semantic names; the brand constants are for illustrations only.</p>
+    <div class="g-demo">
+      <div class="g-sw">
+        <div><i style="background:var(--rr-bg)"></i><span><b>--rr-bg</b>page ground</span></div>
+        <div><i style="background:var(--rr-surface)"></i><span><b>--rr-surface</b>cards, panes</span></div>
+        <div><i style="background:var(--rr-surface-2)"></i><span><b>--rr-surface-2</b>wells, columns</span></div>
+        <div><i style="background:var(--rr-text)"></i><span><b>--rr-text</b>body text</span></div>
+        <div><i style="background:var(--rr-text-2)"></i><span><b>--rr-text-2</b>secondary</span></div>
+        <div><i style="background:var(--rr-text-3)"></i><span><b>--rr-text-3</b>metadata</span></div>
+        <div><i style="background:var(--rr-accent)"></i><span><b>--rr-accent</b>links, focus</span></div>
+        <div><i style="background:var(--rr-primary)"></i><span><b>--rr-primary</b>primary button</span></div>
+        <div><i style="background:var(--rr-live)"></i><span><b>--rr-live</b>live, in force</span></div>
+        <div><i style="background:var(--rr-review)"></i><span><b>--rr-review</b>waiting, review</span></div>
+        <div><i style="background:var(--rr-risk)"></i><span><b>--rr-risk</b>gap, overdue</span></div>
+        <div><i style="background:var(--rr-done)"></i><span><b>--rr-done</b>covered, closed</span></div>
+      </div>
+      <p class="hint">Space: --rr-1 (4) to --rr-9 (96 px). Radius: --rr-r-sm 10, --rr-r 16, --rr-r-lg 24, --rr-r-pill. Shadow: --rr-shadow-1 to 3. Motion: --rr-ease with --rr-dur-1/2/3.</p>
+    </div>
+  </section>
+
+  <section class="g-sec" id="type" aria-labelledby="h-type">
+    <h2 id="h-type">Type</h2>
+    <p>The system face, as on the landing page. Tight tracking on titles, serif only for the law.</p>
+    <div class="g-demo g-type">
+      <p style="font-size:var(--rr-t-display);font-weight:700;letter-spacing:var(--rr-track-tight);line-height:1.02">Page title</p>
+      <p style="font-size:var(--rr-t-h2);font-weight:700;letter-spacing:-.03em">Section title</p>
+      <p style="font-size:var(--rr-t-h3);font-weight:700">Card title</p>
+      <p style="font-size:var(--rr-t-lead);color:var(--rr-text-2);font-weight:500">Lead line under a title, one sentence.</p>
+      <p>Body text at 15 px. Plain words, short sentences.</p>
+      <p class="hint">Metadata at 12 px, the floor.</p>
+      <blockquote class="rr-law">"Obliged entities shall <mark>obtain senior management approval</mark> for establishing or continuing business relationships…"</blockquote>
+    </div>
+    <pre class="g-code">&lt;blockquote class="rr-law"&gt;"…verbatim text…"&lt;/blockquote&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="shell" aria-labelledby="h-shell">
+    <h2 id="h-shell">Page shell</h2>
+    <p>site-nav.js draws the menu and footer. Each page has one band with its title, one lead line and its main actions.</p>
+    <div class="g-demo">
+      <div class="g-band-demo rr-dark"><h1>Register</h1><p>Every obligation, the law behind it and the control that answers it.</p>
+        <div class="btns" style="margin-top:16px"><button class="btn" type="button">Export CSV</button><button class="btn pri" type="button">New control</button></div></div>
+    </div>
+    <pre class="g-code">&lt;script src="site-nav.js?v=…"&gt;&lt;/script&gt;
+&lt;main id="main" class="wrap"&gt;
+  &lt;header class="head rr-band"&gt;
+    &lt;div&gt;&lt;h1&gt;Register&lt;/h1&gt;&lt;p class="lead"&gt;One sentence.&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="head-tools"&gt;&lt;button class="btn"&gt;Export CSV&lt;/button&gt;&lt;button class="btn pri"&gt;New control&lt;/button&gt;&lt;/div&gt;
+  &lt;/header&gt;
+  &lt;section class="rr-section"&gt;&lt;div class="rr-section-h"&gt;&lt;h2&gt;…&lt;/h2&gt;&lt;/div&gt;…&lt;/section&gt;
+&lt;/main&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="buttons" aria-labelledby="h-buttons">
+    <h2 id="h-buttons">Buttons</h2>
+    <p>One primary per view. Secondary for the rest, quiet for low-stakes links.</p>
+    <div class="g-demo">
+      <div class="btns">
+        <button class="btn pri" type="button">Save control</button>
+        <button class="btn" type="button">Export CSV</button>
+        <button class="btn quiet" type="button">Show the law</button>
+        <button class="btn sm" type="button">Small</button>
+        <button class="btn" type="button" disabled>Disabled</button>
+        <a class="rr-more" href="#buttons">Open the register <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <pre class="g-code">&lt;button class="btn pri"&gt;Save&lt;/button&gt; &lt;button class="btn"&gt;Export&lt;/button&gt; &lt;button class="btn quiet"&gt;Show&lt;/button&gt; &lt;button class="btn sm"&gt;Small&lt;/button&gt;
+&lt;a class="rr-more" href="…"&gt;Open the register →&lt;/a&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="pills" aria-labelledby="h-pills">
+    <h2 id="h-pills">Chips and status pills</h2>
+    <p>Chips filter; pills report state. The four states mean the same thing on every page.</p>
+    <div class="g-demo">
+      <div class="chips" role="group" aria-label="Example filters">
+        <button class="chip" type="button" aria-pressed="true">All</button>
+        <button class="chip" type="button" aria-pressed="false">CDD</button>
+        <button class="chip" type="button" aria-pressed="false">PEP</button>
+        <span class="chip">Static chip</span>
+      </div>
+      <div class="chips">
+        <span class="pill live">Live</span><span class="pill review">In review</span><span class="pill risk">Gap</span><span class="pill done">Covered</span><span class="pill">Draft</span>
+      </div>
+    </div>
+    <pre class="g-code">&lt;button class="chip" aria-pressed="true"&gt;All&lt;/button&gt;
+&lt;span class="pill live"&gt;Live&lt;/span&gt; &lt;span class="pill review"&gt;In review&lt;/span&gt; &lt;span class="pill risk"&gt;Gap&lt;/span&gt; &lt;span class="pill done"&gt;Covered&lt;/span&gt; &lt;span class="pill"&gt;Draft&lt;/span&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="cards" aria-labelledby="h-cards">
+    <h2 id="h-cards">Cards, rows and stat tiles</h2>
+    <p>Use a card for a unit of work, not as decoration. Never nest cards; inside a card use rows.</p>
+    <div class="g-demo">
+      <div class="rr-stats">
+        <div class="rr-stat"><div class="n">8 of 12</div><div class="l">Obligations covered</div><div class="s">AMLR only</div></div>
+        <div class="rr-stat risk"><div class="n">4</div><div class="l">Open gaps</div><div class="s">3 high criticality</div></div>
+        <div class="rr-stat"><div class="n">238</div><div class="l">Days to next deadline</div><div class="s">10 Jul 2027</div></div>
+      </div>
+      <div class="rr-card">
+        <div class="pane-h"><h3>Files to review</h3><span class="hint">Waiting for approval</span></div>
+        <ul class="rr-rows">
+          <li><div><b>Four-eyes approval on high-risk onboarding</b><small>Control · Sanmi O.</small></div><span class="pill review">In review</span></li>
+          <li><div><b>Enhanced ongoing monitoring</b><small>Control · M. Van Damme</small></div><span class="pill done">Covered</span></li>
+        </ul>
+      </div>
+    </div>
+    <pre class="g-code">&lt;div class="rr-stats"&gt;&lt;div class="rr-stat"&gt;&lt;div class="n"&gt;4&lt;/div&gt;&lt;div class="l"&gt;Open gaps&lt;/div&gt;&lt;div class="s"&gt;…&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="rr-card"&gt;&lt;div class="pane-h"&gt;&lt;h3&gt;…&lt;/h3&gt;&lt;/div&gt;&lt;ul class="rr-rows"&gt;&lt;li&gt;&lt;div&gt;&lt;b&gt;…&lt;/b&gt;&lt;small&gt;…&lt;/small&gt;&lt;/div&gt;&lt;span class="pill"&gt;…&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="forms" aria-labelledby="h-forms">
+    <h2 id="h-forms">Forms and filter bar</h2>
+    <div class="g-demo">
+      <div class="rr-filters" role="search">
+        <label class="sr" for="g-q">Search obligations</label><input class="in" id="g-q" type="search" placeholder="Search obligations">
+        <label class="lbl" for="g-firm">Firm type</label>
+        <select class="sel" id="g-firm"><option>All firm types</option><option>Payment institution</option></select>
+        <div class="seg" role="tablist" aria-label="View"><button role="tab" aria-selected="true" type="button">Obligations</button><button role="tab" aria-selected="false" type="button">Controls</button></div>
+      </div>
+      <div class="fields">
+        <div class="field"><label for="g-name">Control name</label><input class="in" id="g-name" value="Four-eyes approval"><p class="help">What your team calls it.</p></div>
+        <div class="field"><label for="g-own">Owner</label><select class="sel" id="g-own"><option>Sanmi O.</option></select></div>
+        <div class="field full"><label for="g-note">Note</label><textarea class="in" id="g-note">Evidence kept in the onboarding file.</textarea></div>
+      </div>
+    </div>
+    <pre class="g-code">&lt;div class="rr-filters" role="search"&gt;&lt;input class="in" type="search"&gt; &lt;select class="sel"&gt;…&lt;/select&gt; &lt;div class="seg"&gt;…&lt;/div&gt;&lt;/div&gt;
+&lt;div class="fields"&gt;&lt;div class="field"&gt;&lt;label for="x"&gt;Name&lt;/label&gt;&lt;input class="in" id="x"&gt;&lt;p class="help"&gt;…&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="tabs" aria-labelledby="h-tabs">
+    <h2 id="h-tabs">Tabs</h2>
+    <div class="g-demo">
+      <div class="tabs" role="tablist" aria-label="Example tabs">
+        <button role="tab" type="button" aria-selected="true">Register</button>
+        <button role="tab" type="button" aria-selected="false">Tests</button>
+        <button role="tab" type="button" aria-selected="false">Report</button>
+      </div>
+    </div>
+    <pre class="g-code">&lt;div class="tabs" role="tablist"&gt;&lt;button role="tab" aria-selected="true"&gt;Register&lt;/button&gt;…&lt;/div&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="tables" aria-labelledby="h-tables">
+    <h2 id="h-tables">Tables</h2>
+    <div class="g-demo">
+      <div class="rr-table-wrap" tabindex="0" role="region" aria-label="Example table">
+        <table class="rr-table">
+          <thead><tr><th scope="col">Obligation</th><th scope="col">Article</th><th scope="col">Status</th><th scope="col" class="r">Controls</th></tr></thead>
+          <tbody>
+            <tr><td>Enhanced due diligence</td><td class="mono">AMLR Art. 34</td><td><span class="pill risk">Gap</span></td><td class="r">0</td></tr>
+            <tr><td>PEP approval</td><td class="mono">AMLR Art. 42</td><td><span class="pill review">In review</span></td><td class="r">1</td></tr>
+            <tr><td>Customer due diligence</td><td class="mono">AMLR Art. 20</td><td><span class="pill done">Covered</span></td><td class="r">3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pre class="g-code">&lt;div class="rr-table-wrap" tabindex="0" role="region" aria-label="…"&gt;&lt;table class="rr-table"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;…&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;…&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="kanban" aria-labelledby="h-kanban">
+    <h2 id="h-kanban">Kanban</h2>
+    <div class="g-demo">
+      <div class="kb">
+        <section class="kb-col" aria-label="To do"><div class="kb-col-h"><h3>To do</h3><span class="n">2</span></div>
+          <ul class="kb-cards"><li class="kb-card"><div class="t">Re-test PEP screening</div><div class="m"><span class="pill risk">Overdue</span>T. Nguyen</div></li>
+          <li class="kb-card"><div class="t">Update EDD policy</div><div class="m">M. Van Damme</div></li></ul></section>
+        <section class="kb-col" aria-label="Doing"><div class="kb-col-h"><h3>Doing</h3><span class="n">1</span></div>
+          <ul class="kb-cards"><li class="kb-card"><div class="t">Review UBO register</div><div class="m"><span class="pill live">Live</span>Sanmi O.</div></li></ul></section>
+        <section class="kb-col" aria-label="Review"><div class="kb-col-h"><h3>Review</h3><span class="n">1</span></div>
+          <ul class="kb-cards"><li class="kb-card"><div class="t">Four-eyes approval</div><div class="m"><span class="pill review">In review</span></div></li></ul></section>
+        <section class="kb-col" aria-label="Done"><div class="kb-col-h"><h3>Done</h3><span class="n">1</span></div>
+          <ul class="kb-cards"><li class="kb-card"><div class="t">CDD file check</div><div class="m"><span class="pill done">Done</span></div></li></ul></section>
+      </div>
+    </div>
+    <pre class="g-code">&lt;div class="kb"&gt;&lt;section class="kb-col"&gt;&lt;div class="kb-col-h"&gt;&lt;h3&gt;To do&lt;/h3&gt;&lt;span class="n"&gt;2&lt;/span&gt;&lt;/div&gt;&lt;ul class="kb-cards"&gt;&lt;li class="kb-card"&gt;&lt;div class="t"&gt;…&lt;/div&gt;&lt;div class="m"&gt;…&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;…&lt;/div&gt;</pre>
+  </section>
+
+  <section class="g-sec" id="feedback" aria-labelledby="h-feedback">
+    <h2 id="h-feedback">Empty state, banner, toast</h2>
+    <div class="g-demo">
+      <div class="rr-empty" style="margin:0">
+        <h2>No cases yet</h2>
+        <p>Cases open from alerts. Load the fictional CF Bank demo to see a full file, or create your first case.</p>
+        <div class="row-actions"><button class="btn pri" type="button">Load demo data</button><button class="btn" type="button">New case</button></div>
+      </div>
+      <div class="banner demo" style="margin:0"><p>Demo data for a fictional firm (CF Bank). Everything stays on this device.</p><button class="btn sm" type="button">Clear demo</button></div>
+      <div><span class="toast g-toast-demo" role="status">Saved</span></div>
+    </div>
+    <pre class="g-code">&lt;div class="rr-empty"&gt;&lt;h2&gt;…&lt;/h2&gt;&lt;p&gt;…&lt;/p&gt;&lt;div class="row-actions"&gt;…&lt;/div&gt;&lt;/div&gt;
+&lt;div class="banner demo"&gt;…&lt;/div&gt;   &lt;div class="toast" role="status"&gt;&lt;/div&gt;  (add class "on" to show)</pre>
+  </section>
+
+  <section class="g-sec" id="dialogs" aria-labelledby="h-dialogs">
+    <h2 id="h-dialogs">Dialogs</h2>
+    <p>Native <code>&lt;dialog&gt;</code> with showModal(): focus moves in, Esc closes, focus returns.</p>
+    <div class="g-demo"><div class="btns"><button class="btn" type="button" id="g-open">Open a dialog</button></div></div>
+    <pre class="g-code">&lt;dialog class="narrow" aria-labelledby="t"&gt;&lt;div class="dlg-h"&gt;&lt;h2 id="t"&gt;…&lt;/h2&gt;&lt;button class="rr-x" aria-label="Close"&gt;…&lt;/button&gt;&lt;/div&gt;
+  &lt;div class="dlg-b"&gt;…&lt;/div&gt;&lt;div class="dlg-f"&gt;&lt;button class="btn"&gt;Cancel&lt;/button&gt;&lt;button class="btn pri"&gt;Confirm&lt;/button&gt;&lt;/div&gt;&lt;/dialog&gt;</pre>
+  </section>
+</main>
+
+<dialog class="narrow" id="g-dlg" aria-labelledby="g-dlg-t">
+  <div class="dlg-h"><h2 id="g-dlg-t">Close this finding?</h2>
+    <button class="rr-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  <div class="dlg-b"><p>The finding moves to Done and the board records who closed it and when.</p></div>
+  <div class="dlg-f"><button class="btn" type="button" data-close>Cancel</button><button class="btn pri" type="button" data-close>Close finding</button></div>
+</dialog>
+<script>
+(function(){
+  var d=document.getElementById('g-dlg');
+  document.getElementById('g-open').addEventListener('click',function(){d.showModal();});
+  d.addEventListener('click',function(e){if(e.target.closest('[data-close]'))d.close();});
+  document.querySelectorAll('.tabs [role=tab],.seg [role=tab]').forEach(function(t){
+    t.addEventListener('click',function(){t.parentNode.querySelectorAll('[role=tab]').forEach(function(x){x.setAttribute('aria-selected',x===t?'true':'false');});});
+  });
+  document.querySelectorAll('.chips button.chip').forEach(function(c){
+    c.addEventListener('click',function(){c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');});
+  });
+})();
+</script>
+</body>
+</html>

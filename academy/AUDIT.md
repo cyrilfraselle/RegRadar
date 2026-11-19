@@ -46,9 +46,10 @@ The Academy cites AMLR article numbers. Checked against `docs/data/laws/32024R16
 | "Art. 25 — ongoing monitoring" (5 cases) | Art. 25 is *purpose and intended nature*. Ongoing monitoring is Art. 26. | yes |
 | "Art. 22 — beneficial ownership" (many) | Art. 22 is *identification and verification of identity*. Beneficial owners are defined in Arts 51 to 58; Art. 22(2) is the senior-managing-officials fallback. | yes |
 | "indicative threshold of 25% + one share" (OWN-01 and the principle card) | Art. 52(1): "25 % or more". No case sits exactly on 25%, so scoring is unchanged. | yes |
-| OWN-03: "trustee holds title, not economic interest" (so not a beneficial owner) | Art. 58(1) lists the trustees of an express trust among the beneficial owners. The case models a nominee (fiduciary) company, which is different, but the sentence reads as a general rule. | wording fixed and simplification stated; **scoring left to the owner** (see PR questions) |
+| OWN-03: "trustee holds title, not economic interest" (so not a beneficial owner) | Art. 58(1) lists the trustees of an express trust among the beneficial owners. The case models a nominee (fiduciary) company, which is different, but the sentence reads as a general rule. | reworked: settlor, trustee's own beneficial owner and beneficiary now count (Arts 55, 58(1), 58(3)) |
 | A-4478: "TFR Art. 14 — missing originator information" | TFR Art. 14 is the information that must *accompany* crypto-asset transfers; detection of missing information is Art. 16. | yes |
 | INV-403: "Art. 22 — source of funds for the specific transaction" | Source and destination of funds sit in Art. 25; Art. 34(4)(c) for higher risk. | yes |
+| Ownership explainer scene 3, Ownership room P2, P3, OWN-01, OWN-02, OWN-05, BO lesson Art. 52(1) quote (found 2026-10-17/18 by an independent reviewer) | Art. 52(1) multiplies along a chain "unless Article 54 applies"; where a company in the chain controls the next one (50 % plus one, Art. 53(2)(c)), the persons with 25 % or more of that controlling company are beneficial owners (Art. 54(b)). OWN-01 omitted Bram (30 % of the controlling holding) | yes (scene redrawn; P2, P3, OWN-02 restructured so no layer controls; OWN-01 answer is Mina and Bram; verdicts label the Art. 54 basis) |
 
 Not verifiable from the repo (left, flagged): references to EU Regulations 269/2014 and 2580/2001
 (sanctions) are not in `docs/data/laws/`. They are real instruments but unchecked here.
@@ -106,5 +107,8 @@ Not verifiable from the repo (left, flagged): references to EU Regulations 269/2
 | `regradar-theme` | all themed tools | `light` or `dark` |
 | **new** `regradar-academy-training` | `AcademyProgress` (academy-engine.js) | learning-path completions: module id, date, score, steps (shape documented in the file) |
 | **new** `regradar-ex-static` | academy-explainer.js | learner chose static frames instead of animation |
+| **new** `regradar-academy-misses` | academy-rounds.js (`AcademyRounds.misses`) | missed Spot it cards, check questions and risky Decide choices, replayed in the warm-up: `{v:1, items:[{id, module, kind, at, n}]}`, capped at 40 |
+| **new** `regradar-academy-learner` | `AcademyEvidence` (academy-evidence.js), certificate page | optional name, role and firm typed by the learner: `{v:1, name, role, firm}`; never sent anywhere; cleared by "Clear my data" |
+| **new** `regradar-academy-register-config` | `AcademyEvidence`, team register page | the compliance officer's required-lesson set and refresher interval: `{v:1, required:[ids]\|null, months, dueSoonDays}`; cleared by "Clear my data" or "Reset rules" |
 
-No existing key changes shape. The shell key only gains a `learn` module entry.
+No existing key changes shape. The shell key only gains a `learn` module entry. `regradar-academy-training` gains `spot` and `decide` steps and prefs (`coach_<type>`, `shifts`); lessons already marked complete stay complete. New completions also record `completed.cv`, the curriculum `content_version` at the time (completions made earlier have none and print as "not recorded").

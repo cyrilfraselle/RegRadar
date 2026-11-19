@@ -306,7 +306,7 @@ function build(active){
       <span class="sep"></span>
       <span class="sim">AML TRAINING SIMULATOR</span>
       <span class="rr">
-        <a href="academy.html">Learning path</a>
+        <a href="academy.html">AMLR path</a>
         <a href="index.html"><span aria-hidden="true">← </span>RegRadar</a>
       </span>
     </div>
@@ -316,7 +316,7 @@ function build(active){
         <span class="ac-sys"><b>CF BANK</b><span>COMPLIANCE DESK · v4.2</span></span>
         <span class="env"><i aria-hidden="true"></i>SIMULATED ENVIRONMENT<span> · FICTIONAL DATA</span></span>
       </div>
-      <nav class="ac-tabs" id="acTabs" aria-label="Academy modules"></nav>
+      <nav class="ac-tabs" id="acTabs" aria-label="Practice room"></nav>
       <main class="ac-screen" id="acScreen"></main>
       <div class="ac-status" id="acStatus"></div>
       <div class="ac-rank" id="acRank"></div>
@@ -324,23 +324,19 @@ function build(active){
   return outer;
 }
 
+/* No separate navigation between practice rooms: they are reached from the AMLR path
+   (academy.html). The strip shows the way back and the room you are in. */
 function tabsHTML(active){
-  return MODULES.map(m=>{
-    const rec=P.modules[m.id]||{};
-    const tick=(rec.done>0 && !m.noTick)?'<span class="tick"><span aria-hidden="true">✓</span><span class="ac-sr"> completed</span></span>':'';
-    if(unlocked(m)){
-      return `<a class="ac-tab ${m.id===active?'on':''}" href="${m.file}"${m.id===active?' aria-current="page"':''}>
-        <span class="n">${m.no}</span>${esc(m.n)}${tick}</a>`;
-    }
-    const why=lockWhy(m);
-    return `<button type="button" class="ac-tab locked" aria-disabled="true" data-why="${esc(why)}" title="${esc(why)}">
-      <span class="n">${m.no}</span>${esc(m.n)}<span class="lk"> · ${m.file?'locked':'soon'}</span>
-      <span class="ac-sr">. ${esc(why)}</span></button>`;
-  }).join('')+'<span class="ac-tab grow" aria-hidden="true"></span>';
+  const me=MODULES.find(m=>m.id===active);
+  const rec=me? (P.modules[me.id]||{}) : {};
+  const tick=(me && rec.done>0 && !me.noTick)?'<span class="tick"><span aria-hidden="true">✓</span><span class="ac-sr"> completed</span></span>':'';
+  return `<a class="ac-tab" href="academy.html"><span aria-hidden="true">← </span>AMLR path</a>`
+    +(me && me.file!=='academy.html'? `<span class="ac-tab on" aria-current="page"><span class="n">Practice room</span>${esc(me.n)}${tick}</span>` : '')
+    +'<span class="ac-tab grow" aria-hidden="true"></span>';
 }
 function paintTabs(active){
   const el=document.getElementById('acTabs'); if(!el) return;
-  el.setAttribute('aria-label','Academy modules');
+  el.setAttribute('aria-label','Practice room');
   el.innerHTML=tabsHTML(active);
 }
 /* A locked tab is aria-disabled, not disabled: it stays focusable and says why. */

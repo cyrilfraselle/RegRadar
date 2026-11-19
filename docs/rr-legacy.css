@@ -1,0 +1,54 @@
+/* RegRadar: compatibility layer for pages that used the retired
+   regradar.css (law.html, country-risk.html). Load it right after
+   rr-ui.css. It keeps the class names those pages and their scripts
+   use, drawn with the rr-ui tokens. New pages should not need it. */
+:root,html[data-theme],.rr-dark,.rr-light,.rr-band{
+  --t-caption:12px; --t-body:15px; --t-lead:20px; --t-heading:30px; --t-display:46px;
+  --rule-major:2px; --rule-minor:1px; --gutter:20px;
+  --ease:var(--rr-ease); --dur:.15s;
+  --prohib:#8C1027; --prohib-bg:#FAE9EC; --purple:#5B3A9E; --purple-bg:#EFEBF7; --info:#1E6FB8;
+}
+html[data-theme="dark"]{--prohib:#F28A9C;--prohib-bg:#2A0A11;--purple:#C3ABF0;--purple-bg:#1D1533;--info:#7DB8F0}
+@media (max-width:760px){:root,html[data-theme]{--t-heading:24px;--t-display:30px;--t-lead:17px;--gutter:14px}}
+
+.eyebrow,.sect-l,.ctrl-label,.stat .l,thead th{font-size:var(--rr-t-micro);font-weight:600;color:var(--rr-text-3);letter-spacing:.01em}
+.rule-major{border-top:1px solid var(--rr-line);padding-top:12px}
+.rule-minor{border-top:1px solid var(--rr-line);padding-top:10px}
+h2{font-size:var(--t-lead);letter-spacing:-.02em}
+h3{font-size:var(--rr-t-body);letter-spacing:-.01em}
+.stat .n,.c-score,.art-nav-pos,.cid,.dcid,.super{font-family:var(--rr-mono);font-variant-numeric:tabular-nums}
+
+.stat{background:var(--rr-surface);border:1px solid var(--rr-line);border-radius:var(--rr-r);padding:14px 16px;min-width:0}
+.stat .n{font-size:clamp(24px,2.6vw,32px);font-weight:700;line-height:1;letter-spacing:-.03em}
+.stat .l{margin-top:6px}
+.summary{gap:var(--gutter)}
+.card,.law-card,.search-result{border:1px solid var(--rr-line);background:var(--rr-surface);border-radius:var(--rr-r);box-shadow:var(--rr-shadow-1);transition:border-color var(--rr-dur-1),transform var(--rr-dur-2) var(--rr-ease)}
+.card:hover,a.law-card:hover{border-color:var(--rr-text-3)}
+.panel,.delta-box,.action-box,.vintage{border-radius:var(--rr-r)}
+.col{background:transparent;border:0;border-top:1px solid var(--rr-line);padding:14px 0 0}
+.col-head{padding-bottom:14px;font-size:var(--rr-t-small);font-weight:700}
+.dmodal,.sign{border-radius:var(--rr-r-pill);font-weight:700;font-size:var(--rr-t-micro);padding:3px 10px;background:var(--rr-accent);color:var(--rr-on-accent)}
+.sign--prohibition{background:var(--prohib);color:#fff} .sign--permission{background:var(--rr-done);color:var(--rr-on-accent)}
+html[data-theme="dark"] .sign--prohibition{color:var(--rr-ink)}
+.tag,.mapr{border-radius:var(--rr-r-pill);font-size:var(--rr-t-micro);font-weight:600;padding:3px 10px}
+.verbatim{font-family:var(--rr-serif);background:var(--rr-surface-2);border:1px solid var(--rr-line);border-radius:var(--rr-r-sm);font-size:15px;line-height:1.6}
+.vintage{border:1px solid var(--rr-line);font-size:13px}
+
+select,input[type="text"],input[type="search"],.reader-search,textarea{border:1px solid var(--rr-line-strong);background:var(--rr-surface);color:var(--rr-text);
+  padding:9px 12px;font-size:14px;border-radius:12px;min-height:40px;transition:border-color var(--rr-dur-1)}
+select:focus-visible,input:focus-visible,textarea:focus-visible{outline:none;border-color:var(--rr-focus);box-shadow:0 0 0 3px color-mix(in srgb,var(--rr-focus) 35%,transparent)}
+.art-nav-btn,.mapz,.mapr{border:1px solid var(--rr-line-strong);background:var(--rr-surface);color:var(--rr-text);border-radius:var(--rr-r-pill);transition:border-color var(--rr-dur-1),color var(--rr-dur-1)}
+.art-nav-btn:hover:not(:disabled),.mapz:hover,.mapr:hover{border-color:var(--rr-text)}
+
+table{border-collapse:collapse}
+thead th{background:var(--rr-surface-2);border-bottom:1px solid var(--rr-line);padding:10px 12px;text-align:left}
+tbody td{border-bottom:1px solid var(--rr-line);padding:11px 12px;font-size:14px}
+tbody tr:hover{background:var(--rr-surface-2)}
+
+.toc-chapter-title{font-size:var(--rr-t-micro);font-weight:700;color:var(--rr-text-2)}
+.toc-art{border-left:2px solid transparent;padding-left:12px;transition:border-color var(--rr-dur-1),color var(--rr-dur-1)}
+.toc-art.active{border-left-color:var(--rr-text);color:var(--rr-text);font-weight:700}
+.article-num,.article-chapter{font-size:var(--rr-t-micro);font-weight:700;color:var(--rr-text-3)}
+.article h2{font-family:var(--rr-font);font-size:var(--t-heading);letter-spacing:-.03em;line-height:1.15;margin-top:4px}
+.article-text{font-family:var(--rr-serif);font-size:16.5px;line-height:1.65;max-width:68ch}
+.law-sticky{border-bottom:1px solid var(--rr-line)}

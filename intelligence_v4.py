@@ -215,16 +215,16 @@ Emphasise what is changing, who must act, and the EU/Belgian dimension. Return O
 #  FEATURE 2 — KEY DATES TIMELINE
 # ═══════════════════════════════════════════════════════════════
 
-# Curated base timeline of known major EU/BE financial-regulation dates.
-# EDIT THIS as the regulatory calendar evolves. Always-available even if Groq is off.
+# Curated base timeline. Every entry MUST carry a `source` (EUR-Lex URL) and a
+# `basis` (article that states the date); the date is copied from that text
+# (docs/data/laws/). Entries that cannot be tied to a source are not listed.
+_AMLR = "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1624"
+_AMLD6 = "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024L1640"
+_MICA = "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114"
 BASE_TIMELINE = [
-    {"date": "2026-07-01", "event": "MiCAR transitional period ends — CASPs must be authorised", "theme": "MiCA/Crypto", "type": "application"},
-    {"date": "2026-07-10", "event": "AMLA direct-supervision powers phase in", "theme": "AML/CFT", "type": "supervision"},
-    {"date": "2026-09-17", "event": "DORA — first ICT major-incident reporting review window", "theme": "DORA", "type": "report"},
-    {"date": "2026-12-31", "event": "CSRD first-wave reporting (FY2025) due", "theme": "SFDR/ESG", "type": "report"},
-    {"date": "2027-01-01", "event": "CRR3 phased own-funds provisions continue", "theme": "Capital/CRR", "type": "application"},
-    {"date": "2027-06-29", "event": "MiCA — Commission full review", "theme": "MiCA/Crypto", "type": "report"},
-    {"date": "2027-07-10", "event": "AMLR applies; AMLD6 transposition deadline", "theme": "AML/CFT", "type": "application"},
+    {"date": "2027-06-30", "event": "MiCA: Commission report on the application of the Regulation due", "theme": "MiCA/Crypto", "type": "report", "source": _MICA, "basis": "MiCA Art. 140(1)"},
+    {"date": "2027-07-10", "event": "AMLR applies (AMLA guidelines on third-country ML/TF risks also due)", "theme": "AML/CFT", "type": "application", "source": _AMLR, "basis": "AMLR Art. 90 and Art. 32(1)"},
+    {"date": "2027-07-10", "event": "AMLD6: Member States must have transposed the Directive (general deadline)", "theme": "AML/CFT", "type": "deadline", "source": _AMLD6, "basis": "AMLD6 Art. 78(1)"},
 ]
 
 TYPE_ICON = {
@@ -271,6 +271,8 @@ def get_upcoming_dates(articles: list[dict], api_key: str = "",
     today = date.today()
     combined = list(BASE_TIMELINE)
     combined += _extract_dates_with_groq(articles, api_key)
+    # A date nobody can check is worse than none: drop entries without a source.
+    combined = [c for c in combined if str(c.get("source", "")).startswith("https://")]
 
     seen = set()
     upcoming = []

@@ -43,7 +43,7 @@
   var CONSENT_POINTS = [
     'When you ask the model, your question (after personal-data redaction) and the retrieved passages leave this device and go directly from your browser to the provider you chose. RegRadar has no server and sees nothing.',
     'If you tick "include my register" for a question, the matching entries from your device-local register are sent too. They are never sent otherwise.',
-    'Your API key is stored in this browser only (localStorage). Anyone with access to this browser profile or to the page code running here could read it. Use a key with a spend limit, and use "Forget key" when done.',
+    'Your API key is kept in this browser tab only (sessionStorage) unless you tick "Remember on this device", which stores it in localStorage. Either way, anyone with access to this browser profile or to the page code running here could read it. Use a key with a spend limit, and use "Forget key" when done.',
     'You are responsible for the cost of the calls and for the provider\'s terms and data-handling policy. Model output is AI-assisted and can be wrong; the citation check only tests quotes, not reasoning. Not legal advice.'
   ];
 
@@ -426,9 +426,30 @@
     (local.extra || []).forEach(function (c) { map[c.id] = Object.assign({}, c); });
     Object.keys(local.overrides || {}).forEach(function (id) { if (map[id]) Object.assign(map[id], local.overrides[id]); });
     input.controls = Object.keys(map).map(function (id) { return map[id]; });
+    // Controls moved onto the data spine (docs/controls-store.js): once migrated on this device, the spine's records are the register.
+    var meta = get('regradar-spine-meta'), ents = get('regradar-spine-entities'), links = get('regradar-spine-links') || {};
+    if (ents && meta && meta.settings && meta.settings.values && meta.settings.values['migrated.controls']) {
+      var spineCtl = [];
+      Object.keys(ents).forEach(function (k) {
+        var e = ents[k]; if (!e || e.type !== 'control' || e.archived) return;
+        var d = e.data || {}, ids = [];
+        Object.keys(links).forEach(function (lk) { var l = links[lk]; if (l && l.type === 'mitigates' && l.from === e.id && !l.ended_at && String(l.to).indexOf('OBL:') === 0) ids.push(l.to.slice(4)); });
+        (d.unresolved_obligations || []).forEach(function (x) { if (ids.indexOf(x) === -1) ids.push(x); });
+        spineCtl.push({ id: d.ref || String(e.id).replace(/^CTL:/, ''), name: e.title, owner: (e.owner && ents[e.owner] ? ents[e.owner].title : d.owner_text) || 'Unassigned', frequency: d.frequency || '', type: d.control_type || '',
+          status: e.status, last_tested: d.last_tested || null, effectiveness: d.effectiveness || 'not_tested', obligation_ids: ids, _o: d.order != null ? d.order : 1e9 });
+      });
+      spineCtl.sort(function (a, b) { return a._o - b._o; });
+      input.controls = spineCtl.map(function (c) { delete c._o; return c; });
+    }
     var mine = get('regradar-obligations-mine') || {};
     input.obligationNotes = mine.notes || {};
     input.policies = get('regradar-policies');
+    // Policies moved onto the data spine (docs/policies-store.js): once migrated on this device, the spine's records are the register.
+    if (meta && ents && meta.settings && meta.settings.values && meta.settings.values['migrated.policies']) {
+      var spinePol = [];
+      Object.keys(ents).forEach(function (k) { var e = ents[k]; if (e && e.type === 'policy' && !e.archived && e.data && e.data.pid) spinePol.push({ id: e.data.pid, title: e.title }); });
+      input.policies = { policies: spinePol };
+    }
     return input;
   }
 
@@ -817,7 +838,8 @@
   }
 
   /* ------------------------------------------------------------------ device-local store */
-  function createStore(storage) {
+  function createStore(storage, sessionStorageArg) {
+    var sess = sessionStorageArg || null;
     var K = { settings: 'regradar-ai-settings', consent: 'regradar-ai-consent', history: 'regradar-ai-history', key: function (p) { return 'regradar-ai-key-' + p; } };
     function get(k) { try { return JSON.parse(storage.getItem(k) || 'null'); } catch (e) { return null; } }
     function set(k, v) { try { storage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
@@ -827,9 +849,29 @@
       hasConsent: function () { var c = get(K.consent); return !!(c && c.version === CONSENT_VERSION); },
       giveConsent: function () { return set(K.consent, { version: CONSENT_VERSION, at: new Date().toISOString() }); },
       revokeConsent: function () { try { storage.removeItem(K.consent); } catch (e) {} },
-      getKey: function (p) { try { return storage.getItem(K.key(p || 'anthropic')) || ''; } catch (e) { return ''; } },
-      setKey: function (p, key) { try { storage.setItem(K.key(p || 'anthropic'), String(key).trim()); return true; } catch (e) { return false; } },
-      forgetKey: function (p) { try { storage.removeItem(K.key(p || 'anthropic')); } catch (e) {} },
+      getKey: function (p) {
+        var n = K.key(p || 'anthropic');
+        try { var v = sess && sess.getItem(n); if (v) return v; } catch (e) {}
+        try { return storage.getItem(n) || ''; } catch (e) { return ''; }
+      },
+      keyWhere: function (p) {
+        var n = K.key(p || 'anthropic');
+        try { if (sess && sess.getItem(n)) return 'session'; } catch (e) {}
+        try { if (storage.getItem(n)) return 'device'; } catch (e) {}
+        return '';
+      },
+      setKey: function (p, key, remember) {
+        var n = K.key(p || 'anthropic'), v = String(key).trim();
+        var target = remember || !sess ? storage : sess, other = target === storage ? sess : storage;
+        try { target.setItem(n, v); } catch (e) { return false; }
+        try { if (other) other.removeItem(n); } catch (e) {}
+        return true;
+      },
+      forgetKey: function (p) {
+        var n = K.key(p || 'anthropic');
+        try { storage.removeItem(n); } catch (e) {}
+        try { if (sess) sess.removeItem(n); } catch (e) {}
+      },
       history: function () { var h = get(K.history); return Array.isArray(h) ? h : []; },
       addHistory: function (entry) {
         var h = (get(K.history) || []).filter(function (x) { return x.q !== entry.q; });

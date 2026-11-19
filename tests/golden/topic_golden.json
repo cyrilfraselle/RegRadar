@@ -1,0 +1,634 @@
+{
+ "_meta": {
+  "purpose": "Golden set for the deterministic topic tagger (regwatch_sources/tagging.py). tests/test_topic_precision.py fails if micro precision or recall falls below the thresholds.",
+  "labelled_by": "scraper-v2 agent, 2026-11-14, from the title text only, before the tag rules were written",
+  "labelling_rule": "A case gets a topic when its title, read alone, is about that topic as defined in docs/data/sources/topic-tags.json; [] means no topic from the taxonomy applies. Ambiguous titles (AMLR Art. 32, 39, 63, 71 and the NBB page 'Sanctions') were left out rather than guessed.",
+  "thresholds": {
+   "precision": 0.9,
+   "recall": 0.8
+  },
+  "count": 93
+ },
+ "cases": [
+  {
+   "text": "Subject matter",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 1 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Definitions",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 2 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Obliged entities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 3 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Exemptions for certain financial activities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 6 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Scope of internal policies, procedures and controls",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 9 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Business-wide risk assessment",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 10 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Compliance functions",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 11 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Awareness of requirements",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 12 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "training"
+   ]
+  },
+  {
+   "text": "Integrity of employees",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 13 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Reporting of breaches and protection of reporting persons",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 14 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Group-wide requirements",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 16 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Branches and subsidiaries in third countries",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 17 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Outsourcing",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 18 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "outsourcing-reliance"
+   ]
+  },
+  {
+   "text": "Application of customer due diligence measures",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 19 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Customer due diligence measures",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 20 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Inability to comply with the requirement to apply customer due diligence measures",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 21 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Identification and verification of the identity of customers and beneficial owners",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 22 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd",
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Timing of the verification of the customer and beneficial owner identity",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 23 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd",
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Reporting of discrepancies with information contained in beneficial ownership registers",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 24 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Identification of the purpose and intended nature of a business relationship or occasional transaction",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 25 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Ongoing monitoring of the business relationship and monitoring of transactions performed by customers",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 26 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "ongoing-monitoring"
+   ]
+  },
+  {
+   "text": "Temporary measures for customers subject to UN financial sanctions",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 27 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "sanctions"
+   ]
+  },
+  {
+   "text": "Regulatory technical standards on the information necessary for the performance of customer due diligence",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 28 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Identification of third countries with significant strategic deficiencies in their national AML/CFT regimes",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 29 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "high-risk-countries"
+   ]
+  },
+  {
+   "text": "Identification of third countries with compliance weaknesses in their national AML/CFT regimes",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 30 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "high-risk-countries"
+   ]
+  },
+  {
+   "text": "Identification of third countries posing a specific and serious threat to the Union’s financial system",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 31 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "high-risk-countries"
+   ]
+  },
+  {
+   "text": "Simplified due diligence measures",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 33 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "simplified-edd",
+    "cdd"
+   ]
+  },
+  {
+   "text": "Scope of application of enhanced due diligence measures",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 34 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "simplified-edd",
+    "cdd"
+   ]
+  },
+  {
+   "text": "Countermeasures to mitigate money laundering and terrorist financing threats from outside the Union",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 35 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "high-risk-countries"
+   ]
+  },
+  {
+   "text": "Specific enhanced due diligence measures for cross-border correspondent relationships",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 36 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "simplified-edd",
+    "cdd"
+   ]
+  },
+  {
+   "text": "Specific enhanced due diligence measures for cross-border correspondent relationships for crypto-asset service providers",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 37 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "simplified-edd",
+    "cdd",
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Measures to mitigate risks in relation to transactions with a self-hosted address",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 40 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Specific provisions regarding politically exposed persons",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 42 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "pep"
+   ]
+  },
+  {
+   "text": "List of prominent public functions",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 43 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "pep"
+   ]
+  },
+  {
+   "text": "Politically exposed persons who are beneficiaries of insurance policies",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 44 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "pep"
+   ]
+  },
+  {
+   "text": "Measures for persons who cease to be politically exposed persons",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 45 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "pep"
+   ]
+  },
+  {
+   "text": "Family members and persons known to be close associates of politically exposed persons",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 46 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "pep"
+   ]
+  },
+  {
+   "text": "General provisions relating to reliance on other obliged entities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 48 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "outsourcing-reliance"
+   ]
+  },
+  {
+   "text": "Process of reliance on another obliged entity",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 49 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "outsourcing-reliance"
+   ]
+  },
+  {
+   "text": "Guidelines on reliance on other obliged entities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 50 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "outsourcing-reliance"
+   ]
+  },
+  {
+   "text": "Identification of beneficial owners for legal entities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 51 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership",
+    "cdd-legal-entity"
+   ]
+  },
+  {
+   "text": "Beneficial ownership through ownership interest",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 52 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Beneficial ownership through control",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 53 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Ownership structures involving legal arrangements or similar legal entities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 55 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership",
+    "cdd-legal-entity"
+   ]
+  },
+  {
+   "text": "Identification of beneficial owners for legal entities similar to express trust",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 57 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership",
+    "cdd-legal-entity"
+   ]
+  },
+  {
+   "text": "Identification of beneficial owners for express trusts and similar legal arrangements",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 58 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership",
+    "cdd-legal-entity"
+   ]
+  },
+  {
+   "text": "Identification of beneficial owners of collective investment undertakings",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 61 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Beneficial ownership information",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 62 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "beneficial-ownership"
+   ]
+  },
+  {
+   "text": "Reporting of suspicions",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 69 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Specific provisions for reporting of suspicions by certain categories of obliged entities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 70 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Disclosure to FIU",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 72 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Prohibition of disclosure",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 73 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Processing of personal data",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 76 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Record retention",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 77 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "record-keeping"
+   ]
+  },
+  {
+   "text": "Provision of records to competent authorities",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 78 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "record-keeping"
+   ]
+  },
+  {
+   "text": "Limits to large cash payments in exchange for goods or services",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 80 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Cooperation between FIUs and the EPPO",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 81 title, docs/data/laws/32024R1624_EN.json",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Exercise of the delegation",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 85 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Committee procedure",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 86 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Review",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 87 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Entry into force and application",
+   "source": "AMLR (Regulation (EU) 2024/1624) Art. 90 title, docs/data/laws/32024R1624_EN.json",
+   "expected": []
+  },
+  {
+   "text": "Consultation on the draft RTS on Customer Due Diligence",
+   "source": "AMLA consultations feed",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Consultation on the draft RTS on criteria for identifying business relationships, occasional and linked transactions and lower thresholds",
+   "source": "AMLA consultations feed",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Draft Guidelines on ongoing monitoring of business relationships",
+   "source": "AMLA regulatory instruments page",
+   "expected": [
+    "ongoing-monitoring"
+   ]
+  },
+  {
+   "text": "Draft Guidelines on business-wide risk assessment",
+   "source": "AMLA regulatory instruments page",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Draft Implementing Technical Standards on the format for reporting suspicions and providing transaction records",
+   "source": "AMLA regulatory instruments page",
+   "expected": [
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Consultation on the draft RTS on group-wide minimum requirements and additional measures for subsidiaries and branches in third countries",
+   "source": "AMLA consultations feed",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments",
+   "source": "AMLA regulatory instruments page",
+   "expected": []
+  },
+  {
+   "text": "Commission Implementing Regulation (EU) 2026/2490 of 3 November 2026 amending for the 364th time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+   "source": "RegWatch items.json (eurlex_ojl)",
+   "expected": [
+    "sanctions"
+   ]
+  },
+  {
+   "text": "Council Decision (CFSP) 2026/2378 of 26 October 2026 amending Decision (CFSP) 2016/1693 concerning restrictive measures against ISIL (Da'esh) and Al-Qaeda",
+   "source": "RegWatch items.json (eurlex_ojl)",
+   "expected": [
+    "sanctions"
+   ]
+  },
+  {
+   "text": "ESMA sets out supervisory expectations on services related to unauthorised stablecoins",
+   "source": "RegWatch items.json (esma_rss)",
+   "expected": [
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "The EBA classifies USDC as the first significant e-money token in the European Union",
+   "source": "RegWatch items.json (eba_rss)",
+   "expected": [
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Bybit EU payments unit secures Austria e-money licence",
+   "source": "RegWatch items.json (gnews)",
+   "expected": [
+    "payments-emoney"
+   ]
+  },
+  {
+   "text": "The EBA publishes its final Guidelines on the management of third-party risk",
+   "source": "RegWatch items.json (eba_rss)",
+   "expected": [
+    "outsourcing-reliance"
+   ]
+  },
+  {
+   "text": "Regulation (EU) 2023/1113 on information accompanying transfers of funds and certain crypto-assets",
+   "source": "EUR-Lex title of 32023R1113",
+   "expected": [
+    "transfers-of-funds",
+    "crypto-assets"
+   ]
+  },
+  {
+   "text": "Philip R. Lane: The outlook for the euro area economy",
+   "source": "RegWatch items.json (ecb_rss)",
+   "expected": []
+  },
+  {
+   "text": "ECB publishes consolidated banking data for end-March 2026",
+   "source": "RegWatch items.json (ecb_rss)",
+   "expected": []
+  },
+  {
+   "text": "Press release on the suspension of trading in ONTEX",
+   "source": "RegWatch items.json (fsma_rss)",
+   "expected": []
+  },
+  {
+   "text": "SRB statement on the tragic incident on its premises",
+   "source": "RegWatch items.json (srb_rss)",
+   "expected": []
+  },
+  {
+   "text": "NBB_2026_14 / Circular transposing EBA Guidelines on the authorisation of third-country branches dated 7 July 2026 (EBA/GL/2026/08) into the Belgian prudential framework",
+   "source": "RegWatch items.json (bnb_circulaires)",
+   "expected": []
+  },
+  {
+   "text": "Revised version of questionnaires for shareholders of intermediaries and credit providers",
+   "source": "RegWatch items.json (fsma_rss)",
+   "expected": []
+  },
+  {
+   "text": "AMLA Executive Board Member Hennie Verbeek-Kusters speaks at the 10th Austrian Anti-Money Laundering Conference in Vienna",
+   "source": "RegWatch items.json (amla_rss)",
+   "expected": []
+  },
+  {
+   "text": "Publication of the decision of the National Bank of Belgium concerning Wise Europe SA pursuant to Article 98/1 in conjunction with Article 135 §3 of the Act of 18 September 2017",
+   "source": "NBB AML decisions page",
+   "expected": []
+  },
+  {
+   "text": "Organisation and internal control",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Risk-based approach and overall risk assessment",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "governance-risk-assessment"
+   ]
+  },
+  {
+   "text": "Customer and transaction due diligence",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "cdd"
+   ]
+  },
+  {
+   "text": "Analysis of atypical transactions and reporting of suspicions",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "ongoing-monitoring",
+    "reporting-str"
+   ]
+  },
+  {
+   "text": "Transfers of funds",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "transfers-of-funds"
+   ]
+  },
+  {
+   "text": "Financial embargoes and asset freezing",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "sanctions"
+   ]
+  },
+  {
+   "text": "Data and document retention",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": [
+    "record-keeping"
+   ]
+  },
+  {
+   "text": "Personal data processing and protection",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": []
+  },
+  {
+   "text": "Restriction of the use of cash",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": []
+  },
+  {
+   "text": "Supervision by the NBB",
+   "source": "NBB AML/CFT guidance page title",
+   "expected": []
+  }
+ ]
+}

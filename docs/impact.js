@@ -16,7 +16,7 @@
 (function () {
 'use strict';
 
-var KEY = 'regradar-impact', PKEY = 'regradar-profile', AKEY = 'regradar-actions', POLKEY = 'regradar-policies';
+var KEY = 'regradar-impact', PKEY = 'regradar-profile', POLKEY = 'regradar-policies';
 var SEV = [['critical', 'Critical'], ['high', 'High'], ['medium', 'Medium'], ['low', 'Low']];
 var DECISIONS = [['action', 'Action needed'], ['monitor', 'Monitor'], ['no_action', 'No action']];
 var LIMIT = 40;
@@ -56,6 +56,8 @@ function loadProfile() { try { var p = JSON.parse(lsGet(PKEY) || 'null'); if (p)
 function saveProfile() { var base = {}; try { base = JSON.parse(lsGet(PKEY) || 'null') || {}; } catch (e) { base = {}; } base.entity = PROFILE.entity; base.acts = PROFILE.acts; lsSet(PKEY, JSON.stringify(base)); }
 function loadPolicies() {
   POLS = [];
+  // Policies live in the data spine now (docs/policies-store.js); the old key is read only until the one-time import has run.
+  if (window.PolicyStore) { try { POLS = window.PolicyStore.listFromStorage(lsGet); } catch (e) { /* tolerate absence */ } return; }
   try { var s = JSON.parse(lsGet(POLKEY) || 'null'); if (s && Array.isArray(s.policies)) POLS = s.policies.map(function (p) { return { id: p.id, ref: p.ref || '', title: p.title || p.id, owner: p.owner || '', obligation_ids: p.obligation_ids || [], legal_refs: p.legal_refs || [], retired: !!p.retired }; }); } catch (e) { /* tolerate absence */ }
 }
 
@@ -490,11 +492,12 @@ function renderDetail(fk) {
   if (focusKey) { var t = $('detail').querySelector('[data-fk="' + focusKey.replace(/"/g, '\\"') + '"]'); if (t) t.focus({ preventScroll: true }); }
 }
 
-/* ───────── tracker (Issues and actions store) ───────── */
+/* ───────── tracker (Issues and actions, on the data spine) ───────── */
+/* A light look at this device: how many issues the tracker holds and which ids exist. It reads the
+   spine's own storage, or the tracker's old key if the one-time import has not run yet. */
 function tracker() {
-  var raw = lsGet(AKEY), ids = {}, n = 0, exists = false;
-  if (raw) { try { var s = JSON.parse(raw); if (s && Array.isArray(s.issues)) { exists = true; n = s.issues.length; s.issues.forEach(function (i) { ids[i.id] = 1; }); } } catch (e) { /* unreadable */ } }
-  return { exists: exists, n: n, ids: ids, raw: raw };
+  var p = window.ActionsStore ? window.ActionsStore.peek(lsGet) : { exists: false, n: 0, ids: {}, unreadable: false };
+  return { exists: p.exists, n: p.n, ids: p.ids, unreadable: p.unreadable };
 }
 function prefilledLink(t) {
   var q = ['new=1', 'severity=' + encodeURIComponent(t.severity || 'medium'), 'title=' + encodeURIComponent(t.title || ''), 'due=' + encodeURIComponent(t.due || '')];
@@ -512,25 +515,28 @@ function issueFor(t) {
     owner: t.owner || A.owner || '', lod: '2LOD', status: 'open', opened_on: TODAY, due_on: t.due || IM.addDays(TODAY, 30), closed_on: '', closed_by: '', closure_note: '', submitted_on: '', accepted: null,
     control_ids: (t.control_ids || []).slice(), obligation_ids: (t.obligation_ids || []).slice(), actions: [], history: [{ d: TODAY, t: 'Opened from regulatory impact assessment (RegWatch item ' + String(A.itemId).slice(0, 8) + ')' }], demo: false, impact_ref: A.itemId };
 }
-function createIssues(tasks) {
-  var tr = tracker();
-  if (tr.raw && !tr.exists) { toast('The tracker data on this device could not be read, so nothing was written. Downloading the issues instead.'); download('regradar-issues-' + TODAY + '.json', JSON.stringify(tasks.map(issueFor), null, 2), 'application/json'); return; }
-  var s = { v: 1, seq: 0, issues: [] };
-  if (tr.exists) { try { s = JSON.parse(tr.raw); } catch (e) { /* handled above */ } }
-  s.issues = s.issues || []; s.seq = s.seq || 0;
-  s.issues.forEach(function (i) { var n = parseInt(String(i.id).replace(/\D/g, ''), 10) || 0; if (n > s.seq) s.seq = n; });
-  var made = [];
-  tasks.forEach(function (t) {
-    var i = issueFor(t); s.seq++; i.id = 'ISS-' + (s.seq < 100 ? ('00' + s.seq).slice(-3) : s.seq);
-    s.issues.push(i); made.push([t, i.id]);
-  });
-  if (!lsSet(AKEY, JSON.stringify(s))) {
-    toast('Could not write to the tracker (storage blocked or full). Downloading the issues instead.');
-    download('regradar-issues-' + TODAY + '.json', JSON.stringify(tasks.map(issueFor), null, 2), 'application/json'); return;
-  }
-  made.forEach(function (m) { m[0].issueId = m[1]; m[0].edited = true; });
-  touch();
-  toast(made.length === 1 ? 'Issue ' + made[0][1] + ' created in the tracker' : made.length + ' issues created in the tracker');
+var CREATING = false;
+/* Opens the shared spine afresh (so another tab's issues are seen and numbering continues), then creates the
+   issues as findings. Where the register cannot be opened or written, the issues are downloaded instead. */
+async function createIssues(tasks) {
+  if (CREATING) return;
+  CREATING = true;
+  function fallback(msg) { toast(msg + ' Downloading the issues instead.'); download('regradar-issues-' + TODAY + '.json', JSON.stringify(tasks.map(issueFor), null, 2), 'application/json'); }
+  try {
+    if (!window.RR || !window.ActionsStore) { fallback('The shared register is not available on this page.'); return; }
+    if (tracker().unreadable) { fallback('The tracker data on this device could not be read, so nothing was written.'); return; }
+    var b;
+    try { b = await window.RR.boot({}); } catch (e) { fallback('Could not open the shared register (' + e.message + ').'); return; }
+    var mig = (b.migrations || []).filter(function (m) { return m.id === 'actions'; })[0] || {};
+    if (mig.status === 'unreadable' || mig.status === 'error') { fallback('The tracker data on this device could not be read, so nothing was written.'); return; }
+    var ids;
+    try { ids = window.ActionsStore.createFindings(b.spine, tasks.map(issueFor), { action: 'create' }); await b.spine.flush(); }
+    catch (e) { fallback('Could not write to the tracker (' + e.message + ').'); return; }
+    if (!b.storageOk || !b.spine.saveOk()) { fallback('Could not write to the tracker (storage blocked or full).'); return; }
+    tasks.forEach(function (t, k) { t.issueId = ids[k]; t.edited = true; });
+    touch();
+    toast(ids.length === 1 ? 'Issue ' + ids[0] + ' created in the tracker' : ids.length + ' issues created in the tracker');
+  } finally { CREATING = false; }
 }
 
 /* ───────── outputs ───────── */
@@ -596,6 +602,8 @@ document.addEventListener('click', function (e) {
   var act = b.getAttribute('data-act'), id = b.getAttribute('data-id'), fk = b.getAttribute('data-fk') || '';
   switch (act) {
     case 'pick': OPENER = b; select(id, true); var d = $('dTitle'); if (d) { if (window.innerWidth < 981) d.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth', block: 'start' }); d.focus({ preventScroll: true }); } break;
+    case 'backup': { var n = Object.keys(STORE.assessments).length; if (!n) { toast('Nothing to back up yet: no assessment has been saved on this device'); break; } download('regradar-impact-backup-' + TODAY + '.json', JSON.stringify({ kind: 'regradar-impact-backup', v: 1, exported: new Date().toISOString(), assessments: STORE.assessments }, null, 2), 'application/json'); toast('Backup of ' + plural(n, 'assessment') + ' downloaded'); break; }
+    case 'restore': $('restoreFile').value = ''; $('restoreFile').click(); break;
     case 'more': SHOWN += LIMIT; renderList(); break;
     case 'act': var k = PROFILE.acts.indexOf(id); if (k === -1) PROFILE.acts.push(id); else PROFILE.acts.splice(k, 1); saveProfile(); profileChanged(); break;
     case 'tog': var g = b.getAttribute('data-g'); var cur = b.getAttribute('aria-pressed') === 'true'; A.over[g][id] = !cur; touch(); refresh(fk); break;
@@ -606,8 +614,8 @@ document.addEventListener('click', function (e) {
     case 'usesev': A.severity = sevSuggestion().value; touch(); refresh(fk); break;
     case 'tadd': A.tasks.push({ id: 'T' + Math.random().toString(36).slice(2, 8), key: 'custom:' + Date.now(), kind: 'custom', custom: true, edited: true, include: true, title: '', detail: '', owner: '', due: IM.addDays(TODAY, 14), severity: A.severity || 'medium', obligation_ids: [], control_ids: [], policy_ids: [], issueId: '' }); touch(); refresh(); var last = A.tasks[A.tasks.length - 1]; var ti = $('tt-' + last.id); if (ti) ti.focus(); break;
     case 'tdel': A.tasks = A.tasks.filter(function (t) { return t.id !== id && t.id !== b.getAttribute('data-tid'); }); touch(); refresh(); break;
-    case 'issue': var t = task(b.getAttribute('data-tid')); if (t) { if (!t.title.trim()) { toast('Give the task a title first'); break; } createIssues([t]); refresh(fk); } break;
-    case 'issue-all': var todo = A.tasks.filter(function (x) { return x.include && !x.issueId && x.title.trim(); }); if (!todo.length) { toast('No included task is waiting for an issue'); break; } createIssues(todo); refresh(fk); break;
+    case 'issue': var t = task(b.getAttribute('data-tid')); if (t) { if (!t.title.trim()) { toast('Give the task a title first'); break; } createIssues([t]).then(function () { refresh(fk); }); } break;
+    case 'issue-all': var todo = A.tasks.filter(function (x) { return x.include && !x.issueId && x.title.trim(); }); if (!todo.length) { toast('No included task is waiting for an issue'); break; } createIssues(todo).then(function () { refresh(fk); }); break;
     case 'memo': OPENER = b; $('memoPrev').innerHTML = memoHTML(); $('printMemo').innerHTML = '<div class="memo">' + memoHTML() + '</div>'; $('memoDlg').showModal(); break;
     case 'memo-close': $('memoDlg').close(); break;
     case 'print': $('printMemo').innerHTML = '<div class="memo">' + memoHTML() + '</div>'; window.print(); break;
@@ -666,5 +674,23 @@ async function boot() {
   else { renderEmpty(); if (new URLSearchParams(location.search).get('item')) toast('That item is not in the current RegWatch data'); }
   if (want) { var row = document.querySelector('.item[aria-current="true"]'); if (row && row.scrollIntoView) row.scrollIntoView({ block: 'nearest' }); }
 }
+$('restoreFile').addEventListener('change', function (e) {
+  var f = e.target.files && e.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onerror = function () { toast('Could not read that file'); };
+  rd.onload = function () {
+    var p; try { p = JSON.parse(String(rd.result)); } catch (x) { p = null; }
+    var src = p && p.assessments, ok = src && typeof src === 'object' && !Array.isArray(src), next = {}, n = 0;
+    if (ok) Object.keys(src).forEach(function (k) { var a = src[k]; if (a && typeof a === 'object' && !Array.isArray(a) && String(a.itemId) === k) { next[k] = a; n++; } });
+    if (!ok || !n) { toast('That file is not a RegRadar impact backup, so nothing was changed'); return; }
+    var have = Object.keys(STORE.assessments).length;
+    if (!window.confirm('Restore ' + plural(n, 'assessment') + ' from this file? It replaces the ' + plural(have, 'assessment') + ' now on this device.')) return;
+    STORE = { v: 1, assessments: next };
+    if (!saveStore()) return;
+    A = null; SEL = null; computeMatches(); renderKpis(); renderList(); renderEmpty();
+    toast('Restored ' + plural(n, 'assessment'));
+  };
+  rd.readAsText(f);
+});
 boot();
 })();

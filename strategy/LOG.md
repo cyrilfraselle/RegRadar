@@ -37,3 +37,12 @@ Deferred (owner): first buyer and size, backend and hosting, first connectors.
 
 Brief: strategy/briefs/2026-11-06.md. 4 fixes merged this week; 7 PRs open (oldest 18 days); epics, ideation and prototyper silent for 3 weeks; verified obligations still 12.
 Recommendation put to owner: clear the PR queue, pause UI polish, point agents at obligation content (F-013, F-015) and the data spine. F-004 definition of "Covered" still needs the owner.
+
+## 2026-11-14: scraper v2 (max/scraper-v2)
+Audit in strategy/scraper-audit.md. New registry-driven source engine (collect_sources.py, regwatch_sources/) writing docs/data/sources/: CELLAR instead of EUR-Lex RSS (robots.txt), AMLA tracker and consultations with deadlines, NBB AML guidance corpus with page and paragraph locators, proposal stubs, coverage check, story-clustered feed. Legacy RegWatch untouched except the seen.json eviction fix.
+- 2026-11-14 (MAX): Topic view `docs/topics.html`: 10 themes, 40 subtopics, 114 verbatim AMLR/TFR extracts checked by `tests/topics.test.mjs`; AMLA mandates quoted; NBB/EBA/FATF layers marked not collected yet; controls with gap markers; deterministic highlights; AI summariser hook (no AI code).
+- 2026-11-14 (MAX): RegWatch v2 (max/regwatch-v2): legacy pipeline drops EUR-Lex RSS and the 18 Google News searches (robots.txt) and checks robots.txt before each remaining source; `docs/regwatch.html` rebuilt on the source engine feed (story cards, primary first, news collapsed), deadlines strip with .ics export, filters by authority/topic/type/status/jurisdiction, topic tags linked to the Topics view, legacy archive as fallback.
+- 2026-11-14 ACADEMY (academy/path-v2): Academy rebuilt as one AMLR programme page in three levels; new topic 'Who is covered' (Art. 2, 3, 70(2)); practice rooms folded into the path; evidence as last step; programme summary from data; rr-ui.css. Needs legal fact-check.
+
+- 2026-11-14 (academy/films-02-04): films 02 to 04 built on a shared data-driven engine (docs/academy-film-engine.js); gate step 6 automated by tests/films.test.mjs; films registered in docs/data/academy/films.json. Needs legal fact-check.
+- 2026-11-14 MAX (max/obligations-bulk): bulk extraction started: extract_obligations_draft.py, docs/data/obligations-draft.json (AMLR 330, TFR 58, AMLD6 29 draft units, not reviewed), review queue, tests/obligations_draft.test.py, strategy/obligations-bulk.md. Verified register untouched. Needs legal fact-check.

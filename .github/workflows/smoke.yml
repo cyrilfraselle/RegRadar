@@ -40,6 +40,24 @@ jobs:
           node evals/verify.mjs
         working-directory: tests
 
+      - name: Data spine tests (rr-core, migrations, backups)
+        run: node tests/spine.test.mjs
+
+      - name: Academy content checks (verbatim law quotes, module map, rounds)
+        run: node academy/verify.mjs
+
+      - name: Academy evidence tests (certificate, register, merge)
+        run: node academy/evidence.test.mjs
+
+      - name: Topic view data checks (verbatim law extracts, ids, coverage)
+        run: node tests/topics.test.mjs
+
+      - name: RegWatch data adapter checks
+        run: node tests/regwatch.test.mjs
+
+      - name: Deadlines calendar tests
+        run: node tests/calendar.test.mjs
+
       - run: node smoke.mjs
         working-directory: tests
         env:

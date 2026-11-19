@@ -31,7 +31,7 @@ const Ownership = (function(){
     (function walk(n,f,path){
       edges.forEach(e=>{
         if(e.to!==n || path.includes(e.from)) return;
-        if(e.kind==='trustee') return;
+        if(e.kind==='trustee' || e.kind==='settlor') return;
         const nf=f*(e.pct/100);
         if(persons.has(e.from)){
           if(!res[e.from]) res[e.from]={pct:0,paths:[]};
@@ -83,15 +83,15 @@ const Ownership = (function(){
     edges.forEach(e=>{
       const a=pos[e.from], b=pos[e.to]; if(!a||!b) return;
       const back = a.y>=b.y;                       // upward edge = loop
-      const col = e.kind==='trustee'?'var(--ink-3)' : back?'var(--amber)':'var(--ink-3)';
-      const dash = e.kind==='trustee'?'5 4' : back?'6 4':'';
+      const col = (e.kind==='trustee'||e.kind==='settlor')?'var(--ink-3)' : back?'var(--amber)':'var(--ink-3)';
+      const dash = (e.kind==='trustee'||e.kind==='settlor')?'5 4' : back?'6 4':'';
       const off = back?46:0;
       const my=(a.y+b.y)/2;
       const d=`M${a.x},${a.y-NH/2} C${a.x+off},${my} ${b.x+off},${my} ${b.x},${b.y+NH/2}`;
       svg+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="1.4"
               stroke-dasharray="${dash}" opacity=".65"/>`;
       const mx=(a.x+b.x)/2+off*.72;
-      const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='beneficiary' ? 'benef.' : e.pct+' %';
+      const lbl = e.kind==='trustee' ? 'trustee' : e.kind==='settlor' ? 'settlor' : e.kind==='beneficiary' ? 'benef.' : e.pct+' %';
       svg+=`<g class="ae-edg" data-e="${esc(e.from)}>${esc(e.to)}" style="cursor:${e.doc?'pointer':'default'}">
         <rect x="${mx-31}" y="${my-10}" width="62" height="20" fill="var(--console)"
           stroke="${col}" stroke-width=".8" opacity=".95"/>
@@ -124,6 +124,7 @@ const Ownership = (function(){
     const links=edges.map(e=>{
       const f=nameOf[e.from]||e.from, t=nameOf[e.to]||e.to;
       return e.kind==='trustee'? `${f} is trustee of ${t}`
+        : e.kind==='settlor'? `${f} is settlor of ${t}`
         : e.kind==='beneficiary'? `${f} is beneficiary of ${t}`
         : `${f} holds ${e.pct} % of ${t}`;
     }).join('; ');
@@ -338,7 +339,11 @@ const Ownership = (function(){
          notes), so each host maps this onto its own class names. */
       const kind = should&&did?'ok':should&&!did?'miss':!should&&did?'extra':'neutral';
       const verdict = should&&did?'CORRECT':should&&!did?'MISSED':!should&&did?'WRONGLY':'—';
-      const ctrl = should && pct<threshold ? ' (control)' : '';
+      /* 'basis' (case data) names the rule when it is not the multiplied percentage, e.g. Art. 54;
+         'roles' names a trust role (settlor, trustee, beneficiary) */
+      const basis = caseObj.basis && caseObj.basis[e.id];
+      const role = caseObj.roles && caseObj.roles[e.id];
+      const ctrl = basis ? ' ('+basis+')' : role ? ` (${role})` : should && pct<threshold ? ' (control)' : '';
       return {id:e.id, name:names[e.id], pct, kind, verdict, ctrl};
     });
     const stamp = correct?'CORRECT':missed.length?'BENEFICIAL OWNER MISSED':'OVER-DESIGNATION';
@@ -472,7 +477,7 @@ const Laundromat = (function(){
    {id:'shells', stage:'layering', n:'Shell company loop', cap:4000000, fee:0.05, base:0.0153, amp:0.85, weeks:2,
     juris:['pa','ky','lu','ch'], d:'Funds tour a ring of companies that exist as filing-cabinet folders, then come home as "intercompany".',
     flag:'No identifiable beneficial owner behind the chain', art:'Art. 51 & 52', artTitle:'Identification of beneficial owners',
-    detects:'Every EU counterparty must resolve the chain to a natural person — ownership through layers is computed through the layers, per Art. 52. A loop that resolves to nobody is not private, it is reportable.'},
+    detects:'Every EU counterparty must resolve the chain to a natural person — ownership is traced through the layers, per Arts 52 to 54. A loop that resolves to nobody is not private, it is reportable.'},
    {id:'mules', stage:'layering', n:'Money mule network', cap:1800000, fee:0.12, base:0.0195, amp:1.05, weeks:1,
     juris:['be','ee','hk'], d:'Dozens of recruited accounts each pass a small slice along, fast.',
     flag:'Fan-out / fan-in velocity pattern', art:'Art. 26 & 69', artTitle:'Monitoring of transactions / Reporting of suspicions',
@@ -840,17 +845,27 @@ return {esc, Ownership, Laundromat, Desk};
 
      AcademyProgress.get()
        -> { version, updated,
-            completions:[{module, completedAt, score, max, steps}],  // modules fully done
+            completions:[{module, completedAt, score, max, contentVersion, steps}],  // modules fully done
             modules:{ <id>:{steps:{watch,risks,check,law,practice}, completed} } }
 
    Stored under 'regradar-academy-training':
      { v:1, updated:ISO, prefs:{budget:30}, modules:{
          'cdd-kyc':{ steps:{ watch:{at}, risks:{at}, check:{at,score,max,best,tries,passed},
                              law:{at}, practice:{at,auto} },
-                     completed:{ at:ISO, score:3, max:4 } } } }
+                     completed:{ at:ISO, score:3, max:4, cv:'1.0.0' } } } }
+
+   'cv' is the curriculum content version (data/academy/curriculum.json
+   _meta.content_version) at the moment the module was completed. The hub
+   registers it with setContentVersion(). Completions made before this
+   field existed have no 'cv' and are reported with contentVersion:null.
 
    A module is complete when watch, risks, a passed check and law are
-   done. Practice (the simulations) is optional. The game XP/rank lives
+   done. Practice (the simulations) is optional. Lessons that have a
+   Spot it game or a Decide scenario (data/academy/rounds.json) also need
+   'spot' and 'decide': the hub registers that per module with
+   setRequired(id, steps). A module already marked completed stays
+   completed, so nothing a learner finished before is lost.
+     spot:{at,score,max,best,tries}   decide:{at,choice,verdict} The game XP/rank lives
    separately in AcademyShell ('regradar-academy-progress'); nothing in
    that key changes. Everything stays on this device.
    ═══════════════════════════════════════════════════════════════════ */
@@ -859,6 +874,8 @@ window.AcademyProgress = (function(){
 const KEY='regradar-academy-training';
 const REQUIRED=['watch','risks','check','law'];
 let S=null;
+const REQ={};   /* per-module required steps, registered by the hub; default REQUIRED */
+let CV=null;    /* curriculum content version, registered by the hub; recorded in new completions */
 
 function blank(){ return {v:1, updated:null, prefs:{}, modules:{}}; }
 function load(){
@@ -879,9 +896,10 @@ function isComplete(id){ load(); return !!(S.modules[id] && S.modules[id].comple
 function maybeComplete(id){
   const m=mod(id);
   if(m.completed) return false;
-  if(!REQUIRED.every(k=>m.steps[k] && (k!=='check' || m.steps.check.passed))) return false;
+  if(!(REQ[id]||REQUIRED).every(k=>m.steps[k] && (k!=='check' || m.steps.check.passed))) return false;
   const c=m.steps.check;
   m.completed={at:new Date().toISOString(), score:c.best, max:c.max};
+  if(CV) m.completed.cv=CV;
   return true;
 }
 /* Mark a step done. Returns {first:boolean, completed:boolean}: first =
@@ -904,12 +922,23 @@ function quiz(id, score, max, passed){
   save();
   return {firstPass:!wasPassed && !!passed, completed};
 }
+/* Record one Spot it round. Keeps the best score and the number of tries. */
+function game(id, name, score, max){
+  const m=mod(id), prev=m.steps[name]||{}, first=!m.steps[name];
+  m.steps[name]={at:new Date().toISOString(), score, max, best:Math.max(prev.best||0, score), tries:(prev.tries||0)+1};
+  const completed=maybeComplete(id);
+  save();
+  return {first, completed};
+}
+function setContentVersion(v){ CV=v? String(v) : null; }
+function setRequired(id, list){ if(Array.isArray(list) && list.length) REQ[id]=list.slice(); }
+function required(id){ return (REQ[id]||REQUIRED).slice(); }
 function get(){
   load();
   const completions=Object.keys(S.modules).filter(id=>S.modules[id].completed).map(id=>{
     const m=S.modules[id];
     return {module:id, completedAt:m.completed.at, score:m.completed.score, max:m.completed.max,
-            steps:Object.keys(m.steps)};
+            contentVersion:m.completed.cv||null, steps:Object.keys(m.steps)};
   }).sort((a,b)=>a.completedAt<b.completedAt?-1:1);
   return JSON.parse(JSON.stringify({version:1, updated:S.updated, completions, modules:S.modules}));
 }
@@ -932,5 +961,5 @@ function toCSV(titles, order){
   return [head].concat(rows).map(r=>r.map(csvCell).join(',')).join('\r\n')+'\r\n';
 }
 function reset(){ S=blank(); save(); }
-return {KEY, REQUIRED, get, step, quiz, isComplete, stepDone, pref, setPref, toCSV, reset};
+return {KEY, REQUIRED, get, step, quiz, game, setRequired, setContentVersion, required, isComplete, stepDone, pref, setPref, toCSV, reset};
 })();

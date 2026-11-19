@@ -104,7 +104,8 @@
       getJ("data/laws/index.json").catch(function () { return []; }),
       getJ("data/applicability.json").catch(function () { return null; }),
       (window.ControlsData ? ControlsData.load().catch(function () { return null; }) : Promise.resolve(null)),
-      loadLaw(AMLR)
+      loadLaw(AMLR),
+      PD.open()   // the data spine (policies are records in it; the old key is imported once)
     ]).then(function (r) {
       OBS = r[0].obligations || []; SEED = r[1]; TPL = r[2].templates || []; LAWIDX = r[3] || []; APP = r[4];
       CONTROLS = r[5] ? r[5].controls : [];
@@ -788,7 +789,7 @@
       '<div class="field"><label for="restoreFile">Restore from a backup</label><input class="in" type="file" id="restoreFile" accept="application/json,.json"></div>' +
       '<hr style="border:0;border-top:1px solid var(--border)">' +
       '<div class="row-actions" style="margin-top:0"><button type="button" class="btn" data-act="resetdemo">Reload the CF Bank demo data</button><button type="button" class="btn danger" data-act="startempty">Start with an empty library</button></div>' +
-      '<p class="hint" style="margin:0">Your policies live in this browser only (key regradar-policies). Clearing site data deletes them, so download a backup now and then. Reloading the demo or starting empty replaces everything shown here.</p>';
+      '<p class="hint" style="margin:0">Your policies live in this browser only, in the shared data spine (keys regradar-spine-*; the old copy under regradar-policies is kept as a backup). Clearing site data deletes them, so download a backup now and then. Reloading the demo or starting empty replaces everything shown here.</p>';
     dlgOpen('<div class="dlg-in"><div class="dlg-h"><h2 id="dlgTitle">Your data</h2></div><div class="dlg-b">' + body + '<p class="err" id="dlgErr" role="alert" hidden></p></div><div class="dlg-f"><button type="button" class="btn pri" data-act="dlgclose">Close</button></div></div>');
   }
   function dlgConfirm(title, msg, ok, fn) {
