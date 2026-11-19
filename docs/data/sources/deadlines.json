@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-17T15:28:31+00:00",
-  "count": 109
+  "generated": "2026-11-18T15:03:00+00:00",
+  "count": 110
  },
  "deadlines": [
   {
@@ -635,11 +635,11 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "adcaf4968496",
+   "id": "021f3fee0289",
    "date": "2026-10-27",
    "kind": "entry into force",
    "title": "Council Decision (CFSP) 2026/2372 of 26 October 2026 amending Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026D2372",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2372",
    "confidence": "high",
@@ -758,6 +758,17 @@
    "loc": "Article 2, para 2"
   },
   {
+   "id": "404e4124756e",
+   "date": "2026-11-16",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
+   "source_doc_id": "celex-32026D2554",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
    "id": "8f5e5901f2e6",
    "date": "2026-11-16",
    "kind": "entry into force",
@@ -835,46 +846,35 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "8e6da928cfcd",
+   "id": "ff192a62d395",
    "date": "2026-11-16",
    "kind": "entry into force",
    "title": "Council Implementing Regulation (EU) 2026/2574 of 16 November 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026R2574",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2574",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "81b646d39530",
+   "id": "8784ac14acf0",
    "date": "2026-11-16",
    "kind": "entry into force",
    "title": "Council Decision (CFSP) 2026/2575 of 16 November 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026D2575",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2575",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "082f6686a598",
+   "id": "aa74b6f5f265",
    "date": "2026-11-16",
    "kind": "entry into force",
    "title": "Council Decision (CFSP) 2026/2571 of 16 November 2026 amending Decision (CFSP) 2020/1999 concerning restrictive measures against serious human rights violations and abuses",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026D2571",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2571",
-   "confidence": "high",
-   "method": "structured: CELLAR resource_legal_date_entry-into-force"
-  },
-  {
-   "id": "404e4124756e",
-   "date": "2026-11-16",
-   "kind": "entry into force",
-   "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
-   "source_doc_id": "celex-32026D2554",
-   "source": "eurlex-cellar-ojl-recent",
-   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
@@ -1174,6 +1174,19 @@
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
    "quote": "The methodology would apply from 31 December 2028.",
    "loc": "Share your perspective, para 1"
+  },
+  {
+   "id": "c5d7b2fbc218",
+   "date": "2029-07-10",
+   "kind": "application date",
+   "title": "Press Release: AMLA finalises key standards for the private sector",
+   "source_doc_id": "amla-news-0fee8ddae26e",
+   "source": "amla-news",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-key-standards-private-sector_en",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "For football agents and professional football clubs, they will apply from 10 July 2029.",
+   "loc": "Developed through close cooperation, para 1"
   },
   {
    "id": "693546a5da99",
