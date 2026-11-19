@@ -15,3 +15,10 @@
 ## 2026-11-18 (answers to the 2026-11-17 digest, replies sent 17 Nov 09:14-09:15)
 - **D1 = A** (PR #45, Chapter II register): merge only after the independent legal review; the review of PR #45 is in PR #49 (verdict: ready after fixes).
 - **D2 = B** (RTS layer): add the AMLA RTS as an obligations layer in the register right away, status "draft" (not yet in force); this delays Chapter IV.
+
+## 2026-11-19 (answers to the 2026-11-18 digest, replies sent 18 Nov 11:23-11:29)
+- **D1 = A** (PR #45 and #48): fix the legal-review wording first (PR #49), then merge. Owner merges; agents only fix.
+- **D2 = B** (gap view, PR #50): next feature is "create an action from a gap" (needs the one-ticket model).
+- **D3 = A** (Academy after Governance): write the Governance film script and claim ledger (per academy/SCRIPT_REVIEW.md). Owner remark: look online for the Febelfin AML and governance training PDFs (Certified Compliance Officer) as an idea of relevant content, without copying; if not found online, tell the owner, who will send a version.
+- **D4 = B** (PR #49): add Art. 17 (third-country branches) to the register at the next pass.
+- **D5 = A** (PR #49): label red flags and typologies "teaching examples, not law" on all topics.
