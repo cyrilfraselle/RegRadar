@@ -2,10 +2,254 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-18T15:03:00+00:00",
-  "count": 82
+  "generated": "2026-11-19T15:12:16+00:00",
+  "count": 86
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2385-ec0f3a7e",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "celex-32026D2385",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2385 of 26 October 2026 amending Decision (CFSP) 2016/610 on a European Union CSDP Military Training Mission in the Central African Republic (EUTM RCA)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2385",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2016/610 should be amended accordingly.",
+     "loc": "amending Decision (CFSP) 2016/610 on a European Union CSDP Military Training Mis, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "in Article 10, the following paragraph is added: ‘10. The financial reference amount for the common costs of EUMAM RCA for the period from 1 January 2027 until 31 August 2028 shall be EUR 12 993 000. The percentage of the reference amount referred to in Article 51(2) of Decision (CFSP) 2021/509 shall be 0 % for commitments and 0 % for payments.’ ;",
+     "loc": "Article 1, para 9",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-656e536eb6b4-7f3fa15d",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "amla-library-656e536eb6b4",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Speech at Nordic Financial Crime and Sanctions Forum - RLP",
+   "url": "https://www.amla.europa.eu/document/download/6c024a0d-1d2a-44fa-9b55-a306c48811d8_en?filename=Speech%20at%20Nordic%20Financial%20Crime%20and%20Sanctions%20Forum%20-%20RLP.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "We are developing our own risk analysis framework to support our supervisory work and strengthen our understanding of sectoral and geographical vulnerabilities. And that risk-based approach should run through the European supervisory system more broadly.",
+     "loc": "p. 3, para 3",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "A useful report should explain not only what appears unusual, but why it matters in the context of the customer and the activity. Feedback is equally important: institutions need to understand what FIUs find useful, while FIUs depend on institutions applying their own knowledge of customers and transactions when they report.",
+     "loc": "p. 4, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "This matters because the risk picture will continue to change. Business models evolve, technology develops, the geopolitical situation changes and criminal methods adapt – all topics, by the way, that I see you will be covering in the different sessions today and tomorrow. You have an interesting – and highly relevant – programme ahead of you. And as the risk picture changes, we need to take what we learn through supervision and FIU cooperation and feed it back into the way we assess risk and set priorities. For a new authority such as AMLA, that ability to adapt is particularly important. One of our values is courage. In this context, I think it has a practical meaning: being willing to question established assumptions and adjust our approach when the evidence shows that we should. Having the courage to discuss differences and align on common approaches. Having the courage to leverage technology, but also to understand and tackle",
+     "loc": "p. 5, para 7",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-69f6d9e46e55-63548dfe",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "amla-library-69f6d9e46e55",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "JOINT - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/24d83c27-d18c-40d1-b50c-61d847edcd26_en?filename=20260429_AMLA_8th%20GB%20Joint_Public%20summary.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The discussion focused on the appropriate balance between harmonisation and flexibility. General Board Members broadly supported the objective of greater convergence but expressed concern about the feasibility, costs and operational impact of rapid or full harmonisation. Many Members supported a gradual approach based on a minimum mandatory core data set, complemented by optional fields and a longer-term roadmap towards more complete harmonisation. Members also stressed that the ITS should not constrain the analytical autonomy of financial intelligence units or reduce their ability to request additional information based on national risks. Considerable emphasis was placed on avoiding excessive burden s on obliged entities, particularly smaller and non-financial actors, in order to preserve reporting quality and effectiveness. AMLA staff acknowledged the concerns raised and confirmed that the strong preference expressed by Members for a minimum-core, phased approach would be fully reflected in the ongoing drafting and consultation work. The Chair summarised the discussion and confirmed the strategic direction for the next steps.",
+     "loc": "p. 5, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-427903da878f-fa355afe",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "amla-library-427903da878f",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "FIU - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/0466cf9f-6400-4f82-84f0-7d35b852cabd_en?filename=20260430_AMLA_8th%20GB%20FIU_Public%20summary.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "5. LAUNCH OF THE PUBLIC CONSULTATION ON THE ITS ON THE FORMAT FOR REPORTING OF INFORMATION BY THE FIUS TO EPPO (ART. 81(1) AMLR) (POINT FOR DISCUSSION) Discussion AMLA staff presented the draft implementing technical standards on the format for FIU reporting to EPPO, explaining that the initiative seeks to harmonise reporting practices and improve the efficiency and clarity of information transmission in cases falling within EPPO competence. The proposal introduces a common reporting template, promotes the use of machine readable formats and clarifies how restrictions of use should be indicated, while remaining technologically neutral as regards communication channels. General Board Members broadly supported the launch of the public consultation and acknowledged the operational value of a harmonised approach. The discussion highlighted the need to ensure realistic implementation timelines, alignment with other ongoing technical standards and sufficient clarity on technical specifications to support national information technology adaptations. Members also raised questions on the scope of permitted use of information by EPPO. AMLA’s Chair summarised the discussion and confirmed that",
+     "loc": "p. 3, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "AMLA staff further explained that the Implementing Technical Standards provide for a flexible and technology-neutral communication channel. While the possibility of using FIU.net is envisaged should the European Public Prosecutor’s Office connect to the sy stem, alternative secure channels would remain available, in particular for the initial phase when such a connection may not yet be in place. The draft standards also include provisions requiring AMLA to indicate any applicable restrictions on the use of t he information, without establishing new legal bases for such restrictions.",
+     "loc": "p. 4, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "7. RTS 31(3) AMLD– STATE OF PLAY (POINT FOR INFORMATION) Discussion The Chair invited AMLA staff to provide an update on the state of play of the draft Regulatory Technical Standards under Article 31(3) of the Anti-Money Laundering Directive. AMLA staff explained that the draft standards aim to specify the relevance and selection criteria to be applied when determining whether a suspicious transaction report concerns another Member State and should therefore be transmitted as a cross-border report or a cross-border dissemination. AMLA staff outlined the key elements of the proposed approach, notably the distinction between cross-border reports and crossborder disseminations and the differentiated treatment",
+     "loc": "p. 4, para 8",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026R2574-f8b53476",
    "created": "2026-11-18T15:03:00+00:00",
