@@ -41,3 +41,5 @@ Audit in strategy/scraper-audit.md. New registry-driven source engine (collect_s
 
 - 2026-11-14 (academy/films-02-04): films 02 to 04 built on a shared data-driven engine (docs/academy-film-engine.js); gate step 6 automated by tests/films.test.mjs; films registered in docs/data/academy/films.json. Needs legal fact-check.
 - 2026-11-14 MAX (max/obligations-bulk): bulk extraction started: extract_obligations_draft.py, docs/data/obligations-draft.json (AMLR 330, TFR 58, AMLD6 29 draft units, not reviewed), review queue, tests/obligations_draft.test.py, strategy/obligations-bulk.md. Verified register untouched. Needs legal fact-check.
+- 2026-11-18 (digest): recorded owner replies D1=A (merge #45 after legal review) and D2=B (RTS layer now, draft status).
+- 2026-11-19 (DIGEST): recorded owner answers D1=A, D2=B, D3=A (+Febelfin remark), D4=B, D5=A to the 2026-11-18 digest in strategy/decisions-log.md.
