@@ -41,3 +41,4 @@ Audit in strategy/scraper-audit.md. New registry-driven source engine (collect_s
 
 - 2026-11-14 (academy/films-02-04): films 02 to 04 built on a shared data-driven engine (docs/academy-film-engine.js); gate step 6 automated by tests/films.test.mjs; films registered in docs/data/academy/films.json. Needs legal fact-check.
 - 2026-11-14 MAX (max/obligations-bulk): bulk extraction started: extract_obligations_draft.py, docs/data/obligations-draft.json (AMLR 330, TFR 58, AMLD6 29 draft units, not reviewed), review queue, tests/obligations_draft.test.py, strategy/obligations-bulk.md. Verified register untouched. Needs legal fact-check.
+- 2026-11-16 MAX (max/amlr-chapter2): 9 verified AMLR Chapter II obligations added (Arts 8 to 14, 16, 18: internal policies, business-wide risk assessment, compliance functions, training, integrity, whistleblowing, group, outsourcing); register now 21. Verbatim excerpts checked by build_obligations.py. Needs legal fact-check.
