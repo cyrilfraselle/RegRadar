@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-19T15:12:16+00:00",
-  "count": 202,
-  "corpus_bytes": 4377050
+  "generated": "2026-11-20T14:52:32+00:00",
+  "count": 208,
+  "corpus_bytes": 4438475
  },
  "documents": [
   {
@@ -285,6 +285,28 @@
    ],
    "parent": null,
    "paragraphs": 12
+  },
+  {
+   "id": "amla-hearings-2c11a2dcab90",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on Customer Due Diligence",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-customer-due-diligence-2026-03-24_en",
+   "publication_date": "2026-03-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "028299097ecc8b39014b7e669f2ed000ced9c4aa27a11813551e0fbf98a98df8",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1409,
+   "truncated": false,
+   "topics": [
+    "cdd"
+   ],
+   "parent": null,
+   "paragraphs": 10
   },
   {
    "id": "amla-hearings-3361f87338bc",
@@ -877,6 +899,52 @@
    ],
    "parent": null,
    "paragraphs": 199
+  },
+  {
+   "id": "amla-library-04c336501f91",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "SUP - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/4f6e10ad-33a3-4360-955b-d279525cf833_en?filename=20260429_AMLA_%208th%20GB%20SUP_Public%20summary.pdf",
+   "publication_date": "2026-08-18",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "78c65541dd7cfeb927bc13b9cc29622f54764de168a3a930fe7a226b2c349850",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "pdf",
+   "pages_total": 7,
+   "chars_stored": 10736,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 34
+  },
+  {
+   "id": "amla-library-04dcf14190e2",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "JOINT - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/fbc788a6-2df8-434c-8ec6-3120d333b92d_en?filename=Public%20summary%209th%20JOINT%20GB.pdf",
+   "publication_date": "2026-08-18",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "51741e1cdcf9606fa2eedef88bc3c2b9cf7d7bb1f29ebe8f2e6743bc314a859b",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "pdf",
+   "pages_total": 12,
+   "chars_stored": 26073,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 97
   },
   {
    "id": "amla-library-0e49e767e94f",
@@ -1776,6 +1844,28 @@
    "paragraphs": 5
   },
   {
+   "id": "amla-news-6f6fe2c360a2",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Connecting intelligence and supervision: Rikke-Louise Petersen speaks at Nordic Financial Crime & Sanctions Forum",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/connecting-intelligence-and-supervision-rikke-louise-petersen-speaks-nordic-financial-crime_en",
+   "publication_date": "2026-09-16",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "da8aa83d85e7c7192ca50bad019959bb36ae1c4f80f78ae6d580ed542e139ea3",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1215,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 5
+  },
+  {
    "id": "amla-news-712272c2e37f",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1856,6 +1946,28 @@
    "topics": [],
    "parent": null,
    "paragraphs": 2
+  },
+  {
+   "id": "amla-news-b87f876ecb19",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Executive Board Member Simonas Krepšta addresses Global Conference on Criminal Finances and Cryptoassets in Luxembourg",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-simonas-krepsta-addresses-global-conference-criminal-finances-and_en",
+   "publication_date": "2026-09-18",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "8b4c2cf9d821bb354bf2022aa6e8768824422088a99741b40be55ff8ab3fb05e",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1732,
+   "truncated": false,
+   "topics": [
+    "crypto-assets"
+   ],
+   "parent": null,
+   "paragraphs": 4
   },
   {
    "id": "amla-news-bb51330afd2e",
@@ -2007,6 +2119,28 @@
    "topics": [],
    "parent": null,
    "paragraphs": 3
+  },
+  {
+   "id": "amla-news-fcba9a8ef8a6",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA finalises common formats for FIU cooperation and reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-common-formats-fiu-cooperation-and-reporting-eppo_en",
+   "publication_date": "2026-09-22",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "2537010936b048d474ced803bc945b97841946390a708675aa0dce449aa7f5b0",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2170,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 14
   },
   {
    "id": "amla-reports-07ab5af50b97",

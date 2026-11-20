@@ -3,64 +3,64 @@
   "eurlex-cellar-aml-family:sparql": {
    "etag": "",
    "last_modified": "",
-   "sha256": "fd4662b1cc31a0ae4e6a1d9335cbf04a870d347280bddaa371279b2376f58c2d",
-   "checked": "2026-11-19T15:12:19+00:00",
+   "sha256": "aaf667a96de4acbf6464c8be17935cf5380227e4a266906d2c37dfb52eb84174",
+   "checked": "2026-11-20T14:52:35+00:00",
    "status": 200
   },
   "eurlex-cellar-ojl-recent:sparql": {
    "etag": "",
    "last_modified": "",
-   "sha256": "e7212545a2e49eae2398d116c60d0891b62f6997295c056f6ce79175ec8df759",
-   "checked": "2026-11-19T15:12:22+00:00",
+   "sha256": "6d7e939028919738628e112d9d2a4775466aa3a4691eca4c648e02dd7d2abb8e",
+   "checked": "2026-11-20T14:52:38+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/8/rss_en": {
    "etag": "",
    "last_modified": "",
    "sha256": "90f5e113649d3c05b2d087c7db63cbfa157834387b959a84383f4994368fc3a9",
-   "checked": "2026-11-19T15:12:24+00:00",
+   "checked": "2026-11-20T14:52:40+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/policy/public-consultations_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "54ac9053c5d11fb3b706baab85ce3c2cc5fdeb88219bff8e5d32c20605d270cf",
-   "checked": "2026-11-19T15:12:26+00:00",
+   "sha256": "1be4152cd49e31d84a08734c9a26ca124536434197eb211436f77444d66b9897",
+   "checked": "2026-11-20T14:52:42+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/policy/regulatory-instruments_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "24fee11389892efc6fa92d6ead50a4f15852f43967451834886d461a2e6a08b5",
-   "checked": "2026-11-19T15:12:28+00:00",
+   "sha256": "8a09e3a6c99ec219d8845f3c8ef58a911a7c2c1b2f851b170d9302064282c299",
+   "checked": "2026-11-20T14:52:43+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/19/rss_en": {
    "etag": "",
    "last_modified": "",
    "sha256": "c7fe6604361290169d7ff1d98daba38dfdbcbc3bf7b1815f120f4a02dbc61d6b",
-   "checked": "2026-11-19T15:12:29+00:00",
+   "checked": "2026-11-20T14:52:45+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/105/rss_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "d00f4df62afe9df13af4fe0135ab24a544eca08c2d820512115e39e5718edd08",
-   "checked": "2026-11-19T15:12:31+00:00",
+   "sha256": "06c3bd77c2d17a9f7a2ba02545a20b09f1e90e62a075057f5b04f9606399c5eb",
+   "checked": "2026-11-20T14:52:47+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/267/rss_en": {
    "etag": "",
    "last_modified": "",
    "sha256": "ad60511a0c235707caf61c97e9c6c89816874e062c49aa351f501f45b3041bda",
-   "checked": "2026-11-19T15:12:33+00:00",
+   "checked": "2026-11-20T14:52:48+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/190/rss_en": {
    "etag": "",
    "last_modified": "",
    "sha256": "80a8a901ac80016a151237f34eddb29f969ae3413960dbb08847f313ff6a3afb",
-   "checked": "2026-11-19T15:12:35+00:00",
+   "checked": "2026-11-20T14:52:50+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/faqs_en": {
@@ -74,14 +74,14 @@
    "etag": "",
    "last_modified": "",
    "sha256": "15d22a854e3052c7136b8635d17d78eab3e18603cf9d245f0b87ead9df7df40b",
-   "checked": "2026-11-19T15:12:46+00:00",
+   "checked": "2026-11-20T14:53:01+00:00",
    "status": 200
   },
   "https://www.esma.europa.eu/rss.xml": {
-   "etag": "\"1795097907-gzip\"",
-   "last_modified": "Thu, 19 Nov 2026 14:18:27 GMT",
+   "etag": "\"1795185323-gzip\"",
+   "last_modified": "Fri, 20 Nov 2026 14:35:23 GMT",
    "sha256": "dd34df8a6b4a2e82064d2fa70dddc4bb65773bda77da0450888e96338f5c7343",
-   "checked": "2026-11-19T15:12:48+00:00",
+   "checked": "2026-11-20T14:53:03+00:00",
    "status": 200
   },
   "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-eu-level_en": {
@@ -190,10 +190,10 @@
    "status": 200
   },
   "https://www.fsma.be/en/news-articles/rss.xml": {
-   "etag": "\"1795099860\"",
-   "last_modified": "Thu, 19 Nov 2026 14:51:00 GMT",
-   "sha256": "34135431bde018ab1dcdfee05e6e04aba95cce9a7ad4add333f3043e7b2115f1",
-   "checked": "2026-11-19T15:13:25+00:00",
+   "etag": "\"1795184042\"",
+   "last_modified": "Fri, 20 Nov 2026 14:14:02 GMT",
+   "sha256": "f9a184cbf653965d255dfd1db0ef74e513c59e131ae942b00c2ccaf856b512f5",
+   "checked": "2026-11-20T14:53:39+00:00",
    "status": 200
   },
   "http://publications.europa.eu/resource/celex/32026D2508": {
@@ -318,15 +318,15 @@
   "https://www.eba.europa.eu/publications-and-media/press-releases": {
    "etag": "",
    "last_modified": "",
-   "sha256": "665c0a4814433488534863d67b44428d9276b00b19be183b39e1cbcec3a8e716",
-   "checked": "2026-11-19T15:14:01+00:00",
+   "sha256": "8f379e80ce2acf743940b46942ce5711e7d7b1d16972082b48b442aae70acbc4",
+   "checked": "2026-11-20T14:53:55+00:00",
    "status": 200
   },
   "https://www.esma.europa.eu/press-news/esma-news": {
-   "etag": "\"1795098044-gzip\"",
-   "last_modified": "Thu, 19 Nov 2026 14:20:44 GMT",
-   "sha256": "e4c0d8fe2ba1ca49d43ca9a49f06f0be06f459b0347944705c9f8bf7b5be9013",
-   "checked": "2026-11-19T15:14:01+00:00",
+   "etag": "\"1795185340-gzip\"",
+   "last_modified": "Fri, 20 Nov 2026 14:35:40 GMT",
+   "sha256": "ba6b85136a5586d380310e1b3bf85f500f874c83a07017459fb161dd72654818",
+   "checked": "2026-11-20T14:53:55+00:00",
    "status": 200
   },
   "http://publications.europa.eu/resource/celex/32026D2449": {
@@ -1082,7 +1082,7 @@
    "etag": "\"Con-20260224060846000\"",
    "last_modified": "Tue, 24 Feb 2026 05:08:46 GMT",
    "sha256": "77250c66dd0f41915f984eb18f6f6a4fd6ebad215241e5b5ba998ce7e91955cb",
-   "checked": "2026-11-19T15:13:58+00:00",
+   "checked": "2026-11-20T14:53:55+00:00",
    "status": 200
   },
   "http://publications.europa.eu/resource/celex/52025IP0105": {
@@ -1469,18 +1469,54 @@
    "sha256": "071049f2789d6f7eeeef386580007b43ed250830535d0dd5942c604e583c9f6b",
    "checked": "2026-11-19T15:13:58+00:00",
    "status": 200
+  },
+  "https://www.amla.europa.eu/events/public-hearing-draft-rts-customer-due-diligence-2026-03-24_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "f5bb99f3e41db30ff6b2bc4bd19f04ba2c96ea108f2af0777b8a7277ca54b9ff",
+   "checked": "2026-11-20T14:53:41+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/press-release-amla-finalises-common-formats-fiu-cooperation-and-reporting-eppo_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "4c2e10658984ab4588a5bf759beeac6560d34e70dbd1e3e1a437875f1ae1047d",
+   "checked": "2026-11-20T14:53:43+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-simonas-krepsta-addresses-global-conference-criminal-finances-and_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "02561218d4ab56aa72b8d08b3defac9564f89938abaa724407d79c7aba5ae363",
+   "checked": "2026-11-20T14:53:45+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/news-media/news-articles/connecting-intelligence-and-supervision-rikke-louise-petersen-speaks-nordic-financial-crime_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "1899422629fc2ba177e5dca5fc992856e2af8846a5189538f8df0f3b3232d3c0",
+   "checked": "2026-11-20T14:53:47+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/4f6e10ad-33a3-4360-955b-d279525cf833_en?filename=20260429_AMLA_%208th%20GB%20SUP_Public%20summary.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "bb79a95f77ebd4aa3d83c0abb09ef4bfcd0c4de00eafe7382c7477e540acba9a",
+   "checked": "2026-11-20T14:53:49+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/fbc788a6-2df8-434c-8ec6-3120d333b92d_en?filename=Public%20summary%209th%20JOINT%20GB.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "f15dfd6559e8fddc0e418414478543a9739633cb8bf6c3ea6024644b5141f22e",
+   "checked": "2026-11-20T14:53:52+00:00",
+   "status": 200
   }
  },
  "pending_docs": [
-  "amla-hearings-2c11a2dcab90",
   "amla-hearings-321e325c341b",
-  "amla-news-fcba9a8ef8a6",
-  "amla-news-b87f876ecb19",
-  "amla-news-6f6fe2c360a2",
   "amla-news-672f202ee9be",
   "amla-news-6354ca0b6f00",
-  "amla-library-04c336501f91",
-  "amla-library-04dcf14190e2",
   "amla-news-f47b90ce2410",
   "amla-news-d5ab093a6513",
   "amla-news-012fad91830b",
@@ -1680,6 +1716,22 @@
    "duration_s": 108.1,
    "errors": 0,
    "requests": 40
+  },
+  {
+   "started": "2026-11-20T14:52:32+00:00",
+   "sources_polled": 12,
+   "sources_skipped": 4,
+   "new": 18,
+   "changed": 1,
+   "withdrawn": 0,
+   "docs_new": 6,
+   "docs_changed": 0,
+   "docs_unchanged": 1,
+   "doc_errors": 0,
+   "proposals_new": 3,
+   "duration_s": 85.9,
+   "errors": 3,
+   "requests": 31
   }
  ],
  "tags_hash": "26327f2701568498"

@@ -2,10 +2,225 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-19T15:12:16+00:00",
-  "count": 86
+  "generated": "2026-11-20T14:52:32+00:00",
+  "count": 89
  },
  "proposals": [
+  {
+   "id": "prop-amla-hearings-2c11a2dcab90-02829909",
+   "created": "2026-11-20T14:52:32+00:00",
+   "doc_id": "amla-hearings-2c11a2dcab90",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on Customer Due Diligence",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-customer-due-diligence-2026-03-24_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The draft RTS under Article 28(1) Regulation (EU) 2024/1624 specify how obliged entities should apply the Regulation's customer due diligence requirements, including the information and documents to be collected. AMLA took over this work from the European Banking Authority in 2025, building on the EBA's draft with targeted amendments to ensure legal clarity, proportionality, a risk-based approach, and applicability across all categories of obliged entities.",
+     "loc": "s1, para 2",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-news-6f6fe2c360a2-da8aa83d",
+   "created": "2026-11-20T14:52:32+00:00",
+   "doc_id": "amla-news-6f6fe2c360a2",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Connecting intelligence and supervision: Rikke-Louise Petersen speaks at Nordic Financial Crime & Sanctions Forum",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/connecting-intelligence-and-supervision-rikke-louise-petersen-speaks-nordic-financial-crime_en",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "She outlined how risk analysis and financial intelligence should reinforce each other, highlighting AMLA's work to strengthen cooperation among FIUs, including its first joint analysis exercise towards the end of 2026, and the information-sharing partnerships that Article 75 of the Anti-Money Laundering Regulation will enable from July 2027.",
+     "loc": "s1, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-04dcf14190e2-51741e1c",
+   "created": "2026-11-20T14:52:32+00:00",
+   "doc_id": "amla-library-04dcf14190e2",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "JOINT - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/fbc788a6-2df8-434c-8ec6-3120d333b92d_en?filename=Public%20summary%209th%20JOINT%20GB.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "AMLA staff presented the legal and regulatory background, recalling that legal privilege is protected under Union law and the European Convention on Human Rights, subject to necessary and proportionate restrictions. AMLA staff explained its understanding that legal privilege applies to specific categories of information defined in the AML Regulation and should not be considered a general exemption from AML/CFT obligations, including customer due diligence, suspicious transaction reporting and information-sharing requirements.",
+     "loc": "p. 3, para 9",
+     "topics": [
+      "cdd",
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on cdd, reporting-str"
+    },
+    {
+     "text": "Other Members supported AMLA's analysis and emphasised that legal privilege should not be interpreted as a blanket exemption from AML/CFT obligations, stressing the importance of preserving the effectiveness of reporting, supervision and FIU functions. The European Commission agreed with AMLA's analysis, considering that the relevant provisions largely continue existing Union legislation and do not create a general derogation from AML/CFT obligations.",
+     "loc": "p. 4, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "In response, AMLA staff clarified that the Guidelines are intended to support the application of the risk-based approach by providing indicative guidance rather than an exhaustive catalogue of risks. It was emphasised that the Guidelines should be considered in conjunction with existing AML/CFT requirements and national risk assessment frameworks and confirmed that the comments received would be taken into account in future drafts.",
+     "loc": "p. 11, para 3",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2385-ec0f3a7e",
    "created": "2026-11-19T15:12:16+00:00",
