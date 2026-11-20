@@ -33,6 +33,11 @@ calendar and import wizards in Phase 1.
 
 Deferred (owner): first buyer and size, backend and hosting, first connectors.
 
+## 2026-11-06: weekly brief (agent-written)
+
+Brief: strategy/briefs/2026-11-06.md. 4 fixes merged this week; 7 PRs open (oldest 18 days); epics, ideation and prototyper silent for 3 weeks; verified obligations still 12.
+Recommendation put to owner: clear the PR queue, pause UI polish, point agents at obligation content (F-013, F-015) and the data spine. F-004 definition of "Covered" still needs the owner.
+
 ## 2026-11-14: scraper v2 (max/scraper-v2)
 Audit in strategy/scraper-audit.md. New registry-driven source engine (collect_sources.py, regwatch_sources/) writing docs/data/sources/: CELLAR instead of EUR-Lex RSS (robots.txt), AMLA tracker and consultations with deadlines, NBB AML guidance corpus with page and paragraph locators, proposal stubs, coverage check, story-clustered feed. Legacy RegWatch untouched except the seen.json eviction fix.
 - 2026-11-14 (MAX): Topic view `docs/topics.html`: 10 themes, 40 subtopics, 114 verbatim AMLR/TFR extracts checked by `tests/topics.test.mjs`; AMLA mandates quoted; NBB/EBA/FATF layers marked not collected yet; controls with gap markers; deterministic highlights; AI summariser hook (no AI code).
