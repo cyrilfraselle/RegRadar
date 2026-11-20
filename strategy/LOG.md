@@ -3,6 +3,10 @@
 Dated notes from strategy conversations between the owner and the assistant.
 Newest first. Each entry: context, what we decided, what we deferred, next.
 
+## 2026-11-13: weekly brief
+
+Brief written (strategy/briefs/2026-11-13.md). Big merge of integrate/2026-11 into main on 12 Nov cleared the PR queue; verified obligations still 12, P1 findings 5. Asked owner: decide F-019/F-004, close old brief PRs, point the developer at obligation content.
+
 ## 2026-10-16 (later): answers to the four strategy questions
 
 1. First buyer: a team; MLRO and managers dispatch work and need a clear
