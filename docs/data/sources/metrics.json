@@ -1,23 +1,19 @@
 {
  "_meta": {
   "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
-  "generated": "2026-11-20T14:52:32+00:00"
+  "generated": "2026-11-21T14:09:37+00:00"
  },
  "run": {
-  "duration_s": 85.9,
-  "requests": 31,
-  "bytes": 1767496,
-  "not_modified_304": 1,
+  "duration_s": 205.2,
+  "requests": 88,
+  "bytes": 9105392,
+  "not_modified_304": 0,
   "retries": 0,
-  "http_errors": 3,
+  "http_errors": 0,
   "robots_blocked": 0,
-  "politeness_wait_s": 67.8,
+  "politeness_wait_s": 149.3,
   "budget": 220,
-  "errors": [
-   "nbb-supervision-news: HTTP 403 (bot challenge page)",
-   "nbb-aml-decisions: HTTP 403 (bot challenge page)",
-   "nbb-news: HTTP 403 (bot challenge page)"
-  ]
+  "errors": []
  },
  "sources": {
   "registered": 31,
@@ -25,52 +21,51 @@
   "planned": 6,
   "blocked": 4,
   "excluded": 2,
-  "polled_this_run": 12,
-  "skipped_not_due": 4,
+  "polled_this_run": 19,
+  "skipped_not_due": 0,
   "health": {
-   "healthy": 16,
-   "degraded": 3
+   "healthy": 19
   }
  },
  "entries": {
-  "total": 543,
-  "in_scope": 231,
-  "new": 18,
+  "total": 556,
+  "in_scope": 234,
+  "new": 13,
   "changed": 1,
   "withdrawn": 0,
-  "pending_docs": 9
+  "pending_docs": 6
  },
  "documents": {
-  "total": 208,
+  "total": 214,
   "new": 6,
   "changed": 0,
-  "unchanged": 1,
+  "unchanged": 0,
   "errors": 0,
-  "paragraphs": 13834,
-  "corpus_bytes": 4438475,
+  "paragraphs": 13980,
+  "corpus_bytes": 4495083,
   "corpus_warning": false
  },
  "freshness_hours": {
   "this_run": {
-   "n": 18,
-   "p50": 14.9,
-   "p90": 14.9
+   "n": 13,
+   "p50": 38.2,
+   "p90": 38.2
   },
   "last_30_days": {
-   "n": 119,
+   "n": 132,
    "p50": 15.2,
-   "p90": 39.0
+   "p90": 38.2
   },
   "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
  },
- "proposals_new": 3,
+ "proposals_new": 2,
  "deadlines": 111,
  "coverage": [
   {
    "source": "eba-news",
-   "recall": 0.846,
+   "recall": 1.0,
    "in_period": 13,
-   "matched": 11,
+   "matched": 13,
    "error": null
   },
   {
@@ -91,20 +86,20 @@
  "feed": {
   "cards": 400,
   "tiers": {
-   "important": 158,
+   "important": 162,
    "critical": 64,
-   "info": 178
+   "info": 174
   },
-  "news_cards": 131,
-  "news_dropped": 89,
-  "clustered_items": 498,
+  "news_cards": 134,
+  "news_dropped": 84,
+  "clustered_items": 500,
   "f028": {
-   "archive_items": 779,
+   "archive_items": 793,
    "before": {
-    "critical": 260,
-    "share": 0.334,
-    "informational": 134,
-    "distinct_stories": 245
+    "critical": 272,
+    "share": 0.343,
+    "informational": 137,
+    "distinct_stories": 257
    },
    "after": {
     "critical": 3,

@@ -2,10 +2,115 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-20T14:52:32+00:00",
-  "count": 89
+  "generated": "2026-11-21T14:09:37+00:00",
+  "count": 91
  },
  "proposals": [
+  {
+   "id": "prop-amla-reports-49fe354c0962-14c9c28c",
+   "created": "2026-11-21T14:09:37+00:00",
+   "doc_id": "amla-reports-49fe354c0962",
+   "source": "amla-reports",
+   "authority": "AMLA",
+   "title": "Report on cooperation - Supervisory authorities in AMLCFT colleges",
+   "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "governance-risk-assessment",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(i) Frequency of colleges The Joint Guidelines provide that the frequency of AML/CFT colleges should be decided by the lead supervisor and permanent members on the basis of ML/TF risk. Out of the 17 AML/CFT colleges attended by AMLA, 82% related to groups assessed as having very significant, significant, or highrisk score, with the remainder assessed as having a ‘medium-high’ risk level2. In 76% (13 out of 17) of the AML/CFT colleges attended by AMLA the meetings are held annually. For the remaining four colleges: one college with a significant risk rating the meeting takes place every 12 to 18 months; another college with a significant risk rating meets every two years with the potential for ad-hoc meetings every year; and for the two remaining AML/CFT colleges with a ‘very significant’ risk rating, the frequency of meetings is every two years. Regarding the latter two colleges, considering both the size and the risk score of the respective groups, the frequency of the meetings does not appear to be fully aligned with a risk-based approach.",
+     "loc": "p. 9, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "Finally, the RTS seeks to strengthen the supervision of complex cross-border groups by providing additional measures for AML/CFT colleges overseeing groups that include both financial and nonfinancial obliged entities, requiring the identification of the relevant non-financial supervisors and their invitation to participate in college meetings as observers. Given the differing structures, business models and supervisory traditions across sectors, the draft RTS is intended to facilitate a coordinated understanding of group-wide AML/CFT risks and to promote coherent and consistent supervisory responses by ensuring that the information circulated by college members incorporate indicators tailored to the specific ML/TF risks associated with each sector. 5.2. Methodology for AMLA’s selection and participation in AML/CFT colleges Building on the foundation established by the EBA, AMLA will develop a methodology for the selection of AML/CFT colleges it should participate in including the manner in which the powers entrusted to AMLA under Article 31 of Regulation (EU) 2024/1620 will be exercised. The methodology will set out a risk-based approach to AMLA’s level of participation in AML/CFT",
+     "loc": "p. 14, para 2",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-eba-news-f37ee421c867-a5ae4b89",
+   "created": "2026-11-21T14:09:37+00:00",
+   "doc_id": "eba-news-f37ee421c867",
+   "source": "eba-news",
+   "authority": "EBA",
+   "title": "2026_7936 FINREP F 16.08 – Treatment of DORA-related ICT service provider costs and losses in row \"IT outsourcing\"",
+   "url": "https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2026_7936",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Under Annex V to the ITS on Supervisory Reporting, template F 16.08 requires institutions to report other administrative expenses including \"IT outsourcing\". Following the application of Regulation (EU) 2022/2554 (DORA), institutions may incur expenses and losses related to ICT third-party service providers. Should such expenses and losses be reported in FINREP template F 16.08 under the row \"IT outsourcing\" whenever they are attributable to outsourced ICT services, including ICT services falling within the scope of DORA? Furthermore, should the reporting treatment differ depending on whether the loss event originates from: (a) the institution's own ICT systems, or (b) an ICT third-party service provider?",
+     "loc": "s1, para 17",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (Should) on outsourcing-reliance"
+    },
+    {
+     "text": "The introduction of DORA has increased the use of a specific regulatory framework for ICT third-party risk management. However, the FINREP instructions do not explicitly clarify whether DORA-related ICT outsourcing incidents should be reported under the \"IT outsourcing\" category or another operational risk category.",
+     "loc": "s1, para 19",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    },
+    {
+     "text": "Under the Commission Implementing Regulation EU 2025/302 (ITS on incident reporting), financial entities are required to report the gross direct and indirect costs and losses resulting from a major ICT-related incident, as set out in Annexes I and II of these ITS on incident reporting, data field n. 4.13. In FINREP, these costs and losses should be reported in the appropriate items of the Income statement pursuant to their nature and to the classification used in the institution's public financial statements. Therefore, for example, expenses paid to ICT third-party providers should be reported in 'Other administrative expenses- IT outsourcing' of template F 16.08. For other expenses and losses, the reporting will depend on their specific nature (e.g. impairment on software assets, provisions, other operating expenses) and it should be consistent with the classification used for accounting purposes in the public financial statements.",
+     "loc": "s1, para 25",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (are required to) on outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-amla-hearings-2c11a2dcab90-02829909",
    "created": "2026-11-20T14:52:32+00:00",
