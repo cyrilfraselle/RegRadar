@@ -190,8 +190,11 @@ window.MAX_PREVIEW = true;
    Motion (a flat black silhouette, all original, no images):
    - Walk-in (first page view of a browser session): a skinned skeleton merged into one smooth
      shape (signed distance field, drawn on a canvas at the device pixel ratio). He walks in from
-     beyond the right edge in a lateral-sequence walk with planted paws, slows, looks up, sits and
-     curls into the round badge while the glass bubble inflates on a spring.
+     beyond the right edge with planted paws. The gait is RETARGETED from measurements of a real
+     cat walking in profile (docs/data/max-gait.json: lateral-sequence phase offsets, duty factors,
+     paw placement, swing paths and clearance, body, head and tail curves); he eases in, slows, sits
+     (rear first, front legs straight, tail swept round the front paws) and glides into the glass
+     bubble, where the sitting pose becomes the badge. CURL_BADGE switches back to the curled ball.
    - Idle bubble: breathing, glow drift, ear twitches and slow blinks at
      random 6-14 s, an occasional faint sparkle across the glass.
    - Pointer (fine pointers only): spring-damped 3D tilt, specular
@@ -219,7 +222,7 @@ window.MAX_PREVIEW = true;
   if (!MAX_ENABLED || (!PREVIEW && EXCLUDE.indexOf(page) !== -1) || window.__regMax) return;
   window.__regMax = true;
 
-  var VERSION = '20261115a';
+  var VERSION = '20261122a';
   var K_HIDDEN = 'regradar-max-hidden', K_GREETED = 'regradar-max-greeted';
   var params = new URLSearchParams(location.search);
   var DEMO = PREVIEW || params.get('maxdemo') === '1';
@@ -381,18 +384,63 @@ window.MAX_PREVIEW = true;
   function lp(a, b, t) { return a + (b - a) * t; }
   function rot(v, a) { var c = Math.cos(a), s = Math.sin(a); return [v[0] * c - v[1] * s, v[0] * s + v[1] * c]; }
   function len(x, y) { return Math.sqrt(x * x + y * y); }
-  // Gait: lateral-sequence walk (near hind, near fore, far hind, far fore), each paw on the ground 62% of the cycle.
-  var DUTY = 0.62, OFF = [0.25, 0.75, 0.5, 0], LS = 23, DC = LS / DUTY, VW = 46, TSW = 0.42, MINR = 3;
-  var PSI = [[-0.04, -0.8, -1.3], [0.1, -0.45, -0.95]]; // paw angle at contact, at heel peel, in mid swing (fore, hind)
-  // Leg mechanics come from the near legs (the far legs of the master are caught mid-swing), placed at each leg's own shoulder or hip.
+  /* --- the measured gait. Every number below is copied from docs/data/max-gait.json, which was MEASURED frame by frame
+     from a reference clip of a real cat walking in profile (tests/max-motion.test.mjs checks the copy). Lengths are in body
+     lengths (nose tip to rump), phases in gait cycles from the near hind touchdown, y down.
+     o: touchdown phase of [near fore, far fore, far hind, near hind]; d: duty factor (fore, hind); p: paw behind the nose at
+     touchdown and at lift-off (fore, hind); u/h: swing progress and paw clearance at 13 even points of the swing (fore, hind);
+     the curves (24 knots per cycle, offsets from the mean): withers, mid back, hips, head centre y and x, tail tip x and y. */
+  var GAIT = {
+    strideL: 0.9875, speedL: 0.7519, o: [0.2232, 0.7442, 0.5423, 0], d: [0.6238, 0.5887], p: [[0.0124, 0.6116], [0.6192, 1.1741]],
+    u: [[0, 0.1271, 0.2475, 0.3587, 0.4636, 0.5678, 0.675, 0.7822, 0.8796, 0.9542, 0.9969, 1.0082, 1], [0, 0.0589, 0.117, 0.1759, 0.2397, 0.3139, 0.402, 0.5033, 0.6125, 0.7215, 0.8232, 0.915, 1]],
+    h: [[0, 0.0007, 0.002, 0.0046, 0.0086, 0.0136, 0.0187, 0.0227, 0.0244, 0.0228, 0.0178, 0.0097, 0], [0, 0.0031, 0.0055, 0.0072, 0.0088, 0.0111, 0.0146, 0.0188, 0.0221, 0.0226, 0.0188, 0.0107, 0]],
+    withers: [0.0018, 0.0003, -0.0011, -0.0023, -0.0031, -0.0035, -0.0034, -0.0028, -0.0017, -0.0003, 0.0011, 0.0018, 0.0018, 0.001, -0.0002, -0.0014, -0.0019, -0.0015, -0.0003, 0.0014, 0.003, 0.0039, 0.004, 0.0032],
+    back: [0.0021, 0.0014, 0.001, 0.0012, 0.0016, 0.0019, 0.0019, 0.0016, 0.0012, 0.0009, 0.0006, 0.0003, -0.0003, -0.0015, -0.003, -0.0045, -0.0053, -0.0051, -0.0037, -0.0015, 0.0008, 0.0024, 0.0031, 0.0029],
+    hips: [-0.002, -0.0002, 0.0017, 0.0032, 0.0041, 0.0043, 0.0038, 0.0029, 0.0017, 0.0007, 0.0001, -0.0001, 0.0001, 0.0005, 0.0008, 0.0007, 0.0003, -0.0007, -0.0019, -0.0032, -0.0042, -0.0047, -0.0045, -0.0035],
+    headY: [0.0049, 0.0007, -0.0026, -0.0046, -0.0056, -0.0058, -0.0055, -0.0046, -0.0031, -0.001, 0.0011, 0.0024, 0.0022, 0.0003, -0.0027, -0.0055, -0.0067, -0.0054, -0.0016, 0.0035, 0.0083, 0.0111, 0.0112, 0.0088],
+    headX: [-0.0076, -0.0121, -0.0149, -0.0142, -0.0101, -0.0038, 0.0022, 0.0056, 0.0057, 0.003, -0.0002, -0.0019, -0.0009, 0.0025, 0.0067, 0.0098, 0.0105, 0.009, 0.0063, 0.0039, 0.0024, 0.0014, -0.0001, -0.0032],
+    tailTipX: [0.0291, 0.0161, 0.0049, -0.0014, -0.0025, -0.0007, 0.0007, -0.001, -0.0066, -0.0145, -0.0221, -0.0271, -0.0288, -0.0278, -0.0255, -0.0226, -0.0185, -0.0116, -0.0011, 0.0128, 0.0273, 0.0385, 0.043, 0.0394],
+    tailTipY: [0.0088, 0.0076, 0.0038, -0.0016, -0.007, -0.0106, -0.0119, -0.0112, -0.0096, -0.0081, -0.0071, -0.0062, -0.0045, -0.0016, 0.0024, 0.0063, 0.0089, 0.0092, 0.0076, 0.0051, 0.0034, 0.0034, 0.0052, 0.0075]
+  };
+  function cr(p0, p1, p2, p3, t) { return 0.5 * (2 * p1 + (p2 - p0) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (3 * p1 - p0 - 3 * p2 + p3) * t * t * t); }
+  function per(a, ph) { // periodic Catmull-Rom spline through the knots of one cycle
+    var n = a.length, x = (ph - Math.floor(ph)) * n, i = Math.floor(x), t = x - i;
+    return cr(a[(i + n - 1) % n], a[i % n], a[(i + 1) % n], a[(i + 2) % n], t);
+  }
+  function spl(a, s) { // Catmull-Rom through evenly spaced samples on [0, 1] (ends held)
+    var n = a.length - 1, x = clamp(s, 0, 1) * n, i = Math.min(n - 1, Math.floor(x)), t = x - i;
+    return cr(a[Math.max(0, i - 1)], a[i], a[i + 1], a[Math.min(n, i + 2)], t);
+  }
+  // Body length of the rig, measured on the rest pose exactly as on the reference: nose tip to the back of the haunch.
+  var NOSE = REST.M[1][0] - REST.M[1][2], LB = Math.max(REST.S[3][0] + REST.S[3][2], REST.L[3][0][0] + REST.L[3][0][2]) - NOSE;
+  // Gait in rig units: one stride per cycle at the measured speed, so the cycle lasts exactly as long as in the reference.
+  var DC = GAIT.strideL * LB, VW = GAIT.speedL * LB, MINR = 3;
+  var OFF = GAIT.o.map(function (o) { return (1 - o) % 1; }), DUTY = [0, 1, 2, 3].map(function (i) { return GAIT.d[i < 2 ? 0 : 1]; });
+  var PSI = [[-0.04, -0.8, -1.3], [0.1, -0.45, -0.6]]; // paw tilt at contact, at heel peel, in mid swing (fore, hind): authored, not measured
+  // Leg mechanics come from the near legs (the far legs of the master are caught mid-swing); every paw steps around the
+  // measured mean stance position of its pair (midway between touchdown and lift-off, behind the nose).
   var LEG = REST.L.map(function (l0, i) {
-    var l = REST.L[i < 2 ? 0 : 3], top = l[0], mid = l[1], low = l[2], toe = l[4], tx = low[0] - top[0], ty = low[1] - top[1], mx = mid[0] - top[0], my = mid[1] - top[1];
+    var l = REST.L[i < 2 ? 0 : 3], top = l[0], mid = l[1], low = l[2], toe = l[4], tx = low[0] - top[0], ty = low[1] - top[1], mx = mid[0] - top[0], my = mid[1] - top[1], g = i < 2 ? 0 : 1;
     return { a: len(mx, my), b: len(low[0] - mid[0], low[1] - mid[1]), s: mx * ty - my * tx > 0 ? -1 : 1, vA: [low[0] - toe[0], low[1] - toe[1]],
-      vH: [l[3][0] - toe[0], l[3][1] - toe[1]], y: GROUND - toe[2], c: l0[0][0] + (i < 2 ? -8 : 6.5), h: i < 2 ? 3.6 : 3.1, ps: PSI[i < 2 ? 0 : 1] };
+      vH: [l[3][0] - toe[0], l[3][1] - toe[1]], y: GROUND - toe[2], c: NOSE + LB * (GAIT.p[g][0] + GAIT.p[g][1]) / 2, ps: PSI[g],
+      u: GAIT.u[g], h: GAIT.h[g], tsw: (1 - DUTY[i]) * DC / VW };
   });
   // Tail: rest segment lengths and absolute angles, so the chain can bend joint by joint.
   var TL = [], TA = [];
   for (var ti = 0; ti < 12; ti++) { var A0 = REST.T[ti], A1 = REST.T[ti + 1]; TL.push(len(A1[0] - A0[0], A1[1] - A0[1])); TA.push(Math.atan2(A1[1] - A0[1], A1[0] - A0[0])); }
+  /* The measured tail tip path (relative to the body, and to the hips for y) is reproduced by two smooth controls: a swing of
+     the whole tail about its root (th) and an extra bend of its upper half (kp), solved per knot from the chain's Jacobian. */
+  function TW(i) { return Math.max(0, i - 5) / 6; }
+  function tailTip(th, kp) { var x = 0, y = 0; for (var i = 0; i < 12; i++) { var a = TA[i] + th + kp * TW(i); x += TL[i] * Math.cos(a); y += TL[i] * Math.sin(a); } return [x, y]; }
+  var TAILK = (function () {
+    var e = 1e-4, o = tailTip(0, 0), a = tailTip(e, 0), b = tailTip(0, e), j11 = (a[0] - o[0]) / e, j21 = (a[1] - o[1]) / e, j12 = (b[0] - o[0]) / e, j22 = (b[1] - o[1]) / e, det = j11 * j22 - j12 * j21;
+    var th = [], kp = [];
+    for (var k = 0; k < GAIT.tailTipX.length; k++) {
+      var dx = LB * GAIT.tailTipX[k], dy = LB * (GAIT.tailTipY[k] - GAIT.hips[k]);
+      th.push((dx * j22 - dy * j12) / det); kp.push((j11 * dy - j21 * dx) / det);
+    }
+    return { th: th, kp: kp };
+  })();
 
   /* Speed profile: segments {t0, t1, v0, v1} joined by cosine ramps; X(t) is the body offset from the rest pose. */
   function timeline(segs, X0) {
@@ -430,8 +478,10 @@ window.MAX_PREVIEW = true;
       var u0 = phi0 + OFF[i], n = Math.floor(u0) - 1, ev = [], old = prev && prev.legs[i];
       function Tu(u) { return tl.tAt((u - u0) * DC); }
       while (ev.length < 90) {
-        var j = ev.length, ld = Tu(n), lo = Tu(n + DUTY), pv = ev[j - 1];
-        if (pv) ld = Math.min(ld, pv.lo + TSW);
+        var j = ev.length, ld = Tu(n), lo = Tu(n + DUTY[i]), pv = ev[j - 1];
+        // the cycle is the measured one scaled in time by the speed; only when he is nearly stopped is a swing capped at its
+        // cruise duration (so a paw never hangs in the air) and the stance stretches instead
+        if (pv) ld = Math.min(ld, pv.lo + L.tsw * (tl.v(pv.lo) < 0.5 * VW ? 1 : 1.85));
         if (lo < Infinity && tl.X(lo) - tl.Xend < MINR) lo = Infinity;
         var Xa = tl.X(ld), e = { ld: ld, lo: lo, x: Xa + L.c - (Xa - tl.X(lo)) / 2 };
         if (old && old[j]) { var o = old[j]; if (o.ld <= ta || (j && old[j - 1].lo <= ta)) { e.ld = o.ld; e.x = o.x; } if (o.lo <= ta) e.lo = o.lo; }
@@ -454,8 +504,9 @@ window.MAX_PREVIEW = true;
       var Xa = tl.X(e.ld), Xb = tl.X(e.lo), p = Xa - Xb > 1e-6 ? (Xa - tl.X(Math.max(t, e.ld))) / (Xa - Xb) : 0.5;
       return { x: e.x, y: L.y, psi: stPsi(L.ps, Math.min(1, p)), st: 1 };
     }
-    var nx = ev[j + 1], s = clamp((t - e.lo) / (nx.ld - e.lo), 0, 1), k = Math.min(1, Math.abs(nx.x - e.x) / (0.8 * DC));
-    return { x: lp(e.x, nx.x, sm(s)), y: L.y - L.h * k * Math.sin(PI * Math.pow(s, 0.8)), psi: swPsi(L.ps, s), st: 0 };
+    // swing: the measured progress and clearance curves, the clearance scaled down for a shorter step
+    var nx = ev[j + 1], s = clamp((t - e.lo) / (nx.ld - e.lo), 0, 1), k = Math.min(1, Math.abs(nx.x - e.x) / DC);
+    return { x: lp(e.x, nx.x, spl(L.u, s)), y: L.y - LB * k * Math.max(0, spl(L.h, s)), psi: swPsi(L.ps, s), st: 0 };
   }
   function ik(top, a, b, t, s) {
     var dx = t[0] - top[0], dy = t[1] - top[1], d = clamp(len(dx, dy), Math.abs(a - b) + 1e-3, a + b - 1e-3);
@@ -468,51 +519,49 @@ window.MAX_PREVIEW = true;
   // the far legs walk slimmer than the master's caught-mid-swing far legs, so they never read as lumps under the belly
   var FAR = [0, [[5, 0, 4.4], [0, 0, 3.1], [0, 0, 1.9], [0, 0, 1.85], [0, 0, 1.8]], [[0, 0, 4.6], [0, 0, 3.6], [0, 0, 2.3], [0, 0, 1.7], [0, 0, 1.8]], 0];
   FAR.forEach(function (f, i) { if (f) f.forEach(function (j, k) { j[0] = REST.L[i][k][0]; j[1] = REST.L[i][k][1]; }); });
-  var LOOK = 0.45, CURL = 1.3; // after he stops: looks up, then curls for CURL seconds
+  // ...and hang from (almost) the same shoulder and hip as the near legs, as a walking cat's do in profile
+  FAR[1][0][0] = REST.L[0][0][0] + 3; FAR[2][0][0] = REST.L[3][0][0] - 3;
+  var SH = [0.35, 0.25]; // the shoulder blade and pelvis follow the leg a little (fraction of the paw's offset from its stance centre)
+  var LOOK = 0.45, CURL = 1.3; // curl option: after he stops he looks up, then curls for CURL seconds
 
-  /* The walking pose at time t (world joints). */
+  /* The walking pose at time t (world joints). Body, head and tail follow the measured curves at the current gait phase
+     (0 = near hind touchdown), scaled by the speed so they fade in and out with the ease-in and the stop. */
   function walk(pl, t) {
-    var tl = pl.tl, X = tl.X(t), q = clamp(tl.v(t) / VW, 0, 1.2), ph = pl.phi0 + tl.dist(t) / DC, R = REST;
-    var uF = ph + OFF[0], uH = ph + OFF[3], c4 = Math.cos(4 * PI * (uF - 0.12));
-    var yF = 0.55 * q * c4, yR = 0.55 * q * Math.cos(4 * PI * (uH - 0.12)), sq = 0.012 * q * (0.5 + 0.5 * c4);
+    var tl = pl.tl, X = tl.X(t), q = clamp(tl.v(t) / VW, 0, 1), ph = pl.phi0 + tl.dist(t) / DC, R = REST;
+    var yF = q * LB * per(GAIT.withers, ph), yR = q * LB * per(GAIT.hips, ph);
     var ts = tl.tStop, tau = t - ts, look = ts < Infinity ? sm((tau + 0.3) / 0.6) : 0;
-    if (tau > 0) { var bump = Math.pow(Math.sin(PI * clamp(tau / 0.5, 0, 1)), 2) * 0.5; yF += bump * 0.6; yR += bump; } // weight settles after the stop
-    function Y(j) { return [j[0], GROUND - (GROUND - j[1]) * (1 - sq), j[2]]; } // slight squash on footfalls, about the ground
     var J = { S: [], L: [], T: [] }, i;
-    for (i = 0; i < 4; i++) J.S.push(Y(mv(R.S[i], X, lp(yF, yR, i / 3) + 0.22 * q * Math.sin(4 * PI * ph + i))));
-    J.B = Y(mv(R.B, X, (yF + yR) / 2));
-    // head: steadier than the body, counter-rotates the pitch, nods slightly, looks up at the end
-    var N = Y(mv(R.N, X, yF * 0.75)), pitch = (yR - yF) / 40, hr = -0.6 * pitch - 0.025 * q * Math.sin(4 * PI * (uF - 0.3)) + 0.05 * q - 0.24 * look;
-    var hy = yF * 0.45 - 2 * look, piv = R.N;
-    function head(j) { var r = rotAbout(j, piv, hr); return Y([r[0] + X, r[1] + hy, r[2]]); }
-    J.N = N; J.H = head(R.H); J.M = [head(R.M[0]), head(R.M[1])];
-    var er = -0.06 * q * Math.sin(4 * PI * (uF - 0.25)) + 0.08 * look;
+    var yM = q * LB * per(GAIT.back, ph), yS = [yF, yM, yR, yR]; // spine joints at the withers, mid back, hips, haunch
+    for (i = 0; i < 4; i++) J.S.push(mv(R.S[i], X, yS[i]));
+    J.B = mv(R.B, X, yM);
+    // head: its own measured bob and surge; looks up at the end
+    var hx = q * LB * per(GAIT.headX, ph), hy = q * LB * per(GAIT.headY, ph) - 2 * look, hr = -0.24 * look, piv = R.N;
+    function head(j) { var r = rotAbout(j, piv, hr); return [r[0] + X + hx, r[1] + hy, r[2]]; }
+    J.N = mv(R.N, X + hx / 2, (yF + hy) / 2); J.H = head(R.H); J.M = [head(R.M[0]), head(R.M[1])];
     function ear(e, lag) {
-      var bx = (e[0] + e[4]) / 2, by = (e[1] + e[5]) / 2, tip = rotAbout([e[2], e[3], 0], [bx, by], er * lag), a = head([e[0], e[1], 0]), b = head(tip), c = head([e[4], e[5], 0]);
+      var bx = (e[0] + e[4]) / 2, by = (e[1] + e[5]) / 2, tip = rotAbout([e[2], e[3], 0], [bx, by], 0.08 * look * lag), a = head([e[0], e[1], 0]), b = head(tip), c = head([e[4], e[5], 0]);
       return [a[0], a[1], b[0], b[1], c[0], c[1], e[6]];
     }
     J.EN = ear(R.EN, 1); J.EF = ear(R.EF, 1.3);
     for (i = 0; i < 4; i++) {
       var L = LEG[i], P = paw(pl, i, t), rl = FAR[i] || R.L[i], fy = i < 2 ? yF : yR;
-      var top = Y(mv(rl[0], X + 0.1 * clamp(P.x - X - L.c, -14, 14), fy)), toe = [P.x, P.y, rl[4][2]];
+      var top = mv(rl[0], X + SH[i < 2 ? 0 : 1] * clamp(P.x - X - L.c, -40, 40), fy), toe = [P.x, P.y, rl[4][2]];
       var vA = rot(L.vA, P.psi), vH = rot(L.vH, P.psi), low = [toe[0] + vA[0], toe[1] + vA[1], rl[2][2]];
       var m = ik(top, L.a, L.b, low, L.s);
       J.L.push([top, [m[0], m[1], rl[1][2]], low, [toe[0] + vH[0], toe[1] + vH[1], rl[3][2]], toe]);
     }
-    // tail: phase-lagged sway (overlapping action), a lagged reaction to speed changes, follow-through after the stop
-    var acc = 0, base = Y(mv(R.T[0], X, yR)), ang = 0;
-    J.T.push(base);
+    // tail: the measured tip path (swing about the root plus a bend of the upper half), riding on the hips
+    var th = q * per(TAILK.th, ph), kp = q * per(TAILK.kp, ph);
+    J.T.push(mv(R.T[0], X, yR));
     for (i = 0; i < 12; i++) {
-      var lag = i * 0.045, d = q * 0.045 * Math.sin(2 * PI * ph - 0.5 * i) + 0.02 * q * Math.cos(4 * PI * uH - 0.5 * i) + 0.0009 * tl.acc(t - lag);
-      if (tau > lag) { var u = tau - lag; d -= 0.05 * Math.exp(-u / 0.45) * Math.sin(2 * PI * u / 0.9) * sm(u / 0.12); }
-      ang += d; acc = TA[i] + ang;
-      var pr = J.T[i]; J.T.push([pr[0] + TL[i] * Math.cos(acc), pr[1] + TL[i] * Math.sin(acc), R.T[i + 1][2]]);
+      var a = TA[i] + th + kp * TW(i), pr = J.T[i];
+      J.T.push([pr[0] + TL[i] * Math.cos(a), pr[1] + TL[i] * Math.sin(a), R.T[i + 1][2]]);
     }
     return J;
   }
-  /* --- arrival: from the same skeleton he sits, then curls into the round badge (badge units, 40 x 40). */
+  /* --- the curl option (CURL_BADGE): from the same skeleton he crouches, then curls into the round badge (badge units, 40 x 40). */
   var BC = [20, 22], BR = 14.6, EARS = [[215, 18.8], [248, 19.2]], EW = 15;
-  var SIT = {
+  var CROUCH = { // the curl option's crouch on the way into the ball
     S: [[48, 63.5, 11], [59, 70, 10.5], [70, 79, 9.8], [80.5, 89.5, 10.16]], B: [64, 76, 9.2], N: [31, 47.5, 4.68], H: [26.5, 45.5, 6.85],
     M: [[22, 48.2, 4.3], [19.6, 48.6, 2.6]], EN: [26.6, 41.6, 28.2, 34.2, 36.5, 44, 1], EF: [23.4, 39.2, 22.6, 34.4, 26.5, 37.7, 0.6],
     L: [[[45, 70, 7.15], [44, 83, 3.85], [41.5, 96.4, 2.05], [41, 100.9, 1.9], [37.6, 101.4, 1.9]],
@@ -521,6 +570,18 @@ window.MAX_PREVIEW = true;
       [[81, 88, 9.4], [70, 94.5, 4.8], [88, 100.4, 2.5], [84.5, 101.4, 1.85], [74, 101.9, 2]]],
     T: [[88, 92, 2.8], [92, 95.5, 2.4], [95.5, 98.5, 2.37], [99.5, 100.3, 2.3], [103.5, 100.9, 2.27], [107.5, 101, 2.24], [111.5, 100.9, 2.21],
       [115.4, 100.8, 2.18], [119.3, 100.6, 2.15], [123, 100.1, 2.12], [126.5, 99.2, 2.09], [129.6, 97.8, 2.07], [132, 95.8, 2.05]]
+  };
+  /* The sitting pose (the default arrival and the badge): upright, chest up, front legs straight, haunch on the ground,
+     hind foot flat, tail along the ground and curled round the front paws. Same skeleton, same radii as the walk. */
+  var SIT = {
+    S: [[49.5, 62, 9.8], [60.5, 68.5, 10.4], [71, 78.5, 11.6], [77, 90.5, 13]], B: [57.5, 88.5, 12.5], N: [45, 51, 5.3], H: [41, 44.5, 6.85],
+    M: [[36.2, 47.6, 4.3], [33.9, 48, 2.6]], EN: [42.1, 41.2, 43.4, 33.9, 48.6, 41.7, 1.68], EF: [38.1, 37.8, 37.2, 33.3, 41.1, 36.6, 0.6],
+    L: [[[47, 70, 7.15], [46.3, 83, 3.85], [45.6, 96.4, 2.05], [45.3, 100.9, 1.9], [42, 101.5, 1.9]],
+      [[51.5, 70, 4.4], [50.5, 83, 3.1], [49.6, 96.8, 2.2], [49.3, 101.2, 1.95], [46.6, 101.7, 1.8]],
+      [[79, 88, 4.6], [66, 95, 3.6], [86.5, 100.6, 2.3], [84.5, 101.5, 1.7], [74, 101.8, 1.8]],
+      [[78, 88, 9.4], [63, 94.5, 5.6], [86.5, 100.3, 2.5], [83.5, 101.4, 1.85], [71.5, 101.6, 2]]],
+    T: [[86, 95, 2.8], [90, 98.6, 2.5], [90.5, 101.2, 2.4], [86.5, 101.5, 2.35], [81, 101.6, 2.3], [75, 101.6, 2.27], [69, 101.5, 2.24],
+      [63, 101.5, 2.21], [57, 101.4, 2.18], [50.5, 101.3, 2.15], [44.5, 101, 2.12], [39, 99.6, 2.09], [36, 95.8, 2.05]]
   };
   function bpol(deg, r) { var a = deg * PI / 180; return [BC[0] + r * Math.cos(a), BC[1] + r * Math.sin(a)]; }
   // The badge ear (straight sides, quadratic tip) as a rounded triangle: inner triangle + rounding radius.
@@ -581,13 +642,71 @@ window.MAX_PREVIEW = true;
   // tail as base angle + bend at each joint, and segment lengths
   function tang(T) { var a = [], l = [], p = 0; for (var i = 0; i < 12; i++) { var d = Math.atan2(T[i + 1][1] - T[i][1], T[i + 1][0] - T[i][0]); a.push(i ? wrap(d - p, 0) : d); p = d; l.push(len(T[i + 1][0] - T[i][0], T[i + 1][1] - T[i][1])); } return [a, l]; }
   var S0 = 1.5; // the curl is shaped at this size around the sitting cat, then glides and shrinks into the bubble
+  /* --- the default arrival: he sits (timing measured from the sit in the second reference, seconds after the stop: the rear
+     lowers over 0-0.84 s while the front stays up, the tail wraps round over 0.24-1.32 s), holds a beat, then glides and
+     shrinks into the bubble, where the sitting pose IS the badge (sitBadge() draws the same primitives as SVG). */
+  var CURL_BADGE = false; // true: the earlier curl-into-a-ball arrival and round badge
+  var SITW = [[0, 0.84], [0.2, 0.9], [0.2, 0.9], [0.1, 0.7], [0, 0.84], [0.24, 1.32]], SIT_HOLD = 1.15, GLIDE = 0.95, LEG0 = 41;
+  var EYE = [38.7, 43.4, 1.45];
+  // the tail lying along the ground behind him, half way through sitting down
+  var TBACK = [[86, 95], [90, 98.5], [94, 100.8], [98.5, 101.4], [103.5, 101.6], [108.5, 101.6], [113.5, 101.5], [118.5, 101.4], [123, 101], [127, 100], [130.5, 98.5], [133, 96.3], [134.5, 93.5]]; // his eye on the sitting head (badge only)
+  var SB = (function () { // where the sitting pose sits in the 40 x 40 badge: its box centred on (20, 22), 33 units tall
+    var P = build(SIT), x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    P.forEach(function (p) { if (p.L === 2) return; var b = primBox(p); x0 = Math.min(x0, b[0]); y0 = Math.min(y0, b[1]); x1 = Math.max(x1, b[2]); y1 = Math.max(y1, b[3]); });
+    return { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, s: 33 / Math.max(y1 - y0, x1 - x0) };
+  })();
+  function sitBadge() { // the badge's primitives in badge units, and its eye
+    function m(x, y) { return [(x - SB.cx) * SB.s + 20, (y - SB.cy) * SB.s + 22]; }
+    var P = build(SIT).map(function (p) {
+      var a = p.a.slice();
+      if (p.t === 0) { var u = m(a[0], a[1]), v = m(a[3], a[4]); a = [u[0], u[1], a[2] * SB.s, v[0], v[1], a[5] * SB.s]; }
+      else { var q0 = m(a[0], a[1]), q1 = m(a[2], a[3]), q2 = m(a[4], a[5]); a = [q0[0], q0[1], q1[0], q1[1], q2[0], q2[1], a[6] * SB.s]; }
+      return { t: p.t, L: p.L, k: p.k * SB.s, a: a };
+    });
+    P.kt = K.t0 * SB.s;
+    var e = m(EYE[0], EYE[1]);
+    return { P: P, eye: [e[0], e[1], EYE[2] * SB.s], earN: P[7], earF: P[P.length - 1] };
+  }
+  function sitFrame(pl, t, J) {
+    var tl = pl.tl, A = pl.arrive, tau = t - tl.tStop, a = flat(J), s1 = flat(SIT), out = [], i;
+    for (i = 0; i < a.length; i++) {
+      var gw = SITW[GRP[i]], s = sm((tau - gw[0]) / (gw[1] - gw[0])), k = KIND[i], b = s1[i] + (k === 0 ? tl.Xend : 0), v = lp(a[i], b, s);
+      // the paws step into place (a small lift while they move), they never slide
+      var li = i - LEG0, jj = ((li % 15) / 3) | 0;
+      if (k === 1 && li >= 0 && li < 60 && jj >= 2) v -= Math.sin(PI * s) * Math.min(2.5, 0.3 * Math.abs(s1[i - 1] + tl.Xend - a[i - 1]));
+      out.push(v);
+    }
+    var S = unflat(out);
+    // the tail: first it lowers behind him by joint angles (never through the body) until it lies along the ground, then it
+    // sweeps round his side to the front paws (seen in profile: the curve turns about the root, foreshortened half way)
+    var ts = clamp((tau - SITW[5][0]) / (SITW[5][1] - SITW[5][0]), 0, 1), r0 = SIT.T[0], back = TBACK;
+    var s1t = sm(ts / 0.55), s2t = sm((ts - 0.55) / 0.45), K0 = tang(J.T), K1 = tang(back), acc = 0, root = S.T[0];
+    for (i = 0; i < 12; i++) {
+      acc += lp(K0[0][i], wrap(K1[0][i], K0[0][i]), s1t);
+      var ln = lp(K0[1][i], K1[1][i], s1t), pr = S.T[i];
+      S.T[i + 1] = [pr[0] + ln * Math.cos(acc), pr[1] + ln * Math.sin(acc), S.T[i + 1][2]];
+    }
+    if (s2t > 0) { var cz = (1 + Math.cos(PI * s2t)) / 2; for (i = 1; i < 13; i++) S.T[i] = [root[0] + (back[i][0] - r0[0]) * cz + (SIT.T[i][0] - r0[0]) * (1 - cz), root[1] + lp(back[i][1], SIT.T[i][1], s2t) - r0[1], S.T[i][2]]; }
+    for (i = 1; i < 13; i++) S.T[i][1] = Math.min(S.T[i][1], GROUND - S.T[i][2]); // the ground stops it
+    var e = A ? sm((tau - SIT_HOLD) / GLIDE) : 0, c = tau < SIT_HOLD || !A ? 0.5 * Math.min(1, tau / SIT_HOLD) : 0.5 + 0.5 * Math.min(1, (tau - SIT_HOLD) / GLIDE);
+    var cuts = [];
+    if (e > 0) { // glide and shrink about the pose's badge centre into the bubble
+      var px = SB.cx + tl.Xend, py = SB.cy, g = lp(1, SB.s * A.s, e), qx = lp(px, A.x, e), qy = lp(py, A.y, e), f = flat(S);
+      for (i = 0; i < f.length; i++) { var kk = KIND[i]; f[i] = kk === 2 ? f[i] * g : kk === 0 ? qx + (f[i] - px) * g : qy + (f[i] - py) * g; }
+      S = unflat(f);
+      var we = sm((e - 0.6) / 0.4), ex = qx + (EYE[0] + tl.Xend - px) * g, ey = qy + (EYE[1] - py) * g;
+      if (we > 0) cuts.push({ t: 0, L: 2, k: 0, a: [ex, ey, EYE[2] * g * we, ex, ey, EYE[2] * g * we] });
+    }
+    return { P: build(S, { cuts: cuts }), gap: 0.8 * (1 - e), c: c };
+  }
   /* Everything the renderer needs at time t: primitives, the far-part gap, curl progress. */
   function frame(pl, t) {
+    if (!CURL_BADGE && pl.tl.tStop < Infinity && t > pl.tl.tStop) return sitFrame(pl, t, walk(pl, t));
     var J = walk(pl, t), tl = pl.tl, A = pl.arrive, c = A && tl.tStop < Infinity ? (t - tl.tStop - LOOK) / CURL : -1, gap = 0.8, cuts;
     if (c > 0) {
       c = Math.min(c, 1);
-      var px = SIT.B[0] + tl.Xend, py = SIT.B[1], e = sm((c - 0.3) / 0.7), g = lp(1, A.s / S0, e), dx = (A.x - px) * e, dy = (A.y - py) * e;
-      var Cp = curlPose({ x: px, y: py, s: S0 }), a = flat(J), s1 = flat(SIT), s2 = flat(Cp), out = [], Jw = J;
+      var px = CROUCH.B[0] + tl.Xend, py = CROUCH.B[1], e = sm((c - 0.3) / 0.7), g = lp(1, A.s / S0, e), dx = (A.x - px) * e, dy = (A.y - py) * e;
+      var Cp = curlPose({ x: px, y: py, s: S0 }), a = flat(J), s1 = flat(CROUCH), s2 = flat(Cp), out = [], Jw = J;
       for (var i = 0; i < a.length; i++) {
         var gw = GW[GRP[i]], s = clamp((c - gw[0]) / (gw[1] - gw[0]), 0, 1), k = KIND[i], b = s1[i] + (k === 0 ? tl.Xend : 0), m = GRP[i] === 5 ? 0 : 0.5 * (s2[i] - a[i]);
         var v = s < 0.5 ? herm(a[i], b, 0, m, 2 * s) : herm(b, s2[i], m, 0, 2 * s - 1);
@@ -596,7 +715,7 @@ window.MAX_PREVIEW = true;
       J = unflat(out);
       // the tail moves joint by joint (angles, not positions, so it never cuts through his body): it swings
       // down behind him, rests a beat along the ground, then wraps round under him into the curl
-      var ts = clamp((c - GW[5][0]) / (GW[5][1] - GW[5][0]), 0, 1), K0 = tang(Jw.T), K1 = tang(SIT.T), K2 = tang(Cp.T), acc = 0;
+      var ts = clamp((c - GW[5][0]) / (GW[5][1] - GW[5][0]), 0, 1), K0 = tang(Jw.T), K1 = tang(CROUCH.T), K2 = tang(Cp.T), acc = 0;
       for (i = 0; i < 12; i++) {
         var r1 = wrap(K1[0][i], K0[0][i]), u = ts < 0.5 ? 2 * ts : 2 * ts - 1;
         acc += ts < 0.5 ? herm(K0[0][i], r1, 0, 0, u) : herm(r1, wrap(K2[0][i], r1), 0, 0, u);
@@ -633,14 +752,14 @@ window.MAX_PREVIEW = true;
     var f = frame(sc.pl, t), c = cam(sc, t);
     return { box: render(f.P, f.gap, buf, W, H, c[0], c[1], sc.S * dpr), c: f.c };
   }
-  return { REST: REST, GROUND: GROUND, build: build, render: render, frame: frame, walk: walk, paw: paw, timeline: timeline, plan: plan,
-    scene: scene, cam: cam, stopAt: stopAt, setBadge: setBadge, draw: draw, LEG: LEG, DC: DC, VW: VW, LOOK: LOOK, CURL: CURL,
+  return { NOSE: NOSE, LB: LB, GAIT: GAIT, SIT: SIT, CURL_BADGE: CURL_BADGE, SIT_HOLD: SIT_HOLD, GLIDE: GLIDE, sitBadge: sitBadge, REST: REST, GROUND: GROUND, build: build, render: render, frame: frame, walk: walk, paw: paw, timeline: timeline, plan: plan,
+    scene: scene, cam: cam, stopAt: stopAt, setBadge: setBadge, draw: draw, LEG: LEG, DC: DC, VW: VW, LOOK: LOOK, CURL: CURL, ARRIVE: CURL_BADGE ? LOOK + CURL : SIT_HOLD + GLIDE,
     BC: BC, BR: BR, EARS: EARS, EW: EW };
 })();
   /*@rig-end*/
 
   /* ------------------------------------------------------------ badge geometry
-     A curled cat seen from above: a disc with two ears at the upper left.
+     The curl option (CURL_BADGE): a curled cat seen from above, a disc with two ears at the upper left.
      The same polar outline r(θ) drives the static badge and the morph
      target, so the morph lands exactly on the badge. Badge units: 40 x 40. */
   var BC = RIG.BC, BR = RIG.BR, EARS = RIG.EARS, EW = RIG.EW;
@@ -652,7 +771,7 @@ window.MAX_PREVIEW = true;
     return 'M' + f1(a[0]) + ' ' + f1(a[1]) + 'L' + f1(p[0]) + ' ' + f1(p[1]) + 'Q' + f1(b[0]) + ' ' + f1(b[1]) + ' ' + f1(q[0]) + ' ' + f1(q[1]) + 'L' + f1(c[0]) + ' ' + f1(c[1]) + 'Z';
   }
   function earBase(e) { return polar(e[0], BR - 1); }
-  function badge(id) {
+  function curlBadge(id) {
     var b1 = earBase(EARS[0]), b2 = earBase(EARS[1]);
     return '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">' +
       '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="-4" y="-4" width="48" height="48">' +
@@ -669,6 +788,56 @@ window.MAX_PREVIEW = true;
       '</g>' +
       '<g class="mx-eyes"><circle cx="13.7" cy="18.6" r="1.6"/><circle cx="17.3" cy="15.4" r="1.6"/></g>' +
       '</svg>';
+  }
+
+  /* The default badge: the sitting cat in profile, traced from the very field the walker ends on (RIG.sitBadge: same
+     primitives, same smooth unions), so the hand-off from the canvas to this SVG does not jump. The body outline is traced
+     once with marching squares (a few ms); the ears are their own rounded triangles (they twitch and perk); one small eye. */
+  function sitBadgeSVG() {
+    var B = RIG.sitBadge(), body = B.P.filter(function (p) { return p !== B.earN && p !== B.earF; }), Z = 6, N = 44 * Z, O = -2;
+    body.kt = B.P.kt;
+    var buf = new Uint8Array(N * N); RIG.render(body, 0, buf, N, N, O, O, Z);
+    var segs = {}, x, y, i;
+    function v(xx, yy) { return xx < 0 || yy < 0 || xx >= N || yy >= N ? 0 : buf[yy * N + xx]; }
+    function pt(x0, y0, x1, y1) { var a = v(x0, y0), b = v(x1, y1), t = (127.5 - a) / (b - a); return [O + (x0 + (x1 - x0) * t + 0.5) / Z, O + (y0 + (y1 - y0) * t + 0.5) / Z]; }
+    function key(p) { return Math.round(p[0] * 1e3) + ',' + Math.round(p[1] * 1e3); }
+    function add(p, q) { segs[key(p)] = { p: p, q: q }; } // directed: inside on the right, so every loop is closed and oriented
+    for (y = -1; y < N; y++) for (x = -1; x < N; x++) {
+      var c = (v(x, y) >= 128 ? 8 : 0) | (v(x + 1, y) >= 128 ? 4 : 0) | (v(x + 1, y + 1) >= 128 ? 2 : 0) | (v(x, y + 1) >= 128 ? 1 : 0);
+      if (!c || c === 15) continue;
+      var T = function () { return pt(x, y, x + 1, y); }, R = function () { return pt(x + 1, y, x + 1, y + 1); }, Bm = function () { return pt(x, y + 1, x + 1, y + 1); }, Lf = function () { return pt(x, y, x, y + 1); };
+      switch (c) {
+        case 1: add(Lf(), Bm()); break; case 2: add(Bm(), R()); break; case 3: add(Lf(), R()); break; case 4: add(R(), T()); break;
+        case 5: add(Lf(), T()); add(R(), Bm()); break; case 6: add(Bm(), T()); break; case 7: add(Lf(), T()); break; case 8: add(T(), Lf()); break;
+        case 9: add(T(), Bm()); break; case 10: add(T(), R()); add(Bm(), Lf()); break; case 11: add(T(), R()); break; case 12: add(R(), Lf()); break;
+        case 13: add(R(), Bm()); break; case 14: add(Bm(), Lf()); break;
+      }
+    }
+    var d = '';
+    Object.keys(segs).forEach(function (k0) {
+      if (!segs[k0]) return;
+      var loop = [], k = k0;
+      while (segs[k]) { var sg = segs[k]; segs[k] = null; loop.push(sg.p); k = key(sg.q); }
+      // drop points that sit on a straight run (within 0.02 badge units)
+      var out = [loop[0]];
+      for (i = 1; i < loop.length; i++) {
+        var a = out[out.length - 1], b = loop[i], c2 = loop[(i + 1) % loop.length], ux = c2[0] - a[0], uy = c2[1] - a[1], l = Math.sqrt(ux * ux + uy * uy) || 1;
+        if (Math.abs((b[0] - a[0]) * uy - (b[1] - a[1]) * ux) / l > 0.02) out.push(b);
+      }
+      if (out.length > 2) d += 'M' + out.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L') + 'Z';
+    });
+    function ear(e, cls) {
+      var bx = (e.a[0] + e.a[4]) / 2, by = (e.a[1] + e.a[5]) / 2;
+      return '<path class="' + cls + '" style="transform-origin:' + f1(bx) + 'px ' + f1(by) + 'px" stroke="currentColor" stroke-width="' + f1(2 * e.a[6] + 0.01) +
+        '" stroke-linejoin="round" d="M' + f1(e.a[0]) + ' ' + f1(e.a[1]) + 'L' + f1(e.a[2]) + ' ' + f1(e.a[3]) + 'L' + f1(e.a[4]) + ' ' + f1(e.a[5]) + 'Z"/>';
+    }
+    return '<g class="mx-cg" fill="currentColor"><path fill-rule="evenodd" d="' + d + '"/>' + ear(B.earF, 'mx-ear mx-ear2') + ear(B.earN, 'mx-ear') + '</g>' +
+      '<g class="mx-eyes"><circle cx="' + f1(B.eye[0]) + '" cy="' + f1(B.eye[1]) + '" r="' + f1(B.eye[2]) + '"/></g>';
+  }
+  var SIT_SVG = null;
+  function badge(id) {
+    if (RIG.CURL_BADGE) return curlBadge(id);
+    return '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">' + (SIT_SVG || (SIT_SVG = sitBadgeSVG())) + '</svg>';
   }
 
   /* ------------------------------------------------------------ helpers */
@@ -836,8 +1005,8 @@ window.MAX_PREVIEW = true;
     return [br.left + br.width / 2 - wr.left, br.top + br.height / 2 - wr.top + 1.8];
   }
 
-  /* Walk in from beyond the right edge (or on the spot in the demo), slow down, look up, sit and curl
-     into the bubble. opts: { inPlace, onDone }. Returns { arrive } for the demo. */
+  /* Walk in from beyond the right edge (or on the spot in the demo), slow down, sit and glide into the
+     bubble (or curl into it, with CURL_BADGE). opts: { inPlace, onDone }. Returns { arrive } for the demo. */
   function walkIn(opts) {
     opts = opts || {};
     var R = makeWalker(), sc = RIG.scene(R.w, WK_H, WK_S, !!opts.inPlace), t = 0, inflated = false;
@@ -1143,7 +1312,7 @@ window.MAX_PREVIEW = true;
   var walkCtl = null;
   var STEPS = [
     ['Walking', 4.2, function () { btn.classList.remove('mx-tip-on'); setState('idle'); walkCtl = walkIn({ inPlace: true }); }],
-    ['Arriving: slows, looks up, crouches, curls into the bubble', 3.4, function () { if (walkCtl) walkCtl.arrive(); walkCtl = null; }],
+    [RIG.CURL_BADGE ? 'Arriving: slows, looks up, crouches, curls into the bubble' : 'Arriving: slows, sits (rear first, tail round the paws), the bubble forms', 3.4, function () { if (walkCtl) walkCtl.arrive(); walkCtl = null; }],
     ['Idle: breathing, blinks, ear twitches', 5, function () { setState('idle'); }],
     ['Hover: ears perk, halo brightens, tooltip', 3.4, function () { btn.classList.add('mx-tip-on'); }],
     ['Thinking: soft halo pulse and shimmer', 4.4, function () { btn.classList.remove('mx-tip-on'); setState('think'); }],
@@ -1162,7 +1331,7 @@ window.MAX_PREVIEW = true;
     replay.addEventListener('click', function () {
       clearTimeout(demoTimer); walkCtl = null; setState('idle'); btn.classList.remove('mx-tip-on');
       walkIn({ onDone: function () { demoI = 2; demoTimer = setTimeout(next, 2500 / rate); } });
-      demoLabel.textContent = 'Replay: walk-in from the edge, look up, crouch, curl';
+      demoLabel.textContent = RIG.CURL_BADGE ? 'Replay: walk-in from the edge, look up, crouch, curl' : 'Replay: walk-in from the edge, sit, into the bubble';
     });
     demoBar.appendChild(demoLabel); demoBar.appendChild(slow); demoBar.appendChild(replay);
     root.insertBefore(demoBar, btn);
