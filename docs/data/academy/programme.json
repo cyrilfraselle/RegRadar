@@ -57,17 +57,6 @@
   "transaction-monitoring": "Examples use payment accounts. For a law firm read 'client account movements'; for an insurer, 'premiums, top-ups and surrenders'."
  },
  "coming_soon": {
-  "governance": {
-   "title": "Governance, training and the risk assessment in depth",
-   "short": "The compliance manager and compliance officer, training duties, integrity of employees, group-wide rules and outsourcing (Chapter II).",
-   "minutes": 10,
-   "missing": ["film script and claim ledger", "explainer", "4 questions", "Spot it game", "Decide scenario", "independent fact-check"],
-   "law": [
-    { "celex": "32024R1624", "art": "11", "para": "2", "label": "Compliance functions",
-      "quote": "The compliance officer shall also be responsible for reporting suspicious transactions to the FIU in accordance with Article 69(6)." }
-   ],
-   "related": ["AMLR-art69"]
-  },
   "records-data": {
    "title": "Record keeping, information sharing and data protection",
    "short": "What to keep and for how long, processing personal data for AML purposes, and partnerships for information sharing (Chapters VI and VII).",

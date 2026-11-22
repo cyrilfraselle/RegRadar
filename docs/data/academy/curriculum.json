@@ -3,8 +3,8 @@
   "name": "Academy curriculum",
   "version": 1,
   "purpose": "The AMLR programme: short topics in three levels (see programme.json). Each topic: film or explainer, risks, questions, Spot it, Decide and what the law says.",
-  "content_version": "1.1.0",
-  "content_date": "2026-11-14",
+  "content_version": "1.2.0",
+  "content_date": "2026-11-17",
   "content_version_note": "Semantic version of the teaching content (lessons, checks, law quotes). Bump it whenever a lesson, a check question or a law quote changes in substance. New completions record this version (AcademyProgress, key regradar-academy-training); certificates and the team register print it. Completions made before the field existed show 'not recorded'.",
   "evidence": {
    "art12": {
@@ -1890,6 +1890,168 @@
      "label": "Information accompanying transfers of crypto-assets",
      "quote": "The crypto-asset service provider of the originator shall ensure that transfers of crypto-assets are accompanied by the following information on the originator: (a) the name of the originator;",
      "note": "The “travel rule” for crypto-asset transfers: information also goes with the beneficiary (paragraph 2)."
+    }
+   ],
+   "reading": []
+  },
+  {
+   "id": "governance",
+   "no": 11,
+   "title": "Governance: policies, compliance roles and people",
+   "short": "The firm's written policies and controls, who is responsible (compliance manager and compliance officer), training, and checks on staff (Chapter II).",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 0
+   },
+   "skill": "risk",
+   "learn": [
+    "What the firm's internal policies, procedures and controls must cover, and who approves them",
+    "The compliance manager and the compliance officer: who does what",
+    "Training, checks on staff and conflicts of interest"
+   ],
+   "explainer": "governance",
+   "risks": {
+    "wrong": [
+     "Policies written once and never updated, even when weaknesses are found",
+     "A compliance officer whose decisions the business can overrule, or who has no direct line to the management body",
+     "Training that is a one-off click-through with no record"
+    ],
+    "consequences": [
+     {
+      "text": "Member States must ensure that pecuniary sanctions are imposed for serious, repeated or systematic breaches of the AMLR chapter on internal policies, procedures and controls (AMLD6 Art. 55(1)).",
+      "cite": {
+       "celex": "32024L1640",
+       "art": "55",
+       "para": ""
+      }
+     },
+     {
+      "text": "Business effect (judgement): when governance is thin, every other control depends on individuals remembering what to do.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "Policies with no approval or date, or approved by nobody senior",
+     "A compliance officer who reports through the sales line",
+     "Staff, agents or distributors who cannot say who the compliance officer is",
+     "No training records for new joiners or agents"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "Who approves the firm's internal AML policies?",
+     "options": [
+      "The compliance officer alone",
+      "The management body in its management function",
+      "The external auditor",
+      "The supervisor"
+     ],
+     "answer": 1,
+     "why": "Internal policies are approved by the management body in its management function. Internal procedures and controls are approved at least at the level of the compliance manager.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "9",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "Which role is responsible for the policies, procedures and controls in day-to-day operation, and is a contact point for competent authorities?",
+     "options": [
+      "The compliance manager, a member of the management body",
+      "The compliance officer",
+      "The head of sales",
+      "The external auditor"
+     ],
+     "answer": 1,
+     "why": "The compliance officer, appointed by the management body in its management function, is responsible for day-to-day operation and is a contact point for competent authorities. The compliance manager is the member of the management body responsible for ensuring compliance.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "11",
+      "para": "2"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "What must AML training for staff look like?",
+     "options": [
+      "One induction session when someone joins",
+      "Specific, ongoing, appropriate to the person's function and documented",
+      "Only for the compliance team",
+      "Only when the supervisor asks for it"
+     ],
+     "answer": 1,
+     "why": "Employees whose function so requires, including agents and distributors, take part in specific, ongoing training programmes appropriate to their functions and to the firm's risks, and the programmes are duly documented.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "12",
+      "para": "second paragraph"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "An analyst on a customer file realises the new customer is a close friend. What does the AMLR require?",
+     "options": [
+      "Carry on if the file looks simple",
+      "Tell the compliance officer, and be kept off the compliance tasks for that customer",
+      "Ask the customer to sign a declaration",
+      "Tell the customer, and let them decide"
+     ],
+     "answer": 1,
+     "why": "Staff entrusted with compliance tasks inform the compliance officer of any close private or professional relationship with customers or prospective customers, and are prevented from undertaking compliance tasks for those customers.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "13",
+      "para": "2"
+     },
+     "scenario": "Fictional example."
+    }
+   ],
+   "practice": null,
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "9",
+     "para": "2",
+     "label": "Written policies and who approves them",
+     "quote": "The internal policies, procedures and controls set out in the first subparagraph shall be recorded in writing. Internal policies shall be approved by the management body in its management function. Internal procedures and controls shall be approved at least at the level of the compliance manager.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11",
+     "para": "1",
+     "label": "The compliance manager",
+     "quote": "Obliged entities shall appoint one member of the management body in its management function who shall be responsible for ensuring compliance with this Regulation, Regulation (EU) 2023/1113 and any administrative act issued by any supervisor (‘compliance manager’).",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "11",
+     "para": "2",
+     "label": "The compliance officer",
+     "quote": "Obliged entities shall have a compliance officer, to be appointed by the management body in its management function and with sufficiently high hierarchical standing, who shall be responsible for the policies, procedures and controls in the day-to-day operation of the obliged entity’s AML/CFT requirements, including in relation to the implementation of targeted financial sanctions, and shall be a contact point for competent authorities.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "12",
+     "para": "second paragraph",
+     "label": "Training",
+     "quote": "The measures referred to in the first paragraph shall include the participation of employees or persons in comparable positions, including agents and distributors, in specific, ongoing training programmes to help them recognise operations which may be related to money laundering or terrorist financing and to instruct them as to how to proceed in such cases.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "13",
+     "para": "2",
+     "label": "Close relationships with customers",
+     "quote": "shall inform the compliance officer of any close private or professional relationship established with the obliged entity’s customers or prospective customers and shall be prevented from undertaking any tasks related to the obliged entity’s compliance in relation to those customers.",
+     "note": ""
     }
    ],
    "reading": []

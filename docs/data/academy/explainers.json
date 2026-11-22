@@ -4433,6 +4433,313 @@
      ]
     }
    ]
+  },
+  {
+   "id": "governance",
+   "title": "Governance: policies, compliance roles and people",
+   "scenes": [
+    {
+     "title": "Put it in writing",
+     "caption": "The firm has internal policies, procedures and controls to comply with the AMLR, and to manage the money laundering and terrorist financing risks it faces. They are recorded in writing, proportionate to the nature, risks, complexity and size of the business, and cover all in-scope activities.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "doc",
+       "x": 216,
+       "y": 22,
+       "s": 48,
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 30,
+       "y": 100,
+       "w": 200,
+       "h": 64,
+       "text": "Policies",
+       "tone": "brand",
+       "d": 0.8
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 100,
+       "w": 200,
+       "h": 64,
+       "text": "Procedures",
+       "tone": "brand",
+       "d": 1.3
+      },
+      {
+       "t": "box",
+       "x": 30,
+       "y": 186,
+       "w": 200,
+       "h": 64,
+       "text": "Controls",
+       "tone": "brand",
+       "d": 1.8
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 186,
+       "w": 200,
+       "h": 64,
+       "text": "In writing,\nproportionate",
+       "tone": "mute",
+       "d": 2.3
+      }
+     ]
+    },
+    {
+     "title": "Who approves",
+     "caption": "Internal policies are approved by the management body in its management function. Internal procedures and controls are approved at least at the level of the compliance manager. The firm keeps them up to date and improves them where weaknesses are found.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 30,
+       "w": 450,
+       "h": 60,
+       "text": "Policies: management body",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 450,
+       "h": 60,
+       "text": "Procedures and controls: at least compliance manager",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 190,
+       "w": 450,
+       "h": 60,
+       "text": "Update them, fix weaknesses",
+       "tone": "ok",
+       "d": 1.6
+      }
+     ]
+    },
+    {
+     "title": "Two named roles",
+     "caption": "The firm appoints a compliance manager: a member of the management body responsible for ensuring compliance. It also has a compliance officer, appointed by the management body, responsible for day-to-day operation and a contact point for competent authorities. Where the nature, risks, complexity and size of the business justify it, the same natural person may hold both functions (Art. 11(7)).",
+     "items": [
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 60,
+       "y": 40,
+       "s": 56,
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 88,
+       "y": 125,
+       "text": "Compliance\nmanager",
+       "tone": "violet",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 88,
+       "y": 185,
+       "text": "member of the\nmanagement body",
+       "tone": "mute",
+       "d": 0.8
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 364,
+       "y": 40,
+       "s": 56,
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 392,
+       "y": 125,
+       "text": "Compliance\nofficer",
+       "tone": "brand",
+       "d": 1.4
+      },
+      {
+       "t": "text",
+       "x": 392,
+       "y": 185,
+       "text": "day-to-day,\ncontact for authorities",
+       "tone": "mute",
+       "d": 2.0
+      }
+     ]
+    },
+    {
+     "title": "A protected officer",
+     "caption": "The compliance officer must be able to report directly to the management body and to raise concerns, and the firm takes measures so that the officer is protected against retaliation and the officer's decisions are not undermined or unduly influenced by the firm's commercial interests.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "shield",
+       "x": 216,
+       "y": 30,
+       "s": 52,
+       "tone": "ok",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 30,
+       "y": 120,
+       "w": 200,
+       "h": 64,
+       "text": "Direct line to\nthe management body",
+       "tone": "ok",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 250,
+       "y": 120,
+       "w": 200,
+       "h": 64,
+       "text": "Protected from\nretaliation",
+       "tone": "ok",
+       "d": 1.4
+      },
+      {
+       "t": "box",
+       "x": 90,
+       "y": 206,
+       "w": 300,
+       "h": 56,
+       "text": "Not overruled by commercial interests",
+       "tone": "warn",
+       "d": 1.9
+      }
+     ]
+    },
+    {
+     "title": "People and training",
+     "caption": "Staff who take part in compliance are assessed for skills, knowledge, good repute, honesty and integrity before starting, and regularly after. Staff whose function requires it, including agents and distributors, take part in specific, ongoing training suited to their functions and the firm's risks, and it is documented.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 40,
+       "w": 450,
+       "h": 60,
+       "text": "1. Assess before they start",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 115,
+       "w": 450,
+       "h": 60,
+       "text": "2. Repeat the assessment regularly",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 190,
+       "w": 450,
+       "h": 60,
+       "text": "3. Train, ongoing and documented",
+       "tone": "ok",
+       "d": 1.6
+      }
+     ]
+    },
+    {
+     "title": "Conflicts of interest",
+     "caption": "Anyone doing compliance tasks who has a close private or professional relationship with a customer tells the compliance officer and is kept off the compliance work for that customer. The firm also has procedures to prevent and manage conflicts of interest.",
+     "items": [
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 60,
+       "y": 90,
+       "s": 48,
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "line",
+       "pts": [
+        120,
+        114,
+        240,
+        114
+       ],
+       "tone": "warn",
+       "dash": true,
+       "d": 0.8,
+       "dur": 0.4
+      },
+      {
+       "t": "icon",
+       "k": "person",
+       "x": 250,
+       "y": 90,
+       "s": 48,
+       "tone": "mute",
+       "d": 0.8
+      },
+      {
+       "t": "text",
+       "x": 90,
+       "y": 170,
+       "text": "Analyst",
+       "tone": "brand",
+       "d": 0.2
+      },
+      {
+       "t": "text",
+       "x": 274,
+       "y": 170,
+       "text": "Customer",
+       "tone": "mute",
+       "d": 0.8
+      },
+      {
+       "t": "arrow",
+       "pts": [
+        90,
+        200,
+        90,
+        232
+       ],
+       "tone": "ok",
+       "d": 1.5,
+       "dur": 0.4
+      },
+      {
+       "t": "text",
+       "x": 240,
+       "y": 258,
+       "text": "Tell the compliance officer; step aside",
+       "tone": "ok",
+       "d": 1.8
+      }
+     ]
+    }
+   ]
   }
  ]
 }
