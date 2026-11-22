@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-11-16T14:39:32.754169",
+  "last_updated": "2026-11-21T14:08:19.457422",
   "last_run_counts": {
-    "total": 7,
-    "critical": 4,
-    "important": 3,
+    "total": 14,
+    "critical": 12,
+    "important": 2,
     "info": 0
   },
-  "archive_size": 756,
+  "archive_size": 793,
   "exec_summary": "",
   "timeline": [
     {
@@ -16,7 +16,7 @@
       "type": "report",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114",
       "basis": "MiCA Art. 140(1)",
-      "days_away": 226
+      "days_away": 221
     },
     {
       "date": "2027-07-10",
@@ -25,7 +25,7 @@
       "type": "application",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1624",
       "basis": "AMLR Art. 90 and Art. 32(1)",
-      "days_away": 236
+      "days_away": 231
     },
     {
       "date": "2027-07-10",
@@ -34,10 +34,31 @@
       "type": "deadline",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024L1640",
       "basis": "AMLD6 Art. 78(1)",
-      "days_away": 236
+      "days_away": 231
     }
   ],
   "trends": [
+    {
+      "theme": "General",
+      "this_week": 6,
+      "avg": 1.7,
+      "pct": 250,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "▃▁▁▂▁▁▃█",
+      "values": [
+        3,
+        1,
+        1,
+        2,
+        1,
+        1,
+        3,
+        6
+      ],
+      "weeks": 8
+    },
     {
       "theme": "Payments",
       "this_week": 2,
@@ -60,56 +81,56 @@
       "weeks": 8
     },
     {
-      "theme": "General",
+      "theme": "Market Infrastructure",
       "this_week": 3,
-      "avg": 1.7,
-      "pct": 75,
+      "avg": 1.6,
+      "pct": 91,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "█▁▁▄▁▁██",
+      "spark": "▁▁█▁▁▄▄█",
       "values": [
+        1,
+        1,
         3,
         1,
         1,
         2,
-        1,
-        1,
-        3,
+        2,
         3
       ],
       "weeks": 8
     },
     {
-      "theme": "Market Infrastructure",
+      "theme": "Capital/CRR",
       "this_week": 2,
-      "avg": 1.6,
-      "pct": 27,
-      "arrow": "▬",
-      "label": "STABLE",
-      "color": "#6B7280",
-      "spark": "▁▁█▁▁▄▄▄",
+      "avg": 1.4,
+      "pct": 40,
+      "arrow": "▲",
+      "label": "RISING",
+      "color": "#B91C1C",
+      "spark": "██▁█▁▁▁█",
       "values": [
-        1,
-        1,
-        3,
-        1,
-        1,
         2,
         2,
+        1,
+        2,
+        1,
+        1,
+        1,
         2
       ],
       "weeks": 8
     },
     {
       "theme": "AML/CFT",
-      "this_week": 1,
+      "this_week": 3,
       "avg": 2.9,
-      "pct": -65,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▂██▄▄▁▁",
+      "pct": 5,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▂██▄▄▁▄",
       "values": [
         1,
         2,
@@ -117,28 +138,70 @@
         5,
         3,
         3,
+        1,
+        3
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "DORA",
+      "this_week": 1,
+      "avg": 1.0,
+      "pct": 0,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁▁▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         1,
         1
       ],
       "weeks": 8
     },
     {
-      "theme": "Capital/CRR",
-      "this_week": 0,
-      "avg": 1.7,
-      "pct": -100,
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.1,
+      "pct": -12,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁▁█▁▁▁▁",
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Solvency/Insurance",
+      "this_week": 1,
+      "avg": 1.9,
+      "pct": -46,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "█▄▄▁▄▁▁▁",
+      "spark": "▁▅▃▁▁▁█▁",
       "values": [
+        1,
         3,
         2,
-        2,
-        1,
-        2,
         1,
         1,
+        1,
+        4,
         1
       ],
       "weeks": 8
@@ -161,27 +224,6 @@
         2,
         1,
         2
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 0,
-      "avg": 1.3,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "█▁▁▁█▁▁▁",
-      "values": [
-        2,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1
       ],
       "weeks": 8
     },
@@ -220,48 +262,6 @@
         1
       ],
       "weeks": 5
-    },
-    {
-      "theme": "Solvency/Insurance",
-      "this_week": 0,
-      "avg": 1.4,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▅▃▁▁▁█",
-      "values": [
-        1,
-        1,
-        3,
-        2,
-        1,
-        1,
-        1,
-        4
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "DORA",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁▁▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "weeks": 8
     },
     {
       "theme": "SFDR/ESG",
@@ -400,7 +400,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 30,
-      "newest": "2026-11-04T13:28:06",
+      "newest": "2026-11-20T15:07:23",
       "status": "ok"
     },
     {
@@ -417,8 +417,8 @@
       "name": "AMLA — Reports & notes",
       "country": "EU",
       "kind": "primary",
-      "fetched": 1,
-      "newest": "2026-07-30T16:10:48",
+      "fetched": 2,
+      "newest": "2026-11-20T15:55:55",
       "status": "ok"
     },
     {
@@ -427,7 +427,7 @@
       "country": "BE",
       "kind": "primary",
       "fetched": 20,
-      "newest": "2026-10-30T14:00:00",
+      "newest": "2026-11-19T07:00:00",
       "status": "ok"
     },
     {
@@ -445,7 +445,7 @@
       "country": "BE",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-10T00:00:00",
+      "newest": "2026-11-18T00:00:00",
       "status": "ok"
     },
     {
@@ -453,8 +453,8 @@
       "name": "EBA",
       "country": "EU",
       "kind": "primary",
-      "fetched": 15,
-      "newest": "2026-11-13T16:00:03",
+      "fetched": 24,
+      "newest": "2026-11-20T16:00:02",
       "status": "ok"
     },
     {
@@ -463,7 +463,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-11-16T13:00:00",
+      "newest": "2026-11-20T08:30:00",
       "status": "ok"
     },
     {
@@ -472,7 +472,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-11-16T13:00:00",
+      "newest": "2026-11-20T10:40:00",
       "status": "ok"
     },
     {
@@ -481,7 +481,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-11-09T11:00:00",
+      "newest": "2026-11-19T09:00:00",
       "status": "ok"
     },
     {
@@ -490,7 +490,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 30,
-      "newest": "2026-11-12T13:38:14",
+      "newest": "2026-11-18T23:00:00",
       "status": "ok"
     },
     {
@@ -499,7 +499,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-16T14:38:29.161618",
+      "newest": "2026-11-21T14:06:39.754939",
       "status": "ok"
     },
     {
@@ -508,7 +508,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-16T14:07:41",
+      "newest": "2026-11-21T11:28:47",
       "status": "ok"
     },
     {
@@ -517,7 +517,7 @@
       "country": "GLOBAL",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-16T09:00:00",
+      "newest": "2026-11-17T16:00:32",
       "status": "ok"
     },
     {
@@ -526,7 +526,7 @@
       "country": "BE",
       "kind": "primary",
       "fetched": 30,
-      "newest": "2026-11-12T08:00:00",
+      "newest": "2026-11-20T08:00:00",
       "status": "ok"
     },
     {
@@ -535,7 +535,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-13T13:48:46",
+      "newest": "2026-11-18T08:58:06",
       "status": "ok"
     }
   ]

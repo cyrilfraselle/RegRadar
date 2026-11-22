@@ -17,6 +17,7 @@ const RR = require(path.join(root, 'docs', 'rr-core.js'));
 const CS = require(path.join(root, 'docs', 'controls-store.js'));
 const PS = require(path.join(root, 'docs', 'policies-store.js'));
 const AS = require(path.join(root, 'docs', 'actions-store.js'));
+const IS = require(path.join(root, 'docs', 'impact-store.js'));
 const J = (p) => JSON.parse(fs.readFileSync(path.join(root, 'docs', p), 'utf8'));
 const CFG = J('data/spine/config.json');
 const DEMO = J('data/spine/demo.json');
@@ -238,8 +239,8 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.equal(s.get('RA:bwra').status, 'in_review');
   assert.equal(s.get('CRF:CUS-1').status, 'pending');
   assert.equal(s.get('CRF:CUS-2').status, 'approved');
-  assert.equal(s.get('RC:abc').status, 'assessed');
-  assert.equal(s.get('RC:abc').due, '2027-01-15');
+  assert.equal(s.get('RC:abc'), null, 'impact assessments are no longer mirrored: their own migration imports them (see the "impact:" tests)');
+  assert.ok(!RR.bridge.modules.some((m) => m.id === 'impact') && RR.bridge.migrated.some((m) => m.id === 'impact'));
   assert.equal(s.list('training').length, 1);
   assert.equal(s.get('TRN:academy:cdd-kyc').data.score, '3/4');
   // overlays
@@ -417,7 +418,7 @@ await test('migration: legacy key in, spine records out (findings, tasks, people
   const before = st.getItem(LEG_KEY);
   const all = RR.runMigrations(s, read, REF);
   await s.flush();
-  assert.deepEqual(all.map((m) => m.id), ['controls', 'policies', 'actions'], 'controls first: policies and findings link to them');
+  assert.deepEqual(all.map((m) => m.id), ['controls', 'policies', 'actions', 'impact'], 'controls first: policies and findings link to them');
   const rep = all[2];
   assert.equal(rep.status, 'migrated');
   assert.equal(rep.issues, 4);
@@ -1278,6 +1279,89 @@ await test('page model: peek counts issues on the device before and after the mi
   assert.equal(AS.peek(() => null).exists, false);
   assert.equal(AS.peek(() => '{broken').unreadable, true);
   void st;
+});
+
+/* ═════════════════ Change impact: migration onto the spine ═════════════════ */
+const IMP_OLD = { v: 1, assessments: {
+  abc: { id: 'abc', itemId: 'abc', itemTitle: 'EBA guidelines X', itemSource: 'EBA', itemDate: '2026-10-01', decision: 'action', severity: 'high', owner: 'R. Haddad', effective: '2027-01-15', effectiveSrc: 'Art. 3', rationale: 'We hold client funds.',
+    over: { ob: { 'AMLR-art26': true } }, tasks: [{ id: 't1', title: 'Update the checklist', include: true }], touched: true },
+  def: { itemId: 'def', itemTitle: 'Consultation Y', decision: '', consultation: '2027-02-01', owner: 'IT Change Board', touched: true },
+  nope: { itemId: 'nope', itemTitle: 'No decision', decision: 'no_action' }
+} };
+const impRead = (v) => (k) => (k === 'regradar-impact' ? v : null);
+
+await test('impact: migration copies assessments into the spine, idempotent, old key untouched', async () => {
+  const s = await spine();
+  const old = JSON.stringify(IMP_OLD);
+  const rep = IS.migrate(s, impRead(old));
+  assert.equal(rep.status, 'migrated'); assert.equal(rep.assessments, 3);
+  const e = s.get('RC:imp-abc');
+  assert.equal(e.type, 'reg_change'); assert.equal(e.status, 'assessed'); assert.equal(e.due, '2027-01-15'); assert.equal(e.title, 'EBA guidelines X');
+  assert.equal(s.get(e.owner).title, 'R. Haddad');
+  assert.equal(s.get('RC:imp-def').status, 'assessing'); assert.equal(s.get('RC:imp-def').due, '2027-02-01');
+  assert.equal(s.get('RC:imp-def').owner, null, 'a board is plain text, not a person');
+  assert.equal(s.get('RC:imp-nope').status, 'not_relevant');
+  assert.ok(s.getSetting(IS.DONE));
+  assert.equal(IS.migrate(s, impRead(old)).status, 'already');
+  // a lost marker re-run adds nothing and overwrites nothing
+  s.update('RC:imp-abc', { title: 'Edited on the board' });
+  await s.flush();
+  const n = s.list('reg_change').length;
+  s.setSetting(IS.DONE, null);
+  const r2 = IS.migrate(s, impRead(old));
+  assert.equal(r2.assessments, 0); assert.equal(r2.skipped, 3);
+  assert.equal(s.list('reg_change').length, n);
+  assert.equal(s.get('RC:imp-abc').title, 'Edited on the board');
+});
+
+await test('impact: nothing to import, unreadable data, odd records', async () => {
+  const s = await spine();
+  assert.equal(IS.migrate(s, () => null).status, 'none');
+  assert.equal(IS.migrate(s, impRead('{broken')).status, 'unreadable');
+  assert.equal(IS.migrate(s, impRead('[1]')).status, 'unreadable');
+  assert.equal(IS.migrate(s, () => { throw new Error('blocked'); }).status, 'blocked');
+  assert.equal(s.getSetting(IS.DONE), null, 'unreadable is retried, never marked done');
+  const r = IS.migrate(s, impRead(JSON.stringify({ assessments: { a: null, b: { itemTitle: 'no id' }, c: { itemId: 'c', decision: 'weird', effective: 'soon', over: 5, tasks: 'x' } } })));
+  assert.equal(r.assessments, 1); assert.equal(r.skipped, 2);
+  assert.equal(s.get('RC:imp-c').status, 'assessing'); assert.equal(s.get('RC:imp-c').due, null);
+});
+
+await test('impact: the page model round-trips; commit writes only changes; reset archives', async () => {
+  const s = await spine();
+  IS.migrate(s, impRead(JSON.stringify(IMP_OLD)));
+  const R = IS.read(s);
+  assert.deepEqual(Object.keys(R.assessments).sort(), ['abc', 'def', 'nope']);
+  const a = R.assessments.abc;
+  assert.equal(a.owner, 'R. Haddad'); assert.equal(a.over.ob['AMLR-art26'], true); assert.equal(a.tasks[0].title, 'Update the checklist'); assert.equal(a.rationale, 'We hold client funds.');
+  const before = s.history('RC:imp-abc').length;
+  assert.deepEqual(IS.commit(s, R).errors, []);
+  assert.equal(s.history('RC:imp-abc').length, before, 'nothing changed, nothing logged');
+  a.decision = 'monitor'; a.planning = '2026-12-01'; a.rationale = 'Changed';
+  R.assessments.fresh = IS.norm({ itemId: 'fresh', itemTitle: 'New one', touched: true });
+  delete R.assessments.nope;
+  assert.deepEqual(IS.commit(s, R).errors, []);
+  assert.equal(s.get('RC:imp-abc').status, 'assessed'); assert.equal(s.get('RC:imp-abc').due, '2027-01-15', 'applies-from wins over planning');
+  assert.ok(s.history('RC:imp-abc').length > before);
+  assert.equal(s.get('RC:imp-fresh').status, 'assessing');
+  assert.equal(s.get('RC:imp-nope').archived, true, 'reset assessments are archived, not deleted');
+  const R2 = IS.read(s);
+  assert.equal(R2.assessments.abc.rationale, 'Changed'); assert.ok(!R2.assessments.nope);
+  // the board moves the owner: the page sees it
+  s.update('RC:imp-def', { owner: s.get('RC:imp-abc').owner });
+  assert.equal(IS.read(s).assessments.def.owner, 'R. Haddad');
+  // restoring an archived one brings it back
+  R2.assessments.nope = IS.norm({ itemId: 'nope', itemTitle: 'Back', decision: 'monitor' });
+  IS.commit(s, R2);
+  assert.equal(s.get('RC:imp-nope').archived, false);
+});
+
+await test('impact: the store is registered with the spine and does not collide with the RegWatch feed records', async () => {
+  assert.ok(RR.migrations.some((m) => m.id === 'impact'));
+  assert.ok(RR.migrationFiles.some((f) => f.id === 'impact' && f.file === 'impact-store.js'));
+  const s = await spine({ reference: true });
+  s.addReference(RR.reference.regChanges([{ id: 'abc', title: 'Feed item', source: 'EBA', date: '2026-10-01' }]));
+  IS.migrate(s, impRead(JSON.stringify(IMP_OLD)));
+  assert.equal(s.get('RC:abc').title, 'Feed item'); assert.equal(s.get('RC:imp-abc').title, 'EBA guidelines X');
 });
 
 console.log(`\n${n - failed}/${n} passed`);

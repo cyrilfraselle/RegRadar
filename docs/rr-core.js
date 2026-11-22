@@ -251,7 +251,6 @@
     { id: 'cases', key: 'regradar-cases', label: 'Cases and STR', page: 'cases.html' },
     { id: 'bwra', key: 'regradar-bwra', label: 'Business risk', page: 'risk-assessment.html' },
     { id: 'cra', key: 'regradar-cra', label: 'Customer risk', page: 'customer-risk.html' },
-    { id: 'impact', key: 'regradar-impact', label: 'Change impact', page: 'impact.html' },
     { id: 'obligations', key: 'regradar-obligations-mine', label: 'Obligations (your notes)', page: 'workspace.html' },
     { id: 'profile', key: 'regradar-profile', label: 'Firm profile', page: 'workspace.html' },
     { id: 'academy', key: 'regradar-academy-training', label: 'Academy training', page: 'academy.html' }
@@ -260,7 +259,8 @@
   var MIGRATED = [
     { id: 'controls', key: 'regradar-controls-mine', label: 'Controls (Compliance workspace)', page: 'workspace.html?view=controls', migrated: true },
     { id: 'policies', key: 'regradar-policies', label: 'Policies', page: 'policies.html', migrated: true },
-    { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html', migrated: true }
+    { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html', migrated: true },
+    { id: 'impact', key: 'regradar-impact', label: 'Change impact', page: 'impact.html', migrated: true }
   ];
   function moduleById(id) {
     var i;
@@ -355,23 +355,6 @@
         var ds = (c.decisions || []).slice().sort(function (a, b) { return a.at < b.at ? -1 : 1; }), ld = ds[ds.length - 1];
         var status = !ld ? 'pending' : ld.decision === 'approve' ? 'approved' : ld.decision === 'reject' ? 'rejected' : 'escalated';
         add(m, { id: 'CRF:' + c.id, type: 'customer_file', title: c.name || c.id, status: status, data: { ref: c.id, demo: !!c.demo, last_decision: ld ? String(ld.at).slice(0, 10) : '' } }, c.id);
-        n++;
-      });
-      report(m, r, n);
-    })();
-
-    /* regulatory change assessments (Change impact) */
-    (function () {
-      var m = moduleById('impact'), r = parse(m), n = 0, st = r.value;
-      if (!r.found || r.error || !st || !st.assessments) { report(m, r, 0); return; }
-      Object.keys(st.assessments).forEach(function (k) {
-        var a = st.assessments[k]; if (!a || !a.itemId) return;
-        var due = dates.valid(a.effective) ? a.effective : dates.valid(a.consultation) ? a.consultation : null;
-        add(m, { id: 'RC:' + a.itemId, type: 'reg_change', title: a.itemTitle || a.itemId, status: (bmap.impact_status || {})[a.decision || ''] || 'assessing',
-          owner: person(a.owner, { module: m.id }), due: due,
-          data: { source: a.itemSource || '', url: a.itemUrl || '', published: a.itemDate || '', decision: a.decision || '', priority: a.severity || '',
-            effective: a.effective || '', consultation: a.consultation || '',
-            date_source: due ? (dates.valid(a.effective) ? 'applies-from date entered on the Change impact page' + (a.effectiveSrc ? ' (' + a.effectiveSrc + ')' : '') : 'consultation date entered on the Change impact page' + (a.consultationSrc ? ' (' + a.consultationSrc + ')' : '')) : '' } }, a.itemId);
         n++;
       });
       report(m, r, n);
@@ -981,7 +964,7 @@
     /* The module files that hold a migration. RR.boot loads any that is not on the page yet (same
        folder as rr-core.js), so pages that only open the spine need no extra script tag. `order`
        matters: controls first, because findings and policies link to them. */
-    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'policies', file: 'policies-store.js' }, { id: 'actions', file: 'actions-store.js' }],
+    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'policies', file: 'policies-store.js' }, { id: 'actions', file: 'actions-store.js' }, { id: 'impact', file: 'impact-store.js' }],
     runMigrations: function (spine, read, ref) {
       var who = spine.actor(), out = [];
       RR.migrations.slice().sort(function (a, b) { return (a.order || 100) - (b.order || 100); }).forEach(function (m) {

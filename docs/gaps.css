@@ -1,0 +1,27 @@
+/* Layout only; colours, buttons, pills come from rr-ui.css */
+.gwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:var(--rr-4);align-items:start;padding-bottom:var(--rr-7)}
+@media(max-width:900px){.gwrap{grid-template-columns:minmax(0,1fr)}.detail{position:static}}
+.legend{display:flex;flex-wrap:wrap;gap:var(--rr-2) var(--rr-4);margin:var(--rr-3) 0;font-size:var(--rr-t-small);color:var(--rr-text-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:4px;border:1px solid var(--rr-line-strong);display:inline-block}
+.s-ct{background:var(--rr-done-bg);color:var(--rr-done);border-color:var(--rr-done)}
+.s-cu{background:var(--rr-live-bg);color:var(--rr-live);border-color:var(--rr-live)}
+.s-pc{background:var(--rr-review-bg);color:var(--rr-review);border-color:var(--rr-review)}
+.s-nc{background:var(--rr-risk-bg);color:var(--rr-risk);border-color:var(--rr-risk)}
+.s-na{background:var(--rr-surface-2);color:var(--rr-text-2);border-color:var(--rr-line-strong)}
+.topic{margin-bottom:var(--rr-4)}
+.topic h3{font-size:var(--rr-t-h3);margin:0 0 var(--rr-2);display:flex;justify-content:space-between;gap:var(--rr-3);flex-wrap:wrap}
+.topic h3 small{font-weight:400;color:var(--rr-text-2);font-size:var(--rr-t-small)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:var(--rr-2)}
+.tile{border:1px solid;border-radius:var(--rr-r-sm);padding:8px;text-align:left;min-height:56px;cursor:pointer;font:inherit;display:flex;flex-direction:column;gap:2px}
+.tile b{font-size:var(--rr-t-small)}
+.tile span{font-size:var(--rr-t-micro)}
+.tile[aria-pressed="true"]{outline:3px solid var(--rr-focus);outline-offset:1px}
+.tile:focus-visible{outline:3px solid var(--rr-focus);outline-offset:2px}
+.detail{position:sticky;top:var(--rr-4)}
+.detail h2{font-size:var(--rr-t-h3);margin:0 0 var(--rr-2)}
+.detail ul{padding-left:18px;margin:var(--rr-2) 0}
+.rr-table-wrap{overflow-x:auto}
+.cmp td.up{color:var(--rr-done)}.cmp td.down{color:var(--rr-risk)}
+.defs{margin:var(--rr-4) 0}.defs .fields{display:flex;flex-direction:column;gap:var(--rr-2);margin-top:var(--rr-3)}
+@media print{.head-tools,.rr-filters,.defs,#detail,.skip{display:none!important}.gwrap{display:block}}
