@@ -1,17 +1,17 @@
 {
  "_meta": {
   "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
-  "generated": "2026-11-15T13:22:56+00:00"
+  "generated": "2026-11-21T14:09:37+00:00"
  },
  "run": {
-  "duration_s": 98.6,
-  "requests": 36,
-  "bytes": 2231207,
+  "duration_s": 205.2,
+  "requests": 88,
+  "bytes": 9105392,
   "not_modified_304": 0,
   "retries": 0,
   "http_errors": 0,
   "robots_blocked": 0,
-  "politeness_wait_s": 75.2,
+  "politeness_wait_s": 149.3,
   "budget": 220,
   "errors": []
  },
@@ -21,51 +21,51 @@
   "planned": 6,
   "blocked": 4,
   "excluded": 2,
-  "polled_this_run": 15,
-  "skipped_not_due": 4,
+  "polled_this_run": 19,
+  "skipped_not_due": 0,
   "health": {
    "healthy": 19
   }
  },
  "entries": {
-  "total": 423,
-  "in_scope": 212,
-  "new": 0,
+  "total": 556,
+  "in_scope": 234,
+  "new": 13,
   "changed": 1,
   "withdrawn": 0,
-  "pending_docs": 40
+  "pending_docs": 6
  },
  "documents": {
-  "total": 159,
-  "new": 12,
+  "total": 214,
+  "new": 6,
   "changed": 0,
   "unchanged": 0,
   "errors": 0,
-  "paragraphs": 11434,
-  "corpus_bytes": 3512118,
+  "paragraphs": 13980,
+  "corpus_bytes": 4495083,
   "corpus_warning": false
  },
  "freshness_hours": {
   "this_run": {
-   "n": 0,
-   "p50": null,
-   "p90": null
+   "n": 13,
+   "p50": 38.2,
+   "p90": 38.2
   },
   "last_30_days": {
-   "n": 0,
-   "p50": null,
-   "p90": null
+   "n": 132,
+   "p50": 15.2,
+   "p90": 38.2
   },
   "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
  },
- "proposals_new": 6,
- "deadlines": 95,
+ "proposals_new": 2,
+ "deadlines": 111,
  "coverage": [
   {
    "source": "eba-news",
    "recall": 1.0,
-   "in_period": 9,
-   "matched": 9,
+   "in_period": 13,
+   "matched": 13,
    "error": null
   },
   {
@@ -86,20 +86,20 @@
  "feed": {
   "cards": 400,
   "tiers": {
-   "important": 144,
+   "important": 162,
    "critical": 64,
-   "info": 192
+   "info": 174
   },
-  "news_cards": 122,
-  "news_dropped": 100,
-  "clustered_items": 493,
+  "news_cards": 134,
+  "news_dropped": 84,
+  "clustered_items": 500,
   "f028": {
-   "archive_items": 749,
+   "archive_items": 793,
    "before": {
-    "critical": 249,
-    "share": 0.332,
-    "informational": 125,
-    "distinct_stories": 236
+    "critical": 272,
+    "share": 0.343,
+    "informational": 137,
+    "distinct_stories": 257
    },
    "after": {
     "critical": 3,
