@@ -768,7 +768,7 @@
       "module": "governance",
       "type": "sort",
       "title": "Who does what?",
-      "intro": "Sort each duty under the role that holds it. The firm is a fictional payment and e-money firm. In a small firm one person may hold both compliance roles, so read the duties, not the job titles.",
+      "intro": "Sort each duty under the role that holds it. The firm is a fictional payment and e-money firm. Where the business justifies it, one person may hold both compliance roles, so read the duties, not the job titles.",
       "minutes": 2,
       "choices": [
         {
@@ -828,7 +828,7 @@
         {
           "id": "c3",
           "kicker": "Role 3",
-          "text": "Is responsible for the policies, procedures and controls in day-to-day operation, and is a contact point for the supervisor.",
+          "text": "Is responsible for the policies, procedures and controls in day-to-day operation, and is a contact point for competent authorities.",
           "answer": "co",
           "why": "That is the compliance officer.",
           "cite": {
@@ -900,8 +900,8 @@
       ],
       "remember": [
         "Policies are in writing and approved by the management body in its management function.",
-        "The compliance manager is a member of the management body; the compliance officer runs the day-to-day work and is the contact point for the supervisor.",
-        "Where size and risk justify it, one person may perform both functions.",
+        "The compliance manager is a member of the management body; the compliance officer runs the day-to-day work and is a contact point for competent authorities.",
+        "Where the nature, risks, complexity and size of the business justify it, the same natural person may hold both functions (Art. 11(7)).",
         "Check your national rules and the AMLA guidelines on proportionality."
       ],
       "law": [
@@ -1096,9 +1096,9 @@
       "options": [
         {
           "id": "a",
-          "label": "Keep the checks, record the disagreement, and if it is not resolved raise it directly with the management body",
+          "label": "Keep the checks in place while you escalate: record the disagreement and raise it directly with the management body",
           "verdict": "best",
-          "consequence": "The compliance officer can report directly to the management body in its management function, and raise concerns and warn it where risks affect the firm. That is the route for a disagreement like this.",
+          "consequence": "The compliance officer can report directly to the management body in its management function, and raise concerns and warn it where risks affect the firm. The management body in its management function can then decide with the compliance officer's warning on record. That is the route for a disagreement like this.",
           "cite": {
             "celex": "32024R1624",
             "art": "11",
