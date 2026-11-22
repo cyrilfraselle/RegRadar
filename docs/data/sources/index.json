@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-19T15:12:16+00:00",
-  "count": 202,
-  "corpus_bytes": 4377050
+  "generated": "2026-11-21T14:09:37+00:00",
+  "count": 214,
+  "corpus_bytes": 4495083
  },
  "documents": [
   {
@@ -285,6 +285,50 @@
    ],
    "parent": null,
    "paragraphs": 12
+  },
+  {
+   "id": "amla-hearings-2c11a2dcab90",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on Customer Due Diligence",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-customer-due-diligence-2026-03-24_en",
+   "publication_date": "2026-03-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "028299097ecc8b39014b7e669f2ed000ced9c4aa27a11813551e0fbf98a98df8",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1409,
+   "truncated": false,
+   "topics": [
+    "cdd"
+   ],
+   "parent": null,
+   "paragraphs": 10
+  },
+  {
+   "id": "amla-hearings-321e325c341b",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on criteria for identifying business relationships, occasional and linked transactions and lower thresholds",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-criteria-identifying-business-relationships-occasional-and-linked-2026-03-24_en",
+   "publication_date": "2026-03-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "7cd4dbebf4425c052c5e114b1bb3bf49fddec907feb940243404ae0afc3f115c",
+   "retrieved": "2026-11-21T14:09:37+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1492,
+   "truncated": false,
+   "topics": [
+    "cdd"
+   ],
+   "parent": null,
+   "paragraphs": 10
   },
   {
    "id": "amla-hearings-3361f87338bc",
@@ -877,6 +921,52 @@
    ],
    "parent": null,
    "paragraphs": 199
+  },
+  {
+   "id": "amla-library-04c336501f91",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "SUP - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/4f6e10ad-33a3-4360-955b-d279525cf833_en?filename=20260429_AMLA_%208th%20GB%20SUP_Public%20summary.pdf",
+   "publication_date": "2026-08-18",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "78c65541dd7cfeb927bc13b9cc29622f54764de168a3a930fe7a226b2c349850",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "pdf",
+   "pages_total": 7,
+   "chars_stored": 10736,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 34
+  },
+  {
+   "id": "amla-library-04dcf14190e2",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "JOINT - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/fbc788a6-2df8-434c-8ec6-3120d333b92d_en?filename=Public%20summary%209th%20JOINT%20GB.pdf",
+   "publication_date": "2026-08-18",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "51741e1cdcf9606fa2eedef88bc3c2b9cf7d7bb1f29ebe8f2e6743bc314a859b",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "pdf",
+   "pages_total": 12,
+   "chars_stored": 26073,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 97
   },
   {
    "id": "amla-library-0e49e767e94f",
@@ -1692,6 +1782,28 @@
    "paragraphs": 10
   },
   {
+   "id": "amla-news-501b504c31aa",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Delivering a more consistent and risk-based approach to AML/CFT across Europe: Rikke-Louise Ørum Petersen speaks at AMLP Forum",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/delivering-more-consistent-and-risk-based-approach-amlcft-across-europe-rikke-louise-orum-petersen_en",
+   "publication_date": "2026-11-20",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "20666857ad735373f9c74789bcee84772ebb36395eb6e6f14cfa64550ea1ffee",
+   "retrieved": "2026-11-21T14:09:37+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1607,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 7
+  },
+  {
    "id": "amla-news-55bc303d93b0",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1732,6 +1844,46 @@
    "paragraphs": 8
   },
   {
+   "id": "amla-news-6354ca0b6f00",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Chair Bruna Szego delivers speech at Central Bank of Montenegro 25th Anniversary Conference",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-chair-bruna-szego-delivers-speech-central-bank-montenegro-25th-anniversary-conference_en",
+   "publication_date": "2026-09-10",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "4c23b89d476d7653f24e33df6239527f9c8176ba990c064bb0e81f2f37288a68",
+   "retrieved": "2026-11-21T14:09:37+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1356,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 4
+  },
+  {
+   "id": "amla-news-672f202ee9be",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA launches survey on Central Contact Points",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-launches-survey-central-contact-points_en",
+   "publication_date": "2026-09-16",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "b07f21d65c46cbf074f355c829dfe08bb5ab108d9e2bf32d1c212f678f90a345",
+   "retrieved": "2026-11-21T14:09:37+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1210,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 7
+  },
+  {
    "id": "amla-news-6777126e95c2",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1768,6 +1920,28 @@
    "format": "html",
    "pages_total": null,
    "chars_stored": 1609,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 5
+  },
+  {
+   "id": "amla-news-6f6fe2c360a2",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Connecting intelligence and supervision: Rikke-Louise Petersen speaks at Nordic Financial Crime & Sanctions Forum",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/connecting-intelligence-and-supervision-rikke-louise-petersen-speaks-nordic-financial-crime_en",
+   "publication_date": "2026-09-16",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "da8aa83d85e7c7192ca50bad019959bb36ae1c4f80f78ae6d580ed542e139ea3",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1215,
    "truncated": false,
    "topics": [
     "reporting-str"
@@ -1856,6 +2030,28 @@
    "topics": [],
    "parent": null,
    "paragraphs": 2
+  },
+  {
+   "id": "amla-news-b87f876ecb19",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Executive Board Member Simonas Krepšta addresses Global Conference on Criminal Finances and Cryptoassets in Luxembourg",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-executive-board-member-simonas-krepsta-addresses-global-conference-criminal-finances-and_en",
+   "publication_date": "2026-09-18",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "8b4c2cf9d821bb354bf2022aa6e8768824422088a99741b40be55ff8ab3fb05e",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1732,
+   "truncated": false,
+   "topics": [
+    "crypto-assets"
+   ],
+   "parent": null,
+   "paragraphs": 4
   },
   {
    "id": "amla-news-bb51330afd2e",
@@ -2009,6 +2205,28 @@
    "paragraphs": 3
   },
   {
+   "id": "amla-news-fcba9a8ef8a6",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA finalises common formats for FIU cooperation and reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-common-formats-fiu-cooperation-and-reporting-eppo_en",
+   "publication_date": "2026-09-22",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "2537010936b048d474ced803bc945b97841946390a708675aa0dce449aa7f5b0",
+   "retrieved": "2026-11-20T14:52:32+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2170,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 14
+  },
+  {
    "id": "amla-reports-07ab5af50b97",
    "source": "amla-reports",
    "authority": "AMLA",
@@ -2030,6 +2248,30 @@
     "reporting-str",
     "governance-risk-assessment",
     "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 88
+  },
+  {
+   "id": "amla-reports-49fe354c0962",
+   "source": "amla-reports",
+   "authority": "AMLA",
+   "title": "Report on cooperation - Supervisory authorities in AMLCFT colleges",
+   "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
+   "publication_date": "2026-11-20",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "14c9c28c809be0c5bbdb8fadd5822ca7ee11323057aedfae6be22441a9c277d5",
+   "retrieved": "2026-11-21T14:09:37+00:00",
+   "format": "pdf",
+   "pages_total": 17,
+   "chars_stored": 31673,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment",
+    "payments-emoney"
    ],
    "parent": null,
    "paragraphs": 88
@@ -3110,6 +3352,28 @@
    ],
    "parent": null,
    "paragraphs": 10
+  },
+  {
+   "id": "eba-news-f37ee421c867",
+   "source": "eba-news",
+   "authority": "EBA",
+   "title": "2026_7936 FINREP F 16.08 – Treatment of DORA-related ICT service provider costs and losses in row \"IT outsourcing\"",
+   "url": "https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2026_7936",
+   "publication_date": "2026-11-20",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "a5ae4b89cf1562fc513fd0b84756a7d849e30af4a3e2058fb4485e8cf617c29d",
+   "retrieved": "2026-11-21T14:09:37+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2915,
+   "truncated": false,
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "parent": null,
+   "paragraphs": 30
   },
   {
    "id": "ec-aml-eu-level-d4656a188233",
