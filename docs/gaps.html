@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar: Gap assessment</title>
+<meta name="description" content="A coverage map of the verified obligations: which are covered and tested, which are not, and what to do next. Save dated snapshots, export to Excel, print.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<link rel="stylesheet" href="gaps.css?v=20261118a">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the gap map</a>
+<script src="site-nav.js?v=20261114a"></script>
+<main id="main" class="wrap">
+  <header class="head rr-band">
+    <div>
+      <h1>Gap assessment</h1>
+      <p class="lead" id="lead">Reading the register and your controls on this device…</p>
+    </div>
+    <div class="head-tools">
+      <label for="firmSel">Firm type</label>
+      <select class="sel" id="firmSel"><option value="">All firm types</option></select>
+      <button class="btn" type="button" data-act="snap">Save snapshot</button>
+      <button class="btn" type="button" data-act="xlsx">Download Excel</button>
+      <button class="btn" type="button" data-act="print">Print</button>
+    </div>
+  </header>
+  <div class="rr-stats" id="stats"></div>
+  <div class="rr-filters" role="search">
+    <div class="seg" role="tablist" aria-label="View">
+      <button role="tab" type="button" data-v="map" aria-selected="true">Map</button>
+      <button role="tab" type="button" data-v="list" aria-selected="false">List</button>
+      <button role="tab" type="button" data-v="compare" aria-selected="false">Compare</button>
+    </div>
+    <label class="sr" for="topicSel">Topic</label>
+    <select class="sel" id="topicSel"><option value="">All topics</option></select>
+    <label class="sr" for="statSel">Status</label>
+    <select class="sel" id="statSel"><option value="">All statuses</option></select>
+  </div>
+  <div class="legend" id="legend" aria-label="Legend"></div>
+  <div class="gwrap">
+    <section id="view" aria-live="polite"></section>
+    <aside class="rr-card detail" id="detail" aria-label="Obligation detail"><p class="hint">Select a block to see its controls, owner, last test and the gap.</p></aside>
+  </div>
+  <details class="rr-card defs">
+    <summary>What counts as covered (you can change this)</summary>
+    <div class="fields">
+      <label><input type="checkbox" id="cfgOwner"> A control needs a named owner</label>
+      <label><input type="checkbox" id="cfgTest"> A control needs a recorded test</label>
+      <label><input type="checkbox" id="cfgOverdue"> A control whose retest is overdue counts as untested</label>
+    </div>
+    <p class="help">Default, from the owner decision of 15 Nov 2026: covered means a control that is approved, owned and tested. Settings stay on this device.</p>
+  </details>
+  <p class="hint">Demo controls for a fictional firm (CF Bank), kept on this device. Coverage is about the AMLR obligations in the register only. Not legal advice or an audit opinion.</p>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script src="controls-data.js?v=20261118a"></script>
+<script src="gaps.js?v=20261118a"></script>
+</body>
+</html>
