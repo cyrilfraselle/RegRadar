@@ -2,10 +2,1301 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-15T13:22:56+00:00",
-  "count": 67
+  "generated": "2026-11-21T14:09:37+00:00",
+  "count": 91
  },
  "proposals": [
+  {
+   "id": "prop-amla-reports-49fe354c0962-14c9c28c",
+   "created": "2026-11-21T14:09:37+00:00",
+   "doc_id": "amla-reports-49fe354c0962",
+   "source": "amla-reports",
+   "authority": "AMLA",
+   "title": "Report on cooperation - Supervisory authorities in AMLCFT colleges",
+   "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment",
+    "payments-emoney"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "governance-risk-assessment",
+     "payments-emoney"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(i) Frequency of colleges The Joint Guidelines provide that the frequency of AML/CFT colleges should be decided by the lead supervisor and permanent members on the basis of ML/TF risk. Out of the 17 AML/CFT colleges attended by AMLA, 82% related to groups assessed as having very significant, significant, or highrisk score, with the remainder assessed as having a ‘medium-high’ risk level2. In 76% (13 out of 17) of the AML/CFT colleges attended by AMLA the meetings are held annually. For the remaining four colleges: one college with a significant risk rating the meeting takes place every 12 to 18 months; another college with a significant risk rating meets every two years with the potential for ad-hoc meetings every year; and for the two remaining AML/CFT colleges with a ‘very significant’ risk rating, the frequency of meetings is every two years. Regarding the latter two colleges, considering both the size and the risk score of the respective groups, the frequency of the meetings does not appear to be fully aligned with a risk-based approach.",
+     "loc": "p. 9, para 6",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "Finally, the RTS seeks to strengthen the supervision of complex cross-border groups by providing additional measures for AML/CFT colleges overseeing groups that include both financial and nonfinancial obliged entities, requiring the identification of the relevant non-financial supervisors and their invitation to participate in college meetings as observers. Given the differing structures, business models and supervisory traditions across sectors, the draft RTS is intended to facilitate a coordinated understanding of group-wide AML/CFT risks and to promote coherent and consistent supervisory responses by ensuring that the information circulated by college members incorporate indicators tailored to the specific ML/TF risks associated with each sector. 5.2. Methodology for AMLA’s selection and participation in AML/CFT colleges Building on the foundation established by the EBA, AMLA will develop a methodology for the selection of AML/CFT colleges it should participate in including the manner in which the powers entrusted to AMLA under Article 31 of Regulation (EU) 2024/1620 will be exercised. The methodology will set out a risk-based approach to AMLA’s level of participation in AML/CFT",
+     "loc": "p. 14, para 2",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-eba-news-f37ee421c867-a5ae4b89",
+   "created": "2026-11-21T14:09:37+00:00",
+   "doc_id": "eba-news-f37ee421c867",
+   "source": "eba-news",
+   "authority": "EBA",
+   "title": "2026_7936 FINREP F 16.08 – Treatment of DORA-related ICT service provider costs and losses in row \"IT outsourcing\"",
+   "url": "https://www.eba.europa.eu/single-rule-book-qa/qna/view/publicId/2026_7936",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Under Annex V to the ITS on Supervisory Reporting, template F 16.08 requires institutions to report other administrative expenses including \"IT outsourcing\". Following the application of Regulation (EU) 2022/2554 (DORA), institutions may incur expenses and losses related to ICT third-party service providers. Should such expenses and losses be reported in FINREP template F 16.08 under the row \"IT outsourcing\" whenever they are attributable to outsourced ICT services, including ICT services falling within the scope of DORA? Furthermore, should the reporting treatment differ depending on whether the loss event originates from: (a) the institution's own ICT systems, or (b) an ICT third-party service provider?",
+     "loc": "s1, para 17",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (Should) on outsourcing-reliance"
+    },
+    {
+     "text": "The introduction of DORA has increased the use of a specific regulatory framework for ICT third-party risk management. However, the FINREP instructions do not explicitly clarify whether DORA-related ICT outsourcing incidents should be reported under the \"IT outsourcing\" category or another operational risk category.",
+     "loc": "s1, para 19",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    },
+    {
+     "text": "Under the Commission Implementing Regulation EU 2025/302 (ITS on incident reporting), financial entities are required to report the gross direct and indirect costs and losses resulting from a major ICT-related incident, as set out in Annexes I and II of these ITS on incident reporting, data field n. 4.13. In FINREP, these costs and losses should be reported in the appropriate items of the Income statement pursuant to their nature and to the classification used in the institution's public financial statements. Therefore, for example, expenses paid to ICT third-party providers should be reported in 'Other administrative expenses- IT outsourcing' of template F 16.08. For other expenses and losses, the reporting will depend on their specific nature (e.g. impairment on software assets, provisions, other operating expenses) and it should be consistent with the classification used for accounting purposes in the public financial statements.",
+     "loc": "s1, para 25",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (are required to) on outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-hearings-2c11a2dcab90-02829909",
+   "created": "2026-11-20T14:52:32+00:00",
+   "doc_id": "amla-hearings-2c11a2dcab90",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on Customer Due Diligence",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-customer-due-diligence-2026-03-24_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The draft RTS under Article 28(1) Regulation (EU) 2024/1624 specify how obliged entities should apply the Regulation's customer due diligence requirements, including the information and documents to be collected. AMLA took over this work from the European Banking Authority in 2025, building on the EBA's draft with targeted amendments to ensure legal clarity, proportionality, a risk-based approach, and applicability across all categories of obliged entities.",
+     "loc": "s1, para 2",
+     "topics": [
+      "cdd",
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on cdd, governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-news-6f6fe2c360a2-da8aa83d",
+   "created": "2026-11-20T14:52:32+00:00",
+   "doc_id": "amla-news-6f6fe2c360a2",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Connecting intelligence and supervision: Rikke-Louise Petersen speaks at Nordic Financial Crime & Sanctions Forum",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/connecting-intelligence-and-supervision-rikke-louise-petersen-speaks-nordic-financial-crime_en",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "She outlined how risk analysis and financial intelligence should reinforce each other, highlighting AMLA's work to strengthen cooperation among FIUs, including its first joint analysis exercise towards the end of 2026, and the information-sharing partnerships that Article 75 of the Anti-Money Laundering Regulation will enable from July 2027.",
+     "loc": "s1, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-04dcf14190e2-51741e1c",
+   "created": "2026-11-20T14:52:32+00:00",
+   "doc_id": "amla-library-04dcf14190e2",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "JOINT - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/fbc788a6-2df8-434c-8ec6-3120d333b92d_en?filename=Public%20summary%209th%20JOINT%20GB.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "AMLA staff presented the legal and regulatory background, recalling that legal privilege is protected under Union law and the European Convention on Human Rights, subject to necessary and proportionate restrictions. AMLA staff explained its understanding that legal privilege applies to specific categories of information defined in the AML Regulation and should not be considered a general exemption from AML/CFT obligations, including customer due diligence, suspicious transaction reporting and information-sharing requirements.",
+     "loc": "p. 3, para 9",
+     "topics": [
+      "cdd",
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on cdd, reporting-str"
+    },
+    {
+     "text": "Other Members supported AMLA's analysis and emphasised that legal privilege should not be interpreted as a blanket exemption from AML/CFT obligations, stressing the importance of preserving the effectiveness of reporting, supervision and FIU functions. The European Commission agreed with AMLA's analysis, considering that the relevant provisions largely continue existing Union legislation and do not create a general derogation from AML/CFT obligations.",
+     "loc": "p. 4, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "In response, AMLA staff clarified that the Guidelines are intended to support the application of the risk-based approach by providing indicative guidance rather than an exhaustive catalogue of risks. It was emphasised that the Guidelines should be considered in conjunction with existing AML/CFT requirements and national risk assessment frameworks and confirmed that the comments received would be taken into account in future drafts.",
+     "loc": "p. 11, para 3",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2385-ec0f3a7e",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "celex-32026D2385",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2385 of 26 October 2026 amending Decision (CFSP) 2016/610 on a European Union CSDP Military Training Mission in the Central African Republic (EUTM RCA)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2385",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2016/610 should be amended accordingly.",
+     "loc": "amending Decision (CFSP) 2016/610 on a European Union CSDP Military Training Mis, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "in Article 10, the following paragraph is added: ‘10. The financial reference amount for the common costs of EUMAM RCA for the period from 1 January 2027 until 31 August 2028 shall be EUR 12 993 000. The percentage of the reference amount referred to in Article 51(2) of Decision (CFSP) 2021/509 shall be 0 % for commitments and 0 % for payments.’ ;",
+     "loc": "Article 1, para 9",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-656e536eb6b4-7f3fa15d",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "amla-library-656e536eb6b4",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Speech at Nordic Financial Crime and Sanctions Forum - RLP",
+   "url": "https://www.amla.europa.eu/document/download/6c024a0d-1d2a-44fa-9b55-a306c48811d8_en?filename=Speech%20at%20Nordic%20Financial%20Crime%20and%20Sanctions%20Forum%20-%20RLP.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "We are developing our own risk analysis framework to support our supervisory work and strengthen our understanding of sectoral and geographical vulnerabilities. And that risk-based approach should run through the European supervisory system more broadly.",
+     "loc": "p. 3, para 3",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (should) on governance-risk-assessment"
+    },
+    {
+     "text": "A useful report should explain not only what appears unusual, but why it matters in the context of the customer and the activity. Feedback is equally important: institutions need to understand what FIUs find useful, while FIUs depend on institutions applying their own knowledge of customers and transactions when they report.",
+     "loc": "p. 4, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "This matters because the risk picture will continue to change. Business models evolve, technology develops, the geopolitical situation changes and criminal methods adapt – all topics, by the way, that I see you will be covering in the different sessions today and tomorrow. You have an interesting – and highly relevant – programme ahead of you. And as the risk picture changes, we need to take what we learn through supervision and FIU cooperation and feed it back into the way we assess risk and set priorities. For a new authority such as AMLA, that ability to adapt is particularly important. One of our values is courage. In this context, I think it has a practical meaning: being willing to question established assumptions and adjust our approach when the evidence shows that we should. Having the courage to discuss differences and align on common approaches. Having the courage to leverage technology, but also to understand and tackle",
+     "loc": "p. 5, para 7",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-69f6d9e46e55-63548dfe",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "amla-library-69f6d9e46e55",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "JOINT - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/24d83c27-d18c-40d1-b50c-61d847edcd26_en?filename=20260429_AMLA_8th%20GB%20Joint_Public%20summary.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "cites AMLR Art. 69",
+       "topic STR/SAR"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The discussion focused on the appropriate balance between harmonisation and flexibility. General Board Members broadly supported the objective of greater convergence but expressed concern about the feasibility, costs and operational impact of rapid or full harmonisation. Many Members supported a gradual approach based on a minimum mandatory core data set, complemented by optional fields and a longer-term roadmap towards more complete harmonisation. Members also stressed that the ITS should not constrain the analytical autonomy of financial intelligence units or reduce their ability to request additional information based on national risks. Considerable emphasis was placed on avoiding excessive burden s on obliged entities, particularly smaller and non-financial actors, in order to preserve reporting quality and effectiveness. AMLA staff acknowledged the concerns raised and confirmed that the strong preference expressed by Members for a minimum-core, phased approach would be fully reflected in the ongoing drafting and consultation work. The Chair summarised the discussion and confirmed the strategic direction for the next steps.",
+     "loc": "p. 5, para 3",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-427903da878f-fa355afe",
+   "created": "2026-11-19T15:12:16+00:00",
+   "doc_id": "amla-library-427903da878f",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "FIU - Public Summary",
+   "url": "https://www.amla.europa.eu/document/download/0466cf9f-6400-4f82-84f0-7d35b852cabd_en?filename=20260430_AMLA_8th%20GB%20FIU_Public%20summary.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "5. LAUNCH OF THE PUBLIC CONSULTATION ON THE ITS ON THE FORMAT FOR REPORTING OF INFORMATION BY THE FIUS TO EPPO (ART. 81(1) AMLR) (POINT FOR DISCUSSION) Discussion AMLA staff presented the draft implementing technical standards on the format for FIU reporting to EPPO, explaining that the initiative seeks to harmonise reporting practices and improve the efficiency and clarity of information transmission in cases falling within EPPO competence. The proposal introduces a common reporting template, promotes the use of machine readable formats and clarifies how restrictions of use should be indicated, while remaining technologically neutral as regards communication channels. General Board Members broadly supported the launch of the public consultation and acknowledged the operational value of a harmonised approach. The discussion highlighted the need to ensure realistic implementation timelines, alignment with other ongoing technical standards and sufficient clarity on technical specifications to support national information technology adaptations. Members also raised questions on the scope of permitted use of information by EPPO. AMLA’s Chair summarised the discussion and confirmed that",
+     "loc": "p. 3, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "AMLA staff further explained that the Implementing Technical Standards provide for a flexible and technology-neutral communication channel. While the possibility of using FIU.net is envisaged should the European Public Prosecutor’s Office connect to the sy stem, alternative secure channels would remain available, in particular for the initial phase when such a connection may not yet be in place. The draft standards also include provisions requiring AMLA to indicate any applicable restrictions on the use of t he information, without establishing new legal bases for such restrictions.",
+     "loc": "p. 4, para 5",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "7. RTS 31(3) AMLD– STATE OF PLAY (POINT FOR INFORMATION) Discussion The Chair invited AMLA staff to provide an update on the state of play of the draft Regulatory Technical Standards under Article 31(3) of the Anti-Money Laundering Directive. AMLA staff explained that the draft standards aim to specify the relevance and selection criteria to be applied when determining whether a suspicious transaction report concerns another Member State and should therefore be transmitted as a cross-border report or a cross-border dissemination. AMLA staff outlined the key elements of the proposed approach, notably the distinction between cross-border reports and crossborder disseminations and the differentiated treatment",
+     "loc": "p. 4, para 8",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R2574-f8b53476",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026R2574",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2574 of 16 November 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2574",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In particular, the Council considers that 12 individuals and 101 entities should be added to the list of persons, entities and bodies subject to restrictive measures set out in Annex I to Regulation (EU) No 269/2014.",
+     "loc": "implementing Regulation (EU) No 269/2014 concerning restrictive measures in resp, para 13",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2575-2f16305a",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026D2575",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2575 of 16 November 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2575",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In particular, the Council considers that 12 individuals and 101 entities should be added to the list of persons, entities and bodies subject to restrictive measures set out in the Annex to Decision 2014/145/CFSP.",
+     "loc": "amending Decision 2014/145/CFSP concerning restrictive measures in respect of ac, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision 2014/145/CFSP should therefore be amended accordingly,",
+     "loc": "amending Decision 2014/145/CFSP concerning restrictive measures in respect of ac, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2571-0076b2ab",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026D2571",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2571 of 16 November 2026 amending Decision (CFSP) 2020/1999 concerning restrictive measures against serious human rights violations and abuses",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2571",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In that context, four entities should be added to the list of natural and legal persons, entities and bodies subject to restrictive measures in the Annex to Decision (CFSP) 2020/1999.",
+     "loc": "amending Decision (CFSP) 2020/1999 concerning restrictive measures against serio, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2020/1999 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2020/1999 concerning restrictive measures against serio, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2372-18308b80",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "celex-32026D2372",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2372 of 26 October 2026 amending Decision 2010/788/CFSP concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2372",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision 2010/788/CFSP should therefore be amended accordingly,",
+     "loc": "amending Decision 2010/788/CFSP concerning restrictive measures in view of the s, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-hearings-b1a44b083017-c3b7bf98",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "amla-hearings-b1a44b083017",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on draft ITS on FIU and AMLA reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-its-fiu-and-amla-reporting-eppo-2026-05-27_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The first instrument establishes the format Financial Intelligence Units (FIUs) must use when reporting findings to the EPPO where analysis reveals reasonable grounds to suspect offences against the EU's financial interests. The second establishes the equivalent format for AMLA, covering findings produced through joint analyses conducted by AMLA together with FIUs. Both introduce a common reporting template and require machine-readable submissions through a secure channel, enabling automatic processing by the EPPO.",
+     "loc": "About the consultation, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-59cf94b53227-73bbdb61",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "amla-library-59cf94b53227",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AMLA and EPPO - Working Arrangement on Cooperation",
+   "url": "https://www.amla.europa.eu/document/download/21f8c0f0-1c39-4de0-b770-49c2c5436fd6_en?filename=Working%20Arrangement%20-%20AMLA%20and%20EPPO.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "(7) Pursuant to Article 57(4) of the AMLA Regulation, the General Board of AMLA, in its Financial Intelligence Unit (FIU) composition, may admit the EPPO as an observer to its meetings where matters within the scope of the EPPO’s mandate are discussed, and the conditions governing such participation should be laid down in the Rules of Procedure for the General Board of AMLA and reflect an agreement reached between AMLA and the EPPO.",
+     "loc": "p. 3, para 4",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (should) on reporting-str"
+    },
+    {
+     "text": "3. The European Chief Prosecutor shall designate representatives to participate, on behalf of the EPPO, as a non-voting observer in meetings of AMLA’s General Board in its Financial Intelligence Unit (FIU) composition where matters falling within the EPPO’s mandate are discussed, in accordance with Article 57(4) of the AMLA Regulation and the Rules of Procedure for the General Board of AMLA. For this purpose:",
+     "loc": "p. 11, para 6",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (shall) on reporting-str"
+    },
+    {
+     "text": "1. Subject to the availability of resources, the Parties shall cooperate in the area of professional training, including through the exchange of staff for learning and capacity-building purposes. Each Party shall inform the other of, and, where appropriate, i nvite the other to participate in relevant seminars, workshops, conferences, and similar activities.",
+     "loc": "p. 12, para 3",
+     "topics": [
+      "training"
+     ],
+     "why": "normative wording (shall) on training"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-news-0fee8ddae26e-9588f6f1",
+   "created": "2026-11-18T15:03:00+00:00",
+   "doc_id": "amla-news-0fee8ddae26e",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA finalises key standards for the private sector",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-key-standards-private-sector_en",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "cites AMLR Art. 19",
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Customer due diligence : the information companies and professionals must collect and verify, including proportionate measures for lower-risk situations, non-face-to-face verification, electronic identification, and screening of politically exposed persons (PEPs), their family members and close associates.",
+     "loc": "Greater clarity and consistency for the private sector, para 3",
+     "topics": [
+      "cdd",
+      "pep"
+     ],
+     "why": "normative wording (must) on cdd, pep"
+    },
+    {
+     "text": "Business relationships and occasional transactions : how companies and professionals should distinguish between the two, and how to identify linked transactions, so that customer due diligence thresholds are applied consistently.",
+     "loc": "Greater clarity and consistency for the private sector, para 2",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (should) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2554-ce2b37fc",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "celex-32026D2554",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2554 of 16 November 2026 amending Decision (CFSP) 2023/2682 on an assistance measure under the European Peace Facility to support military actors and navies of coastal states involved in maritime security operations in the Gulf of Guinea",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2554",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2023/2682 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2023/2682 on an assistance measure under the European P, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2556-789c485a",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "celex-32026D2556",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2556 of 16 November 2026 amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Russia’s destabilising activities",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2556",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In view of the gravity of the situation, the Council considers that 30 natural persons and one entity should be added to the list of natural and legal persons, entities and bodies set out in Annex I to Decision (CFSP) 2024/2643.",
+     "loc": "amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Ru, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2024/2643 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2024/2643 concerning restrictive measures in view of Ru, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R2569-eebbef7b",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "celex-32026R2569",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2569 of 16 November 2026 implementing Regulation (EU) 2020/1998 concerning restrictive measures against serious human rights violations and abuses",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2569",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In that context, four entities should be added to the list of natural or legal persons, entities or bodies subject to restrictive measures in Annex I to Regulation (EU) 2020/1998.",
+     "loc": "implementing Regulation (EU) 2020/1998 concerning restrictive measures against s, para 13",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-a602b2a61c97-a9508b05",
+   "created": "2026-11-17T15:28:31+00:00",
+   "doc_id": "amla-library-a602b2a61c97",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA finalises key standards for the private sector",
+   "url": "https://www.amla.europa.eu/document/download/6274f127-ac15-4e2a-b79f-88633a4deb54_en?filename=Press%20Release%20-%20AMLA%20finalises%20key%20standards%20for%20the%20private%20sector.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "▪ Customer due diligence: the information companies and professionals must collect and verify, including proportionate measures for lower-risk situations, non-face-to-face verification, electronic identification, and screening of politically exposed persons (PEPs), their family members and close associates.",
+     "loc": "p. 1, para 4",
+     "topics": [
+      "cdd",
+      "pep"
+     ],
+     "why": "normative wording (must) on cdd, pep"
+    },
+    {
+     "text": "▪ Business relationships and occasional transactions: how companies and professionals should distinguish between the two, and how to identify linked transactions, so that customer due diligence thresholds are applied consistently.",
+     "loc": "p. 1, para 3",
+     "topics": [
+      "cdd"
+     ],
+     "why": "normative wording (should) on cdd"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2546-92850f33",
+   "created": "2026-11-16T14:40:51+00:00",
+   "doc_id": "celex-32026D2546",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2546 of 16 November 2026 amending Decision (CFSP) 2019/797 concerning restrictive measures against cyber-attacks threatening the Union or its Member States",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2546",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "As part of the sustained, tailored and coordinated Union action against persistent cyber threat actors, one entity should be added to the list of natural and legal persons, entities and bodies subject to restrictive measures set out in the Annex to Decision (CFSP) 2019/797. That entity is responsible for cyber-attacks with a significant effect which constitute an external threat to the Union or its Member States, as well as for cyber-attacks with a significant effect against third States.",
+     "loc": "amending Decision (CFSP) 2019/797 concerning restrictive measures against cyber-, para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2019/797 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2019/797 concerning restrictive measures against cyber-, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026R2550-2f870a92",
+   "created": "2026-11-16T14:40:51+00:00",
+   "doc_id": "celex-32026R2550",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2550 of 16 November 2026 implementing Regulation (EU) 2019/796 concerning restrictive measures against cyber-attacks threatening the Union or its Member States",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2550",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "As part of the sustained, tailored and coordinated Union action against persistent cyber threat actors, one entity should be added to the list of natural and legal persons, entities and bodies subject to restrictive measures set out in Annex I to Regulation (EU) 2019/796. That entity is responsible for cyber-attacks with a significant effect which constitute an external threat to the Union or its Member States, as well as for cyber-attacks with a significant effect against third States.",
+     "loc": "implementing Regulation (EU) 2019/796 concerning restrictive measures against cy, para 9",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2570-f2868321",
+   "created": "2026-11-16T14:40:51+00:00",
+   "doc_id": "celex-32026D2570",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2570 of 16 November 2026 amending Decision (CFSP) 2024/385 establishing restrictive measures against Hamas and the Palestinian Islamic Jihad and those who support, facilitate or enable their violent actions",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2570",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In view of the continued threat posed by Hamas and the Palestinian Islamic Jihad, one person and one entity should be added to the list of natural or legal persons, groups, entities and bodies set out in the Annex to Decision (CFSP) 2024/385.",
+     "loc": "amending Decision (CFSP) 2024/385 establishing restrictive measures against Hama, para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2024/385 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2024/385 establishing restrictive measures against Hama, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-38ddd130dcf9-746f7c82",
+   "created": "2026-11-16T14:40:51+00:00",
+   "doc_id": "amla-library-38ddd130dcf9",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "AFC_Summit_HVK_07.10.2026",
+   "url": "https://www.amla.europa.eu/document/download/b8e48098-daa4-4ee7-810b-4e304be1f87f_en?filename=AFC_Summit_HVK_07.10.2026.pdf",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Good AML/CFT legislation, properly implemented, not only helps us identify crime after it has happened. It helps us reduce criminal opportunities before harm occurs. It raises barriers. It increases transparency and makes the playing field fairer. By doing so, misuse of the financial system becomes more difficult, more costly, and riskier for criminals. This preventive effect is not always as visible as incarceration. It may not generate headlines in the news. In fact, you could call it a form of quiet success. But it is a critical one. When a criminal network is disrupted before funds reach their harmful destination, that is true impact. When an institution strengthens its controls and blocks the channels through which its services were about to be abused, that is true impact. And similarly, when greater transparency around beneficial ownership exposes misuse and helps stop further abuse, that is true impact.",
+     "loc": "p. 3, para 3",
+     "topics": [
+      "beneficial-ownership"
+     ],
+     "why": "normative wording (may not) on beneficial-ownership"
+    },
+    {
+     "text": "Purchasing property with large amounts of cash is becoming far more complicated across Europe than it has ever been. European regulation of crypto-assets is making it harder to misuse that sector for illicit financing. And measures that verify the name of an intended recipient against bank account details are making fraud more difficult. These developments may not generate headlines in the same way as major arrests do. And yes, none of these measures is foolproof. I admit that. Criminals adapt; they shift their activities across jurisdictions and increasingly use new technologies such as AI to create convincing fake identities and documents. That is true. But these examples still show that, step by step, abusing our financial system requires ever greater effort, sophistication and resources.",
+     "loc": "p. 3, para 5",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (may not) on crypto-assets"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2368-c3b2b006",
    "created": "2026-11-15T13:22:56+00:00",
