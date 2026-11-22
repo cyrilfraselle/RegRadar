@@ -4,7 +4,9 @@
    A RegWatch item becomes: affected instruments, obligations, controls,
    policies and customer segments, the dates that apply, a decision and a
    prioritised task list that can be sent to the Issues and actions
-   tracker. Device-local record: localStorage 'regradar-impact'.
+   tracker. Stored on the data spine (docs/impact-store.js, docs/rr-core.js);
+   the old device-local key 'regradar-impact' is imported once and kept as a backup.
+   If the spine cannot be opened, the page falls back to that key.
 
    Matching is deterministic and rule-based (impact-match.js, rules in
    data/impact-rules.json). It is approximate and says why for every match.
@@ -41,6 +43,7 @@ function lsSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e
 var ITEMS = [], APP = null, OBS = [], RULES = null, CONTROLS = [], POLS = [], LAW = null, ENG = null;
 var PROFILE = { entity: '', acts: [] };
 var STORE = { v: 1, assessments: {} };
+var SP = null, BASE = {};   // the data spine (null = fallback to the old localStorage key) and what it last held, by item id
 var F = { q: '', source: '', theme: '', period: '', sort: 'rel', reg: false, todo: false };
 var MATCH = {};          // id -> quick analysis for the list
 var SEL = null, A = null, AN = null, EFF = null, TX = null, SHOWN = LIMIT, OPENER = null;
@@ -51,7 +54,28 @@ function loadStore() {
   if (!raw) return;
   try { var p = JSON.parse(raw); if (p && p.assessments) STORE = { v: 1, assessments: p.assessments }; } catch (e) { /* unreadable: start empty */ }
 }
-function saveStore() { storageOk = lsSet(KEY, JSON.stringify(STORE)); if (!storageOk) toast('Could not save on this device (storage blocked or full). Changes last until you close the page.'); return storageOk; }
+/* Open the shared spine and read the assessments from it. Returns false (and the page keeps using the old key) when the
+   spine cannot be opened or written, or when the old data could not be imported. */
+async function loadFromSpine() {
+  var IS = window.ImpactStore;
+  if (!window.RR || !IS) return false;
+  try {
+    var sp = await window.RR.shared();
+    if (sp.saveOk && !sp.saveOk()) return false;
+    if (!sp.getSetting(IS.DONE) && lsGet(KEY)) return false;      // old data exists but was not imported (unreadable): do not hide it
+    var R = IS.read(sp);
+    SP = sp; BASE = R._b; STORE = { v: 1, assessments: R.assessments };
+    return true;
+  } catch (e) { return false; }
+}
+function saveStore() {
+  if (SP) {
+    var res = window.ImpactStore.commit(SP, { assessments: STORE.assessments, _b: BASE });
+    storageOk = !res.errors.length && SP.saveOk();
+    if (!storageOk) toast('Could not save on this device (storage blocked or full). Changes last until you close the page.');
+    return storageOk;
+  }
+  storageOk = lsSet(KEY, JSON.stringify(STORE)); if (!storageOk) toast('Could not save on this device (storage blocked or full). Changes last until you close the page.'); return storageOk; }
 function loadProfile() { try { var p = JSON.parse(lsGet(PKEY) || 'null'); if (p) PROFILE = { entity: p.entity || '', acts: p.acts || [] }; } catch (e) { /* ignore */ } }
 function saveProfile() { var base = {}; try { base = JSON.parse(lsGet(PKEY) || 'null') || {}; } catch (e) { base = {}; } base.entity = PROFILE.entity; base.acts = PROFILE.acts; lsSet(PKEY, JSON.stringify(base)); }
 function loadPolicies() {
@@ -526,7 +550,8 @@ async function createIssues(tasks) {
     if (!window.RR || !window.ActionsStore) { fallback('The shared register is not available on this page.'); return; }
     if (tracker().unreadable) { fallback('The tracker data on this device could not be read, so nothing was written.'); return; }
     var b;
-    try { b = await window.RR.boot({}); } catch (e) { fallback('Could not open the shared register (' + e.message + ').'); return; }
+    try { if (SP) await SP.flush(); b = await window.RR.boot({}); } catch (e) { fallback('Could not open the shared register (' + e.message + ').'); return; }
+    if (SP) SP = b.spine;   // the page now writes to the freshly opened spine; BASE says what it already holds
     var mig = (b.migrations || []).filter(function (m) { return m.id === 'actions'; })[0] || {};
     if (mig.status === 'unreadable' || mig.status === 'error') { fallback('The tracker data on this device could not be read, so nothing was written.'); return; }
     var ids;
@@ -666,7 +691,8 @@ async function boot() {
   if (!res[0] || !res[1] || !res[3]) { $('detail').innerHTML = '<div class="empty">Could not load the data for this page (' + (!res[0] ? 'RegWatch items' : !res[1] ? 'applicability matrix' : 'matching rules') + '). Check your connection and reload.</div>'; $('items').innerHTML = ''; return; }
   ITEMS = res[0]; APP = res[1]; OBS = (res[2] && res[2].obligations) || []; RULES = res[3]; CONTROLS = res[4] ? res[4].controls : []; LAW = res[5];
   ENG = IM.create(RULES, APP, OBS);
-  loadStore(); loadProfile(); loadPolicies();
+  if (!(await loadFromSpine())) loadStore();
+  loadProfile(); loadPolicies();
   fillFilters(); renderProfile(); computeMatches();
   var want = resolveItem(new URLSearchParams(location.search).get('item'));
   renderKpis(); renderList();
