@@ -2,7 +2,7 @@
  "_meta": {
   "name": "Draft obligations (bulk extraction)",
   "version": 1,
-  "generated": "2026-11-14",
+  "generated": "2026-11-16",
   "status": "draft, not reviewed",
   "method": "Deterministic rule-based extraction by extract_obligations_draft.py from docs/data/laws/<celex>_EN.json. A unit is a sentence (or lead-in with its points, or a single point) containing an obligation marker. 'text' is verbatim from the law (whitespace normalised), never paraphrased. binds, topics and applies_to_hint are rule-based (see strategy/obligations-bulk.md). A unit is not always one obligation: many obligations span paragraphs.",
   "disclaimer": "DRAFT, NOT REVIEWED. Not legal advice and not part of the verified register (docs/data/obligations.json). Nothing here is verified until the independent legal fact-check promotes it.",
@@ -771,7 +771,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -796,7 +798,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -821,7 +825,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -847,7 +853,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -872,7 +880,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -897,7 +907,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -922,7 +934,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -947,7 +961,9 @@
    "subtopics": [],
    "topic_source": "rule",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art8"
+   ],
    "status": "draft"
   },
   {
@@ -976,7 +992,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art10"
+   ],
    "status": "draft"
   },
   {
@@ -1005,7 +1023,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art10"
+   ],
    "status": "draft"
   },
   {
@@ -1034,7 +1054,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art10"
+   ],
    "status": "draft"
   },
   {
@@ -1063,7 +1085,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art10"
+   ],
    "status": "draft"
   },
   {
@@ -1093,7 +1117,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art10"
+   ],
    "status": "draft"
   },
   {
@@ -1122,7 +1148,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1151,7 +1179,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1180,7 +1210,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1209,7 +1241,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1238,7 +1272,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1267,7 +1303,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1296,7 +1334,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1325,7 +1365,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1354,7 +1396,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1381,7 +1425,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1408,7 +1454,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1435,7 +1483,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1462,7 +1512,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1491,7 +1543,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1520,7 +1574,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1549,7 +1605,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1576,7 +1634,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art11"
+   ],
    "status": "draft"
   },
   {
@@ -1605,7 +1665,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art12"
+   ],
    "status": "draft"
   },
   {
@@ -1634,7 +1696,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art12"
+   ],
    "status": "draft"
   },
   {
@@ -1663,7 +1727,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art12"
+   ],
    "status": "draft"
   },
   {
@@ -1692,7 +1758,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art13"
+   ],
    "status": "draft"
   },
   {
@@ -1721,7 +1789,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art13"
+   ],
    "status": "draft"
   },
   {
@@ -1750,7 +1820,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art13"
+   ],
    "status": "draft"
   },
   {
@@ -1779,7 +1851,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art13"
+   ],
    "status": "draft"
   },
   {
@@ -1806,7 +1880,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art13"
+   ],
    "status": "draft"
   },
   {
@@ -1835,7 +1911,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -1864,7 +1942,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -1893,7 +1973,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -1922,7 +2004,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -1951,7 +2035,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -1978,7 +2064,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2005,7 +2093,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2032,7 +2122,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2059,7 +2151,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2086,7 +2180,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2113,7 +2209,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2140,7 +2238,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2167,7 +2267,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2194,7 +2296,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2221,7 +2325,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art16"
+   ],
    "status": "draft"
   },
   {
@@ -2333,7 +2439,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2363,7 +2471,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2392,7 +2502,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2421,7 +2533,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2451,7 +2565,9 @@
    ],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2478,7 +2594,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2505,7 +2623,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2532,7 +2652,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2559,7 +2681,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2586,7 +2710,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2613,7 +2739,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
@@ -2640,7 +2768,9 @@
    "subtopics": [],
    "topic_source": "topics.json",
    "applies_to_hint": [],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art18"
+   ],
    "status": "draft"
   },
   {
