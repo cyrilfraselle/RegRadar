@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-21T14:09:37+00:00",
-  "count": 111
+  "generated": "2026-11-22T13:58:21+00:00",
+  "count": 121
  },
  "deadlines": [
   {
@@ -431,6 +431,19 @@
    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en",
    "confidence": "high",
    "method": "structured: 'Deadline' field on amla-consultations-list"
+  },
+  {
+   "id": "e15cf6731eb3",
+   "date": "2026-08-24",
+   "kind": "reporting deadline",
+   "title": "EBA publishes draft reporting framework for the 2027 eligibility data collection",
+   "source_doc_id": "amla-news-f47b90ce2410",
+   "source": "amla-news",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/eba-publishes-draft-reporting-framework-2027-eligibility-data-collection_en",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "Stakeholders, including the private sector and national competent authorities, are invited to submit feedback through the EBA feedback form by 24 August 2026 .",
+   "loc": "s1, para 4"
   },
   {
    "id": "8b9275f5837b",
@@ -899,6 +912,105 @@
    "url": "law.html?celex=32024L1640",
    "confidence": "high",
    "method": "structured: docs/data/applicability.json applies_from"
+  },
+  {
+   "id": "5309d6e8efb8",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art8: AMLR Art. 8 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=8",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "cdb0ef75ec4f",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art9: AMLR Art. 9 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=9",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "f1c186641387",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art10: AMLR Art. 10 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=10",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "d27ae8955bee",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art11: AMLR Art. 11 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=11",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "342afb4d5446",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art12: AMLR Art. 12 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=12",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "68246877e90d",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art13: AMLR Art. 13 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=13",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "37cc62dfd440",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art14: AMLR Art. 14 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=14",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "1c77a8677067",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art16: AMLR Art. 16 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=16",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
+  },
+  {
+   "id": "448b48a4b000",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "AMLR-art18: AMLR Art. 18 applies",
+   "source_doc_id": "",
+   "source": "obligations.json",
+   "url": "law.html?celex=32024R1624&art=18",
+   "confidence": "high",
+   "method": "structured: docs/data/obligations.json deadline"
   },
   {
    "id": "4fe728b75815",
