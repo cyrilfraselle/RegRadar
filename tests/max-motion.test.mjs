@@ -12,6 +12,7 @@
 //      that flickers (lasts under 3 frames). The eyes and badge lines are cut-outs and are not counted.
 //  (c) paw slip: a paw on the ground moves less than 0.5 px horizontally during its stance
 //  (d) loop closure: the walk cycle returns to its first frame
+//  (e) naturalness: the walk measured back against docs/data/max-gait.json (offsets, stride, lift, bob, cycle)
 // plus: IoU of the rest pose against design-refs/max-walk-master.png when that (untracked) file exists.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -67,8 +68,8 @@ function stats(a) {
 // ---------------------------------------------------------------- the walk-in
 const sc = RIG.scene(W, H, S, false);
 RIG.setBadge(sc, W - 42, H - 16 - 26 + 1.8);
-const tl = sc.pl.tl, tStop = tl.tStop, tEnd = tStop + RIG.LOOK + RIG.CURL;
-console.log(`walk-in: ${f2(tStop)} s walking (${f2(tl.X0)} units), arrival ${f2(RIG.LOOK + RIG.CURL)} s`);
+const tl = sc.pl.tl, tStop = tl.tStop, tEnd = tStop + RIG.ARRIVE;
+console.log(`walk-in: ${f2(tStop)} s walking (${f2(tl.X0)} units), arrival ${f2(RIG.ARRIVE)} s`);
 const N = Math.ceil(tEnd * FPS);
 const ch = [], chArr = [], comp = [], holes = [], compGap = [], pin = [], walking = [];
 let prev = null, t0 = Date.now(), maxReach = 0;
@@ -138,6 +139,67 @@ ok(lc < 0.002, `(d) loop closure: frame(t + ${f2(T)} s) vs frame(t): XOR/area ${
 ok(maxReach <= 1, `legs stay within reach (max extension ${f2(maxReach * 100)}%)`);
 console.log(`render: ${f2(ms)} ms per frame at final size (node, single thread)`);
 
+// ---------------------------------------------------------------- (e) naturalness against the measured reference gait
+// docs/data/max-gait.json holds curves measured frame by frame from a reference clip of a real cat walking in profile
+// (third-party footage used only as a measurement reference; no frames are stored). The rig's walk is measured back here
+// with the same definitions and must match: phase offsets within 0.05 cycles, paw lift and stride within 15%, body and
+// head bob within 25%, and a cycle whose duration matches the on-screen speed.
+{
+  const G = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/max-gait.json'), 'utf8'));
+  const g = RIG.GAIT, LB = RIG.LB, rel = (a, b) => Math.abs(a - b) / Math.abs(b);
+  const same = (a, b) => Math.abs(a - b) < 1e-9;
+  const copyOk = same(g.strideL, G.cycle.strideL) && same(g.speedL, G.cycle.speedLps) && same(g.o[0], G.offsets.nearFore) && same(g.o[1], G.offsets.farFore) &&
+    same(g.o[2], G.offsets.farHind) && same(g.d[0], G.duty.fore) && same(g.d[1], G.duty.hind) && same(g.p[0][0], G.placement.foreTouchdown) &&
+    same(g.p[0][1], G.placement.foreLiftoff) && same(g.p[1][0], G.placement.hindTouchdown) && same(g.p[1][1], G.placement.hindLiftoff) &&
+    [0, 1].every((j) => g.u[j].every((v, i) => same(v, G.swing[j ? 'hind' : 'fore'].u[i])) && g.h[j].every((v, i) => same(v, G.swing[j ? 'hind' : 'fore'].h[i]))) &&
+    ['withers', 'back', 'hips', 'headY', 'headX', 'tailTipX', 'tailTipY'].every((k) => g[k].length === 24 && g[k].every((v, i) => same(v, G.curves[k].c[i])));
+  ok(copyOk, '(e) the gait constants in max-widget.js are the measured numbers in docs/data/max-gait.json');
+  // body length of the rig, measured on its rendered rest pose like the reference: nose tip to the back of the haunch
+  { const s8 = 8, w = 140 * s8, h = 112 * s8, buf = new Uint8Array(w * h); RIG.render(RIG.build(RIG.REST), 0.8, buf, w, h, 0, 0, s8);
+    const back = 58, yA = back + 0.06 * (RIG.GROUND - back), yB = back + 0.38 * (RIG.GROUND - back), yH0 = back - 18, yH1 = back + 0.63 * (RIG.GROUND - back);
+    let nose = 1e9, rump = -1e9;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { if (buf[y * w + x] < 128) continue; const wy = (y + 0.5) / s8, wx = (x + 0.5) / s8;
+      if (wy > yH0 && wy < yH1 && wx < 40) nose = Math.min(nose, wx); if (wy > yA && wy < yB && wx < 100) rump = Math.max(rump, wx); }
+    ok(rel(rump - nose, LB) < 0.02, `(e) body length: rendered ${f2(rump - nose)} units vs the rig's ${f2(LB)} (within 2%)`); }
+  // gait events from the footstep plan of the demo walk in place
+  const sp = RIG.scene(W, H, S, true), Tc = RIG.DC / RIG.VW, td = [[], [], [], []], prints = [[], [], [], []];
+  sp.pl.legs.forEach((ev, i) => ev.forEach((e) => { if (e.ld > 1 && e.ld < 1 + 4 * Tc) { td[i].push(e.ld); prints[i].push(e.x); } }));
+  const phaseOf = (t) => sp.pl.phi0 + sp.pl.tl.dist(t) / RIG.DC;
+  const off = td.map((ts) => { const z = ts.map((t) => { const p = ((phaseOf(t) - phaseOf(td[3][0])) % 1 + 1) % 1; return [Math.cos(2 * Math.PI * p), Math.sin(2 * Math.PI * p)]; });
+    return ((Math.atan2(z.reduce((a, v) => a + v[1], 0), z.reduce((a, v) => a + v[0], 0)) / (2 * Math.PI)) % 1 + 1) % 1; });
+  const refOff = [G.offsets.nearFore, G.offsets.farFore, G.offsets.farHind, 0], names = ['near fore', 'far fore', 'far hind', 'near hind'];
+  const dOff = off.map((o, i) => { const d = Math.abs(o - refOff[i]); return Math.min(d, 1 - d); });
+  console.log('    phase offsets (rig / reference): ' + names.map((n, i) => `${n} ${f2(off[i])}/${f2(refOff[i])}`).join(', '));
+  ok(Math.max(...dOff) <= 0.05, `(e) paw phase offsets within 0.05 cycles of the reference (max difference ${f2(Math.max(...dOff))})`);
+  const strides = prints.map((p) => p.slice(1).map((x, k) => Math.abs(x - p[k]) / LB)).flat(), stride = strides.reduce((a, b) => a + b, 0) / strides.length;
+  ok(rel(stride, G.cycle.strideL) <= 0.15, `(e) stride ${f2(stride)} L vs reference ${f2(G.cycle.strideL)} L (${f2(100 * rel(stride, G.cycle.strideL))}%, limit 15%)`);
+  // paw clearance: the lowest point of each swinging paw (heel or toe, with its radius) above the ground
+  const lift = [0, 0];
+  for (let k = 0; k < 400; k++) { const t = 3 + k * Tc / 200, J = RIG.walk(sp.pl, t);
+    J.L.forEach((l, i) => { if (RIG.paw(sp.pl, i, t).st) return; const low = Math.max(l[3][1] + l[3][2], l[4][1] + l[4][2]), j = i < 2 ? 0 : 1; lift[j] = Math.max(lift[j], (RIG.GROUND - low) / LB); }); }
+  const refLift = [G.swing.fore.hmax_fit, G.swing.hind.hmax_fit];
+  ok(rel(lift[0], refLift[0]) <= 0.15 && rel(lift[1], refLift[1]) <= 0.15, `(e) paw lift fore ${f2(lift[0])} L / hind ${f2(lift[1])} L vs reference ${f2(refLift[0])} / ${f2(refLift[1])} (${f2(100 * rel(lift[0], refLift[0]))}% / ${f2(100 * rel(lift[1], refLift[1]))}%, limit 15%; raw peaks seen in the clip ${G.swing.fore.hmax_raw} / ${G.swing.hind.hmax_raw})`);
+  // body bob (top of the back half way along) and head bob (centroid of the head), measured on rendered frames
+  const s8 = 8, bw = 120 * s8, bh = 70 * s8, backY = [], headY = [];
+  for (let k = 0; k < 48; k++) {
+    const t = 3 + k * Tc / 48, f = RIG.frame(sp.pl, t), X = sp.pl.tl.X(t), ox = X + RIG.NOSE - 10, oy = 30, buf = new Uint8Array(bw * bh);
+    RIG.render(f.P, f.gap, buf, bw, bh, ox, oy, s8);
+    const col = Math.round((X + RIG.NOSE + 0.5 * LB - ox) * s8); let top = 0;
+    for (let y = 0; y < Math.round((66 - oy) * s8); y++) top += 1 - buf[y * bw + col] / 255;
+    backY.push(top / s8);
+    let sw = 0, sy = 0; const x1 = Math.round((X + RIG.NOSE + 0.2 * LB - ox) * s8), y1 = Math.round((RIG.GROUND - 0.88 * (RIG.GROUND - 58) - oy) * s8); // above the shoulders, so the reaching fore leg never enters
+    for (let y = 0; y < y1; y++) for (let x = 0; x < x1; x++) { const v = buf[y * bw + x] / 255; sw += v; sy += v * y; }
+    headY.push(sy / sw / s8);
+  }
+  const pp = (a) => (Math.max(...a) - Math.min(...a)) / LB, bob = pp(backY), hb = pp(headY);
+  ok(rel(bob, G.curves.back.pp) <= 0.25, `(e) vertical bob of the back ${f2(bob)} L vs reference ${f2(G.curves.back.pp)} L (${f2(100 * rel(bob, G.curves.back.pp))}%, limit 25%)`);
+  ok(rel(hb, G.curves.headY.pp) <= 0.25, `(e) head bob ${f2(hb)} L vs reference ${f2(G.curves.headY.pp)} L (${f2(100 * rel(hb, G.curves.headY.pp))}%, limit 25%)`);
+  // cycle duration vs on-screen speed: one stride per cycle, at the measured speed in body lengths per second
+  const cyc = Tc * 1000, refCyc = G.cycle.ms;
+  ok(rel(cyc, refCyc) <= 0.02 && rel(RIG.DC / LB, G.cycle.strideL) < 1e-6, `(e) cycle ${f2(cyc)} ms at ${f2(RIG.VW * S)} CSS px/s on screen (${f2(RIG.VW / LB)} L/s); reference ${refCyc} ms at ${G.cycle.speedLps} L/s: stride and speed consistent`);
+  console.log(`    duty factor fore/hind: ${f2(g.d[0])}/${f2(g.d[1])} (taken from the reference)`);
+}
+
 // ---------------------------------------------------------------- rest pose vs the approved master
 const master = path.join(ROOT, 'design-refs/max-walk-master.png');
 if (fs.existsSync(master)) {
@@ -169,7 +231,7 @@ if (process.env.MAX_SHEETS) {
   const tc = 1.6; // cruising
   sheet('walk-16-consecutive.png', Array.from({ length: 16 }, (_, i) => tc + i / FPS), 3, 4);
   sheet('walk-cycle-16.png', Array.from({ length: 16 }, (_, i) => tc + i * T / 16), 3, 4);
-  sheet('arrival-12.png', Array.from({ length: 12 }, (_, i) => tStop - 0.3 + i * (RIG.LOOK + RIG.CURL + 0.3) / 11), 3, 4);
+  sheet('arrival-12.png', Array.from({ length: 12 }, (_, i) => tStop - 0.3 + i * (RIG.ARRIVE + 0.3) / 11), 3, 4);
   console.log('contact sheets written to ' + dir);
 }
 
