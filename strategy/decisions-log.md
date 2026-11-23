@@ -29,3 +29,10 @@
 ## 2026-11-22 (answers to the 2026-11-21 digest, replies sent 21 Nov 08:47 and 08:49)
 - **D1 = A** (film 05 script, PR #55): approve after the independent check (PR #56); the next run may build the film once the 5 caption fixes are applied. Owner remark: the Belgian FIU is CTIF-CFI (not "CRF"); say "FIU" to stay generic and give CTIF as the example. The owner asked whether something else was meant; to be confirmed in the next digest.
 - **D2 = A** (next module on the shared data layer, PR #57): Cases next. Handle case data with care (sensitive).
+
+## 2026-11-23 (answers to the 2026-11-23 digest, given in chat)
+- **D1 = A** (register, PR #62): next block is Chapter V, reporting suspicions (AMLR Arts 69 to 73); touches the Academy film 05 topic. #62 itself still waits for its independent legal review.
+- **D2 = A** (film 05, PR #56): yes to all three review points: mention the "know or suspect" test, keep the small-deposits example, add "promptly".
+- **D3 = A** (vocabulary): "FIU" everywhere, CTIF-CFI cited as the Belgian example.
+- **Merge** approved for #60, #59, #56, #52, #49, #44 (merged to main by the owner's instruction). Owner asked to close old PRs and open the pending ones on GitHub; owner asked to start the Max register page in Kanban view.
+- Max walker: owner says the walk is still not natural; they will come back to it later (options: trace the reference MP4 frames after licence and tools decision, or an illustrator).
