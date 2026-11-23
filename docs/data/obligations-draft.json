@@ -2,7 +2,7 @@
  "_meta": {
   "name": "Draft obligations (bulk extraction)",
   "version": 1,
-  "generated": "2026-11-16",
+  "generated": "2026-11-22",
   "status": "draft, not reviewed",
   "method": "Deterministic rule-based extraction by extract_obligations_draft.py from docs/data/laws/<celex>_EN.json. A unit is a sentence (or lead-in with its points, or a single point) containing an obligation marker. 'text' is verbatim from the law (whitespace normalised), never paraphrased. binds, topics and applies_to_hint are rule-based (see strategy/obligations-bulk.md). A unit is not always one obligation: many obligations span paragraphs.",
   "disclaimer": "DRAFT, NOT REVIEWED. Not legal advice and not part of the verified register (docs/data/obligations.json). Nothing here is verified until the independent legal fact-check promotes it.",
