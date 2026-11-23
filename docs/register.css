@@ -1,0 +1,29 @@
+/* Layout only; colours, buttons, pills come from rr-ui.css */
+.kb{grid-template-columns:repeat(5,minmax(220px,1fr));overflow-x:auto;padding-bottom:var(--rr-3);scroll-snap-type:x proximity}
+.kb-col{scroll-snap-align:start;display:flex;flex-direction:column}
+.kb-col .hint{margin:0 4px var(--rr-3);font-size:var(--rr-t-small);color:var(--rr-text-2)}
+.kb-cards{flex:1;min-height:60px}
+.kb-col.over{outline:3px solid var(--rr-focus);outline-offset:-3px}
+.kb-col.auto .kb-col-h h3::after{content:" (automatic)";font-weight:400;font-size:var(--rr-t-micro);color:var(--rr-text-3)}
+@media (max-width:1100px){.kb{grid-template-columns:repeat(5,minmax(78vw,1fr))}}
+@media (max-width:620px){.kb{grid-template-columns:repeat(5,86vw)}}
+.kb-card{position:relative;touch-action:pan-y}
+.kb-card .open{display:block;width:100%;text-align:left;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;min-height:44px}
+.kb-card .open:focus-visible,.kb-card .grip:focus-visible{outline:3px solid var(--rr-focus);outline-offset:2px}
+.kb-card .t{font-weight:600}
+.kb-card .src{font-size:var(--rr-t-small);color:var(--rr-text-2);margin-top:2px}
+.kb-card .foot{display:flex;gap:var(--rr-2);align-items:center;margin-top:var(--rr-3)}
+.kb-card .foot .sel{flex:1;min-width:0;min-height:44px}
+.kb-card .grip{flex:none;width:44px;height:44px;border:1px solid var(--rr-line-strong);border-radius:var(--rr-r-sm);background:var(--rr-surface-2);cursor:grab;touch-action:none;
+  background-image:radial-gradient(currentColor 1.4px,transparent 1.6px);background-size:8px 8px;background-position:center;color:var(--rr-text-3)}
+.kb-card.drag-src{opacity:.4}
+.ghost{position:fixed;z-index:200;pointer-events:none;width:min(280px,80vw);box-shadow:0 10px 30px rgba(16,24,40,.25);opacity:.95}
+.empty-col{color:var(--rr-text-3);font-size:var(--rr-t-small);padding:var(--rr-3)}
+@media (hover:hover) and (pointer:fine){.kb-card{cursor:grab}.kb-card .open{cursor:pointer}}
+#dlg blockquote{margin:var(--rr-3) 0;padding:var(--rr-3);background:var(--rr-surface-2);border-radius:var(--rr-r-sm);font-size:var(--rr-t-small);line-height:1.55}
+#dlg h3{font-size:var(--rr-t-h3);margin:var(--rr-4) 0 var(--rr-2)}
+#dlg ul{padding-left:18px;margin:var(--rr-2) 0}
+#dlg .row{display:flex;gap:var(--rr-2);flex-wrap:wrap;align-items:center;margin:var(--rr-2) 0}
+#dlg .row .in{flex:1;min-width:140px}
+.rr-table-wrap{overflow-x:auto}
+@media print{.head-tools,.rr-filters,.skip{display:none!important}.kb{display:block}}

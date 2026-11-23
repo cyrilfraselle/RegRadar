@@ -20,20 +20,13 @@ function jget(k,d){try{var v=JSON.parse(localStorage.getItem(k)||'null');return 
 function jset(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){toast('Browser storage is blocked or full.');return false}}
 
 function artNum(o){var m=(o.source_url||'').match(/art=(\d+)/);return m?m[1]:((o.legal_basis||'').match(/(\d+)/)||[])[1]||''}
-function ctlsFor(id){return CONTROLS.filter(function(c){return (c.obligation_ids||[]).indexOf(id)!==-1})}
-function ctlState(c){ // 2 tested, 1 in place but untested, 0 not in place
-  if(c.status!=='approved')return 0;
-  if(CFG.needOwner&&!(c.owner||'').trim())return 0;
-  var tested=!!c.last_tested;
-  if(tested&&CFG.overdueIsUntested&&window.ControlsData.isOverdue(c,TODAY))tested=false;
-  return (tested||!CFG.needTest)?2:1;
+function ctlsFor(id){return GapLogic.ctlsFor(CONTROLS,id)}
+function isNA(o){ // dismissed in the workspace, or moved to Not applicable on the register Kanban
+  var legacy=!!(jget(MKEY,{}).dismissed||{})[o.id];
+  return window.RegisterLogic&&window.RR&&window.RR.current?window.RegisterLogic.isNA(window.RR.current,o.id,legacy):legacy;
 }
 function statusOf(o){
-  if((jget(MKEY,{}).dismissed||{})[o.id])return 'na';
-  var cs=ctlsFor(o.id);
-  if(!cs.length)return 'not_covered';
-  var best=Math.max.apply(null,cs.map(ctlState));
-  return best===2?'covered_tested':best===1?'covered_untested':'partly';
+  return GapLogic.statusOf(o,CONTROLS,CFG,function(c){return window.ControlsData.isOverdue(c,TODAY)},isNA(o));
 }
 function inScope(){return OBS.filter(function(o){return !S.firm||(o.who||[]).indexOf(S.firm)!==-1})}
 function rows(){
