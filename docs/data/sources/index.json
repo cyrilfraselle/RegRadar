@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-22T13:58:21+00:00",
-  "count": 217,
-  "corpus_bytes": 4503765
+  "generated": "2026-11-23T17:18:35+00:00",
+  "count": 228,
+  "corpus_bytes": 4589660
  },
  "documents": [
   {
@@ -27,6 +27,26 @@
    ],
    "parent": null,
    "paragraphs": 18
+  },
+  {
+   "id": "amla-consultations-638d7cd1a2f0",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the financial sector",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
+   "publication_date": "2026-11-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "ed74ec0608a213671375d7fb171f0e8755c06851cf167f33ee07e4d410bb3e37",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2514,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 16
   },
   {
    "id": "amla-consultations-69942ae09129",
@@ -219,6 +239,26 @@
    ],
    "parent": null,
    "paragraphs": 13
+  },
+  {
+   "id": "amla-consultations-f41721a0064f",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the non-financial sector",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
+   "publication_date": "2026-11-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "ce3cc81dd60cd08d0d3d223801569b0decd5fef035c0a48d4f94376ba8be5fd3",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2348,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 15
   },
   {
    "id": "amla-consultations-f4810ea04c53",
@@ -479,6 +519,26 @@
    ],
    "parent": null,
    "paragraphs": 12
+  },
+  {
+   "id": "amla-hearings-dca764782172",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the nonfinancial sector",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-conditions-functioning-amlcft-supervisory-colleges-nonfinancial-sector-2026-12-14_en",
+   "publication_date": "2026-11-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "7ed5840175d62a91f0674437037a297c2fbbb5afedacf6fcb0363b6042a50fee",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1911,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 10
   },
   {
    "id": "amla-hearings-ebbf5cc0b12e",
@@ -1312,6 +1372,26 @@
    "paragraphs": 39
   },
   {
+   "id": "amla-library-7397fae381b3",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA consults on AML/CFT supervisory colleges in the EU",
+   "url": "https://www.amla.europa.eu/document/download/a9b75e33-6f87-4020-ad6c-092c46fda6da_en?filename=Press%20Release%20-%20PC%20on%20AML_CFT%20colleges.pdf",
+   "publication_date": "2026-11-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "b301ba23a578074a9c2b74ed249111d199b391dbbdd6351ea7e23374732917d6",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2517,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 4
+  },
+  {
    "id": "amla-library-79cd70a6156d",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1779,6 +1859,26 @@
    "paragraphs": 4
   },
   {
+   "id": "amla-news-47e6555737ba",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA consults on AML/CFT supervisory colleges in the EU",
+   "url": "https://www.amla.europa.eu/press-release-amla-consults-amlcft-supervisory-colleges-eu_en",
+   "publication_date": "2026-11-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "74865b993543e1e88058fad02ae1e4185a18bb831698d5301ace7cec60cd60d1",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2142,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 6
+  },
+  {
    "id": "amla-news-490c4c92f749",
    "source": "amla-news",
    "authority": "AMLA",
@@ -1988,6 +2088,26 @@
    "topics": [],
    "parent": null,
    "paragraphs": 9
+  },
+  {
+   "id": "amla-news-8c2eb709ca08",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA publishes report on cooperation in AML/CFT supervisory colleges",
+   "url": "https://www.amla.europa.eu/amla-publishes-report-cooperation-amlcft-supervisory-colleges_en",
+   "publication_date": "2026-11-23",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "5d6f8a0e79ecdebd1e01e2b67852221fbedd341c1cfb0b41f94a8ae694a2c041",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 865,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 5
   },
   {
    "id": "amla-news-8c712d4c9fa0",
@@ -2225,6 +2345,28 @@
    "paragraphs": 8
   },
   {
+   "id": "amla-news-e5fae4c9426d",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Updated taxonomy for the 2027 risk assessment data collection",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/updated-taxonomy-2027-risk-assessment-data-collection_en",
+   "publication_date": "2026-07-20",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "049441fd88dba47870983104b79fb4f112bb65d1c9004464387b341031a9a2f5",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 939,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 7
+  },
+  {
    "id": "amla-news-f47b90ce2410",
    "source": "amla-news",
    "authority": "AMLA",
@@ -2316,14 +2458,14 @@
    "id": "amla-reports-49fe354c0962",
    "source": "amla-reports",
    "authority": "AMLA",
-   "title": "Report on cooperation - Supervisory authorities in AMLCFT colleges",
+   "title": "Report on cooperation - Supervisory authorities in AML/CFT colleges",
    "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
-   "publication_date": "2026-11-20",
+   "publication_date": "2026-11-23",
    "type": "supervisory_communication",
    "status": "published",
    "language": "en",
    "version_hash": "14c9c28c809be0c5bbdb8fadd5822ca7ee11323057aedfae6be22441a9c277d5",
-   "retrieved": "2026-11-21T14:09:37+00:00",
+   "retrieved": "2026-11-23T17:18:35+00:00",
    "format": "pdf",
    "pages_total": 17,
    "chars_stored": 31673,
@@ -3077,6 +3219,72 @@
    "paragraphs": 486
   },
   {
+   "id": "celex-32026D2605",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2605 of 23 November 2026 amending Decision (CFSP) 2026/455 on restrictive measures to combat terrorism",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2605",
+   "publication_date": "2026-11-23",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "fc2f3cd67b5de98560ed8d0e1a3b4175f6d9e4c926e60ed1c465a16877dd18b4",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2117,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 30
+  },
+  {
+   "id": "celex-32026D2618",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2618 of 20 November 2026 on an assistance measure under the European Peace Facility to support the Armed Forces of Ukraine through the joint procurement of military equipment not designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2618",
+   "publication_date": "2026-11-23",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "5bfc7424a4aa87b7ffe357c4021ab5d75f32ce2938c44fe11da4758896997497",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 15541,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 91
+  },
+  {
+   "id": "celex-32026D2620",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2620 of 20 November 2026 on an assistance measure under the European Peace Facility to support the Armed Forces of Ukraine through the joint procurement of military equipment designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2620",
+   "publication_date": "2026-11-23",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "47c3c21114709614f558ff3b12adca10e2b5a0977b62c48a5fb5cf8bd3dcf1b3",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 15165,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 92
+  },
+  {
    "id": "celex-32026R0046",
    "source": "eurlex-cellar-aml-family",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -3301,6 +3509,28 @@
    ],
    "parent": null,
    "paragraphs": 488
+  },
+  {
+   "id": "celex-32026R2616",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Implementing Regulation (EU) 2026/2616 of 23 November 2026 implementing Regulation (EC) No 2580/2001 on specific restrictive measures directed against certain persons and entities with a view to combating terrorism",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2616",
+   "publication_date": "2026-11-23",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "4f26b3c6922045b84b680607e29ac19c7eb5d697698f92a0b8780ca3ae3e02b0",
+   "retrieved": "2026-11-23T17:18:35+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2077,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 29
   },
   {
    "id": "celex-52025DP0342",

@@ -2,10 +2,238 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-22T13:58:21+00:00",
-  "count": 91
+  "generated": "2026-11-23T17:18:35+00:00",
+  "count": 95
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2618-5bfc7424",
+   "created": "2026-11-23T17:18:35+00:00",
+   "doc_id": "celex-32026D2618",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2618 of 20 November 2026 on an assistance measure under the European Peace Facility to support the Armed Forces of Ukraine through the joint procurement of military equipment not designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2618",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On 18 March 2024, by Council Decision (CFSP) 2024/890 ( 2 ) on the basis of a proposal of the High Representative of the Union for Foreign and Security Policy for a Ukraine Assistance Fund, the Council amended Decision (CFSP) 2021/509 to increase the overall financial ceiling of the EPF by EUR 5 000 000 000 in 2024 in current prices, an amount specifically dedicated to Ukraine and aimed at ensuring sustainable and predictable military support to Ukraine. Military support to Ukraine under that dedicated amount should continue to be driven by the evolving needs of the Armed Forces of Ukraine (AFU), seeking to maximise the Union’s added value and complementing bilateral efforts, and should be articulated through a more structured, efficient and pragmatic approach, making use of increased joint procurement from the Union defence industry, Norway, and Ukraine.",
+     "loc": "on an assistance measure under the European Peace Facility to support the Armed , para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "2. All expenditure shall be managed in accordance with Decision (CFSP) 2021/509 and in line with the rules for the implementation of revenue and expenditure financed under the EPF. By way of derogation from Article 50 and 50a of Book 3 of the EPF Implementing Rules, participation in joint procurement procedures shall be open only to economic operators as referred to in Article 1(4) of this Decision as regards military equipment originating as referred thereunder.",
+     "loc": "Article 2, para 2",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 67 000 000 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the assistance measure. This assistance measure may be financed through additional contributions exceeding 50 % of the reference amount referred to in paragraph 1.",
+     "loc": "Article 2, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "1. The High Representative shall be responsible for ensuring the implementation of this Decision in accordance with Decision (CFSP) 2021/509, and in line with the rules for the implementation of revenue and expenditure financed under the EPF and with the Integrated Methodological Framework for assessing and identifying the required measures and controls for assistance measures under the EPF.",
+     "loc": "Article 4, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "The Member States shall permit the transit of the military equipment specified in Article 1 of this Decision, including accompanying personnel, through their territories, including their airspace, consistent with Article 56(3) of Decision (CFSP) 2021/509.",
+     "loc": "Article 5, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "During the period of implementation, the High Representative shall provide the PSC with six-monthly reports on the implementation of the assistance measure, in accordance with Article 63 of Decision (CFSP) 2021/509. The administrator for assistance measures shall regularly inform the Facility Committee established by Decision (CFSP) 2021/509 on the implementation of revenue and expenditure in accordance with Article 38 of that Decision, including by providing information on the suppliers and subcontractors involved.",
+     "loc": "Article 7, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2620-47c3c211",
+   "created": "2026-11-23T17:18:35+00:00",
+   "doc_id": "celex-32026D2620",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2620 of 20 November 2026 on an assistance measure under the European Peace Facility to support the Armed Forces of Ukraine through the joint procurement of military equipment designed to deliver lethal force",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2620",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "On 18 March 2024, by Council Decision (CFSP) 2024/890 ( 2 ) on the basis of a proposal of the High Representative of the Union for Foreign and Security Policy for a Ukraine Assistance Fund, the Council amended Decision (CFSP) 2021/509 to increase the overall financial ceiling of the EPF by EUR 5 000 000 000 in 2024 in current prices, an amount specifically dedicated to Ukraine and aimed at ensuring sustainable and predictable military support to Ukraine. Military support to Ukraine under that dedicated amount should continue to be driven by the evolving needs of the Armed Forces of Ukraine (AFU), seeking to maximise the Union’s added value and complementing bilateral efforts, and should be articulated through a more structured, efficient and pragmatic approach, making use of increased joint procurement from the Union defence industry, Norway, and Ukraine.",
+     "loc": "on an assistance measure under the European Peace Facility to support the Armed , para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "2. All expenditure shall be managed in accordance with Decision (CFSP) 2021/509 and in line with the rules for the implementation of revenue and expenditure financed under the EPF. By way of derogation from Article 50 and 50a of Book 3 of the EPF Implementing Rules, participation in joint procurement procedures shall be open only to economic operators as referred to in Article 1(4) of this Decision as regards military equipment originating as referred thereunder.",
+     "loc": "Article 2, para 2",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "3. In accordance with Article 29(5) of Decision (CFSP) 2021/509, the administrator for assistance measures may call for contributions of up to EUR 600 000 000 following the adoption of this Decision. The funds called for by the administrator for assistance measures shall be used only to pay expenditure within the limits approved by the Facility Committee established by Decision (CFSP) 2021/509 in the related amending and annual budgets corresponding to the assistance measure.",
+     "loc": "Article 2, para 3",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "1. The High Representative shall be responsible for ensuring the implementation of this Decision in accordance with Decision (CFSP) 2021/509, and in line with the rules for the implementation of revenue and expenditure financed under the EPF and with the Integrated Methodological Framework for assessing and identifying the required measures and controls for assistance measures under the EPF.",
+     "loc": "Article 4, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "The Member States shall permit the transit of the military equipment specified in Article 1 of this Decision, including accompanying personnel, through their territories, including their airspace, consistent with Article 56(3) of Decision (CFSP) 2021/509.",
+     "loc": "Article 5, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    },
+    {
+     "text": "During the period of implementation, the High Representative shall provide the PSC with six-monthly reports on the implementation of the assistance measure, in accordance with Article 63 of Decision (CFSP) 2021/509. The administrator for assistance measures shall regularly inform the Facility Committee established by Decision (CFSP) 2021/509 on the implementation of revenue and expenditure in accordance with Article 38 of that Decision, including by providing information on the suppliers and subcontractors involved.",
+     "loc": "Article 7, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2605-fc2f3cd6",
+   "created": "2026-11-23T17:18:35+00:00",
+   "doc_id": "celex-32026D2605",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2605 of 23 November 2026 amending Decision (CFSP) 2026/455 on restrictive measures to combat terrorism",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2605",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In view of the continued threat posed by The Base, one person should be added to the lists in Annexes II and IV to Decision (CFSP) 2026/455.",
+     "loc": "amending Decision (CFSP) 2026/455 on restrictive measures to combat terrorism, para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2026/455 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2026/455 on restrictive measures to combat terrorism, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-news-e5fae4c9426d-049441fd",
+   "created": "2026-11-23T17:18:35+00:00",
+   "doc_id": "amla-news-e5fae4c9426d",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Updated taxonomy for the 2027 risk assessment data collection",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/updated-taxonomy-2027-risk-assessment-data-collection_en",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "governance-risk-assessment"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The components in v4.3 are intended only to help reporting agents prepare for the AMLA risk assessment 2027 data collection exercise. They must not be used for submissions to national competent authorities, the EBA, or AMLA.",
+     "loc": "s1, para 2",
+     "topics": [
+      "governance-risk-assessment"
+     ],
+     "why": "normative wording (must) on governance-risk-assessment"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-amla-reports-49fe354c0962-14c9c28c",
    "created": "2026-11-21T14:09:37+00:00",
