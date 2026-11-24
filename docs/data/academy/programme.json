@@ -57,17 +57,6 @@
   "transaction-monitoring": "Examples use payment accounts. For a law firm read 'client account movements'; for an insurer, 'premiums, top-ups and surrenders'."
  },
  "coming_soon": {
-  "records-data": {
-   "title": "Record keeping, information sharing and data protection",
-   "short": "What to keep and for how long, processing personal data for AML purposes, and partnerships for information sharing (Chapters VI and VII).",
-   "minutes": 10,
-   "missing": ["film script and claim ledger", "explainer", "4 questions", "Spot it game", "Decide scenario", "independent fact-check"],
-   "law": [
-    { "celex": "32024R1624", "art": "77", "para": "3", "label": "Record retention",
-      "quote": "The information referred to in paragraphs 1 and 2 shall be retained for a period of 5 years commencing on the date of the termination of the business relationship or on the date of the carrying out of the occasional transaction, or on the date of refusal to enter into a business relationship or carry out an occasional transaction." }
-   ],
-   "related": []
-  },
   "crypto-cash": {
    "title": "Crypto-assets, anonymous instruments and cash",
    "short": "Anonymous accounts and bearer shares, the EUR 10 000 cash limit, self-hosted addresses and transfers of crypto-assets (Chapter VIII and related).",

@@ -3,8 +3,8 @@
   "name": "Academy curriculum",
   "version": 1,
   "purpose": "The AMLR programme: short topics in three levels (see programme.json). Each topic: film or explainer, risks, questions, Spot it, Decide and what the law says.",
-  "content_version": "1.2.0",
-  "content_date": "2026-11-17",
+  "content_version": "1.3.0",
+  "content_date": "2026-11-24",
   "content_version_note": "Semantic version of the teaching content (lessons, checks, law quotes). Bump it whenever a lesson, a check question or a law quote changes in substance. New completions record this version (AcademyProgress, key regradar-academy-training); certificates and the team register print it. Completions made before the field existed show 'not recorded'.",
   "evidence": {
    "art12": {
@@ -2051,6 +2051,170 @@
      "para": "2",
      "label": "Close relationships with customers",
      "quote": "shall inform the compliance officer of any close private or professional relationship established with the obliged entity’s customers or prospective customers and shall be prevented from undertaking any tasks related to the obliged entity’s compliance in relation to those customers.",
+     "note": ""
+    }
+   ],
+   "reading": []
+  },
+  {
+   "id": "records-data",
+   "no": 12,
+   "title": "Records, personal data and information sharing",
+   "short": "What to keep and for how long, answering the FIU, handling personal data for AML purposes, and sharing information in partnerships (Chapters VI and VII).",
+   "minutes": {
+    "watch": 2,
+    "risks": 1,
+    "check": 3,
+    "law": 3,
+    "practice": 0
+   },
+   "skill": "reg",
+   "learn": [
+    "Which documents and records the firm keeps, and for how long",
+    "What happens to personal data used for AML, including automated decisions",
+    "How information sharing partnerships work, in outline"
+   ],
+   "explainer": "records-data",
+   "risks": {
+    "wrong": [
+     "Keeping only the passport copy and not the reasoning behind a closed alert",
+     "Deleting a closed customer's file too early, or keeping it for ever",
+     "Using AML data in a marketing campaign",
+     "Letting a scoring tool refuse customers with nobody checking"
+    ],
+    "consequences": [
+     {
+      "text": "The firm must be able to answer its FIU and competent authorities fully and speedily about relationships in the last five years.",
+      "cite": {
+       "celex": "32024R1624",
+       "art": "78",
+       "para": ""
+      }
+     },
+     {
+      "text": "Business effect (judgement): records that are missing, redacted or scattered make every later review, audit or investigation slower and weaker.",
+      "cite": null
+     }
+    ],
+    "redflags": [
+     "No record of why an alert was closed without a report",
+     "Files kept in several places with no owner",
+     "No deletion date, or no one who runs the deletion",
+     "A model that refuses customers with no human review"
+    ]
+   },
+   "questions": [
+    {
+     "type": "mcq",
+     "q": "For how long does the firm keep its AML records, as a rule?",
+     "options": [
+      "One year after the transaction",
+      "Five years from the end of the business relationship (or the occasional transaction, or the refusal)",
+      "Ten years from the start of the relationship",
+      "For as long as the firm trades"
+     ],
+     "answer": 1,
+     "why": "The default period is five years, counted from the end of the business relationship, from the occasional transaction, or from the refusal to enter into a relationship or carry out a transaction.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "77",
+      "para": "3"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "The five years are over and no other rule requires longer retention. What happens to the personal data?",
+     "options": [
+      "Keep it, it may be useful",
+      "Delete it",
+      "Move it to the marketing team",
+      "Ask the customer whether to keep it"
+     ],
+     "answer": 1,
+     "why": "Without prejudice to retention periods under other Union or national law, the firm deletes personal data when the five-year period expires. Authorities can require further retention case by case, for up to five more years, where necessary for preventing, detecting, investigating or prosecuting money laundering or terrorist financing.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "77",
+      "para": "3"
+     }
+    },
+    {
+     "type": "mcq",
+     "q": "A marketing manager asks for the KYC files of current customers to target a new product. What does the AMLR say about data processed under it?",
+     "options": [
+      "Allowed if the customers are low risk",
+      "Allowed with a short notice to customers",
+      "Prohibited: processing for commercial purposes on the basis of the AMLR is prohibited",
+      "Allowed once the five years have passed"
+     ],
+     "answer": 2,
+     "why": "Personal data processed on the basis of the AMLR are for preventing money laundering and terrorist financing and must not be further processed in an incompatible way; processing for commercial purposes is prohibited.",
+     "law": {
+      "celex": "32024R1624",
+      "art": "76",
+      "para": "4"
+     },
+     "scenario": "Fictional example."
+    },
+    {
+     "type": "mcq",
+     "q": "A scoring tool recommends refusing a new customer. Which condition does the AMLR attach to such an automated decision?",
+     "options": [
+      "None, if the tool is accurate",
+      "Meaningful human intervention to ensure the decision is accurate and appropriate",
+      "The customer must have agreed in advance",
+      "Only the supervisor can review it"
+     ],
+     "answer": 1,
+     "why": "Automated decisions are allowed on conditions, including meaningful human intervention for decisions to enter, refuse or maintain a relationship or to change the extent of due diligence, and the customer's right to an explanation and to challenge the decision (except for a suspicious transaction report).",
+     "law": {
+      "celex": "32024R1624",
+      "art": "76",
+      "para": "5"
+     },
+     "scenario": "Fictional example."
+    }
+   ],
+   "practice": null,
+   "law": [
+    {
+     "celex": "32024R1624",
+     "art": "77",
+     "para": "1",
+     "label": "What to keep",
+     "quote": "Obliged entities shall retain the following documents and information:\n(a)\na copy of the documents and information obtained in the performance of customer due diligence pursuant to Chapter III, including information obtained through electronic identification means;\n(b)\na record of the assessment undertaken pursuant to Article 69(2), including the information and circumstances considered and the results of such assessment, whether or not such assessment results in a suspicious transaction report being made to the FIU, and a copy of the suspicion transaction report, if any;\n(c)\nthe supporting evidence and records of transactions, consisting of the original documents or copies admissible in judicial proceedings under the applicable national law, which are necessary to identify transactions;\n(d)\nwhen they participate in partnerships for information sharing pursuant to Chapter VI, copies of the documents and information obtained in the framework of those partnerships, and records of all instances of information sharing.\nObliged entities shall ensure that documents, information and records kept pursuant to this Article are not redacted.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "77",
+     "para": "3",
+     "label": "How long, and then delete",
+     "quote": "The information referred to in paragraphs 1 and 2 shall be retained for a period of 5 years commencing on the date of the termination of the business relationship or on the date of the carrying out of the occasional transaction, or on the date of refusal to enter into a business relationship or carry out an occasional transaction. Without prejudice to retention periods for data collected for the purposes of other Union legal acts or national law complying with Regulation (EU) 2016/679, obliged entities shall delete personal data upon expiry of the five-year period.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "78",
+     "para": "",
+     "label": "Answer the FIU and authorities",
+     "quote": "Obliged entities shall have systems in place that enable them to respond fully and speedily to enquiries from their FIU or from other competent authorities, in accordance with national law, as to whether they are maintaining or have maintained, during a five-year period prior to that enquiry a business relationship with specified persons, and on the nature of that relationship, through secure channels and in a manner that ensures full confidentiality of the enquiries.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "76",
+     "para": "4",
+     "label": "AML data only for AML purposes",
+     "quote": "Personal data shall be processed by obliged entities on the basis of this Regulation only for the purposes of the prevention of money laundering and terrorist financing and shall not be further processed in a way that is incompatible with those purposes. The processing of personal data on the basis of this Regulation for commercial purposes shall be prohibited.",
+     "note": ""
+    },
+    {
+     "celex": "32024R1624",
+     "art": "75",
+     "para": "2",
+     "label": "Telling the supervisor before sharing",
+     "quote": "Obliged entities intending to participate in a partnership for information sharing shall notify their respective supervisory authorities which shall, where relevant in consultation with each other and with the authorities in charge of verifying compliance with Regulation (EU) 2016/679, verify that the partnership for information sharing has mechanisms in place to ensure compliance with this Article and that the data protection impact assessment referred to in paragraph 4, point (h), has been carried out. The verification shall take place prior to the beginning of the activities of the partnership for information sharing.",
      "note": ""
     }
    ],

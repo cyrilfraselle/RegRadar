@@ -351,6 +351,32 @@ Governance explainer, curriculum and wording rows checked in the PR-48 independe
 | Red flags and common mistakes (sales-line reporting, click-through training) | teaching examples, not law; not verified by a primary source |
 | `d-gov/a` "keep the checks in place while you escalate" | reworded, ok |
 
+## Game `g-records-sort`: Which rule is it? (sort, topic `records-data`, added 2026-11-24; independent check pending)
+
+Facts: AMLR Arts 75 to 78 only. Buckets: records (Arts 77, 78), personal data (Art. 76), partnerships (Art. 75). Scenarios are fictional.
+
+| Key | Reason shown | Citation shown | Source checked | Verdict |
+|---|---|---|---|---|
+| `g-records-sort/p` | Special categories of data may be processed only to the extent strictly necessary, with the safeguards in Art. 76(2) and (3). | Art. 76 para. 1 | AMLR Art. 76(1) | ok (self-check) |
+| `g-records-sort/c1` | Copies of CDD documents and information are kept, and not redacted. | Art. 77 para. 1 | AMLR Art. 77(1)(a) and last sentence of the first subparagraph | ok (self-check) |
+| `g-records-sort/c2` | The record of the assessment is kept whether or not a report is made. | Art. 77 para. 1 | AMLR Art. 77(1)(b) | ok (self-check) |
+| `g-records-sort/c3` | Systems to answer the FIU fully and speedily on relationships in the five years before the enquiry. | Art. 78 | AMLR Art. 78 | ok (self-check) |
+| `g-records-sort/c4` | Processing on the basis of the AMLR for commercial purposes is prohibited. | Art. 76 para. 4 | AMLR Art. 76(4), second sentence | ok (self-check) |
+| `g-records-sort/c5` | Decisions to refuse a customer from automated processes need meaningful human intervention. | Art. 76 para. 5 | AMLR Art. 76(5)(b) | ok (self-check) |
+| `g-records-sort/c6` | Conviction data: conditions include procedures distinguishing allegations, investigations, proceedings and convictions. | Art. 76 para. 3 | AMLR Art. 76(3)(b) | ok (self-check) |
+| `g-records-sort/c7` | Firms intending to join notify their supervisors, which verify safeguards before the partnership starts. | Art. 75 para. 2 | AMLR Art. 75(2) | ok (self-check) |
+| `g-records-sort/c8` | Information exchanged is limited to the listed kinds, and only as far as necessary. | Art. 75 para. 3 | AMLR Art. 75(3) | ok (self-check) |
+
+### `d-records`: Delete my data (topic `records-data`, added 2026-11-24, independent check pending)
+
+Situation (fictional): Brindle Pay, a fictional payment and e-money firm. A former customer closed the account three years ago and asks for everything to be deleted.
+
+| Key | Option | Verdict shown | Consequence on screen | Citation shown | Source checked | Verdict |
+|---|---|---|---|---|---|---|
+| `d-records/a` | Explain that records are kept until five years after the relationship ended, then deleted, and check whether other law requires longer | best | Five years from the end of the relationship; personal data deleted on expiry, without prejudice to other retention periods. | Art. 77 para. 3 | AMLR Art. 77(3), first subparagraph. 'Check whether other law requires longer' follows 'without prejudice to retention periods ... other Union legal acts or national law'. How a GDPR erasure request is answered is outside this topic and left to the firm's data-protection officer | ok (self-check) |
+| `d-records/b` | Delete the whole file now | poor | Records must be kept five years from the end of the relationship, so deleting after three years is too early. | Art. 77 para. 3 | AMLR Art. 77(1), (3) | ok (self-check) |
+| `d-records/c` | Keep the file for ever | poor | Personal data are deleted when the five-year period expires, unless other law requires otherwise. | Art. 77 para. 3 | AMLR Art. 77(3), first subparagraph, second sentence; further retention only if an authority requires it case by case (second subparagraph, up to 5 years) | ok (self-check) |
+
 ## Not verified by a primary source in this repository
 
 - The three-stage model (placement, layering, integration), structuring, and the layering and
