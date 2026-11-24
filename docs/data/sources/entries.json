@@ -1,10 +1,745 @@
 {
  "_meta": {
   "purpose": "Every listing entry the engine has seen, with change history (new, changed, withdrawn). Generated.",
-  "generated": "2026-11-23T17:18:35+00:00",
-  "count": 577
+  "generated": "2026-11-24T16:56:56+00:00",
+  "count": 592
  },
  "entries": [
+  {
+   "id": "amla-instruments-638d7cd1a2f0",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
+   "title": "Regulatory Technical Standards on AML/CFT Supervisory Colleges in the financial sector",
+   "date": "",
+   "summary": "RTS under AMLD 49(14). Status: Consultation open",
+   "category": "RTS",
+   "fields": {
+    "Type": {
+     "text": "RTS"
+    },
+    "Legal basis": {
+     "text": "AMLD 49(14)"
+    },
+    "Status": {
+     "text": "Consultation open"
+    }
+   },
+   "extra": {
+    "links": [
+     {
+      "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
+      "label": "Consultation open"
+     }
+    ],
+    "legal_basis": "AMLD 49(14)",
+    "status": "Consultation open"
+   },
+   "type": "rts_its_draft",
+   "status": "draft (consultation open)",
+   "topics": [],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "eb3e8ea3a1ceef95",
+   "change": "new",
+   "doc_id": "amla-instruments-638d7cd1a2f0",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "eb3e8ea3a1ceef95"
+    }
+   ]
+  },
+  {
+   "id": "amla-instruments-f41721a0064f",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
+   "title": "Regulatory Technical Standards on AML/CFT Supervisory Colleges in the non-financial sector",
+   "date": "",
+   "summary": "RTS under AMLD 50(13). Status: Consultation open",
+   "category": "RTS",
+   "fields": {
+    "Type": {
+     "text": "RTS"
+    },
+    "Legal basis": {
+     "text": "AMLD 50(13)"
+    },
+    "Status": {
+     "text": "Consultation open"
+    }
+   },
+   "extra": {
+    "links": [
+     {
+      "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
+      "label": "Consultation open"
+     }
+    ],
+    "legal_basis": "AMLD 50(13)",
+    "status": "Consultation open"
+   },
+   "type": "rts_its_draft",
+   "status": "draft (consultation open)",
+   "topics": [],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "8fa9af435fbbac52",
+   "change": "new",
+   "doc_id": "amla-instruments-f41721a0064f",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "8fa9af435fbbac52"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2581",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2581",
+   "title": "Commission Implementing Decision (EU) 2026/2581 of 20 November 2026 postponing the expiry date of the approval of Bacillus thuringiensis subsp. kurstaki, serotype 3a3b, strain ABTS-351 for use in biocidal products of product-type 18 in accordance with Regulation (EU) No 528/2012 of the European Parliament and of the Council",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC_IMPL",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-12-14",
+     "date": "2026-12-14"
+    },
+    "Deadline (CELLAR)": {
+     "text": "2029-08-31",
+     "date": "2029-08-31"
+    }
+   },
+   "extra": {
+    "celex": "32026D2581",
+    "eli": "http://data.europa.eu/eli/dec_impl/2026/2581/oj",
+    "resource_type": "DEC_IMPL",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2581"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "48fe7421f77105e4",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "48fe7421f77105e4"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026R2614",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2614",
+   "title": "Commission Implementing Regulation (EU) 2026/2614 of 23 November 2026 imposing a provisional safeguard measure with regard to imports of certain new hybrid vehicles designed for the transport of persons",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "REG_IMPL",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-12-01",
+     "date": "2026-12-01"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026R2614",
+    "eli": "http://data.europa.eu/eli/reg_impl/2026/2614/oj",
+    "resource_type": "REG_IMPL",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026R2614"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "e778f4eef2cbc505",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "e778f4eef2cbc505"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2619",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2619",
+   "title": "Council Decision (CFSP) 2026/2619 of 23 November 2026 in support of enhancing the operational effectiveness of the Organisation for the Prohibition of Chemical Weapons (OPCW)",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-23",
+     "date": "2026-11-23"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2619",
+    "eli": "http://data.europa.eu/eli/dec/2026/2619/oj",
+    "resource_type": "DEC",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2619"
+   },
+   "type": "legislation",
+   "status": "in force",
+   "topics": [
+    "sanctions"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "fb3edc6ed4949fbd",
+   "change": "new",
+   "doc_id": "celex-32026D2619",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "fb3edc6ed4949fbd"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2576",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2576",
+   "title": "Commission Implementing Decision (EU) 2026/2576 of 20 November 2026 on the non-approval of 1,3-Bis(hydroxymethyl)-5,5-dimethylimidazolidine-2,4-dione (DMDMH) as an existing active substance for use in biocidal products of product-types 6 and 13 in accordance with Regulation (EU) No 528/2012 of the European Parliament and of the Council",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC_IMPL",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-12-14",
+     "date": "2026-12-14"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2576",
+    "eli": "http://data.europa.eu/eli/dec_impl/2026/2576/oj",
+    "resource_type": "DEC_IMPL",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2576"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "a25cebeea9e9ba36",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "a25cebeea9e9ba36"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2600",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2600",
+   "title": "Council Decision (CFSP) 2026/2600 of 23 November 2026 amending Decision (CFSP) 2021/1143 on a European Union Military Assistance Mission in Mozambique (EUMAM Mozambique)",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-23",
+     "date": "2026-11-23"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2600",
+    "eli": "http://data.europa.eu/eli/dec/2026/2600/oj",
+    "resource_type": "DEC",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2600"
+   },
+   "type": "legislation",
+   "status": "in force",
+   "topics": [
+    "sanctions"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "67dcfafdbaeedd1a",
+   "change": "new",
+   "doc_id": "celex-32026D2600",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "67dcfafdbaeedd1a"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2633",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2633",
+   "title": "Council Decision (CFSP) 2026/2633 of 23 November 2026 amending Decision (CFSP) 2024/1472 on a European Union Diplomatic Academy",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-23",
+     "date": "2026-11-23"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2633",
+    "eli": "http://data.europa.eu/eli/dec/2026/2633/oj",
+    "resource_type": "DEC",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2633"
+   },
+   "type": "legislation",
+   "status": "in force",
+   "topics": [
+    "sanctions"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "d1ab6b2805df5605",
+   "change": "new",
+   "doc_id": "celex-32026D2633",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "d1ab6b2805df5605"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2615",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2615",
+   "title": "Council Decision (CFSP) 2026/2615 of 23 November 2026 on Union support for the activities of the Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization (CTBTO) in order to strengthen its monitoring and verification capabilities",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-23",
+     "date": "2026-11-23"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2615",
+    "eli": "http://data.europa.eu/eli/dec/2026/2615/oj",
+    "resource_type": "DEC",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2615"
+   },
+   "type": "legislation",
+   "status": "in force",
+   "topics": [
+    "sanctions"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "3f84d988b7797af6",
+   "change": "new",
+   "doc_id": "celex-32026D2615",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "3f84d988b7797af6"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026R1452",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R1452",
+   "title": "Commission Delegated Regulation (EU) 2026/1452 of 2 July 2026 supplementing Regulation (EU) 2019/1700 of the European Parliament and of the Council by specifying the number and titles of the variables for the use of information and communication technologies domain for the reference year 2027",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "REG_DEL",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-12-14",
+     "date": "2026-12-14"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026R1452",
+    "eli": "http://data.europa.eu/eli/reg_del/2026/1452/oj",
+    "resource_type": "REG_DEL",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026R1452"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "7c16f84d2ac4136f",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "7c16f84d2ac4136f"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026R2624",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2624",
+   "title": "Commission Implementing Regulation (EU) 2026/2624 of 20 November 2026 amending Annexes V and XIV to Implementing Regulation (EU) 2021/404 as regards the entries for Canada, the United Kingdom and the United States in the lists of third countries, territories, or zones thereof authorised for the entry into the Union of consignments of poultry and germinal products of poultry, and of fresh meat of poultry and game birds",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "REG_IMPL",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-25",
+     "date": "2026-11-25"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026R2624",
+    "eli": "http://data.europa.eu/eli/reg_impl/2026/2624/oj",
+    "resource_type": "REG_IMPL",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026R2624"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "32c70cfc7ebfbd14",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "32c70cfc7ebfbd14"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026R2594",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2594",
+   "title": "Commission Implementing Regulation (EU) 2026/2594 of 6 November 2026 granting a Union authorisation for the biocidal product family BPF_H2O2_AB in accordance with Regulation (EU) No 528/2012 of the European Parliament and of the Council",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "REG_IMPL",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-12-14",
+     "date": "2026-12-14"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026R2594",
+    "eli": "http://data.europa.eu/eli/reg_impl/2026/2594/oj",
+    "resource_type": "REG_IMPL",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026R2594"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "5bcdd32778c9e799",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "5bcdd32778c9e799"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2621",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2621",
+   "title": "Council Decision (CFSP) 2026/2621 of 23 November 2026 amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Türkiye’s unauthorised drilling activities in the Eastern Mediterranean",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-25",
+     "date": "2026-11-25"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2621",
+    "eli": "http://data.europa.eu/eli/dec/2026/2621/oj",
+    "resource_type": "DEC",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2621"
+   },
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "topics": [
+    "sanctions"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "620c92c0e5ce703d",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "620c92c0e5ce703d"
+    }
+   ]
+  },
+  {
+   "id": "celex-32026D2607",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "jurisdiction": "EU",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2607",
+   "title": "Council Decision (EU, Euratom) 2026/2607 of 23 November 2026 amending the Council’s Rules of Procedure",
+   "date": "2026-11-24",
+   "summary": "",
+   "category": "DEC",
+   "fields": {
+    "OJ publication": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Entry into force": {
+     "text": "2026-11-24",
+     "date": "2026-11-24"
+    },
+    "Deadline (CELLAR)": {
+     "text": "",
+     "date": ""
+    }
+   },
+   "extra": {
+    "celex": "32026D2607",
+    "eli": "http://data.europa.eu/eli/dec/2026/2607/oj",
+    "resource_type": "DEC",
+    "corrigendum": false,
+    "relations": [],
+    "cellar_modified": "",
+    "fetch_url": "http://publications.europa.eu/resource/celex/32026D2607"
+   },
+   "type": "legislation",
+   "status": "in force",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "36b1866510e60412",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "36b1866510e60412"
+    }
+   ]
+  },
+  {
+   "id": "fsma-news-c4a42967e885",
+   "source": "fsma-news",
+   "authority": "FSMA",
+   "jurisdiction": "BE",
+   "url": "http://www.fsma.be/en/news/number-active-etf-investors-peaks-third-quarter-2026",
+   "title": "Number of active ETF investors peaks in the third quarter of 2026",
+   "date": "2026-11-24",
+   "summary": "The FSMA has published a new edition of its Retail Investor Dashboard . This publication provides an overview of the behaviour of Belgian retail investors. ETFs and bonds on the rise Around 212,000 Belgian retail investors traded in shares in the third quarter of 2026; in addition, 190,000 and 19,000 Belgian retail investors respectively traded in ETFs and bonds. In comparison with the previous quarter, there were more active investors in ETFs and bonds; the number of active investors in shares fell. The number of active ETF investors reached the highest level in five years. With the exception",
+   "category": "",
+   "fields": {},
+   "extra": {},
+   "type": "supervisory_communication",
+   "status": "published",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-24T16:56:56+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "5e4e7fb74c212b17",
+   "change": "new",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "new",
+     "hash": "5e4e7fb74c212b17"
+    }
+   ]
+  },
   {
    "id": "amla-consultations-list-f41721a0064f",
    "source": "amla-consultations-list",
@@ -31,9 +766,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c73c7449d3f35d81",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -69,9 +804,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2b915500b89148f4",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -119,9 +854,9 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "de811c5af4abea17",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -147,8 +882,8 @@
      "date": "2026-11-23"
     },
     "Entry into force": {
-     "text": "2026-11-23",
-     "date": "2026-11-23"
+     "text": "2026-11-18",
+     "date": "2026-11-18"
     },
     "Deadline (CELLAR)": {
      "text": "",
@@ -169,15 +904,20 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "b82d7284778b9630",
-   "change": "new",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "7223259036d8a036",
+   "change": "changed",
    "doc_id": "",
    "history": [
     {
      "at": "2026-11-23T17:18:35+00:00",
      "change": "new",
      "hash": "b82d7284778b9630"
+    },
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "changed",
+     "hash": "7223259036d8a036"
     }
    ]
   },
@@ -219,9 +959,9 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "40cf2be61f856693",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -247,8 +987,8 @@
      "date": "2026-11-23"
     },
     "Entry into force": {
-     "text": "2026-11-23",
-     "date": "2026-11-23"
+     "text": "2026-11-19",
+     "date": "2026-11-19"
     },
     "Deadline (CELLAR)": {
      "text": "",
@@ -269,15 +1009,20 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "3e022f54acd85a16",
-   "change": "new",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "3dee8c9e603854b9",
+   "change": "changed",
    "doc_id": "",
    "history": [
     {
      "at": "2026-11-23T17:18:35+00:00",
      "change": "new",
      "hash": "3e022f54acd85a16"
+    },
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "changed",
+     "hash": "3dee8c9e603854b9"
     }
    ]
   },
@@ -315,13 +1060,13 @@
     "fetch_url": "http://publications.europa.eu/resource/celex/32026D2579"
    },
    "type": "legislation",
-   "status": "adopted, not yet in force",
+   "status": "in force",
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "112aea195ce1c207",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -371,9 +1116,9 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "fef42ea46fc459e5",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "celex-32026D2618",
    "history": [
     {
@@ -421,9 +1166,9 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "42bad8abbde61ea4",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -471,9 +1216,9 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ed49d4876ee312ea",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -523,9 +1268,9 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "cf9451f97b417e61",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "celex-32026D2620",
    "history": [
     {
@@ -575,9 +1320,9 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "147d3428cbd80991",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "celex-32026D2605",
    "history": [
     {
@@ -627,9 +1372,9 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8622f3b167429c62",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "celex-32026R2616",
    "history": [
     {
@@ -656,9 +1401,9 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ca058d2ce53779b4",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "",
    "history": [
     {
@@ -685,9 +1430,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "31ca85535b20ebc9",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "amla-news-47e6555737ba",
    "history": [
     {
@@ -714,9 +1459,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3044804718642303",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "amla-news-8c2eb709ca08",
    "history": [
     {
@@ -743,9 +1488,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-21T14:09:37+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1c25cb9ac44983bf",
-   "change": "changed",
+   "change": "unchanged",
    "doc_id": "amla-reports-49fe354c0962",
    "history": [
     {
@@ -777,9 +1522,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "50904e83b010e688",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "amla-library-7397fae381b3",
    "history": [
     {
@@ -806,9 +1551,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "841562b466abf183",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "amla-consultations-f41721a0064f",
    "history": [
     {
@@ -835,9 +1580,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3548eadc18d79ebf",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "amla-consultations-638d7cd1a2f0",
    "history": [
     {
@@ -864,9 +1609,9 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ebc8c8d32d9d59bc",
-   "change": "new",
+   "change": "unchanged",
    "doc_id": "amla-hearings-dca764782172",
    "history": [
     {
@@ -893,10 +1638,10 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-23T17:18:35+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "45b2310b88fed5c5",
-   "change": "new",
-   "doc_id": "",
+   "change": "unchanged",
+   "doc_id": "amla-hearings-bcfc18795530",
    "history": [
     {
      "at": "2026-11-23T17:18:35+00:00",
@@ -943,7 +1688,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7caab15e6724c042",
    "change": "unchanged",
    "doc_id": "",
@@ -993,7 +1738,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f733df7797f6b06f",
    "change": "unchanged",
    "doc_id": "",
@@ -1043,7 +1788,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8daf31f0b164cc64",
    "change": "unchanged",
    "doc_id": "",
@@ -1093,7 +1838,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8e95c515b3bfd316",
    "change": "unchanged",
    "doc_id": "",
@@ -1143,7 +1888,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8779a939f4eb0e73",
    "change": "unchanged",
    "doc_id": "",
@@ -1193,7 +1938,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c60320800e4c303f",
    "change": "unchanged",
    "doc_id": "",
@@ -1243,7 +1988,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "89a2a3384355fec9",
    "change": "unchanged",
    "doc_id": "",
@@ -1293,7 +2038,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d7b8e27e3aa4781b",
    "change": "unchanged",
    "doc_id": "",
@@ -1343,7 +2088,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a2f7e41d08c8ed70",
    "change": "unchanged",
    "doc_id": "",
@@ -1393,7 +2138,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2bb4f8fe0bdd292d",
    "change": "unchanged",
    "doc_id": "",
@@ -1443,7 +2188,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a0ff7ea6726b9b68",
    "change": "unchanged",
    "doc_id": "",
@@ -1493,7 +2238,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b667c2b8d9312572",
    "change": "unchanged",
    "doc_id": "",
@@ -1543,7 +2288,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e50862349dc977c5",
    "change": "unchanged",
    "doc_id": "",
@@ -1593,7 +2338,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "12d4d3f2bf05ff4c",
    "change": "unchanged",
    "doc_id": "",
@@ -1643,7 +2388,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "63ca230b15f487b2",
    "change": "unchanged",
    "doc_id": "",
@@ -1693,7 +2438,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8033b7120c7dc7c9",
    "change": "unchanged",
    "doc_id": "",
@@ -1743,7 +2488,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "37b6fa3d706cafa3",
    "change": "unchanged",
    "doc_id": "",
@@ -1772,7 +2517,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-20T14:52:32+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d7be68eac1209370",
    "change": "unchanged",
    "doc_id": "",
@@ -1803,7 +2548,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-21T14:09:37+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "fb829607b5aab030",
    "change": "unchanged",
    "doc_id": "amla-news-501b504c31aa",
@@ -2174,7 +2919,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c9bfeb72a086950d",
    "change": "unchanged",
    "doc_id": "",
@@ -2224,7 +2969,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6c3671ec156ab3b8",
    "change": "unchanged",
    "doc_id": "",
@@ -2274,7 +3019,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ac75273a205b25ed",
    "change": "unchanged",
    "doc_id": "",
@@ -2324,7 +3069,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f15c22ca1ab5247b",
    "change": "unchanged",
    "doc_id": "",
@@ -2374,7 +3119,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a232c1dbd0758510",
    "change": "unchanged",
    "doc_id": "",
@@ -2424,7 +3169,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "cf7112bdf0ffdd55",
    "change": "unchanged",
    "doc_id": "",
@@ -2474,7 +3219,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2786df51f3746592",
    "change": "unchanged",
    "doc_id": "",
@@ -2524,7 +3269,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d70776d1b64c0229",
    "change": "unchanged",
    "doc_id": "",
@@ -2574,7 +3319,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "5dad4064da52ffd1",
    "change": "unchanged",
    "doc_id": "",
@@ -2624,7 +3369,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "5c622760b625326b",
    "change": "unchanged",
    "doc_id": "",
@@ -2674,7 +3419,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6a0777caecc27de6",
    "change": "unchanged",
    "doc_id": "",
@@ -2724,7 +3469,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4f6ccfe2564f4773",
    "change": "unchanged",
    "doc_id": "",
@@ -2774,7 +3519,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "50eb89a21fc7c9fd",
    "change": "unchanged",
    "doc_id": "",
@@ -2824,7 +3569,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "51c97a0fe4af60cb",
    "change": "unchanged",
    "doc_id": "",
@@ -2874,7 +3619,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "947df0cec85d237c",
    "change": "unchanged",
    "doc_id": "",
@@ -2924,7 +3669,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "be971b920ec4150b",
    "change": "unchanged",
    "doc_id": "",
@@ -2974,7 +3719,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "67c91910b49cde3c",
    "change": "unchanged",
    "doc_id": "",
@@ -3024,7 +3769,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "33718b566cce8b98",
    "change": "unchanged",
    "doc_id": "",
@@ -3074,7 +3819,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6408c9084d5adca1",
    "change": "unchanged",
    "doc_id": "",
@@ -3124,7 +3869,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dc9658d38421c5e3",
    "change": "unchanged",
    "doc_id": "",
@@ -3174,7 +3919,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "15dd9726278d7ade",
    "change": "unchanged",
    "doc_id": "",
@@ -3224,7 +3969,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "faf03d79d53d4eb9",
    "change": "unchanged",
    "doc_id": "",
@@ -3274,7 +4019,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9cc90f9f2dae7366",
    "change": "unchanged",
    "doc_id": "",
@@ -3324,7 +4069,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2ca3e7c33f7bb3e6",
    "change": "unchanged",
    "doc_id": "",
@@ -3374,7 +4119,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "5f58abe47bd9365f",
    "change": "unchanged",
    "doc_id": "",
@@ -3424,7 +4169,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ad706e5ddce774b7",
    "change": "unchanged",
    "doc_id": "",
@@ -3474,7 +4219,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7aac7188950e979e",
    "change": "unchanged",
    "doc_id": "",
@@ -3524,7 +4269,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "15caf2df15bf4ed2",
    "change": "unchanged",
    "doc_id": "",
@@ -3574,7 +4319,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "68a3a0608eef0006",
    "change": "unchanged",
    "doc_id": "",
@@ -3624,7 +4369,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4941e78b545eef3b",
    "change": "unchanged",
    "doc_id": "",
@@ -3674,7 +4419,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8da53e35c7220f81",
    "change": "unchanged",
    "doc_id": "",
@@ -3724,7 +4469,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ffbd2c346c1aebe8",
    "change": "unchanged",
    "doc_id": "",
@@ -3774,7 +4519,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a242dc94934ec257",
    "change": "unchanged",
    "doc_id": "",
@@ -3824,7 +4569,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4b2f4e462f7fb5b4",
    "change": "unchanged",
    "doc_id": "",
@@ -3874,7 +4619,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "74e48a1b79304e6c",
    "change": "unchanged",
    "doc_id": "",
@@ -3924,7 +4669,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ae6d9b8dbbbfaa57",
    "change": "unchanged",
    "doc_id": "",
@@ -3974,7 +4719,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "20e0b38d620acce5",
    "change": "unchanged",
    "doc_id": "",
@@ -4024,7 +4769,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8ec1941340345dc1",
    "change": "unchanged",
    "doc_id": "",
@@ -4074,7 +4819,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "46cfe569719bebe9",
    "change": "unchanged",
    "doc_id": "",
@@ -4124,7 +4869,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "45ee01f9997f5bc1",
    "change": "unchanged",
    "doc_id": "",
@@ -4174,7 +4919,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "83b21d77e117f92e",
    "change": "unchanged",
    "doc_id": "",
@@ -4224,7 +4969,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "76e19e01deeb73e9",
    "change": "unchanged",
    "doc_id": "",
@@ -4274,7 +5019,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c634519c52f54f00",
    "change": "unchanged",
    "doc_id": "",
@@ -4324,7 +5069,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "67c07326f265db02",
    "change": "unchanged",
    "doc_id": "",
@@ -4374,7 +5119,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "11a38495833fb75e",
    "change": "unchanged",
    "doc_id": "",
@@ -4424,7 +5169,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2cd5b505331e9fc9",
    "change": "unchanged",
    "doc_id": "",
@@ -4474,7 +5219,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dc50377b2d00db50",
    "change": "unchanged",
    "doc_id": "",
@@ -4503,7 +5248,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "267a1128a810852f",
    "change": "unchanged",
    "doc_id": "",
@@ -4532,7 +5277,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "33e6257cb89802fe",
    "change": "unchanged",
    "doc_id": "amla-news-b4d8b2673518",
@@ -4561,7 +5306,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "25b934c4cc6b33d8",
    "change": "unchanged",
    "doc_id": "",
@@ -4613,7 +5358,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-19T15:12:16+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "905c5a49503752ce",
    "change": "unchanged",
    "doc_id": "",
@@ -4642,7 +5387,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "010646faee9ecd86",
    "change": "unchanged",
    "doc_id": "",
@@ -4692,7 +5437,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "46fcbe5072a27f87",
    "change": "unchanged",
    "doc_id": "",
@@ -4742,7 +5487,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ffe4e798c3b8f2ef",
    "change": "unchanged",
    "doc_id": "",
@@ -4792,7 +5537,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7331d086ff61ee4d",
    "change": "unchanged",
    "doc_id": "",
@@ -4842,7 +5587,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3334cd33d25b18ad",
    "change": "unchanged",
    "doc_id": "",
@@ -4892,7 +5637,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "41a3ba9cf6909cbd",
    "change": "unchanged",
    "doc_id": "",
@@ -4942,7 +5687,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f014442b3c79fb2a",
    "change": "unchanged",
    "doc_id": "",
@@ -4992,7 +5737,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2890e2fac995e203",
    "change": "unchanged",
    "doc_id": "",
@@ -5042,7 +5787,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "741506776ef54638",
    "change": "unchanged",
    "doc_id": "",
@@ -5092,7 +5837,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d7b2cc82fa25bf76",
    "change": "unchanged",
    "doc_id": "",
@@ -5121,7 +5866,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d3eecc421cc8d477",
    "change": "unchanged",
    "doc_id": "amla-news-69b783c5ee7e",
@@ -5184,7 +5929,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1fe67fba39df5af1",
    "change": "unchanged",
    "doc_id": "",
@@ -5213,7 +5958,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1f35a99c7543bafc",
    "change": "unchanged",
    "doc_id": "",
@@ -5263,7 +6008,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dbae2efe5a38e386",
    "change": "unchanged",
    "doc_id": "",
@@ -5313,7 +6058,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "90240c32187981d6",
    "change": "unchanged",
    "doc_id": "",
@@ -5363,7 +6108,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "33d8a1077699ae83",
    "change": "unchanged",
    "doc_id": "",
@@ -5413,7 +6158,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "704db9659a1d1eff",
    "change": "unchanged",
    "doc_id": "",
@@ -5463,7 +6208,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9e73cc6ec858e1c2",
    "change": "unchanged",
    "doc_id": "",
@@ -5515,7 +6260,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e4eaec35f2fb55dc",
    "change": "unchanged",
    "doc_id": "celex-32026D2554",
@@ -5565,7 +6310,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "75c63b9c9eb9b5e2",
    "change": "unchanged",
    "doc_id": "",
@@ -5615,7 +6360,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7b2143140d16c329",
    "change": "unchanged",
    "doc_id": "",
@@ -5665,7 +6410,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b5db2431ec38447c",
    "change": "unchanged",
    "doc_id": "",
@@ -5694,7 +6439,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "88e7d0dd5d4198a7",
    "change": "unchanged",
    "doc_id": "amla-news-cfff4167fd42",
@@ -5723,7 +6468,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4ea96d5ea253363c",
    "change": "unchanged",
    "doc_id": "amla-library-59cf94b53227",
@@ -5752,7 +6497,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "21d7716065fd2d8a",
    "change": "unchanged",
    "doc_id": "amla-library-d4dd889f08bf",
@@ -5780,8 +6525,8 @@
      "date": "2026-11-16"
     },
     "Entry into force": {
-     "text": "2026-01-01",
-     "date": "2026-01-01"
+     "text": "2026-11-19",
+     "date": "2026-11-19"
     },
     "Deadline (CELLAR)": {
      "text": "1001-01-01",
@@ -5802,16 +6547,11 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "2532a5a0a72a5563",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "2a5e0032de53592d",
    "change": "changed",
    "doc_id": "",
    "history": [
-    {
-     "at": "2026-11-16T14:40:51+00:00",
-     "change": "new",
-     "hash": "2a5e0032de53592d"
-    },
     {
      "at": "2026-11-17T15:28:31+00:00",
      "change": "changed",
@@ -5836,6 +6576,11 @@
      "at": "2026-11-23T17:18:35+00:00",
      "change": "changed",
      "hash": "2532a5a0a72a5563"
+    },
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "changed",
+     "hash": "2a5e0032de53592d"
     }
    ]
   },
@@ -5877,7 +6622,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9b526ff6cac09331",
    "change": "unchanged",
    "doc_id": "",
@@ -5927,7 +6672,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3479c6f7594c7fdf",
    "change": "unchanged",
    "doc_id": "",
@@ -5977,7 +6722,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8e12059c2bb852e1",
    "change": "unchanged",
    "doc_id": "",
@@ -6027,7 +6772,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "be0e0be92bf30c04",
    "change": "unchanged",
    "doc_id": "",
@@ -6077,7 +6822,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "57135ba6df0db5dc",
    "change": "unchanged",
    "doc_id": "",
@@ -6129,7 +6874,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b976488305e5d549",
    "change": "unchanged",
    "doc_id": "celex-32026D2546",
@@ -6181,7 +6926,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d3590c8fb9299015",
    "change": "unchanged",
    "doc_id": "celex-32026R2550",
@@ -6233,7 +6978,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d3e631a013b01808",
    "change": "unchanged",
    "doc_id": "celex-32026R2568",
@@ -6285,7 +7030,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "98cc085ef8017856",
    "change": "unchanged",
    "doc_id": "celex-32026D2570",
@@ -6337,7 +7082,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8cccc20ecd749c89",
    "change": "unchanged",
    "doc_id": "celex-32026R2558",
@@ -6389,7 +7134,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7e70d206532983ed",
    "change": "unchanged",
    "doc_id": "celex-32026D2556",
@@ -6441,7 +7186,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "43cb29c0111530bb",
    "change": "unchanged",
    "doc_id": "celex-32026R2569",
@@ -6493,7 +7238,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "419f33d72ccceb1b",
    "change": "unchanged",
    "doc_id": "celex-32026R2574",
@@ -6545,7 +7290,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ce43652749777a1f",
    "change": "unchanged",
    "doc_id": "celex-32026D2575",
@@ -6597,7 +7342,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "45848c0466939d97",
    "change": "unchanged",
    "doc_id": "celex-32026D2571",
@@ -6626,7 +7371,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-17T15:28:31+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "370496eb8d7b1719",
    "change": "unchanged",
    "doc_id": "amla-news-0ab8fede43d1",
@@ -8145,6 +8890,402 @@
    ]
   },
   {
+   "id": "amla-consultations-list-b7b6ebdd96a2",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-public-hearing-draft-rts-establishing-central-amlcft-database_en",
+   "title": "Consultation via a public hearing on the draft RTS for establishing a central AML/CFT database",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "7 October 2026",
+     "date": "2026-10-07"
+    },
+    "Deadline": {
+     "text": "3 November 2026, 16:00 (CET)",
+     "date": "2026-11-03"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "4946641de9fe5ba5",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "4946641de9fe5ba5"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-db0c5746aabf",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
+   "title": "Consultation on the draft RTS on cross-border information exchange between Financial Intelligence Units",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "6 July 2026",
+     "date": "2026-07-06"
+    },
+    "Deadline": {
+     "text": "6 October 2026, 23:59 (CEST)",
+     "date": "2026-10-06"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "reporting-str"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "d84e573bbc0afaac",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "d84e573bbc0afaac"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-7f7764ba2af8",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-assessment-inherent-and-residual-risk-profile-obliged-entities-non-financial_en",
+   "title": "Consultation on the draft RTS on the assessment of the inherent and residual risk profile of obliged entities in the non-financial sector",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "13 July 2026",
+     "date": "2026-07-13"
+    },
+    "Deadline": {
+     "text": "27 September 2026, 23:59 (CEST)",
+     "date": "2026-09-27"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "33b1ed59e2d4828f",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "33b1ed59e2d4828f"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-bf1be08fd1a2",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
+   "title": "Consultation on the draft ITS on the format for reporting suspicions and providing transaction records",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "2 July 2026",
+     "date": "2026-07-02"
+    },
+    "Deadline": {
+     "text": "20 September 2026, 23:59 (CEST)",
+     "date": "2026-09-20"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "reporting-str"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "4124eef8faad5177",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "4124eef8faad5177"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-24380b371f7c",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-ongoing-monitoring-business-relationship_en",
+   "title": "Consultation on the draft Guidelines on ongoing monitoring of a business relationship",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "3 June 2026",
+     "date": "2026-06-03"
+    },
+    "Deadline": {
+     "text": "3 September 2026, 23:59 (CEST)",
+     "date": "2026-09-03"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "ongoing-monitoring"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "d6d12c1aa6e97411",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "d6d12c1aa6e97411"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-c2d6e16d4987",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en",
+   "title": "Consultation on the draft Guidelines on business-wide risk assessment",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "16 April 2026",
+     "date": "2026-04-16"
+    },
+    "Deadline": {
+     "text": "15 July 2026, 23:59 (CEST)",
+     "date": "2026-07-15"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "aabc276042a1949d",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "aabc276042a1949d"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-f4810ea04c53",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-group-wide-minimum-requirements-and-additional-measures-subsidiaries-and_en",
+   "title": "Consultation on the draft RTS on group-wide minimum requirements and additional measures for subsidiaries and branches in third countries",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "16 April 2026",
+     "date": "2026-04-16"
+    },
+    "Deadline": {
+     "text": "15 June 2026, 23:59 (CEST)",
+     "date": "2026-06-15"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "fa78e094ab555d6a",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "fa78e094ab555d6a"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-e2858896d8ea",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-criteria-identifying-business-relationships-occasional-and-linked_en",
+   "title": "Consultation on the draft RTS on criteria for identifying business relationships, occasional and linked transactions and lower thresholds",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "9 February 2026",
+     "date": "2026-02-09"
+    },
+    "Deadline": {
+     "text": "8 May 2026, 23:59 (CEST)",
+     "date": "2026-05-08"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "cdd"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "1c2630ad4146e7d0",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "1c2630ad4146e7d0"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-b525c753d55c",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-customer-due-diligence_en",
+   "title": "Consultation on the draft RTS on Customer Due Diligence",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "9 February 2026",
+     "date": "2026-02-09"
+    },
+    "Deadline": {
+     "text": "8 May 2026, 23:59 (CEST)",
+     "date": "2026-05-08"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [
+    "cdd"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-22T13:58:21+00:00",
+   "hash": "fde39d445ac190cb",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "fde39d445ac190cb"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-list-76008a07f250",
+   "source": "amla-consultations-list",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-pecuniary-sanctions-administrative-measures-and-periodic-penalty-payments_en",
+   "title": "Consultation on the draft RTS on pecuniary sanctions, administrative measures and periodic penalty payments",
+   "date": "",
+   "summary": "",
+   "category": "Status: Closed",
+   "fields": {
+    "Opening date": {
+     "text": "9 February 2026",
+     "date": "2026-02-09"
+    },
+    "Deadline": {
+     "text": "9 March 2026, 23:59 (CET)",
+     "date": "2026-03-09"
+    }
+   },
+   "extra": {},
+   "type": "consultation",
+   "status": "draft (consultation closed)",
+   "topics": [],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-22T13:58:21+00:00",
+   "hash": "33f5bb804a84b652",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "33f5bb804a84b652"
+    }
+   ]
+  },
+  {
    "id": "esma-news-938f052c3016",
    "source": "esma-news",
    "authority": "ESMA",
@@ -8161,7 +9302,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "55f61763d20f2b51",
    "change": "unchanged",
    "doc_id": "",
@@ -8190,7 +9331,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8f20fda27d262416",
    "change": "unchanged",
    "doc_id": "",
@@ -8219,7 +9360,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b72a5e95ae976176",
    "change": "unchanged",
    "doc_id": "",
@@ -8248,7 +9389,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7b251f2ae424c9a7",
    "change": "unchanged",
    "doc_id": "",
@@ -8277,7 +9418,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e74bb8f4316cec3c",
    "change": "unchanged",
    "doc_id": "",
@@ -8309,7 +9450,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1e4790b8d70aca5b",
    "change": "unchanged",
    "doc_id": "esma-news-551762665811",
@@ -8338,7 +9479,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6ed009d817a35245",
    "change": "unchanged",
    "doc_id": "",
@@ -8367,7 +9508,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c23e7746e13f0e91",
    "change": "unchanged",
    "doc_id": "",
@@ -8396,7 +9537,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ef7a5ba4c695bad8",
    "change": "unchanged",
    "doc_id": "",
@@ -8823,402 +9964,6 @@
    ]
   },
   {
-   "id": "amla-consultations-list-b7b6ebdd96a2",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-public-hearing-draft-rts-establishing-central-amlcft-database_en",
-   "title": "Consultation via a public hearing on the draft RTS for establishing a central AML/CFT database",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "7 October 2026",
-     "date": "2026-10-07"
-    },
-    "Deadline": {
-     "text": "3 November 2026, 16:00 (CET)",
-     "date": "2026-11-03"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "4946641de9fe5ba5",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "4946641de9fe5ba5"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-db0c5746aabf",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
-   "title": "Consultation on the draft RTS on cross-border information exchange between Financial Intelligence Units",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "6 July 2026",
-     "date": "2026-07-06"
-    },
-    "Deadline": {
-     "text": "6 October 2026, 23:59 (CEST)",
-     "date": "2026-10-06"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "reporting-str"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "d84e573bbc0afaac",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "d84e573bbc0afaac"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-7f7764ba2af8",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-assessment-inherent-and-residual-risk-profile-obliged-entities-non-financial_en",
-   "title": "Consultation on the draft RTS on the assessment of the inherent and residual risk profile of obliged entities in the non-financial sector",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "13 July 2026",
-     "date": "2026-07-13"
-    },
-    "Deadline": {
-     "text": "27 September 2026, 23:59 (CEST)",
-     "date": "2026-09-27"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "governance-risk-assessment"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "33b1ed59e2d4828f",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "33b1ed59e2d4828f"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-bf1be08fd1a2",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
-   "title": "Consultation on the draft ITS on the format for reporting suspicions and providing transaction records",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "2 July 2026",
-     "date": "2026-07-02"
-    },
-    "Deadline": {
-     "text": "20 September 2026, 23:59 (CEST)",
-     "date": "2026-09-20"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "reporting-str"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "4124eef8faad5177",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "4124eef8faad5177"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-24380b371f7c",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-ongoing-monitoring-business-relationship_en",
-   "title": "Consultation on the draft Guidelines on ongoing monitoring of a business relationship",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "3 June 2026",
-     "date": "2026-06-03"
-    },
-    "Deadline": {
-     "text": "3 September 2026, 23:59 (CEST)",
-     "date": "2026-09-03"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "ongoing-monitoring"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "d6d12c1aa6e97411",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "d6d12c1aa6e97411"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-c2d6e16d4987",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en",
-   "title": "Consultation on the draft Guidelines on business-wide risk assessment",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "16 April 2026",
-     "date": "2026-04-16"
-    },
-    "Deadline": {
-     "text": "15 July 2026, 23:59 (CEST)",
-     "date": "2026-07-15"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "governance-risk-assessment"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "aabc276042a1949d",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "aabc276042a1949d"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-f4810ea04c53",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-group-wide-minimum-requirements-and-additional-measures-subsidiaries-and_en",
-   "title": "Consultation on the draft RTS on group-wide minimum requirements and additional measures for subsidiaries and branches in third countries",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "16 April 2026",
-     "date": "2026-04-16"
-    },
-    "Deadline": {
-     "text": "15 June 2026, 23:59 (CEST)",
-     "date": "2026-06-15"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "governance-risk-assessment"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "fa78e094ab555d6a",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "fa78e094ab555d6a"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-e2858896d8ea",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-criteria-identifying-business-relationships-occasional-and-linked_en",
-   "title": "Consultation on the draft RTS on criteria for identifying business relationships, occasional and linked transactions and lower thresholds",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "9 February 2026",
-     "date": "2026-02-09"
-    },
-    "Deadline": {
-     "text": "8 May 2026, 23:59 (CEST)",
-     "date": "2026-05-08"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "cdd"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "1c2630ad4146e7d0",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "1c2630ad4146e7d0"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-b525c753d55c",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-customer-due-diligence_en",
-   "title": "Consultation on the draft RTS on Customer Due Diligence",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "9 February 2026",
-     "date": "2026-02-09"
-    },
-    "Deadline": {
-     "text": "8 May 2026, 23:59 (CEST)",
-     "date": "2026-05-08"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [
-    "cdd"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
-   "hash": "fde39d445ac190cb",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "fde39d445ac190cb"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-list-76008a07f250",
-   "source": "amla-consultations-list",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-pecuniary-sanctions-administrative-measures-and-periodic-penalty-payments_en",
-   "title": "Consultation on the draft RTS on pecuniary sanctions, administrative measures and periodic penalty payments",
-   "date": "",
-   "summary": "",
-   "category": "Status: Closed",
-   "fields": {
-    "Opening date": {
-     "text": "9 February 2026",
-     "date": "2026-02-09"
-    },
-    "Deadline": {
-     "text": "9 March 2026, 23:59 (CET)",
-     "date": "2026-03-09"
-    }
-   },
-   "extra": {},
-   "type": "consultation",
-   "status": "draft (consultation closed)",
-   "topics": [],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
-   "hash": "33f5bb804a84b652",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "33f5bb804a84b652"
-    }
-   ]
-  },
-  {
    "id": "amla-instruments-b7b6ebdd96a2",
    "source": "amla-instruments",
    "authority": "AMLA",
@@ -9254,7 +9999,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "763972be2d3f262c",
    "change": "unchanged",
    "doc_id": "amla-instruments-b7b6ebdd96a2",
@@ -9304,7 +10049,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6927f6483b04d75c",
    "change": "unchanged",
    "doc_id": "amla-instruments-db0c5746aabf",
@@ -9354,7 +10099,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "92037b02847268c3",
    "change": "unchanged",
    "doc_id": "amla-instruments-7f7764ba2af8",
@@ -9404,7 +10149,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "951f1281cb4e4eec",
    "change": "unchanged",
    "doc_id": "amla-instruments-bf1be08fd1a2",
@@ -9454,7 +10199,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7d7f194b440e65f5",
    "change": "unchanged",
    "doc_id": "amla-instruments-24380b371f7c",
@@ -9504,7 +10249,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4d995a1750ecac4e",
    "change": "unchanged",
    "doc_id": "amla-instruments-c2d6e16d4987",
@@ -9552,7 +10297,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "534ba4124b194ffb",
    "change": "unchanged",
    "doc_id": "amla-instruments-1b17f68f9277",
@@ -9610,7 +10355,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "15edcd1e118e0357",
    "change": "unchanged",
    "doc_id": "amla-instruments-2c9307a49c44",
@@ -9664,7 +10409,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "caab73995bc00547",
    "change": "unchanged",
    "doc_id": "amla-instruments-cfde034916be",
@@ -9718,7 +10463,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "73a2590d3e926e19",
    "change": "unchanged",
    "doc_id": "amla-instruments-d2114c2e15ee",
@@ -9766,7 +10511,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b94e31f9d5fee875",
    "change": "unchanged",
    "doc_id": "amla-instruments-533bd851ab13",
@@ -9814,7 +10559,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f5c9918357aaaf49",
    "change": "unchanged",
    "doc_id": "amla-instruments-35ef3aab82cb",
@@ -9864,7 +10609,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "99a1f492c63e6383",
    "change": "unchanged",
    "doc_id": "amla-instruments-51a0aec27558",
@@ -9912,7 +10657,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6f61a262f0a5683f",
    "change": "unchanged",
    "doc_id": "amla-instruments-04b1e9cef1d4",
@@ -9966,7 +10711,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "11b966ef319e076f",
    "change": "unchanged",
    "doc_id": "amla-instruments-48e5213f80e7",
@@ -10016,7 +10761,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4b5c610f4aa96db3",
    "change": "unchanged",
    "doc_id": "amla-instruments-dbe5e7761f34",
@@ -10066,7 +10811,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "773bd36ea39f7603",
    "change": "unchanged",
    "doc_id": "amla-instruments-b322780192c5",
@@ -10180,7 +10925,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "73a9285315a18adf",
    "change": "unchanged",
    "doc_id": "",
@@ -10230,7 +10975,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c148fd40b6dce12b",
    "change": "unchanged",
    "doc_id": "",
@@ -10280,7 +11025,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "60e44b41729f9dc7",
    "change": "unchanged",
    "doc_id": "",
@@ -10330,7 +11075,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1d84ae0658e1d989",
    "change": "unchanged",
    "doc_id": "",
@@ -10380,7 +11125,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0df020c8162db2b8",
    "change": "unchanged",
    "doc_id": "",
@@ -10430,7 +11175,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dbe78b3e8f8cbb5f",
    "change": "unchanged",
    "doc_id": "",
@@ -10480,7 +11225,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a86db56d45a4a1c2",
    "change": "unchanged",
    "doc_id": "",
@@ -10530,7 +11275,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a0de396e21187a03",
    "change": "unchanged",
    "doc_id": "",
@@ -10580,7 +11325,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "768a86a03f21a846",
    "change": "unchanged",
    "doc_id": "",
@@ -10630,7 +11375,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b5a5ba42299ea96f",
    "change": "unchanged",
    "doc_id": "",
@@ -10680,7 +11425,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2f5c4aa1606de273",
    "change": "unchanged",
    "doc_id": "",
@@ -10730,7 +11475,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3e4a59084b023c91",
    "change": "unchanged",
    "doc_id": "",
@@ -10780,7 +11525,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "575f66f6b4cdddaf",
    "change": "unchanged",
    "doc_id": "",
@@ -10830,7 +11575,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "225f4f7c2c0d84ed",
    "change": "unchanged",
    "doc_id": "",
@@ -10880,7 +11625,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "94d8b36ad09504d0",
    "change": "unchanged",
    "doc_id": "",
@@ -10930,7 +11675,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0602c16150057f32",
    "change": "unchanged",
    "doc_id": "",
@@ -10980,7 +11725,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e5d628d130be21c0",
    "change": "unchanged",
    "doc_id": "",
@@ -11030,7 +11775,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "87b77225fb18f94a",
    "change": "unchanged",
    "doc_id": "",
@@ -11080,7 +11825,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "307b37566baabca6",
    "change": "unchanged",
    "doc_id": "",
@@ -11130,7 +11875,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "923617985a5e4e03",
    "change": "unchanged",
    "doc_id": "",
@@ -11180,7 +11925,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1f2ac487042c26c3",
    "change": "unchanged",
    "doc_id": "",
@@ -11230,7 +11975,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b47512819a0e0fab",
    "change": "unchanged",
    "doc_id": "",
@@ -11258,8 +12003,8 @@
      "date": "2026-11-13"
     },
     "Entry into force": {
-     "text": "2026-11-13",
-     "date": "2026-11-13"
+     "text": "2026-11-11",
+     "date": "2026-11-11"
     },
     "Deadline (CELLAR)": {
      "text": "",
@@ -11280,15 +12025,20 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "1502094c0b83dd31",
-   "change": "unchanged",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "92efafd139bc5252",
+   "change": "changed",
    "doc_id": "",
    "history": [
     {
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "1502094c0b83dd31"
+    },
+    {
+     "at": "2026-11-24T16:56:56+00:00",
+     "change": "changed",
+     "hash": "92efafd139bc5252"
     }
    ]
   },
@@ -11330,7 +12080,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9f24efe6051297cd",
    "change": "unchanged",
    "doc_id": "",
@@ -11380,7 +12130,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "68e61842d379b914",
    "change": "unchanged",
    "doc_id": "",
@@ -11430,7 +12180,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ceb0e16bd8baaec0",
    "change": "unchanged",
    "doc_id": "",
@@ -11480,7 +12230,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "10ec9d8cb5033938",
    "change": "unchanged",
    "doc_id": "",
@@ -11588,7 +12338,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c92c201b1b2b9384",
    "change": "unchanged",
    "doc_id": "",
@@ -11638,7 +12388,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c135ec2cb610fb7c",
    "change": "unchanged",
    "doc_id": "",
@@ -11688,7 +12438,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ebd1d667559bc45b",
    "change": "unchanged",
    "doc_id": "",
@@ -11738,7 +12488,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2543de7b5071b09c",
    "change": "unchanged",
    "doc_id": "",
@@ -11788,7 +12538,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7da7c56627404d6b",
    "change": "unchanged",
    "doc_id": "",
@@ -11838,7 +12588,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2636fcbe945c7881",
    "change": "unchanged",
    "doc_id": "",
@@ -11888,7 +12638,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dbe017b6eded9358",
    "change": "unchanged",
    "doc_id": "",
@@ -11938,7 +12688,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "800773330a88622f",
    "change": "unchanged",
    "doc_id": "",
@@ -11988,7 +12738,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0d3abe3e0feda2b4",
    "change": "unchanged",
    "doc_id": "",
@@ -12038,7 +12788,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "172aa6f55b30c916",
    "change": "unchanged",
    "doc_id": "",
@@ -12067,7 +12817,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b9cf9f9032b591a1",
    "change": "unchanged",
    "doc_id": "",
@@ -12117,7 +12867,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e8d9e55ef0910e93",
    "change": "unchanged",
    "doc_id": "",
@@ -12167,7 +12917,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "efece4c44e5d7ca7",
    "change": "unchanged",
    "doc_id": "",
@@ -12219,7 +12969,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "281b908752adcfa4",
    "change": "unchanged",
    "doc_id": "celex-32026D2508",
@@ -12269,7 +13019,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "07a2765e17c78265",
    "change": "unchanged",
    "doc_id": "",
@@ -12319,7 +13069,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4bc14b75f060a42e",
    "change": "unchanged",
    "doc_id": "",
@@ -12369,7 +13119,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "df1f24d88db4d435",
    "change": "unchanged",
    "doc_id": "",
@@ -12419,7 +13169,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7010de31250390da",
    "change": "unchanged",
    "doc_id": "",
@@ -12469,7 +13219,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f743f8a33397cf8f",
    "change": "unchanged",
    "doc_id": "",
@@ -12521,7 +13271,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "26af0a24c93ce9c6",
    "change": "unchanged",
    "doc_id": "celex-32026D2507",
@@ -12571,7 +13321,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7e0964df7723abe5",
    "change": "unchanged",
    "doc_id": "",
@@ -12621,7 +13371,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "104e98aa1834455b",
    "change": "unchanged",
    "doc_id": "",
@@ -12671,7 +13421,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e5754df985908d04",
    "change": "unchanged",
    "doc_id": "",
@@ -12721,7 +13471,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "5d5682d71cc158bf",
    "change": "unchanged",
    "doc_id": "",
@@ -12771,7 +13521,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "eb218d786204adab",
    "change": "unchanged",
    "doc_id": "",
@@ -12821,7 +13571,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3c5615cab94a93b2",
    "change": "unchanged",
    "doc_id": "",
@@ -12871,7 +13621,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c32cb2d4cbb5def4",
    "change": "unchanged",
    "doc_id": "",
@@ -12921,7 +13671,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "02ef2a5dc1a0df3d",
    "change": "unchanged",
    "doc_id": "",
@@ -12971,7 +13721,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "297ddb4f17d4531c",
    "change": "unchanged",
    "doc_id": "",
@@ -13000,7 +13750,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6a2175068b5483db",
    "change": "unchanged",
    "doc_id": "",
@@ -13087,7 +13837,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e20cd045ba429252",
    "change": "unchanged",
    "doc_id": "",
@@ -13116,7 +13866,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "691ba7d125c8c8a1",
    "change": "unchanged",
    "doc_id": "",
@@ -13145,7 +13895,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "427eae8203f5db8e",
    "change": "unchanged",
    "doc_id": "",
@@ -13261,7 +14011,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a9b3409278be54e3",
    "change": "unchanged",
    "doc_id": "",
@@ -13295,7 +14045,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2b21d2e35b18e401",
    "change": "unchanged",
    "doc_id": "",
@@ -13329,7 +14079,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1c033924d38d5e1f",
    "change": "unchanged",
    "doc_id": "",
@@ -13358,7 +14108,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8b61855357bf9287",
    "change": "unchanged",
    "doc_id": "",
@@ -13387,7 +14137,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "bebca910b07a51f1",
    "change": "unchanged",
    "doc_id": "",
@@ -13416,7 +14166,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-16T14:40:51+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1042d899b4055fe3",
    "change": "unchanged",
    "doc_id": "",
@@ -13466,7 +14216,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a04d166d9c99f3a0",
    "change": "unchanged",
    "doc_id": "celex-32026D1814",
@@ -13516,7 +14266,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "52b1dc14c31b0bb3",
    "change": "unchanged",
    "doc_id": "",
@@ -13566,7 +14316,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f7f2f99600cdce50",
    "change": "unchanged",
    "doc_id": "",
@@ -13703,7 +14453,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ccef7924335acf1b",
    "change": "unchanged",
    "doc_id": "",
@@ -13753,7 +14503,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3df77cfbd0a0bbc2",
    "change": "unchanged",
    "doc_id": "",
@@ -13803,7 +14553,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8590d2e74c543015",
    "change": "unchanged",
    "doc_id": "",
@@ -13853,7 +14603,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d399eb7ce86b443d",
    "change": "unchanged",
    "doc_id": "",
@@ -13903,7 +14653,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b452140b0c44964b",
    "change": "unchanged",
    "doc_id": "",
@@ -14040,7 +14790,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "75f8da46878c5a69",
    "change": "unchanged",
    "doc_id": "",
@@ -14090,7 +14840,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f187ca0a1cb89071",
    "change": "unchanged",
    "doc_id": "",
@@ -14140,7 +14890,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0f63bacd06ce22d9",
    "change": "unchanged",
    "doc_id": "",
@@ -14190,7 +14940,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8a273d62a37ffc20",
    "change": "unchanged",
    "doc_id": "",
@@ -14240,7 +14990,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f1935ed48aba572f",
    "change": "unchanged",
    "doc_id": "",
@@ -14319,7 +15069,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0472f86c94128e4a",
    "change": "unchanged",
    "doc_id": "",
@@ -14369,7 +15119,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "23e3f5e9ca2e0f9a",
    "change": "unchanged",
    "doc_id": "",
@@ -14421,7 +15171,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9578491355515b2d",
    "change": "unchanged",
    "doc_id": "celex-32026R2490",
@@ -14471,7 +15221,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "767f716ab799eb3a",
    "change": "unchanged",
    "doc_id": "",
@@ -14521,7 +15271,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a6b2bb541f777147",
    "change": "unchanged",
    "doc_id": "",
@@ -14567,11 +15317,11 @@
     "fetch_url": "http://publications.europa.eu/resource/celex/32026R2473"
    },
    "type": "legislation",
-   "status": "adopted, not yet in force",
+   "status": "in force",
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "eabffd0c3981e76c",
    "change": "unchanged",
    "doc_id": "",
@@ -14621,7 +15371,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e55d75c8426352d8",
    "change": "unchanged",
    "doc_id": "",
@@ -14671,7 +15421,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "78af39269da004af",
    "change": "unchanged",
    "doc_id": "",
@@ -14721,7 +15471,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "07d2f86965e85c31",
    "change": "unchanged",
    "doc_id": "",
@@ -14773,7 +15523,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7cc1a1ed1a715683",
    "change": "unchanged",
    "doc_id": "",
@@ -14802,7 +15552,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "07605736e997d405",
    "change": "unchanged",
    "doc_id": "amla-news-2792009b59d1",
@@ -14852,7 +15602,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2d2c732a4400a71b",
    "change": "unchanged",
    "doc_id": "",
@@ -14902,7 +15652,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "828860609cd3d421",
    "change": "unchanged",
    "doc_id": "",
@@ -14952,7 +15702,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9a4d144a8461e972",
    "change": "unchanged",
    "doc_id": "",
@@ -15012,7 +15762,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "95fc902d0b23d28a",
    "change": "unchanged",
    "doc_id": "",
@@ -15062,7 +15812,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "991322f9fcd29bb8",
    "change": "unchanged",
    "doc_id": "",
@@ -15112,7 +15862,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dcaaa0bfabe2dfef",
    "change": "unchanged",
    "doc_id": "",
@@ -15162,7 +15912,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b7ea70a11ead3044",
    "change": "unchanged",
    "doc_id": "",
@@ -15212,7 +15962,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "36de8465c8d228c7",
    "change": "unchanged",
    "doc_id": "",
@@ -16045,7 +16795,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3cf2a090ffb3cebd",
    "change": "unchanged",
    "doc_id": "",
@@ -16074,7 +16824,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d6b5926cbdfbcd4f",
    "change": "unchanged",
    "doc_id": "amla-news-8c712d4c9fa0",
@@ -16083,35 +16833,6 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "d6b5926cbdfbcd4f"
-    }
-   ]
-  },
-  {
-   "id": "nbb-news-19c6c78bff8a",
-   "source": "nbb-news",
-   "authority": "NBB",
-   "jurisdiction": "BE",
-   "url": "https://www.nbb.be/en/news/annual-report-roadshow",
-   "title": "Annual report roadshow",
-   "date": "2026-10-30",
-   "summary": "Every year, the members of the Board of Directors of the National Bank of Belgium travel around the country to present the NBB‘s annual report to the general public. This is a unique occasion to explore the key economic, financial and monetary developments of the past year.",
-   "category": "",
-   "fields": {},
-   "extra": {},
-   "type": "supervisory_communication",
-   "status": "published",
-   "topics": [],
-   "in_scope": false,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
-   "hash": "6737a8e767344ce1",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "6737a8e767344ce1"
     }
    ]
   },
@@ -16132,7 +16853,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3673779c617ff3dc",
    "change": "unchanged",
    "doc_id": "amla-library-cd27b232a75d",
@@ -16141,6 +16862,35 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "3673779c617ff3dc"
+    }
+   ]
+  },
+  {
+   "id": "nbb-news-19c6c78bff8a",
+   "source": "nbb-news",
+   "authority": "NBB",
+   "jurisdiction": "BE",
+   "url": "https://www.nbb.be/en/news/annual-report-roadshow",
+   "title": "Annual report roadshow",
+   "date": "2026-10-30",
+   "summary": "Every year, the members of the Board of Directors of the National Bank of Belgium travel around the country to present the NBB‘s annual report to the general public. This is a unique occasion to explore the key economic, financial and monetary developments of the past year.",
+   "category": "",
+   "fields": {},
+   "extra": {},
+   "type": "supervisory_communication",
+   "status": "published",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "6737a8e767344ce1",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "6737a8e767344ce1"
     }
    ]
   },
@@ -16990,7 +17740,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "48ef70e2aeb86a03",
    "change": "unchanged",
    "doc_id": "",
@@ -17469,7 +18219,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "aee1d57911fe0223",
    "change": "unchanged",
    "doc_id": "",
@@ -18783,7 +19533,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d62e8606ac1728d7",
    "change": "unchanged",
    "doc_id": "amla-news-f788b3addd04",
@@ -18812,7 +19562,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "cfef8e015e1095b6",
    "change": "unchanged",
    "doc_id": "",
@@ -18841,7 +19591,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f11d4a1a20e5349a",
    "change": "unchanged",
    "doc_id": "amla-news-25ba5b2df2f3",
@@ -18953,7 +19703,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "18d55c84af68aeeb",
    "change": "unchanged",
    "doc_id": "celex-32026R2354",
@@ -18982,7 +19732,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "cc563d385a1aef9e",
    "change": "unchanged",
    "doc_id": "amla-news-bb51330afd2e",
@@ -19011,7 +19761,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ce2a5305898e7f59",
    "change": "unchanged",
    "doc_id": "",
@@ -19040,7 +19790,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "070f999e8cec4107",
    "change": "unchanged",
    "doc_id": "",
@@ -19069,7 +19819,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "15ba408e0315208e",
    "change": "unchanged",
    "doc_id": "",
@@ -19098,7 +19848,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4031cf8a014cd175",
    "change": "unchanged",
    "doc_id": "",
@@ -19127,7 +19877,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d66b6ac6f327d247",
    "change": "unchanged",
    "doc_id": "",
@@ -19214,7 +19964,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6b148f91ac2e54c4",
    "change": "unchanged",
    "doc_id": "",
@@ -19243,7 +19993,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "04a17ca16cdb4ab2",
    "change": "unchanged",
    "doc_id": "",
@@ -19272,7 +20022,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "165aa5f93071b450",
    "change": "unchanged",
    "doc_id": "",
@@ -19332,7 +20082,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "92b4b4382e0beaf3",
    "change": "unchanged",
    "doc_id": "",
@@ -19361,7 +20111,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "00fe44554b4f3cc8",
    "change": "unchanged",
    "doc_id": "amla-library-b322780192c5",
@@ -19390,7 +20140,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ff5a924b47bf5773",
    "change": "unchanged",
    "doc_id": "amla-library-35ef3aab82cb",
@@ -19419,7 +20169,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8b821b2702211405",
    "change": "unchanged",
    "doc_id": "amla-library-533bd851ab13",
@@ -19448,7 +20198,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c77f104d9ba4b006",
    "change": "unchanged",
    "doc_id": "amla-library-5be92668cc8d",
@@ -19477,7 +20227,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2160938d447b291c",
    "change": "unchanged",
    "doc_id": "amla-library-2a00943677fd",
@@ -19506,7 +20256,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "17866853a45a8157",
    "change": "unchanged",
    "doc_id": "amla-library-58150b878892",
@@ -19535,7 +20285,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4afa44da0359cdaa",
    "change": "unchanged",
    "doc_id": "",
@@ -19564,7 +20314,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c603bb090a785c82",
    "change": "unchanged",
    "doc_id": "amla-news-c2518b65d16a",
@@ -19593,7 +20343,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b5246fd154bdec86",
    "change": "unchanged",
    "doc_id": "amla-news-cdc99a25a64b",
@@ -19624,7 +20374,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9ccc039560efa2fa",
    "change": "unchanged",
    "doc_id": "amla-news-c97a25fb94e1",
@@ -19653,7 +20403,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f0767fa9ce72054d",
    "change": "unchanged",
    "doc_id": "amla-news-2e337f7ab926",
@@ -19682,7 +20432,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "65a62236cb79fe5f",
    "change": "unchanged",
    "doc_id": "amla-news-712272c2e37f",
@@ -19711,7 +20461,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d31fd088e69db391",
    "change": "unchanged",
    "doc_id": "amla-library-38ddd130dcf9",
@@ -19742,7 +20492,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "912b09c4f13051de",
    "change": "unchanged",
    "doc_id": "amla-library-964d9792a3fe",
@@ -19771,7 +20521,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4b0a169987ab5e61",
    "change": "unchanged",
    "doc_id": "amla-library-f7e7ee51546d",
@@ -19800,7 +20550,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "73aef182db5815b0",
    "change": "unchanged",
    "doc_id": "amla-consultations-b7b6ebdd96a2",
@@ -19829,7 +20579,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0efafc843a9a37fc",
    "change": "unchanged",
    "doc_id": "amla-hearings-3361f87338bc",
@@ -19858,7 +20608,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "014b528c46efeb18",
    "change": "unchanged",
    "doc_id": "amla-news-6777126e95c2",
@@ -19887,7 +20637,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ce69f428d5707fc5",
    "change": "unchanged",
    "doc_id": "amla-news-55bc303d93b0",
@@ -19918,7 +20668,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e567a22b949f5bf8",
    "change": "unchanged",
    "doc_id": "amla-consultations-e2858896d8ea",
@@ -19949,7 +20699,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7052b925b98910bc",
    "change": "unchanged",
    "doc_id": "amla-consultations-b525c753d55c",
@@ -19980,7 +20730,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "fca2a59e49ba6d5f",
    "change": "unchanged",
    "doc_id": "amla-consultations-f4810ea04c53",
@@ -20009,7 +20759,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9f2597e112c478cf",
    "change": "unchanged",
    "doc_id": "",
@@ -20041,7 +20791,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f0ea36919205d096",
    "change": "unchanged",
    "doc_id": "amla-news-490c4c92f749",
@@ -20070,7 +20820,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "56a63c1bc6cd6939",
    "change": "unchanged",
    "doc_id": "amla-library-ff54c0d692f3",
@@ -20099,7 +20849,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e3b85bf5b701ab4a",
    "change": "unchanged",
    "doc_id": "amla-library-c8c0f6f109b2",
@@ -20128,7 +20878,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6a82f6d536845b6a",
    "change": "unchanged",
    "doc_id": "",
@@ -20157,7 +20907,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2c3fda374ca9f126",
    "change": "unchanged",
    "doc_id": "amla-news-0fee8ddae26e",
@@ -20186,7 +20936,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0bacdbc6177662df",
    "change": "unchanged",
    "doc_id": "amla-news-5d411692ff70",
@@ -20215,7 +20965,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0015a541f7af1871",
    "change": "unchanged",
    "doc_id": "amla-library-eb900769d03c",
@@ -20244,7 +20994,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "51ceca1f7f97495a",
    "change": "unchanged",
    "doc_id": "amla-library-a602b2a61c97",
@@ -20273,7 +21023,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a61ae30119e6697f",
    "change": "unchanged",
    "doc_id": "amla-library-79cd70a6156d",
@@ -20302,7 +21052,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1a5f034f1d1a7947",
    "change": "unchanged",
    "doc_id": "",
@@ -20331,7 +21081,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d8613345777f1736",
    "change": "unchanged",
    "doc_id": "",
@@ -20360,7 +21110,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a7c55d6790c84481",
    "change": "unchanged",
    "doc_id": "",
@@ -20389,7 +21139,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "96bf7d3d63271925",
    "change": "unchanged",
    "doc_id": "",
@@ -20398,6 +21148,37 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "96bf7d3d63271925"
+    }
+   ]
+  },
+  {
+   "id": "amla-hearings-168a050ac865",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-its-format-reporting-suspicions-and-providing-transaction-records-2026-09-09_en",
+   "title": "Public Hearing on the draft ITS on the format for reporting suspicions and providing transaction records",
+   "date": "2026-09-24",
+   "summary": "Public Hearing on draft Implementing Technical Standards under Article 69(3) of Regulation (EU) 2024/1624",
+   "category": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism, Public Hearing, 2026, English, Public deb",
+   "fields": {},
+   "extra": {},
+   "type": "consultation",
+   "status": "draft",
+   "topics": [
+    "reporting-str"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "7a43587ea5bafb65",
+   "change": "unchanged",
+   "doc_id": "amla-hearings-168a050ac865",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "7a43587ea5bafb65"
     }
    ]
   },
@@ -20431,37 +21212,6 @@
    ]
   },
   {
-   "id": "amla-hearings-168a050ac865",
-   "source": "amla-hearings",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/events/public-hearing-draft-its-format-reporting-suspicions-and-providing-transaction-records-2026-09-09_en",
-   "title": "Public Hearing on the draft ITS on the format for reporting suspicions and providing transaction records",
-   "date": "2026-09-24",
-   "summary": "Public Hearing on draft Implementing Technical Standards under Article 69(3) of Regulation (EU) 2024/1624",
-   "category": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism, Public Hearing, 2026, English, Public deb",
-   "fields": {},
-   "extra": {},
-   "type": "consultation",
-   "status": "draft",
-   "topics": [
-    "reporting-str"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "7a43587ea5bafb65",
-   "change": "unchanged",
-   "doc_id": "amla-hearings-168a050ac865",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "7a43587ea5bafb65"
-    }
-   ]
-  },
-  {
    "id": "amla-news-16f9ae59ea35",
    "source": "amla-news",
    "authority": "AMLA",
@@ -20478,7 +21228,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "9738d30960d30d4b",
    "change": "unchanged",
    "doc_id": "amla-news-16f9ae59ea35",
@@ -20507,7 +21257,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "864e1d60c3a0a960",
    "change": "unchanged",
    "doc_id": "amla-library-7e6bbdde4a21",
@@ -20538,7 +21288,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "376c249fa2732e6e",
    "change": "unchanged",
    "doc_id": "amla-news-fcba9a8ef8a6",
@@ -20567,7 +21317,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2e95cc391b0631bd",
    "change": "unchanged",
    "doc_id": "amla-library-43d001486f81",
@@ -20596,7 +21346,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3b97f08b8696fc16",
    "change": "unchanged",
    "doc_id": "amla-library-ed5e2388851d",
@@ -20625,7 +21375,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8876204d3babab34",
    "change": "unchanged",
    "doc_id": "amla-library-148273efc0e5",
@@ -20654,7 +21404,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4e4fb99541d0cbdc",
    "change": "unchanged",
    "doc_id": "amla-library-f562217654c5",
@@ -20683,7 +21433,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "640e57a620b19ce8",
    "change": "unchanged",
    "doc_id": "amla-library-64711cbaea86",
@@ -20712,7 +21462,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dbb25815c7ebb6ef",
    "change": "unchanged",
    "doc_id": "amla-library-0e49e767e94f",
@@ -20741,7 +21491,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f762332f8f06d19a",
    "change": "unchanged",
    "doc_id": "",
@@ -20772,7 +21522,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "bfe500ead3aa8529",
    "change": "unchanged",
    "doc_id": "amla-news-b87f876ecb19",
@@ -20801,7 +21551,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "870d9fab9906e807",
    "change": "unchanged",
    "doc_id": "amla-news-6f6fe2c360a2",
@@ -20832,7 +21582,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7ba985ccd43ffb2f",
    "change": "unchanged",
    "doc_id": "amla-news-672f202ee9be",
@@ -20861,7 +21611,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c4a56089504cf3a8",
    "change": "unchanged",
    "doc_id": "amla-library-656e536eb6b4",
@@ -20890,7 +21640,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ec7a3a2c720e18e9",
    "change": "unchanged",
    "doc_id": "",
@@ -20919,7 +21669,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c2674049be15e4e4",
    "change": "unchanged",
    "doc_id": "",
@@ -20948,7 +21698,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8137ea6d40c30a40",
    "change": "unchanged",
    "doc_id": "amla-news-6354ca0b6f00",
@@ -20977,7 +21727,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0a9c0f54e7cceef0",
    "change": "unchanged",
    "doc_id": "",
@@ -21006,7 +21756,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "caab7f0a7e373bc2",
    "change": "unchanged",
    "doc_id": "",
@@ -21035,7 +21785,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "402e57a1082d8974",
    "change": "unchanged",
    "doc_id": "",
@@ -21064,7 +21814,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1255be1adc164a87",
    "change": "unchanged",
    "doc_id": "",
@@ -21093,7 +21843,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e828cf31ce7a7ce3",
    "change": "unchanged",
    "doc_id": "fsma-news-dc798f244eb0",
@@ -21122,7 +21872,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d2db3243ba433f1e",
    "change": "unchanged",
    "doc_id": "",
@@ -21151,7 +21901,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f71fe7f023534324",
    "change": "unchanged",
    "doc_id": "",
@@ -21238,7 +21988,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "daffb0f081c49bea",
    "change": "unchanged",
    "doc_id": "amla-library-69f6d9e46e55",
@@ -21414,7 +22164,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "dc9b6249e2e5588b",
    "change": "unchanged",
    "doc_id": "amla-news-f47b90ce2410",
@@ -21443,7 +22193,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3d2790c8bb85435e",
    "change": "unchanged",
    "doc_id": "amla-reports-07ab5af50b97",
@@ -21472,7 +22222,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a06cfcaf7d316dcc",
    "change": "unchanged",
    "doc_id": "",
@@ -21501,7 +22251,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "bf1f5f02ec1cc09c",
    "change": "unchanged",
    "doc_id": "",
@@ -21530,7 +22280,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f3757956d0268e6f",
    "change": "unchanged",
    "doc_id": "",
@@ -21559,7 +22309,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "bd6d8738d4d6af0b",
    "change": "unchanged",
    "doc_id": "amla-news-d5ab093a6513",
@@ -21651,7 +22401,7 @@
    "last_seen": "2026-11-20T14:52:32+00:00",
    "hash": "336a2c551d9b17b2",
    "change": "unchanged",
-   "doc_id": "",
+   "doc_id": "amla-news-d75961908ae9",
    "history": [
     {
      "at": "2026-11-14T08:12:28+00:00",
@@ -21710,7 +22460,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "00a446f859f98847",
    "change": "unchanged",
    "doc_id": "amla-consultations-7f7764ba2af8",
@@ -21741,7 +22491,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "87054d7607353668",
    "change": "unchanged",
    "doc_id": "amla-hearings-99b5c6c4ee05",
@@ -21770,7 +22520,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2d117aa06035801e",
    "change": "unchanged",
    "doc_id": "amla-consultations-76008a07f250",
@@ -21802,7 +22552,7 @@
    "last_seen": "2026-11-17T15:28:31+00:00",
    "hash": "22d45ffc9006ff22",
    "change": "unchanged",
-   "doc_id": "",
+   "doc_id": "amla-news-45fd17c84237",
    "history": [
     {
      "at": "2026-11-14T08:12:28+00:00",
@@ -21828,7 +22578,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "cd94f12e0a4eae6d",
    "change": "unchanged",
    "doc_id": "",
@@ -21922,7 +22672,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d32de55d2bb227a2",
    "change": "unchanged",
    "doc_id": "amla-consultations-db0c5746aabf",
@@ -21953,7 +22703,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4d66c7457b11cad2",
    "change": "unchanged",
    "doc_id": "nbb-news-5e516fa02a25",
@@ -21962,35 +22712,6 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "4d66c7457b11cad2"
-    }
-   ]
-  },
-  {
-   "id": "nbb-news-aaa1bc0e2014",
-   "source": "nbb-news",
-   "authority": "NBB",
-   "jurisdiction": "BE",
-   "url": "https://www.nbb.be/en/news/ecb-forum-sintra-29-june-1-july-2026",
-   "title": "ECB Forum in Sintra, 29 June –1 July 2026",
-   "date": "2026-07-02",
-   "summary": "In Sintra, the ECB‘s annual Forum once again brought together central bankers, economists, academics and policymakers to discuss key economic and monetary issues. An opportunity for Governor Pierre Wunsch to speak with several media outlets, including Bloomberg , MNI , Econostream and Süddeutsche Zeitung .",
-   "category": "",
-   "fields": {},
-   "extra": {},
-   "type": "supervisory_communication",
-   "status": "published",
-   "topics": [],
-   "in_scope": false,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
-   "hash": "83fabf2deb3a063a",
-   "change": "unchanged",
-   "doc_id": "",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "83fabf2deb3a063a"
     }
    ]
   },
@@ -22013,7 +22734,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "1424546f4663aa49",
    "change": "unchanged",
    "doc_id": "amla-consultations-bf1be08fd1a2",
@@ -22022,6 +22743,35 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "1424546f4663aa49"
+    }
+   ]
+  },
+  {
+   "id": "nbb-news-aaa1bc0e2014",
+   "source": "nbb-news",
+   "authority": "NBB",
+   "jurisdiction": "BE",
+   "url": "https://www.nbb.be/en/news/ecb-forum-sintra-29-june-1-july-2026",
+   "title": "ECB Forum in Sintra, 29 June –1 July 2026",
+   "date": "2026-07-02",
+   "summary": "In Sintra, the ECB‘s annual Forum once again brought together central bankers, economists, academics and policymakers to discuss key economic and monetary issues. An opportunity for Governor Pierre Wunsch to speak with several media outlets, including Bloomberg , MNI , Econostream and Süddeutsche Zeitung .",
+   "category": "",
+   "fields": {},
+   "extra": {},
+   "type": "supervisory_communication",
+   "status": "published",
+   "topics": [],
+   "in_scope": false,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "83fabf2deb3a063a",
+   "change": "unchanged",
+   "doc_id": "",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "83fabf2deb3a063a"
     }
    ]
   },
@@ -22042,7 +22792,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "893abcea51f82be7",
    "change": "unchanged",
    "doc_id": "",
@@ -22094,7 +22844,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ad9bf4760c9418f7",
    "change": "unchanged",
    "doc_id": "",
@@ -22177,7 +22927,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "4ee3f3449ce12868",
    "change": "unchanged",
    "doc_id": "",
@@ -22206,7 +22956,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "56bff14eaa231944",
    "change": "unchanged",
    "doc_id": "",
@@ -22235,7 +22985,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "07b33414c1f9f54f",
    "change": "unchanged",
    "doc_id": "",
@@ -22264,7 +23014,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7e9cd58d23757376",
    "change": "unchanged",
    "doc_id": "",
@@ -22293,7 +23043,7 @@
    "topics": [],
    "in_scope": false,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "28d856379e8ef932",
    "change": "unchanged",
    "doc_id": "",
@@ -22382,7 +23132,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "42ec2436a292ea15",
    "change": "unchanged",
    "doc_id": "amla-consultations-24380b371f7c",
@@ -22413,7 +23163,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "b92222003ebe0937",
    "change": "unchanged",
    "doc_id": "amla-hearings-4285fab0d1b7",
@@ -22444,7 +23194,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "70e81f5b01f81d44",
    "change": "unchanged",
    "doc_id": "amla-hearings-ad95d46373dc",
@@ -22473,7 +23223,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "c72759cce2566076",
    "change": "unchanged",
    "doc_id": "amla-hearings-8eddb9934486",
@@ -22504,7 +23254,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "20f044364be18848",
    "change": "unchanged",
    "doc_id": "amla-hearings-ebbf5cc0b12e",
@@ -22535,7 +23285,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "397973466be11438",
    "change": "unchanged",
    "doc_id": "amla-hearings-b1a44b083017",
@@ -22587,7 +23337,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "0bc057f4b1f00095",
    "change": "unchanged",
    "doc_id": "celex-52025DP0342",
@@ -22641,7 +23391,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "e78eb63005d1579d",
    "change": "unchanged",
    "doc_id": "celex-52025IP0286",
@@ -22650,6 +23400,68 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "e78eb63005d1579d"
+    }
+   ]
+  },
+  {
+   "id": "amla-consultations-c2d6e16d4987",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en",
+   "title": "Consultation on the draft Guidelines on business-wide risk assessment",
+   "date": "2026-04-16",
+   "summary": "AMLA welcomes contributions on the draft guidelines on business-wide risk assessment.",
+   "category": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism, 2026, money laundering, terrorism financi",
+   "fields": {},
+   "extra": {},
+   "type": "consultation",
+   "status": "draft",
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "ff85087f7a6e557b",
+   "change": "unchanged",
+   "doc_id": "amla-consultations-c2d6e16d4987",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "ff85087f7a6e557b"
+    }
+   ]
+  },
+  {
+   "id": "amla-hearings-7c2ec9b20e25",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "jurisdiction": "EU",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-group-wide-minimum-requirements-and-additional-measures-subsidiaries-and-2026-05-20_en",
+   "title": "Public Hearing on the draft RTS on group-wide minimum requirements and additional measures for subsidiaries and branches in third countries",
+   "date": "2026-04-16",
+   "summary": "Public hearing on the draft RTS under Articles 16(4) and 17(3) of Regulation (EU) 2024/1624",
+   "category": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism, Public Hearing, 2026, English, Public deb",
+   "fields": {},
+   "extra": {},
+   "type": "consultation",
+   "status": "draft",
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "in_scope": true,
+   "first_seen": "2026-11-14T08:12:28+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
+   "hash": "b8e05c4edbe2450a",
+   "change": "unchanged",
+   "doc_id": "amla-hearings-7c2ec9b20e25",
+   "history": [
+    {
+     "at": "2026-11-14T08:12:28+00:00",
+     "change": "new",
+     "hash": "b8e05c4edbe2450a"
     }
    ]
   },
@@ -22693,7 +23505,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "3198c1f85a52cf40",
    "change": "unchanged",
    "doc_id": "",
@@ -22702,68 +23514,6 @@
      "at": "2026-11-14T08:12:28+00:00",
      "change": "new",
      "hash": "3198c1f85a52cf40"
-    }
-   ]
-  },
-  {
-   "id": "amla-consultations-c2d6e16d4987",
-   "source": "amla-consultations",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-business-wide-risk-assessment_en",
-   "title": "Consultation on the draft Guidelines on business-wide risk assessment",
-   "date": "2026-04-16",
-   "summary": "AMLA welcomes contributions on the draft guidelines on business-wide risk assessment.",
-   "category": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism, 2026, money laundering, terrorism financi",
-   "fields": {},
-   "extra": {},
-   "type": "consultation",
-   "status": "draft",
-   "topics": [
-    "governance-risk-assessment"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "ff85087f7a6e557b",
-   "change": "unchanged",
-   "doc_id": "amla-consultations-c2d6e16d4987",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "ff85087f7a6e557b"
-    }
-   ]
-  },
-  {
-   "id": "amla-hearings-7c2ec9b20e25",
-   "source": "amla-hearings",
-   "authority": "AMLA",
-   "jurisdiction": "EU",
-   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-group-wide-minimum-requirements-and-additional-measures-subsidiaries-and-2026-05-20_en",
-   "title": "Public Hearing on the draft RTS on group-wide minimum requirements and additional measures for subsidiaries and branches in third countries",
-   "date": "2026-04-16",
-   "summary": "Public hearing on the draft RTS under Articles 16(4) and 17(3) of Regulation (EU) 2024/1624",
-   "category": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism, Public Hearing, 2026, English, Public deb",
-   "fields": {},
-   "extra": {},
-   "type": "consultation",
-   "status": "draft",
-   "topics": [
-    "governance-risk-assessment"
-   ],
-   "in_scope": true,
-   "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
-   "hash": "b8e05c4edbe2450a",
-   "change": "unchanged",
-   "doc_id": "amla-hearings-7c2ec9b20e25",
-   "history": [
-    {
-     "at": "2026-11-14T08:12:28+00:00",
-     "change": "new",
-     "hash": "b8e05c4edbe2450a"
     }
    ]
   },
@@ -22807,7 +23557,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8cb70d8354154358",
    "change": "unchanged",
    "doc_id": "",
@@ -22859,7 +23609,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "5c4b3cac994fce83",
    "change": "unchanged",
    "doc_id": "",
@@ -22890,7 +23640,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "6b5d0ebaa81738bf",
    "change": "unchanged",
    "doc_id": "amla-hearings-2c11a2dcab90",
@@ -22921,7 +23671,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "de0e19e4c2600593",
    "change": "unchanged",
    "doc_id": "amla-hearings-321e325c341b",
@@ -22973,7 +23723,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "d99c7bf59d22a318",
    "change": "unchanged",
    "doc_id": "",
@@ -23025,7 +23775,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "f0d25376fd4be339",
    "change": "unchanged",
    "doc_id": "celex-32026D01260",
@@ -23079,7 +23829,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "77e3b117f4587278",
    "change": "unchanged",
    "doc_id": "celex-52025IP0075",
@@ -23148,7 +23898,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "8499522d59e4c677",
    "change": "unchanged",
    "doc_id": "celex-52025IP0105",
@@ -23212,7 +23962,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "390d30c00b6c7f01",
    "change": "unchanged",
    "doc_id": "celex-32026R0046",
@@ -23266,7 +24016,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "7dca266384b193ea",
    "change": "unchanged",
    "doc_id": "celex-32026R0083",
@@ -23327,7 +24077,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2e3e8bcc8a821725",
    "change": "unchanged",
    "doc_id": "amla-consultations-69942ae09129",
@@ -23381,7 +24131,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "a99ca202b8a2c2f9",
    "change": "unchanged",
    "doc_id": "",
@@ -23435,7 +24185,7 @@
    ],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "ef165335b090485f",
    "change": "unchanged",
    "doc_id": "celex-32025Y06342",
@@ -23487,7 +24237,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "bdbebc74cec383d9",
    "change": "unchanged",
    "doc_id": "",
@@ -23539,7 +24289,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-23T17:18:35+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "2332623c0084ef40",
    "change": "unchanged",
    "doc_id": "celex-32025R2088",
@@ -23568,7 +24318,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "db672dbd2dbde4d7",
    "change": "unchanged",
    "doc_id": "nbb-aml-decisions-537d12fa381e",
@@ -23597,7 +24347,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "025de74e008031ea",
    "change": "unchanged",
    "doc_id": "nbb-aml-decisions-7c23e2d4d72b",
@@ -23626,7 +24376,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-14T08:12:28+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "53920cb2936af66e",
    "change": "unchanged",
    "doc_id": "nbb-aml-decisions-b9f5736b858e",
@@ -23655,7 +24405,7 @@
    "topics": [],
    "in_scope": true,
    "first_seen": "2026-11-18T15:03:00+00:00",
-   "last_seen": "2026-11-22T13:58:21+00:00",
+   "last_seen": "2026-11-24T16:56:56+00:00",
    "hash": "653954872da394e2",
    "change": "unchanged",
    "doc_id": "nbb-aml-decisions-8ae562ba2c08",

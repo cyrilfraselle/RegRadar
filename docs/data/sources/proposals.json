@@ -2,10 +2,141 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-23T17:18:35+00:00",
-  "count": 95
+  "generated": "2026-11-24T16:56:56+00:00",
+  "count": 98
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2600-f4432c28",
+   "created": "2026-11-24T16:56:56+00:00",
+   "doc_id": "celex-32026D2600",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2600 of 23 November 2026 amending Decision (CFSP) 2021/1143 on a European Union Military Assistance Mission in Mozambique (EUMAM Mozambique)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2600",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2021/1143 should be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2021/1143 on a European Union Military Assistance Missi, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "in Article 10, the following paragraph is added: ‘5. The financial reference amount for the common costs of the EUMAM Mozambique for the period from 1 January 2027 until 31 December 2028 shall be EUR 17 170 000. The percentage of the reference amount referred to in Article 51(2) of Decision (CFSP) 2021/509 shall be 0 % for commitments and 0 % for payments.’ ;",
+     "loc": "Article 1, para 14",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2633-3b131e72",
+   "created": "2026-11-24T16:56:56+00:00",
+   "doc_id": "celex-32026D2633",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2633 of 23 November 2026 amending Decision (CFSP) 2024/1472 on a European Union Diplomatic Academy",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2633",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Decision (CFSP) 2024/1472 should therefore be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2024/1472 on a European Union Diplomatic Academy, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Article 6 is replaced by the following: ‘Article 6 The Head of the EUDA 1. The Head of the EUDA (the “Head”) shall: (a) be responsible for the overall management of the EUDA; (b) be responsible for overseeing the EUDA’s engagement with the network of national diplomatic academies and with the training directors of the Ministries of Foreign Affairs of the Member States; (c) be responsible for ensuring the overall coordination of the EUDA and consistency with the priorities of the Union’s CFSP under the responsibility of the High Representative, in particular for the implementation of Article 10; (d) ensure the regular production of evaluation reports concerning the training programme and its components and submit those reports to the Steering Committee; (e) advise and support the work of the Steering Committee, and inform the Steering Committee of all other relevant activities regarding the training programme; (f) inform the Steering Committee of the budget proposal for the EUDA and of the implementation of the budget; and (g) work in close consultation with the Commission and maintain regular contacts with the relevant authorities in the other Union institutions and bodies and in t",
+     "loc": "Article 1, para 2",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (shall) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-celex-32026D2615-64a27113",
+   "created": "2026-11-24T16:56:56+00:00",
+   "doc_id": "celex-32026D2615",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2615 of 23 November 2026 on Union support for the activities of the Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization (CTBTO) in order to strengthen its monitoring and verification capabilities",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2615",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions",
+    "training"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions",
+     "training"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In the framework of the implementation of the Strategy, the Council adopted three Joint Actions and six Decisions on support for activities of the Preparatory Commission for the CTBTO, namely Joint Actions 2006/243/CFSP ( 3 ) , 2007/468/CFSP ( 4 ) and 2008/588/CFSP ( 5 ) , and Decisions 2010/461/CFSP ( 6 ) , 2012/699/CFSP ( 7 ) , (CFSP) 2015/1837 ( 8 ) , (CFSP) 2018/298 ( 9 ) , (CFSP) 2020/901 ( 10 ) and (CFSP) 2023/2064 ( 11 ) . The Union’s longstanding support should therefore be continued.",
+     "loc": "on Union support for the activities of the Preparatory Commission for the Compre, para 22",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Based on the experience gained from Council Decision (CFSP) 2023/2064 of 25 September 2023 and given the scope and complexity of the proposed activities, dedicated programme management support is required to ensure effective coordination, timely implementation, and continuous project monitoring and reporting. A dedicated non-staff member would serve as the central focal point for EU-funded activities, supporting coordination across all Division and ensure timely and accurate reporting to the EU.",
+     "loc": "Background, para 1",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (is required to) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2618-5bfc7424",
    "created": "2026-11-23T17:18:35+00:00",

@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-23T17:18:35+00:00",
-  "count": 228,
-  "corpus_bytes": 4589660
+  "generated": "2026-11-24T16:56:56+00:00",
+  "count": 237,
+  "corpus_bytes": 4739946
  },
  "documents": [
   {
@@ -521,6 +521,26 @@
    "paragraphs": 12
   },
   {
+   "id": "amla-hearings-bcfc18795530",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the financial sector",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector-2026-12-14_en",
+   "publication_date": "2026-11-23",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "6d4dad14b785ea78ab1d67d25c053ba9155f7916e5ed1ac90fc5658de7b93cf8",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2078,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 11
+  },
+  {
    "id": "amla-hearings-dca764782172",
    "source": "amla-hearings",
    "authority": "AMLA",
@@ -747,6 +767,26 @@
    ],
    "parent": null,
    "paragraphs": 226
+  },
+  {
+   "id": "amla-instruments-638d7cd1a2f0",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Regulatory Technical Standards on AML/CFT Supervisory Colleges in the financial sector",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
+   "publication_date": "",
+   "type": "rts_its_draft",
+   "status": "draft (consultation open)",
+   "language": "en",
+   "version_hash": "ed74ec0608a213671375d7fb171f0e8755c06851cf167f33ee07e4d410bb3e37",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2514,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 16
   },
   {
    "id": "amla-instruments-7f7764ba2af8",
@@ -981,6 +1021,26 @@
    ],
    "parent": null,
    "paragraphs": 199
+  },
+  {
+   "id": "amla-instruments-f41721a0064f",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Regulatory Technical Standards on AML/CFT Supervisory Colleges in the non-financial sector",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
+   "publication_date": "",
+   "type": "rts_its_draft",
+   "status": "draft (consultation open)",
+   "language": "en",
+   "version_hash": "ce3cc81dd60cd08d0d3d223801569b0decd5fef035c0a48d4f94376ba8be5fd3",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2348,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 15
   },
   {
    "id": "amla-library-04c336501f91",
@@ -1859,6 +1919,26 @@
    "paragraphs": 4
   },
   {
+   "id": "amla-news-45fd17c84237",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA introduces a common EU approach to enforcing anti-money laundering rules",
+   "url": "https://www.amla.europa.eu/press-release-amla-introduces-common-eu-approach-enforcing-anti-money-laundering-rules_en",
+   "publication_date": "2026-07-08",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "131f629520b5cebfe141aa7a5e11c9dd9020819a00a09cb470c8974784549ec6",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1641,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 8
+  },
+  {
    "id": "amla-news-47e6555737ba",
    "source": "amla-news",
    "authority": "AMLA",
@@ -2343,6 +2423,26 @@
    "topics": [],
    "parent": null,
    "paragraphs": 8
+  },
+  {
+   "id": "amla-news-d75961908ae9",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "AMLA Chair presents 2025 Consolidated Annual Activity Report to the European Parliament",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/amla-chair-presents-2025-consolidated-annual-activity-report-european-parliament_en",
+   "publication_date": "2026-07-20",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "db5703b33bbfa110453f6c50c723967d01e04672b53ecd5a4c9c7aaee759a5a3",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 753,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 6
   },
   {
    "id": "amla-news-e5fae4c9426d",
@@ -3219,6 +3319,28 @@
    "paragraphs": 486
   },
   {
+   "id": "celex-32026D2600",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2600 of 23 November 2026 amending Decision (CFSP) 2021/1143 on a European Union Military Assistance Mission in Mozambique (EUMAM Mozambique)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2600",
+   "publication_date": "2026-11-24",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "f4432c288f998187e643e1c245da0880087bf1b22a715d18ec630f41abac7631",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 7215,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 44
+  },
+  {
    "id": "celex-32026D2605",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -3239,6 +3361,29 @@
    ],
    "parent": null,
    "paragraphs": 30
+  },
+  {
+   "id": "celex-32026D2615",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2615 of 23 November 2026 on Union support for the activities of the Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization (CTBTO) in order to strengthen its monitoring and verification capabilities",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2615",
+   "publication_date": "2026-11-24",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "64a2711330591b46f771261e6bb4a859688e5c0d045eae6a683cd03da9b75a3b",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 45473,
+   "truncated": false,
+   "topics": [
+    "sanctions",
+    "training"
+   ],
+   "parent": null,
+   "paragraphs": 234
   },
   {
    "id": "celex-32026D2618",
@@ -3263,6 +3408,28 @@
    "paragraphs": 91
   },
   {
+   "id": "celex-32026D2619",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2619 of 23 November 2026 in support of enhancing the operational effectiveness of the Organisation for the Prohibition of Chemical Weapons (OPCW)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2619",
+   "publication_date": "2026-11-24",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "5e7dc646bcc2a62adcd645fce13c1df818275fd6db400c4059e64de6abf36eff",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 28729,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 102
+  },
+  {
    "id": "celex-32026D2620",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -3283,6 +3450,28 @@
    ],
    "parent": null,
    "paragraphs": 92
+  },
+  {
+   "id": "celex-32026D2633",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2633 of 23 November 2026 amending Decision (CFSP) 2024/1472 on a European Union Diplomatic Academy",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2633",
+   "publication_date": "2026-11-24",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "3b131e7205ad91cf5416520405c498711b4bb59f707e1f653e732e6cc3e32670",
+   "retrieved": "2026-11-24T16:56:56+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 8527,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 58
   },
   {
    "id": "celex-32026R0046",

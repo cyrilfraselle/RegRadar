@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-23T17:18:35+00:00",
-  "count": 127
+  "generated": "2026-11-24T16:56:56+00:00",
+  "count": 132
  },
  "deadlines": [
   {
@@ -501,19 +501,6 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "1da4b8c8fd27",
-   "date": "2026-10-18",
-   "kind": "reporting deadline",
-   "title": "AMLA invites stakeholders to sectoral roundtables on simplified customer due diligence",
-   "source_doc_id": "amla-news-490c4c92f749",
-   "source": "amla-news",
-   "url": "https://www.amla.europa.eu/amla-invites-stakeholders-sectoral-roundtables-simplified-customer-due-diligence_en",
-   "confidence": "medium",
-   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "AMLA invites stakeholders to submit their expressions of interest by 18 October 2026 at 23h59 CEST .",
-   "loc": "How to express interest, para 1"
-  },
-  {
    "id": "8b93456e80bb",
    "date": "2026-10-18",
    "kind": "reporting deadline",
@@ -525,6 +512,19 @@
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
    "quote": "How to express interest AMLA invites stakeholders to submit their expressions of interest via the EU Survey below by 18 October 2026 at 23h59 CEST.",
    "loc": "p. 1, para 4"
+  },
+  {
+   "id": "1da4b8c8fd27",
+   "date": "2026-10-18",
+   "kind": "reporting deadline",
+   "title": "AMLA invites stakeholders to sectoral roundtables on simplified customer due diligence",
+   "source_doc_id": "amla-news-490c4c92f749",
+   "source": "amla-news",
+   "url": "https://www.amla.europa.eu/amla-invites-stakeholders-sectoral-roundtables-simplified-customer-due-diligence_en",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "AMLA invites stakeholders to submit their expressions of interest by 18 October 2026 at 23h59 CEST .",
+   "loc": "How to express interest, para 1"
   },
   {
    "id": "13877371051f",
@@ -936,6 +936,61 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
+   "id": "41b8a474f3ee",
+   "date": "2026-11-23",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2619 of 23 November 2026 in support of enhancing the operational effectiveness of the Organisation for the Prohibition of Chemical Weapons (OPCW)",
+   "source_doc_id": "celex-32026D2619",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2619",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "627199531362",
+   "date": "2026-11-23",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2600 of 23 November 2026 amending Decision (CFSP) 2021/1143 on a European Union Military Assistance Mission in Mozambique (EUMAM Mozambique)",
+   "source_doc_id": "celex-32026D2600",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2600",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "5508828657fe",
+   "date": "2026-11-23",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2633 of 23 November 2026 amending Decision (CFSP) 2024/1472 on a European Union Diplomatic Academy",
+   "source_doc_id": "celex-32026D2633",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2633",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "d70b1dce7446",
+   "date": "2026-11-23",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2615 of 23 November 2026 on Union support for the activities of the Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization (CTBTO) in order to strengthen its monitoring and verification capabilities",
+   "source_doc_id": "celex-32026D2615",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2615",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "71c4554d595a",
+   "date": "2026-11-25",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2621 of 23 November 2026 amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Türkiye’s unauthorised drilling activities in the Eastern Mediterranean",
+   "source_doc_id": "",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2621",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
    "id": "4f3be0e7d7bf",
    "date": "2026-12-23",
    "kind": "consultation closes",
@@ -1211,6 +1266,32 @@
    "method": "structured: docs/data/obligations.json deadline"
   },
   {
+   "id": "17abf79b8845",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "Draft Regulatory Technical Standards on Home-Host Supervisory Cooperation",
+   "source_doc_id": "amla-instruments-1b17f68f9277",
+   "source": "amla-instruments",
+   "url": "https://www.amla.europa.eu/document/download/86561c3a-0910-445d-beb7-8f0a43360de0_en?filename=Final%20Report%20-%20RTS%20under%20Article%2046%284%29%20AMLD.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "It shall apply from 10 July 2027.",
+   "loc": "p. 16, para 7"
+  },
+  {
+   "id": "1f7fa3c6cae2",
+   "date": "2027-07-10",
+   "kind": "application date",
+   "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
+   "source_doc_id": "amla-instruments-35ef3aab82cb",
+   "source": "amla-instruments",
+   "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "It shall apply from [10 July 2027], except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
+   "loc": "p. 16, para 10"
+  },
+  {
    "id": "ac7d91f03443",
    "date": "2027-07-10",
    "kind": "application date",
@@ -1224,17 +1305,17 @@
    "loc": "p. 9, para 13"
   },
   {
-   "id": "ce4f70ecc426",
+   "id": "8eec3a6a618c",
    "date": "2027-07-10",
    "kind": "application date",
-   "title": "Final Report - RTS under Article 53(10) AMLD",
-   "source_doc_id": "amla-library-35ef3aab82cb",
-   "source": "amla-library",
-   "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+   "title": "Press Release: AMLA finalises common formats for FIU cooperation and reporting to the EPPO",
+   "source_doc_id": "amla-news-fcba9a8ef8a6",
+   "source": "amla-news",
+   "url": "https://www.amla.europa.eu/press-release-amla-finalises-common-formats-fiu-cooperation-and-reporting-eppo_en",
    "confidence": "medium",
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "It shall apply from [10 July 2027], except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
-   "loc": "p. 16, para 10"
+   "quote": "They take effect in phases: EPPO reporting rules apply from 10 July 2027, while some technical requirements, such as fully machine-readable reporting and full FIU.",
+   "loc": "Developed through close cooperation, para 1"
   },
   {
    "id": "d5aabdf361e4",
@@ -1263,38 +1344,12 @@
    "loc": "p. 11, para 2"
   },
   {
-   "id": "17abf79b8845",
+   "id": "ce4f70ecc426",
    "date": "2027-07-10",
    "kind": "application date",
-   "title": "Draft Regulatory Technical Standards on Home-Host Supervisory Cooperation",
-   "source_doc_id": "amla-instruments-1b17f68f9277",
-   "source": "amla-instruments",
-   "url": "https://www.amla.europa.eu/document/download/86561c3a-0910-445d-beb7-8f0a43360de0_en?filename=Final%20Report%20-%20RTS%20under%20Article%2046%284%29%20AMLD.pdf",
-   "confidence": "medium",
-   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "It shall apply from 10 July 2027.",
-   "loc": "p. 16, para 7"
-  },
-  {
-   "id": "8eec3a6a618c",
-   "date": "2027-07-10",
-   "kind": "application date",
-   "title": "Press Release: AMLA finalises common formats for FIU cooperation and reporting to the EPPO",
-   "source_doc_id": "amla-news-fcba9a8ef8a6",
-   "source": "amla-news",
-   "url": "https://www.amla.europa.eu/press-release-amla-finalises-common-formats-fiu-cooperation-and-reporting-eppo_en",
-   "confidence": "medium",
-   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "They take effect in phases: EPPO reporting rules apply from 10 July 2027, while some technical requirements, such as fully machine-readable reporting and full FIU.",
-   "loc": "Developed through close cooperation, para 1"
-  },
-  {
-   "id": "1f7fa3c6cae2",
-   "date": "2027-07-10",
-   "kind": "application date",
-   "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
-   "source_doc_id": "amla-instruments-35ef3aab82cb",
-   "source": "amla-instruments",
+   "title": "Final Report - RTS under Article 53(10) AMLD",
+   "source_doc_id": "amla-library-35ef3aab82cb",
+   "source": "amla-library",
    "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
    "confidence": "medium",
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
@@ -1328,19 +1383,6 @@
    "loc": "p. 9, para 13"
   },
   {
-   "id": "3faa14369bc9",
-   "date": "2028-07-10",
-   "kind": "application date",
-   "title": "Draft Implementing Technical Standards on FIU reporting to the EPPO",
-   "source_doc_id": "amla-instruments-51a0aec27558",
-   "source": "amla-instruments",
-   "url": "https://www.amla.europa.eu/document/download/180688e2-9cbc-4b40-84ea-1f9121f4d32f_en?filename=Final%20Report%20-%20ITS%20under%20Article%2081%281%29%20AMLR.pdf",
-   "confidence": "medium",
-   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "However, Article 3(2) shall apply from 10 July 2028.",
-   "loc": "p. 11, para 2"
-  },
-  {
    "id": "d3d01c8f13fc",
    "date": "2028-07-10",
    "kind": "application date",
@@ -1352,6 +1394,19 @@
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
    "quote": "Articles 3, paragraph 4, and 11 shall apply from 10 July 2028.",
    "loc": "p. 20, para 8"
+  },
+  {
+   "id": "3faa14369bc9",
+   "date": "2028-07-10",
+   "kind": "application date",
+   "title": "Draft Implementing Technical Standards on FIU reporting to the EPPO",
+   "source_doc_id": "amla-instruments-51a0aec27558",
+   "source": "amla-instruments",
+   "url": "https://www.amla.europa.eu/document/download/180688e2-9cbc-4b40-84ea-1f9121f4d32f_en?filename=Final%20Report%20-%20ITS%20under%20Article%2081%281%29%20AMLR.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "However, Article 3(2) shall apply from 10 July 2028.",
+   "loc": "p. 11, para 2"
   },
   {
    "id": "72ed2d34f367",
@@ -1367,6 +1422,32 @@
    "loc": "Share your perspective, para 1"
   },
   {
+   "id": "d21ced22406a",
+   "date": "2029-07-10",
+   "kind": "application date",
+   "title": "Draft Regulatory Technical Standards on criteria for identifying business relationships, occasional and linked transactions and lower thresholds.",
+   "source_doc_id": "amla-instruments-d2114c2e15ee",
+   "source": "amla-instruments",
+   "url": "https://www.amla.europa.eu/document/download/32e5aea0-52dc-4b0c-b93a-b0dd373fcd0f_en?filename=Final%20Report%20-%20draft%20RTS%20under%20Article%2019%289%29%20AMLR.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "It shall apply from six months after the date of its entry into force, except in relation to the obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
+   "loc": "p. 15, para 2"
+  },
+  {
+   "id": "b1ba87e12427",
+   "date": "2029-07-10",
+   "kind": "application date",
+   "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
+   "source_doc_id": "amla-instruments-35ef3aab82cb",
+   "source": "amla-instruments",
+   "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+   "confidence": "medium",
+   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
+   "quote": "It shall apply from [10 July 2027], except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
+   "loc": "p. 16, para 10"
+  },
+  {
    "id": "eba85587e9a6",
    "date": "2029-07-10",
    "kind": "application date",
@@ -1378,19 +1459,6 @@
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
    "quote": "It shall apply from [10 July 2027], except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
    "loc": "p. 16, para 10"
-  },
-  {
-   "id": "693546a5da99",
-   "date": "2029-07-10",
-   "kind": "application date",
-   "title": "Press Release - AMLA finalises key standards for the private sector",
-   "source_doc_id": "amla-library-a602b2a61c97",
-   "source": "amla-library",
-   "url": "https://www.amla.europa.eu/document/download/6274f127-ac15-4e2a-b79f-88633a4deb54_en?filename=Press%20Release%20-%20AMLA%20finalises%20key%20standards%20for%20the%20private%20sector.pdf",
-   "confidence": "medium",
-   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "For football agents and professional football clubs, they will apply from 10 July 2029.",
-   "loc": "p. 1, para 6"
   },
   {
    "id": "c5d7b2fbc218",
@@ -1419,19 +1487,6 @@
    "loc": "p. 28, para 3"
   },
   {
-   "id": "b1ba87e12427",
-   "date": "2029-07-10",
-   "kind": "application date",
-   "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
-   "source_doc_id": "amla-instruments-35ef3aab82cb",
-   "source": "amla-instruments",
-   "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
-   "confidence": "medium",
-   "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "It shall apply from [10 July 2027], except in relation to obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
-   "loc": "p. 16, para 10"
-  },
-  {
    "id": "f890a8e1d934",
    "date": "2029-07-10",
    "kind": "application date",
@@ -1445,17 +1500,17 @@
    "loc": "p. 33, para 13"
   },
   {
-   "id": "d21ced22406a",
+   "id": "693546a5da99",
    "date": "2029-07-10",
    "kind": "application date",
-   "title": "Draft Regulatory Technical Standards on criteria for identifying business relationships, occasional and linked transactions and lower thresholds.",
-   "source_doc_id": "amla-instruments-d2114c2e15ee",
-   "source": "amla-instruments",
-   "url": "https://www.amla.europa.eu/document/download/32e5aea0-52dc-4b0c-b93a-b0dd373fcd0f_en?filename=Final%20Report%20-%20draft%20RTS%20under%20Article%2019%289%29%20AMLR.pdf",
+   "title": "Press Release - AMLA finalises key standards for the private sector",
+   "source_doc_id": "amla-library-a602b2a61c97",
+   "source": "amla-library",
+   "url": "https://www.amla.europa.eu/document/download/6274f127-ac15-4e2a-b79f-88633a4deb54_en?filename=Press%20Release%20-%20AMLA%20finalises%20key%20standards%20for%20the%20private%20sector.pdf",
    "confidence": "medium",
    "method": "text pattern (regwatch_sources/classify.py TEXT_PATTERNS)",
-   "quote": "It shall apply from six months after the date of its entry into force, except in relation to the obliged entities referred to in Article 3, points (3)(n) and (o), of Regulation (EU) 2024/1624, to which it shall apply from 10 July 2029.",
-   "loc": "p. 15, para 2"
+   "quote": "For football agents and professional football clubs, they will apply from 10 July 2029.",
+   "loc": "p. 1, para 6"
   }
  ]
 }

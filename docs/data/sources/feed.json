@@ -3,16 +3,146 @@
   "purpose": "Ranked story cards: one card per story, the primary source first, other outlets beneath. Built from engine entries and the legacy RegWatch archive (docs/data/items.json, read only).",
   "ranking": "regwatch_sources/classify.py rank(): band (2 in-scope primary, 1 other primary, 0 news) x 100 + score; score = type weight (legislation 85 ... supervisory communication 30; news 15), +5 open/final/in force, +2 per topic (max 10), -1 per week of age (max 20). Primary always outranks news.",
   "tiers": {
-   "important": 169,
-   "critical": 65,
-   "info": 166
+   "important": 175,
+   "critical": 64,
+   "info": 161
   },
-  "news_cap": "news-only cards are at most 20% of the feed; 80 lower-ranked news cards dropped this run",
+  "news_cap": "news-only cards are at most 20% of the feed; 77 lower-ranked news cards dropped this run",
   "window_days": 120,
-  "generated": "2026-11-23T17:18:35+00:00",
+  "generated": "2026-11-24T16:56:56+00:00",
   "cards": 400
  },
  "cards": [
+  {
+   "lead": {
+    "id": "celex-32026D2619",
+    "title": "Council Decision (CFSP) 2026/2619 of 23 November 2026 in support of enhancing the operational effectiveness of the Organisation for the Prohibition of Chemical Weapons (OPCW)",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2619",
+    "date": "2026-11-24",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "celex-32026D2619",
+    "origin": "engine",
+    "rank": 292.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 292.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "celex-32026D2600",
+    "title": "Council Decision (CFSP) 2026/2600 of 23 November 2026 amending Decision (CFSP) 2021/1143 on a European Union Military Assistance Mission in Mozambique (EUMAM Mozambique)",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2600",
+    "date": "2026-11-24",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "celex-32026D2600",
+    "origin": "engine",
+    "rank": 292.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 292.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "celex-32026D2633",
+    "title": "Council Decision (CFSP) 2026/2633 of 23 November 2026 amending Decision (CFSP) 2024/1472 on a European Union Diplomatic Academy",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2633",
+    "date": "2026-11-24",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "celex-32026D2633",
+    "origin": "engine",
+    "rank": 292.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 292.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "celex-32026D2615",
+    "title": "Council Decision (CFSP) 2026/2615 of 23 November 2026 on Union support for the activities of the Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization (CTBTO) in order to strengthen its monitoring and verification capabilities",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2615",
+    "date": "2026-11-24",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "celex-32026D2615",
+    "origin": "engine",
+    "rank": 292.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 292.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "celex-32026D2621",
+    "title": "Council Decision (CFSP) 2026/2621 of 23 November 2026 amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Türkiye’s unauthorised drilling activities in the Eastern Mediterranean",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2621",
+    "date": "2026-11-24",
+    "authority": "EU Publications Office (EUR-Lex data)",
+    "source": "eurlex-cellar-ojl-recent",
+    "type": "legislation",
+    "status": "adopted, not yet in force",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "",
+    "origin": "engine",
+    "rank": 292.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 292.0,
+   "tier": "important",
+   "news_only": false
+  },
   {
    "lead": {
     "id": "celex-32026D2618",
@@ -30,12 +160,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2618",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -56,12 +186,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2620",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -82,12 +212,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2605",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -108,12 +238,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2616",
     "origin": "engine",
-    "rank": 292.0,
+    "rank": 291.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 292.0,
+   "rank": 291.86,
    "tier": "important",
    "news_only": false
   },
@@ -134,12 +264,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2554",
     "origin": "engine",
-    "rank": 291.14,
+    "rank": 291.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.14,
+   "rank": 291.0,
    "tier": "important",
    "news_only": false
   },
@@ -160,12 +290,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2546",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -186,12 +316,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2550",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -212,12 +342,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2568",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -238,12 +368,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2570",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -264,12 +394,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2558",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -290,12 +420,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2556",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -316,12 +446,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2569",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -342,12 +472,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2574",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -368,12 +498,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2575",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -394,12 +524,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2571",
     "origin": "engine",
-    "rank": 291.0,
+    "rank": 290.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 291.0,
+   "rank": 290.86,
    "tier": "important",
    "news_only": false
   },
@@ -420,12 +550,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2508",
     "origin": "engine",
-    "rank": 290.29,
+    "rank": 290.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 290.29,
+   "rank": 290.14,
    "tier": "important",
    "news_only": false
   },
@@ -446,12 +576,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2507",
     "origin": "engine",
-    "rank": 290.29,
+    "rank": 290.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 290.29,
+   "rank": 290.14,
    "tier": "important",
    "news_only": false
   },
@@ -472,12 +602,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2490",
     "origin": "engine",
-    "rank": 289.29,
+    "rank": 289.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 289.29,
+   "rank": 289.14,
    "tier": "important",
    "news_only": false
   },
@@ -498,12 +628,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2449",
     "origin": "engine",
-    "rank": 288.57,
+    "rank": 288.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.57,
+   "rank": 288.43,
    "tier": "important",
    "news_only": false
   },
@@ -524,12 +654,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2374",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -550,12 +680,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2397",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -576,12 +706,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2375",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -602,12 +732,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2363",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -628,12 +758,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2364",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -654,12 +784,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2365",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -680,12 +810,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2366",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -706,12 +836,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2367",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -732,12 +862,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2369",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -758,12 +888,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2368",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -784,12 +914,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2378",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -810,12 +940,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2362",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -836,12 +966,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2386",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -862,12 +992,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2372",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -888,12 +1018,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2385",
     "origin": "engine",
-    "rank": 288.14,
+    "rank": 288.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.14,
+   "rank": 288.0,
    "tier": "important",
    "news_only": false
   },
@@ -914,12 +1044,12 @@
     "is_news": false,
     "doc_id": "celex-32026D2392",
     "origin": "engine",
-    "rank": 288.0,
+    "rank": 287.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 288.0,
+   "rank": 287.86,
    "tier": "important",
    "news_only": false
   },
@@ -940,12 +1070,12 @@
     "is_news": false,
     "doc_id": "celex-32026R2354",
     "origin": "engine",
-    "rank": 287.43,
+    "rank": 287.29,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 287.43,
+   "rank": 287.29,
    "tier": "critical",
    "news_only": false
   },
@@ -964,12 +1094,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 284.43,
+    "rank": 284.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.43,
+   "rank": 284.29,
    "tier": "important",
    "news_only": false
   },
@@ -990,12 +1120,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 284.29,
+    "rank": 284.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.29,
+   "rank": 284.14,
    "tier": "important",
    "news_only": false
   },
@@ -1016,12 +1146,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 284.29,
+    "rank": 284.14,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 284.29,
+   "rank": 284.14,
    "tier": "critical",
    "news_only": false
   },
@@ -1042,12 +1172,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 284.14,
+    "rank": 284.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 284.14,
+   "rank": 284.0,
    "tier": "important",
    "news_only": false
   },
@@ -1068,12 +1198,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 283.57,
+    "rank": 283.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 283.57,
+   "rank": 283.43,
    "tier": "important",
    "news_only": false
   },
@@ -1094,12 +1224,12 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 283.14,
+    "rank": 283.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 283.14,
+   "rank": 283.0,
    "tier": "important",
    "news_only": false
   },
@@ -1120,12 +1250,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 283.0,
+    "rank": 282.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 283.0,
+   "rank": 282.86,
    "tier": "important",
    "news_only": false
   },
@@ -1146,12 +1276,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 283.0,
+    "rank": 282.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 283.0,
+   "rank": 282.86,
    "tier": "important",
    "news_only": false
   },
@@ -1172,12 +1302,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 282.29,
+    "rank": 282.14,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 282.29,
+   "rank": 282.14,
    "tier": "critical",
    "news_only": false
   },
@@ -1198,12 +1328,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 282.29,
+    "rank": 282.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 282.29,
+   "rank": 282.14,
    "tier": "important",
    "news_only": false
   },
@@ -1224,12 +1354,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.29,
+    "rank": 281.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.29,
+   "rank": 281.14,
    "tier": "important",
    "news_only": false
   },
@@ -1250,12 +1380,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.14,
+    "rank": 281.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.14,
+   "rank": 281.0,
    "tier": "important",
    "news_only": false
   },
@@ -1276,12 +1406,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 281.14,
+    "rank": 281.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 281.14,
+   "rank": 281.0,
    "tier": "important",
    "news_only": false
   },
@@ -1302,12 +1432,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.86,
+    "rank": 280.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.86,
+   "rank": 280.71,
    "tier": "important",
    "news_only": false
   },
@@ -1328,12 +1458,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.86,
+    "rank": 280.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.86,
+   "rank": 280.71,
    "tier": "important",
    "news_only": false
   },
@@ -1354,12 +1484,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.86,
+    "rank": 280.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.86,
+   "rank": 280.71,
    "tier": "important",
    "news_only": false
   },
@@ -1380,12 +1510,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.86,
+    "rank": 280.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.86,
+   "rank": 280.71,
    "tier": "important",
    "news_only": false
   },
@@ -1406,12 +1536,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.86,
+    "rank": 280.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.86,
+   "rank": 280.71,
    "tier": "important",
    "news_only": false
   },
@@ -1432,7 +1562,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-dbe5e7761f34",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [
@@ -1452,7 +1582,7 @@
     }
    ],
    "size": 3,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1473,7 +1603,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-2c9307a49c44",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [
@@ -1500,7 +1630,7 @@
     }
    ],
    "size": 4,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1521,7 +1651,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-d2114c2e15ee",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [
@@ -1548,7 +1678,7 @@
     }
    ],
    "size": 4,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1569,7 +1699,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-cfde034916be",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [
@@ -1610,7 +1740,7 @@
     }
    ],
    "size": 6,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1631,12 +1761,12 @@
     "is_news": false,
     "doc_id": "amla-instruments-51a0aec27558",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1657,12 +1787,12 @@
     "is_news": false,
     "doc_id": "amla-instruments-48e5213f80e7",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1683,7 +1813,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-b322780192c5",
     "origin": "engine",
-    "rank": 280.71,
+    "rank": 280.57,
     "tier": "critical"
    },
    "also": [
@@ -1696,7 +1826,7 @@
     }
    ],
    "size": 2,
-   "rank": 280.71,
+   "rank": 280.57,
    "tier": "critical",
    "news_only": false
   },
@@ -1717,12 +1847,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.43,
+    "rank": 280.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.43,
+   "rank": 280.29,
    "tier": "important",
    "news_only": false
   },
@@ -1743,12 +1873,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.43,
+    "rank": 280.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.43,
+   "rank": 280.29,
    "tier": "important",
    "news_only": false
   },
@@ -1769,7 +1899,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.29,
+    "rank": 280.14,
     "tier": "important"
    },
    "also": [
@@ -1782,7 +1912,7 @@
     }
    ],
    "size": 2,
-   "rank": 280.29,
+   "rank": 280.14,
    "tier": "important",
    "news_only": false
   },
@@ -1803,393 +1933,48 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 280.29,
+    "rank": 280.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 280.29,
+   "rank": 280.14,
    "tier": "important",
    "news_only": false
   },
   {
    "lead": {
-    "id": "legacy-b9999e8cec64df79bb46395f06e81725",
-    "title": "CELEX:32026R2191: Council Implementing Regulation (EU) 2026/2191 of 28 September 2026 implementing Regulation (EC) No 1183/2005 concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2191",
-    "date": "2026-09-28",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 279.0,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 279.0,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-3f99c2e8db65a3842662d583f343adb0",
-    "title": "CELEX:32026R2184: Council Implementing Regulation (EU) 2026/2184 of 28 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2184",
-    "date": "2026-09-27",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 278.86,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 278.86,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-a0b4eb7dc9bf8f453039df86ac0e6b8b",
-    "title": "CELEX:32026R2193: Council Implementing Regulation (EU) 2026/2193 of 28 September 2026 implementing Regulation (EU) 2024/1485 concerning restrictive measures in view of the situation in Russia",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2193",
-    "date": "2026-09-27",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 278.86,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 278.86,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-instruments-533bd851ab13",
-    "title": "Draft Implementing Technical Standards on cooperation within the AML/CFT supervisory system for the purposes of direct supervision.",
-    "url": "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf",
-    "date": "2026-11-14",
+    "id": "amla-instruments-638d7cd1a2f0",
+    "title": "Regulatory Technical Standards on AML/CFT Supervisory Colleges in the financial sector",
+    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
+    "date": "2026-11-24",
     "authority": "AMLA",
     "source": "amla-instruments",
     "type": "rts_its_draft",
-    "status": "final (submitted to the Commission)",
-    "topics": [],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "amla-instruments-533bd851ab13",
-    "origin": "engine",
-    "rank": 278.71,
-    "tier": "critical"
-   },
-   "also": [
-    {
-     "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
-     "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
-     "authority": "AMLA",
-     "date": "2026-11-14",
-     "is_news": false
-    },
-    {
-     "title": "Final Report - RTS under Article 53(10) AMLD",
-     "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
-     "authority": "AMLA",
-     "date": "2026-10-13",
-     "is_news": false
-    },
-    {
-     "title": "Final report - ITS under Article 15(3) AMLAR",
-     "url": "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf",
-     "authority": "AMLA",
-     "date": "2026-10-13",
-     "is_news": false
-    },
-    {
-     "title": "Consultation on the draft RTS on pecuniary sanctions, administrative measures and periodic penalty payments",
-     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-pecuniary-sanctions-administrative-measures-and-periodic-penalty-payments_en",
-     "authority": "AMLA",
-     "date": "2026-11-14",
-     "is_news": false
-    }
-   ],
-   "size": 5,
-   "rank": 278.71,
-   "tier": "critical",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-instruments-1b17f68f9277",
-    "title": "Draft Regulatory Technical Standards on Home-Host Supervisory Cooperation",
-    "url": "https://www.amla.europa.eu/document/download/86561c3a-0910-445d-beb7-8f0a43360de0_en?filename=Final%20Report%20-%20RTS%20under%20Article%2046%284%29%20AMLD.pdf",
-    "date": "2026-11-14",
-    "authority": "AMLA",
-    "source": "amla-instruments",
-    "type": "rts_its_draft",
-    "status": "final (submitted to the Commission)",
-    "topics": [],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "amla-instruments-1b17f68f9277",
-    "origin": "engine",
-    "rank": 278.71,
-    "tier": "critical"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 278.71,
-   "tier": "critical",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-instruments-04b1e9cef1d4",
-    "title": "Draft Implementing Technical Standards on AMLA reporting to the EPPO",
-    "url": "https://www.amla.europa.eu/document/download/993e4d38-eeef-4d9d-a3ec-85ff59f82d61_en?filename=Final%20Report%20-%20ITS%20under%20Article%2041%282%29%20AMLAR.pdf",
-    "date": "2026-11-14",
-    "authority": "AMLA",
-    "source": "amla-instruments",
-    "type": "rts_its_draft",
-    "status": "final (submitted to the Commission)",
-    "topics": [],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "amla-instruments-04b1e9cef1d4",
-    "origin": "engine",
-    "rank": 278.71,
-    "tier": "critical"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 278.71,
-   "tier": "critical",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-d34a7c253850908cc0a4fdb1149331c4",
-    "title": "OJ:L_202602165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=OJ:L_202602165",
-    "date": "2026-09-23",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 278.29,
-    "tier": "important"
-   },
-   "also": [
-    {
-     "title": "CELEX:32026R2165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
-     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2165",
-     "authority": "EUR-Lex — Official Journal L",
-     "date": "2026-09-23",
-     "is_news": false
-    }
-   ],
-   "size": 2,
-   "rank": 278.29,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-054f941f8cb8d1c5d9784a2fe91ce6fa",
-    "title": "CELEX:32026R2138: Council Implementing Regulation (EU) 2026/2138 of 22 September 2026 implementing Article 11(4) of Regulation (EU) No 753/2011 concerning restrictive measures directed against certain individuals, groups, undertakings and entities in view of the situation in Afghanistan",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2138",
-    "date": "2026-09-22",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 278.14,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 278.14,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-a9c7e0a86fd8440359ea8c2466032b66",
-    "title": "CELEX:32026R2160: Council Implementing Regulation (EU) 2026/2160 of 22 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2160",
-    "date": "2026-09-21",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 278.0,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 278.0,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-9746edbac760fbd1d9cbf1e03c6ce467",
-    "title": "CELEX:32026R2143: Commission Implementing Regulation (EU) 2026/2143 of 18 September 2026 amending for the 361st time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2143",
-    "date": "2026-09-20",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "legislation",
-    "status": "binding",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 277.86,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 277.86,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-instruments-db0c5746aabf",
-    "title": "Draft Regulatory Technical Standards on cross-border information exchange between Financial Intelligence Units",
-    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
-    "date": "2026-11-14",
-    "authority": "AMLA",
-    "source": "amla-instruments",
-    "type": "rts_its_draft",
-    "status": "draft (consultation closed)",
-    "topics": [
-     "reporting-str"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "amla-instruments-db0c5746aabf",
-    "origin": "engine",
-    "rank": 275.71,
-    "tier": "important"
-   },
-   "also": [
-    {
-     "title": "Consultation on the draft RTS on cross-border information exchange between Financial Intelligence Units",
-     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
-     "authority": "AMLA",
-     "date": "2026-11-14",
-     "is_news": false
-    }
-   ],
-   "size": 2,
-   "rank": 275.71,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-instruments-bf1be08fd1a2",
-    "title": "Draft Implementing Technical Standards on the format for reporting suspicions and providing transaction records",
-    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
-    "date": "2026-11-14",
-    "authority": "AMLA",
-    "source": "amla-instruments",
-    "type": "rts_its_draft",
-    "status": "draft (consultation closed)",
-    "topics": [
-     "reporting-str"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "amla-instruments-bf1be08fd1a2",
-    "origin": "engine",
-    "rank": 275.71,
-    "tier": "important"
-   },
-   "also": [
-    {
-     "title": "Consultation on the draft ITS on the format for reporting suspicions and providing transaction records",
-     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
-     "authority": "AMLA",
-     "date": "2026-11-14",
-     "is_news": false
-    }
-   ],
-   "size": 2,
-   "rank": 275.71,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-consultations-list-f41721a0064f",
-    "title": "Consultation on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the non-financial sector",
-    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
-    "date": "2026-11-23",
-    "authority": "AMLA",
-    "source": "amla-consultations-list",
-    "type": "consultation",
     "status": "draft (consultation open)",
     "topics": [],
     "in_scope": true,
     "is_news": false,
-    "doc_id": "",
+    "doc_id": "amla-instruments-638d7cd1a2f0",
     "origin": "engine",
-    "rank": 275.0,
-    "tier": "critical"
+    "rank": 280.0,
+    "tier": "important"
    },
    "also": [
+    {
+     "title": "Regulatory Technical Standards on AML/CFT Supervisory Colleges in the non-financial sector",
+     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
+     "authority": "AMLA",
+     "date": "2026-11-24",
+     "is_news": false
+    },
+    {
+     "title": "Consultation on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the non-financial sector",
+     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-non-financial-sector_en",
+     "authority": "AMLA",
+     "date": "2026-11-23",
+     "is_news": false
+    },
     {
      "title": "Consultation on the draft RTS on the conditions for the functioning of AML/CFT supervisory colleges in the financial sector",
      "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
@@ -2233,9 +2018,368 @@
      "is_news": false
     }
    ],
-   "size": 7,
-   "rank": 275.0,
+   "size": 9,
+   "rank": 280.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-b9999e8cec64df79bb46395f06e81725",
+    "title": "CELEX:32026R2191: Council Implementing Regulation (EU) 2026/2191 of 28 September 2026 implementing Regulation (EC) No 1183/2005 concerning restrictive measures in view of the situation in the Democratic Republic of the Congo",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2191",
+    "date": "2026-09-28",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 278.86,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-3f99c2e8db65a3842662d583f343adb0",
+    "title": "CELEX:32026R2184: Council Implementing Regulation (EU) 2026/2184 of 28 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2184",
+    "date": "2026-09-27",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 278.71,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.71,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-a0b4eb7dc9bf8f453039df86ac0e6b8b",
+    "title": "CELEX:32026R2193: Council Implementing Regulation (EU) 2026/2193 of 28 September 2026 implementing Regulation (EU) 2024/1485 concerning restrictive measures in view of the situation in Russia",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2193",
+    "date": "2026-09-27",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 278.71,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.71,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-instruments-533bd851ab13",
+    "title": "Draft Implementing Technical Standards on cooperation within the AML/CFT supervisory system for the purposes of direct supervision.",
+    "url": "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf",
+    "date": "2026-11-14",
+    "authority": "AMLA",
+    "source": "amla-instruments",
+    "type": "rts_its_draft",
+    "status": "final (submitted to the Commission)",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-instruments-533bd851ab13",
+    "origin": "engine",
+    "rank": 278.57,
+    "tier": "critical"
+   },
+   "also": [
+    {
+     "title": "Draft Regulatory Technical Standards on pecuniary sanctions, administrative measures and periodic penalty payments.",
+     "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+     "authority": "AMLA",
+     "date": "2026-11-14",
+     "is_news": false
+    },
+    {
+     "title": "Final Report - RTS under Article 53(10) AMLD",
+     "url": "https://www.amla.europa.eu/document/download/9bf678c2-a39b-4d6a-a12c-8cc6d5aca59c_en?filename=Final%20Report%20-%20RTS%20under%20Article%2053%2810%29%20AMLD.pdf",
+     "authority": "AMLA",
+     "date": "2026-10-13",
+     "is_news": false
+    },
+    {
+     "title": "Final report - ITS under Article 15(3) AMLAR",
+     "url": "https://www.amla.europa.eu/document/download/523b7780-4035-40c4-9d64-f1947ca0259a_en?filename=Final%20report%20-%20ITS%20under%20Article%2015%283%29%20AMLAR.pdf",
+     "authority": "AMLA",
+     "date": "2026-10-13",
+     "is_news": false
+    },
+    {
+     "title": "Consultation on the draft RTS on pecuniary sanctions, administrative measures and periodic penalty payments",
+     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-pecuniary-sanctions-administrative-measures-and-periodic-penalty-payments_en",
+     "authority": "AMLA",
+     "date": "2026-11-14",
+     "is_news": false
+    }
+   ],
+   "size": 5,
+   "rank": 278.57,
    "tier": "critical",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-instruments-1b17f68f9277",
+    "title": "Draft Regulatory Technical Standards on Home-Host Supervisory Cooperation",
+    "url": "https://www.amla.europa.eu/document/download/86561c3a-0910-445d-beb7-8f0a43360de0_en?filename=Final%20Report%20-%20RTS%20under%20Article%2046%284%29%20AMLD.pdf",
+    "date": "2026-11-14",
+    "authority": "AMLA",
+    "source": "amla-instruments",
+    "type": "rts_its_draft",
+    "status": "final (submitted to the Commission)",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-instruments-1b17f68f9277",
+    "origin": "engine",
+    "rank": 278.57,
+    "tier": "critical"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.57,
+   "tier": "critical",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-instruments-04b1e9cef1d4",
+    "title": "Draft Implementing Technical Standards on AMLA reporting to the EPPO",
+    "url": "https://www.amla.europa.eu/document/download/993e4d38-eeef-4d9d-a3ec-85ff59f82d61_en?filename=Final%20Report%20-%20ITS%20under%20Article%2041%282%29%20AMLAR.pdf",
+    "date": "2026-11-14",
+    "authority": "AMLA",
+    "source": "amla-instruments",
+    "type": "rts_its_draft",
+    "status": "final (submitted to the Commission)",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-instruments-04b1e9cef1d4",
+    "origin": "engine",
+    "rank": 278.57,
+    "tier": "critical"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.57,
+   "tier": "critical",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-d34a7c253850908cc0a4fdb1149331c4",
+    "title": "OJ:L_202602165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=OJ:L_202602165",
+    "date": "2026-09-23",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 278.14,
+    "tier": "important"
+   },
+   "also": [
+    {
+     "title": "CELEX:32026R2165: Council Implementing Regulation (EU) 2026/2165 of 24 September 2026 implementing Regulation (EU) 2024/2642 concerning restrictive measures in view of Russia’s destabilising activities",
+     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2165",
+     "authority": "EUR-Lex — Official Journal L",
+     "date": "2026-09-23",
+     "is_news": false
+    }
+   ],
+   "size": 2,
+   "rank": 278.14,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-054f941f8cb8d1c5d9784a2fe91ce6fa",
+    "title": "CELEX:32026R2138: Council Implementing Regulation (EU) 2026/2138 of 22 September 2026 implementing Article 11(4) of Regulation (EU) No 753/2011 concerning restrictive measures directed against certain individuals, groups, undertakings and entities in view of the situation in Afghanistan",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2138",
+    "date": "2026-09-22",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 278.0,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 278.0,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-a9c7e0a86fd8440359ea8c2466032b66",
+    "title": "CELEX:32026R2160: Council Implementing Regulation (EU) 2026/2160 of 22 September 2026 implementing Regulation (EU) No 269/2014 concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2160",
+    "date": "2026-09-21",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 277.86,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 277.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-9746edbac760fbd1d9cbf1e03c6ce467",
+    "title": "CELEX:32026R2143: Commission Implementing Regulation (EU) 2026/2143 of 18 September 2026 amending for the 361st time Council Regulation (EC) No 881/2002 imposing certain specific restrictive measures directed against certain persons and entities associated with the ISIL (Da'esh) and Al-Qaida organisations",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R2143",
+    "date": "2026-09-20",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "legislation",
+    "status": "binding",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 277.71,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 277.71,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-instruments-db0c5746aabf",
+    "title": "Draft Regulatory Technical Standards on cross-border information exchange between Financial Intelligence Units",
+    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
+    "date": "2026-11-14",
+    "authority": "AMLA",
+    "source": "amla-instruments",
+    "type": "rts_its_draft",
+    "status": "draft (consultation closed)",
+    "topics": [
+     "reporting-str"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-instruments-db0c5746aabf",
+    "origin": "engine",
+    "rank": 275.57,
+    "tier": "important"
+   },
+   "also": [
+    {
+     "title": "Consultation on the draft RTS on cross-border information exchange between Financial Intelligence Units",
+     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-cross-border-information-exchange-between-financial-intelligence-units_en",
+     "authority": "AMLA",
+     "date": "2026-11-14",
+     "is_news": false
+    }
+   ],
+   "size": 2,
+   "rank": 275.57,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-instruments-bf1be08fd1a2",
+    "title": "Draft Implementing Technical Standards on the format for reporting suspicions and providing transaction records",
+    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
+    "date": "2026-11-14",
+    "authority": "AMLA",
+    "source": "amla-instruments",
+    "type": "rts_its_draft",
+    "status": "draft (consultation closed)",
+    "topics": [
+     "reporting-str"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-instruments-bf1be08fd1a2",
+    "origin": "engine",
+    "rank": 275.57,
+    "tier": "important"
+   },
+   "also": [
+    {
+     "title": "Consultation on the draft ITS on the format for reporting suspicions and providing transaction records",
+     "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-format-reporting-suspicions-and-providing-transaction-records_en",
+     "authority": "AMLA",
+     "date": "2026-11-14",
+     "is_news": false
+    }
+   ],
+   "size": 2,
+   "rank": 275.57,
+   "tier": "important",
    "news_only": false
   },
   {
@@ -2255,12 +2399,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 274.29,
+    "rank": 274.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 274.29,
+   "rank": 274.14,
    "tier": "important",
    "news_only": false
   },
@@ -2279,7 +2423,7 @@
     "is_news": false,
     "doc_id": "amla-instruments-b7b6ebdd96a2",
     "origin": "engine",
-    "rank": 273.71,
+    "rank": 273.57,
     "tier": "important"
    },
    "also": [
@@ -2341,7 +2485,7 @@
     }
    ],
    "size": 9,
-   "rank": 273.71,
+   "rank": 273.57,
    "tier": "important",
    "news_only": false
   },
@@ -2362,7 +2506,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 273.57,
+    "rank": 273.43,
     "tier": "important"
    },
    "also": [
@@ -2375,7 +2519,7 @@
     }
    ],
    "size": 2,
-   "rank": 273.57,
+   "rank": 273.43,
    "tier": "important",
    "news_only": false
   },
@@ -2397,12 +2541,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-9741e52ff554",
     "origin": "engine",
-    "rank": 272.71,
+    "rank": 272.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 272.71,
+   "rank": 272.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2424,12 +2568,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-3ab1b9e903ac",
     "origin": "engine",
-    "rank": 272.71,
+    "rank": 272.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 272.71,
+   "rank": 272.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2450,12 +2594,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 272.14,
+    "rank": 272.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 272.14,
+   "rank": 272.0,
    "tier": "important",
    "news_only": false
   },
@@ -2476,12 +2620,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 272.14,
+    "rank": 272.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 272.14,
+   "rank": 272.0,
    "tier": "important",
    "news_only": false
   },
@@ -2502,12 +2646,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 271.57,
+    "rank": 271.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 271.57,
+   "rank": 271.43,
    "tier": "important",
    "news_only": false
   },
@@ -2528,12 +2672,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 271.57,
+    "rank": 271.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 271.57,
+   "rank": 271.43,
    "tier": "important",
    "news_only": false
   },
@@ -2554,7 +2698,7 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-47069e15ab91",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [
@@ -2574,7 +2718,7 @@
     }
    ],
    "size": 3,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2595,12 +2739,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-db5fd39f3a69",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2621,12 +2765,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-c5c9212ddeec",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2647,12 +2791,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-bf3f16404b06",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2673,12 +2817,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-aa4e7d7bb5ac",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2699,12 +2843,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-24db17d00bff",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2725,12 +2869,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b6d5a68dd3d2",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2751,12 +2895,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b4ca444898d5",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2777,12 +2921,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-77cfe8c32aa6",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2803,12 +2947,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-a2ddb91ba23e",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2829,12 +2973,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-ee754b3ea7f8",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2855,12 +2999,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-1afceb0721b5",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2881,12 +3025,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b583341af431",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2907,12 +3051,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-d6e628013ba9",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2933,12 +3077,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-4f0755308c1a",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2959,12 +3103,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-2a87324713b2",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -2985,12 +3129,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-76d8e02d513c",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3011,12 +3155,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-acff2900485a",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3037,12 +3181,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-966dd0c52e75",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3063,12 +3207,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-2824c1a97323",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3089,12 +3233,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-36b204445abb",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3115,7 +3259,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "important"
    },
    "also": [
@@ -3128,7 +3272,7 @@
     }
    ],
    "size": 2,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "important",
    "news_only": false
   },
@@ -3149,7 +3293,7 @@
     "is_news": false,
     "doc_id": "",
     "origin": "engine",
-    "rank": 270.71,
+    "rank": 270.57,
     "tier": "important"
    },
    "also": [
@@ -3162,7 +3306,7 @@
     }
    ],
    "size": 2,
-   "rank": 270.71,
+   "rank": 270.57,
    "tier": "important",
    "news_only": false
   },
@@ -3181,7 +3325,7 @@
     "is_news": false,
     "doc_id": "amla-news-47e6555737ba",
     "origin": "engine",
-    "rank": 270.0,
+    "rank": 269.86,
     "tier": "important"
    },
    "also": [
@@ -3201,7 +3345,7 @@
     }
    ],
    "size": 3,
-   "rank": 270.0,
+   "rank": 269.86,
    "tier": "important",
    "news_only": false
   },
@@ -3220,12 +3364,12 @@
     "is_news": false,
     "doc_id": "amla-hearings-dca764782172",
     "origin": "engine",
-    "rank": 270.0,
+    "rank": 269.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 270.0,
+   "rank": 269.86,
    "tier": "important",
    "news_only": false
   },
@@ -3244,12 +3388,12 @@
     "is_news": false,
     "doc_id": "amla-library-5be92668cc8d",
     "origin": "engine",
-    "rank": 269.14,
+    "rank": 269.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 269.14,
+   "rank": 269.0,
    "tier": "important",
    "news_only": false
   },
@@ -3268,12 +3412,12 @@
     "is_news": false,
     "doc_id": "amla-library-2a00943677fd",
     "origin": "engine",
-    "rank": 269.14,
+    "rank": 269.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 269.14,
+   "rank": 269.0,
    "tier": "important",
    "news_only": false
   },
@@ -3292,12 +3436,12 @@
     "is_news": false,
     "doc_id": "amla-library-58150b878892",
     "origin": "engine",
-    "rank": 269.14,
+    "rank": 269.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 269.14,
+   "rank": 269.0,
    "tier": "important",
    "news_only": false
   },
@@ -3316,12 +3460,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-4a0f76f9b1dd",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3340,12 +3484,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-b25d25446fec",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3364,7 +3508,7 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-5d0cf948f345",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [
@@ -3391,7 +3535,7 @@
     }
    ],
    "size": 4,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3410,12 +3554,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-3f4ec22c6e49",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3434,12 +3578,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-13c47f42acd7",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3458,12 +3602,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-daccaecea7cf",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3482,12 +3626,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-e3e9eb161869",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3506,12 +3650,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-6016bf3ec727",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3530,12 +3674,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-1d09dfdf83a4",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3554,12 +3698,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-a1335a4c34a2",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3578,12 +3722,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-740d36c89d7a",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3602,12 +3746,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-7184f72ff840",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3626,12 +3770,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-7b0d0497ca7f",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3650,12 +3794,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-04cdb233860f",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3674,12 +3818,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-5f8b542c5834",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3698,12 +3842,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-8052810a2e97",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3722,12 +3866,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-f3cc4fb2697d",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3746,12 +3890,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-75cbf13977b0",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3770,12 +3914,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-33bdaca97f51",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3794,12 +3938,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-a941734e9fb1",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3818,12 +3962,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-8b55356c5bdd",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3842,12 +3986,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-53f6cfbb7327",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3866,12 +4010,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-39835c904ef8",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3890,12 +4034,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-e016dccae34d",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3914,12 +4058,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-f3bb00e67091",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3938,12 +4082,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-38ab6ef6b587",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3962,12 +4106,12 @@
     "is_news": false,
     "doc_id": "nbb-aml-guidance-590747fa0f34",
     "origin": "engine",
-    "rank": 268.71,
+    "rank": 268.57,
     "tier": "critical"
    },
    "also": [],
    "size": 1,
-   "rank": 268.71,
+   "rank": 268.57,
    "tier": "critical",
    "news_only": false
   },
@@ -3986,12 +4130,12 @@
     "is_news": false,
     "doc_id": "amla-library-43d001486f81",
     "origin": "engine",
-    "rank": 266.14,
+    "rank": 266.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.14,
+   "rank": 266.0,
    "tier": "important",
    "news_only": false
   },
@@ -4010,12 +4154,12 @@
     "is_news": false,
     "doc_id": "amla-library-ed5e2388851d",
     "origin": "engine",
-    "rank": 266.14,
+    "rank": 266.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.14,
+   "rank": 266.0,
    "tier": "important",
    "news_only": false
   },
@@ -4034,12 +4178,12 @@
     "is_news": false,
     "doc_id": "amla-library-148273efc0e5",
     "origin": "engine",
-    "rank": 266.14,
+    "rank": 266.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.14,
+   "rank": 266.0,
    "tier": "important",
    "news_only": false
   },
@@ -4058,12 +4202,12 @@
     "is_news": false,
     "doc_id": "amla-library-f562217654c5",
     "origin": "engine",
-    "rank": 266.14,
+    "rank": 266.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.14,
+   "rank": 266.0,
    "tier": "important",
    "news_only": false
   },
@@ -4082,12 +4226,12 @@
     "is_news": false,
     "doc_id": "amla-library-64711cbaea86",
     "origin": "engine",
-    "rank": 266.14,
+    "rank": 266.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.14,
+   "rank": 266.0,
    "tier": "important",
    "news_only": false
   },
@@ -4106,12 +4250,12 @@
     "is_news": false,
     "doc_id": "amla-library-0e49e767e94f",
     "origin": "engine",
-    "rank": 266.14,
+    "rank": 266.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 266.14,
+   "rank": 266.0,
    "tier": "important",
    "news_only": false
   },
@@ -4132,12 +4276,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 265.57,
+    "rank": 265.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 265.57,
+   "rank": 265.43,
    "tier": "important",
    "news_only": false
   },
@@ -4158,12 +4302,12 @@
     "is_news": false,
     "doc_id": "amla-library-964d9792a3fe",
     "origin": "engine",
-    "rank": 265.29,
+    "rank": 265.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 265.29,
+   "rank": 265.14,
    "tier": "important",
    "news_only": false
   },
@@ -4184,12 +4328,12 @@
     "is_news": false,
     "doc_id": "amla-hearings-168a050ac865",
     "origin": "engine",
-    "rank": 263.43,
+    "rank": 263.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 263.43,
+   "rank": 263.29,
    "tier": "important",
    "news_only": false
   },
@@ -4210,7 +4354,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 257.57,
+    "rank": 257.43,
     "tier": "critical"
    },
    "also": [
@@ -4314,7 +4458,7 @@
     }
    ],
    "size": 15,
-   "rank": 257.57,
+   "rank": 257.43,
    "tier": "critical",
    "news_only": false
   },
@@ -4336,7 +4480,7 @@
     "is_news": false,
     "doc_id": "esma-news-551762665811",
     "origin": "engine",
-    "rank": 252.71,
+    "rank": 252.57,
     "tier": "important"
    },
    "also": [
@@ -4349,7 +4493,7 @@
     }
    ],
    "size": 2,
-   "rank": 252.71,
+   "rank": 252.57,
    "tier": "important",
    "news_only": false
   },
@@ -4368,12 +4512,12 @@
     "is_news": false,
     "doc_id": "amla-faqs-f02f54e3c02d",
     "origin": "engine",
-    "rank": 248.71,
+    "rank": 248.57,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 248.71,
+   "rank": 248.57,
    "tier": "important",
    "news_only": false
   },
@@ -4394,7 +4538,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 246.57,
+    "rank": 246.43,
     "tier": "important"
    },
    "also": [
@@ -4407,7 +4551,7 @@
     }
    ],
    "size": 2,
-   "rank": 246.57,
+   "rank": 246.43,
    "tier": "important",
    "news_only": false
   },
@@ -4428,7 +4572,7 @@
     "is_news": false,
     "doc_id": "amla-news-501b504c31aa",
     "origin": "engine",
-    "rank": 231.57,
+    "rank": 231.43,
     "tier": "important"
    },
    "also": [
@@ -4441,7 +4585,7 @@
     }
    ],
    "size": 2,
-   "rank": 231.57,
+   "rank": 231.43,
    "tier": "important",
    "news_only": false
   },
@@ -4462,12 +4606,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 231.57,
+    "rank": 231.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 231.57,
+   "rank": 231.43,
    "tier": "important",
    "news_only": false
   },
@@ -4488,12 +4632,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 231.43,
+    "rank": 231.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 231.43,
+   "rank": 231.29,
    "tier": "important",
    "news_only": false
   },
@@ -4514,12 +4658,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 230.29,
+    "rank": 230.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 230.29,
+   "rank": 230.14,
    "tier": "important",
    "news_only": false
   },
@@ -4540,44 +4684,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 230.29,
+    "rank": 230.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 230.29,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "amla-reports-49fe354c0962",
-    "title": "Report on cooperation - Supervisory authorities in AML/CFT colleges",
-    "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
-    "date": "2026-11-23",
-    "authority": "AMLA",
-    "source": "amla-reports",
-    "type": "supervisory_communication",
-    "status": "published",
-    "topics": [],
-    "in_scope": true,
-    "is_news": false,
-    "doc_id": "amla-reports-49fe354c0962",
-    "origin": "engine",
-    "rank": 230.0,
-    "tier": "important"
-   },
-   "also": [
-    {
-     "title": "Report on cooperation - Supervisory authorities in AMLCFT colleges",
-     "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
-     "authority": "AMLA — Reports & notes",
-     "date": "2026-11-20",
-     "is_news": false
-    }
-   ],
-   "size": 2,
-   "rank": 230.0,
+   "rank": 230.14,
    "tier": "important",
    "news_only": false
   },
@@ -4596,7 +4708,7 @@
     "is_news": false,
     "doc_id": "amla-news-8c2eb709ca08",
     "origin": "engine",
-    "rank": 230.0,
+    "rank": 229.86,
     "tier": "important"
    },
    "also": [
@@ -4609,7 +4721,39 @@
     }
    ],
    "size": 2,
-   "rank": 230.0,
+   "rank": 229.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "amla-reports-49fe354c0962",
+    "title": "Report on cooperation - Supervisory authorities in AML/CFT colleges",
+    "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
+    "date": "2026-11-23",
+    "authority": "AMLA",
+    "source": "amla-reports",
+    "type": "supervisory_communication",
+    "status": "published",
+    "topics": [],
+    "in_scope": true,
+    "is_news": false,
+    "doc_id": "amla-reports-49fe354c0962",
+    "origin": "engine",
+    "rank": 229.86,
+    "tier": "important"
+   },
+   "also": [
+    {
+     "title": "Report on cooperation - Supervisory authorities in AMLCFT colleges",
+     "url": "https://www.amla.europa.eu/document/download/af147c21-fdb8-4077-bcb2-f725a5d40492_en?filename=REPORT~1.PDF",
+     "authority": "AMLA — Reports & notes",
+     "date": "2026-11-20",
+     "is_news": false
+    }
+   ],
+   "size": 2,
+   "rank": 229.86,
    "tier": "important",
    "news_only": false
   },
@@ -4628,7 +4772,7 @@
     "is_news": false,
     "doc_id": "amla-news-b4d8b2673518",
     "origin": "engine",
-    "rank": 229.43,
+    "rank": 229.29,
     "tier": "important"
    },
    "also": [
@@ -4641,7 +4785,7 @@
     }
    ],
    "size": 2,
-   "rank": 229.43,
+   "rank": 229.29,
    "tier": "important",
    "news_only": false
   },
@@ -4660,7 +4804,7 @@
     "is_news": false,
     "doc_id": "amla-news-69b783c5ee7e",
     "origin": "engine",
-    "rank": 229.29,
+    "rank": 229.14,
     "tier": "important"
    },
    "also": [
@@ -4673,7 +4817,7 @@
     }
    ],
    "size": 2,
-   "rank": 229.29,
+   "rank": 229.14,
    "tier": "important",
    "news_only": false
   },
@@ -4694,12 +4838,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 229.29,
+    "rank": 229.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 229.29,
+   "rank": 229.14,
    "tier": "important",
    "news_only": false
   },
@@ -4718,7 +4862,7 @@
     "is_news": false,
     "doc_id": "amla-news-cfff4167fd42",
     "origin": "engine",
-    "rank": 229.14,
+    "rank": 229.0,
     "tier": "important"
    },
    "also": [
@@ -4731,7 +4875,7 @@
     }
    ],
    "size": 2,
-   "rank": 229.14,
+   "rank": 229.0,
    "tier": "important",
    "news_only": false
   },
@@ -4750,7 +4894,7 @@
     "is_news": false,
     "doc_id": "amla-library-59cf94b53227",
     "origin": "engine",
-    "rank": 229.14,
+    "rank": 229.0,
     "tier": "important"
    },
    "also": [
@@ -4763,7 +4907,7 @@
     }
    ],
    "size": 2,
-   "rank": 229.14,
+   "rank": 229.0,
    "tier": "important",
    "news_only": false
   },
@@ -4784,12 +4928,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 229.14,
+    "rank": 229.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 229.14,
+   "rank": 229.0,
    "tier": "important",
    "news_only": false
   },
@@ -4808,7 +4952,7 @@
     "is_news": false,
     "doc_id": "amla-news-0ab8fede43d1",
     "origin": "engine",
-    "rank": 229.0,
+    "rank": 228.86,
     "tier": "important"
    },
    "also": [
@@ -4821,7 +4965,7 @@
     }
    ],
    "size": 2,
-   "rank": 229.0,
+   "rank": 228.86,
    "tier": "important",
    "news_only": false
   },
@@ -4840,12 +4984,12 @@
     "is_news": false,
     "doc_id": "ec-aml-eu-level-d4656a188233",
     "origin": "engine",
-    "rank": 228.71,
+    "rank": 228.57,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 228.71,
+   "rank": 228.57,
    "tier": "important",
    "news_only": false
   },
@@ -4866,12 +5010,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 228.0,
+    "rank": 227.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 228.0,
+   "rank": 227.86,
    "tier": "important",
    "news_only": false
   },
@@ -4892,12 +5036,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 228.0,
+    "rank": 227.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 228.0,
+   "rank": 227.86,
    "tier": "important",
    "news_only": false
   },
@@ -4918,12 +5062,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 228.0,
+    "rank": 227.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 228.0,
+   "rank": 227.86,
    "tier": "important",
    "news_only": false
   },
@@ -4942,7 +5086,7 @@
     "is_news": false,
     "doc_id": "amla-news-2792009b59d1",
     "origin": "engine",
-    "rank": 227.29,
+    "rank": 227.14,
     "tier": "important"
    },
    "also": [
@@ -4955,7 +5099,7 @@
     }
    ],
    "size": 2,
-   "rank": 227.29,
+   "rank": 227.14,
    "tier": "important",
    "news_only": false
   },
@@ -4974,7 +5118,7 @@
     "is_news": false,
     "doc_id": "amla-news-8c712d4c9fa0",
     "origin": "engine",
-    "rank": 226.57,
+    "rank": 226.43,
     "tier": "important"
    },
    "also": [
@@ -4987,7 +5131,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.57,
+   "rank": 226.43,
    "tier": "important",
    "news_only": false
   },
@@ -5006,12 +5150,12 @@
     "is_news": false,
     "doc_id": "amla-library-cd27b232a75d",
     "origin": "engine",
-    "rank": 226.57,
+    "rank": 226.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.57,
+   "rank": 226.43,
    "tier": "important",
    "news_only": false
   },
@@ -5032,7 +5176,7 @@
     "is_news": false,
     "doc_id": "eba-news-9e1e23e0ddaa",
     "origin": "engine",
-    "rank": 226.29,
+    "rank": 226.14,
     "tier": "important"
    },
    "also": [
@@ -5045,7 +5189,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.29,
+   "rank": 226.14,
    "tier": "important",
    "news_only": false
   },
@@ -5066,12 +5210,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.29,
+    "rank": 226.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.29,
+   "rank": 226.14,
    "tier": "important",
    "news_only": false
   },
@@ -5092,12 +5236,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.14,
+    "rank": 226.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.14,
+   "rank": 226.0,
    "tier": "important",
    "news_only": false
   },
@@ -5118,12 +5262,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.14,
+    "rank": 226.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.14,
+   "rank": 226.0,
    "tier": "important",
    "news_only": false
   },
@@ -5144,12 +5288,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.14,
+    "rank": 226.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.14,
+   "rank": 226.0,
    "tier": "important",
    "news_only": false
   },
@@ -5168,7 +5312,7 @@
     "is_news": false,
     "doc_id": "amla-news-f788b3addd04",
     "origin": "engine",
-    "rank": 226.0,
+    "rank": 225.86,
     "tier": "important"
    },
    "also": [
@@ -5181,7 +5325,7 @@
     }
    ],
    "size": 2,
-   "rank": 226.0,
+   "rank": 225.86,
    "tier": "important",
    "news_only": false
   },
@@ -5202,12 +5346,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 226.0,
+    "rank": 225.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.0,
+   "rank": 225.86,
    "tier": "important",
    "news_only": false
   },
@@ -5228,12 +5372,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 226.0,
+    "rank": 225.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.0,
+   "rank": 225.86,
    "tier": "important",
    "news_only": false
   },
@@ -5254,12 +5398,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 226.0,
+    "rank": 225.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 226.0,
+   "rank": 225.86,
    "tier": "important",
    "news_only": false
   },
@@ -5280,12 +5424,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.86,
+    "rank": 225.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.86,
+   "rank": 225.71,
    "tier": "important",
    "news_only": false
   },
@@ -5306,12 +5450,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.86,
+    "rank": 225.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.86,
+   "rank": 225.71,
    "tier": "important",
    "news_only": false
   },
@@ -5332,12 +5476,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.86,
+    "rank": 225.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.86,
+   "rank": 225.71,
    "tier": "important",
    "news_only": false
   },
@@ -5358,12 +5502,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.86,
+    "rank": 225.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.86,
+   "rank": 225.71,
    "tier": "important",
    "news_only": false
   },
@@ -5384,12 +5528,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.86,
+    "rank": 225.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.86,
+   "rank": 225.71,
    "tier": "important",
    "news_only": false
   },
@@ -5410,12 +5554,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.86,
+    "rank": 225.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.86,
+   "rank": 225.71,
    "tier": "important",
    "news_only": false
   },
@@ -5434,7 +5578,7 @@
     "is_news": false,
     "doc_id": "amla-news-25ba5b2df2f3",
     "origin": "engine",
-    "rank": 225.57,
+    "rank": 225.43,
     "tier": "important"
    },
    "also": [
@@ -5447,7 +5591,7 @@
     }
    ],
    "size": 2,
-   "rank": 225.57,
+   "rank": 225.43,
    "tier": "important",
    "news_only": false
   },
@@ -5468,12 +5612,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.43,
+    "rank": 225.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.43,
+   "rank": 225.29,
    "tier": "important",
    "news_only": false
   },
@@ -5492,7 +5636,7 @@
     "is_news": false,
     "doc_id": "amla-news-bb51330afd2e",
     "origin": "engine",
-    "rank": 225.29,
+    "rank": 225.14,
     "tier": "important"
    },
    "also": [
@@ -5505,7 +5649,7 @@
     }
    ],
    "size": 2,
-   "rank": 225.29,
+   "rank": 225.14,
    "tier": "important",
    "news_only": false
   },
@@ -5526,7 +5670,7 @@
     "is_news": false,
     "doc_id": "amla-news-c97a25fb94e1",
     "origin": "engine",
-    "rank": 225.29,
+    "rank": 225.14,
     "tier": "important"
    },
    "also": [
@@ -5539,7 +5683,7 @@
     }
    ],
    "size": 2,
-   "rank": 225.29,
+   "rank": 225.14,
    "tier": "important",
    "news_only": false
   },
@@ -5560,7 +5704,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.29,
+    "rank": 225.14,
     "tier": "important"
    },
    "also": [
@@ -5573,7 +5717,7 @@
     }
    ],
    "size": 2,
-   "rank": 225.29,
+   "rank": 225.14,
    "tier": "important",
    "news_only": false
   },
@@ -5594,12 +5738,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 225.29,
+    "rank": 225.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 225.29,
+   "rank": 225.14,
    "tier": "important",
    "news_only": false
   },
@@ -5620,12 +5764,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 224.43,
+    "rank": 224.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 224.43,
+   "rank": 224.29,
    "tier": "important",
    "news_only": false
   },
@@ -5646,12 +5790,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 224.0,
+    "rank": 223.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 224.0,
+   "rank": 223.86,
    "tier": "important",
    "news_only": false
   },
@@ -5672,12 +5816,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 224.0,
+    "rank": 223.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 224.0,
+   "rank": 223.86,
    "tier": "important",
    "news_only": false
   },
@@ -5698,12 +5842,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 223.86,
+    "rank": 223.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.86,
+   "rank": 223.71,
    "tier": "important",
    "news_only": false
   },
@@ -5724,12 +5868,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 223.86,
+    "rank": 223.71,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.86,
+   "rank": 223.71,
    "tier": "important",
    "news_only": false
   },
@@ -5748,7 +5892,7 @@
     "is_news": false,
     "doc_id": "amla-news-c2518b65d16a",
     "origin": "engine",
-    "rank": 223.57,
+    "rank": 223.43,
     "tier": "important"
    },
    "also": [
@@ -5761,7 +5905,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.57,
+   "rank": 223.43,
    "tier": "important",
    "news_only": false
   },
@@ -5780,7 +5924,7 @@
     "is_news": false,
     "doc_id": "amla-news-cdc99a25a64b",
     "origin": "engine",
-    "rank": 223.43,
+    "rank": 223.29,
     "tier": "important"
    },
    "also": [
@@ -5793,7 +5937,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.43,
+   "rank": 223.29,
    "tier": "important",
    "news_only": false
   },
@@ -5814,7 +5958,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 223.43,
+    "rank": 223.29,
     "tier": "important"
    },
    "also": [
@@ -5827,7 +5971,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.43,
+   "rank": 223.29,
    "tier": "important",
    "news_only": false
   },
@@ -5846,7 +5990,7 @@
     "is_news": false,
     "doc_id": "amla-news-2e337f7ab926",
     "origin": "engine",
-    "rank": 223.29,
+    "rank": 223.14,
     "tier": "important"
    },
    "also": [
@@ -5859,7 +6003,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.29,
+   "rank": 223.14,
    "tier": "important",
    "news_only": false
   },
@@ -5878,12 +6022,12 @@
     "is_news": false,
     "doc_id": "amla-library-38ddd130dcf9",
     "origin": "engine",
-    "rank": 223.29,
+    "rank": 223.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 223.29,
+   "rank": 223.14,
    "tier": "important",
    "news_only": false
   },
@@ -5904,7 +6048,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 223.29,
+    "rank": 223.14,
     "tier": "important"
    },
    "also": [
@@ -5917,7 +6061,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.29,
+   "rank": 223.14,
    "tier": "important",
    "news_only": false
   },
@@ -5936,7 +6080,7 @@
     "is_news": false,
     "doc_id": "amla-news-6777126e95c2",
     "origin": "engine",
-    "rank": 223.14,
+    "rank": 223.0,
     "tier": "important"
    },
    "also": [
@@ -5949,7 +6093,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.14,
+   "rank": 223.0,
    "tier": "important",
    "news_only": false
   },
@@ -5968,7 +6112,7 @@
     "is_news": false,
     "doc_id": "amla-news-55bc303d93b0",
     "origin": "engine",
-    "rank": 223.14,
+    "rank": 223.0,
     "tier": "important"
    },
    "also": [
@@ -5981,7 +6125,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.14,
+   "rank": 223.0,
    "tier": "important",
    "news_only": false
   },
@@ -6002,7 +6146,7 @@
     "is_news": false,
     "doc_id": "amla-news-fcba9a8ef8a6",
     "origin": "engine",
-    "rank": 223.14,
+    "rank": 223.0,
     "tier": "important"
    },
    "also": [
@@ -6015,7 +6159,7 @@
     }
    ],
    "size": 2,
-   "rank": 223.14,
+   "rank": 223.0,
    "tier": "important",
    "news_only": false
   },
@@ -6025,32 +6169,6 @@
     "title": "CELEX:32026D2137: Council Implementing Decision (CFSP) 2026/2137 of 22 September 2026 implementing Decision 2011/486/CFSP concerning restrictive measures directed against certain individuals, groups, undertakings and entities in view of the situation in Afghanistan",
     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2137",
     "date": "2026-09-22",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [
-     "sanctions"
-    ],
-    "in_scope": true,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 223.14,
-    "tier": "important"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 223.14,
-   "tier": "important",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-1b59c0667d7919631d40e92ddcff0073",
-    "title": "CELEX:32026D2161: Council Decision (CFSP) 2026/2161 of 22 September 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2161",
-    "date": "2026-09-21",
     "authority": "EUR-Lex — Official Journal L",
     "source": "eurlex_ojl",
     "type": "supervisory_communication",
@@ -6073,6 +6191,32 @@
   },
   {
    "lead": {
+    "id": "legacy-1b59c0667d7919631d40e92ddcff0073",
+    "title": "CELEX:32026D2161: Council Decision (CFSP) 2026/2161 of 22 September 2026 amending Decision 2014/145/CFSP concerning restrictive measures in respect of actions undermining or threatening the territorial integrity, sovereignty and independence of Ukraine",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2161",
+    "date": "2026-09-21",
+    "authority": "EUR-Lex — Official Journal L",
+    "source": "eurlex_ojl",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [
+     "sanctions"
+    ],
+    "in_scope": true,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 222.86,
+    "tier": "important"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 222.86,
+   "tier": "important",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "amla-library-ff54c0d692f3",
     "title": "News Announcement_SDD_GL",
     "url": "https://www.amla.europa.eu/document/download/af293466-527f-4cfd-950b-d165a08a2678_en?filename=News%20Announcement%20-%20SDD%20GL.pdf",
@@ -6086,12 +6230,12 @@
     "is_news": false,
     "doc_id": "amla-library-ff54c0d692f3",
     "origin": "engine",
-    "rank": 222.57,
+    "rank": 222.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.57,
+   "rank": 222.43,
    "tier": "important",
    "news_only": false
   },
@@ -6110,12 +6254,12 @@
     "is_news": false,
     "doc_id": "amla-library-c8c0f6f109b2",
     "origin": "engine",
-    "rank": 222.57,
+    "rank": 222.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.57,
+   "rank": 222.43,
    "tier": "important",
    "news_only": false
   },
@@ -6136,7 +6280,7 @@
     "is_news": false,
     "doc_id": "amla-news-b87f876ecb19",
     "origin": "engine",
-    "rank": 222.57,
+    "rank": 222.43,
     "tier": "important"
    },
    "also": [
@@ -6149,7 +6293,7 @@
     }
    ],
    "size": 2,
-   "rank": 222.57,
+   "rank": 222.43,
    "tier": "important",
    "news_only": false
   },
@@ -6168,7 +6312,7 @@
     "is_news": false,
     "doc_id": "amla-news-0fee8ddae26e",
     "origin": "engine",
-    "rank": 222.43,
+    "rank": 222.29,
     "tier": "important"
    },
    "also": [
@@ -6195,7 +6339,7 @@
     }
    ],
    "size": 4,
-   "rank": 222.43,
+   "rank": 222.29,
    "tier": "important",
    "news_only": false
   },
@@ -6214,7 +6358,7 @@
     "is_news": false,
     "doc_id": "amla-news-5d411692ff70",
     "origin": "engine",
-    "rank": 222.43,
+    "rank": 222.29,
     "tier": "important"
    },
    "also": [
@@ -6234,7 +6378,7 @@
     }
    ],
    "size": 3,
-   "rank": 222.43,
+   "rank": 222.29,
    "tier": "important",
    "news_only": false
   },
@@ -6253,12 +6397,12 @@
     "is_news": false,
     "doc_id": "amla-library-eb900769d03c",
     "origin": "engine",
-    "rank": 222.43,
+    "rank": 222.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.43,
+   "rank": 222.29,
    "tier": "important",
    "news_only": false
   },
@@ -6279,12 +6423,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 222.43,
+    "rank": 222.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.43,
+   "rank": 222.29,
    "tier": "important",
    "news_only": false
   },
@@ -6305,12 +6449,12 @@
     "is_news": false,
     "doc_id": "amla-news-672f202ee9be",
     "origin": "engine",
-    "rank": 222.29,
+    "rank": 222.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.29,
+   "rank": 222.14,
    "tier": "important",
    "news_only": false
   },
@@ -6331,12 +6475,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 222.0,
+    "rank": 221.86,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 222.0,
+   "rank": 221.86,
    "tier": "important",
    "news_only": false
   },
@@ -6355,7 +6499,7 @@
     "is_news": false,
     "doc_id": "amla-news-16f9ae59ea35",
     "origin": "engine",
-    "rank": 221.29,
+    "rank": 221.14,
     "tier": "important"
    },
    "also": [
@@ -6368,7 +6512,7 @@
     }
    ],
    "size": 2,
-   "rank": 221.29,
+   "rank": 221.14,
    "tier": "important",
    "news_only": false
   },
@@ -6387,12 +6531,12 @@
     "is_news": false,
     "doc_id": "amla-library-7e6bbdde4a21",
     "origin": "engine",
-    "rank": 221.29,
+    "rank": 221.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 221.29,
+   "rank": 221.14,
    "tier": "important",
    "news_only": false
   },
@@ -6411,12 +6555,12 @@
     "is_news": false,
     "doc_id": "amla-news-6f6fe2c360a2",
     "origin": "engine",
-    "rank": 220.29,
+    "rank": 220.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 220.29,
+   "rank": 220.14,
    "tier": "important",
    "news_only": false
   },
@@ -6435,12 +6579,12 @@
     "is_news": false,
     "doc_id": "amla-library-656e536eb6b4",
     "origin": "engine",
-    "rank": 220.29,
+    "rank": 220.14,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 220.29,
+   "rank": 220.14,
    "tier": "important",
    "news_only": false
   },
@@ -6459,12 +6603,12 @@
     "is_news": false,
     "doc_id": "amla-news-6354ca0b6f00",
     "origin": "engine",
-    "rank": 219.43,
+    "rank": 219.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 219.43,
+   "rank": 219.29,
    "tier": "important",
    "news_only": false
   },
@@ -6485,12 +6629,12 @@
     "is_news": false,
     "doc_id": "amla-library-427903da878f",
     "origin": "engine",
-    "rank": 218.14,
+    "rank": 218.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 218.14,
+   "rank": 218.0,
    "tier": "important",
    "news_only": false
   },
@@ -6511,12 +6655,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 216.57,
+    "rank": 216.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 216.57,
+   "rank": 216.43,
    "tier": "important",
    "news_only": false
   },
@@ -6537,12 +6681,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 216.57,
+    "rank": 216.43,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 216.57,
+   "rank": 216.43,
    "tier": "important",
    "news_only": false
   },
@@ -6561,7 +6705,7 @@
     "is_news": false,
     "doc_id": "amla-library-69f6d9e46e55",
     "origin": "engine",
-    "rank": 216.14,
+    "rank": 216.0,
     "tier": "important"
    },
    "also": [
@@ -6574,7 +6718,7 @@
     }
    ],
    "size": 2,
-   "rank": 216.14,
+   "rank": 216.0,
    "tier": "important",
    "news_only": false
   },
@@ -6593,12 +6737,12 @@
     "is_news": false,
     "doc_id": "amla-library-04c336501f91",
     "origin": "engine",
-    "rank": 216.14,
+    "rank": 216.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 216.14,
+   "rank": 216.0,
    "tier": "important",
    "news_only": false
   },
@@ -6617,12 +6761,12 @@
     "is_news": false,
     "doc_id": "amla-news-f47b90ce2410",
     "origin": "engine",
-    "rank": 214.14,
+    "rank": 214.0,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 214.14,
+   "rank": 214.0,
    "tier": "important",
    "news_only": false
   },
@@ -6641,12 +6785,12 @@
     "is_news": false,
     "doc_id": "amla-reports-07ab5af50b97",
     "origin": "engine",
-    "rank": 213.43,
+    "rank": 213.29,
     "tier": "important"
    },
    "also": [],
    "size": 1,
-   "rank": 213.43,
+   "rank": 213.29,
    "tier": "important",
    "news_only": false
   },
@@ -6665,12 +6809,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 183.14,
+    "rank": 183.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 183.14,
+   "rank": 183.0,
    "tier": "info",
    "news_only": false
   },
@@ -6689,12 +6833,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 181.43,
+    "rank": 181.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 181.43,
+   "rank": 181.29,
    "tier": "info",
    "news_only": false
   },
@@ -6713,12 +6857,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 180.43,
+    "rank": 180.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 180.43,
+   "rank": 180.29,
    "tier": "info",
    "news_only": false
   },
@@ -6737,12 +6881,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 180.43,
+    "rank": 180.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 180.43,
+   "rank": 180.29,
    "tier": "info",
    "news_only": false
   },
@@ -6761,12 +6905,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 180.43,
+    "rank": 180.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 180.43,
+   "rank": 180.29,
    "tier": "info",
    "news_only": false
   },
@@ -6785,7 +6929,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 180.14,
+    "rank": 180.0,
     "tier": "info"
    },
    "also": [
@@ -6798,7 +6942,7 @@
     }
    ],
    "size": 2,
-   "rank": 180.14,
+   "rank": 180.0,
    "tier": "info",
    "news_only": false
   },
@@ -6817,12 +6961,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 180.14,
+    "rank": 180.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 180.14,
+   "rank": 180.0,
    "tier": "info",
    "news_only": false
   },
@@ -6841,12 +6985,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 179.43,
+    "rank": 179.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 179.43,
+   "rank": 179.29,
    "tier": "info",
    "news_only": false
   },
@@ -6865,12 +7009,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 174.86,
+    "rank": 174.71,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 174.86,
+   "rank": 174.71,
    "tier": "info",
    "news_only": false
   },
@@ -6889,12 +7033,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 174.43,
+    "rank": 174.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 174.43,
+   "rank": 174.29,
    "tier": "info",
    "news_only": false
   },
@@ -6913,12 +7057,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 174.14,
+    "rank": 174.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 174.14,
+   "rank": 174.0,
    "tier": "info",
    "news_only": false
   },
@@ -6937,12 +7081,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 174.14,
+    "rank": 174.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 174.14,
+   "rank": 174.0,
    "tier": "info",
    "news_only": false
   },
@@ -6961,12 +7105,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 173.29,
+    "rank": 173.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 173.29,
+   "rank": 173.14,
    "tier": "info",
    "news_only": false
   },
@@ -6985,12 +7129,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 171.0,
+    "rank": 170.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 171.0,
+   "rank": 170.86,
    "tier": "info",
    "news_only": false
   },
@@ -7009,12 +7153,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 170.29,
+    "rank": 170.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 170.29,
+   "rank": 170.14,
    "tier": "info",
    "news_only": false
   },
@@ -7024,30 +7168,6 @@
     "title": "CELEX:52026PC0473: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for partial payment under the eighth instalment of the Ukraine Plan of the Ukraine Facility",
     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0473",
     "date": "2026-11-05",
-    "authority": "EUR-Lex — Legislative proposals",
-    "source": "eurlex_proposals",
-    "type": "consultation",
-    "status": "not-yet-binding",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 167.43,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 167.43,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-79f8db9212c3fd47128412c50d67dee1",
-    "title": "CELEX:52026PC0583: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for the partial payment of the ninth instalment under the Ukraine Plan of the Ukraine Facility",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0583",
-    "date": "2026-11-04",
     "authority": "EUR-Lex — Legislative proposals",
     "source": "eurlex_proposals",
     "type": "consultation",
@@ -7068,6 +7188,30 @@
   },
   {
    "lead": {
+    "id": "legacy-79f8db9212c3fd47128412c50d67dee1",
+    "title": "CELEX:52026PC0583: Proposal for a COUNCIL IMPLEMENTING DECISION establishing the satisfactory fulfilment of the conditions for the partial payment of the ninth instalment under the Ukraine Plan of the Ukraine Facility",
+    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0583",
+    "date": "2026-11-04",
+    "authority": "EUR-Lex — Legislative proposals",
+    "source": "eurlex_proposals",
+    "type": "consultation",
+    "status": "not-yet-binding",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 167.14,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 167.14,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
     "id": "legacy-0263bd361621dd39037433d047068265",
     "title": "Commission adopts guidelines implementing the visa ban on combatants in Russia's war of aggression against Ukraine",
     "url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2521",
@@ -7081,12 +7225,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.86,
+    "rank": 164.71,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 164.86,
+   "rank": 164.71,
    "tier": "info",
    "news_only": false
   },
@@ -7105,7 +7249,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 164.29,
+    "rank": 164.14,
     "tier": "info"
    },
    "also": [
@@ -7118,7 +7262,7 @@
     }
    ],
    "size": 2,
-   "rank": 164.29,
+   "rank": 164.14,
    "tier": "info",
    "news_only": false
   },
@@ -7137,12 +7281,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.43,
+    "rank": 163.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.43,
+   "rank": 163.29,
    "tier": "info",
    "news_only": false
   },
@@ -7161,12 +7305,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.29,
+    "rank": 163.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.29,
+   "rank": 163.14,
    "tier": "info",
    "news_only": false
   },
@@ -7185,7 +7329,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [
@@ -7198,7 +7342,7 @@
     }
    ],
    "size": 2,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7217,12 +7361,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7241,12 +7385,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7265,12 +7409,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7289,12 +7433,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7313,7 +7457,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [
@@ -7326,7 +7470,7 @@
     }
    ],
    "size": 2,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7345,12 +7489,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.14,
+    "rank": 163.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.14,
+   "rank": 163.0,
    "tier": "info",
    "news_only": false
   },
@@ -7369,12 +7513,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.0,
+    "rank": 162.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.0,
+   "rank": 162.86,
    "tier": "info",
    "news_only": false
   },
@@ -7393,12 +7537,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 163.0,
+    "rank": 162.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 163.0,
+   "rank": 162.86,
    "tier": "info",
    "news_only": false
   },
@@ -7417,12 +7561,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 162.43,
+    "rank": 162.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 162.43,
+   "rank": 162.29,
    "tier": "info",
    "news_only": false
   },
@@ -7441,12 +7585,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 161.57,
+    "rank": 161.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 161.57,
+   "rank": 161.43,
    "tier": "info",
    "news_only": false
   },
@@ -7465,12 +7609,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 161.57,
+    "rank": 161.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 161.57,
+   "rank": 161.43,
    "tier": "info",
    "news_only": false
   },
@@ -7489,12 +7633,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 160.29,
+    "rank": 160.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 160.29,
+   "rank": 160.14,
    "tier": "info",
    "news_only": false
   },
@@ -7513,12 +7657,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 160.29,
+    "rank": 160.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 160.29,
+   "rank": 160.14,
    "tier": "info",
    "news_only": false
   },
@@ -7537,12 +7681,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 160.14,
+    "rank": 160.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 160.14,
+   "rank": 160.0,
    "tier": "info",
    "news_only": false
   },
@@ -7561,12 +7705,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 159.43,
+    "rank": 159.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 159.43,
+   "rank": 159.29,
    "tier": "info",
    "news_only": false
   },
@@ -7585,12 +7729,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 158.0,
+    "rank": 157.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 158.0,
+   "rank": 157.86,
    "tier": "info",
    "news_only": false
   },
@@ -7609,7 +7753,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 157.29,
+    "rank": 157.14,
     "tier": "info"
    },
    "also": [
@@ -7622,7 +7766,7 @@
     }
    ],
    "size": 2,
-   "rank": 157.29,
+   "rank": 157.14,
    "tier": "info",
    "news_only": false
   },
@@ -7641,12 +7785,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 155.43,
+    "rank": 155.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 155.43,
+   "rank": 155.29,
    "tier": "info",
    "news_only": false
   },
@@ -7665,12 +7809,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 154.43,
+    "rank": 154.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 154.43,
+   "rank": 154.29,
    "tier": "info",
    "news_only": false
   },
@@ -7689,12 +7833,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 148.43,
+    "rank": 148.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 148.43,
+   "rank": 148.29,
    "tier": "info",
    "news_only": false
   },
@@ -7713,12 +7857,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7737,12 +7881,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7761,12 +7905,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7785,12 +7929,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7809,12 +7953,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7833,12 +7977,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7857,12 +8001,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.57,
+    "rank": 144.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 144.57,
+   "rank": 144.43,
    "tier": "info",
    "news_only": false
   },
@@ -7881,7 +8025,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 144.43,
+    "rank": 144.29,
     "tier": "info"
    },
    "also": [
@@ -7894,7 +8038,7 @@
     }
    ],
    "size": 2,
-   "rank": 144.43,
+   "rank": 144.29,
    "tier": "info",
    "news_only": false
   },
@@ -7913,12 +8057,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 143.57,
+    "rank": 143.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 143.57,
+   "rank": 143.43,
    "tier": "info",
    "news_only": false
   },
@@ -7937,12 +8081,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 142.57,
+    "rank": 142.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 142.57,
+   "rank": 142.43,
    "tier": "info",
    "news_only": false
   },
@@ -7961,12 +8105,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 142.57,
+    "rank": 142.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 142.57,
+   "rank": 142.43,
    "tier": "info",
    "news_only": false
   },
@@ -7985,12 +8129,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 141.43,
+    "rank": 141.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 141.43,
+   "rank": 141.29,
    "tier": "info",
    "news_only": false
   },
@@ -8009,12 +8153,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -8033,12 +8177,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 139.57,
+    "rank": 139.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 139.57,
+   "rank": 139.43,
    "tier": "info",
    "news_only": false
   },
@@ -8057,12 +8201,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8081,12 +8225,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8105,12 +8249,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8129,12 +8273,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8153,12 +8297,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8177,12 +8321,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8201,12 +8345,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8225,12 +8369,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8249,12 +8393,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8273,12 +8417,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 138.57,
+    "rank": 138.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 138.57,
+   "rank": 138.43,
    "tier": "info",
    "news_only": false
   },
@@ -8297,12 +8441,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 137.57,
+    "rank": 137.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 137.57,
+   "rank": 137.43,
    "tier": "info",
    "news_only": false
   },
@@ -8321,12 +8465,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 135.57,
+    "rank": 135.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 135.57,
+   "rank": 135.43,
    "tier": "info",
    "news_only": false
   },
@@ -8345,12 +8489,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 135.57,
+    "rank": 135.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 135.57,
+   "rank": 135.43,
    "tier": "info",
    "news_only": false
   },
@@ -8369,12 +8513,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 135.57,
+    "rank": 135.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 135.57,
+   "rank": 135.43,
    "tier": "info",
    "news_only": false
   },
@@ -8393,12 +8537,132 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 135.57,
+    "rank": 135.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 135.57,
+   "rank": 135.43,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-d7dd3f0b561e5b136acd60573fe32a05",
+    "title": "Boris Vujčić: Resilience in an age of shocks: lessons from central and eastern Europe",
+    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261124~17928e5456.en.html",
+    "date": "2026-11-24",
+    "authority": "ECB",
+    "source": "ecb_rss",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 2,
+    "origin": "legacy items.json",
+    "rank": 130.0,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 130.0,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-00f59b2eec7c1ed54d55de800534437a",
+    "title": "Number of active ETF investors peaks in the third quarter of 2026",
+    "url": "http://www.fsma.be/en/news/number-active-etf-investors-peaks-third-quarter-2026",
+    "date": "2026-11-24",
+    "authority": "FSMA",
+    "source": "fsma_rss",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 130.0,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 130.0,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-9dbc0bf57b496dc620da7467eea8162a",
+    "title": "FSB Regional Consultative Group for Asia meets in Sydney",
+    "url": "https://www.fsb.org/2026/11/fsb-regional-consultative-group-for-asia-meets-in-sydney-2/",
+    "date": "2026-11-24",
+    "authority": "FSB",
+    "source": "fsb_rss",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 2,
+    "origin": "legacy items.json",
+    "rank": 130.0,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 130.0,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-720a4e126e230948dd319e9ce1eff4b2",
+    "title": "EIOPA’s Consultative Expert Group on Data Use puts forward key principles for responsible data use in insurance",
+    "url": "https://www.eiopa.europa.eu/eiopas-consultative-expert-group-data-use-puts-forward-key-principles-responsible-data-use-insurance-2026-11-24_en",
+    "date": "2026-11-23",
+    "authority": "EIOPA",
+    "source": "eiopa_rss",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 129.86,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 129.86,
+   "tier": "info",
+   "news_only": false
+  },
+  {
+   "lead": {
+    "id": "legacy-6e6e051d8090a0e2414c2faf642fe675",
+    "title": "Commission calls for joint EU efforts to reduce tax gaps and boost public finances",
+    "url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2562",
+    "date": "2026-11-23",
+    "authority": "European Commission",
+    "source": "ec_presscorner",
+    "type": "supervisory_communication",
+    "status": "informational",
+    "topics": [],
+    "in_scope": false,
+    "is_news": false,
+    "legacy_impact": 3,
+    "origin": "legacy items.json",
+    "rank": 129.86,
+    "tier": "info"
+   },
+   "also": [],
+   "size": 1,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -8417,12 +8681,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -8441,12 +8705,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -8465,12 +8729,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -8489,12 +8753,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 130.0,
+    "rank": 129.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 130.0,
+   "rank": 129.86,
    "tier": "info",
    "news_only": false
   },
@@ -8513,12 +8777,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.86,
+    "rank": 129.71,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.86,
+   "rank": 129.71,
    "tier": "info",
    "news_only": false
   },
@@ -8537,12 +8801,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -8561,12 +8825,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -8585,12 +8849,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -8609,12 +8873,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -8633,12 +8897,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -8657,12 +8921,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.57,
+    "rank": 129.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.57,
+   "rank": 129.43,
    "tier": "info",
    "news_only": false
   },
@@ -8681,12 +8945,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8705,12 +8969,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8729,12 +8993,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8753,12 +9017,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8777,12 +9041,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.43,
+    "rank": 129.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.43,
+   "rank": 129.29,
    "tier": "info",
    "news_only": false
   },
@@ -8801,12 +9065,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8825,12 +9089,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8849,12 +9113,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8873,12 +9137,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8897,12 +9161,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8921,12 +9185,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.29,
+    "rank": 129.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.29,
+   "rank": 129.14,
    "tier": "info",
    "news_only": false
   },
@@ -8945,12 +9209,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.14,
+    "rank": 129.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.14,
+   "rank": 129.0,
    "tier": "info",
    "news_only": false
   },
@@ -8969,12 +9233,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -8993,12 +9257,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -9017,12 +9281,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -9041,12 +9305,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -9065,12 +9329,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -9089,12 +9353,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 129.0,
+    "rank": 128.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 129.0,
+   "rank": 128.86,
    "tier": "info",
    "news_only": false
   },
@@ -9113,12 +9377,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -9137,12 +9401,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -9161,7 +9425,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [
@@ -9174,7 +9438,7 @@
     }
    ],
    "size": 2,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -9193,12 +9457,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -9217,12 +9481,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.57,
+    "rank": 128.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.57,
+   "rank": 128.43,
    "tier": "info",
    "news_only": false
   },
@@ -9241,12 +9505,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -9265,12 +9529,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -9289,12 +9553,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -9313,12 +9577,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -9337,12 +9601,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.43,
+    "rank": 128.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.43,
+   "rank": 128.29,
    "tier": "info",
    "news_only": false
   },
@@ -9361,7 +9625,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.29,
+    "rank": 128.14,
     "tier": "info"
    },
    "also": [
@@ -9374,7 +9638,7 @@
     }
    ],
    "size": 2,
-   "rank": 128.29,
+   "rank": 128.14,
    "tier": "info",
    "news_only": false
   },
@@ -9393,7 +9657,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.14,
+    "rank": 128.0,
     "tier": "info"
    },
    "also": [
@@ -9406,7 +9670,7 @@
     }
    ],
    "size": 2,
-   "rank": 128.14,
+   "rank": 128.0,
    "tier": "info",
    "news_only": false
   },
@@ -9425,12 +9689,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.14,
+    "rank": 128.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.14,
+   "rank": 128.0,
    "tier": "info",
    "news_only": false
   },
@@ -9449,12 +9713,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.14,
+    "rank": 128.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.14,
+   "rank": 128.0,
    "tier": "info",
    "news_only": false
   },
@@ -9473,12 +9737,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -9497,12 +9761,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -9521,12 +9785,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -9545,12 +9809,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -9569,12 +9833,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -9593,12 +9857,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 128.0,
+    "rank": 127.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 128.0,
+   "rank": 127.86,
    "tier": "info",
    "news_only": false
   },
@@ -9617,12 +9881,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.71,
+    "rank": 127.57,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.71,
+   "rank": 127.57,
    "tier": "info",
    "news_only": false
   },
@@ -9641,7 +9905,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [
@@ -9654,7 +9918,7 @@
     }
    ],
    "size": 2,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -9673,12 +9937,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -9697,12 +9961,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -9721,12 +9985,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -9745,12 +10009,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.57,
+    "rank": 127.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.57,
+   "rank": 127.43,
    "tier": "info",
    "news_only": false
   },
@@ -9769,12 +10033,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9793,12 +10057,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9817,12 +10081,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9841,12 +10105,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9865,12 +10129,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.43,
+    "rank": 127.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.43,
+   "rank": 127.29,
    "tier": "info",
    "news_only": false
   },
@@ -9889,12 +10153,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.29,
+    "rank": 127.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.29,
+   "rank": 127.14,
    "tier": "info",
    "news_only": false
   },
@@ -9913,12 +10177,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.29,
+    "rank": 127.14,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.29,
+   "rank": 127.14,
    "tier": "info",
    "news_only": false
   },
@@ -9937,12 +10201,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.14,
+    "rank": 127.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.14,
+   "rank": 127.0,
    "tier": "info",
    "news_only": false
   },
@@ -9961,12 +10225,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.14,
+    "rank": 127.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.14,
+   "rank": 127.0,
    "tier": "info",
    "news_only": false
   },
@@ -9985,12 +10249,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 127.0,
+    "rank": 126.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 127.0,
+   "rank": 126.86,
    "tier": "info",
    "news_only": false
   },
@@ -10009,12 +10273,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -10033,12 +10297,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -10057,12 +10321,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -10081,12 +10345,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -10105,12 +10369,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.57,
+    "rank": 126.43,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.57,
+   "rank": 126.43,
    "tier": "info",
    "news_only": false
   },
@@ -10129,12 +10393,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10153,12 +10417,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10177,12 +10441,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10201,12 +10465,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10225,12 +10489,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10249,7 +10513,7 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [
@@ -10262,7 +10526,7 @@
     }
    ],
    "size": 2,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10281,12 +10545,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10305,12 +10569,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10329,12 +10593,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10353,12 +10617,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10377,12 +10641,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10401,12 +10665,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.43,
+    "rank": 126.29,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.43,
+   "rank": 126.29,
    "tier": "info",
    "news_only": false
   },
@@ -10425,7 +10689,7 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.29,
+    "rank": 126.14,
     "tier": "info"
    },
    "also": [
@@ -10438,7 +10702,7 @@
     }
    ],
    "size": 2,
-   "rank": 126.29,
+   "rank": 126.14,
    "tier": "info",
    "news_only": false
   },
@@ -10457,12 +10721,12 @@
     "is_news": false,
     "legacy_impact": 3,
     "origin": "legacy items.json",
-    "rank": 126.14,
+    "rank": 126.0,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.14,
+   "rank": 126.0,
    "tier": "info",
    "news_only": false
   },
@@ -10481,260 +10745,12 @@
     "is_news": false,
     "legacy_impact": 2,
     "origin": "legacy items.json",
-    "rank": 126.0,
+    "rank": 125.86,
     "tier": "info"
    },
    "also": [],
    "size": 1,
-   "rank": 126.0,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-c26e676fa70e830f85432e7819bddeca",
-    "title": "FSB Regional Consultative Group for Sub-Saharan Africa meets in Maseru",
-    "url": "https://www.fsb.org/2026/10/fsb-regional-consultative-group-for-sub-saharan-africa-meets-in-maseru/",
-    "date": "2026-10-24",
-    "authority": "FSB",
-    "source": "fsb_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.71,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.71,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-56efb909f559353415871af26210e025",
-    "title": "Patrick Montagner: Stress testing in a changing risk environment",
-    "url": "https://www.bankingsupervision.europa.eu//press/speeches/date/2026/html/ssm.sp261023~32ca63a9d1.en.html",
-    "date": "2026-10-23",
-    "authority": "ECB — Banking Supervision",
-    "source": "ecb_supervision_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.57,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.57,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-149a4f89578a3cc84b4cc7d8c50fa152",
-    "title": "List of supervised entities - Cut-off date 1 September 2026",
-    "url": "https://www.bankingsupervision.europa.eu//ecb/pub/pdf/ssm.listofsupervisedentities202610.en.pdf",
-    "date": "2026-10-23",
-    "authority": "ECB — Banking Supervision publications",
-    "source": "ecb_supervision_pub",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.57,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.57,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-3af71dd54b3b32dc0beec5a9d12b65a3",
-    "title": "The ​EBA extends some consultation deadlines due to website maintenance​",
-    "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-extends-some-consultation-deadlines-due-website-maintenance",
-    "date": "2026-10-22",
-    "authority": "EBA",
-    "source": "eba_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 125.43,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.43,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-d8625fba51fad9b10b4e032d248f9ac9",
-    "title": "Online speech by Commissioner Albuquerque at the Nordic Financial Unions Conference: Resilience in an era of uncertainty and change",
-    "url": "https://ec.europa.eu/commission/presscorner/detail/en/speech_26_2237",
-    "date": "2026-10-22",
-    "authority": "European Commission",
-    "source": "ec_presscorner",
-    "type": "supervisory_communication",
-    "status": "non-binding",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.43,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.43,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-0b605d88a3398878aa720b8b2727344f",
-    "title": "Internal Auditor",
-    "url": "https://www.srb.europa.eu/en/content/internal-auditor",
-    "date": "2026-10-22",
-    "authority": "SRB",
-    "source": "srb_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.43,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.43,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-bf7504065e9f4eefe4a0c3700331f955",
-    "title": "ESMA specifies requirements to facilitate safe use of post-trade risk reduction services",
-    "url": "https://www.esma.europa.eu/press-news/esma-news/esma-specifies-requirements-facilitate-safe-use-post-trade-risk-reduction",
-    "date": "2026-10-21",
-    "authority": "ESMA",
-    "source": "esma_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 125.29,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.29,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-37c9b279951bcf78cd357db468ea9bdd",
-    "title": "Philip R. Lane: Euro liquidity lines and the international monetary system",
-    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261021~401d6c4b70.en.html",
-    "date": "2026-10-21",
-    "authority": "ECB",
-    "source": "ecb_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.29,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.29,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-2735f260b803a74ecc160168c1bcfe4b",
-    "title": "Innovation and resilience: managing the risks of a changing financial system",
-    "url": "https://www.fsb.org/2026/10/innovation-and-resilience-managing-the-risks-of-a-changing-financial-system/",
-    "date": "2026-10-21",
-    "authority": "FSB",
-    "source": "fsb_rss",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 2,
-    "origin": "legacy items.json",
-    "rank": 125.29,
-    "tier": "info"
-   },
-   "also": [],
-   "size": 1,
-   "rank": 125.29,
-   "tier": "info",
-   "news_only": false
-  },
-  {
-   "lead": {
-    "id": "legacy-cd3553266ca5b2a71f28be723fe71d19",
-    "title": "OJ:L_202602356: Council Decision (EU) 2026/2356 of 13 October 2026 on the signing of the Additional Protocol to the Council of Europe Convention on Laundering, Search, Seizure and Confiscation of the Proceeds from Crime and on the Financing of Terrorism with regard to anti-money laundering measures",
-    "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=OJ:L_202602356",
-    "date": "2026-10-20",
-    "authority": "EUR-Lex — Official Journal L",
-    "source": "eurlex_ojl",
-    "type": "supervisory_communication",
-    "status": "informational",
-    "topics": [],
-    "in_scope": false,
-    "is_news": false,
-    "legacy_impact": 3,
-    "origin": "legacy items.json",
-    "rank": 125.14,
-    "tier": "info"
-   },
-   "also": [
-    {
-     "title": "CELEX:32026D2356: Council Decision (EU) 2026/2356 of 13 October 2026 on the signing of the Additional Protocol to the Council of Europe Convention on Laundering, Search, Seizure and Confiscation of the Proceeds from Crime and on the Financing of Terrorism with regard to anti-money laundering measures",
-     "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026D2356",
-     "authority": "EUR-Lex — Official Journal L",
-     "date": "2026-10-20",
-     "is_news": false
-    }
-   ],
-   "size": 2,
-   "rank": 125.14,
+   "rank": 125.86,
    "tier": "info",
    "news_only": false
   }
