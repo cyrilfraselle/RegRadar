@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Lab: CDD RTS delta check</title>
+<script>(function(){try{var t=localStorage.getItem('regradar-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);else if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+<style>
+:root{--bg:#F5F5F7;--surface:#fff;--surface-2:#F2F2F5;--line:#E3E3E8;--line-strong:#8A8F9A;--text:#1D1D1F;--text-2:#515154;--text-3:#636369;--accent:#0A4FD6;--on-accent:#fff;--review:#8A4B00;--review-bg:#FBEFD9;--risk:#B3261E;--risk-bg:#FBE4E1;--done:#0B6E4C;--done-bg:#E3F4EC;--banner:#FBEFD9;--on-banner:#5A3000;--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif}
+:root[data-theme="dark"]{--bg:#0A0E17;--surface:#121827;--surface-2:#182033;--line:#252E42;--line-strong:#647089;--text:#F5F7FB;--text-2:#AAB4C6;--text-3:#8D97A9;--accent:#9DBAFF;--on-accent:#05070C;--review:#FFC477;--review-bg:#33230C;--risk:#FFA3AB;--risk-bg:#3A1519;--done:#7FF0C6;--done-bg:#0E2C28;--banner:#33230C;--on-banner:#FFC477}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 var(--font)}
+.banner{background:var(--banner);color:var(--on-banner);padding:10px 16px;font-size:13px;font-weight:600;text-align:center;border-bottom:1px solid var(--line)}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:clamp(24px,5vw,32px);letter-spacing:-.03em;margin:8px 0 4px;line-height:1.15}
+h2{font-size:17px;margin:28px 0 10px}
+p{margin:6px 0}.lead{color:var(--text-2);max-width:62ch}.small{font-size:13px;color:var(--text-2)}
+a{color:var(--accent)}
+.btn{font:inherit;font-weight:600;min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.btn.pri{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn:hover{background:var(--surface-2)}.btn.pri:hover{opacity:.9;background:var(--text)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;overflow:hidden}
+.seg button{font:inherit;min-height:40px;padding:6px 14px;border:0;background:var(--surface);color:var(--text);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--bg);font-weight:700}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;list-style:none}
+.rows{margin:0;padding:0}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:8px}
+.col h3{font-size:13px;margin:0 0 4px;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em}
+.col p,.col blockquote{margin:0;font-size:14px;overflow-wrap:anywhere}
+blockquote{border-left:3px solid var(--line-strong);padding-left:10px;color:var(--text)}
+.ph{background:var(--review-bg);color:var(--review);border-radius:8px;padding:8px 10px;font-size:13px}
+.top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.top strong{font-size:15px}
+.pill.draft{background:var(--review-bg);color:var(--review)}
+.sw{display:inline-flex;align-items:center;gap:10px;min-height:40px;margin-top:10px;cursor:pointer;font-weight:600}
+.sw input{width:22px;height:22px;accent-color:var(--accent)}
+.sum{background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;padding:16px 20px;margin:16px 0}
+.sum .big{font-size:20px;font-weight:700}
+@media(max-width:640px){.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="banner" role="note">Lab prototype, not part of the product</div>
+<main class="wrap" id="main">
+<h1>CDD RTS delta check</h1>
+<p class="lead">For each onboarding checklist item: what the AMLR says (verbatim, from the real checklist data), what the draft CDD standards add (placeholder only in this demo), and one switch for whether your template already covers it.</p>
+<p class="small">Status of the draft standards: AMLA reported as submitting its final draft to the Commission on 1 October 2026, so they are <strong>not binding yet</strong> (<a href="https://www.regulationtomorrow.com/2026/10/amla-finalises-key-standards-for-the-private-sector/">source</a>). Every row is therefore marked "draft only". Demo, not legal advice.</p>
+<section class="sum" aria-labelledby="sumT" aria-live="polite">
+  <h2 id="sumT" style="margin-top:0">Gap list</h2>
+  <p class="big" id="count" role="status">Loading...</p>
+  <div class="tools">
+    <button type="button" class="btn pri" id="csvBtn">Export gap list (CSV)</button>
+    <button type="button" class="btn" id="resetBtn">Reset switches</button>
+  </div>
+</section>
+<h2>Onboarding checklist, 8 items</h2>
+<ul class="rows" id="rows"><li class="row">Loading checklist...</li></ul>
+<p class="foot">Checklist rows are read from <a href="../../data/cra-checklist.json">cra-checklist.json</a> (quotes verified against the AMLR text there). The "RTS adds" column is a placeholder: nothing in it is a requirement. Switch states stay in this browser only (localStorage). Not linked from the product.</p>
+</main>
+<script src="delta.js"></script>
+</body></html>
