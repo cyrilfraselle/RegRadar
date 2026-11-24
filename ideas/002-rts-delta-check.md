@@ -1,11 +1,11 @@
 ---
 id: 002-rts-delta-check
 title: CDD RTS delta check on my onboarding checklist
-status: proposed
+status: prototyped
 users: one-person compliance team at a payment, e-money or crypto firm
 needs_owner: false
 effort: S
-prototype:
+prototype: docs/labs/002-rts-delta-check/
 ---
 
 ![Mockup, illustrative](002-rts-delta-check.mockup.svg)
