@@ -18,6 +18,7 @@ const CS = require(path.join(root, 'docs', 'controls-store.js'));
 const PS = require(path.join(root, 'docs', 'policies-store.js'));
 const AS = require(path.join(root, 'docs', 'actions-store.js'));
 const IS = require(path.join(root, 'docs', 'impact-store.js'));
+const CAS = require(path.join(root, 'docs', 'cases-store.js'));
 const J = (p) => JSON.parse(fs.readFileSync(path.join(root, 'docs', p), 'utf8'));
 const CFG = J('data/spine/config.json');
 const DEMO = J('data/spine/demo.json');
@@ -231,10 +232,9 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   // policies have left the bridge too (their own migration: see the "policies:" tests)
   assert.equal(s.list(['policy', 'policy_version', 'attestation']).length, 0, 'the bridge no longer mirrors regradar-policies');
   assert.ok(!RR.bridge.modules.some((m) => m.id === 'policies') && RR.bridge.migrated.some((m) => m.id === 'policies'));
-  // cases: 10 working days from 9 Oct 2026 with 19 Oct as a holiday -> 26 Oct
-  assert.equal(s.get('CASE:CASE-1').due, '2026-10-26');
-  assert.equal(s.get('CASE:CASE-2').due, null);
-  assert.equal(s.get('person:mlro-demo').data.role, 'mlro');
+  // cases have left the bridge too (their own migration: see the "cases:" tests); the team still becomes people through them
+  assert.equal(s.list('case').length, 0, 'the bridge no longer mirrors regradar-cases');
+  assert.ok(!RR.bridge.modules.some((m) => m.id === 'cases') && RR.bridge.migrated.some((m) => m.id === 'cases'));
   // BWRA, CRA, impact, training
   assert.equal(s.get('RA:bwra').status, 'in_review');
   assert.equal(s.get('CRF:CUS-1').status, 'pending');
@@ -248,8 +248,6 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.equal(s.get('OBL:AMLR-art19').data.watched, true);
   assert.equal(s.getSetting('firm_type'), 'pi');
   // read-only in the spine
-  assert.throws(() => s.move('CASE:CASE-1', 'closed'), /Cases and STR/);
-  assert.throws(() => s.link('addresses', 'CASE:CASE-1', 'OBL:AMLR-art20'), /Managed on/);
   assert.throws(() => s.update('OBL:AMLR-art19', { title: 'x' }), /repository/);
   // but a spine task may link to module records
   const mine = s.create('action', { title: 'Mine' });
@@ -262,25 +260,16 @@ await test('bridge: imports every module key read-only, idempotent, syncs and ar
   assert.equal(s.events().length, nEv);
 
   // a module change syncs; a removed record is archived (and stays in the log)
-  const cases = JSON.parse(FIX['regradar-cases']);
-  cases.cases[0].status = 'filed';
-  cases.cases.pop();
-  const st2 = fakeStorage(Object.assign({}, FIX, { 'regradar-cases': JSON.stringify(cases) }), MODULE_KEYS);
+  const imp = JSON.parse(FIX['regradar-impact']);
+  imp.assessments = {};
+  const st2 = fakeStorage(Object.assign({}, FIX, { 'regradar-impact': JSON.stringify(imp) }), MODULE_KEYS);
   const r3 = s.importModules((k) => st2.getItem(k), ref);
-  assert.equal(r3.updated, 1);
-  assert.equal(r3.archived, 1);
-  assert.equal(s.get('CASE:CASE-1').status, 'filed');
-  assert.equal(s.list('case').length, 1);
-  assert.equal(s.list('case', { archived: true }).length, 2);
-  assert.deepEqual(s.history('CASE:CASE-1').map((e) => e.action), ['import', 'sync']);
-  assert.equal(s.history('CASE:CASE-1')[0].actor, 'system:bridge', 'imports are attributed to the bridge');
-  assert.equal(s.history('person:analyst-a')[0].actor, 'system:bridge');
-
+  assert.equal(r3.errors.length, 0);
   // an unreadable key is reported and its records are kept, not archived
-  const st3 = fakeStorage(Object.assign({}, FIX, { 'regradar-cases': '{broken' }), MODULE_KEYS);
+  const st3 = fakeStorage(Object.assign({}, FIX, { 'regradar-bwra': '{broken' }), MODULE_KEYS);
   const r4 = s.importModules((k) => st3.getItem(k), ref);
-  assert.equal(r4.modules.find((m) => m.module === 'cases').error, 'unreadable JSON');
-  assert.equal(s.get('CASE:CASE-1').archived, false);
+  assert.equal(r4.modules.find((m) => m.module === 'bwra').error, 'unreadable JSON');
+  assert.equal(s.get('RA:bwra').archived, false);
   assert.equal(s.verifyLog().ok, true);
 });
 
@@ -324,7 +313,10 @@ await test('demo: skips policies/cases (and findings) when the modules already h
   const s = await spine();
   s.importModules((k) => st.getItem(k), { controls: CTL });
   let r = s.loadDemo(DEMO);
-  assert.ok(r.skipped.includes('Cases'));
+  assert.ok(!r.skipped.includes('Cases'), 'cases are not mirrored any more: only a migrated register makes them the firm\'s own');
+  const sc = await spine();
+  assert.equal(CAS.migrate(sc, (k) => st.getItem(k)).status, 'migrated');
+  assert.ok(sc.loadDemo(DEMO).skipped.includes('Cases'));
   assert.ok(!r.skipped.includes('Policies'), 'policies are not mirrored any more: only a migrated library makes them the firm\'s own');
   assert.ok(!r.skipped.includes('Findings'), 'findings are no longer mirrored: only a migrated register makes them the firm\'s own');
   // once the policies library is on the spine, it wins over the demo policies
@@ -418,7 +410,7 @@ await test('migration: legacy key in, spine records out (findings, tasks, people
   const before = st.getItem(LEG_KEY);
   const all = RR.runMigrations(s, read, REF);
   await s.flush();
-  assert.deepEqual(all.map((m) => m.id), ['controls', 'policies', 'actions', 'impact'], 'controls first: policies and findings link to them');
+  assert.deepEqual(all.map((m) => m.id), ['controls', 'policies', 'actions', 'impact', 'cases'], 'controls first: policies and findings link to them');
   const rep = all[2];
   assert.equal(rep.status, 'migrated');
   assert.equal(rep.issues, 4);
@@ -1362,6 +1354,110 @@ await test('impact: the store is registered with the spine and does not collide 
   s.addReference(RR.reference.regChanges([{ id: 'abc', title: 'Feed item', source: 'EBA', date: '2026-10-01' }]));
   IS.migrate(s, impRead(JSON.stringify(IMP_OLD)));
   assert.equal(s.get('RC:abc').title, 'Feed item'); assert.equal(s.get('RC:imp-abc').title, 'EBA guidelines X');
+});
+
+
+/* ═════════════════ Cases: migration onto the spine ═════════════════ */
+const CAS_OLD = { v: 1, settings: { team: ['Analyst A', 'MLRO (demo)'], me: 'Analyst A', caseDays: 10, holidays: ['2026-10-19'] },
+  alerts: [{ id: 'ALR-0001', title: 'Rapid in-out', status: 'new', priority: 'high', typology: 'pass-through', assignee: 'Analyst A', summary: 'SECRET alert text' },
+    { id: 'ALR-0002', title: 'Closed one', status: 'closed', priority: 'low', assignee: '' }],
+  cases: [{ id: 'CASE-1', title: 'Pass-through', status: 'mlro', openedAt: '2026-10-09T10:00:00.000Z', assignee: 'Analyst A', priority: 'high', typology: 'pass-through',
+      subjects: [{ name: 'SECRET SUBJECT' }], timeline: [{ at: '2026-10-09T10:00:00.000Z', by: 'Analyst A', type: 'note', text: 'SECRET NOTE' }], narr: { draft: 'SECRET NARRATIVE' } },
+    { id: 'CASE-2', title: 'Filed one', status: 'filed', openedAt: '2026-09-01T10:00:00.000Z', assignee: 'MLRO (demo)', priority: 'low' }],
+  filings: [{ id: 'FIL-0001', caseId: 'CASE-2', kind: 'STR', ownRef: 'STR-1', filedAt: '2026-09-05' }],
+  requests: [{ id: 'REQ-0001', receivedAt: '2026-10-01', subject: 'FIU asks', dueAt: '2026-10-08', respondedAt: '' }, { id: 'REQ-0002', subject: 'Done', respondedAt: '2026-10-02' }],
+  seq: { alert: 2, case: 2, filing: 1, req: 2 } };
+const casRead = (v) => (k) => (k === 'regradar-cases' ? v : null);
+
+await test('cases: migration copies everything into the spine, idempotent, old key untouched', async () => {
+  const s = await spine();
+  const old = JSON.stringify(CAS_OLD);
+  const rep = CAS.migrate(s, casRead(old));
+  assert.equal(rep.status, 'migrated'); assert.equal(rep.records, 7);
+  const c = s.get('CS:CASE-1');
+  assert.equal(c.type, 'case'); assert.equal(c.status, 'mlro'); assert.equal(c.due, '2026-10-26', '10 working days, 19 Oct a holiday');
+  assert.equal(s.get(c.owner).title, 'Analyst A');
+  assert.equal(s.get('CS:CASE-2').due, null);
+  assert.equal(s.get('AL:ALR-0001').type, 'alert'); assert.equal(s.get('AL:ALR-0002').status, 'closed');
+  assert.equal(s.get('FL:FIL-0001').status, 'filed');
+  assert.equal(s.get('RQ:REQ-0001').status, 'open'); assert.equal(s.get('RQ:REQ-0001').due, '2026-10-08');
+  assert.equal(s.get('RQ:REQ-0002').status, 'answered');
+  assert.ok(s.getSetting(CAS.DONE)); assert.ok(s.getSetting(CAS.INIT));
+  assert.equal(CAS.migrate(s, casRead(old)).status, 'already');
+  s.update('CS:CASE-1', { title: 'Edited on the board' });
+  s.setSetting(CAS.DONE, null);
+  const n = s.list('case').length;
+  const r2 = CAS.migrate(s, casRead(old));
+  assert.equal(r2.records, 0); assert.equal(r2.skipped, 7);
+  assert.equal(s.list('case').length, n);
+  assert.equal(s.get('CS:CASE-1').title, 'Edited on the board');
+});
+
+await test('cases: nothing to import, unreadable data, odd records', async () => {
+  const s = await spine();
+  assert.equal(CAS.migrate(s, () => null).status, 'none');
+  assert.equal(CAS.migrate(s, casRead('{broken')).status, 'unreadable');
+  assert.equal(CAS.migrate(s, casRead('{"cases":[]}')).status, 'unreadable');
+  assert.equal(CAS.migrate(s, () => { throw new Error('blocked'); }).status, 'blocked');
+  assert.equal(s.getSetting(CAS.DONE), null, 'unreadable is retried, never marked done');
+  const r = CAS.migrate(s, casRead(JSON.stringify({ alerts: [null, { title: 'no id' }], cases: [{ id: 'X', status: 'weird', priority: 'extreme', openedAt: 'soon' }] })));
+  assert.equal(r.records, 1); assert.equal(r.skipped, 2);
+  assert.equal(s.get('CS:X').status, 'open'); assert.equal(s.get('CS:X').due, null);
+});
+
+await test('cases: the event log never holds what a case says', async () => {
+  const s = await spine();
+  CAS.migrate(s, casRead(JSON.stringify(CAS_OLD)));
+  const R = CAS.read(s);
+  R.cases[0].timeline.push({ text: 'SECRET LATER NOTE' });
+  R.cases[0].status = 'filing';
+  CAS.commit(s, R, { _b: R._b });
+  const log = JSON.stringify(s.events());
+  assert.ok(!/SECRET/.test(log), 'no case content in the audit log');
+  assert.ok(s.history('CS:CASE-1').some((e) => e.changes && e.changes.status), 'but the status change is logged');
+  assert.equal(s.verifyLog().ok, true);
+});
+
+await test('cases: the page model round-trips; commit writes only changes; delete empties and archives', async () => {
+  const s = await spine();
+  CAS.migrate(s, casRead(JSON.stringify(CAS_OLD)));
+  const R = CAS.read(s);
+  assert.deepEqual(R.cases.map((c) => c.id), ['CASE-1', 'CASE-2']);
+  assert.equal(R.cases[0].subjects[0].name, 'SECRET SUBJECT'); assert.equal(R.cases[0].narr.draft, 'SECRET NARRATIVE');
+  assert.equal(R.alerts[0].assignee, 'Analyst A'); assert.deepEqual(R.seq, { alert: 2, case: 2, filing: 1, req: 2 });
+  assert.equal(R.settings.caseDays, 10);
+  const before = s.events().length;
+  assert.deepEqual(CAS.commit(s, R, { _b: R._b }).errors, []);
+  assert.equal(s.events().length, before, 'nothing changed, nothing logged');
+  const base = R._b; delete R._b;
+  R.cases[0].title = 'Renamed'; R.cases[0].assignee = 'MLRO (demo)';
+  R.cases.push({ id: 'CASE-3', title: 'New', status: 'open', openedAt: '2026-10-12T10:00:00.000Z', assignee: '' });
+  R.seq.case = 3;
+  R.alerts.pop();
+  assert.deepEqual(CAS.commit(s, R, { _b: base }).errors, []);
+  assert.equal(s.get('CS:CASE-1').title, 'Renamed'); assert.equal(s.get(s.get('CS:CASE-1').owner).title, 'MLRO (demo)');
+  assert.equal(s.get('CS:CASE-3').status, 'open');
+  const gone = s.get('AL:ALR-0002');
+  assert.equal(gone.archived, true); assert.deepEqual(gone.data, {}, 'a deleted record keeps no content');
+  const R2 = CAS.read(s);
+  assert.deepEqual(R2.cases.map((c) => c.id), ['CASE-1', 'CASE-2', 'CASE-3']); assert.equal(R2.alerts.length, 1); assert.equal(R2.seq.case, 3);
+  // the board moves and assigns: the page sees it
+  s.update('CS:CASE-2', { status: 'closed' }); s.update('AL:ALR-0001', { status: 'in_review' });
+  const R3 = CAS.read(s);
+  assert.equal(R3.cases[1].status, 'closed'); assert.equal(R3.alerts[0].status, 'in_review');
+  // re-adding a deleted id restores it
+  R3.alerts.push({ id: 'ALR-0002', title: 'Back', status: 'new' });
+  CAS.commit(s, R3, { _b: R3._b });
+  assert.equal(s.get('AL:ALR-0002').archived, false); assert.equal(s.get('AL:ALR-0002').title, 'Back');
+});
+
+await test('cases: the store is registered with the spine and does not collide with other records', async () => {
+  assert.ok(RR.migrations.some((m) => m.id === 'cases'));
+  assert.ok(RR.migrationFiles.some((f) => f.id === 'cases' && f.file === 'cases-store.js'));
+  const s = await spine();
+  s.create('case', { id: 'CS:CASE-1', title: 'Someone else' });
+  CAS.migrate(s, casRead(JSON.stringify(CAS_OLD)));
+  assert.equal(s.get('CS:CASE-1').title, 'Someone else', 'an existing record is never overwritten');
 });
 
 console.log(`\n${n - failed}/${n} passed`);

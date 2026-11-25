@@ -203,7 +203,7 @@ dialog.wide{width:min(760px,calc(100vw - 24px))}
   </header>
 
   <div class="banner" role="note" aria-label="Privacy and demo notice">
-    <p><b>Demo data, kept on this device.</b> The alerts, customers and cases below are fictional. Do not enter real personal data or real case details: everything is stored only in this browser (key <span class="mono">regradar-cases</span>), nothing is sent anywhere, and clearing site data erases it. Export a backup from Data and settings.</p>
+    <p><b>Demo data, kept on this device.</b> The alerts, customers and cases below are fictional. Do not enter real personal data or real case details: everything is stored only in this browser (in the shared register, with the old <span class="mono">regradar-cases</span> copy kept as a backup), nothing is sent anywhere, and clearing site data erases it. Export a backup from Data and settings.</p>
     <p><b>Tipping-off.</b> Never tell the customer or any third person that an alert, case or report exists. <span id="tipLink"></span></p>
   </div>
 
@@ -219,7 +219,9 @@ dialog.wide{width:min(760px,calc(100vw - 24px))}
 <div class="toast" id="toast" role="status"></div>
 <div id="printHost" aria-hidden="true"></div>
 
+<script src="rr-core.js?v=20261112i"></script>
+<script src="cases-store.js?v=20261125a"></script>
 <script src="cases-narrative.js?v=20261016"></script>
-<script src="cases.js?v=20261016"></script>
+<script src="cases.js?v=20261125a"></script>
 </body>
 </html>

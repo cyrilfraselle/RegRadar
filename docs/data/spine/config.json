@@ -71,6 +71,26 @@
         { "id": "retired", "label": "Retired", "category": "cancelled" }
       ]
     },
+    "alert": {
+      "label": "Monitoring alert",
+      "states": [
+        { "id": "new", "label": "New", "category": "open" },
+        { "id": "in_review", "label": "In review", "category": "open" },
+        { "id": "closed", "label": "Closed: false positive", "category": "done" },
+        { "id": "escalated", "label": "Escalated to case", "category": "done" }
+      ]
+    },
+    "filing": {
+      "label": "Report to the FIU",
+      "states": [ { "id": "filed", "label": "Filed", "category": "done" } ]
+    },
+    "fiu_request": {
+      "label": "FIU request",
+      "states": [
+        { "id": "open", "label": "Open", "category": "open" },
+        { "id": "answered", "label": "Answered", "category": "done" }
+      ]
+    },
     "case": {
       "label": "Case",
       "states": [
@@ -183,6 +203,12 @@
       { "id": "priority", "label": "Priority", "type": "scale", "scale": "priority" },
       { "id": "typology", "label": "Typology", "type": "text" }
     ]},
+    "alert": { "label": "Monitoring alert", "plural": "Monitoring alerts", "workflow": "alert", "id_prefix": "ALR", "fields": [
+      { "id": "priority", "label": "Priority", "type": "scale", "scale": "priority" },
+      { "id": "typology", "label": "Typology", "type": "text" }
+    ]},
+    "filing": { "label": "Report to the FIU", "plural": "Reports to the FIU", "workflow": "filing", "id_prefix": "FIL", "fields": [] },
+    "fiu_request": { "label": "FIU request", "plural": "FIU requests", "workflow": "fiu_request", "id_prefix": "REQ", "fields": [] },
     "assessment": { "label": "Risk assessment", "plural": "Risk assessments", "workflow": "document", "id_prefix": "RA", "fields": [
       { "id": "kind", "label": "Kind", "type": "select", "options": ["Business-wide risk assessment", "Customer risk assessment"] }
     ]},
