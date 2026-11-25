@@ -2,10 +2,88 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-24T16:56:56+00:00",
-  "count": 98
+  "generated": "2026-11-25T16:45:26+00:00",
+  "count": 100
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2621-28f4d7c5",
+   "created": "2026-11-25T16:45:26+00:00",
+   "doc_id": "celex-32026D2621",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2621 of 23 November 2026 amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Türkiye’s unauthorised drilling activities in the Eastern Mediterranean",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2621",
+   "type": "legislation",
+   "status": "in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The Council has reviewed the restrictive measures set out in Decision (CFSP) 2019/1894. On the basis of that review, those measures should be extended until 30 November 2027.",
+     "loc": "amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Tü, para 8",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision (CFSP) 2019/1894 should be amended accordingly,",
+     "loc": "amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Tü, para 10",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-eba-news-8386049943eb-5a3d59d7",
+   "created": "2026-11-25T16:45:26+00:00",
+   "doc_id": "eba-news-8386049943eb",
+   "source": "eba-news",
+   "authority": "EBA",
+   "title": "The EBA examines the use of stablecoins, including EMTs, in decentralised finance",
+   "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-examines-use-stablecoins-including-emts-decentralised-finance",
+   "type": "supervisory_communication",
+   "status": "published",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "crypto-assets"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "crypto-assets"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "Against this backdrop, the EBA reiterates the recommendation made in its response to the European Commission’s targeted consultation on the review of MiCA that the Commission assess whether additional regulatory requirements should apply to CASPs facilitating access to DeFi, in particular lending protocols.",
+     "loc": "The EBA examines the use of stablecoins, including EMTs, in decentralised financ, para 10",
+     "topics": [
+      "crypto-assets"
+     ],
+     "why": "normative wording (should) on crypto-assets"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2600-f4432c28",
    "created": "2026-11-24T16:56:56+00:00",

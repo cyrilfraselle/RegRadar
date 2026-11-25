@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-24T16:56:56+00:00",
-  "count": 237,
-  "corpus_bytes": 4739946
+  "generated": "2026-11-25T16:45:26+00:00",
+  "count": 245,
+  "corpus_bytes": 4814141
  },
  "documents": [
   {
@@ -27,6 +27,26 @@
    ],
    "parent": null,
    "paragraphs": 18
+  },
+  {
+   "id": "amla-consultations-38c31826e288",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft Guidelines on determining the base amount for imposing pecuniary sanctions",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions_en",
+   "publication_date": "2026-11-25",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "d30d5a8944925f2999edfa23cbfdd761f4eb1e003f3e8c014ddcdb096d63546b",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1799,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 15
   },
   {
    "id": "amla-consultations-638d7cd1a2f0",
@@ -413,6 +433,26 @@
    "paragraphs": 10
   },
   {
+   "id": "amla-hearings-7025fae417ee",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft Guidelines on determining the base amount for imposing pecuniary sanctions",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions-2027-01-12_en",
+   "publication_date": "2026-11-25",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "4c0cfe5498048394489947cb9d00bcd99fcbe05e1549e6d0b91ac7d6514ce125",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1675,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 11
+  },
+  {
    "id": "amla-hearings-7c2ec9b20e25",
    "source": "amla-hearings",
    "authority": "AMLA",
@@ -701,6 +741,26 @@
    ],
    "parent": null,
    "paragraphs": 208
+  },
+  {
+   "id": "amla-instruments-38c31826e288",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Guidelines on base amounts for pecuniary sanctions",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions_en",
+   "publication_date": "",
+   "type": "guideline",
+   "status": "draft (consultation open)",
+   "language": "en",
+   "version_hash": "d30d5a8944925f2999edfa23cbfdd761f4eb1e003f3e8c014ddcdb096d63546b",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1799,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 15
   },
   {
    "id": "amla-instruments-48e5213f80e7",
@@ -1570,6 +1630,26 @@
    "paragraphs": 177
   },
   {
+   "id": "amla-library-bcd716784ad0",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA consults on methodology for setting AML/CFT fines",
+   "url": "https://www.amla.europa.eu/document/download/364750bd-1030-4561-866a-96d76164deae_en?filename=Press%20Release%20-%20AMLA%20consults%20on%20methodology%20for%20setting%20AML_CFT%20fines.pdf",
+   "publication_date": "2026-11-25",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "4303e3174f22563e7d6abb6319faaa22172a316981ead9233eeef38a864e02af",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2394,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 4
+  },
+  {
    "id": "amla-library-c8c0f6f109b2",
    "source": "amla-library",
    "authority": "AMLA",
@@ -1917,6 +1997,26 @@
    ],
    "parent": null,
    "paragraphs": 4
+  },
+  {
+   "id": "amla-news-37eae2cd9ccc",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA consults on methodology for setting AML/CFT fines",
+   "url": "https://www.amla.europa.eu/press-release-amla-consults-methodology-setting-amlcft-fines_en",
+   "publication_date": "2026-11-25",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "bbd1eb714fda15ac581b320f0f07ba163ecc1bbee040e74af936cc9699ad8699",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2062,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 7
   },
   {
    "id": "amla-news-45fd17c84237",
@@ -3452,6 +3552,28 @@
    "paragraphs": 92
   },
   {
+   "id": "celex-32026D2621",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2621 of 23 November 2026 amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Türkiye’s unauthorised drilling activities in the Eastern Mediterranean",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2621",
+   "publication_date": "2026-11-24",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "28f4d7c506ac816123206a58bb79e4ac9787d874fabd6fbcd99bd57cb43f0f68",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1298,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 24
+  },
+  {
    "id": "celex-32026D2633",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -3809,6 +3931,50 @@
    ],
    "parent": null,
    "paragraphs": 104
+  },
+  {
+   "id": "celex-52026IP0159",
+   "source": "eurlex-cellar-aml-family",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "P10_TA(2026)0159 – Banking Union – annual report 2025 – European Parliament resolution of 30 April 2026 on Banking Union – annual report 2025 (2025/2136(INI))",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52026IP0159",
+   "publication_date": "2026-11-24",
+   "type": "supervisory_communication",
+   "status": "European Parliament or other preparatory document",
+   "language": "en",
+   "version_hash": "b5d789b0e2e54cb912f8b345bed4c28693b17a23f7a4837e04ffdb95c8d14e24",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 28957,
+   "truncated": false,
+   "topics": [
+    "crypto-assets"
+   ],
+   "parent": null,
+   "paragraphs": 128
+  },
+  {
+   "id": "eba-news-8386049943eb",
+   "source": "eba-news",
+   "authority": "EBA",
+   "title": "The EBA examines the use of stablecoins, including EMTs, in decentralised finance",
+   "url": "https://www.eba.europa.eu/publications-and-media/press-releases/eba-examines-use-stablecoins-including-emts-decentralised-finance",
+   "publication_date": "2026-11-25",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "5a3d59d741f3885e838c2dc304da20c7a22418e5185c41ebabbb5194e1fab334",
+   "retrieved": "2026-11-25T16:45:26+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 4341,
+   "truncated": false,
+   "topics": [
+    "crypto-assets"
+   ],
+   "parent": null,
+   "paragraphs": 20
   },
   {
    "id": "eba-news-9e1e23e0ddaa",

@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-11-24T16:55:37.867968",
+  "last_updated": "2026-11-25T16:44:08.243559",
   "last_run_counts": {
-    "total": 5,
+    "total": 7,
     "critical": 3,
-    "important": 2,
+    "important": 4,
     "info": 0
   },
-  "archive_size": 808,
+  "archive_size": 815,
   "exec_summary": "",
   "timeline": [
     {
@@ -16,7 +16,7 @@
       "type": "report",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114",
       "basis": "MiCA Art. 140(1)",
-      "days_away": 218
+      "days_away": 217
     },
     {
       "date": "2027-07-10",
@@ -25,7 +25,7 @@
       "type": "application",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1624",
       "basis": "AMLR Art. 90 and Art. 32(1)",
-      "days_away": 228
+      "days_away": 227
     },
     {
       "date": "2027-07-10",
@@ -34,28 +34,49 @@
       "type": "deadline",
       "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024L1640",
       "basis": "AMLD6 Art. 78(1)",
-      "days_away": 228
+      "days_away": 227
     }
   ],
   "trends": [
     {
-      "theme": "Sanctions",
+      "theme": "Payments",
       "this_week": 2,
-      "avg": 1.4,
-      "pct": 40,
+      "avg": 1.1,
+      "pct": 75,
       "arrow": "▲",
       "label": "RISING",
       "color": "#B91C1C",
-      "spark": "▁▁▁█▁▁▄▄",
+      "spark": "▁▁▁▁▁▁██",
       "values": [
         1,
         1,
         1,
-        3,
+        1,
         1,
         1,
         2,
         2
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "AML/CFT",
+      "this_week": 4,
+      "avg": 3.1,
+      "pct": 27,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▂██▄▄▁▄▆",
+      "values": [
+        2,
+        5,
+        5,
+        3,
+        3,
+        1,
+        3,
+        4
       ],
       "weeks": 8
     },
@@ -79,23 +100,44 @@
       "weeks": 6
     },
     {
-      "theme": "AML/CFT",
-      "this_week": 2,
-      "avg": 3.1,
-      "pct": -36,
+      "theme": "Enforcement/Fines",
+      "this_week": 1,
+      "avg": 1.1,
+      "pct": -12,
+      "arrow": "▬",
+      "label": "STABLE",
+      "color": "#6B7280",
+      "spark": "▁▁█▁▁▁▁▁",
+      "values": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "weeks": 8
+    },
+    {
+      "theme": "Sanctions",
+      "this_week": 1,
+      "avg": 1.4,
+      "pct": -30,
       "arrow": "▼",
       "label": "COOLING",
       "color": "#2563EB",
-      "spark": "▂██▄▄▁▄▂",
+      "spark": "▁▁▁█▁▁▄▁",
       "values": [
-        2,
-        5,
-        5,
-        3,
-        3,
+        1,
+        1,
         1,
         3,
-        2
+        1,
+        1,
+        2,
+        1
       ],
       "weeks": 8
     },
@@ -201,27 +243,6 @@
         1,
         1,
         2
-      ],
-      "weeks": 8
-    },
-    {
-      "theme": "Enforcement/Fines",
-      "this_week": 0,
-      "avg": 1.1,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁█▁▁▁▁",
-      "values": [
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1
       ],
       "weeks": 8
     },
@@ -359,27 +380,6 @@
       "weeks": 2
     },
     {
-      "theme": "Payments",
-      "this_week": 0,
-      "avg": 1.0,
-      "pct": -100,
-      "arrow": "▼",
-      "label": "COOLING",
-      "color": "#2563EB",
-      "spark": "▁▁▁▁▁▁▁█",
-      "values": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2
-      ],
-      "weeks": 8
-    },
-    {
       "theme": "FIDA/OpenFinance",
       "this_week": 0,
       "avg": 1.0,
@@ -401,7 +401,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 30,
-      "newest": "2026-11-23T15:18:19",
+      "newest": "2026-11-25T09:30:53",
       "status": "ok"
     },
     {
@@ -409,8 +409,8 @@
       "name": "AMLA — Consultations",
       "country": "EU",
       "kind": "primary",
-      "fetched": 13,
-      "newest": "2026-11-23T14:48:05",
+      "fetched": 14,
+      "newest": "2026-11-25T12:14:33",
       "status": "ok"
     },
     {
@@ -428,7 +428,7 @@
       "country": "BE",
       "kind": "primary",
       "fetched": 20,
-      "newest": "2026-11-19T07:00:00",
+      "newest": "2026-11-25T10:00:00",
       "status": "ok"
     },
     {
@@ -454,9 +454,9 @@
       "name": "EBA",
       "country": "EU",
       "kind": "primary",
-      "fetched": 0,
-      "newest": null,
-      "status": "blocked"
+      "fetched": 25,
+      "newest": "2026-11-25T16:00:02",
+      "status": "ok"
     },
     {
       "id": "ecb_rss",
@@ -464,7 +464,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 15,
-      "newest": "2026-11-24T11:00:00",
+      "newest": "2026-11-25T10:00:00",
       "status": "ok"
     },
     {
@@ -500,7 +500,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-24T16:54:31.705261",
+      "newest": "2026-11-25T16:43:10.674981",
       "status": "ok"
     },
     {
@@ -509,7 +509,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-24T14:25:28",
+      "newest": "2026-11-25T16:18:22",
       "status": "ok"
     },
     {
@@ -536,7 +536,7 @@
       "country": "EU",
       "kind": "primary",
       "fetched": 10,
-      "newest": "2026-11-18T08:58:06",
+      "newest": "2026-11-25T15:40:30",
       "status": "ok"
     }
   ]

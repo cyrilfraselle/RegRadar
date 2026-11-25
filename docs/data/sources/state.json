@@ -3,64 +3,64 @@
   "eurlex-cellar-aml-family:sparql": {
    "etag": "",
    "last_modified": "",
-   "sha256": "aaf667a96de4acbf6464c8be17935cf5380227e4a266906d2c37dfb52eb84174",
-   "checked": "2026-11-24T16:56:59+00:00",
+   "sha256": "76c79b9233b8e495c8bd10227c7ee9f8cb9c5d4f4c7dc1c6bc20fdd3c8a2f6de",
+   "checked": "2026-11-25T16:45:28+00:00",
    "status": 200
   },
   "eurlex-cellar-ojl-recent:sparql": {
    "etag": "",
    "last_modified": "",
-   "sha256": "24116ea286b95611179eb167f66b42caf02469b50ad2299da99b8f0869b35cb7",
-   "checked": "2026-11-24T16:57:02+00:00",
+   "sha256": "b9388798fbb41d92fe9d26d1bc9df8e1a978bc43cbfabedd6ae4894dddfcd1eb",
+   "checked": "2026-11-25T16:45:32+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/8/rss_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "f45c2fc1914fd32dd7e6de11c98d7578697e5eb5822d826d3575e6d4b73d90bf",
-   "checked": "2026-11-24T16:57:04+00:00",
+   "sha256": "005997add4680d6ab13bdc4c2a97e8c730ff5b0ae65354808ee96cbdd60d619b",
+   "checked": "2026-11-25T16:45:34+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/policy/public-consultations_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "c57c7fd7ba9940274f0dfb25d58a09bb79748761d49d600a07798a5094c4054a",
-   "checked": "2026-11-24T16:57:06+00:00",
+   "sha256": "7c25fb92676e34029d6a75b9f8ee1640ce605ebf1463311917458e69ee1b56aa",
+   "checked": "2026-11-25T16:45:36+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/policy/regulatory-instruments_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "b5e8c101d14f9674188c8240f156fd77c8c7068419ea0eb2bed5cca8c6ec7412",
-   "checked": "2026-11-24T16:57:08+00:00",
+   "sha256": "746e83b3b587beb9226d351b45134e874ea73ce1c1bf731f7ded73e6db57996b",
+   "checked": "2026-11-25T16:45:38+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/19/rss_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "7dcad706b8ea42464db2e80b955837044d1ba44b4ac0a49e4b8586ad22aed1e5",
-   "checked": "2026-11-24T16:57:09+00:00",
+   "sha256": "78f5073743a806e3f4a7f7f3eea8f407beef57a54def5a9ff00b6c1a5fc59157",
+   "checked": "2026-11-25T16:45:39+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/105/rss_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "5341ac9b45ffae146f77fb0cb1363475fbf921f6a40bed430fd2b540892ea02f",
-   "checked": "2026-11-24T16:57:11+00:00",
+   "sha256": "45da309552d0105e1a74a41c173505df95504966eb098c88ca2df7972d64e5c7",
+   "checked": "2026-11-25T16:45:41+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/267/rss_en": {
    "etag": "",
    "last_modified": "",
    "sha256": "09469eaa665b8c590ba34015ba4f31263058f3bc0c5e191f357dc7748446956d",
-   "checked": "2026-11-24T16:57:12+00:00",
+   "checked": "2026-11-25T16:45:43+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/node/190/rss_en": {
    "etag": "",
    "last_modified": "",
-   "sha256": "5fcac0cc75f8d461cef448a5ac7304e7f37ddcb78cc41a608621f26241878a0e",
-   "checked": "2026-11-24T16:57:14+00:00",
+   "sha256": "b01e77adb386e2e179baa086414357e1cafedc6d7d4154dd32f97c7b1157d156",
+   "checked": "2026-11-25T16:45:45+00:00",
    "status": 200
   },
   "https://www.amla.europa.eu/faqs_en": {
@@ -73,15 +73,15 @@
   "https://www.eba.europa.eu/rss.xml": {
    "etag": "",
    "last_modified": "",
-   "sha256": "b5b3258331ee54fcbb34d3ad1b96ed517ec9eaa80e17dc7c311bfa4e0f055a58",
-   "checked": "2026-11-23T17:19:05+00:00",
+   "sha256": "437880b5c46272f5f8c2d4f503aca5d80391d6ed3fe2152eabc3df754344b5bb",
+   "checked": "2026-11-25T16:45:56+00:00",
    "status": 200
   },
   "https://www.esma.europa.eu/rss.xml": {
-   "etag": "\"1795537029-gzip\"",
-   "last_modified": "Tue, 24 Nov 2026 16:17:09 GMT",
+   "etag": "\"1795624572-gzip\"",
+   "last_modified": "Wed, 25 Nov 2026 16:36:12 GMT",
    "sha256": "dd34df8a6b4a2e82064d2fa70dddc4bb65773bda77da0450888e96338f5c7343",
-   "checked": "2026-11-24T16:57:17+00:00",
+   "checked": "2026-11-25T16:45:58+00:00",
    "status": 200
   },
   "https://finance.ec.europa.eu/financial-crime/anti-money-laundering-and-countering-financing-terrorism-eu-level_en": {
@@ -100,9 +100,9 @@
   },
   "https://www.nbb.be/en/financial-supervision/news": {
    "etag": "",
-   "last_modified": "Tue, 24 Nov 2026 16:54:30 GMT",
-   "sha256": "e095df0503c97853e628a6cb1fb6c8f71556fd85b4417eef0018dbbb5bd417c0",
-   "checked": "2026-11-24T16:57:19+00:00",
+   "last_modified": "Wed, 25 Nov 2026 16:45:50 GMT",
+   "sha256": "24fb2a7d29ca3a77f40b90914542947b0e8798544893979cd0dffb4ce5db1b26",
+   "checked": "2026-11-25T16:46:00+00:00",
    "status": 200
   },
   "https://www.nbb.be/en/financial-supervision/aml/information-and-recommendations/scope": {
@@ -177,23 +177,23 @@
   },
   "https://www.nbb.be/en/financial-supervision/aml/publication-individual-decisions": {
    "etag": "",
-   "last_modified": "Tue, 24 Nov 2026 16:49:30 GMT",
-   "sha256": "57ab1e83d14d05c1d42dfb27830c59347d6e56972d89b4d0a7ac9c4b1141d768",
-   "checked": "2026-11-24T16:57:20+00:00",
+   "last_modified": "Wed, 25 Nov 2026 15:29:49 GMT",
+   "sha256": "facc4bb8deb00c8b854fdc71928c0673e0a9f160faaa0a8b12e7d73976bc292a",
+   "checked": "2026-11-25T16:46:01+00:00",
    "status": 200
   },
   "https://www.nbb.be/en/news_rss.xml": {
-   "etag": "\"1795539442\"",
-   "last_modified": "Tue, 24 Nov 2026 16:57:22 GMT",
-   "sha256": "6377f6e3419ab859cccb7bf7c2326841855053bc1f83fe9c7b06534ceb508e64",
-   "checked": "2026-11-24T16:57:22+00:00",
+   "etag": "\"1795625163\"",
+   "last_modified": "Wed, 25 Nov 2026 16:46:03 GMT",
+   "sha256": "9fb8a40c7653a3311c6c9a826962fcfd38f18272c80d183343c239e900d742c1",
+   "checked": "2026-11-25T16:46:03+00:00",
    "status": 200
   },
   "https://www.fsma.be/en/news-articles/rss.xml": {
-   "etag": "\"1795539381\"",
-   "last_modified": "Tue, 24 Nov 2026 16:56:21 GMT",
+   "etag": "\"1795621465\"",
+   "last_modified": "Wed, 25 Nov 2026 15:44:25 GMT",
    "sha256": "5d49781782eb50d540cf6d79bdc599621a9e9431e3891b8115732edd6287841a",
-   "checked": "2026-11-24T16:57:54+00:00",
+   "checked": "2026-11-25T16:46:35+00:00",
    "status": 200
   },
   "http://publications.europa.eu/resource/celex/32026D2508": {
@@ -318,15 +318,15 @@
   "https://www.eba.europa.eu/publications-and-media/press-releases": {
    "etag": "",
    "last_modified": "",
-   "sha256": "7167d2ce5b413a2b6c8fd0ac3b2139c44f30fee9ce680e1d8ca62eaf4d1f2957",
-   "checked": "2026-11-23T17:20:06+00:00",
+   "sha256": "2d9a4310ebe09a9efc8cdaf424d47a033ed508296b21b0b143fb98e450c3fd00",
+   "checked": "2026-11-25T16:46:57+00:00",
    "status": 200
   },
   "https://www.esma.europa.eu/press-news/esma-news": {
-   "etag": "\"1795537163-gzip\"",
-   "last_modified": "Tue, 24 Nov 2026 16:19:23 GMT",
-   "sha256": "9fb430fb0d25a51f1b04a2f4db929e7442b0609207eeb91510a9f5bae8a74e5d",
-   "checked": "2026-11-24T16:58:11+00:00",
+   "etag": "\"1795624575-gzip\"",
+   "last_modified": "Wed, 25 Nov 2026 16:36:15 GMT",
+   "sha256": "88cbd96465a6489398b80a0e7f4e3814201226f3882d7cafd00aa6842213546e",
+   "checked": "2026-11-25T16:46:57+00:00",
    "status": 200
   },
   "http://publications.europa.eu/resource/celex/32026D2449": {
@@ -1700,11 +1700,58 @@
    "sha256": "a0fcef16157d880dc5671a893fb31d9027c35c5560e22dc039af33b0534c7526",
    "checked": "2026-11-24T16:58:11+00:00",
    "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/32026D2621": {
+   "etag": "\"Con-20261124030900000\"",
+   "last_modified": "Tue, 24 Nov 2026 02:09:00 GMT",
+   "sha256": "2ea2d6d6fd38cbd73dfc5958e0e6d7da4c491655815539576e553df12dad8959",
+   "checked": "2026-11-25T16:46:38+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "4b6cbc5c810be516fea6336fb95e90ac941c2be401bddecedea3dfec131d6045",
+   "checked": "2026-11-25T16:46:46+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/press-release-amla-consults-methodology-setting-amlcft-fines_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "490163cf2ef2d74ff4dc6397f715c81a928a5df7f29b78a6501c0acad042fdd3",
+   "checked": "2026-11-25T16:46:40+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/document/download/364750bd-1030-4561-866a-96d76164deae_en?filename=Press%20Release%20-%20AMLA%20consults%20on%20methodology%20for%20setting%20AML_CFT%20fines.pdf": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "8645f53d5cbbbd48612495830863d1f98964d7cc28a818f1ff987e8abf055cee",
+   "checked": "2026-11-25T16:46:43+00:00",
+   "status": 200
+  },
+  "https://www.amla.europa.eu/events/public-hearing-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions-2027-01-12_en": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "0d6b6a7480f477a3d928829efae67de7744506c6c6c0336679587bda531b7b7e",
+   "checked": "2026-11-25T16:46:45+00:00",
+   "status": 200
+  },
+  "https://www.eba.europa.eu/publications-and-media/press-releases/eba-examines-use-stablecoins-including-emts-decentralised-finance": {
+   "etag": "",
+   "last_modified": "",
+   "sha256": "1f8afa26b1e2b4165597bc2782eb0e159e9f8ccbef04c4e59bb01c7847d038ec",
+   "checked": "2026-11-25T16:46:47+00:00",
+   "status": 200
+  },
+  "http://publications.europa.eu/resource/celex/52026IP0159": {
+   "etag": "\"Con-20261124065837000\"",
+   "last_modified": "Tue, 24 Nov 2026 05:58:37 GMT",
+   "sha256": "a05ea4f0cea3bad3304807222a535b77e9749a5a7ecf46d9ad203ab26a9d44e9",
+   "checked": "2026-11-25T16:46:47+00:00",
+   "status": 200
   }
  },
- "pending_docs": [
-  "celex-32026D2621"
- ],
+ "pending_docs": [],
  "runs": [
   {
    "started": "2026-11-14T08:12:28+00:00",
@@ -1977,6 +2024,22 @@
    "duration_s": 78.6,
    "errors": 1,
    "requests": 31
+  },
+  {
+   "started": "2026-11-25T16:45:26+00:00",
+   "sources_polled": 15,
+   "sources_skipped": 4,
+   "new": 16,
+   "changed": 1,
+   "withdrawn": 0,
+   "docs_new": 8,
+   "docs_changed": 0,
+   "docs_unchanged": 0,
+   "doc_errors": 0,
+   "proposals_new": 2,
+   "duration_s": 94.7,
+   "errors": 0,
+   "requests": 32
   }
  ],
  "tags_hash": "26327f2701568498"

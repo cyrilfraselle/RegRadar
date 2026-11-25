@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-24T16:56:56+00:00",
-  "count": 132
+  "generated": "2026-11-25T16:45:26+00:00",
+  "count": 133
  },
  "deadlines": [
   {
@@ -914,28 +914,6 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "073f9d740229",
-   "date": "2026-11-23",
-   "kind": "entry into force",
-   "title": "Council Decision (CFSP) 2026/2605 of 23 November 2026 amending Decision (CFSP) 2026/455 on restrictive measures to combat terrorism",
-   "source_doc_id": "celex-32026D2605",
-   "source": "eurlex-cellar-ojl-recent",
-   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2605",
-   "confidence": "high",
-   "method": "structured: CELLAR resource_legal_date_entry-into-force"
-  },
-  {
-   "id": "987f8a33a911",
-   "date": "2026-11-23",
-   "kind": "entry into force",
-   "title": "Council Implementing Regulation (EU) 2026/2616 of 23 November 2026 implementing Regulation (EC) No 2580/2001 on specific restrictive measures directed against certain persons and entities with a view to combating terrorism",
-   "source_doc_id": "celex-32026R2616",
-   "source": "eurlex-cellar-ojl-recent",
-   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2616",
-   "confidence": "high",
-   "method": "structured: CELLAR resource_legal_date_entry-into-force"
-  },
-  {
    "id": "41b8a474f3ee",
    "date": "2026-11-23",
    "kind": "entry into force",
@@ -980,11 +958,33 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
-   "id": "71c4554d595a",
+   "id": "073f9d740229",
+   "date": "2026-11-23",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2605 of 23 November 2026 amending Decision (CFSP) 2026/455 on restrictive measures to combat terrorism",
+   "source_doc_id": "celex-32026D2605",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2605",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "987f8a33a911",
+   "date": "2026-11-23",
+   "kind": "entry into force",
+   "title": "Council Implementing Regulation (EU) 2026/2616 of 23 November 2026 implementing Regulation (EC) No 2580/2001 on specific restrictive measures directed against certain persons and entities with a view to combating terrorism",
+   "source_doc_id": "celex-32026R2616",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2616",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "c8791ce79631",
    "date": "2026-11-25",
    "kind": "entry into force",
    "title": "Council Decision (CFSP) 2026/2621 of 23 November 2026 amending Decision (CFSP) 2019/1894 concerning restrictive measures in view of Türkiye’s unauthorised drilling activities in the Eastern Mediterranean",
-   "source_doc_id": "",
+   "source_doc_id": "celex-32026D2621",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2621",
    "confidence": "high",
@@ -1009,6 +1009,17 @@
    "source_doc_id": "",
    "source": "amla-consultations-list",
    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-conditions-functioning-amlcft-supervisory-colleges-financial-sector_en",
+   "confidence": "high",
+   "method": "structured: 'Deadline' field on amla-consultations-list"
+  },
+  {
+   "id": "eb8f8f843d63",
+   "date": "2027-02-25",
+   "kind": "consultation closes",
+   "title": "Consultation on the draft Guidelines on determining the base amount for imposing pecuniary sanctions",
+   "source_doc_id": "",
+   "source": "amla-consultations-list",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions_en",
    "confidence": "high",
    "method": "structured: 'Deadline' field on amla-consultations-list"
   },

@@ -1,21 +1,19 @@
 {
  "_meta": {
   "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
-  "generated": "2026-11-24T16:56:56+00:00"
+  "generated": "2026-11-25T16:45:26+00:00"
  },
  "run": {
-  "duration_s": 78.6,
-  "requests": 31,
-  "bytes": 1721535,
+  "duration_s": 94.7,
+  "requests": 32,
+  "bytes": 1719196,
   "not_modified_304": 0,
   "retries": 0,
   "http_errors": 0,
-  "robots_blocked": 2,
-  "politeness_wait_s": 60.8,
+  "robots_blocked": 0,
+  "politeness_wait_s": 75.7,
   "budget": 220,
-  "errors": [
-   "eba-news: blocked by robots.txt"
-  ]
+  "errors": []
  },
  "sources": {
   "registered": 31,
@@ -23,53 +21,52 @@
   "planned": 6,
   "blocked": 4,
   "excluded": 2,
-  "polled_this_run": 14,
+  "polled_this_run": 15,
   "skipped_not_due": 4,
   "health": {
-   "healthy": 18,
-   "degraded": 1
+   "healthy": 19
   }
  },
  "entries": {
-  "total": 592,
-  "in_scope": 254,
-  "new": 15,
-  "changed": 4,
+  "total": 608,
+  "in_scope": 262,
+  "new": 16,
+  "changed": 1,
   "withdrawn": 0,
-  "pending_docs": 1
+  "pending_docs": 0
  },
  "documents": {
-  "total": 237,
-  "new": 9,
+  "total": 245,
+  "new": 8,
   "changed": 0,
   "unchanged": 0,
   "errors": 0,
-  "paragraphs": 14798,
-  "corpus_bytes": 4739946,
+  "paragraphs": 15022,
+  "corpus_bytes": 4814141,
   "corpus_warning": false
  },
  "freshness_hours": {
   "this_run": {
-   "n": 13,
-   "p50": 16.9,
-   "p90": 16.9
+   "n": 14,
+   "p50": 16.8,
+   "p90": 16.8
   },
   "last_30_days": {
-   "n": 164,
+   "n": 178,
    "p50": 15.2,
    "p90": 38.2
   },
   "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
  },
- "proposals_new": 3,
- "deadlines": 132,
+ "proposals_new": 2,
+ "deadlines": 133,
  "coverage": [
   {
    "source": "eba-news",
-   "recall": null,
-   "in_period": null,
-   "matched": null,
-   "error": "blocked by robots.txt"
+   "recall": 1.0,
+   "in_period": 15,
+   "matched": 15,
+   "error": null
   },
   {
    "source": "esma-news",
@@ -81,28 +78,28 @@
   {
    "source": "amla-consultations",
    "recall": 1.0,
-   "in_period": 12,
-   "matched": 12,
+   "in_period": 13,
+   "matched": 13,
    "error": null
   }
  ],
  "feed": {
   "cards": 400,
   "tiers": {
-   "important": 175,
-   "critical": 64,
-   "info": 161
+   "important": 178,
+   "critical": 65,
+   "info": 157
   },
-  "news_cards": 140,
-  "news_dropped": 77,
-  "clustered_items": 508,
+  "news_cards": 142,
+  "news_dropped": 75,
+  "clustered_items": 514,
   "f028": {
-   "archive_items": 808,
+   "archive_items": 815,
    "before": {
-    "critical": 282,
-    "share": 0.349,
-    "informational": 143,
-    "distinct_stories": 266
+    "critical": 285,
+    "share": 0.35,
+    "informational": 144,
+    "distinct_stories": 269
    },
    "after": {
     "critical": 3,
