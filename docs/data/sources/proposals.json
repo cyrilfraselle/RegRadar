@@ -2,10 +2,309 @@
  "_meta": {
   "purpose": "Proposal stubs: inputs for human and fact-checker review of possible new or changed obligations. NOT obligations, never auto-published.",
   "method": "One stub per new or changed in-scope document version. Quotes are verbatim paragraphs (with locators) that carry normative wording and a topic tag; for a changed document only added paragraphs are quoted. 'may_touch' lists register obligations whose article the document cites or whose topic it shares.",
-  "generated": "2026-11-25T16:45:26+00:00",
-  "count": 100
+  "generated": "2026-11-26T16:20:40+00:00",
+  "count": 106
  },
  "proposals": [
+  {
+   "id": "prop-celex-32026D2622-9d56e01c",
+   "created": "2026-11-26T16:20:40+00:00",
+   "doc_id": "celex-32026D2622",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2622 of 25 November 2026 amending Decision 2014/512/CFSP concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2622",
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str",
+     "sanctions"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "In particular, 15 new entities should be added to the list of natural or legal persons, entities or bodies set out in Annex IV to Decision 2014/512/CFSP, namely the list of persons, entities and bodies which form part of Russia’s military and industrial complex or which have commercial or other links with or otherwise support Russia’s military and industrial complex or its defence and security sector in its war of aggression against Ukraine, on which tighter export restrictions regarding dual-use goods and technology, as well as goods and technology which might contribute to the technological enhancement of Russia’s defence and security sector, are imposed. In addition, it is appropriate to remove from that list one entity incorporated in a third country other than Russia.",
+     "loc": "amending Decision 2014/512/CFSP concerning restrictive measures in view of Russi, para 12",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    },
+    {
+     "text": "Decision 2014/512/CFSP should therefore be amended accordingly,",
+     "loc": "amending Decision 2014/512/CFSP concerning restrictive measures in view of Russi, para 16",
+     "topics": [
+      "sanctions"
+     ],
+     "why": "normative wording (should) on sanctions"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-consultations-acf37ab90cd7-854589dc",
+   "created": "2026-11-26T16:20:40+00:00",
+   "doc_id": "amla-consultations-acf37ab90cd7",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft Guidelines for reliance, outsourcing, and third-party arrangements",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-reliance-outsourcing-and-third-party-arrangements_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art18",
+      "why": [
+       "cites AMLR Art. 18"
+      ]
+     }
+    ],
+    "topics": [
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "These Draft Guidelines set out specific principles and rules obliged entities should apply when establishing outsourcing pursuant to Article 18 of the AMLR, reliance on customer due diligence performed by other obliged entities pursuant to Articles 48 and 49 of the AMLR, and address other third-party arrangements under the anti-money laundering and counter-terrorist financing and non-implementation and evasion of targeted financial sanctions (AML/CFT/TFS) framework as AMLA’s own-initiative guidelines pursuant to Article 54(1) of Regulation (EU) 2024/1620.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "cdd",
+      "sanctions",
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on cdd, sanctions, outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-consultations-0f4246d85d76-f238ba81",
+   "created": "2026-11-26T16:20:40+00:00",
+   "doc_id": "amla-consultations-0f4246d85d76",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on draft ITS on FIU and AMLA reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-fiu-and-amla-reporting-eppo_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "reporting-str"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art69",
+      "why": [
+       "topic STR/SAR"
+      ]
+     }
+    ],
+    "topics": [
+     "reporting-str"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The first instrument establishes the format Financial Intelligence Units (FIUs) must use when reporting findings to the EPPO where analysis reveals reasonable grounds to suspect offences against the EU's financial interests. The second establishes the equivalent format for AMLA, covering findings produced through joint analyses conducted by AMLA together with FIUs. Both introduce a common reporting template and require machine-readable submissions through a secure channel, enabling automatic processing by the EPPO.",
+     "loc": "About the consultation, para 1",
+     "topics": [
+      "reporting-str"
+     ],
+     "why": "normative wording (must) on reporting-str"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-library-efa2b31aa801-aebd2646",
+   "created": "2026-11-26T16:20:40+00:00",
+   "doc_id": "amla-library-efa2b31aa801",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA consults on draft Guidelines for reliance, outsourcing, and third-party arrangements",
+   "url": "https://www.amla.europa.eu/document/download/45aa96f3-5630-4773-a8ea-fd7fe74138cc_en?filename=Press%20Release%20-%20GL%20on%20Outsourcing%20and%20Reliance.pdf",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [],
+    "topics": [
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "The Authority for Anti-Money Laundering and Countering the Financing of Terrorism (AMLA) Messeturm Frankfurt, Friedrich-Ebert-Anlage 49, 60308 Frankfurt am Main, GERMANY email: media@amla.europa.eu | amla.europa.eu PRESS RELEASE Frankfurt am Main, 26 November 2026 AMLA consults on draft Guidelines for reliance, outsourcing, and third-party arrangements AMLA has launched a public consultation on draft Guidelines for businesses and professionals covered by anti-money laundering rules that use third parties to support their compliance obligations. The Guidelines set out how these arrangements should be managed, while making clear that responsibility for AML/CFT compliance always remains with the business or professional concerned.",
+     "loc": "p. 1, para 1",
+     "topics": [
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-hearings-1013e19890eb-41b78bef",
+   "created": "2026-11-26T16:20:40+00:00",
+   "doc_id": "amla-hearings-1013e19890eb",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft Guidelines on outsourcing, reliance on customer due diligence performed by another obliged entity and other third-party arrangements",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-guidelines-outsourcing-reliance-customer-due-diligence-performed-another-2027-02-10_en",
+   "type": "consultation",
+   "status": "draft",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "cdd",
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art18",
+      "why": [
+       "cites AMLR Art. 18"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art19",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art20",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art21",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art22",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art23",
+      "why": [
+       "topic CDD"
+      ]
+     },
+     {
+      "obligation_id": "AMLR-art25",
+      "why": [
+       "topic CDD"
+      ]
+     }
+    ],
+    "topics": [
+     "cdd",
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "These Draft Guidelines set out specific principles and rules obliged entities should apply when establishing outsourcing pursuant to Article 18 of the AMLR, reliance on customer due diligence performed by other obliged entities pursuant to Articles 48 and 49 of the AMLR, and address other third-party arrangements under the anti-money laundering and counter-terrorist financing and non-implementation and evasion of targeted financial sanctions (AML/CFT/TFS) framework as AMLA’s own-initiative guidelines pursuant to Article 54(1) of Regulation (EU) 2024/1620.",
+     "loc": "s1, para 2",
+     "topics": [
+      "cdd",
+      "sanctions",
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on cdd, sanctions, outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
+  {
+   "id": "prop-amla-instruments-acf37ab90cd7-854589dc",
+   "created": "2026-11-26T16:20:40+00:00",
+   "doc_id": "amla-instruments-acf37ab90cd7",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Guidelines on outsourcing; reliance on others",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-reliance-outsourcing-and-third-party-arrangements_en",
+   "type": "guideline",
+   "status": "draft (consultation open)",
+   "change": "new",
+   "what_changed": {
+    "summary": "new document"
+   },
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "may_touch": {
+    "obligations": [
+     {
+      "obligation_id": "AMLR-art18",
+      "why": [
+       "cites AMLR Art. 18"
+      ]
+     }
+    ],
+    "topics": [
+     "outsourcing-reliance"
+    ]
+   },
+   "quotes": [
+    {
+     "text": "These Draft Guidelines set out specific principles and rules obliged entities should apply when establishing outsourcing pursuant to Article 18 of the AMLR, reliance on customer due diligence performed by other obliged entities pursuant to Articles 48 and 49 of the AMLR, and address other third-party arrangements under the anti-money laundering and counter-terrorist financing and non-implementation and evasion of targeted financial sanctions (AML/CFT/TFS) framework as AMLA’s own-initiative guidelines pursuant to Article 54(1) of Regulation (EU) 2024/1620.",
+     "loc": "Why we are consulting, para 2",
+     "topics": [
+      "cdd",
+      "sanctions",
+      "outsourcing-reliance"
+     ],
+     "why": "normative wording (should) on cdd, sanctions, outsourcing-reliance"
+    }
+   ],
+   "review_status": "needs-review"
+  },
   {
    "id": "prop-celex-32026D2621-28f4d7c5",
    "created": "2026-11-25T16:45:26+00:00",

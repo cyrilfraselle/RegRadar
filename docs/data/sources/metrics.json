@@ -1,17 +1,17 @@
 {
  "_meta": {
   "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
-  "generated": "2026-11-25T16:45:26+00:00"
+  "generated": "2026-11-26T16:20:40+00:00"
  },
  "run": {
-  "duration_s": 94.7,
-  "requests": 32,
-  "bytes": 1719196,
+  "duration_s": 91.0,
+  "requests": 34,
+  "bytes": 1919531,
   "not_modified_304": 0,
   "retries": 0,
   "http_errors": 0,
   "robots_blocked": 0,
-  "politeness_wait_s": 75.7,
+  "politeness_wait_s": 72.0,
   "budget": 220,
   "errors": []
  },
@@ -28,38 +28,38 @@
   }
  },
  "entries": {
-  "total": 608,
-  "in_scope": 262,
-  "new": 16,
-  "changed": 1,
+  "total": 632,
+  "in_scope": 273,
+  "new": 24,
+  "changed": 0,
   "withdrawn": 0,
   "pending_docs": 0
  },
  "documents": {
-  "total": 245,
-  "new": 8,
+  "total": 255,
+  "new": 10,
   "changed": 0,
   "unchanged": 0,
   "errors": 0,
-  "paragraphs": 15022,
-  "corpus_bytes": 4814141,
+  "paragraphs": 15307,
+  "corpus_bytes": 4894920,
   "corpus_warning": false
  },
  "freshness_hours": {
   "this_run": {
-   "n": 14,
-   "p50": 16.8,
-   "p90": 16.8
+   "n": 22,
+   "p50": 16.3,
+   "p90": 16.3
   },
   "last_30_days": {
-   "n": 178,
-   "p50": 15.2,
+   "n": 200,
+   "p50": 15.5,
    "p90": 38.2
   },
   "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
  },
- "proposals_new": 2,
- "deadlines": 133,
+ "proposals_new": 6,
+ "deadlines": 136,
  "coverage": [
   {
    "source": "eba-news",
@@ -78,28 +78,28 @@
   {
    "source": "amla-consultations",
    "recall": 1.0,
-   "in_period": 13,
-   "matched": 13,
+   "in_period": 14,
+   "matched": 14,
    "error": null
   }
  ],
  "feed": {
   "cards": 400,
   "tiers": {
-   "important": 178,
-   "critical": 65,
-   "info": 157
+   "important": 183,
+   "critical": 66,
+   "info": 151
   },
-  "news_cards": 142,
-  "news_dropped": 75,
-  "clustered_items": 514,
+  "news_cards": 144,
+  "news_dropped": 72,
+  "clustered_items": 523,
   "f028": {
-   "archive_items": 815,
+   "archive_items": 828,
    "before": {
-    "critical": 285,
-    "share": 0.35,
-    "informational": 144,
-    "distinct_stories": 269
+    "critical": 292,
+    "share": 0.353,
+    "informational": 146,
+    "distinct_stories": 275
    },
    "after": {
     "critical": 3,

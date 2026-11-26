@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-25T16:45:26+00:00",
-  "count": 133
+  "generated": "2026-11-26T16:20:40+00:00",
+  "count": 136
  },
  "deadlines": [
   {
@@ -991,6 +991,28 @@
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },
   {
+   "id": "b250a105a4c0",
+   "date": "2026-11-27",
+   "kind": "entry into force",
+   "title": "Council Decision (CFSP) 2026/2622 of 25 November 2026 amending Decision 2014/512/CFSP concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine",
+   "source_doc_id": "celex-32026D2622",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2622",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "b321770d4f58",
+   "date": "2026-11-27",
+   "kind": "entry into force",
+   "title": "Council Regulation (EU) 2026/2632 of 25 November 2026 amending Regulation (EU) No 833/2014 concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine",
+   "source_doc_id": "celex-32026R2632",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2632",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
    "id": "4f3be0e7d7bf",
    "date": "2026-12-23",
    "kind": "consultation closes",
@@ -1020,6 +1042,17 @@
    "source_doc_id": "",
    "source": "amla-consultations-list",
    "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-determining-base-amount-imposing-pecuniary-sanctions_en",
+   "confidence": "high",
+   "method": "structured: 'Deadline' field on amla-consultations-list"
+  },
+  {
+   "id": "6d837e7f9331",
+   "date": "2027-02-26",
+   "kind": "consultation closes",
+   "title": "Consultation on the draft Guidelines for reliance, outsourcing, and third-party arrangements",
+   "source_doc_id": "",
+   "source": "amla-consultations-list",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-reliance-outsourcing-and-third-party-arrangements_en",
    "confidence": "high",
    "method": "structured: 'Deadline' field on amla-consultations-list"
   },

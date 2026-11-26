@@ -3,24 +3,24 @@
   "purpose": "Recall check: items on the authority's own listing page compared with what the engine ingested from that authority (any source), over the period both cover.",
   "method": "Listing items dated before our oldest entry for the authority are out of period and not counted. A listing item is matched when an ingested entry has the same canonical URL, the same normalised title, or passes the story-similarity rule of regwatch_sources/dedupe.py.",
   "rerun": "python collect_sources.py --only <source ids> --coverage-only",
-  "generated": "2026-11-25T16:45:26+00:00"
+  "generated": "2026-11-26T16:20:40+00:00"
  },
  "checks": [
   {
    "source": "amla-consultations",
    "reference": "amla-consultations-list",
-   "checked": "2026-11-25T16:46:57+00:00",
+   "checked": "2026-11-26T16:22:08+00:00",
    "period_from": "2025-12-16",
-   "listing_items": 13,
-   "in_period": 13,
-   "matched": 13,
+   "listing_items": 14,
+   "in_period": 14,
+   "matched": 14,
    "recall": 1.0,
    "missed": []
   },
   {
    "source": "eba-news",
    "reference": "https://www.eba.europa.eu/publications-and-media/press-releases",
-   "checked": "2026-11-25T16:46:57+00:00",
+   "checked": "2026-11-26T16:22:08+00:00",
    "period_from": "2026-10-14",
    "listing_items": 15,
    "in_period": 15,
@@ -31,7 +31,7 @@
   {
    "source": "esma-news",
    "reference": "https://www.esma.europa.eu/press-news/esma-news",
-   "checked": "2026-11-25T16:46:57+00:00",
+   "checked": "2026-11-26T16:22:08+00:00",
    "period_from": "",
    "listing_items": 10,
    "in_period": 10,

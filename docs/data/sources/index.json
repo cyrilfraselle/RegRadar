@@ -1,11 +1,33 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-25T16:45:26+00:00",
-  "count": 245,
-  "corpus_bytes": 4814141
+  "generated": "2026-11-26T16:20:40+00:00",
+  "count": 255,
+  "corpus_bytes": 4894920
  },
  "documents": [
+  {
+   "id": "amla-consultations-0f4246d85d76",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on draft ITS on FIU and AMLA reporting to the EPPO",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-fiu-and-amla-reporting-eppo_en",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "f238ba819b9a0c4f94fa1cab2458dabe31b6ab935c3a2711049380a71d04da13",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1527,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 14
+  },
   {
    "id": "amla-consultations-24380b371f7c",
    "source": "amla-consultations",
@@ -27,6 +49,26 @@
    ],
    "parent": null,
    "paragraphs": 18
+  },
+  {
+   "id": "amla-consultations-244151150bf0",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft RTS on Home-Host Supervisory Cooperation",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-rts-home-host-supervisory-cooperation_en",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "c78fa956c594515d36faab0e1e17b61a952d0142b866b22f3c81e997353a69f5",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1350,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 13
   },
   {
    "id": "amla-consultations-38c31826e288",
@@ -129,6 +171,50 @@
    ],
    "parent": null,
    "paragraphs": 13
+  },
+  {
+   "id": "amla-consultations-8cef65086620",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on draft ITS on FIU-to-FIU exchanges",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-its-fiu-fiu-exchanges_en",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "c639df1692ede6e47a44ce6049409e1b47a4d49a3951dc02f26925235996b063",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2429,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 21
+  },
+  {
+   "id": "amla-consultations-acf37ab90cd7",
+   "source": "amla-consultations",
+   "authority": "AMLA",
+   "title": "Consultation on the draft Guidelines for reliance, outsourcing, and third-party arrangements",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-reliance-outsourcing-and-third-party-arrangements_en",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "854589dc3ef7731a8d78d8b5e69e3c87322d66728b04785836d25ba192ca5687",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2501,
+   "truncated": false,
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "parent": null,
+   "paragraphs": 16
   },
   {
    "id": "amla-consultations-b525c753d55c",
@@ -323,6 +409,29 @@
    ],
    "parent": null,
    "paragraphs": 60
+  },
+  {
+   "id": "amla-hearings-1013e19890eb",
+   "source": "amla-hearings",
+   "authority": "AMLA",
+   "title": "Public Hearing on the draft Guidelines on outsourcing, reliance on customer due diligence performed by another obliged entity and other third-party arrangements",
+   "url": "https://www.amla.europa.eu/events/public-hearing-draft-guidelines-outsourcing-reliance-customer-due-diligence-performed-another-2027-02-10_en",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "41b78bef5588a27a9c803ffda822203875b5852e2295ed32bc2b1059200bd08e",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1428,
+   "truncated": false,
+   "topics": [
+    "cdd",
+    "outsourcing-reliance"
+   ],
+   "parent": null,
+   "paragraphs": 9
   },
   {
    "id": "amla-hearings-168a050ac865",
@@ -869,6 +978,28 @@
    ],
    "parent": null,
    "paragraphs": 13
+  },
+  {
+   "id": "amla-instruments-acf37ab90cd7",
+   "source": "amla-instruments",
+   "authority": "AMLA",
+   "title": "Guidelines on outsourcing; reliance on others",
+   "url": "https://www.amla.europa.eu/policy/public-consultations/consultation-draft-guidelines-reliance-outsourcing-and-third-party-arrangements_en",
+   "publication_date": "",
+   "type": "guideline",
+   "status": "draft (consultation open)",
+   "language": "en",
+   "version_hash": "854589dc3ef7731a8d78d8b5e69e3c87322d66728b04785836d25ba192ca5687",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2501,
+   "truncated": false,
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "parent": null,
+   "paragraphs": 16
   },
   {
    "id": "amla-instruments-b322780192c5",
@@ -1756,6 +1887,28 @@
    "paragraphs": 76
   },
   {
+   "id": "amla-library-efa2b31aa801",
+   "source": "amla-library",
+   "authority": "AMLA",
+   "title": "Press Release - AMLA consults on draft Guidelines for reliance, outsourcing, and third-party arrangements",
+   "url": "https://www.amla.europa.eu/document/download/45aa96f3-5630-4773-a8ea-fd7fe74138cc_en?filename=Press%20Release%20-%20GL%20on%20Outsourcing%20and%20Reliance.pdf",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "aebd2646847e89e78bd9fcaa705598f0baba89a49a5d862dc900b5b6224314b4",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "pdf",
+   "pages_total": 1,
+   "chars_stored": 2285,
+   "truncated": false,
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "parent": null,
+   "paragraphs": 5
+  },
+  {
    "id": "amla-library-f562217654c5",
    "source": "amla-library",
    "authority": "AMLA",
@@ -2122,6 +2275,28 @@
    "topics": [],
    "parent": null,
    "paragraphs": 3
+  },
+  {
+   "id": "amla-news-5ad949d8f9fd",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Press Release: AMLA consults on draft Guidelines for reliance, outsourcing, and third-party arrangements",
+   "url": "https://www.amla.europa.eu/press-release-amla-consults-draft-guidelines-reliance-outsourcing-and-third-party-arrangements_en",
+   "publication_date": "2026-11-26",
+   "type": "consultation",
+   "status": "draft",
+   "language": "en",
+   "version_hash": "bb24f38f94f732c45122def2899efec1cc6fcbdb00f6a001b06b81d4690c9631",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1989,
+   "truncated": false,
+   "topics": [
+    "outsourcing-reliance"
+   ],
+   "parent": null,
+   "paragraphs": 9
   },
   {
    "id": "amla-news-5d411692ff70",
@@ -3574,6 +3749,29 @@
    "paragraphs": 24
   },
   {
+   "id": "celex-32026D2622",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Decision (CFSP) 2026/2622 of 25 November 2026 amending Decision 2014/512/CFSP concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2622",
+   "publication_date": "2026-11-26",
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "language": "en",
+   "version_hash": "9d56e01ca8b4bc52f7af3754f51d739df86507cbc1f8e56b330afcc99335f530",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 14881,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 88
+  },
+  {
    "id": "celex-32026D2633",
    "source": "eurlex-cellar-ojl-recent",
    "authority": "EU Publications Office (EUR-Lex data)",
@@ -3842,6 +4040,29 @@
    ],
    "parent": null,
    "paragraphs": 29
+  },
+  {
+   "id": "celex-32026R2632",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Council Regulation (EU) 2026/2632 of 25 November 2026 amending Regulation (EU) No 833/2014 concerning restrictive measures in view of Russia’s actions destabilising the situation in Ukraine",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2632",
+   "publication_date": "2026-11-26",
+   "type": "legislation",
+   "status": "adopted, not yet in force",
+   "language": "en",
+   "version_hash": "ebd2a213c330ccf982e941b2bfc6f2d38e965b51cd424e3686a6599e5b97e03b",
+   "retrieved": "2026-11-26T16:20:40+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 14896,
+   "truncated": false,
+   "topics": [
+    "reporting-str",
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 94
   },
   {
    "id": "celex-52025DP0342",
