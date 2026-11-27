@@ -1,7 +1,7 @@
 {
  "_meta": {
   "name": "Obligations review queue",
-  "generated": "2026-11-22",
+  "generated": "2026-11-23",
   "status": "draft, not reviewed",
   "order": "tier 0 (article mapped in topics.json) first, then tier 1 (binds obliged entities), then tier 2; inside a tier AMLR, TFR, AMLD6 and article order. Suggested batches of 25.",
   "count": 417,
@@ -842,7 +842,9 @@
    "topics": [
     "gov"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art17"
+   ],
    "review": "pending"
   },
   {
@@ -858,7 +860,9 @@
    "topics": [
     "gov"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art17"
+   ],
    "review": "pending"
   },
   {
@@ -874,7 +878,9 @@
    "topics": [
     "gov"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art17"
+   ],
    "review": "pending"
   },
   {
@@ -2569,7 +2575,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art51"
+   ],
    "review": "pending"
   },
   {
@@ -2585,7 +2593,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art52"
+   ],
    "review": "pending"
   },
   {
@@ -2601,7 +2611,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art52"
+   ],
    "review": "pending"
   },
   {
@@ -2617,7 +2629,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art52"
+   ],
    "review": "pending"
   },
   {
@@ -2633,7 +2647,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art52"
+   ],
    "review": "pending"
   },
   {
@@ -2649,7 +2665,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art53"
+   ],
    "review": "pending"
   },
   {
@@ -2665,7 +2683,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art53"
+   ],
    "review": "pending"
   },
   {
@@ -5482,7 +5502,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art54"
+   ],
    "review": "pending"
   },
   {
@@ -5562,7 +5584,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art57"
+   ],
    "review": "pending"
   },
   {
@@ -5578,7 +5602,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art57"
+   ],
    "review": "pending"
   },
   {
@@ -5594,7 +5620,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art57"
+   ],
    "review": "pending"
   },
   {
@@ -5611,7 +5639,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art57"
+   ],
    "review": "pending"
   },
   {
@@ -5627,7 +5657,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art58"
+   ],
    "review": "pending"
   },
   {
@@ -5643,7 +5675,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art58"
+   ],
    "review": "pending"
   },
   {
@@ -5659,7 +5693,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art58"
+   ],
    "review": "pending"
   },
   {
@@ -5676,7 +5712,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art58"
+   ],
    "review": "pending"
   },
   {
@@ -5693,7 +5731,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art58"
+   ],
    "review": "pending"
   },
   {
@@ -5934,7 +5974,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -5950,7 +5992,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -5966,7 +6010,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -5982,7 +6028,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -5998,7 +6046,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6014,7 +6064,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6030,7 +6082,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6046,7 +6100,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6062,7 +6118,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6078,7 +6136,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6094,7 +6154,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {
@@ -6110,7 +6172,9 @@
    "topics": [
     "bo"
    ],
-   "verified_ids": [],
+   "verified_ids": [
+    "AMLR-art63"
+   ],
    "review": "pending"
   },
   {

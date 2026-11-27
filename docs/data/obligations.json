@@ -2,12 +2,12 @@
   "_meta": {
     "name": "Obligations register",
     "version": 1,
-    "count": 21,
+    "count": 31,
     "generated": "2026-09-29",
-    "scope": "AMLR (Regulation (EU) 2024/1624) Chapter II (internal policies, risk assessment, compliance functions, outsourcing; Arts 8 to 14, 16, 18) and Chapter III Section 1 (general CDD) plus EDD scope, PEP-specific provisions, and suspicious-transaction reporting.",
+    "scope": "AMLR (Regulation (EU) 2024/1624) Chapter II (internal policies, risk assessment, compliance functions, outsourcing; Arts 8 to 18), Chapter IV beneficial ownership (Arts 51 to 55, 57, 58, 63) and Chapter III Section 1 (general CDD) plus EDD scope, PEP-specific provisions, and suspicious-transaction reporting.",
     "method": "Every verbatim excerpt and article number checked directly against docs/data/laws/32024R1624_EN.json (official CELLAR text) before publication — not generated from a summary.",
     "disclaimer": "Indicative compliance register, not legal advice. Always verify against the current text and any Belgian transposition/guidance.",
-    "next": "Extend to AMLD6 (Belgian transposition obligations), beneficial-ownership-register chapter (Ch. IV), and CRD IV/DORA for a second sector."
+    "next": "Extend to AMLD6 (Belgian transposition obligations), remaining Chapter IV articles (59 to 62, 64 to 67), Chapter V reporting, Chapter VII record keeping, TFR, DORA, MiCA for a second sector."
   },
   "obligations": [
     {
@@ -659,6 +659,296 @@
         "INV-202",
         "INV-301"
       ]
+    },
+    {
+      "id": "AMLR-art15",
+      "who": [
+        "other"
+      ],
+      "what": "If you are a natural person practising a regulated profession as an employee of a legal person, the AML/CFT requirements apply to that legal person (your employer) rather than to you personally.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 15",
+      "topic": "Governance",
+      "priority": "low",
+      "source_url": "law.html?celex=32024R1624&art=15",
+      "detected": "2026-09-29",
+      "verbatim": "Where a natural person falling within any of the categories listed in Article 3, point (3) performs professional activities as an employee of a legal person, the requirements laid down in this Regulation shall apply to that legal person rather than to the natural person.",
+      "sub_requirements": [
+        "The legal person employing the professional carries the AMLR obligations"
+      ],
+      "criticality": "low",
+      "academy_cases": [],
+      "who_note": "Concerns natural persons in the Art. 3(3) categories (for example professionals such as notaries or auditors) employed by a legal person. Rarely relevant to a payment, e-money or crypto firm; kept so the register is complete for Chapter II."
+    },
+    {
+      "id": "AMLR-art17",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "If a branch or subsidiary sits in a non-EU country with weaker AML/CFT rules, the parent must make it comply with the AMLR (or equivalent). If local law blocks compliance, take additional measures to handle the risk and tell your home supervisor; the supervisor may require you to stop business or close the operation.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 17",
+      "topic": "Governance",
+      "priority": "medium",
+      "source_url": "law.html?celex=32024R1624&art=17",
+      "detected": "2026-09-29",
+      "verbatim": "Where branches or subsidiaries of obliged entities are located in third countries where the minimum AML/CFT requirements are less strict than those set out in this Regulation, the parent undertaking shall ensure that those branches or subsidiaries comply with the requirements laid down in this Regulation, including requirements concerning data protection, or equivalent. [...] Where the law of a third country does not permit compliance with this Regulation, the parent undertaking shall take additional measures to ensure that branches and subsidiaries in that third country effectively handle the risk of money laundering or terrorist financing, and shall inform the supervisors of its home Member State of those additional measures.",
+      "sub_requirements": [
+        "Third-country branches and subsidiaries comply with the AMLR or equivalent, including data protection requirements",
+        "Where local law prevents compliance: additional measures to handle the risk, and inform the home supervisor",
+        "Supervisor may require no new business, termination of relationships or closure of the operation if the measures are not sufficient"
+      ],
+      "criticality": "medium",
+      "academy_cases": [],
+      "who_note": "Only relevant for groups with branches or subsidiaries outside the EU. AMLA's draft technical standards on the additional measures are due by 10 July 2026 (Art. 17(3)); check their final form before relying on the detail."
+    },
+    {
+      "id": "AMLR-art51",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "For a corporate customer, the beneficial owners are the natural persons who own it directly or indirectly, or who control it directly or indirectly. Control by other means is identified separately and in parallel to ownership: you cannot stop at the ownership percentages.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 51",
+      "topic": "UBO",
+      "priority": "high",
+      "source_url": "law.html?celex=32024R1624&art=51",
+      "detected": "2026-09-29",
+      "verbatim": "Beneficial owners of legal entities shall be the natural persons who: (a) have, directly or indirectly, an ownership interest in the corporate entity; or (b) control, directly or indirectly, the corporate or other legal entity, through ownership interest or via other means. Control via other means as referred to in the first paragraph, point (b), shall be identified independently of and in parallel to the existence of an ownership interest or control through ownership interest.",
+      "sub_requirements": [
+        "Identify natural persons with a direct or indirect ownership interest",
+        "Identify natural persons who control the entity, through ownership interest or other means",
+        "Look for control by other means even where an ownership-based owner is already found"
+      ],
+      "criticality": "high",
+      "academy_cases": [
+        "OWN-01"
+      ]
+    },
+    {
+      "id": "AMLR-art52",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "An ownership interest means 25% or more of the shares, voting rights or other ownership interest, direct or indirect. Indirect holdings are calculated by multiplying percentages along each chain and adding the chains together; every level of the structure counts. Entities where ownership cannot be calculated are handled through control instead.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 52",
+      "topic": "UBO",
+      "priority": "high",
+      "source_url": "law.html?celex=32024R1624&art=52",
+      "detected": "2026-09-29",
+      "verbatim": "‘an ownership interest in the corporate entity’ shall mean direct or indirect ownership of 25 % or more of the shares or voting rights or other ownership interest in the corporate entity, including rights to a share of profits, other internal resources or liquidation balance. The indirect ownership shall be calculated by multiplying the shares or voting rights or other ownership interests held by the intermediate entities in the chain of entities in which the beneficial owner holds shares or voting rights and by adding together the results from those various chains, unless Article 54 applies. For the purposes of assessing whether an ownership interest exists in the corporate entity, all shareholdings on every level of ownership shall be taken into account. [...] In the case of legal entities other than corporate entities, for which, having regard to their form and structure, it is not appropriate or possible to calculate ownership, the beneficial owners shall be the natural persons who control via other means, directly or indirectly, the legal entity",
+      "sub_requirements": [
+        "Threshold: 25% or more of shares, voting rights or other ownership interest (including profit and liquidation rights)",
+        "Indirect ownership: multiply along each chain, then add the chains together",
+        "All shareholdings on every level are taken into account",
+        "Non-corporate entities where ownership cannot be calculated: identify those who control by other means"
+      ],
+      "criticality": "high",
+      "academy_cases": [
+        "OWN-01"
+      ],
+      "who_note": "The Commission may lower the threshold (max 15%, or below 25% on a risk basis) for categories of higher-risk corporate entities by delegated act after 10 July 2029 (Art. 52(2)); none exists today."
+    },
+    {
+      "id": "AMLR-art53",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "Control means the possibility to exercise significant influence and impose relevant decisions in the entity. Control through ownership means 50% plus one. Control by other means always includes a majority of voting rights, the right to appoint or remove most of the board, relevant veto rights, and decisions on profit distribution; it may also arise from agreements, family relationships or nominee arrangements.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 53",
+      "topic": "UBO",
+      "priority": "high",
+      "source_url": "law.html?celex=32024R1624&art=53",
+      "detected": "2026-09-29",
+      "verbatim": "‘control of the legal entity’ means the possibility to exercise, directly or indirectly, significant influence and impose relevant decisions within the legal entity; [...] ‘control through ownership interest of the corporate entity’ means direct or indirect ownership of 50 % plus one of the shares or voting rights or other ownership interest in the corporate entity. [...] Control of the legal entity via other means shall in any case include the possibility to exercise: (a) in the case of a corporate entity, the majority of the voting rights in the corporate entity, whether or not shared by persons acting in concert; (b) the right to appoint or remove a majority of the members of the board or the administrative, management or supervisory body or similar officers of the legal entity; (c) relevant veto rights or decision rights attached to the share of the corporate entity; (d) decisions regarding distribution of profit of the legal entity or leading to a shift in assets in the legal entity. [...] formal or informal agreements with owners, members or the legal entities, provisions in the articles of association, partnership agreements, syndication agreements, or equivalent documents or agreements depending on the specific characteristics of the legal entity, as well as voting arrangements; (b) relationships between family members; (c) use of formal or informal nominee arrangements.",
+      "sub_requirements": [
+        "Control through ownership interest: 50% plus one of shares or voting rights",
+        "Control via other means always includes: majority of voting rights, board appointment or removal rights, relevant veto or decision rights, profit-distribution decisions",
+        "Other means may include agreements, articles of association, voting arrangements, family relationships and nominee arrangements",
+        "Indirect control: direct control identified on each level of the structure"
+      ],
+      "criticality": "high",
+      "academy_cases": [
+        "OWN-01"
+      ]
+    },
+    {
+      "id": "AMLR-art54",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "In a multi-layered structure where ownership and control sit on different layers of a chain, the beneficial owners include the people who control an entity that holds a direct ownership interest, and the people who own an interest in an entity that controls the corporate entity: so a person can be a beneficial owner without reaching 25% by the multiplication method.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 54",
+      "topic": "UBO",
+      "priority": "high",
+      "source_url": "law.html?celex=32024R1624&art=54",
+      "detected": "2026-09-29",
+      "verbatim": "Where corporate entities are owned through a multi-layered ownership structure, and in one or more chains of that structure the ownership interest and the control coexist in relation to different layers of the chain, the beneficial owners shall be: (a) the natural persons who control, directly or indirectly, through ownership interest or via other means, legal entities that have a direct ownership interest in the corporate entity, whether individually or cumulatively; (b) the natural persons who, whether individually or cumulatively, directly or indirectly, have an ownership interest in the corporate entity that controls, through ownership interest or via other means, the corporate entity, directly or indirectly.",
+      "sub_requirements": [
+        "Map every chain and mark, layer by layer, where ownership and where control sit",
+        "Controllers of an entity that holds a direct ownership interest are beneficial owners",
+        "Holders of an ownership interest in the entity that controls the corporate entity are beneficial owners"
+      ],
+      "criticality": "high",
+      "academy_cases": [
+        "OWN-01"
+      ]
+    },
+    {
+      "id": "AMLR-art55",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "Where a trust, similar legal arrangement or foundation-type entity owns or controls a corporate entity, the beneficial owners are the beneficial owners of that trust, arrangement or entity (the natural persons behind it, identified under Arts 57 and 58).",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 55",
+      "topic": "UBO",
+      "priority": "medium",
+      "source_url": "law.html?celex=32024R1624&art=55",
+      "detected": "2026-09-29",
+      "verbatim": "Where legal entities referred to in Article 57 or legal arrangements have an ownership interest in the corporate entity, whether individually or cumulatively, or control, directly or indirectly, the corporate entity, through ownership interest or via other means, the beneficial owners shall be the natural persons who are the beneficial owners of the legal entities referred to in Article 57 or of the legal arrangements.",
+      "sub_requirements": [
+        "Look through a trust, legal arrangement or foundation-type entity to its beneficial owners"
+      ],
+      "criticality": "medium",
+      "academy_cases": [
+        "OWN-01"
+      ]
+    },
+    {
+      "id": "AMLR-art57",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "For foundations and similar entities that are not ordinary corporate entities, every one of these is a beneficial owner: the founders, the members of the management body (management and supervisory functions), the beneficiaries (unless only a class is identified under Art. 59) and anyone else who controls the entity. Where a legal entity holds one of these positions, its own beneficial owners are added.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 57",
+      "topic": "UBO",
+      "priority": "medium",
+      "source_url": "law.html?celex=32024R1624&art=57",
+      "detected": "2026-09-29",
+      "verbatim": "In the case of legal entities other than those referred to in Article 51, similar to express trust, such as foundations, the beneficial owners shall be all the following natural persons: (a) the founders; (b) the members of the management body in its management function; (c) the members of the management body in its supervisory function; (d) the beneficiaries, unless Article 59 applies; (e) any other natural person, who controls directly or indirectly the legal entity. [...] In cases where legal entities referred to in paragraph 1 belong to multi-layered control structures, where any of the positions listed in paragraph 1 is held by a legal entity, beneficial owners of the legal entity referred to in paragraph 1 shall be: (a) the natural persons listed in paragraph 1; and (b) the beneficial owners of the legal entities that occupy any of the positions listed in paragraph 1.",
+      "sub_requirements": [
+        "Identify founders, management and supervisory body members, beneficiaries and any other controller",
+        "Where a position is held by a legal entity, also identify that entity's beneficial owners",
+        "Beneficiaries not yet determined: identify the class and its characteristics (Art. 59)"
+      ],
+      "criticality": "medium",
+      "academy_cases": [],
+      "who_note": "The list of entity types covered is notified by each Member State; check the national list for the foreign or domestic entity you are dealing with."
+    },
+    {
+      "id": "AMLR-art58",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "For an express trust, every one of these is a beneficial owner: the settlors, the trustees, the protectors (if any), the beneficiaries (unless Art. 59 or 60 applies) and any other natural person with ultimate control, through ownership or other means, including through a chain. Similar arrangements follow the same logic, and legal entities in those positions are looked through.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 58",
+      "topic": "UBO",
+      "priority": "high",
+      "source_url": "law.html?celex=32024R1624&art=58",
+      "detected": "2026-09-29",
+      "verbatim": "The beneficial owners of express trusts shall be all the following natural persons: (a) the settlors; (b) the trustees; (c) the protectors, if any; (d) the beneficiaries, unless Article 59 or 60 applies; (e) any other natural persons exercising ultimate control over the express trust by means of direct or indirect ownership or by other means, including through a chain of control or ownership. [...] The beneficial owners of other legal arrangements similar to express trusts shall be the natural persons holding equivalent or similar positions to those referred to in paragraph 1. [...] Where legal arrangements belong to multi-layered control structures and where any of the positions listed in paragraph 1 is held by a legal entity, the beneficial owners of the legal arrangement shall be: (a) the natural persons listed in paragraph 1; and (b) the beneficial owners of the legal entities that occupy any of the positions listed in paragraph 1.",
+      "sub_requirements": [
+        "Settlors, trustees, protectors, beneficiaries and any other person with ultimate control are all beneficial owners",
+        "Equivalent positions in similar legal arrangements are treated the same way",
+        "Where a legal entity holds a position, its beneficial owners are added"
+      ],
+      "criticality": "high",
+      "academy_cases": []
+    },
+    {
+      "id": "AMLR-art63",
+      "who": [
+        "bank",
+        "pi",
+        "emi",
+        "casp",
+        "invfirm",
+        "fund",
+        "other"
+      ],
+      "what": "As a legal entity yourself, hold adequate, accurate and up-to-date beneficial ownership information, give it to obliged entities doing CDD on you, report it to the central register without undue delay (changes within 28 calendar days), verify it at least annually, and keep records of the steps taken if no beneficial owner can be identified.",
+      "deadline": "2027-07-10",
+      "status": "scheduled",
+      "legal_basis": "AMLR Art. 63",
+      "topic": "UBO",
+      "priority": "high",
+      "source_url": "law.html?celex=32024R1624&art=63",
+      "detected": "2026-09-29",
+      "verbatim": "All legal entities created in the Union shall obtain and hold adequate, accurate and up-to-date beneficial ownership information. Legal entities shall provide, in addition to information about their legal owners, information on the beneficial owners to obliged entities where the obliged entities are applying customer due diligence measures in accordance with Chapter III. [...] A legal entity shall report beneficial ownership information to the central register without undue delay after its creation. Any change to that information shall be reported to the central register without undue delay and, in any case, within 28 calendar days thereof. The legal entity shall regularly verify that it holds up-to-date information on its beneficial ownership. As a minimum, such verification shall be performed annually [...]. [...] legal entities shall keep records of the actions taken in order to identify their beneficial owners. [...] Legal entities shall make the information collected pursuant to this Article available, upon request and without delay, to competent authorities.",
+      "sub_requirements": [
+        "Obtain and hold adequate, accurate and up-to-date beneficial ownership information",
+        "Provide beneficial ownership information to obliged entities applying CDD",
+        "Report to the central register without undue delay; changes within 28 calendar days",
+        "Verify the information at least annually",
+        "Where no beneficial owner can be identified: keep records of the actions taken and give the Art. 63(4) statement and senior managing officials' details",
+        "Make the information available to competent authorities upon request and without delay"
+      ],
+      "criticality": "high",
+      "academy_cases": [],
+      "who_note": "This obligation falls on every legal entity created in the Union, including the firm itself as a customer of its banks and other obliged entities. Exceptions are in Art. 65."
     }
   ]
 }
