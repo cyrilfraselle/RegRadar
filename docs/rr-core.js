@@ -248,7 +248,6 @@
 
   /* ═════════════════ the read-only bridge ═════════════════ */
   var MODULES = [
-    { id: 'cases', key: 'regradar-cases', label: 'Cases and STR', page: 'cases.html' },
     { id: 'bwra', key: 'regradar-bwra', label: 'Business risk', page: 'risk-assessment.html' },
     { id: 'cra', key: 'regradar-cra', label: 'Customer risk', page: 'customer-risk.html' },
     { id: 'obligations', key: 'regradar-obligations-mine', label: 'Obligations (your notes)', page: 'workspace.html' },
@@ -260,7 +259,8 @@
     { id: 'controls', key: 'regradar-controls-mine', label: 'Controls (Compliance workspace)', page: 'workspace.html?view=controls', migrated: true },
     { id: 'policies', key: 'regradar-policies', label: 'Policies', page: 'policies.html', migrated: true },
     { id: 'actions', key: 'regradar-actions', label: 'Issues and actions', page: 'actions.html', migrated: true },
-    { id: 'impact', key: 'regradar-impact', label: 'Change impact', page: 'impact.html', migrated: true }
+    { id: 'impact', key: 'regradar-impact', label: 'Change impact', page: 'impact.html', migrated: true },
+    { id: 'cases', key: 'regradar-cases', label: 'Cases and STR', page: 'cases.html', migrated: true }
   ];
   function moduleById(id) {
     var i;
@@ -314,23 +314,6 @@
     }
     function link(type, from, to, m) { out.links.push({ type: type, from: from, to: to, module: m.id }); }
     function report(m, r, n, note) { out.report.push({ module: m.id, key: m.key, label: m.label, page: m.page, found: !!r.found, error: r.error || '', records: n || 0, note: note || '' }); }
-
-    /* cases (decision target in working days, as set on the Cases page) */
-    (function () {
-      var m = moduleById('cases'), r = parse(m), n = 0, db = r.value;
-      if (!r.found || r.error || !db || !Array.isArray(db.cases)) { report(m, r, 0); return; }
-      var s = db.settings || {}, caseDays = +s.caseDays || 10, hol = s.holidays || [];
-      (s.team || []).forEach(function (nm) { person(nm, { module: m.id }); });
-      db.cases.forEach(function (c) {
-        var opened = String(c.openedAt || '').slice(0, 10), open = ['open', 'review', 'mlro'].indexOf(c.status) !== -1;
-        var due = open && dates.valid(opened) ? dates.addWorkingDays(opened, caseDays, hol) : null;
-        add(m, { id: 'CASE:' + c.id, type: 'case', title: c.title || c.id, status: c.status || 'open', owner: person(c.assignee, { module: m.id }), due: due,
-          data: { ref: c.id, priority: c.priority || '', typology: c.typology || '', opened_on: opened,
-            date_source: due ? 'opened ' + opened + ' + ' + caseDays + ' working days (Cases page setting)' : '' } }, c.id);
-        n++;
-      });
-      report(m, r, n);
-    })();
 
     /* business-wide risk assessment */
     (function () {
@@ -964,7 +947,7 @@
     /* The module files that hold a migration. RR.boot loads any that is not on the page yet (same
        folder as rr-core.js), so pages that only open the spine need no extra script tag. `order`
        matters: controls first, because findings and policies link to them. */
-    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'policies', file: 'policies-store.js' }, { id: 'actions', file: 'actions-store.js' }, { id: 'impact', file: 'impact-store.js' }],
+    migrationFiles: [{ id: 'controls', file: 'controls-store.js' }, { id: 'policies', file: 'policies-store.js' }, { id: 'actions', file: 'actions-store.js' }, { id: 'impact', file: 'impact-store.js' }, { id: 'cases', file: 'cases-store.js' }],
     runMigrations: function (spine, read, ref) {
       var who = spine.actor(), out = [];
       RR.migrations.slice().sort(function (a, b) { return (a.order || 100) - (b.order || 100); }).forEach(function (m) {

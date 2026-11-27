@@ -1,7 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════
    RegRadar: monitoring alerts, case management and STR/SAR
 
-   Device-local (localStorage key 'regradar-cases'). Seeds with fictional
+   Kept on this device in the shared register (the data spine, docs/rr-core.js;
+   docs/cases-store.js maps it). The old localStorage key 'regradar-cases' is
+   imported once and kept as a backup; if the register cannot be opened the
+   page falls back to that key. Seeds with fictional
    demo data from data/cases-seed.json. Typologies and red-flag checklists
    come from data/cases-typologies.json (shared vocabulary with the
    Academy casebook). Law quotations are extracted at load time from
@@ -38,6 +41,7 @@
     apply: { art: '90', ref: 'Art. 90', from: 'It shall apply from 10 July 2027', to: 'to which it shall apply from 10 July 2029.' }
   };
 
+  var SP = null, BASE = null, CS = window.CasesStore, storageOk = true;
   var DB = null, TYPO = { typologies: [], common: [] }, LAW = null, OB = null, SEED = null, QUOTES = {};
   var UI = { tab: 'alerts', alert: null, case: null, csub: 'summary', f: { status: 'open', priority: '', typology: '', assignee: '', q: '', sort: 'sla' }, cf: { status: 'active', q: '' }, mdet: false, focus: null, opener: null };
 
@@ -77,7 +81,31 @@
     return d;
   }
   function loadDB() { try { var r = localStorage.getItem(KEY); if (r) { var d = JSON.parse(r); if (d && Array.isArray(d.alerts) && Array.isArray(d.cases)) return normalize(d); } } catch (e) { /* storage blocked */ } return null; }
-  function save() { DB.updatedAt = nowIso(); try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { toast('Could not save: browser storage is blocked or full. Export a backup.'); } }
+  function lsGet() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function save() {
+    DB.updatedAt = nowIso();
+    if (SP) {
+      var res = CS.commit(SP, DB, { _b: BASE });
+      storageOk = !res.errors.length && SP.saveOk();
+      if (!storageOk) toast('Could not save: browser storage is blocked or full. Export a backup.');
+      return;
+    }
+    try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { toast('Could not save: browser storage is blocked or full. Export a backup.'); }
+  }
+  /* Open the shared register and read the cases from it. Returns null (the page keeps using the old key) when the
+     register cannot be opened or written, or when old data exists but could not be imported. */
+  async function loadFromSpine() {
+    if (!window.RR || !CS) return null;
+    try {
+      var sp = await window.RR.shared();
+      if (sp.saveOk && !sp.saveOk()) return null;
+      if (!sp.getSetting(CS.DONE) && lsGet()) return null;       // old data exists but was not imported (unreadable): do not hide it
+      var d = null;
+      if (sp.getSetting(CS.INIT)) { d = CS.read(sp); BASE = d._b; delete d._b; d = normalize(d); }
+      SP = sp;
+      return d || false;                                          // false: first run on the register, seed it
+    } catch (e) { SP = null; return null; }
+  }
   function emptyDB() { return normalize({ v: 1, settings: DEF(), alerts: [], cases: [], filings: [], requests: [], seq: {} }); }
 
   function narrDefaults() {
@@ -823,7 +851,7 @@
       fld('Triage target, low', 'st-sl', '<input class="in" type="number" min="1" max="60" id="st-sl" value="' + s.sla.low + '">') + fld('Case decision target (working days)', 'st-cd', '<input class="in" type="number" min="1" max="90" id="st-cd" value="' + s.caseDays + '">') +
       fld('File after MLRO decision (working days)', 'st-fd', '<input class="in" type="number" min="1" max="30" id="st-fd" value="' + s.fileDays + '">', 'The law says "promptly", with no fixed days. This is your own target.') + fld('Chase FIU acknowledgement after (working days)', 'st-ad', '<input class="in" type="number" min="1" max="30" id="st-ad" value="' + s.ackDays + '">') +
       fld('Non-working days (YYYY-MM-DD, comma or line separated)', 'st-hol', '<textarea class="in" id="st-hol" rows="2">' + esc(s.holidays.join(', ')) + '</textarea>', 'Public holidays in your Member State. Weekends are always skipped.', 'full') + '</div>' +
-      '<div class="blk"><h3>Your data</h3><p class="hint" style="margin-bottom:8px">Stored only in this browser (<span class="mono">regradar-cases</span>). Export a backup before clearing site data.</p><div class="row-actions" style="margin-top:0"><button class="btn sm" type="button" data-act="exp-json">Export backup (JSON)</button><label class="btn sm" for="imp-file" style="cursor:pointer">Import backup</label><input class="sr" type="file" id="imp-file" accept=".json,application/json"><button class="btn sm" type="button" data-act="export-alerts">Export alerts (CSV)</button>' +
+      '<div class="blk"><h3>Your data</h3><p class="hint" style="margin-bottom:8px">Stored only in this browser (the shared register; the old <span class="mono">regradar-cases</span> copy is kept as a backup). Export a backup before clearing site data.</p><div class="row-actions" style="margin-top:0"><button class="btn sm" type="button" data-act="exp-json">Export backup (JSON)</button><label class="btn sm" for="imp-file" style="cursor:pointer">Import backup</label><input class="sr" type="file" id="imp-file" accept=".json,application/json"><button class="btn sm" type="button" data-act="export-alerts">Export alerts (CSV)</button>' +
       '<button class="btn sm danger" type="button" data-act="reset-demo">Reset to demo data</button><button class="btn sm danger" type="button" data-act="erase">Erase all data</button></div></div>',
       { wide: true, submit: 'Save settings', onSubmit: function () {
         var n = function (id, d, lo, hi) { var x = parseInt(val(id), 10); return isNaN(x) ? d : Math.min(hi, Math.max(lo, x)); };
@@ -996,8 +1024,10 @@
     var r = await Promise.all([getJSON('data/cases-seed.json'), getJSON('data/cases-typologies.json'), getJSON('data/laws/32024R1624_EN.json'), getJSON('data/obligations.json')]);
     SEED = r[0]; if (r[1]) TYPO = r[1]; if (!TYPO.typologies.length) TYPO.typologies = [{ id: 'other', label: 'Other unusual activity', redFlags: [] }]; LAW = r[2]; OB = r[3] && r[3].obligations;
     buildQuotes();
-    DB = loadDB();
-    if (!DB) { DB = SEED ? hydrate(SEED) : emptyDB(); save(); }
+    var fromSpine = await loadFromSpine();
+    if (fromSpine) DB = fromSpine;
+    else if (fromSpine === false) { DB = SEED ? hydrate(SEED) : emptyDB(); BASE = {}; save(); }
+    else { DB = loadDB(); if (!DB) { DB = SEED ? hydrate(SEED) : emptyDB(); save(); } }
     $('tipLink').innerHTML = lawLink('73', 'AMLR Art. 73(1)') + ' prohibits telling the customer or other third persons that a transaction or activity is being assessed or reported.';
     var p = new URLSearchParams(location.search);
     if (p.get('tab') === 'cases' || p.get('case')) UI.tab = 'cases';
