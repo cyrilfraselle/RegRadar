@@ -1,17 +1,17 @@
 {
  "_meta": {
   "purpose": "Numbers for this run of the RegWatch engine v2. Generated; see strategy/scraper-audit.md for definitions.",
-  "generated": "2026-11-26T16:20:40+00:00"
+  "generated": "2026-11-27T16:04:23+00:00"
  },
  "run": {
-  "duration_s": 91.0,
-  "requests": 34,
-  "bytes": 1919531,
+  "duration_s": 76.8,
+  "requests": 28,
+  "bytes": 1431391,
   "not_modified_304": 0,
   "retries": 0,
   "http_errors": 0,
   "robots_blocked": 0,
-  "politeness_wait_s": 72.0,
+  "politeness_wait_s": 63.7,
   "budget": 220,
   "errors": []
  },
@@ -28,38 +28,38 @@
   }
  },
  "entries": {
-  "total": 632,
-  "in_scope": 273,
-  "new": 24,
+  "total": 644,
+  "in_scope": 277,
+  "new": 12,
   "changed": 0,
   "withdrawn": 0,
   "pending_docs": 0
  },
  "documents": {
-  "total": 255,
-  "new": 10,
+  "total": 259,
+  "new": 4,
   "changed": 0,
   "unchanged": 0,
   "errors": 0,
-  "paragraphs": 15307,
-  "corpus_bytes": 4894920,
+  "paragraphs": 15357,
+  "corpus_bytes": 4911864,
   "corpus_warning": false
  },
  "freshness_hours": {
   "this_run": {
-   "n": 22,
-   "p50": 16.3,
-   "p90": 16.3
+   "n": 12,
+   "p50": 16.1,
+   "p90": 37.7
   },
   "last_30_days": {
-   "n": 200,
+   "n": 212,
    "p50": 15.5,
    "p90": 38.2
   },
   "definition": "first_seen (engine) minus the publication date the source states (date only, so up to 24 h of the figure is the date's own precision). Entries found on the engine's first run are excluded from last_30_days because they are backfill."
  },
- "proposals_new": 6,
- "deadlines": 136,
+ "proposals_new": 0,
+ "deadlines": 137,
  "coverage": [
   {
    "source": "eba-news",
@@ -86,20 +86,20 @@
  "feed": {
   "cards": 400,
   "tiers": {
-   "important": 183,
+   "important": 186,
    "critical": 66,
-   "info": 151
+   "info": 148
   },
-  "news_cards": 144,
-  "news_dropped": 72,
-  "clustered_items": 523,
+  "news_cards": 146,
+  "news_dropped": 68,
+  "clustered_items": 526,
   "f028": {
-   "archive_items": 828,
+   "archive_items": 833,
    "before": {
-    "critical": 292,
-    "share": 0.353,
-    "informational": 146,
-    "distinct_stories": 275
+    "critical": 293,
+    "share": 0.352,
+    "informational": 147,
+    "distinct_stories": 276
    },
    "after": {
     "critical": 3,

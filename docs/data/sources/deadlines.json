@@ -8,8 +8,8 @@
    "reporting deadline",
    "entry into force"
   ],
-  "generated": "2026-11-26T16:20:40+00:00",
-  "count": 136
+  "generated": "2026-11-27T16:04:23+00:00",
+  "count": 137
  },
  "deadlines": [
   {
@@ -976,6 +976,17 @@
    "source_doc_id": "celex-32026R2616",
    "source": "eurlex-cellar-ojl-recent",
    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2616",
+   "confidence": "high",
+   "method": "structured: CELLAR resource_legal_date_entry-into-force"
+  },
+  {
+   "id": "67e321f63d52",
+   "date": "2026-11-24",
+   "kind": "entry into force",
+   "title": "Political and Security Committee Decision (CFSP) 2026/2642 of 24 November 2026 on the reconfirmation of the authorisation of the European Union military operation in the Mediterranean (EUNAVFOR MED IRINI) (EUNAVFOR MED IRINI/5/2026)",
+   "source_doc_id": "celex-32026D2642",
+   "source": "eurlex-cellar-ojl-recent",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2642",
    "confidence": "high",
    "method": "structured: CELLAR resource_legal_date_entry-into-force"
   },

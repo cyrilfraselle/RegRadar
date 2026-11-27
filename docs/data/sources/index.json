@@ -1,9 +1,9 @@
 {
  "_meta": {
   "purpose": "Index of extracted documents in docs/data/sources/docs/. Generated.",
-  "generated": "2026-11-26T16:20:40+00:00",
-  "count": 255,
-  "corpus_bytes": 4894920
+  "generated": "2026-11-27T16:04:23+00:00",
+  "count": 259,
+  "corpus_bytes": 4911864
  },
  "documents": [
   {
@@ -2277,6 +2277,28 @@
    "paragraphs": 3
   },
   {
+   "id": "amla-news-567bf8308331",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Euro Finance Week: AMLA Executive Board Member Derville Rowland holds roundtable with financial sector leaders",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/euro-finance-week-amla-executive-board-member-derville-rowland-holds-roundtable-financial-sector-0_en",
+   "publication_date": "2026-11-27",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "d39ce6780f87863b1f06f55ccef4f9e07c0cac3c1d17faf5efc10322a10d914c",
+   "retrieved": "2026-11-27T16:04:23+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1170,
+   "truncated": false,
+   "topics": [
+    "governance-risk-assessment"
+   ],
+   "parent": null,
+   "paragraphs": 4
+  },
+  {
    "id": "amla-news-5ad949d8f9fd",
    "source": "amla-news",
    "authority": "AMLA",
@@ -2549,6 +2571,26 @@
    "paragraphs": 4
   },
   {
+   "id": "amla-news-b9931ca39b9f",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Getting ready for AI: Executive Director Nicolas Vasse at ESMA Data Day 2026",
+   "url": "https://www.amla.europa.eu/news-media/news-articles/getting-ready-ai-executive-director-nicolas-vasse-esma-data-day-2026_en",
+   "publication_date": "2026-11-26",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "2cda522980a550c2d01d2c7ee328a2bca1358802d678502b61a1785cf2104bf1",
+   "retrieved": "2026-11-27T16:04:23+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 1451,
+   "truncated": false,
+   "topics": [],
+   "parent": null,
+   "paragraphs": 6
+  },
+  {
    "id": "amla-news-bb51330afd2e",
    "source": "amla-news",
    "authority": "AMLA",
@@ -2740,6 +2782,28 @@
    ],
    "parent": null,
    "paragraphs": 7
+  },
+  {
+   "id": "amla-news-f329fa5cdf36",
+   "source": "amla-news",
+   "authority": "AMLA",
+   "title": "Strengthening FIU cooperation: AMLA hosts Interoperability Working Group for EU FIUs",
+   "url": "https://www.amla.europa.eu/strengthening-fiu-cooperation-amla-hosts-interoperability-working-group-eu-fius_en",
+   "publication_date": "2026-11-26",
+   "type": "supervisory_communication",
+   "status": "published",
+   "language": "en",
+   "version_hash": "002e0c13b1adaa63852d600af6f0f3903ba1f207d928c1bbe69cc02c6aa5ca38",
+   "retrieved": "2026-11-27T16:04:23+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2013,
+   "truncated": false,
+   "topics": [
+    "reporting-str"
+   ],
+   "parent": null,
+   "paragraphs": 8
   },
   {
    "id": "amla-news-f47b90ce2410",
@@ -3792,6 +3856,28 @@
    ],
    "parent": null,
    "paragraphs": 58
+  },
+  {
+   "id": "celex-32026D2642",
+   "source": "eurlex-cellar-ojl-recent",
+   "authority": "EU Publications Office (EUR-Lex data)",
+   "title": "Political and Security Committee Decision (CFSP) 2026/2642 of 24 November 2026 on the reconfirmation of the authorisation of the European Union military operation in the Mediterranean (EUNAVFOR MED IRINI) (EUNAVFOR MED IRINI/5/2026)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D2642",
+   "publication_date": "2026-11-27",
+   "type": "legislation",
+   "status": "in force",
+   "language": "en",
+   "version_hash": "eee5a1b14afc7e7e898e5c7a383c1b714938ac1a152d04bc6323ccbc892a630f",
+   "retrieved": "2026-11-27T16:04:23+00:00",
+   "format": "html",
+   "pages_total": null,
+   "chars_stored": 2674,
+   "truncated": false,
+   "topics": [
+    "sanctions"
+   ],
+   "parent": null,
+   "paragraphs": 32
   },
   {
    "id": "celex-32026R0046",
