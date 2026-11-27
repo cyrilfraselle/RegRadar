@@ -9,6 +9,7 @@ through the script review gate (`academy/SCRIPT_REVIEW.md`) **before** anything 
 | 02 | `aml-basics` | Effort follows risk | 58 s | Built · `docs/film-effort-follows-risk.html` · script v2 signed off ([`SIGNOFF.md`](SIGNOFF.md)) · build notes [`BUILD-NOTES.md`](BUILD-NOTES.md) |
 | 03 | `cdd-kyc` | Know who, know why | 60 s | Built · `docs/film-know-who-know-why.html` · script v2 signed off · [`BUILD-NOTES.md`](BUILD-NOTES.md) |
 | 04 | `beneficial-ownership` | Look through | 60 s | Built · `docs/film-look-through.html` · script v2 signed off · [`BUILD-NOTES.md`](BUILD-NOTES.md) |
+| 06 | `peps` | Who is behind the title | 60 s | Script v1 only (`peps.script.md`): ledger self-checked, independent check and owner approval pending, nothing built |
 
 Each `<id>.script.md` holds the brief, the scene-by-scene storyboard (timecodes, visual, kinetic
 type, caption) and the numbered claim ledger. When a film is built, its ledger moves next to the
