@@ -36,3 +36,8 @@
 - **D3 = A** (vocabulary): "FIU" everywhere, CTIF-CFI cited as the Belgian example.
 - **Merge** approved for #60, #59, #56, #52, #49, #44 (merged to main by the owner's instruction). Owner asked to close old PRs and open the pending ones on GitHub; owner asked to start the Max register page in Kanban view.
 - Max walker: owner says the walk is still not natural; they will come back to it later (options: trace the reference MP4 frames after licence and tools decision, or an illustrator).
+
+## 2026-11-25 (answers to the 2026-11-24 digest, replies sent 24 Nov 09:44 to 09:45)
+- **D1 = A** (Register Kanban, PR #64): keep it as a separate page "Register board", review in a week. Not merged; the owner merges.
+- **D2 = A** (PR #62): launch the independent legal review (CHECK stream), then propose the merge.
+- **D3 = B** (UBO calculator, PR #63): pause until the review of #62 is finished.
