@@ -4740,6 +4740,238 @@
      ]
     }
    ]
+  },
+  {
+   "id": "records-data",
+   "title": "Records, personal data and information sharing",
+   "scenes": [
+    {
+     "title": "What the firm keeps",
+     "caption": "The firm keeps: copies of the documents and information from customer due diligence; a record of each assessment of a possible suspicion, whether or not a report to the FIU follows, and a copy of any report; supporting evidence and records of transactions; and, for partnerships for information sharing, the copies and a record of every instance of sharing.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 18,
+       "w": 450,
+       "h": 44,
+       "text": "CDD documents and information",
+       "tone": "brand",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 82,
+       "w": 450,
+       "h": 44,
+       "text": "Assessments of possible suspicions, and any report",
+       "tone": "violet",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 146,
+       "w": 450,
+       "h": 44,
+       "text": "Transaction evidence and records",
+       "tone": "brand",
+       "d": 1.5
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 210,
+       "w": 450,
+       "h": 44,
+       "text": "Partnership records",
+       "tone": "ok",
+       "d": 2.1
+      }
+     ]
+    },
+    {
+     "title": "Keep it whole",
+     "caption": "Records are not redacted. A firm may keep a reference instead of a copy, but only if it can give the information to competent authorities immediately and it cannot be modified or altered. The categories and the retrieval procedure are set out in the firm's internal procedures.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 26,
+       "w": 450,
+       "h": 56,
+       "text": "Not redacted",
+       "tone": "warn",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 450,
+       "h": 56,
+       "text": "A reference can replace a copy only if it is immediate and unalterable",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 194,
+       "w": 450,
+       "h": 56,
+       "text": "Written into the internal procedures",
+       "tone": "ok",
+       "d": 1.5
+      }
+     ]
+    },
+    {
+     "title": "Five years, then delete",
+     "caption": "The default is five years from the end of the business relationship, from the occasional transaction, or from the refusal. Personal data are then deleted, without prejudice to retention periods under other law. Authorities may require further retention case by case, up to five more years.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 26,
+       "w": 450,
+       "h": 56,
+       "text": "5 years from the end",
+       "tone": "brand",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 450,
+       "h": 56,
+       "text": "Then delete personal data",
+       "tone": "ok",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 194,
+       "w": 450,
+       "h": 56,
+       "text": "Authorities: up to 5 more years, case by case",
+       "tone": "violet",
+       "d": 1.5
+      }
+     ]
+    },
+    {
+     "title": "Answer fast",
+     "caption": "The firm has systems to respond fully and speedily to enquiries from its FIU or other competent authorities on whether it has had a business relationship with a named person in the last five years, and on its nature, through secure channels that keep the enquiry confidential.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 26,
+       "w": 450,
+       "h": 56,
+       "text": "Enquiry from the FIU or an authority",
+       "tone": "violet",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 450,
+       "h": 56,
+       "text": "Full and speedy answer, five years back",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 194,
+       "w": 450,
+       "h": 56,
+       "text": "Secure channel, full confidentiality",
+       "tone": "ok",
+       "d": 1.5
+      }
+     ]
+    },
+    {
+     "title": "Personal data limits",
+     "caption": "Special categories of data and data on criminal convictions may be processed only where strictly necessary, with safeguards. AML data are used only for preventing money laundering and terrorist financing, never for commercial purposes. Automated decisions need meaningful human intervention, and the customer can ask for an explanation and challenge the decision.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 26,
+       "w": 450,
+       "h": 56,
+       "text": "Strictly necessary, with safeguards",
+       "tone": "brand",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 450,
+       "h": 56,
+       "text": "AML purposes only, never commercial",
+       "tone": "warn",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 194,
+       "w": 450,
+       "h": 56,
+       "text": "Automated decision: a human checks",
+       "tone": "ok",
+       "d": 1.5
+      }
+     ]
+    },
+    {
+     "title": "Sharing in partnerships",
+     "caption": "Before joining a partnership for information sharing, the firm notifies its supervisor, who verifies the partnership's safeguards before it starts. Only the listed kinds of information may be exchanged, and only to the extent necessary. Every instance of sharing is recorded.",
+     "items": [
+      {
+       "t": "box",
+       "x": 15,
+       "y": 26,
+       "w": 450,
+       "h": 56,
+       "text": "Tell the supervisor first",
+       "tone": "violet",
+       "d": 0.3
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 110,
+       "w": 450,
+       "h": 56,
+       "text": "Only listed information, only what is necessary",
+       "tone": "brand",
+       "d": 0.9
+      },
+      {
+       "t": "box",
+       "x": 15,
+       "y": 194,
+       "w": 450,
+       "h": 56,
+       "text": "Record every instance",
+       "tone": "ok",
+       "d": 1.5
+      }
+     ]
+    }
+   ]
   }
  ]
 }

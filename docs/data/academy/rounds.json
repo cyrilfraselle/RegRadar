@@ -23,7 +23,8 @@
       "sanctions-screening": "Sanctions",
       "suspicious-transaction-reports": "STRs",
       "dora-mica-primer": "DORA, MiCA",
-      "governance": "Governance"
+      "governance": "Governance",
+      "records-data": "Records and data"
     }
   },
 
@@ -923,6 +924,165 @@
       "reading": [
         "AMLA guidelines on the extent of internal policies, procedures and controls (Art. 9(4), when published)"
       ]
+    },
+    {
+      "id": "g-records-sort",
+      "module": "records-data",
+      "type": "sort",
+      "title": "Which rule is it?",
+      "intro": "Sort each situation under the article that governs it. The firm is a fictional payment and e-money firm. Nothing is lost for a wrong answer.",
+      "minutes": 2,
+      "choices": [
+        {
+          "id": "rec",
+          "label": "Keep and provide records",
+          "hint": "Arts 77 and 78"
+        },
+        {
+          "id": "dat",
+          "label": "Handle personal data",
+          "hint": "Art. 76"
+        },
+        {
+          "id": "shr",
+          "label": "Share in a partnership",
+          "hint": "Art. 75"
+        }
+      ],
+      "practice": {
+        "id": "p",
+        "kicker": "Practice",
+        "text": "Health data about a customer appears in a document and the firm wants to process it.",
+        "hint": "Hint: it concerns special categories of personal data.",
+        "answer": "dat",
+        "why": "Special categories of data may be processed only to the extent strictly necessary for preventing money laundering and terrorist financing, with the safeguards in Art. 76(2) and (3).",
+        "cite": {
+          "celex": "32024R1624",
+          "art": "76",
+          "para": "1"
+        }
+      },
+      "cards": [
+        {
+          "id": "c1",
+          "kicker": "Onboarding",
+          "text": "A copy of the passport and the proof of address obtained during customer due diligence.",
+          "answer": "rec",
+          "why": "Copies of the documents and information obtained in customer due diligence are kept, and not redacted.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "77",
+            "para": "1"
+          }
+        },
+        {
+          "id": "c2",
+          "kicker": "Alert closed",
+          "text": "The note explaining why an alert was assessed and closed without a report to the FIU.",
+          "answer": "rec",
+          "why": "The record of the assessment, with the information and circumstances considered and the result, is kept whether or not a report is made.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "77",
+            "para": "1"
+          }
+        },
+        {
+          "id": "c3",
+          "kicker": "FIU enquiry",
+          "text": "The FIU asks whether the firm has had a relationship with a named person in the last five years.",
+          "answer": "rec",
+          "why": "The firm must have systems to answer fully and speedily, through secure channels, about relationships in the five years before the enquiry.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "78",
+            "para": ""
+          }
+        },
+        {
+          "id": "c4",
+          "kicker": "Marketing",
+          "text": "The sales team wants to use the KYC data to promote a new card.",
+          "answer": "dat",
+          "why": "Processing on the basis of the AMLR for commercial purposes is prohibited.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "76",
+            "para": "4"
+          }
+        },
+        {
+          "id": "c5",
+          "kicker": "Scoring tool",
+          "text": "A tool recommends refusing a customer, and a person reviews the file before the decision.",
+          "answer": "dat",
+          "why": "Decisions to refuse a customer that result from automated processes need meaningful human intervention.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "76",
+            "para": "5"
+          }
+        },
+        {
+          "id": "c6",
+          "kicker": "Convictions",
+          "text": "Data on criminal convictions are processed, and the firm separates allegations, investigations, proceedings and convictions.",
+          "answer": "dat",
+          "why": "Data on convictions and offences may be processed on conditions, including procedures that distinguish allegations, investigations, proceedings and convictions.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "76",
+            "para": "3"
+          }
+        },
+        {
+          "id": "c7",
+          "kicker": "New partnership",
+          "text": "Before the firm joins a partnership for information sharing, it tells its supervisor.",
+          "answer": "shr",
+          "why": "Firms intending to take part notify their supervisory authorities, which verify the safeguards before the partnership starts.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "75",
+            "para": "2"
+          }
+        },
+        {
+          "id": "c8",
+          "kicker": "What is shared",
+          "text": "Only information on the customer, risk factors, transactions and suspicions, and only as far as necessary, is exchanged.",
+          "answer": "shr",
+          "why": "Information exchanged is limited to a list of kinds of information, and only to the extent necessary for the partnership's activities.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "75",
+            "para": "3"
+          }
+        }
+      ],
+      "remember": [
+        "Keep the due diligence copies, the record of each assessment (even when no report follows), the transaction evidence and the partnership records, and do not redact them.",
+        "The default period is five years from the end of the relationship, then personal data are deleted, unless other law or an authority requires longer.",
+        "AML data are for AML purposes only; automated decisions need meaningful human intervention.",
+        "Before sharing in a partnership, tell the supervisor and record every instance."
+      ],
+      "law": [
+        {
+          "celex": "32024R1624",
+          "art": "77",
+          "para": "3",
+          "label": "Retention and deletion",
+          "quote": "The information referred to in paragraphs 1 and 2 shall be retained for a period of 5 years commencing on the date of the termination of the business relationship or on the date of the carrying out of the occasional transaction, or on the date of refusal to enter into a business relationship or carry out an occasional transaction. Without prejudice to retention periods for data collected for the purposes of other Union legal acts or national law complying with Regulation (EU) 2016/679, obliged entities shall delete personal data upon expiry of the five-year period."
+        },
+        {
+          "celex": "32024R1624",
+          "art": "76",
+          "para": "4",
+          "label": "No commercial use",
+          "quote": "The processing of personal data on the basis of this Regulation for commercial purposes shall be prohibited."
+        }
+      ],
+      "reading": ["Your national data-protection authority's guidance on retention", "Your supervisor's expectations on record keeping"]
     }
   ],
 
@@ -1125,6 +1285,47 @@
             "celex": "32024R1624",
             "art": "11",
             "para": "4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d-records",
+      "module": "records-data",
+      "title": "Delete my data",
+      "text": "Brindle Pay, a fictional payment and e-money firm. A former customer closed their account three years ago and writes: 'Delete everything you hold about me.' The AML file is the only thing left. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Explain that the AML records are kept until five years after the relationship ended, then deleted, and check whether other law requires anything longer",
+          "verdict": "best",
+          "consequence": "The five-year period runs from the end of the business relationship, and personal data are deleted when it expires, without prejudice to retention periods under other law.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "77",
+            "para": "3"
+          }
+        },
+        {
+          "id": "b",
+          "label": "Delete the whole file now to respect the request",
+          "verdict": "poor",
+          "consequence": "The AMLR requires the firm to keep the due diligence documents and the other records for five years from the end of the relationship, so deleting after three years is too early.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "77",
+            "para": "3"
+          }
+        },
+        {
+          "id": "c",
+          "label": "Keep the file for ever, to be safe",
+          "verdict": "poor",
+          "consequence": "When the five-year period expires, the firm deletes the personal data, unless another legal act or national law requires otherwise. Keeping it for ever is not what the rule says.",
+          "cite": {
+            "celex": "32024R1624",
+            "art": "77",
+            "para": "3"
           }
         }
       ]
