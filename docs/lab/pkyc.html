@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>pKYC par cohortes (concept CF Bank)</title>
+<style>
+/* Tokens and classes copied from docs/rr-ui.css so the file works alone and offline. */
+:root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+--bg:#F5F5F7;--surface:#FFF;--surface-2:#F2F2F5;--line:#E3E3E8;--line-strong:#8A8F9A;--text:#1D1D1F;--text-2:#515154;--text-3:#636369;
+--accent:#0A4FD6;--primary:#1D1D1F;--on-primary:#FFF;--live:#0A4FD6;--live-bg:#E8EFFD;--review:#8A4B00;--review-bg:#FBEFD9;--risk:#B3261E;--risk-bg:#FBE4E1;--done:#0B6E4C;--done-bg:#E3F4EC;
+--bar-ok:#0B6E4C;--bar-pre:#D98A1B;--bar-wait:#7D93C4;--bar-act:#B3261E;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A0E17;--surface:#121827;--surface-2:#182033;--line:#252E42;--line-strong:#647089;--text:#F5F7FB;--text-2:#AAB4C6;--text-3:#8D97A9;
+--accent:#9DBAFF;--primary:#F5F7FB;--on-primary:#05070C;--live:#9DBAFF;--live-bg:#16224A;--review:#FFC477;--review-bg:#33230C;--risk:#FFA3AB;--risk-bg:#3A1519;--done:#7FF0C6;--done-bg:#0E2C28;
+--bar-ok:#3DDCA7;--bar-pre:#FFB454;--bar-wait:#6C82B8;--bar-act:#FF7A85;color-scheme:dark}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:700;letter-spacing:-.025em;line-height:1.15;text-wrap:balance}
+a{color:var(--accent)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header{background:#05070C;color:#F5F7FB;padding:32px 0 28px}
+header h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.04em}
+header p{color:#AAB4C6;max-width:62ch;margin-top:10px;font-size:17px}
+header .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+header .tags span{border:1px dashed #647089;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;color:#F5F7FB}
+section{margin:28px 0}
+.h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.h h2{font-size:clamp(21px,2.4vw,28px)}
+.sub{color:var(--text-2);font-size:13px;max-width:75ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.note{border:1px dashed var(--line-strong);border-radius:16px;padding:12px 16px;background:var(--surface);margin-top:20px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-bottom:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.stat b{display:block;font-size:30px;letter-spacing:-.04em;line-height:1.05;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:13px;font-weight:600;color:var(--text-2);margin-top:6px}
+.stat small,.hint{font-size:12px;color:var(--text-3)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button,.btn{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);font-weight:600;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"],.btn.pri{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+label.fl{display:block;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:4px}
+label.fl output{color:var(--text);float:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:32px;accent-color:var(--accent)}
+label.chk{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:8px 0;font-size:14px;cursor:pointer}
+label.chk input{width:20px;height:20px;accent-color:var(--accent);flex:0 0 auto}
+.pill{display:inline-block;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--surface-2);color:var(--text-2);white-space:nowrap}
+.pill.done{background:var(--done-bg);color:var(--done)}.pill.review{background:var(--review-bg);color:var(--review)}
+.pill.risk{background:var(--risk-bg);color:var(--risk)}.pill.live{background:var(--live-bg);color:var(--live)}
+.bar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:var(--surface-2)}
+.bar i{display:block;height:100%}
+.ok{background:var(--bar-ok)}.pre{background:var(--bar-pre)}.wait{background:var(--bar-wait)}.act{background:var(--bar-act)}
+.legend{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px;color:var(--text-2);margin-bottom:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.rows{list-style:none}
+.cohort{display:grid;width:100%;text-align:left;grid-template-columns:minmax(0,1.3fr) minmax(0,2fr) minmax(0,1fr);gap:6px 16px;align-items:center;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:8px;cursor:pointer}
+.cohort[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.cohort b{display:block}.cohort small{display:block;font-size:13px;color:var(--text-2)}
+.dp{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.6fr) minmax(0,.9fr);gap:6px 14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.dp:last-child{border-bottom:0}.dp.head{font-size:12px;font-weight:600;color:var(--text-3)}
+.dp small{display:block;font-size:12px;color:var(--text-3)}
+.hist{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:end;height:130px;margin-top:8px}
+.hist div{display:flex;flex-direction:column;justify-content:flex-end;height:100%;text-align:center;font-size:12px;color:var(--text-2)}
+.hist i{display:block;background:var(--bar-wait);border-radius:6px 6px 0 0;margin-top:4px}
+.hist div:first-child i{background:var(--bar-act)}
+.tl{list-style:none;border-left:2px solid var(--line);margin-left:6px}
+.tl li{position:relative;padding:0 0 12px 16px}
+.tl li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.tl b{font-variant-numeric:tabular-nums}.tl small{display:block;color:var(--text-2);font-size:13px}
+.line{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center}
+.line:last-child{border-bottom:0}.line small{display:block;font-size:12px;color:var(--text-3)}
+blockquote{background:var(--surface-2);border-radius:10px;padding:14px;font-family:Georgia,serif;font-size:16px;line-height:1.6}
+ul.w{padding-left:18px;font-size:14px}ul.w li{margin:4px 0}
+h3{font-size:17px;margin-bottom:8px}
+footer{margin:32px 0 48px;font-size:13px;color:var(--text-3)}
+@media (max-width:640px){.cohort{grid-template-columns:1fr}.dp{grid-template-columns:1fr 1fr}.dp.head{display:none}.dp>div:nth-child(3){grid-column:1/-1}}
+@media print{header{background:none;color:#000}header p,header .tags span{color:#000}.noprint{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>pKYC par cohortes</h1>
+<p>La surveillance des transactions peut-elle remplacer la campagne de remédiation des clients à faible risque ?</p>
+<div class="tags"><span>Concept</span><span>Données fictives (CF Bank)</span><span>Chiffres illustratifs</span><span>Pas un avis juridique</span></div>
+</div></header>
+
+<main class="wrap">
+<p class="note"><b>La limite d'abord.</b> AMLR art. 26(2) : les informations du client sont mises à jour au moins tous les <b>5 ans</b> (1 an en risque plus élevé sous vigilance renforcée). Application : 10 juillet 2027. Cette maquette ne montre pas comment éviter la revue, mais ce qu'elle coûterait selon la preuve exigée.</p>
+
+<section class="noprint">
+<div class="h"><h2>Réglages</h2><button class="btn" id="reset" type="button">Revenir à l'hypothèse de départ</button></div>
+<div class="grid">
+<div class="card">
+<h3>Règle de preuve</h3>
+<div class="seg" role="group" aria-label="Règle de preuve">
+<button type="button" data-policy="pre">Présomption admise</button>
+<button type="button" data-policy="strict">Preuve positive exigée</button>
+</div>
+<p class="hint" id="policyHint" style="margin-top:8px"></p>
+<label class="chk"><input type="checkbox" id="app"><span>Confirmation active dans l'application (projet de lignes directrices §12(c))</span></label>
+<label class="chk"><input type="checkbox" id="reg"><span>Scénario de comparaison : registres externes</span></label>
+</div>
+<div class="card">
+<h3>Seuils</h3>
+<label class="fl" for="th">Confiance minimale pour présumer <output id="thO"></output></label>
+<input type="range" id="th" min="70" max="99" step="1">
+<label class="fl" for="sens">Sensibilité TBM (clients signalés sans changement) <output id="sensO"></output></label>
+<input type="range" id="sens" min="1" max="15" step="1">
+<label class="fl" for="win">Agir avant le plafond de <output id="winO"></output></label>
+<input type="range" id="win" min="3" max="24" step="3">
+<label class="fl" for="resp">Réponse à la confirmation <output id="respO"></output></label>
+<input type="range" id="resp" min="20" max="95" step="5">
+</div>
+</div>
+</section>
+
+<section aria-live="polite">
+<div class="h"><h2>Vue d'ensemble</h2><span class="sub">Toutes les valeurs sont illustratives. Touchez une cohorte pour la détailler.</span></div>
+<div class="stats" id="stats"></div>
+<div class="legend">
+<span><i class="ok"></i>Preuve sur chaque donnée</span><span><i class="pre"></i>Clos sur présomption (contesté)</span><span><i class="wait"></i>Preuve à obtenir plus tard</span><span><i class="act"></i>Action maintenant</span>
+</div>
+<div id="cohorts"></div>
+<details class="card"><summary><b>Exclus du dispositif</b> (régime de revue habituel)</summary><div id="excl"></div></details>
+</section>
+
+<section>
+<div class="h"><h2 id="detTitle">Cohorte</h2><span class="sub" id="detSub"></span></div>
+<div class="card">
+<div class="dp head"><div>Donnée</div><div>Ce que les transactions prouvent</div><div>État des clients</div><div>Confiance médiane, ancienneté de la preuve</div></div>
+<div id="matrix"></div>
+<div class="line"><div><b>PPE et sanctions</b><small>Aucune transaction ne le montre. Filtrage sur listes obligatoire, hors modèle (art. 20(1)(d) et (g), 26(4)).</small></div><span class="pill">Hors hypothèse</span></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>Temps restant avant le plafond de 5 ans</h3><div class="hist" id="hist"></div></div>
+</section>
+
+<section>
+<div class="h"><h2>Un client, ses preuves</h2><span class="sub">Trois personnes inventées. Les réglages ci-dessus s'appliquent.</span></div>
+<div class="seg noprint" id="who" role="group" aria-label="Client fictif"></div>
+<div class="grid" style="margin-top:12px">
+<div class="card"><h3>Chronologie</h3><ul class="tl" id="timeline"></ul></div>
+<div class="card"><h3>Aujourd'hui (novembre 2031, fictif)</h3><div id="custState"></div><p class="note" id="truth"></p></div>
+</div>
+</section>
+
+<section>
+<div class="h"><h2>Groupe de contrôle</h2><span class="sub">Tirage au hasard parmi les clients de la cohorte clos sans contact. Chacun est vérifié par un humain.</span></div>
+<div class="grid">
+<div class="card noprint">
+<label class="fl" for="n">Clients tirés <output id="nO"></output></label><input type="range" id="n" min="50" max="1500" step="50">
+<label class="fl" for="nr">Sans réponse <output id="nrO"></output></label><input type="range" id="nr" min="0" max="40" step="1">
+<label class="fl" for="tol">Plafond toléré de changements non détectés <output id="tolO"></output></label><input type="range" id="tol" min="1" max="15" step="1">
+<button class="btn" id="draw" type="button">Nouveau tirage</button>
+<p class="hint" style="margin-top:8px">Les changements sont simulés. Le plafond est un choix de direction, pas une règle.</p>
+</div>
+<div class="card" id="ctrl"></div>
+</div>
+</section>
+
+<section id="pack">
+<div class="h"><h2>Dossier pour le superviseur</h2><button class="btn pri noprint" type="button" onclick="print()">Imprimer</button></div>
+<div class="card">
+<p style="margin-bottom:10px"><span class="pill" id="claimState" style="white-space:normal"></span></p>
+<blockquote id="claim"></blockquote>
+<div class="grid" style="margin-top:16px">
+<div><h3>Réserves à dire</h3><ul class="w" id="warn"></ul></div>
+<div><h3>Pièces à fournir</h3><div id="proofs"></div></div>
+</div>
+</div>
+</section>
+
+<footer>CF Bank est fictive. Aucune donnée réelle, aucune connexion, aucun envoi. Les taux de changement, effectifs et comportements sont inventés. Sources et raisonnement : note interne « strategy/pkyc/theory.md ». Les orientations de l'AMLA et les normes techniques citées sont des projets au 27 novembre 2026.</footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+/* ── Invented model. h = yearly change rate (illustrative). ── */
+var DP=[
+ {id:'nom',n:'Noms',h:.003,flag:0},
+ {id:'naiss',n:'Naissance, n° national',h:0,flag:0,fixed:1},   /* immutable: proven once at onboarding */
+ {id:'nat',n:'Nationalité',h:.005,flag:0},
+ {id:'adr',n:'Adresse',h:.08,flag:1},
+ {id:'pays',n:'Pays de résidence',h:.01,flag:1},
+ {id:'emploi',n:'Profession, revenus',h:.10,flag:1},
+ {id:'objet',n:'Objet, origine des fonds',h:.05,flag:1},
+ {id:'ctrl',n:'Contrôle du compte, en vie',h:.01,flag:1}];
+var REG={nom:1,naiss:1,nat:1,adr:1,pays:1,ctrl:1};            /* what a register could prove (comparison only) */
+var APP={nom:1,nat:1,adr:1,pays:1,emploi:1,objet:1,ctrl:1};   /* what the customer can actively confirm */
+/* per data point: d = transactions or strong authentication prove it (share of customers); i = weak clue [share, likelihood ratio] */
+var BANK={emploi:{d:.95},objet:{d:.95},pays:{i:[.9,3]},adr:{i:[.8,1.2]},ctrl:{d:.9}};
+var COH=[
+ {id:'sal',n:'Salariés actifs',size:182000,ev:BANK},
+ {id:'pen',n:'Pensionnés réguliers',size:74000,ev:{emploi:{d:.97},objet:{d:.93},pays:{i:[.75,2.5]},adr:{i:[.6,1.15]},ctrl:{d:.6}}},
+ {id:'jeu',n:'Jeunes adultes et étudiants',size:41000,mult:{adr:2.2,emploi:2.5},ev:{emploi:{i:[.5,1.5]},objet:{d:.7},pays:{i:[.85,2.5]},adr:{i:[.7,1.1]},ctrl:{d:.92}}},
+ {id:'epa',n:'Épargnants peu actifs',size:38000,ev:{objet:{d:.35},pays:{i:[.2,1.5]},ctrl:{d:.35}}},
+ {id:'bva',n:'Bancassurance : vie et compte du groupe',size:22000,ev:{emploi:{d:.85},objet:{d:.8},pays:{i:[.8,2.5]},adr:{i:[.65,1.2]},ctrl:{d:.75}}},
+ {id:'vpm',n:'Vie : prime mensuelle automatique',size:19000,ev:{objet:{i:[.9,1.05]},ctrl:{i:[.9,1]}}},
+ {id:'vpu',n:'Vie : prime unique, sans interaction',size:9000,ev:{}}];
+var EXCL=[['PPE, proches et personnes associées',1900],['Pays tiers à haut risque',600],['Vigilance renforcée',7400],['Alerte ouverte ou doute (art. 33(5))',2100],['Comptes dormants sans aucun signal',11000],['Personnes morales (hors pilote)',28000]];
+var DEF={policy:'pre',app:false,reg:false,th:80,sens:4,win:12,resp:65,n:400,nr:15,tol:5,coh:'sal',who:0,seed:7};
+var S=Object.assign({},DEF);
+var M=2000; /* simulated customers per cohort */
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* Fixed random draws, so moving a slider changes the rule, not the people. */
+var POP=COH.map(function(c,ci){
+  var r=rng(101+ci),list=[];
+  for(var i=0;i<M;i++){
+    var p={clock:Math.floor(r()*60),fp:r(),v:{}};
+    DP.forEach(function(d){p.v[d.id]={age:p.clock+r()*12,ch:r(),det:r(),ev:r(),app:r(),ev2:r(),reg:r()};});
+    list.push(p);
+  }
+  return list;
+});
+
+function confidence(h,months,lr){
+  var c=.995*Math.pow(1-h,months/12);
+  if(lr){var o=c/(1-c)*lr;c=o/(1+o);}
+  return c;
+}
+function evalCustomer(c,p){
+  var res={dp:{},wrong:false},power=.4+.6*Math.min(1,S.sens/10),falseFlag=p.fp<S.sens/100;
+  var anyAct=false,anyPre=false;
+  DP.forEach(function(d){
+    var x=p.v[d.id],e=c.ev[d.id]||{},h=Math.min(.6,d.h*((c.mult||{})[d.id]||1));
+    var changed=x.ch<1-Math.pow(1-h,x.age/12);               /* simulated truth, unknown to the bank */
+    var direct=e.d!==undefined&&x.ev<e.d, weak=e.i&&x.ev<e.i[0];
+    /* current transactions show most changes of what they prove, few changes behind a weak clue, none otherwise */
+    var detect=changed&&d.flag&&x.det<(direct?.7+.25*power:weak?.25*power:0);
+    var st,fixed=false,lr=weak?e.i[1]:0,conf=confidence(h,x.age,lr);
+    if(d.fixed){st='ok';}
+    else if(S.reg&&REG[d.id]&&x.reg<.9){st='ok';fixed=true;conf=.995;}
+    else if(detect||(falseFlag&&(d.id==='objet'||d.id==='emploi'))){st='act';}   /* a contradiction beats any confirmation */
+    else if(S.app&&APP[d.id]&&x.app<S.resp/100*(changed?.8:1)){st='ok';fixed=x.ev2<.9||!changed;conf=.98;}
+    else if(direct){st='ok';conf=.97;}
+    else st=conf>=S.th/100?'pre':'act';
+    if(st==='act')anyAct=true;if(st==='pre')anyPre=true;
+    if(changed&&!fixed&&st!=='act')res.wrong=true;
+    res.dp[d.id]={st:st,conf:conf,age:st==='ok'?0:x.age};
+  });
+  var left=60-p.clock;
+  if(anyAct)res.st='act';
+  else if(!anyPre)res.st='ok';
+  else if(S.policy==='pre')res.st='pre';
+  else res.st=left<=S.win?'act':'wait';
+  res.left=left;
+  return res;
+}
+var KEYS=['ok','pre','wait','act'];
+function aggregate(c,i){
+  var a={c:c,n:{ok:0,pre:0,wait:0,act:0},closed:[],soon:0,hist:[0,0,0,0],dp:{}};
+  DP.forEach(function(d){a.dp[d.id]={ok:0,pre:0,act:0,conf:[],age:0};});
+  POP[i].forEach(function(p){
+    var r=evalCustomer(c,p);a.n[r.st]++;
+    if(r.st==='ok'||r.st==='pre')a.closed.push(r.wrong);
+    if(r.left<=S.win)a.soon++;
+    a.hist[r.left<=6?0:r.left<=12?1:r.left<=24?2:3]++;
+    DP.forEach(function(d){var q=r.dp[d.id],t=a.dp[d.id];t[q.st]++;t.conf.push(q.conf);t.age+=q.age;});
+  });
+  a.wrongRate=a.closed.length?a.closed.filter(Boolean).length/a.closed.length:0;
+  return a;
+}
+
+/* ── Exact one-sided binomial upper bound (Clopper-Pearson, 95 %). ── */
+function cdf(k,n,p){
+  var lg=n*Math.log(1-p),s=Math.exp(lg);
+  for(var i=1;i<=k;i++){lg+=Math.log((n-i+1)/i*p/(1-p));s+=Math.exp(lg);}
+  return s;
+}
+function upper(k,n){
+  if(k>=n)return 1;var lo=0,hi=1;
+  for(var j=0;j<40;j++){var m=(lo+hi)/2;if(cdf(k,n,m)>.05)lo=m;else hi=m;}
+  return hi;
+}
+
+var fmt=function(x){return Math.round(x).toLocaleString('fr-BE');};
+var pct=function(x,d){return (100*x).toLocaleString('fr-BE',{maximumFractionDigits:d===undefined?0:d,minimumFractionDigits:d||0})+' %';};
+function bar(n,total){return '<div class="bar" role="img" aria-label="'+KEYS.filter(function(k){return n[k]!==undefined;}).map(function(k){return {ok:'avec preuve',pre:'présumé',wait:'preuve à obtenir',act:'action'}[k]+' '+pct(n[k]/total);}).join(', ')+'">'+KEYS.map(function(k){return '<i class="'+k+'" style="width:'+(100*(n[k]||0)/total)+'%"></i>';}).join('')+'</div>';}
+function line(t,s,right,cls){return '<div class="line"><div><b>'+t+'</b>'+(s?'<small>'+s+'</small>':'')+'</div><span class="pill '+(cls||'')+'">'+right+'</span></div>';}
+
+/* ── Fictional customers ── */
+var PEOPLE=[
+ {tab:'Salariée stable',coh:'sal',clock:34,age:34,flag:[],truth:'Rien n\'a changé. La présomption tombe juste, mais la banque ne le sait que si elle le prouve.',
+  ev:[['01/2029','Dernière revue documentée','eID : identité confirmée. Point de départ des 5 ans.'],['10/2031','Salaire','Même employeur depuis 34 mois : preuve utile pour la profession et l\'origine des fonds.'],['11/2031','Connexion avec eID','Contrôle du compte.'],['11/2031','Paiements par carte','Surtout en Belgique : indice pour le pays, presque rien pour l\'adresse.']]},
+ {tab:'Assurance-vie dormante',coh:'vpu',clock:55,age:55,flag:[],truth:'Inconnu. Aucun signal depuis 55 mois : rien ne permet de dire que l\'adresse est encore bonne.',
+  ev:[['04/2027','Dernière revue documentée','Pièce d\'identité et adresse vérifiées.'],['04/2027','Prime unique payée','Aucune transaction ensuite.'],['01/2030','Relevé annuel par courriel','Pas de rejet technique : cela ne prouve pas la lecture.'],['11/2031','Échéance dans 5 mois','Sans preuve : contact obligatoire. La vérification au versement vise le bénéficiaire.']]},
+ {tab:'Déménagement invisible',coh:'sal',clock:14,age:14,flag:[],moved:true,truth:'En réalité (simulation) : il a déménagé dans la même commune il y a 9 mois. Transactions stables. Sans confirmation ni registre, personne ne le voit.',
+  ev:[['09/2030','Dernière revue documentée','Adresse confirmée.'],['02/2031','Déménagement (la banque l\'ignore)','Aucun effet sur les transactions.'],['10/2031','Salaire inchangé','Même employeur.'],['11/2031','Paiements par carte','Mêmes commerces.']]}];
+
+function renderCustomer(){
+  var u=PEOPLE[S.who],c=COH.filter(function(x){return x.id===u.coh;})[0],html='',open=0,pre=0;
+  DP.forEach(function(d){
+    var e=c.ev[d.id]||{},h=d.h,conf=confidence(h,u.age,e.i?e.i[1]:0),st,why;
+    if(d.fixed){st='ok';why='Donnée immuable, vérifiée à l\'entrée en relation';}
+    else if(S.reg&&REG[d.id]){st='ok';why=u.moved&&d.id==='adr'?'Registre (comparaison) : nouvelle adresse trouvée, mise à jour':'Registre (comparaison)';}
+    else if(S.app&&APP[d.id]&&S.who!==1){st='ok';why=u.moved&&d.id==='adr'?'Le client corrige son adresse dans l\'application':'Confirmé par le client dans l\'application';}
+    else if(e.d>=.7&&S.who!==1){st='ok';why=d.id==='ctrl'?'Authentification forte récente':'Transactions cohérentes';}
+    else{st=conf>=S.th/100?'pre':'act';why='Confiance '+pct(conf)+', preuve vieille de '+u.age+' mois'+(S.app&&APP[d.id]?', aucune réponse dans l\'application':'');}
+    if(st==='act')open++;if(st==='pre')pre++;
+    html+=line(d.n,why,{ok:'Confirmé',pre:'Présumé',act:'À vérifier'}[st],{ok:'done',pre:'review',act:'risk'}[st]);
+  });
+  var left=60-u.clock,verdict=open?['Action : demander '+open+' donnée(s)','risk']:!pre?['Revue close sur preuves','done']:S.policy==='pre'?['Revue close sur présomption (contesté)','review']:left<=S.win?['Preuve à obtenir maintenant','risk']:['Preuve à obtenir d\'ici '+left+' mois','live'];
+  $('custState').innerHTML='<p style="margin-bottom:8px"><span class="pill '+verdict[1]+'">'+verdict[0]+'</span> <span class="hint">Plafond dans '+left+' mois</span></p>'+html+line('PPE et sanctions','Filtrage sur listes','Obligatoire');
+  $('timeline').innerHTML=u.ev.map(function(e){return '<li><b>'+e[0]+'</b> '+e[1]+'<small>'+e[2]+'</small></li>';}).join('');
+  $('truth').textContent=u.truth;
+}
+
+function render(){
+  document.querySelectorAll('[data-policy]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.policy===S.policy);});
+  $('policyHint').textContent=S.policy==='pre'?'Votre hypothèse : sans écart, la revue conclut « rien à changer ». Point de droit non tranché.':'La revue n\'est close que si chaque donnée a une preuve. Sinon elle doit venir avant le plafond.';
+  $('app').checked=S.app;$('reg').checked=S.reg;
+  [['th',' %'],['sens',' %'],['win',' mois'],['resp',' %'],['n',''],['nr',' %'],['tol',' %']].forEach(function(k){$(k[0]).value=S[k[0]];$(k[0]+'O').textContent=S[k[0]]+k[1];});
+  $('resp').disabled=!S.app;
+
+  var A=COH.map(aggregate),tot=0,sum={ok:0,pre:0,wait:0,act:0},wrongW=0,closedW=0;
+  A.forEach(function(a){tot+=a.c.size;KEYS.forEach(function(k){sum[k]+=a.n[k]/M*a.c.size;});var cl=a.closed.length/M*a.c.size;closedW+=cl;wrongW+=cl*a.wrongRate;});
+  var wr=closedW?wrongW/closedW:0,ex=EXCL.reduce(function(s,e){return s+e[1];},0);
+  $('stats').innerHTML=[[fmt(tot),'clients dans le dispositif',fmt(ex)+' exclus'],[pct(sum.ok/tot),'avec une preuve sur chaque donnée','sans contact'],[pct(sum.pre/tot),'clos sur présomption',S.policy==='pre'?'juridiquement contesté':'règle stricte : aucun'],[pct(sum.act/tot),'à traiter maintenant',fmt(sum.act)+' dossiers'],[pct(wr,1),'des dossiers clos sont faux','simulation à taux inventés ; la banque ne le voit pas']].map(function(s){return '<div class="stat"><b>'+s[0]+'</b><span>'+s[1]+'</span><small>'+s[2]+' · illustratif</small></div>';}).join('');
+  $('cohorts').innerHTML=A.map(function(a){return '<button type="button" class="cohort" data-c="'+a.c.id+'" aria-pressed="'+(a.c.id===S.coh)+'"><span><b>'+a.c.n+'</b><small>'+fmt(a.c.size)+' clients</small></span><span>'+bar(a.n,M)+'<small>'+pct((a.n.ok+a.n.pre)/M)+' clos sans contact · '+pct(a.n.act/M)+' action</small></span><span><small>'+fmt(a.soon/M*a.c.size)+' à moins de '+S.win+' mois du plafond</small><small>'+(a.closed.length?pct(a.wrongRate,1)+' faux parmi les clos':'aucun dossier clos')+'</small></span></button>';}).join('');
+  $('excl').innerHTML=EXCL.map(function(e){return line(e[0],'',fmt(e[1]));}).join('');
+
+  var a=A.filter(function(x){return x.c.id===S.coh;})[0];
+  $('detTitle').textContent=a.c.n;$('detSub').textContent=fmt(a.c.size)+' clients, '+fmt(M)+' simulés. Illustratif.';
+  $('matrix').innerHTML=DP.map(function(d){
+    var t=a.dp[d.id],e=a.c.ev[d.id]||{},h=Math.min(.6,d.h*((a.c.mult||{})[d.id]||1));
+    var proof=e.d?['Preuve pour '+pct(e.d),'done']:e.i&&e.i[1]>1.1?['Indice faible','review']:['Rien','risk'];
+    if(d.id==='ctrl'&&e.d)proof=['Authentification : '+pct(e.d),'done'];
+    var med=t.conf.slice().sort(function(x,y){return x-y;})[M>>1];
+    if(d.fixed)proof=['Sans objet','live'];
+    return '<div class="dp"><div><b>'+d.n+'</b><small>'+(d.fixed?'immuable':pct(h,h<.01?1:0)+' de changements par an')+'</small></div><div><span class="pill '+proof[1]+'">'+proof[0]+'</span></div><div>'+bar(t,M)+'<small>'+pct(t.ok/M)+' prouvé · '+pct(t.pre/M)+' présumé · '+pct(t.act/M)+' à vérifier</small></div><div><b>'+pct(med)+'</b><small>confiance · preuve de '+Math.round(t.age/M)+' mois en moyenne</small></div></div>';
+  }).join('');
+  var mx=Math.max.apply(null,a.hist);
+  $('hist').innerHTML=['0 à 6 mois','7 à 12 mois','13 à 24 mois','plus de 24'].map(function(l,i){return '<div><span>'+fmt(a.hist[i]/M*a.c.size)+'</span><i style="height:'+(70*a.hist[i]/mx)+'px"></i><span>'+l+'</span></div>';}).join('');
+
+  /* control group, drawn from the selected cohort */
+  var pool=a.closed,r=rng(S.seed),idx=pool.map(function(_,i){return i;}),n=Math.min(S.n,pool.length),k=0,missing=0;
+  for(var i=0;i<n;i++){var j=i+Math.floor(r()*(idx.length-i)),t=idx[j];idx[j]=idx[i];idx[i]=t;
+    var w=pool[t];if(r()<Math.min(.95,S.nr/100*(w?2:1)))missing++;else if(w)k++;}
+  var ans=n-missing,tol=S.tol/100,u=ans?upper(k,ans):1,worst=n?upper(k+missing,n):1;
+  var pass=u<=tol,safe=worst<=tol,zero=Math.ceil(Math.log(.05)/Math.log(1-tol));
+  var verdict=!n?['Aucun dossier clos à contrôler','live']:safe?['Sous le plafond, même si les muets ont changé','done']:pass?['Sous le plafond seulement si les muets sont comme les autres','review']:['Plafond non démontré : suspendre','risk'];
+  $('ctrl').innerHTML='<h3>'+a.c.n+'</h3><p style="margin-bottom:8px"><span class="pill '+verdict[1]+'" style="white-space:normal">'+verdict[0]+'</span></p>'+
+    (n?line('Tirés, ayant répondu',pool.length<S.n?'Limité aux dossiers clos simulés':'',fmt(n)+' / '+fmt(ans))+
+    line('Changements non détectés trouvés','',fmt(k)+(ans?' ('+pct(k/ans,1)+')':''))+
+    line('Borne haute à 95 %, répondants','Binomiale exacte, unilatérale',pct(u,1),pass?'done':'risk')+
+    line('Borne prudente','Chaque non-réponse comptée comme un changement',pct(worst,1),safe?'done':'risk'):'')+
+    line('Minimum pour un plafond de '+S.tol+' % sans aucun changement trouvé','Il faut davantage dès qu\'on en tolère',fmt(zero));
+
+  $('claim').textContent='« Pour '+fmt(tot)+' relations à risque faible (illustratif), nous ne menons plus de campagne sollicitant systématiquement le client. Chaque relation reçoit au plus tard tous les cinq ans une revue documentée, élément par élément, avec intervention humaine. '+pct((sum.ok+sum.pre)/tot)+' se closent aujourd\'hui sans contact, dont '+pct(sum.pre/tot)+' sur présomption ; '+pct(sum.act/tot)+' demandent une action. Nous mesurons les changements non détectés par un contrôle aléatoire et suspendons au-delà de '+S.tol+' %. Les réexamens sur événement et le filtrage restent continus. »';
+  $('claimState').className='pill '+(safe&&n?'review':'risk');
+  $('claimState').textContent=safe&&n?'Formulation à faire valider juridiquement avant tout usage':'Ne pas présenter en l\'état : le contrôle de la cohorte affichée ne la soutient pas';
+  var w=[];
+  if(S.policy==='pre')w.push('La clôture sur présomption n\'est pas reconnue par un texte adopté ; le projet de lignes directrices exige que la revue périodique ait lieu.');
+  if(!S.app&&!S.reg)w.push('Aucune preuve positive pour la nationalité ; presque aucune pour l\'adresse.');
+  if(S.reg)w.push('Registres activés : scénario de comparaison, hors de l\'hypothèse de départ. Accès légal à vérifier.');
+  if(S.app)w.push('La fiabilité des confirmations clients doit être mesurée selon le risque.');
+  if(!safe)w.push('Cohorte « '+a.c.n+' » : le groupe de contrôle ne démontre pas le plafond dans tous les cas.');
+  w.push('Assurance-vie sans interaction : la stabilité n\'apprend rien.','Art. 76(5)(b) : intervention humaine significative à concevoir pour toute réduction de vigilance.','Orientations AMLA et normes techniques non finalisées.');
+  $('warn').innerHTML=w.map(function(x){return '<li>'+x+'</li>';}).join('');
+  $('proofs').innerHTML=[['Évaluation des risques de l\'entité','À produire'],['Politique et seuils approuvés','À produire'],['Avis juridique et analyse d\'impact RGPD','À produire'],['Validation indépendante du modèle','À produire'],['Six mois en mode fantôme','À produire'],['Groupe de contrôle (ci-dessus)','Simulé'],['Zéro échéance dépassée','À suivre'],['Dossiers rejouables par client','Maquette']].map(function(p){return line(p[0],'',p[1],'review');}).join('');
+  renderCustomer();
+}
+
+$('who').innerHTML=PEOPLE.map(function(p,i){return '<button type="button" data-who="'+i+'" aria-pressed="'+(i===0)+'">'+p.tab+'</button>';}).join('');
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.policy){S.policy=b.dataset.policy;render();}
+  else if(b.dataset.c){S.coh=b.dataset.c;render();var s=document.querySelector('[data-c="'+S.coh+'"]');s.focus({preventScroll:true});$('detTitle').scrollIntoView({behavior:'smooth',block:'start'});}
+  else if(b.dataset.who){S.who=+b.dataset.who;document.querySelectorAll('[data-who]').forEach(function(x){x.setAttribute('aria-pressed',x===b);});renderCustomer();}
+  else if(b.id==='draw'){S.seed++;render();}
+  else if(b.id==='reset'){var keep=S.who;S=Object.assign({},DEF,{who:keep});render();}
+});
+['th','sens','win','resp','n','nr','tol'].forEach(function(id){$(id).addEventListener('input',function(){S[id]=+this.value;render();});});
+['app','reg'].forEach(function(id){$(id).addEventListener('change',function(){S[id]=this.checked;render();});});
+render();
+})();
+</script>
+</body>
+</html>
