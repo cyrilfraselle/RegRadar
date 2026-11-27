@@ -36,3 +36,14 @@
 - **D3 = A** (vocabulary): "FIU" everywhere, CTIF-CFI cited as the Belgian example.
 - **Merge** approved for #60, #59, #56, #52, #49, #44 (merged to main by the owner's instruction). Owner asked to close old PRs and open the pending ones on GitHub; owner asked to start the Max register page in Kanban view.
 - Max walker: owner says the walk is still not natural; they will come back to it later (options: trace the reference MP4 frames after licence and tools decision, or an illustrator).
+
+## 2026-11-25 (answers to the 2026-11-24 digest, replies sent 24 Nov 09:44 to 09:45)
+- **D1 = A** (Register Kanban, PR #64): keep it as a separate page "Register board", review in a week. Not merged; the owner merges.
+- **D2 = A** (PR #62): launch the independent legal review (CHECK stream), then propose the merge.
+- **D3 = B** (UBO calculator, PR #63): pause until the review of #62 is finished.
+
+## 2026-11-26 (answers to the 2026-11-25 digest, replies sent 25 Nov 07:54 to 07:55)
+- **D1 = unanswered** (Cases content in the shared register, PR #68): the owner did not understand the question and asked for more information. Re-explained in plain words in the 26 Nov digest.
+- **D2 = A** (Academy after Records, PR #66): next topic is crypto-assets, anonymous instruments and cash (Arts 79, 80).
+- **D3 = B** (UBO calculator Art. 54, PR #63): hold the tool until a lawyer confirms. Owner remark: ask the precise questions at the next working session.
+- **D4 = A** (register Art. 63, PR #62): widen the entry to cover 63(6) retention and 63(2) duty of beneficial owners.
