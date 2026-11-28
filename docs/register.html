@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+(function(){try{var t=localStorage.getItem('regradar-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegRadar: Register board</title>
+<meta name="description" content="Every verified obligation as a card on a board: not assessed, applicable, owned, controlled and tested, not applicable. Drag a card, or use its move menu.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="rr-ui.css?v=20261114a">
+<link rel="stylesheet" href="register.css?v=20261123a">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the board</a>
+<script src="site-nav.js?v=20261114a"></script>
+<main id="main" class="wrap">
+  <header class="head rr-band">
+    <div>
+      <h1>Register board</h1>
+      <p class="lead" id="lead">Reading the register and your controls on this device…</p>
+    </div>
+    <div class="head-tools">
+      <div class="seg" role="tablist" aria-label="View">
+        <button role="tab" type="button" data-v="board" aria-selected="true">Board</button>
+        <button role="tab" type="button" data-v="list" aria-selected="false">List</button>
+      </div>
+    </div>
+  </header>
+  <div class="rr-filters" role="search">
+    <label class="sr" for="fTopic">Topic</label><select class="sel" id="fTopic"><option value="">All topics</option></select>
+    <label class="sr" for="fWho">Applies to</label><select class="sel" id="fWho"><option value="">All firm types</option></select>
+    <label class="sr" for="fPrio">Priority</label><select class="sel" id="fPrio"><option value="">Any priority</option></select>
+    <label class="sr" for="fOwner">Owner</label><select class="sel" id="fOwner"><option value="">Any owner</option></select>
+  </div>
+  <section id="view" aria-live="polite"></section>
+  <p class="hint">Demo controls for a fictional firm (CF Bank), kept on this device. Controlled and tested follows the <a href="gaps.html">gap assessment</a>: an approved control with an owner and a recorded test. That column fills itself. Not legal advice.</p>
+</main>
+<dialog class="mid" id="dlg" aria-labelledby="dlgT"></dialog>
+<dialog class="narrow" id="ownDlg" aria-labelledby="ownT">
+  <div class="dlg-h"><h2 id="ownT">Who owns this?</h2><button class="rr-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  <form method="dialog" id="ownForm">
+    <div class="dlg-b"><p id="ownWhat"></p><label for="ownIn">Owner name</label><input class="in" id="ownIn" type="text" autocomplete="off" required></div>
+    <div class="dlg-f"><button class="btn" type="button" data-close>Cancel</button><button class="btn pri" type="submit">Save owner</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="gap-logic.js?v=20261123a"></script>
+<script src="register-logic.js?v=20261123a"></script>
+<script src="controls-data.js?v=20261118a"></script>
+<script src="register.js?v=20261123a"></script>
+</body>
+</html>
